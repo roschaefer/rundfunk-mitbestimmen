@@ -1,0 +1,90 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (5.0.0)
+      activesupport (= 5.0.0)
+    activerecord (5.0.0)
+      activemodel (= 5.0.0)
+      activesupport (= 5.0.0)
+      arel (~> 7.0)
+    activesupport (5.0.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    arel (7.1.1)
+    builder (3.2.2)
+    byebug (9.0.5)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
+    concurrent-ruby (1.0.2)
+    cucumber (2.4.0)
+      builder (>= 2.1.2)
+      cucumber-core (~> 1.5.0)
+      cucumber-wire (~> 0.0.1)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 4.0)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.2)
+    cucumber-core (1.5.0)
+      gherkin (~> 4.0)
+    cucumber-wire (0.0.1)
+    data_magic (0.22)
+      faker (>= 1.1.2)
+      yml_reader (>= 0.6)
+    database_cleaner (1.5.3)
+    diff-lcs (1.2.5)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    faker (1.6.6)
+      i18n (~> 0.5)
+    ffi (1.9.14)
+    gherkin (4.0.0)
+    i18n (0.7.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
+    multi_test (0.1.2)
+    page-object (1.2.0)
+      page_navigation (>= 0.9)
+      selenium-webdriver (>= 2.44.0)
+      watir-webdriver (>= 0.6.11)
+    page_navigation (0.9)
+      data_magic (>= 0.14)
+    phantomjs (2.1.1.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    rubyzip (1.2.0)
+    selenium-webdriver (2.53.4)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
+    sqlite3 (1.3.11)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    watir-webdriver (0.9.3)
+      selenium-webdriver (>= 2.46.2)
+    websocket (1.2.3)
+    yml_reader (0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  activesupport
+  byebug
+  childprocess
+  cucumber
+  database_cleaner
+  factory_girl
+  page-object
+  phantomjs
+  rspec-expectations
+  sqlite3
+  watir-webdriver
+
+BUNDLED WITH
+   1.12.5
