@@ -14,12 +14,13 @@ class ApplicationManager
   attr_accessor :rails, :ember, :rails_log, :ember_log
 
   def initialize
-    @rails = ChildProcess.build("sh", "-c", "BUNDLE_GEMFILE=Gemfile bundle exec rails s -e test")
+    rails_command = "BUNDLE_GEMFILE=Gemfile bin/rails s -e test -p #{Cukes.config.rails_port} -P tmp/pids/test.pid"
+    @rails = ChildProcess.build("sh", "-c", rails_command)
     @rails.leader = true
     @rails.cwd = Cukes.config.rails_root
     @rails_log = @rails.io.stdout = @rails.io.stderr = Tempfile.new('rails-log')
 
-    @ember = ChildProcess.build("ember", "serve", "--proxy", "http://localhost:3000")
+    @ember = ChildProcess.build('ember', 'serve','-p', Cukes.config.ember_port.to_s, '--proxy', "http://localhost:#{Cukes.config.rails_port}")
     @ember.leader = true
     @ember.cwd = Cukes.config.ember_root
     @ember_log = @ember.io.stdout = @ember.io.stderr = Tempfile.new("ember-log")

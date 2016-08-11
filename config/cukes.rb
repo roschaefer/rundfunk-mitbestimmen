@@ -5,12 +5,14 @@ class Cukes
   self.configure do |config|
     config.root = Dir[File.dirname(File.expand_path('../', __FILE__))].first
     config.rails_root = File.join(config.root, "backend")
-    config.rails_started_message = 'Listening on tcp://0.0.0.0:3000'
+    config.rails_port = 3001
+    config.rails_started_message = 'Listening on'
     config.ember_root = File.join(config.root, "frontend")
+    config.ember_port = 4201
     config.ember_started_message = "Build successful"
-    config.host = "http://localhost:4200"
+    config.host = "http://localhost:#{config.ember_port}"
     config.browser = ENV["BROWSER"] || :poltergeist
-    config.startup_timeout = 45
+    config.startup_timeout = 20
   end
 
 end
