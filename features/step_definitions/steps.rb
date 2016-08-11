@@ -20,4 +20,11 @@ Then(/^I can read:$/) do |string|
   expect(page).to have_text string
 end
 
+Given(/^my browser is set to "([^"]*)"$/) do |locale|
+  page.driver.add_headers 'Accept-Language' => locale
+end
+
+Then(/^I am welcomed with "([^"]*)"$/) do |string|
+  expect(page).to have_text string
+end
 
