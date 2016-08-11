@@ -7,6 +7,8 @@ Feature: See number of filtered broadcasts
   Given I have these broadcasts in my database:
     | Title       | Topic     |
     | Quarks & Co | Education |
+    | Löwenzahn   | Kids      |
+    | Tagesschau  | News      |
   When I visit the filter page
   Then I can read we have '3 broadcasts in total'
 
