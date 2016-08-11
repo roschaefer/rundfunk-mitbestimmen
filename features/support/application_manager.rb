@@ -72,8 +72,8 @@ private
   end
 
   def processes_started?
-    backend_ready = open(rails_log).read.include?('Listening on tcp://0.0.0.0:3000')
-    frontend_ready = open(ember_log).read.include?('Build successful')
+    backend_ready = open(rails_log).read.include?(Cukes.config.rails_started_message)
+    frontend_ready = open(ember_log).read.include?(Cukes.config.ember_started_message)
     backend_ready && frontend_ready
   end
 end

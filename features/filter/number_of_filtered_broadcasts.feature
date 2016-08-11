@@ -5,7 +5,7 @@ Feature: See number of filtered broadcasts
 
   Scenario: See number of unfiltered broadcasts
   Given I have these broadcasts in my database:
-    | Name        | Topic     |
+    | Title       | Topic     |
     | Quarks & Co | Education |
   When I visit the filter page
   Then I can read we have '3 broadcasts in total'
