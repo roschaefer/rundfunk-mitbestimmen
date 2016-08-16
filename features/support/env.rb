@@ -1,32 +1,18 @@
 require 'factory_girl'
-require 'active_record'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
-require 'active_support/dependencies'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'exhaust'
 
-
-# Require Models
+ENV['RAILS_ENV'] ||= 'test'
+puts Dir.pwd
 root = Dir[File.dirname(File.expand_path('../../', __FILE__))].first
 rails_root = File.join(root, "backend")
-ActiveSupport::Dependencies.autoload_paths += Dir.glob File.join(rails_root, "app/models")
+require File.expand_path("#{rails_root}/config/environment")
 
-# Require Factories
-Dir["#{rails_root}/spec/factories/*.rb"].each { |f| require f }
 
-# Connect to Test Database, suggest simply symlinking your actual database.yml from backend to config/database.yml in this project
-# If you are using sqlite, you'll need a separate database.yml for this project with the relative path to the backend test.sqlite file
-database_yml = File.join(rails_root, 'config', 'database.yml')
-if File.exists?(database_yml)
-  active_record_configuration = YAML.load_file(database_yml)
-  ActiveRecord::Base.configurations = active_record_configuration
-  ar_config = ActiveRecord::Base.configurations['test']
-  ActiveRecord::Base.establish_connection(ar_config)
-else
-  raise "Please create #{database_yml} first to configure your test database"
-end
+
 
 # Database Cleaner to clear out the test DB between tests
 DatabaseCleaner.strategy = :truncation
