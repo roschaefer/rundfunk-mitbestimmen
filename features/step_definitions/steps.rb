@@ -1,8 +1,9 @@
 Given(/^I am logged in$/) do
   @user = create(:user)
   visit '/login'
-  fill_in 'E-Mail:', with: @user.name
-  fill_in 'Password:', with: @user.password
+  fill_in 'login-form-email', with: @user.email
+  fill_in 'login-form-password', with: @user.password
+  click_button 'Send'
 end
 
 Given(/^I have these broadcasts in my database:$/) do |table|
