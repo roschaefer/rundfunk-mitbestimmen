@@ -1,3 +1,10 @@
+Given(/^I am logged in$/) do
+  @user = create(:user)
+  visit '/login'
+  fill_in 'E-Mail:', with: @user.name
+  fill_in 'Password:', with: @user.password
+end
+
 Given(/^I have these broadcasts in my database:$/) do |table|
   table.hashes.each do |row|
     create :broadcast, title: row['Title']

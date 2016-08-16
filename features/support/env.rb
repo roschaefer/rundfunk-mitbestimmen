@@ -42,10 +42,3 @@ end
 
 # Shorthand FactoryGirl
 include FactoryGirl::Syntax::Methods
-
-Around('@de') do |scenario, block|
-  locale = ENV["LANG"]
-  ENV["LANG"] = 'de_DE.UTF-8'
-  block.call
-  ENV["LANG"] = locale
-end
