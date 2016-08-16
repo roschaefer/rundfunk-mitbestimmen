@@ -1,6 +1,0 @@
-# config/database.yml
-test:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: backend/db/test.sqlite3

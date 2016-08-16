@@ -1,0 +1,6 @@
+rails:
+  path: "./backend"
+  port: 3001
+ember:
+  path: "./frontend"
+  port: 4201
