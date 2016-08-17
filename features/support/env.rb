@@ -3,6 +3,8 @@ require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
+require 'capybara/webkit'
+require 'capybara-screenshot/cucumber'
 require 'exhaust'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -22,7 +24,7 @@ at_exit { Exhaust.shutdown! }
 
 Capybara.configure do |config|
   # Use whatever driver you want
-  config.default_driver = :poltergeist
+  config.default_driver = :webkit
   config.app_host = Exhaust.ember_host
 end
 
