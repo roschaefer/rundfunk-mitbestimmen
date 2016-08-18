@@ -2,7 +2,6 @@ require 'factory_girl'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
-require 'capybara/poltergeist'
 require 'capybara/webkit'
 require 'capybara-screenshot/cucumber'
 require 'exhaust'
@@ -22,11 +21,13 @@ DatabaseCleaner.strategy = :truncation
 Exhaust.run!
 at_exit { Exhaust.shutdown! }
 
+
 Capybara.configure do |config|
   # Use whatever driver you want
-  config.default_driver = :webkit
   config.app_host = Exhaust.ember_host
+  config.default_driver = :webkit
 end
+
 
 # Shorthand FactoryGirl
 include FactoryGirl::Syntax::Methods

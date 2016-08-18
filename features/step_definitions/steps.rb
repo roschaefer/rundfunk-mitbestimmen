@@ -3,7 +3,8 @@ Given(/^I am logged in$/) do
   visit '/login'
   fill_in 'login-form-email', with: @user.email
   fill_in 'login-form-password', with: @user.password
-  click_button 'Send'
+  click_on 'login-form-submit'
+  expect(page).to have_text('Log out')
 end
 
 Given(/^I have these broadcasts in my database:$/) do |table|
@@ -34,5 +35,9 @@ end
 
 Then(/^I am welcomed with "([^"]*)"$/) do |string|
   expect(page).to have_text string
+end
+
+When(/^I click on the continue button to the filter page$/) do
+  click_on 'continue-to-filter'
 end
 

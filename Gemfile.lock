@@ -79,7 +79,7 @@ GEM
       json
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.3.2)
+    coderay (1.1.1)
     concurrent-ruby (1.0.2)
     cucumber (2.4.0)
       builder (>= 2.1.2)
@@ -143,10 +143,10 @@ GEM
     orm_adapter (0.5.0)
     pg (0.18.4)
     pkg-config (1.1.7)
-    poltergeist (1.10.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     puma (3.6.0)
     rack (2.0.1)
     rack-cors (0.4.0)
@@ -204,6 +204,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    slop (3.6.0)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -250,7 +251,7 @@ DEPENDENCIES
   globalize-accessors
   listen (~> 3.0.5)
   pg
-  poltergeist
+  pry
   puma (~> 3.0)
   rack-cors
   rails (~> 5.0.0)
