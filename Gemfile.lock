@@ -256,6 +256,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.0.0)
   rails_12factor
+  rake
   rspec-expectations
   rspec-rails
   spring
