@@ -1,8 +1,40 @@
 language: ruby
+sudo: required
 rvm:
   - 2.3.1
+env:
+  - TRAVIS_NODE_VERSION="6.2.1"
 services:
   - postgresql
+
+before_install:
+  # http://austinpray.com/ops/2015/09/20/change-travis-node-version.html
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - npm install
+  - cd frontend
+  - npm config set spin false
+  - npm install -g bower
+  - bower --version
+  - npm --version
+  - node --version
+  - cd ..
+
 before_script:
-    - psql -c 'create database travis_ci_test;' -U postgres
-    - cp backend/config/database.travis.yml backend/config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cd backend
+  - cp config/database.travis.yml config/database.yml
+  - bundle exec rake db:schema:load
+  - cd ..
+
+install:
+  - bundle
+  - cd frontend
+  - npm install
+  - bower install
+  - cd ..
+  - cd backend
+  - cd ..
+
+
+script:
+  - xvfb-run bundle exec rake
