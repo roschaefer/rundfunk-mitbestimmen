@@ -8,12 +8,12 @@ Feature: See number of filtered broadcasts
     Given I am logged in
 
   Scenario: See number of unfiltered broadcasts
-  Given I have these broadcasts in my database:
-    | Title       | Topic     |
-    | Quarks & Co | Education |
-    | Löwenzahn   | Kids      |
-    | Tagesschau  | News      |
-  When I visit the landing page
-  And I click on the continue button to the filter page
-  Then I can read we have '3 broadcasts in total'
+    Given I have these broadcasts in my database:
+      | Title       | Topic     |
+      | Quarks & Co | Education |
+      | Löwenzahn   | Kids      |
+      | Tagesschau  | News      |
+    When I visit the landing page
+    And I click on the continue button to the filter page
+    Then I can read we have '3 broadcasts in total'
 

@@ -70,3 +70,38 @@ end
 Then(/^my login was successful$/) do
   expect(page).to have_text('Log out')
 end
+
+When(/^I visit the decision page$/) do
+  visit '/decide'
+  expect(page).to have_css('.decision-card-deck')
+end
+
+When(/^I decide 'Yes' for ([^"]*) and ([^"]*)$/) do |title1, title2|
+  within('.decision-card', text: /#{title1}/) do
+    click_on 'Yes'
+  end
+  within('.decision-card', text: /#{title2}/) do
+    click_on 'Yes'
+  end
+end
+
+When(/^I decide 'No' for ([^"]*)$/) do |title|
+  within('.decision-card', text: /#{title}/) do
+    click_on 'No'
+  end
+end
+
+Then(/^the list of selectable broadcasts is empty$/) do
+  visit current_url # refresh
+  expect(page).to have_css('.decision-card-deck')
+  expect(all('.decision-card')).to be_empty
+end
+
+Then(/^I the database contains these selections that belong to me:$/) do |table|
+  mapping = {'Yes' => 'positive', 'No' => 'neutral'}
+  my_selections = @user.selections
+  table.hashes.each do |row|
+    selection = my_selections.find {|s| s.broadcast.title == row['Title']}
+    expect(selection.response).to eq(mapping[row['Answer']])
+  end
+end
