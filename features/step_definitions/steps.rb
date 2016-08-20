@@ -68,7 +68,9 @@ Given(/^I already signed up$/) do
 end
 
 Then(/^my login was successful$/) do
-  expect(page).to have_text('Log out')
+  using_wait_time(2) do
+    expect(page).to have_text('Log out')
+  end
 end
 
 When(/^I visit the decision page$/) do
@@ -117,12 +119,50 @@ When(/^I visit the invoice page$/) do
   visit '/invoice'
 end
 
-Then(/^I can see that my budget of ([^"]*)€ is distributed equally:$/) do |budget, table|
-  share = budget.to_f/table.rows.length.to_f
-  table.hashes.each do |row|
+def check_invoice(ast_table)
+  ast_table.hashes.each do |row|
     title = row['Title']
+    amount = row['Amount']
     within('.invoice-item', text: /#{title}/) do
-      expect(page).to have_text(share.to_s)
+      expect(page).to have_text(amount)
     end
   end
 end
+
+Then(/^I can see that my budget of .*€ is distributed equally:$/) do |table|
+  check_invoice(table)
+end
+
+Given(/^my invoice looks like this:$/) do |table|
+  table.hashes.each do |row|
+    title = row['Title']
+    amount = row['Amount']
+    broadcast = create(:broadcast, title: title)
+    create(:selection,
+           user: @user,
+           broadcast: broadcast,
+           response: :positive,
+           amount: amount.to_f
+          )
+  end
+end
+
+When(/^I look at my invoice/) do
+  visit '/invoice'
+end
+
+When(/^I click on the 'X' next to ([^"]*)$/) do |title|
+  within('.invoice-item', text: /#{title}/) do
+    click_on('X')
+  end
+end
+
+Then(/^my updated invoice looks like this:$/) do |table|
+  check_invoice(table)
+end
+
+Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |title, response|
+  selection = @user.selections.find {|s| s.broadcast.title == title }
+  expect(selection.response).to eq response
+end
+
