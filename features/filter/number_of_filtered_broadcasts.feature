@@ -13,7 +13,6 @@ Feature: See number of filtered broadcasts
       | Quarks & Co | Education |
       | Löwenzahn   | Kids      |
       | Tagesschau  | News      |
-    When I visit the landing page
-    And I click on the continue button to the filter page
+    When I visit the filter page
     Then I can read we have '3 broadcasts in total'
 

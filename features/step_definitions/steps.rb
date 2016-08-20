@@ -105,3 +105,24 @@ Then(/^I the database contains these selections that belong to me:$/) do |table|
     expect(selection.response).to eq(mapping[row['Answer']])
   end
 end
+
+Given(/^I want to give money to each of these broadcasts:$/) do |table|
+  table.hashes.each do |row|
+    b = create(:broadcast, title: row['Title'])
+    create(:selection, user: @user, broadcast: b)
+  end
+end
+
+When(/^I visit the invoice page$/) do
+  visit '/invoice'
+end
+
+Then(/^I can see that my budget of ([^"]*)€ is distributed equally:$/) do |budget, table|
+  share = budget.to_f/table.rows.length.to_f
+  table.hashes.each do |row|
+    title = row['Title']
+    within('.invoice-item', text: /#{title}/) do
+      expect(page).to have_text(share.to_s)
+    end
+  end
+end
