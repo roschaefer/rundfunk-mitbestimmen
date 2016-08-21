@@ -163,6 +163,7 @@ When(/^I click on the 'X' next to ([^"]*)$/) do |title|
 end
 
 Then(/^my updated invoice looks like this:$/) do |table|
+  wait_for_ajax
   check_invoice(table)
 end
 

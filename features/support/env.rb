@@ -31,3 +31,4 @@ end
 
 # Shorthand FactoryGirl
 include FactoryGirl::Syntax::Methods
+
