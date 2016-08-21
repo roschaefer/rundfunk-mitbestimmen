@@ -23,4 +23,5 @@ Feature: Generate invoices
       | Wissen macht Ah!         | 3.50   |
       | Tigerenten Club          | 3.50   |
       | Sandmann                 | 3.50   |
+    And also in the database all selections have the same amount of "3.50"
 

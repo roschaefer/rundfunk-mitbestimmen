@@ -133,6 +133,11 @@ Then(/^I can see that my budget of .*€ is distributed equally:$/) do |table|
   check_invoice(table)
 end
 
+Then(/^also in the database all selections have the same amount of "([^"]*)"$/) do |amount|
+  amounts = Selection.pluck(:amount)
+  expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
+end
+
 Given(/^my invoice looks like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
