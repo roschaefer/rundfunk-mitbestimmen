@@ -168,3 +168,25 @@ Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |ti
   expect(selection.response).to eq response
 end
 
+
+Given(/^I have many broadcasts in my database, let's say (\d+) broadcasts in total$/) do |number|
+  number.to_i.times do
+    create(:broadcast)
+  end
+end
+
+Given(/^there are (\d+) remaining broadcasts in the list$/) do |number|
+  expect(page).to have_css('.decision-card-deck')
+  expect(page).to have_css('.decision-card', count: number.to_i)
+end
+
+Given(/^I click (\d+) times on 'Yes'$/) do |number|
+  number.to_i.times do
+    first('.decision-card-action').click_button('Yes')
+  end
+end
+
+Then(/^the list of broadcasts has (\d+) items again$/) do |number|
+  expect(page).to have_css('.decision-card-deck')
+  expect(page).to have_css('.decision-card', count: number.to_i)
+end

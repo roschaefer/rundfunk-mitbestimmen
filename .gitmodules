@@ -1,8 +1,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/roschaefer/rundfunk-backend.git
-	branch = master
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/roschaefer/rundfunk-frontend.git
-	branch = master
