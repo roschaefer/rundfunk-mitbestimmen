@@ -17,10 +17,18 @@ Capybara.save_path = File.expand_path('../../../screenshots', __FILE__)
 # Database Cleaner to clear out the test DB between tests
 DatabaseCleaner.strategy = :truncation
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 Capybara.configure do |config|
   # Use whatever driver you want
   config.app_host = Exhaust.ember_host
-  config.default_driver = :selenium
+  if ENV['CHROME'] || ENV['CHROMIUM']
+    config.default_driver = :chrome
+  else
+    config.default_driver = :selenium
+  end
 end
 
 After do
