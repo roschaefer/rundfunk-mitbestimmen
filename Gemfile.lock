@@ -85,7 +85,6 @@ GEM
     arel (7.1.1)
     bcrypt (3.1.11)
     builder (3.2.2)
-    byebug (9.0.5)
     cancancan (1.15.0)
     capybara (2.7.1)
       addressable
@@ -142,6 +141,9 @@ GEM
     json (1.8.3)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.0.8)
@@ -247,7 +249,6 @@ DEPENDENCIES
   active_model_serializers
   activerecord
   activesupport
-  byebug
   cancancan
   capybara
   capybara-screenshot
@@ -261,6 +262,7 @@ DEPENDENCIES
   factory_girl_rails
   globalize!
   globalize-accessors
+  kaminari
   listen (~> 3.0.5)
   pg
   pry
