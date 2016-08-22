@@ -24,11 +24,7 @@ end
 Capybara.configure do |config|
   # Use whatever driver you want
   config.app_host = Exhaust.ember_host
-  if ENV['CHROME'] || ENV['CHROMIUM']
-    config.default_driver = :chrome
-  else
-    config.default_driver = :selenium
-  end
+  config.default_driver = (ENV['BROWSER'] || 'selenium').to_sym
 end
 
 After do

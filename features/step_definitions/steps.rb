@@ -29,10 +29,6 @@ Then(/^I can read:$/) do |string|
   expect(page).to have_text string
 end
 
-Given(/^my browser language is set to german$/) do
-  expect(ENV["LANG"]).to eq 'de_DE.UTF-8'
-end
-
 Then(/^I am welcomed with "([^"]*)"$/) do |string|
   expect(page).to have_text string
 end
@@ -94,7 +90,7 @@ When(/^I decide 'No' for ([^"]*)$/) do |title|
 end
 
 Then(/^the list of selectable broadcasts is empty$/) do
-  visit current_url # refresh
+  wait_for_ajax
   expect(page).to have_css('.decision-card-deck')
   expect(all('.decision-card')).to be_empty
 end
