@@ -29,10 +29,6 @@ Then(/^I can read:$/) do |string|
   expect(page).to have_text string
 end
 
-Given(/^my browser language is set to german$/) do
-  expect(ENV["LANG"]).to eq 'de_DE.UTF-8'
-end
-
 Then(/^I am welcomed with "([^"]*)"$/) do |string|
   expect(page).to have_text string
 end
@@ -68,7 +64,9 @@ Given(/^I already signed up$/) do
 end
 
 Then(/^my login was successful$/) do
-  expect(page).to have_text('Log out')
+  using_wait_time(2) do
+    expect(page).to have_text('Log out')
+  end
 end
 
 When(/^I visit the decision page$/) do
@@ -92,7 +90,7 @@ When(/^I decide 'No' for ([^"]*)$/) do |title|
 end
 
 Then(/^the list of selectable broadcasts is empty$/) do
-  visit current_url # refresh
+  wait_for_ajax
   expect(page).to have_css('.decision-card-deck')
   expect(all('.decision-card')).to be_empty
 end
@@ -117,12 +115,56 @@ When(/^I visit the invoice page$/) do
   visit '/invoice'
 end
 
-Then(/^I can see that my budget of ([^"]*)€ is distributed equally:$/) do |budget, table|
-  share = budget.to_f/table.rows.length.to_f
-  table.hashes.each do |row|
+def check_invoice(ast_table)
+  ast_table.hashes.each do |row|
     title = row['Title']
+    amount = row['Amount']
     within('.invoice-item', text: /#{title}/) do
-      expect(page).to have_text(share.to_s)
+      expect(page).to have_text(amount)
     end
   end
 end
+
+Then(/^I can see that my budget of .*€ is distributed equally:$/) do |table|
+  check_invoice(table)
+end
+
+Then(/^also in the database all selections have the same amount of "([^"]*)"$/) do |amount|
+  amounts = Selection.pluck(:amount)
+  expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
+end
+
+Given(/^my invoice looks like this:$/) do |table|
+  table.hashes.each do |row|
+    title = row['Title']
+    amount = row['Amount']
+    broadcast = create(:broadcast, title: title)
+    create(:selection,
+           user: @user,
+           broadcast: broadcast,
+           response: :positive,
+           amount: amount.to_f
+          )
+  end
+end
+
+When(/^I look at my invoice/) do
+  visit '/invoice'
+end
+
+When(/^I click on the 'X' next to ([^"]*)$/) do |title|
+  within('.invoice-item', text: /#{title}/) do
+    click_on('X')
+  end
+end
+
+Then(/^my updated invoice looks like this:$/) do |table|
+  wait_for_ajax
+  check_invoice(table)
+end
+
+Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |title, response|
+  selection = @user.selections.find {|s| s.broadcast.title == title }
+  expect(selection.response).to eq response
+end
+
