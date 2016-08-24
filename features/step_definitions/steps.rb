@@ -1,9 +1,9 @@
 Given(/^I am logged in$/) do
   @user = create(:user)
   visit '/login'
-  fill_in 'login-form-email', with: @user.email
-  fill_in 'login-form-password', with: @user.password
-  click_on 'login-form-submit'
+  fill_in 'email', with: @user.email
+  fill_in 'password', with: @user.password
+  click_on 'submit'
   expect(page).to have_text('Log out')
 end
 
@@ -43,15 +43,15 @@ end
 
 When(/^I fill in my email and password and confirm the password$/) do
   email, password = 'test@example.org', '12341234'
-  fill_in 'signup-form-email', with: email
-  fill_in 'signup-form-password', with: password
-  fill_in 'signup-form-password-confirmation', with: password
+  fill_in 'email', with: email
+  fill_in 'password', with: password
+  fill_in 'passwordConfirmation', with: password
 end
 
 When(/^I fill in my email and password and click on 'Send'$/) do
   email, password = @user.email, @user.password
-  fill_in 'login-form-email', with: email
-  fill_in 'login-form-password', with: password
+  fill_in 'email', with: email
+  fill_in 'password', with: password
   click_on 'Send'
 end
 
