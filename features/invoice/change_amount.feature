@@ -16,12 +16,12 @@ Feature: Change amount
       | Tagesschau       | €3.5   |
       | Blickpunkt Sport | €3.5   |
     When I look at my invoice and I feel that "Tagesschau" is more important to me
-    And I click on "€3.5" where it says "Tagesschau" and enter "5.0"
+    And I click on "€3.5" where it says "Tagesschau" and enter "5.5"
     Then my updated invoice looks like this:
       | Title            | Amount |
-      | Tagesschau       | €5.0   |
-      | Tagesthemen      | €3.12  |
-      | Morgenmagazin    | €3.12  |
-      | Tagesschau       | €3.12  |
-      | Blickpunkt Sport | €3.12  |
+      | Tagesthemen      | €3.00  |
+      | Tagesthemen      | €3.00  |
+      | Morgenmagazin    | €3.00  |
+      | Tagesschau       | €5.50  |
+      | Blickpunkt Sport | €3.00  |
 

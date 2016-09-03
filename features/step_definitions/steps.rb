@@ -194,7 +194,7 @@ end
 When(/^I click on "([^"]*)" where it says "([^"]*)" and enter "([^"]*)"$/) do |amount, title, new_amount|
   within('.invoice-item', text: /#{title}/) do
     find('td', text: /#{amount}/).click
-    fill_in('newAmount', with: new_amount)
+    find('input').set(new_amount)
+    click_on 'Save'
   end
-  find('.invoice-table').click
 end
