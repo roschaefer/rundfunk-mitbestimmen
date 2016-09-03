@@ -190,3 +190,11 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
   expect(page).to have_css('.decision-card-deck')
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
+
+When(/^I click on "([^"]*)" where it says "([^"]*)" and enter "([^"]*)"$/) do |amount, title, new_amount|
+  within('.invoice-item', text: /#{title}/) do
+    find('td', text: /#{amount}/).click
+    find('input').set(new_amount)
+    click_on 'Save'
+  end
+end

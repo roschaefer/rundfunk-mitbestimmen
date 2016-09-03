@@ -19,9 +19,9 @@ Feature: Unselect broadcast
     And I click on the 'X' next to Sportschau
     Then my updated invoice looks like this:
       | Title            | Amount |
-      | Tagesthemen      | €4.38  |
-      | Morgenmagazin    | €4.38  |
-      | Tagesschau       | €4.38  |
-      | Blickpunkt Sport | €4.38  |
+      | Tagesthemen      | €4.37  |
+      | Morgenmagazin    | €4.37  |
+      | Tagesschau       | €4.37  |
+      | Blickpunkt Sport | €4.37  |
     And my response to "Sportschau" is listed in the database as "neutral"
 
