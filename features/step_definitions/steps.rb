@@ -200,3 +200,20 @@ When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
     click_on 'Save'
   end
 end
+
+Then(/^the main part of the invoice looks like this:$/) do |table|
+  wait_for_ajax
+  check_invoice(table)
+end
+
+Then(/^I see the remaining budget at the bottom of the invoice:$/) do |table|
+  table.hashes.each do |row|
+    label = row['Label']
+    amount = row['Amount']
+    within('.invoice-footer') do
+      within('.invoice-footer-item', text: /#{label}/) do
+        expect(page).to have_text(amount)
+      end
+    end
+  end
+end
