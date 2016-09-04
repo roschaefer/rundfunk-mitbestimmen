@@ -10,18 +10,36 @@ Feature: Change amount
   Scenario: Click on the amount to change it
     Given my invoice looks like this:
       | Title            | Amount |
-      | Tagesthemen      | €3.5   |
-      | Morgenmagazin    | €3.5   |
-      | Sportschau       | €3.5   |
-      | Tagesschau       | €3.5   |
-      | Blickpunkt Sport | €3.5   |
+      | Tagesthemen      | €3.50  |
+      | Morgenmagazin    | €3.50  |
+      | Sportschau       | €3.50  |
+      | Tagesschau       | €3.50  |
+      | Blickpunkt Sport | €3.50  |
     When I look at my invoice and I feel that "Tagesschau" is more important to me
-    And I click on "€3.5" where it says "Tagesschau" and enter "5.5"
+    When I change the amount of "Tagesschau" to "5.50" euros
     Then my updated invoice looks like this:
       | Title            | Amount |
       | Tagesthemen      | €3.00  |
-      | Tagesthemen      | €3.00  |
       | Morgenmagazin    | €3.00  |
+      | Sportschau       | €3.00  |
       | Tagesschau       | €5.50  |
       | Blickpunkt Sport | €3.00  |
+
+  Scenario: Once changed invoice items are fixed and keep their amounts
+    Given my invoice looks like this:
+      | Title            | Amount | Fixed |
+      | Tagesthemen      | €3.00  | no    |
+      | Morgenmagazin    | €3.00  | no    |
+      | Sportschau       | €3.00  | no    |
+      | Tagesschau       | €5.50  | yes   |
+      | Blickpunkt Sport | €3.00  | no    |
+    When I look at my invoice
+    When I change the amount of "Morgenmagazin" to "6.00" euros
+    Then my updated invoice looks like this:
+      | Title            | Amount |
+      | Tagesthemen      | €2.00  |
+      | Morgenmagazin    | €6.00  |
+      | Sportschau       | €2.00  |
+      | Tagesschau       | €5.50  |
+      | Blickpunkt Sport | €2.00  |
 

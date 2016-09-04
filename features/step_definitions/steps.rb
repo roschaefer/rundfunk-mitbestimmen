@@ -137,13 +137,15 @@ end
 Given(/^my invoice looks like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
-    amount = row['Amount']
+    amount = row['Amount'].gsub('€','').to_f
+    fixed = !! (row['Fixed'] =~ /yes/i)
     broadcast = create(:broadcast, title: title)
     create(:selection,
            user: @user,
            broadcast: broadcast,
            response: :positive,
-           amount: amount.to_f
+           amount: amount.to_f,
+           fixed: fixed
           )
   end
 end
@@ -191,10 +193,10 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
-When(/^I click on "([^"]*)" where it says "([^"]*)" and enter "([^"]*)"$/) do |amount, title, new_amount|
+When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
   within('.invoice-item', text: /#{title}/) do
-    find('td', text: /#{amount}/).click
-    find('input').set(new_amount)
+    find('td', text: /€/).click
+    find('input').set(amount)
     click_on 'Save'
   end
 end
