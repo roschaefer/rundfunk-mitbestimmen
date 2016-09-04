@@ -211,7 +211,7 @@ Then(/^I see the remaining budget at the bottom of the invoice:$/) do |table|
     label = row['Label']
     amount = row['Amount']
     within('.invoice-footer') do
-      within('.invoice-footer-item', text: /#{label}/) do
+      within('tr', text: /#{label}/) do
         expect(page).to have_text(amount)
       end
     end
