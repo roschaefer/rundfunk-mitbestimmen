@@ -8,6 +8,6 @@ Feature: Language chooser menu
     Given I visit the landing page
     And I see "Log in" and "Sign up" menu items
     When I click on the german flag
-    Then I can see "Einloggen" and "Anmelden" menu items
+    Then I can see "Einloggen" and "Konto erstellen" menu items
 
 
