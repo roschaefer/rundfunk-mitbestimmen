@@ -10,4 +10,15 @@ Feature: Language chooser menu
     When I click on the german flag
     Then I can see "Einloggen" and "Konto erstellen" menu items
 
+  Scenario: Backend translates data
+    Given I visit the landing page
+    And I click on "Sign up"
+    When I fill in an invalid email like "justcrap"
+    And I click on the submit button
+    Then I can see the error message in english:
+    """
+    Email is not an e-mail.
+    """
+
+
 
