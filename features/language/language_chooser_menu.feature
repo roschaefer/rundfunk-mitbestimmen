@@ -17,7 +17,7 @@ Feature: Language chooser menu
     And I click on the submit button
     Then I can see the error message in english:
     """
-    Email is not an e-mail.
+    Email is not an email
     """
 
 
