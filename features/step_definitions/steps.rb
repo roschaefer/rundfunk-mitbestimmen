@@ -221,3 +221,13 @@ end
 When(/^I click on the submit button$/) do
   click_on 'submit'
 end
+
+When(/^I click on the german flag$/) do
+  click_on 'German'
+end
+
+Then(/^I(?: can)? see "([^"]*)" and "([^"]*)" menu items$/) do |label1, label2|
+  expect(page).to have_css('.button', text: label1)
+  expect(page).to have_css('.button', text: label2)
+end
+
