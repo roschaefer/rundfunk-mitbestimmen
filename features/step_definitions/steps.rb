@@ -48,11 +48,11 @@ When(/^I fill in my email and password and confirm the password$/) do
   fill_in 'passwordConfirmation', with: password
 end
 
-When(/^I fill in my email and password and click on 'Send'$/) do
+When(/^I fill in my email and password and click on the submit button$/) do
   email, password = @user.email, @user.password
   fill_in 'email', with: email
   fill_in 'password', with: password
-  click_on 'Send'
+  click_on 'submit'
 end
 
 Then(/^a new user was created in the database$/) do
@@ -156,7 +156,7 @@ end
 
 When(/^I click on the 'X' next to ([^"]*)$/) do |title|
   within('.invoice-item', text: /#{title}/) do
-    click_on('X')
+    find('.invoice-item-action-remove').click
   end
 end
 
@@ -184,7 +184,7 @@ end
 
 Given(/^I click (\d+) times on 'Yes'$/) do |number|
   number.to_i.times do
-    first('.decision-card-action').click_button('Yes')
+    first('.decision-card-action', text: /yes/i).click
   end
 end
 
@@ -216,4 +216,8 @@ Then(/^I see the remaining budget at the bottom of the invoice:$/) do |table|
       end
     end
   end
+end
+
+When(/^I click on the submit button$/) do
+  click_on 'submit'
 end
