@@ -8,7 +8,7 @@ Feature: Basic User Accounts
     When I visit the landing page
     And I click on "Get started"
     And I fill in my email and password and confirm the password
-    And I click on "Send"
+    And I click on "Sign up"
     Then my login was successful
     And a new user was created in the database
 
@@ -16,7 +16,7 @@ Feature: Basic User Accounts
     Given I already signed up
     When I visit the landing page
     And I click on "Log in"
-    And I fill in my email and password and click on 'Send'
+    And I fill in my email and password and click on 'Login'
     Then my login was successful
 
 
