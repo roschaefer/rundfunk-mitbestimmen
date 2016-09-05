@@ -221,3 +221,24 @@ end
 When(/^I click on the submit button$/) do
   click_on 'submit'
 end
+
+When(/^I click on the german flag$/) do
+  click_on 'German'
+end
+
+Then(/^I(?: can)? see "([^"]*)" and "([^"]*)" menu items$/) do |label1, label2|
+  expect(page).to have_css('.button', text: label1)
+  expect(page).to have_css('.button', text: label2)
+end
+
+When(/^I fill in an invalid email like "([^"]*)"$/) do |email|
+  password = '12341234'
+  fill_in 'email', with: email
+  fill_in 'password', with: password
+  fill_in 'passwordConfirmation', with: password
+end
+
+Then(/^I can see the error message in english:$/) do |string|
+  expect(page).to have_text(string)
+end
+
