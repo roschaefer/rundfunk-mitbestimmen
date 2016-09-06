@@ -27,6 +27,10 @@ Capybara.configure do |config|
   config.default_driver = (ENV['BROWSER'] || 'selenium').to_sym
 end
 
+Before do
+  page.driver.browser.manage.window.maximize
+end
+
 After do
   Capybara.reset_sessions!
   visit '/'
