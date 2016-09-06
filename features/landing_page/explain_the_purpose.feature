@@ -8,5 +8,5 @@ Feature: Explain the purpose
     When I visit the landing page
     Then I can read:
     """
-    With this app, you can make your voice heard and say for which broadcasts you want to pay.
+    With this app you can make your voice heard and propose on which shows your money should be spent.
     """
