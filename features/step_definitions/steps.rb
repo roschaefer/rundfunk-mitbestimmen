@@ -155,7 +155,9 @@ When(/^I look at my invoice/) do
 end
 
 When(/^I click on the 'X' next to ([^"]*)$/) do |title|
-  within('.invoice-item', text: /#{title}/) do
+  invoice_item = find('.invoice-item', text: /#{title}/)
+  scroll_to(invoice_item)
+  within(invoice_item) do
     find('.invoice-item-action-remove').click
   end
 end
@@ -194,7 +196,9 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
 end
 
 When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
-  within('.invoice-item', text: /#{title}/) do
+  invoice_item = find('.invoice-item', text: /#{title}/) 
+  scroll_to(invoice_item)
+  within(invoice_item) do
     find('td', text: /€/).click
     find('input').set(amount)
     click_on 'Save'
