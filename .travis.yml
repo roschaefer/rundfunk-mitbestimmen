@@ -7,6 +7,8 @@ env:
   - TRAVIS_NODE_VERSION="6.2.1"
 services:
   - postgresql
+addons:
+  firefox: "47.0.1"
 
 before_install:
   # http://austinpray.com/ops/2015/09/20/change-travis-node-version.html
@@ -21,6 +23,7 @@ before_install:
   - cd ..
 
 before_script:
+  - firefox --version
   - psql -c 'create database travis_ci_test;' -U postgres
   - cd backend
   - cp config/database.travis.yml config/database.yml
