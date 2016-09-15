@@ -35,5 +35,5 @@ Feature: Release a fixed amount
       | Blickpunkt Sport | €3.50  |
     And the attribute 'fixed' is "false" for my selected broadcast "Tagesschau"
     When I look at my invoice
-    When I click on the unlock symbol next to "Tagesschau"
+    When I click on the lock symbol next to "Tagesschau"
     Then the attribute 'fixed' is "true" for my selected broadcast "Tagesschau"

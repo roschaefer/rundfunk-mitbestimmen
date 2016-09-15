@@ -253,13 +253,14 @@ When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
-    find('.invoice-item-action-unfix').click
+    find('.invoice-item-action-fix').click
   end
   wait_for_ajax
 end
 
 Given(/^the attribute 'fixed' is "([^"]*)" for my selected broadcast "([^"]*)"$/) do |value, title|
   selection = @user.selections.find {|s| s.broadcast.title ==  title }
+  selection.reload
   if value == 'true'
     expect(selection).to be_fixed
   else
@@ -272,7 +273,7 @@ When(/^I click on the unlock symbol next to "([^"]*)"$/) do |title|
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
-    find('.invoice-item-action-fix').click
+    find('.invoice-item-action-unfix').click
   end
 end
 
