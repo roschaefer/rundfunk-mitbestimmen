@@ -1,7 +1,6 @@
 eval_gemfile File.join(File.dirname(__FILE__), 'backend/Gemfile')
 
 gem 'rake'
-gem 'pry'
 gem "cucumber"            # Human Readable Specification by Example
 gem "capybara"
 gem 'capybara-screenshot'
