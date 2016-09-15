@@ -248,3 +248,31 @@ Then(/^I can see the error message in english:$/) do |string|
   expect(page).to have_text(string)
 end
 
+When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
+  invoice_table = find('table')
+  scroll_to(invoice_table)
+  invoice_item = find('.invoice-item', text: /#{title}/)
+  within(invoice_item) do
+    find('.invoice-item-action-unfix').click
+  end
+  wait_for_ajax
+end
+
+Given(/^the attribute 'fixed' is "([^"]*)" for my selected broadcast "([^"]*)"$/) do |value, title|
+  selection = @user.selections.find {|s| s.broadcast.title ==  title }
+  if value == 'true'
+    expect(selection).to be_fixed
+  else
+    expect(selection).not_to be_fixed
+  end
+end
+
+When(/^I click on the unlock symbol next to "([^"]*)"$/) do |title|
+  invoice_table = find('table')
+  scroll_to(invoice_table)
+  invoice_item = find('.invoice-item', text: /#{title}/)
+  within(invoice_item) do
+    find('.invoice-item-action-fix').click
+  end
+end
+
