@@ -16,7 +16,7 @@ Feature: Release a fixed amount
       | Tagesschau       | €5.50  | yes   |
       | Blickpunkt Sport | €3.00  | no    |
     When I look at my invoice
-    And I click on the lock symbol next to "Tagesschau"
+    And I click on the unlock symbol next to "Tagesschau"
     Then my updated invoice looks like this:
       | Title            | Amount |
       | Tagesthemen      | €3.50  |
