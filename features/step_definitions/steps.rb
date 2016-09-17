@@ -201,9 +201,9 @@ When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
-    find('td', text: /€/).click
+    find('.ember-inline-edit', text: /€/).click
     find('input').set(amount)
-    click_on 'Save'
+    find('.ember-inline-edit-save').click
   end
 end
 
