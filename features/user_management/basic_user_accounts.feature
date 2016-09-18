@@ -6,7 +6,7 @@ Feature: Basic User Accounts
 
   Scenario: Create an account
     When I visit the landing page
-    And I click on "Get started"
+    And I click on "Participate now"
     And I fill in my email and password and confirm the password
     And I click on the submit button
     Then my login was successful
