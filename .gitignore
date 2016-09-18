@@ -1,3 +1,4 @@
 .byebug_history
 db/*.sqlite3
 screenshots/
+notes.txt
