@@ -1,3 +1,7 @@
+def sanitize_amount(amount)
+  amount.gsub('€','').to_f
+end
+
 Given(/^I am logged in$/) do
   @user = create(:user)
   visit '/login'
@@ -137,7 +141,7 @@ end
 Given(/^my invoice looks like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
-    amount = row['Amount'].gsub('€','').to_f
+    amount = sanitize_amount(row['Amount'])
     fixed = !! (row['Fixed'] =~ /yes/i)
     broadcast = create(:broadcast, title: title)
     create(:selection,
@@ -294,7 +298,7 @@ Given(/^these users want to pay money for these broadcasts:$/) do |table|
            broadcast: broadcast,
            user: user,
            response: :positive,
-           amount: row['Amount'].to_f)
+           amount: sanitize_amount(row['Amount']))
   end
 end
 
@@ -304,7 +308,7 @@ end
 
 Then(/^I see this summary:$/) do |table|
     table.hashes.each do |row|
-      item = find('.summary-item', text: /#{row['Broadcast']}/)
+      item = find('.balance-item', text: /#{row['Broadcast']}/)
       within(item) do
         expect(find('.votes-positive')).to have_text(row['Upvotes'])
         expect(find('.total-amount')).to have_text(row['Total'])
