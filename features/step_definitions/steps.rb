@@ -277,3 +277,37 @@ When(/^I click on the unlock symbol next to "([^"]*)"$/) do |title|
   end
 end
 
+Given(/^these users want to pay money for these broadcasts:$/) do |table|
+  table.hashes.each do |row|
+    broadcast = Broadcast.find_by(title: row['Broadcast'])
+    unless broadcast
+      broadcast = create(:broadcast, title: row['Broadcast'])
+    end
+    user = User.find_by(email: row['Email'])
+    unless user
+      user = create(:user,
+                    email: row['Email'],
+                    password: 'secret1234',
+                    password_confirmation: 'secret1234')
+    end
+    create(:selection,
+           broadcast: broadcast,
+           user: user,
+           response: :positive,
+           amount: row['Amount'].to_f)
+  end
+end
+
+When(/^I visit the public balances page$/) do
+  visit '/balances'
+end
+
+Then(/^I see this summary:$/) do |table|
+    table.hashes.each do |row|
+      item = find('.summary-item', text: /#{row['Broadcast']}/)
+      within(item) do
+        expect(find('.votes-positive')).to have_text(row['Upvotes'])
+        expect(find('.total-amount')).to have_text(row['Total'])
+      end
+    end
+end
