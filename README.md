@@ -3,47 +3,55 @@
 Status](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen.svg?branch=master)](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen)
 
 Since 2013, every household in Germany has to pay fees for public
-broadcasting without legal opt-out.
-If we have to pay after all, it would be great to say where the money
-should go to.
-``rundfunk-mitbestimmen`` is a voting tool to enable participation:
-How much money should go to which tv or radio broadcast?
+broadcasting without any legal opt-out.
 
-## Demo
+We think this is a great example for a "cultural flatrate", a system where
+every citizen must pay a certain amount on a regular basis and the money gets
+re-distributed to authors of creative content e.g. music, films, books,
+podcasts, newspapers, software etc. Only question: Who should decide who
+gets how much and for what?
 
-Visit [rundfunk-mitbestimmen](http://rundfunk-mitbestimmen.surge.sh/) on surge 
+Well, we let **YOU** decide!
+
+That's right, who could decide better about the quality of content than
+the consumer?
+
+In Germany, certain broadcasting councils have the exclusive rights to
+determine our TV and radio programme and to govern the mind-boggling amount of
+*€8,000,000,000* every year.
+
+We want to change that: With this app you can make your voice heard and propose
+on which shows your €17.50 per month should be spent.
+
+
+## Live App
+
+Visit [www.rundfunk-mitbestimmen.de](http://www.rundfunk-mitbestimmen.de/)
 
 ## Structure
 
-This repository serves as a meta-repository for the frontend and backend
-of the `rundfunk-mitbestimmen` app. It is the place for user
-requirements and general documentation. It also contains acceptance
+This repository serves as meta-repository for both frontend and backend. We
+track user requirements and general documentation here. It contains acceptance
 tests as they need to be run against the entire stack.
 
 ## Process explanation
 
-Both applications have different purposes:
-
-The backend is responsible to store the information which user likes which
-broadcast and how much of the monthly contributions should be
-assigned. In the database users are related to broadcasts via
-selections. The attribute `response` on the selection model can be either
-`negative`, `neutral` and `positive` and indicates whether someone wants to give
-money to a broadcast at all. The `amount` defines the precise amount someone
-wants to pay for a broadcast. The sum of all amounts per user must be within
-zero and 17,50€ per month.
+The backend is responsible to store the data. Who wants to pay for which
+broadcast and how much? Users are related to broadcasts via `selections` in the
+database. The `response` on the selection model can be either `negative`,
+`neutral` and `positive` and indicates whether a user wants to give money to a
+broadcast. If the `response` is positive, the `amount` further specifies how
+much to pay for a broadcast. So, the sum of all amounts per user must not exceed
+the monthly fee of 17,50€ per month.
 
 ![ER diagram](/documentation/images/er.png)
 
-The frontend is responsible for an easy interaction with the backend.
-First, it selects a subset of relevant broadcasts from a huge collection of
-available broadcasts. Second, the user has to decide on every selected
-broadcast whether to give money or not. For all broadcasts that were
-chosen, the user can specifiy a certain amount in the third step. The
-individual invoices of all users are accumulated and published on a
-public balances page. If desired, the user can now adjust his individual invoice
-or add more broadcasts to the invoice. The user can repeat this process as often
-as desired.
+The frontend should be as easy to use as possible. The user can
+login and register, fetch a set of not yet voted broadcasts, decide about
+broadcasts, assign money and see the public balances. Most of these
+actions will send requests to the backend. The app should keep the required user
+action to a minimum. E.g. on the invoice page, amounts are evenly distributed
+with the option to set the amount explicitly.
 
 ![Process diagram](/documentation/images/process.png)
 
@@ -95,7 +103,7 @@ foreman start
 
 App is running on [localhost:4200](http://localhost:4200/)
 
-## Testing
+## Full stack testing
 
 Run:
 ```
@@ -109,18 +117,18 @@ chrome as an alternative to downgrading firefox:
 BROWSER=chrome bundle exec cucumber
 ```
 
-### Backend tests
-
-```
-cd backend
-bin/rspec
-```
-
 ### Frontend tests
 
 ```
 cd frontend
 ember test --serve
+```
+
+### Backend tests
+
+```
+cd backend
+bin/rspec
 ```
 
 ## Contributing
