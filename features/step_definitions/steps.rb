@@ -315,3 +315,22 @@ Then(/^I see this summary:$/) do |table|
       end
     end
 end
+
+Given(/^I have (\d+) broadcasts in my database$/) do |number|
+  number.to_i.times { create(:broadcast, description: 'I am the description') }
+end
+
+Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
+  expect(page).to have_css('.decision-card-action.positive', count: 1)
+  expect(page).to have_css('.decision-card-action.neutral', count: 1)
+end
+
+Then(/^the first card on the stack is fully displayed$/) do
+  expect(page).to have_css('.decision-card .description', count: 1)
+  description = find('.decision-card .description')
+  expect(description).to have_text 'I am the description'
+end
+
+Then(/^the cards below are not displayed, only the title of the next two cards$/) do
+  expect(page).to have_css('.decision-card .header', count: 3)
+end
