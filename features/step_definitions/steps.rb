@@ -75,28 +75,29 @@ end
 
 When(/^I visit the decision page$/) do
   visit '/decide'
-  expect(page).to have_css('.decision-card-deck')
+  expect(page).to have_css('.decision-page')
 end
 
-When(/^I decide 'Yes' for ([^"]*) and ([^"]*)$/) do |title1, title2|
-  within('.decision-card', text: /#{title1}/) do
-    click_on 'Yes'
-  end
-  within('.decision-card', text: /#{title2}/) do
-    click_on 'Yes'
-  end
-end
-
-When(/^I decide 'No' for ([^"]*)$/) do |title|
-  within('.decision-card', text: /#{title}/) do
-    click_on 'No'
+When(/^I decide 'Yes' for ([^"]*) and ([^"]*) but 'No' for ([^"]*)$/) do |title1, title2, title3|
+  3.times do
+    wait_for_transition('.decision-card')
+    expect(page).to have_css('.decision-card.fully-displayed')
+    card = find('.decision-card.fully-displayed')
+    [title1, title2].each do |title|
+      if card.text.include? title
+        find('.positive').click
+      end
+    end
+    if card.text.include? title3
+      find('.neutral').click
+    end
   end
 end
 
 Then(/^the list of selectable broadcasts is empty$/) do
   wait_for_ajax
-  expect(page).to have_css('.decision-card-deck')
-  expect(all('.decision-card')).to be_empty
+  expect(page).to have_css('.decision-page')
+  expect(page).not_to have_css('.decision-card')
 end
 
 Then(/^I the database contains these selections that belong to me:$/) do |table|
@@ -185,18 +186,20 @@ Given(/^I have many broadcasts in my database, let's say (\d+) broadcasts in tot
 end
 
 Given(/^there are (\d+) remaining broadcasts in the list$/) do |number|
-  expect(page).to have_css('.decision-card-deck')
+  expect(page).to have_css('.decision-page')
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
 Given(/^I click (\d+) times on 'Yes'$/) do |number|
   number.to_i.times do
-    first('.decision-card-action', text: /yes/i).click
+    wait_for_transition('.decision-card')
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
   end
 end
 
 Then(/^the list of broadcasts has (\d+) items again$/) do |number|
-  expect(page).to have_css('.decision-card-deck')
+  expect(page).to have_css('.decision-page')
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
@@ -314,4 +317,31 @@ Then(/^I see this summary:$/) do |table|
         expect(find('.total-amount')).to have_text(row['Total'])
       end
     end
+end
+
+Given(/^I have (\d+) broadcasts in my database$/) do |number|
+  number.to_i.times { create(:broadcast, description: 'I am the description') }
+end
+
+Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
+  expect(page).to have_css('.decision-card-action.positive', count: 1)
+  expect(page).to have_css('.decision-card-action.neutral', count: 1)
+end
+
+Then(/^the first card on the stack is fully displayed$/) do
+  expect(page).to have_css('.decision-card .description', count: 1)
+  description = find('.decision-card .description')
+  expect(description).to have_text 'I am the description'
+end
+
+Then(/^the cards below are not displayed, only the title of the next two cards$/) do
+  expect(page).to have_css('.decision-card .header', count: 3)
+end
+
+Then(/^the stack of broadcasts is empty$/) do
+  expect(page).not_to have_css('.decision-card')
+end
+
+Then(/^all of a sudden, there are more broadcasts again$/) do
+  expect(page).to have_css('.decision-card', count: 3)
 end
