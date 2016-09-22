@@ -14,8 +14,7 @@ Feature: Click on broadcasts
       | Löwenzahn   |
       | Tagesschau  |
     When I visit the decision page
-    And I decide 'Yes' for Quarks & Co and Tagesschau
-    But I decide 'No' for Löwenzahn
+    And I decide 'Yes' for Quarks & Co and Tagesschau but 'No' for Löwenzahn
     Then the list of selectable broadcasts is empty
     And I the database contains these selections that belong to me:
       | Title       | Answer |
