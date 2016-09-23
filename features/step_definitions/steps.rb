@@ -17,10 +17,6 @@ Given(/^I have these broadcasts in my database:$/) do |table|
   end
 end
 
-When(/^I visit the filter page$/) do
-  visit '/filter'
-end
-
 Then(/^I can read.*'(.+)'$/) do |string|
   expect(page).to have_text string
 end
@@ -37,8 +33,8 @@ Then(/^I am welcomed with "([^"]*)"$/) do |string|
   expect(page).to have_text string
 end
 
-When(/^I click on the continue button to the filter page$/) do
-  click_on 'continue-to-filter'
+When(/^I click on the continue button to the decide page$/) do
+  click_on 'continue-to-decide'
 end
 
 When(/^I click on "([^"]*)"$/) do |string|
@@ -345,3 +341,27 @@ end
 Then(/^all of a sudden, there are more broadcasts again$/) do
   expect(page).to have_css('.decision-card', count: 3)
 end
+
+Given(/^there are (\d+) registered users$/) do |number|
+  number.to_i.times { create(:user) }
+end
+
+Given(/^every user wants to pay (\d+) broadcasts each with €(\d+\.?\d*) each$/) do |number, amount|
+  User.find_each do |user|
+    number.to_i.times { create(:selection, user: user, amount: amount.to_f) }
+  end
+end
+
+Then(/^I can see these numbers:$/) do |table|
+  row = table.hashes.first
+  expect(page).to have_css('.statistics.registered-users', text: row['Registered users'])
+  expect(page).to have_css('.statistics.reviews', text: row['Reviews'])
+  expect(page).to have_css('.statistics.money-assigned', text: row['Money assigned'])
+end
+
+Then(/^there is a link that brings me to the balances page$/) do
+  click_on 'Balances per broadcast'
+  expect(page).to have_css('.balances')
+  expect(current_path).to eq '/balances'
+end
+
