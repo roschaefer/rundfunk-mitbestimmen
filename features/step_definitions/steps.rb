@@ -156,7 +156,7 @@ When(/^I look at my invoice/) do
 end
 
 When(/^I click on the 'X' next to ([^"]*)$/) do |title|
-  invoice_table = find('table')
+  invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
@@ -200,7 +200,7 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
 end
 
 When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
-  invoice_table = find('table')
+  invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
@@ -252,7 +252,7 @@ Then(/^I can see the error message in english:$/) do |string|
 end
 
 When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
-  invoice_table = find('table')
+  invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
@@ -272,7 +272,7 @@ Given(/^the attribute 'fixed' is "([^"]*)" for my selected broadcast "([^"]*)"$/
 end
 
 When(/^I click on the unlock symbol next to "([^"]*)"$/) do |title|
-  invoice_table = find('table')
+  invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
