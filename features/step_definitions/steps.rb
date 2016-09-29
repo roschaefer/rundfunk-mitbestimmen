@@ -365,3 +365,31 @@ Then(/^there is a link that brings me to the balances page$/) do
   expect(current_path).to eq '/balances'
 end
 
+When(/^I click 'Next' when I am asked if I want to pay for the broadcast$/) do
+  expect(page).to have_css('.decision-card-action.positive')
+  find('.decision-card-action.positive').click
+end
+
+When(/^the decision card has disappeared$/) do
+  wait_for_transition
+end
+
+Then(/^I can still click on the 'Back' button$/) do
+  expect(page).to have_css('.decision-card-action.back')
+  find('.decision-card-action.back').click
+end
+
+Then(/^click 'Yes, I do!'$/) do
+  expect(page).to have_css('.decision-card-action.positive', text: /Yes, I do!/)
+  find('.decision-card-action.positive', text: /Yes, I do!/).click
+end
+
+Then(/^the decision card turns green$/) do
+  expect(page).to have_css('.decision-card.green')
+end
+
+Then(/^in the database my response is saved as 'positive'$/) do
+  expect(Selection.count).to eq 1
+  expect(Selection.first.response).to eq 'positive'
+end
+
