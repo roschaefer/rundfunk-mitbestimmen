@@ -11,6 +11,5 @@ Feature: Display one broadcast at a time
     Given I have 17 broadcasts in my database
     When I visit the decision page
     Then I see the buttons to click 'Yes' or 'No' only once, respectively
-    And the first card on the stack is fully displayed
-    But the cards below are not displayed, only the title of the next two cards
+    And only the first card on the stack is displayed
 
