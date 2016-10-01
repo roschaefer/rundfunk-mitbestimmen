@@ -325,18 +325,15 @@ Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
   expect(page).to have_css('.decision-card-action.neutral', count: 1)
 end
 
-Then(/^the first card on the stack is fully displayed$/) do
+Then(/^only the first card on the stack is displayed$/) do
   expect(page).to have_css('.decision-card .description', count: 1)
   description = find('.decision-card .description')
   expect(description).to have_text 'I am the description'
-end
-
-Then(/^the cards below are not displayed, only the title of the next two cards$/) do
-  expect(page).to have_css('.decision-card .header', count: 3)
+  expect(page).to have_css('.decision-card', count: 1) # only one card initially
 end
 
 Then(/^all of a sudden, there are more broadcasts again$/) do
-  expect(page).to have_css('.decision-card', count: 3)
+  expect(page).to have_css('.decision-card', count: 1)
 end
 
 Given(/^there are (\d+) registered users$/) do |number|
@@ -382,11 +379,12 @@ Then(/^click 'Yes, I do!'$/) do
 end
 
 Then(/^the decision card turns green$/) do
+  wait_for_transition('.decision-card')
   expect(page).to have_css('.decision-card.green')
-  wait_for_ajax
 end
 
 Then(/^in the database my response is saved as 'positive'$/) do
+  wait_for_ajax
   expect(Selection.count).to eq 1
   expect(Selection.first.response).to eq 'positive'
 end

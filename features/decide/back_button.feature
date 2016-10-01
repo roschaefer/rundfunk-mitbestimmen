@@ -13,9 +13,9 @@ Feature: Go back one decision card
       | Title       |
       | Quarks & Co |
       | Löwenzahn   |
-    When I visit the decision page
+    And I visit the decision page
     And I click 'Next' when I am asked if I want to pay for the broadcast
-    And the decision card has disappeared
+    When the decision card has disappeared
     Then I can still click on the 'Back' button
     And click 'Yes, I do!'
     And the decision card turns green
