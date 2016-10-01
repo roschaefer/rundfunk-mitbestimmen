@@ -8,5 +8,5 @@ Feature: Explain the purpose
     When I visit the landing page
     Then I can read:
     """
-    With this app you can make your voice heard and propose on which shows your €17.50 per month should be spent.
+    Unfortunately, people do not have a say how the monthly €17.50 are used. We want to change that: You decide how your contribution should be spent.
     """

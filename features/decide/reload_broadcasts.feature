@@ -11,6 +11,6 @@ Feature: Reload broadcasts
     Given I have many broadcasts in my database, let's say 17 broadcasts in total
     And I visit the decision page
     And I click 10 times on 'Yes'
-    Then the stack of broadcasts is empty
+    And the list of selectable broadcasts is empty
     When I click on "Reload broadcasts"
     Then all of a sudden, there are more broadcasts again

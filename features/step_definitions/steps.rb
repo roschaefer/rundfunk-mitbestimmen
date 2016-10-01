@@ -93,7 +93,8 @@ end
 Then(/^the list of selectable broadcasts is empty$/) do
   wait_for_ajax
   expect(page).to have_css('.decision-page')
-  expect(page).not_to have_css('.decision-card')
+  expect(page).to have_css('.decision-card', count: 1) # the last one
+  expect(page).not_to have_css('.decision-card-action.positive')
 end
 
 Then(/^I the database contains these selections that belong to me:$/) do |table|
@@ -232,7 +233,7 @@ When(/^I click on the submit button$/) do
 end
 
 When(/^I click on the german flag$/) do
-  click_on 'German'
+  click_on 'Deutsch'
 end
 
 Then(/^I(?: can)? see "([^"]*)" and "([^"]*)" menu items$/) do |label1, label2|
@@ -334,10 +335,6 @@ Then(/^the cards below are not displayed, only the title of the next two cards$/
   expect(page).to have_css('.decision-card .header', count: 3)
 end
 
-Then(/^the stack of broadcasts is empty$/) do
-  expect(page).not_to have_css('.decision-card')
-end
-
 Then(/^all of a sudden, there are more broadcasts again$/) do
   expect(page).to have_css('.decision-card', count: 3)
 end
@@ -363,5 +360,34 @@ Then(/^there is a link that brings me to the balances page$/) do
   click_on 'Balances per broadcast'
   expect(page).to have_css('.balances')
   expect(current_path).to eq '/balances'
+end
+
+When(/^I click 'Next' when I am asked if I want to pay for the broadcast$/) do
+  expect(page).to have_css('.decision-card-action.neutral')
+  find('.decision-card-action.neutral').click
+end
+
+When(/^the decision card has disappeared$/) do
+  wait_for_transition('.decision-card')
+end
+
+Then(/^I can still click on the 'Back' button$/) do
+  expect(page).to have_css('.back.button')
+  find('.back.button').click
+end
+
+Then(/^click 'Yes, I do!'$/) do
+  expect(page).to have_css('.decision-card-action.positive', text: /Yes, I do!/)
+  find('.decision-card-action.positive', text: /Yes, I do!/).click
+end
+
+Then(/^the decision card turns green$/) do
+  expect(page).to have_css('.decision-card.green')
+  wait_for_ajax
+end
+
+Then(/^in the database my response is saved as 'positive'$/) do
+  expect(Selection.count).to eq 1
+  expect(Selection.first.response).to eq 'positive'
 end
 
