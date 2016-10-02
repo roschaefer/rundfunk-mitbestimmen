@@ -7,6 +7,18 @@ Feature: Create missing records
   Background:
     Given I am logged in
 
+ Scenario: A form appears if all broadcasts have been reviewed
+    Given there are 3 broadcasts in the database
+    And I visit the decision page
+    When I click 'Yes' three times in a row
+    Then message pops up, telling me I could reload more broadcasts
+    And I click on "Reload broadcasts"
+    But then, the message is replaced with another one, requesting me this:
+    """
+    Just create a new broadcast!
+    """
+    And I see a form to enter a title and a description
+
  Scenario: Review all broadcasts and create a missing one
     Given I really like a broadcast called "Neo Magazin Royale"
     And I have reviewed all broadcasts already
@@ -16,7 +28,7 @@ Feature: Create missing records
     """
     Deutschlands einzige ernstzunehmende Unterhaltungsshow.
     """
-    And I click on "Save"
+    And I click on "Create"
     Then I can read:
     """
     Saved successfully

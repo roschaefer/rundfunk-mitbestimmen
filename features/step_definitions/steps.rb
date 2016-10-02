@@ -398,7 +398,7 @@ Given(/^I have reviewed all broadcasts already$/) do
 end
 
 Given(/^the form to create a new broadcast is there$/) do
-  expect(page).to have_css('#new_broadcast_form')
+  expect(page).to have_css('#broadcast-form')
 end
 
 When(/^I enter the title "([^"]*)" with the following description:$/) do |title, description|
@@ -415,6 +415,35 @@ end
 
 Then(/^when I click on "([^"]*)" I can choose that broadcast$/) do |button|
   click_on button
-  expect(page).to have(@favourite_broadcast)
+  expect(page).to have_text(@favourite_broadcast)
+end
+
+Given(/^there are (\d+) broadcasts in the database$/) do |number|
+  number.to_i.times { create(:broadcast) }
+end
+
+When(/^I click 'Yes' three times in a row$/) do
+  3.times do
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
+    wait_for_transition '.decision-card'
+  end
+end
+
+Then(/^message pops up, telling me I could reload more broadcasts$/) do
+  within('.help-message') do
+    expect(page).to have_text 'You can add more broadcasts to the list'
+  end
+end
+
+Then(/^then, the message is replaced with another one, requesting me this:$/) do |string|
+  within('.help-message') do
+    expect(page).to have_text string
+  end
+end
+
+Then(/^I see a form to enter a title and a description$/) do
+  expect(page).to have_field('title')
+  expect(page).to have_field('description')
 end
 
