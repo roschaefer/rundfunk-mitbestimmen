@@ -389,3 +389,32 @@ Then(/^in the database my response is saved as 'positive'$/) do
   expect(Selection.first.response).to eq 'positive'
 end
 
+Given(/^I really like a broadcast called "([^"]*)"$/) do |title|
+  @favourite_broadcast
+end
+
+Given(/^I have reviewed all broadcasts already$/) do
+  expect(@user.selections.count).to eq Broadcast.count
+end
+
+Given(/^the form to create a new broadcast is there$/) do
+  expect(page).to have_css('#new_broadcast_form')
+end
+
+When(/^I enter the title "([^"]*)" with the following description:$/) do |title, description|
+  @title, @description = title, description
+  fill_in 'title', with: title
+  fill_in 'description', with: description
+end
+
+Then(/^a new broadcast was stored in the database with the data above$/) do
+ broadcast = Broadcast.last
+ expect(broadcast.title).to eq @title
+ expect(broadcast.description).to eq @description
+end
+
+Then(/^when I click on "([^"]*)" I can choose that broadcast$/) do |button|
+  click_on button
+  expect(page).to have(@favourite_broadcast)
+end
+
