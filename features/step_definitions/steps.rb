@@ -317,7 +317,7 @@ Then(/^I see this summary:$/) do |table|
 end
 
 Given(/^I have (\d+) broadcasts in my database$/) do |number|
-  number.to_i.times { create(:broadcast, description: 'I am the description') }
+  create_list(:broadcast, number.to_i, description: 'I am the description')
 end
 
 Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
@@ -445,5 +445,38 @@ end
 Then(/^I see a form to enter a title and a description$/) do
   expect(page).to have_field('title')
   expect(page).to have_field('description')
+end
+
+Given(/^one broadcast with title "([^"]*)"$/) do |title|
+  @broadcast = create(:broadcast, title: title)
+end
+
+Given(/^do not see the desired broadcast by coincidence$/) do
+  Timeout::timeout(5) do
+    expect(page).to have_css('.decision-card')
+    its_there = find('.decision-card').text.include? @broadcast.title
+    while its_there
+      page.reset!
+      visit '/decide'
+      expect(page).to have_css('.decision-card')
+      its_there = find('.decision-card').text.include? @broadcast.title
+    end
+  end
+end
+
+When(/^I search for "([^"]*)"$/) do |query|
+  fill_in 'search', with: query
+  click_on 'submit-search'
+end
+
+Then(/^there is exactly one search result$/) do
+  expect(page).to have_text("1 result")
+end
+
+Then(/^the displayed broadcast has the title:$/) do |title|
+  expect(page).to have_css '.decision-card'
+  within '.decision-card' do
+    expect(page).to have_text title
+  end
 end
 
