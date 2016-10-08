@@ -4,7 +4,7 @@ Feature: Total amount of collected money per broadcast
   I want to see how much money a broadcast has collected from all users on the platform
   To know how popular the broadcast is
 
-  Scenario: Visit public balances page
+  Scenario: Display total amount
     Given these users want to pay money for these broadcasts:
       | Email                        | Broadcast   | Amount |
       | erika.mustermann@example.org | Die Anstalt | €2.00  |

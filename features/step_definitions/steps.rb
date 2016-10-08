@@ -310,8 +310,10 @@ Then(/^I see this summary:$/) do |table|
     table.hashes.each do |row|
       item = find('.balance-item', text: /#{row['Broadcast']}/)
       within(item) do
-        expect(find('.votes-positive')).to have_text(row['Upvotes'])
-        expect(find('.total-amount')).to have_text(row['Total'])
+        expect(find('.reviews')).to have_text(row['Reviews'])
+        expect(find('.satisfaction')).to have_text(row['Satisfaction'])
+        expect(find('.average')).to have_text(row['Average'])
+        expect(find('.total')).to have_text(row['Total'])
       end
     end
 end
@@ -480,3 +482,21 @@ Then(/^the displayed broadcast has the title:$/) do |title|
   end
 end
 
+Given(/^(\d+) out of (\d+) users want to pay for a show called "([^"]*)"$/) do |positive, total, title|
+  @broadcast = create(:broadcast, title: title)
+  create_list(:selection, positive.to_i, broadcast: @broadcast, response: :positive)
+  neutral = total.to_i - positive.to_i
+  create_list(:selection, neutral, broadcast: @broadcast, response: :neutral)
+end
+
+Given(/^the total amount collected for this show is €(\d+\.\d+)$/) do |amount|
+  average = (amount.to_f / @broadcast.selections.positive.count.to_f)
+  @broadcast.selections.positive.each do |s|
+    s.amount = average
+    s.save
+  end
+end
+
+Given(/^(\d+) users of the app never voted on this show$/) do |number|
+  create_list(:user, number.to_i)
+end
