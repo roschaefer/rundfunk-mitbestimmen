@@ -319,7 +319,8 @@ Then(/^I see this summary:$/) do |table|
 end
 
 Given(/^I have (\d+) broadcasts in my database$/) do |number|
-  create_list(:broadcast, number.to_i, description: 'I am the description')
+  description = 'I am displayed on fully visible decision cards'
+  create_list(:broadcast, number.to_i, description: description)
 end
 
 Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
@@ -330,7 +331,7 @@ end
 Then(/^only the first card on the stack is displayed$/) do
   expect(page).to have_css('.decision-card .description', count: 1)
   description = find('.decision-card .description')
-  expect(description).to have_text 'I am the description'
+  expect(description).to have_text 'I am displayed on fully visible decision cards'
   expect(page).to have_css('.decision-card', count: 1) # only one card initially
 end
 
