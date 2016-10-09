@@ -319,7 +319,8 @@ Then(/^I see this summary:$/) do |table|
 end
 
 Given(/^I have (\d+) broadcasts in my database$/) do |number|
-  create_list(:broadcast, number.to_i, description: 'I am the description')
+  description = 'I am displayed on fully visible decision cards'
+  create_list(:broadcast, number.to_i, description: description)
 end
 
 Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
@@ -330,7 +331,7 @@ end
 Then(/^only the first card on the stack is displayed$/) do
   expect(page).to have_css('.decision-card .description', count: 1)
   description = find('.decision-card .description')
-  expect(description).to have_text 'I am the description'
+  expect(description).to have_text 'I am displayed on fully visible decision cards'
   expect(page).to have_css('.decision-card', count: 1) # only one card initially
 end
 
@@ -468,6 +469,7 @@ end
 
 When(/^I search for "([^"]*)"$/) do |query|
   fill_in 'search', with: query
+  @query = query
   click_on 'submit-search'
 end
 
@@ -499,4 +501,36 @@ end
 
 Given(/^(\d+) users of the app never voted on this show$/) do |number|
   create_list(:user, number.to_i)
+end
+
+Given(/^I get no search results$/) do
+  expect(page).to have_text('no result')
+end
+
+Given(/^then the broadcast form pops up, encouraging me to create a new one$/) do
+  expect(page).to have_css('#broadcast-form')
+end
+
+Given(/^I see the input field filled out with the title I searched for$/) do
+  expect(page).to have_css('#title')
+  expect(find('#title').value).to eq @query
+end
+
+When(/^I just hit "([^"]*)"$/) do |button|
+  click_on button
+end
+
+Then(/^I get an error message$/) do |string|
+  string.split('[...]').each do |part|
+    expect(page).to have_css('.error.message', text: part.strip)
+  end
+end
+
+Then(/^because I'm lazy, I just submit the broadcast's official website$/) do |string|
+  fill_in 'description', with: string
+  click_on 'Create'
+end
+
+Then(/^no broadcast was saved to the database$/) do
+  expect(Broadcast.count).to eq 0
 end
