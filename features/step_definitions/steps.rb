@@ -534,3 +534,35 @@ end
 Then(/^no broadcast was saved to the database$/) do
   expect(Broadcast.count).to eq 0
 end
+
+Given(/^yesterday I deselected a broadcast called "([^"]*)"$/) do |title|
+  @broadcast = create(:broadcast, title: title)
+  create(:selection, user: @user, broadcast: @broadcast, response: :neutral)
+end
+
+Given(/^today I learned that it is actually a broadcast that I really like$/) do
+ # just documentation
+end
+
+When(/^I visit the broadcasts page$/) do
+  visit '/broadcasts'
+end
+
+When(/^I click on the unimpressed smiley next to "([^"]*)"$/) do |title|
+  expect(page).to have_text(title)
+  within('.broadcast', {text: /#{title}/}) do
+    find('button.reselect').click
+  end
+end
+
+Then(/^the smiley turns happy$/) do
+  within('.broadcast', {text: /#{@broadcast.title}/}) do
+    expect(page).to have_css('button.unselect')
+  end
+end
+
+Then(/^on my invoice, this broadcast shows up suddenly$/) do
+  visit '/invoice'
+  expect(page).to have_text(@broadcast.title)
+end
+
