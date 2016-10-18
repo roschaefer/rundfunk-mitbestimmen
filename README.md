@@ -26,7 +26,7 @@ on which shows your €17.50 per month should be spent.
 
 ## Live App
 
-Visit [www.rundfunk-mitbestimmen.de](http://www.rundfunk-mitbestimmen.de/)
+Visit [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/)
 
 ## Structure
 
