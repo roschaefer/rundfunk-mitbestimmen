@@ -13,7 +13,10 @@ end
 
 Given(/^I have these broadcasts in my database:$/) do |table|
   table.hashes.each do |row|
-    create :broadcast, title: row['Title']
+    create(:broadcast,
+           title: row['Title'],
+           medium: row['Medium']
+          )
   end
 end
 
@@ -566,3 +569,30 @@ Then(/^on my invoice, this broadcast shows up suddenly$/) do
   expect(page).to have_text(@broadcast.title)
 end
 
+Then(/^a label indicates the medium 'Radio' on the decision card$/) do
+  expect(page).to have_css('.medium-radio')
+end
+
+When(/^I want to create a new broadcast$/) do
+  visit '/decide'
+  expect(page).to have_css('.broadcast-form')
+end
+
+When(/^I type in "([^"]*)" and choose "([^"]*)" as medium$/) do |title, medium|
+  fill_in 'title', with: title
+  select medium, from: 'medium'
+end
+
+When(/^I fill in a description and hit submit$/) do
+  fill_in 'description', with: ('a' * 50)
+  click_on 'Create'
+end
+
+Then(/^I see "([^"]*)"$/) do |string|
+  expect(page).to have_text(string)
+end
+
+Then(/^a new radio broadcast is created in the database$/) do
+  expect(Broadcast.count).to eq 1
+  expect(Broadcast.first.medium).to eq 'radio'
+end
