@@ -15,7 +15,7 @@ Given(/^I have these broadcasts in my database:$/) do |table|
   table.hashes.each do |row|
     create(:broadcast,
            title: row['Title'],
-           medium: row['Medium']
+           medium: (row['Medium'] || 'tv')
           )
   end
 end
