@@ -11,7 +11,7 @@ Given(/^I am logged in$/) do
   expect(page).to have_text('Log out')
 end
 
-Given(/^I have these broadcasts in my database:$/) do |table|
+Given(/^(?:I|we) have these broadcasts in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
     create(:broadcast,
            title: row['Title'],
@@ -596,3 +596,25 @@ Then(/^a new radio broadcast is created in the database$/) do
   expect(Broadcast.count).to eq 1
   expect(Broadcast.first.medium).to eq 'radio'
 end
+
+When(/^I click on the tv icon$/) do
+  click_on 'filter-by-tv'
+end
+
+Then(/^the tv icon is disabled$/) do
+  expect(page).to have_css('#filter-by-tv:not(primary)')
+end
+
+When(/^I click on the radio icon$/) do
+  click_on 'filter-by-radio'
+end
+
+Then(/^both radio and tv icons are disabled$/) do
+  expect(page).to have_css('#filter-by-tv:not(primary)')
+  expect(page).to have_css('#filter-by-radio:not(primary)')
+end
+
+Then(/^the only (?:thing|broadcast) I see is "([^"]*)"$/) do |string|
+  expect(page).to have_text(string)
+end
+
