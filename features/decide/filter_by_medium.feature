@@ -12,15 +12,13 @@ Feature: Filter by medium
       | Refugee Radio | radio  |
       | Protothon     | other  |
 
-  Scenario: Uncheck tv icon to see only radio broadcasts
+  Scenario: Filter for radio broadcasts
     When I visit the decision page
-    And I click on the tv icon
-    Then the tv icon is disabled
-    And the only broadcast I see is "Refugee Radio"
+    And I click on the filter by medium select box and then on "Radio"
+    Then the only broadcast I see is "Refugee Radio"
 
-  Scenario: Uncheck radio and tv icon to see special content
+  Scenario: Filter for other content
     When I visit the decision page
-    And I click on the tv icon
-    And I click on the radio icon
-    Then both radio and tv icons are disabled
-    And the only thing I see is "Protothon"
+    And I click on the filter by medium select box and then on "Other"
+    Then the only broadcast I see is "Protothon"
+

@@ -11,7 +11,7 @@ Given(/^I am logged in$/) do
   expect(page).to have_text('Log out')
 end
 
-Given(/^(?:I|we) have these broadcasts in (?:my|our) database:$/) do |table|
+Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
     create(:broadcast,
            title: row['Title'],
@@ -618,3 +618,23 @@ Then(/^the only (?:thing|broadcast) I see is "([^"]*)"$/) do |string|
   expect(page).to have_text(string)
 end
 
+When(/^I enter "([^"]*)" into the search bar$/) do |string|
+  fill_in 'search', with: string
+end
+
+When(/^I click on the suggestion "([^"]*)"$/) do |string|
+  expect(page).to have_css('.search.filter', text: string)
+  find('.search.filter', text: string).click
+end
+
+When(/^I click on the filter by medium select box and then on "([^"]*)"$/) do |label|
+  expect(page).to have_css('.multiple.selection', text: /Filter by medium/)
+  find('.multiple.selection', text: /Filter by medium/).click
+  expect(page).to have_css('.item', text: label)
+  find('.item', text: label).click
+end
+
+When(/^I click on the item "([^"]*)"$/) do |label|
+  expect(page).to have_css('.item', text: label)
+  find('.item', text: /#{label}/).click
+end
