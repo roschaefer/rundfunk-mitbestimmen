@@ -644,8 +644,10 @@ Given(/^I reviewed the broadcast "([^"]*)" with this description:$/) do |title, 
   create(:selection, broadcast: @broadcast, user: @user)
 end
 
-When(/^I click the edit button next to the title "([^"]*)"$/) do |arg1|
-  click_on 'Edit'
+When(/^I click the edit button next to the title "([^"]*)"$/) do |title|
+  within('tr.broadcast', text: title) do
+    find('button.edit').click
+  end
 end
 
 When(/^I change the description to:$/) do |string|
@@ -654,6 +656,7 @@ When(/^I change the description to:$/) do |string|
 end
 
 Then(/^this better description was saved$/) do
+  wait_for_ajax
   @broadcast.reload
   expect(@broadcast.description).to eq @better_description
 end

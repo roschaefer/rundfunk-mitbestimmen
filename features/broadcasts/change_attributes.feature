@@ -9,7 +9,7 @@ Feature: Change attributes retrospectively
   Scenario: Fix typo in description
     Given I reviewed the broadcast "heute journal" with this description:
     """
-    Das heute-journal: politische Berichte,schwachsinnige Analysen und rätselhafte Erklärungen.
+    Das heute-journal: politische Berichte, schwachsinnige Analysen und rätselhafte Erklärungen.
     """
     When I visit the broadcasts page
     And I click the edit button next to the title "heute journal"
@@ -17,5 +17,5 @@ Feature: Change attributes retrospectively
     """
     Das heute-journal: politische Berichte, scharfsinnige Analysen und verständliche Erklärungen.
     """
-    And I click on "Save"
+    And I click on "Update"
     Then this better description was saved
