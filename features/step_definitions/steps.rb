@@ -638,3 +638,26 @@ When(/^I click on the item "([^"]*)"$/) do |label|
   expect(page).to have_css('.item', text: label)
   find('.item', text: /#{label}/).click
 end
+
+Given(/^I reviewed the broadcast "([^"]*)" with this description:$/) do |title, description|
+  @broadcast = create(:broadcast, title: title, description: description)
+  create(:selection, broadcast: @broadcast, user: @user)
+end
+
+When(/^I click the edit button next to the title "([^"]*)"$/) do |title|
+  within('tr.broadcast', text: title) do
+    find('button.edit').click
+  end
+end
+
+When(/^I change the description to:$/) do |string|
+  @better_description = string
+  fill_in 'description', with: @better_description
+end
+
+Then(/^this better description was saved$/) do
+  wait_for_ajax
+  @broadcast.reload
+  expect(@broadcast.description).to eq @better_description
+end
+
