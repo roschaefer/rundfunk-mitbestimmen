@@ -298,11 +298,11 @@ DEPENDENCIES
   globalize-accessors
   highline
   kaminari
-  listen (~> 3.0.5)
+  listen
   pg
   pg_search
   pry
-  puma (~> 3.0)
+  puma
   rack-cors
   rails!
   rails_12factor
@@ -313,11 +313,11 @@ DEPENDENCIES
   scenic
   selenium-webdriver
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   tzinfo-data
 
 RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
