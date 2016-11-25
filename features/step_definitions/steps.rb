@@ -692,3 +692,11 @@ Then(/^my all my responses are saved in the database along with my account$/) do
     expect(s).to be_positive
   end
 end
+
+Then(/^I see (\d+) invoice items with question marks instead of amounts$/) do |arg1|
+  expect(page).to have_css('.invoice-item', text: '???', count: @responses)
+end
+
+Then(/^I am requested to sign up for the following reason:$/) do |string|
+  expect(page).to have_text(string)
+end

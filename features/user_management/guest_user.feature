@@ -23,3 +23,12 @@ Feature: Allow guest accounts
     Then my all my responses are saved in the database along with my account
 
 
+  Scenario: Invoice will show question marks instead of amounts for guest users
+    Given I responded 10 times with 'Yes' to a suggestion
+    And I click on "Issue the invoice"
+    Then I see 10 invoice items with question marks instead of amounts
+    And I am requested to sign up for the following reason:
+    """
+    To make you voice count, please sign up. This step is important to take your
+    data seriously.
+    """
