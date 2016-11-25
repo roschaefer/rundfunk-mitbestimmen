@@ -26,6 +26,7 @@ end
 
 When(/^I visit the landing page$/) do
   visit '/'
+  expect(page).to have_css('.ui.main.text.container')
 end
 
 Then(/^I can read:$/) do |string|
@@ -45,10 +46,10 @@ When(/^I click on "([^"]*)"$/) do |string|
 end
 
 When(/^I fill in my email and password and confirm the password$/) do
-  email, password = 'test@example.org', '12341234'
-  fill_in 'email', with: email
-  fill_in 'password', with: password
-  fill_in 'passwordConfirmation', with: password
+  @email, @password = 'test@example.org', '12341234'
+  fill_in 'email', with: @email
+  fill_in 'password', with: @password
+  fill_in 'passwordConfirmation', with: @password
 end
 
 When(/^I fill in my email and password and click on the submit button$/) do
@@ -67,9 +68,8 @@ Given(/^I already signed up$/) do
 end
 
 Then(/^my login was successful$/) do
-  using_wait_time(2) do
-    expect(page).to have_text('Log out')
-  end
+  wait_for_ajax
+  expect(page).to have_text('Log out')
 end
 
 When(/^I visit the decision page$/) do
@@ -661,3 +661,34 @@ Then(/^this better description was saved$/) do
   expect(@broadcast.description).to eq @better_description
 end
 
+Then(/^I see the first suggestion$/) do
+  expect(page).to have_css('.decision-card.fully-displayed')
+end
+
+Then(/^no account was created in the database$/) do
+  expect(User.count).to eq 0
+end
+
+Given(/^I responded (\d+) times with 'Yes' to a suggestion$/) do |number|
+  visit '/decide'
+  @responses = number.to_i
+  @responses.times do
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
+    wait_for_transition('.decision-card')
+  end
+end
+
+Given(/^at first, no selection and no account was created in the database$/) do
+  expect(User.count).to eq 0
+  expect(Selection.count).to eq 0
+end
+
+Then(/^my all my responses are saved in the database along with my account$/) do
+  @user = User.first
+  expect(@user.email).to eq @email
+  expect(@user.selections.count).to eq @responses
+  @user.selections.find_each do |s|
+    expect(s).to be_positive
+  end
+end
