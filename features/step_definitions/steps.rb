@@ -26,6 +26,7 @@ end
 
 When(/^I visit the landing page$/) do
   visit '/'
+  expect(page).to have_css('.ui.main.text.container')
 end
 
 Then(/^I can read:$/) do |string|
@@ -45,10 +46,10 @@ When(/^I click on "([^"]*)"$/) do |string|
 end
 
 When(/^I fill in my email and password and confirm the password$/) do
-  email, password = 'test@example.org', '12341234'
-  fill_in 'email', with: email
-  fill_in 'password', with: password
-  fill_in 'passwordConfirmation', with: password
+  @email, @password = 'test@example.org', '12341234'
+  fill_in 'email', with: @email
+  fill_in 'password', with: @password
+  fill_in 'passwordConfirmation', with: @password
 end
 
 When(/^I fill in my email and password and click on the submit button$/) do
@@ -67,9 +68,8 @@ Given(/^I already signed up$/) do
 end
 
 Then(/^my login was successful$/) do
-  using_wait_time(2) do
-    expect(page).to have_text('Log out')
-  end
+  wait_for_ajax
+  expect(page).to have_text('Log out')
 end
 
 When(/^I visit the decision page$/) do
@@ -203,15 +203,19 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
-When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
+def change_amount(title, amount)
   invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
-    find('.ember-inline-edit', text: /€/).click
+    find('.ember-inline-edit').click
     find('input').set(amount)
     find('.ember-inline-edit-save').click
   end
+end
+
+When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
+  change_amount(title, amount)
 end
 
 Then(/^the main part of the invoice looks like this:$/) do |table|
@@ -661,3 +665,71 @@ Then(/^this better description was saved$/) do
   expect(@broadcast.description).to eq @better_description
 end
 
+Then(/^I see the first suggestion$/) do
+  expect(page).to have_css('.decision-card.fully-displayed')
+end
+
+Then(/^no account was created in the database$/) do
+  expect(User.count).to eq 0
+end
+
+Given(/^I responded (\d+) times with 'Yes' to a suggestion$/) do |number|
+  create_list(:broadcast, number.to_i)
+  visit '/decide'
+  @responses = number.to_i
+  @responses.times do
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
+    wait_for_transition('.decision-card')
+  end
+end
+
+Given(/^at first, no selection and no account was created in the database$/) do
+  expect(User.count).to eq 0
+  expect(Selection.count).to eq 0
+end
+
+Then(/^my all my responses are saved in the database along with my account$/) do
+  @user = User.first
+  expect(@user.email).to eq @email
+  expect(@user.selections.count).to eq @responses
+  @user.selections.find_each do |s|
+    expect(s).to be_positive
+  end
+end
+
+Then(/^I see (\d+) invoice items with question marks instead of amounts$/) do |arg1|
+  expect(page).to have_css('.invoice-item', text: '???', count: @responses)
+end
+
+Then(/^I am requested to sign up for the following reason:$/) do |string|
+  expect(page).to have_text(string)
+end
+
+When(/^I click on one of the question marks and try to enter an amount$/) do
+  change_amount(Broadcast.first.title, 4.7)
+end
+
+When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
+  expect(page).to have_css('input#email')
+  expect(page).to have_css('input#password')
+  expect(page).to have_css('input#passwordConfirmation')
+  expect(page).to have_text(string)
+end
+
+When(/^I enter my login credentials and hit submit$/) do
+  @email, @password = 'test@example.org', '12341234'
+  fill_in 'email', with: @email
+  fill_in 'password', with: @password
+  fill_in 'passwordConfirmation', with: @password
+  click_on 'submit'
+end
+
+Then(/^I will be redirected to the invoice page$/) do
+  expect(current_path).to eq '/invoice'
+end
+
+Then(/^all (\d+) amounts are distributed evenly$/) do |count|
+  amount = (17.5/count.to_f).round(2)
+  expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
+end
