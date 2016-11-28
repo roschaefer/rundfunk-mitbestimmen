@@ -203,15 +203,19 @@ Then(/^the list of broadcasts has (\d+) items again$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
-When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
+def change_amount(title, amount)
   invoice_table = find('#invoice-table')
   scroll_to(invoice_table)
   invoice_item = find('.invoice-item', text: /#{title}/)
   within(invoice_item) do
-    find('.ember-inline-edit', text: /€/).click
+    find('.ember-inline-edit').click
     find('input').set(amount)
     find('.ember-inline-edit-save').click
   end
+end
+
+When(/^I change the amount of "([^"]*)" to "([^"]*)" euros$/) do |title, amount|
+  change_amount(title, amount)
 end
 
 Then(/^the main part of the invoice looks like this:$/) do |table|
@@ -670,6 +674,7 @@ Then(/^no account was created in the database$/) do
 end
 
 Given(/^I responded (\d+) times with 'Yes' to a suggestion$/) do |number|
+  create_list(:broadcast, number.to_i)
   visit '/decide'
   @responses = number.to_i
   @responses.times do
@@ -702,10 +707,7 @@ Then(/^I am requested to sign up for the following reason:$/) do |string|
 end
 
 When(/^I click on one of the question marks and try to enter an amount$/) do
-  amount = 4.7
-  first('.ember-inline-edit', text: '???').click
-  find('input').set(amount)
-  find('.ember-inline-edit-save').click
+  change_amount(Broadcast.first.title, 4.7)
 end
 
 When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
@@ -731,4 +733,3 @@ Then(/^all (\d+) amounts are distributed evenly$/) do |count|
   amount = (17.5/count.to_f).round(2)
   expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
 end
-

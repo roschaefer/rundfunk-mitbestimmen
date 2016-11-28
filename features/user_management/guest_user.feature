@@ -4,10 +4,8 @@ Feature: Allow guest accounts
   I want to use the app without registration
   So there is no barrier and I won't loose my interest
 
-  Background:
-    Given I have 13 broadcasts in my database
-
   Scenario: Guests can see suggestions without being logged in
+    Given I have 13 broadcasts in my database
     When I visit the landing page
     And I click on "Participate now"
     Then I see the first suggestion
@@ -24,7 +22,7 @@ Feature: Allow guest accounts
 
   Scenario: Invoice will show question marks instead of amounts for guest users
     Given I responded 3 times with 'Yes' to a suggestion
-    And I click on "Invoice"
+    And I click on "Issue the invoice"
     Then I see 3 invoice items with question marks instead of amounts
     And I am requested to sign up for the following reason:
     """
@@ -34,7 +32,7 @@ Feature: Allow guest accounts
 
   Scenario: Registration is possible on the invoice page
     Given I responded 3 times with 'Yes' to a suggestion
-    And I click on "Invoice"
+    And I click on "Issue the invoice"
     When I click on one of the question marks and try to enter an amount
     And the modal with the sign up form shows up, telling me the following:
     """
