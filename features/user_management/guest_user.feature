@@ -22,13 +22,26 @@ Feature: Allow guest accounts
     Then my login was successful
     Then my all my responses are saved in the database along with my account
 
-
   Scenario: Invoice will show question marks instead of amounts for guest users
-    Given I responded 10 times with 'Yes' to a suggestion
-    And I click on "Issue the invoice"
-    Then I see 10 invoice items with question marks instead of amounts
+    Given I responded 3 times with 'Yes' to a suggestion
+    And I click on "Invoice"
+    Then I see 3 invoice items with question marks instead of amounts
     And I am requested to sign up for the following reason:
     """
     To make you voice count, please sign up. This step is important to take your
     data seriously.
     """
+
+  Scenario: Registration is possible on the invoice page
+    Given I responded 3 times with 'Yes' to a suggestion
+    And I click on "Invoice"
+    When I click on one of the question marks and try to enter an amount
+    And the modal with the sign up form shows up, telling me the following:
+    """
+    With your registration you show us that your data matters. Your data will be
+    incorporated in the published results and that's how you gain an influence!
+    """
+    And I enter my login credentials and hit submit
+    Then I will be redirected to the invoice page
+    And my login was successful
+    And all 3 amounts are distributed evenly

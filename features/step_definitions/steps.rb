@@ -700,3 +700,35 @@ end
 Then(/^I am requested to sign up for the following reason:$/) do |string|
   expect(page).to have_text(string)
 end
+
+When(/^I click on one of the question marks and try to enter an amount$/) do
+  amount = 4.7
+  first('.ember-inline-edit', text: '???').click
+  find('input').set(amount)
+  find('.ember-inline-edit-save').click
+end
+
+When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
+  expect(page).to have_css('input#email')
+  expect(page).to have_css('input#password')
+  expect(page).to have_css('input#passwordConfirmation')
+  expect(page).to have_text(string)
+end
+
+When(/^I enter my login credentials and hit submit$/) do
+  @email, @password = 'test@example.org', '12341234'
+  fill_in 'email', with: @email
+  fill_in 'password', with: @password
+  fill_in 'passwordConfirmation', with: @password
+  click_on 'submit'
+end
+
+Then(/^I will be redirected to the invoice page$/) do
+  expect(current_path).to eq '/invoice'
+end
+
+Then(/^all (\d+) amounts are distributed evenly$/) do |count|
+  amount = (17.5/count.to_f).round(2)
+  expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
+end
+
