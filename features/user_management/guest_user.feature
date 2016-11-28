@@ -26,7 +26,7 @@ Feature: Allow guest accounts
     Then I see 3 invoice items with question marks instead of amounts
     And I am requested to sign up for the following reason:
     """
-    To make you voice count, please sign up. This step is important to take your
+    Please sign up to make your voice count. This step is important to take your
     data seriously.
     """
 
