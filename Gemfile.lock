@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/roschaefer/exhaust.git
-  revision: 360b346b538fb13a80deb3443337b9780f91f8ef
+  revision: 0400d9a79384a5c5d2934b5ef566406bb9ae42c1
   specs:
     exhaust (0.1.1)
 
