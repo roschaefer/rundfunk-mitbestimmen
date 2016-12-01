@@ -318,7 +318,7 @@ Then(/^I see this summary:$/) do |table|
       item = find('.balance-item', text: /#{row['Broadcast']}/)
       within(item) do
         expect(find('.reviews')).to have_text(row['Reviews'])
-        expect(find('.satisfaction')).to have_text(row['Satisfaction'])
+        expect(find('.approval')).to have_text(row['Satisfaction'])
         expect(find('.average')).to have_text(row['Average'])
         expect(find('.total')).to have_text(row['Total'])
       end
@@ -733,3 +733,35 @@ Then(/^all (\d+) amounts are distributed evenly$/) do |count|
   amount = (17.5/count.to_f).round(2)
   expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
 end
+
+Given(/^the balances look like this:$/) do |table|
+  table.hashes.each do |row|
+    n_selections = row['Reviews'].to_i
+    approval = row['Approval'].to_f/100.0
+    n_positive = approval*n_selections
+    average_amount = sanitize_amount(row['Total'])/n_positive
+    n_neutral = (1.0 - approval)*n_selections
+
+    broadcast = create(:broadcast, title: row['Broadcast'])
+    create_list(:selection, n_positive.to_i,
+               broadcast: broadcast,
+               response: :positive,
+               amount: average_amount)
+    create_list(:selection, n_neutral.to_i,
+               broadcast: broadcast,
+               response: :neutral)
+  end
+end
+
+When(/^I click on the header "([^"]*)" once$/) do |header|
+  find('th', text: header).click
+end
+
+Then(/^the table is sorted ascending by column "([^"]*)"$/) do |header|
+  expect(page).to have_css('th.sorted.ascending', text: header)
+end
+
+Then(/^the table is sorted descending by column "([^"]*)"$/) do |header|
+  expect(page).to have_css('th.sorted.descending', text: header)
+end
+
