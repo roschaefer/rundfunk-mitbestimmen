@@ -69,15 +69,15 @@ Make sure that you have a recent version of [ember.js](http://emberjs.com/) and
 following versions:
 
 ```
-ember-cli: 2.7.0
+ember-cli: 2.9.1
 node: 6.2.1
 Rails 5.0.0.1
 ruby 2.3.1
 ```
 
-Clone the repository:
+Clone the repository recursively with all submodules:
 ```
-git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
+git clone --recursive https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
 Install dependencies and run migrations:
