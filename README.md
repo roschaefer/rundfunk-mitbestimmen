@@ -84,7 +84,6 @@ Install dependencies and run migrations:
 ```
 cd rundfunk-mitbestimmen
 bundle
-gem install foreman
 
 cd frontend
 ember install
@@ -98,8 +97,23 @@ cd ..
 
 ## Usage
 
-Start the server:
+Start the backend:
 ```
+cd backend
+bin/rails s
+```
+
+open another terminal and start the frontend:
+```
+cd frontend
+ember serve
+```
+
+
+Alternatively, you can run both frontend and backend through foreman:
+
+```
+gem install foreman
 foreman start
 ```
 
