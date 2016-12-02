@@ -86,7 +86,8 @@ cd rundfunk-mitbestimmen
 bundle
 
 cd frontend
-ember install
+npm install
+bower install
 
 cd ../backend
 bundle
