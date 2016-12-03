@@ -85,7 +85,6 @@ git clone --recursive https://github.com/roschaefer/rundfunk-mitbestimmen.git
 
 Install dependencies and run migrations:
 ```sh
-cd rundfunk-mitbestimmen
 pwd # rundfunk-mitbestimmen
 bundle
 
@@ -104,14 +103,12 @@ cd ..
 
 Start the backend:
 ```sh
-cd backend
 pwd # rundfunk-mitbestimmen/backend
 bin/rails s
 ```
 
 open another terminal and start the frontend:
 ```sh
-cd frontend
 pwd # rundfunk-mitbestimmen/frontend
 ember serve
 ```
@@ -146,7 +143,6 @@ BROWSER=chrome bundle exec cucumber
 ### Frontend tests
 
 ```sh
-cd frontend
 pwd # rundfunk-mitbestimmen/frontend
 ember test --serve
 ```
@@ -154,7 +150,6 @@ ember test --serve
 ### Backend tests
 
 ```sh
-cd backend
 pwd # rundfunk-mitbestimmen/backend
 bin/rspec
 ```
@@ -166,6 +161,15 @@ bin/rspec
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :heart:
+
+
+## Useful Links
+
+* [ember.js](http://emberjs.com/)
+* [ember-cli](http://ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
 
 ## License
