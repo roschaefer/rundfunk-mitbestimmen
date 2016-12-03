@@ -65,24 +65,28 @@ This repository contains both applications as git submodules:
 2. [rundfunk-backend](https://github.com/roschaefer/rundfunk-backend) (rails - api only)
 
 Make sure that you have a recent version of [ember.js](http://emberjs.com/) and
-[rails](http://rubyonrails.org/) installed before you proceed. E.g. we have the
-following versions:
+[ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have
+the following versions:
 
-```
-ember-cli: 2.9.1
-node: 6.2.1
-Rails 5.0.0.1
-ruby 2.3.1
+```sh
+ember --version
+# ember-cli: 2.9.1
+# node: 6.2.1
+# os: linux x64
+
+ruby --version
+# ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-linux]
 ```
 
 Clone the repository recursively with all submodules:
-```
+```sh
 git clone --recursive https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
 Install dependencies and run migrations:
-```
+```sh
 cd rundfunk-mitbestimmen
+pwd # rundfunk-mitbestimmen
 bundle
 
 cd frontend
@@ -99,21 +103,24 @@ cd ..
 ## Usage
 
 Start the backend:
-```
+```sh
 cd backend
+pwd # rundfunk-mitbestimmen/backend
 bin/rails s
 ```
 
 open another terminal and start the frontend:
-```
+```sh
 cd frontend
+pwd # rundfunk-mitbestimmen/frontend
 ember serve
 ```
 
 
 Alternatively, you can run both frontend and backend through foreman:
 
-```
+```sh
+pwd # rundfunk-mitbestimmen
 gem install foreman
 foreman start
 ```
@@ -123,28 +130,32 @@ App is running on [localhost:4200](http://localhost:4200/)
 ## Full stack testing
 
 Run:
-```
+```sh
+pwd # rundfunk-mitbestimmen
 bundle exec cucumber
 ```
 
 Tip: If you're running a recent version of firefox (e.g. 48.0) you will
 experience an `Unable to obtain stable firefox connection`. You can run
 chrome as an alternative to downgrading firefox:
-```
+```sh
+pwd # rundfunk-mitbestimmen
 BROWSER=chrome bundle exec cucumber
 ```
 
 ### Frontend tests
 
-```
+```sh
 cd frontend
+pwd # rundfunk-mitbestimmen/frontend
 ember test --serve
 ```
 
 ### Backend tests
 
-```
+```sh
 cd backend
+pwd # rundfunk-mitbestimmen/backend
 bin/rspec
 ```
 
