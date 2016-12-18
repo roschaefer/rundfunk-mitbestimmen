@@ -22,7 +22,7 @@ Feature: Allow guest accounts
 
   Scenario: Invoice will show question marks instead of amounts for guest users
     Given I responded 3 times with 'Yes' to a suggestion
-    And I click on "Issue the invoice"
+    And I click on "Distribute budget"
     Then I see 3 invoice items with question marks instead of amounts
     And I am requested to sign up for the following reason:
     """
@@ -32,7 +32,7 @@ Feature: Allow guest accounts
 
   Scenario: Registration is possible on the invoice page
     Given I responded 3 times with 'Yes' to a suggestion
-    And I click on "Issue the invoice"
+    And I click on "Distribute budget"
     When I click on one of the question marks and try to enter an amount
     And the modal with the sign up form shows up, telling me the following:
     """

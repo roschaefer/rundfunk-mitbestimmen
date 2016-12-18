@@ -13,5 +13,5 @@ Feature: Show some stats
     When I visit the landing page
     Then I can see these numbers:
       | Registered users | Reviews | Money assigned |
-      | 12               | 60      | €210.00        |
+      | 12               | 60      | €210           |
     And there is a link that brings me to the balances page

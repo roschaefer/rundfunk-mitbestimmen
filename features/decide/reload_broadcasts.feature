@@ -12,5 +12,5 @@ Feature: Reload broadcasts
     And I visit the decision page
     And I click 10 times on 'Yes'
     And the list of selectable broadcasts is empty
-    When I click on "Reload broadcasts"
+    When I click on "Load more broadcasts"
     Then all of a sudden, there are more broadcasts again

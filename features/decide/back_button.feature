@@ -18,5 +18,5 @@ Feature: Go back one decision card
     When the decision card has disappeared
     Then I can still click on the 'Back' button
     And click 'Yes, I do!'
-    And the decision card turns green
+    And the grey circle above turns into a green checkmark
     And in the database my response is saved as 'positive'

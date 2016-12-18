@@ -8,5 +8,5 @@ Feature: Explain the purpose
     When I visit the landing page
     Then I can read:
     """
-    Unfortunately, people do not have a say how the monthly €17.50 are used. We want to change that: You decide how your contribution should be spent.
+    Which broadcasts should benefit from your monthly €17.50?
     """

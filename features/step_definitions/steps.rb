@@ -20,25 +20,13 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
   end
 end
 
-Then(/^I can read.*'(.+)'$/) do |string|
-  expect(page).to have_text string
-end
-
 When(/^I visit the landing page$/) do
   visit '/'
-  expect(page).to have_css('.ui.main.text.container')
+  expect(page).to have_css('.ui.main.container')
 end
 
 Then(/^I can read:$/) do |string|
   expect(page).to have_text string
-end
-
-Then(/^I am welcomed with "([^"]*)"$/) do |string|
-  expect(page).to have_text string
-end
-
-When(/^I click on the continue button to the decide page$/) do
-  click_on 'continue-to-decide'
 end
 
 When(/^I click on "([^"]*)"$/) do |string|
@@ -185,22 +173,12 @@ Given(/^I have many broadcasts in my database, let's say (\d+) broadcasts in tot
   end
 end
 
-Given(/^there are (\d+) remaining broadcasts in the list$/) do |number|
-  expect(page).to have_css('.decision-page')
-  expect(page).to have_css('.decision-card', count: number.to_i)
-end
-
 Given(/^I click (\d+) times on 'Yes'$/) do |number|
   number.to_i.times do
     wait_for_transition('.decision-card')
     expect(page).to have_css('.decision-card-action.positive')
     find('.decision-card-action.positive').click
   end
-end
-
-Then(/^the list of broadcasts has (\d+) items again$/) do |number|
-  expect(page).to have_css('.decision-page')
-  expect(page).to have_css('.decision-card', count: number.to_i)
 end
 
 def change_amount(title, amount)
@@ -388,9 +366,9 @@ Then(/^click 'Yes, I do!'$/) do
   find('.decision-card-action.positive', text: /Yes, I do!/).click
 end
 
-Then(/^the decision card turns green$/) do
+Then(/^the grey circle above turns into a green checkmark$/) do
   wait_for_transition('.decision-card')
-  expect(page).to have_css('.decision-card.green')
+  expect(page).to have_css('i.green.checkmark', count: 1)
 end
 
 Then(/^in the database my response is saved as 'positive'$/) do
@@ -441,13 +419,13 @@ When(/^I click 'Yes' three times in a row$/) do
 end
 
 Then(/^message pops up, telling me I could reload more broadcasts$/) do
-  within('.help-message') do
-    expect(page).to have_text 'You can add more broadcasts to the list'
+  within('.decision-card.reload-or-invoice') do
+    expect(page).to have_text 'Load more broadcasts'
   end
 end
 
 Then(/^then, the message is replaced with another one, requesting me this:$/) do |string|
-  within('.help-message') do
+  within('#help-message-new-broadcast') do
     expect(page).to have_text string
   end
 end
@@ -601,34 +579,12 @@ Then(/^a new radio broadcast is created in the database$/) do
   expect(Broadcast.first.medium).to eq 'radio'
 end
 
-When(/^I click on the tv icon$/) do
-  click_on 'filter-by-tv'
-end
-
-Then(/^the tv icon is disabled$/) do
-  expect(page).to have_css('#filter-by-tv:not(primary)')
-end
-
 When(/^I click on the radio icon$/) do
   click_on 'filter-by-radio'
 end
 
-Then(/^both radio and tv icons are disabled$/) do
-  expect(page).to have_css('#filter-by-tv:not(primary)')
-  expect(page).to have_css('#filter-by-radio:not(primary)')
-end
-
 Then(/^the only (?:thing|broadcast) I see is "([^"]*)"$/) do |string|
   expect(page).to have_text(string)
-end
-
-When(/^I enter "([^"]*)" into the search bar$/) do |string|
-  fill_in 'search', with: string
-end
-
-When(/^I click on the suggestion "([^"]*)"$/) do |string|
-  expect(page).to have_css('.search.filter', text: string)
-  find('.search.filter', text: string).click
 end
 
 When(/^I click on the filter by medium select box and then on "([^"]*)"$/) do |label|
@@ -765,3 +721,61 @@ Then(/^the table is sorted descending by column "([^"]*)"$/) do |header|
   expect(page).to have_css('th.sorted.descending', text: header)
 end
 
+Given(/^there are (\d+) remaining broadcasts$/) do |number|
+  expect(page).to have_text("#{number} results")
+end
+
+When(/^I choose "([^"]*)" from the list of TV stations$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |arg1, arg2|
+  ok = [option1, option2].any? do |option|
+    page.has_css?('.decision-card.fully-displayed', text: /#{option}/)
+  end
+  expect(ok).to be_true
+end
+
+When(/^I filter for radio broadcasts$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^the only station to choose from is "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^we have (\d+) broadcasts in our database$/) do |count|
+  create_list(:broadcast, count.to_i)
+end
+
+When(/^I click (\d+) times on 'Yes' and (\d+) times on 'Next'$/) do |positives, neutrals|
+  positives.to_i.times do
+    wait_for_transition('.decision-card')
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
+  end
+
+  neutrals.to_i.times do
+    wait_for_transition('.decision-card')
+    expect(page).to have_css('.decision-card-action.neutral')
+    find('.decision-card-action.neutral').click
+  end
+end
+
+Then(/^I am told to issue the invoice:$/) do |string|
+  expect(page).to have_text(string)
+end
+
+Then(/^I see (\d+) checkmarks and (\d+) grey dots, labeled with "([^"]*)"$/) do |checkmarks, dots, string|
+  expect(page).to have_css('i.green.checkmark.icon', count: checkmarks.to_i)
+  expect(page).to have_css('i.grey.circle.icon', count: dots.to_i)
+  expect(page).to have_css('.label', text: string)
+end
+
+Then(/^I am told to continue my search for more broadcasts:$/) do |string|
+  expect(page).to have_text(string)
+end
+
+Then(/^I reload the page$/) do
+  visit current_path
+end
