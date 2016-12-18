@@ -12,7 +12,7 @@ Feature: Create missing records
     And I visit the decision page
     When I click 'Yes' three times in a row
     Then message pops up, telling me I could reload more broadcasts
-    And I click on "Reload broadcasts"
+    And I click on "Load more broadcasts"
     But then, the message is replaced with another one, requesting me this:
     """
     Just create a new broadcast!
@@ -34,5 +34,5 @@ Feature: Create missing records
     Saved successfully
     """
     And a new broadcast was stored in the database with the data above
-    And when I click on "Reload broadcasts" I can choose that broadcast
+    And I reload the page
 
