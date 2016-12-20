@@ -27,7 +27,7 @@ Feature: Allow guest accounts
     And I am requested to sign up for the following reason:
     """
     Sign up to make your voice count. After your registration, the amounts
-    will be distributed evenly. Without registration, the data will not
+    will be distributed evenly. Without registration, your data will not
     change the results!
     """
 
