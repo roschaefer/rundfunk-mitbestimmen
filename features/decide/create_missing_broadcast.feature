@@ -12,7 +12,7 @@ Feature: Create missing records
     And I visit the decision page
     When I click 'Yes' three times in a row
     Then message pops up, telling me I could reload more broadcasts
-    And I click on "Load more broadcasts"
+    And I click on "More suggestions"
     But then, the message is replaced with another one, requesting me this:
     """
     Just create a new broadcast!

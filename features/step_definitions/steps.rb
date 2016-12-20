@@ -420,7 +420,7 @@ end
 
 Then(/^message pops up, telling me I could reload more broadcasts$/) do
   within('.decision-card.reload-or-invoice') do
-    expect(page).to have_text 'Load more broadcasts'
+    expect(page).to have_text 'More suggestions'
   end
 end
 

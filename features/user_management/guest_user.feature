@@ -26,8 +26,9 @@ Feature: Allow guest accounts
     Then I see 3 invoice items with question marks instead of amounts
     And I am requested to sign up for the following reason:
     """
-    Please sign up to make your voice count. This step is important to take your
-    data seriously.
+    Sign up to make your voice count. After your registration, the amounts
+    will be distributed evenly. Without registration, the data will not
+    change the results!
     """
 
   Scenario: Registration is possible on the invoice page
@@ -36,8 +37,8 @@ Feature: Allow guest accounts
     When I click on one of the question marks and try to enter an amount
     And the modal with the sign up form shows up, telling me the following:
     """
-    With your registration you show us that your data matters. Your data will be
-    incorporated in the published results and that's how you gain an influence!
+    With your registration you show that your data matters. Your data will
+    change the published results and that's how you gain an influence!
     """
     And I enter my login credentials and hit submit
     Then I will be redirected to the invoice page
