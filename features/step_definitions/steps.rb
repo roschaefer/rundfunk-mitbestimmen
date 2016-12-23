@@ -654,16 +654,16 @@ Then(/^my all my responses are saved in the database along with my account$/) do
   end
 end
 
-Then(/^I see (\d+) invoice items with question marks instead of amounts$/) do |arg1|
-  expect(page).to have_css('.invoice-item', text: '???', count: @responses)
+Then(/^I see (\d+) invoice items with edit icons instead of amounts$/) do |arg1|
+  expect(page).to have_css('.invoice-item i.edit.icon', count: @responses)
 end
 
 Then(/^I am requested to sign up for the following reason:$/) do |string|
   expect(page).to have_text(string)
 end
 
-When(/^I click on one of the question marks and try to enter an amount$/) do
-  change_amount(Broadcast.first.title, 4.7)
+When(/^I click on one of the edit icons to enter an amount$/) do
+  first('i.edit.icon').click
 end
 
 When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
