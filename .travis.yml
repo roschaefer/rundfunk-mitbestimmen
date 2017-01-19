@@ -8,9 +8,14 @@ env:
 services:
   - postgresql
 addons:
-  firefox: "47.0.1"
+  firefox: "50.1.0"
 
 before_install:
+  # http://www.columbia.edu/~njn2118/journal/2016/10/28.html
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.13.0/geckodriver-v0.13.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.13.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
   # http://austinpray.com/ops/2015/09/20/change-travis-node-version.html
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
   - npm install
@@ -22,10 +27,11 @@ before_install:
   - bower --version
   - npm --version
   - node --version
+  - geckodriver --version
+  - firefox --version
   - cd ..
 
 before_script:
-  - firefox --version
   - psql -c 'create database travis_ci_test;' -U postgres
   - cd backend
   - cp config/database.travis.yml config/database.yml
