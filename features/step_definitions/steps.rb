@@ -13,10 +13,16 @@ end
 
 Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
-    create(:broadcast,
-           title: row['Title'],
-           medium: (row['Medium'] || 'tv')
-          )
+    attributes = { title: row['Title'] }
+    if row['Medium']
+      medium = Medium.find_by(name: row['Medium']) || create(:medium, name_en: row['Medium'])
+      attributes[:medium] = medium
+    end
+    if row['Station']
+      station = Station.find_by(name: row['Station']) || create(:station, name: row['Station'])
+      attributes[:station] = station
+    end
+    create(:broadcast, attributes)
   end
 end
 
@@ -292,15 +298,15 @@ When(/^I visit the public balances page$/) do
 end
 
 Then(/^I see this summary:$/) do |table|
-    table.hashes.each do |row|
-      item = find('.balance-item', text: /#{row['Broadcast']}/)
-      within(item) do
-        expect(find('.reviews')).to have_text(row['Reviews'])
-        expect(find('.approval')).to have_text(row['Satisfaction'])
-        expect(find('.average')).to have_text(row['Average'])
-        expect(find('.total')).to have_text(row['Total'])
-      end
+  table.hashes.each do |row|
+    item = find('.balance-item', text: /#{row['Broadcast']}/)
+    within(item) do
+      expect(find('.reviews')).to have_text(row['Reviews'])
+      expect(find('.approval')).to have_text(row['Satisfaction'])
+      expect(find('.average')).to have_text(row['Average'])
+      expect(find('.total')).to have_text(row['Total'])
     end
+  end
 end
 
 Given(/^I have (\d+) broadcasts in my database$/) do |number|
@@ -396,9 +402,9 @@ When(/^I enter the title "([^"]*)" with the following description:$/) do |title,
 end
 
 Then(/^a new broadcast was stored in the database with the data above$/) do
- broadcast = Broadcast.last
- expect(broadcast.title).to eq @title
- expect(broadcast.description).to eq @description
+  broadcast = Broadcast.last
+  expect(broadcast.title).to eq @title
+  expect(broadcast.description).to eq @description
 end
 
 Then(/^when I click on "([^"]*)" I can choose that broadcast$/) do |button|
@@ -526,7 +532,7 @@ Given(/^yesterday I deselected a broadcast called "([^"]*)"$/) do |title|
 end
 
 Given(/^today I learned that it is actually a broadcast that I really like$/) do
- # just documentation
+  # just documentation
 end
 
 When(/^I visit the broadcasts page$/) do
@@ -552,7 +558,7 @@ Then(/^on my invoice, this broadcast shows up suddenly$/) do
 end
 
 Then(/^a label indicates the medium 'Radio' on the decision card$/) do
-  expect(page).to have_css('.medium-radio')
+  expect(page).to have_css('.meta', text: 'Radio')
 end
 
 When(/^I want to create a new broadcast$/) do
@@ -562,7 +568,8 @@ end
 
 When(/^I type in "([^"]*)" and choose "([^"]*)" as medium$/) do |title, medium|
   fill_in 'title', with: title
-  select medium, from: 'medium'
+  find('.selection', text: 'Select medium').click
+  find('.item', text: medium).click
 end
 
 When(/^I fill in a description and hit submit$/) do
@@ -576,7 +583,7 @@ end
 
 Then(/^a new radio broadcast is created in the database$/) do
   expect(Broadcast.count).to eq 1
-  expect(Broadcast.first.medium).to eq 'radio'
+  expect(Broadcast.first.medium.name).to eq 'Radio'
 end
 
 When(/^I click on the radio icon$/) do
@@ -587,11 +594,15 @@ Then(/^the only (?:thing|broadcast) I see is "([^"]*)"$/) do |string|
   expect(page).to have_text(string)
 end
 
-When(/^I click on the filter by medium select box and then on "([^"]*)"$/) do |label|
-  expect(page).to have_css('.multiple.selection', text: /Filter by medium/)
-  find('.multiple.selection', text: /Filter by medium/).click
+def filter_by_medium(label)
+  expect(page).to have_css('.selection', text: /Filter by medium/)
+  find('.selection', text: /Filter by medium/).click
   expect(page).to have_css('.item', text: label)
   find('.item', text: label).click
+end
+
+When(/^I filter by medium "([^"]*)"$/) do |label|
+  filter_by_medium(label)
 end
 
 When(/^I click on the item "([^"]*)"$/) do |label|
@@ -700,12 +711,12 @@ Given(/^the balances look like this:$/) do |table|
 
     broadcast = create(:broadcast, title: row['Broadcast'])
     create_list(:selection, n_positive.to_i,
-               broadcast: broadcast,
-               response: :positive,
-               amount: average_amount)
+                broadcast: broadcast,
+                response: :positive,
+                amount: average_amount)
     create_list(:selection, n_neutral.to_i,
-               broadcast: broadcast,
-               response: :neutral)
+                broadcast: broadcast,
+                response: :neutral)
   end
 end
 
@@ -725,23 +736,35 @@ Given(/^there are (\d+) remaining broadcasts$/) do |number|
   expect(page).to have_text("#{number} results")
 end
 
-When(/^I choose "([^"]*)" from the list of TV stations$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+def filter_by_station(label)
+  find('.selection', text: 'Filter by station').click
+  expect(page).to have_css('.item', text: label)
+  find('.item', text: label).click
 end
 
-Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |arg1, arg2|
+When(/^I choose "([^"]*)" from the list of stations$/) do |station|
+  filter_by_station(station)
+end
+
+Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |option1, option2|
   ok = [option1, option2].any? do |option|
     page.has_css?('.decision-card.fully-displayed', text: /#{option}/)
   end
-  expect(ok).to be_true
+  expect(ok).to be true
 end
 
 When(/^I filter for radio broadcasts$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  find('.selections', text: 'Filter by medium').click
+  expect(page).to have_css('.item', text: 'Radio')
+  find('.item', text: 'Radio').click
 end
 
-Then(/^the only station to choose from is "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^the only station to choose from is "([^"]*)"$/) do |station|
+  find('.selection', text: 'Filter by station').click
+  within('.menu.visible') do
+    expect(page).to have_css('.item', text: station)
+    expect(page).to have_css('.item', count: 1)
+  end
 end
 
 Given(/^we have (\d+) broadcasts in our database$/) do |count|
@@ -779,3 +802,94 @@ end
 Then(/^I reload the page$/) do
   visit current_path
 end
+
+Then(/^there are no stations to choose from$/) do
+  expect(page).not_to have_css('.selections', text: 'Filter by station')
+end
+
+Given(/^we have these media:$/) do |table|
+  table.hashes.each do |row|
+    create(:medium, name_en: row['Medium'], name_de: row['Medium'])
+  end
+end
+
+Given(/^I am not logged in$/) do
+  visit '/'
+  expect(page).to have_text('Log in')
+end
+
+When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
+  find('.selection', text: 'Select medium').click
+  find('.item', text: medium).click
+end
+
+Then(/^no form but a message is there, telling me:$/) do |string|
+  expect(page).not_to have_field('title')
+  expect(page).not_to have_field('description')
+  expect(page).to have_text(string)
+end
+
+Given(/^there are no broadcasts in the database$/) do
+  expect(Broadcast.count).to eq 0
+end
+
+Given(/^we have these stations in our database:$/) do |table|
+  table.hashes.each do |row|
+    medium = Medium.find_by(name: row['Medium']) || create(:medium, name_en: row['Medium'], name_de: row['Medium'])
+    create(:station, name: row['Station'], medium: medium)
+  end
+end
+
+When(/^I choose "([^"]*)" from the list of "([^"]*)" stations$/) do |station, medium|
+  filter_by_medium(medium)
+  filter_by_station(station)
+end
+
+Given(/^there is another broadcast called "([^"]*)"/) do |title|
+  broadcast = create(:broadcast, title: title)
+end
+
+Then(/^I see "([^"]*)".* but I don't see "([^"]*)"$/) do |see, dontsee|
+  expect(page).to have_text(see)
+  expect(page).not_to have_text(dontsee)
+end
+
+Given(/^I want to create a new broadcast that does not exist yet$/) do
+  expect(Broadcast.count).to eq 0
+  # if there are no broadcasts, a visit of /decide will open up the broadcast form
+
+  visit '/decide'
+  expect(page).to have_css('#broadcast-form')
+end
+
+When(/^I enter the following data:$/) do |table|
+  row = table.hashes.first
+  @title = row['Title']
+  @description = row['Description']
+  @medium_name = row['Medium']
+  @station_name = row['Station']
+  fill_in 'title', with: @title
+  fill_in 'description', with: @description
+  find('.selection', text: 'Select medium').click
+  find('.item', text: @medium_name).click
+  expect(page).to have_css('.selection', text: 'Select station')
+  find('.selection', text: 'Select station').click
+  find('.item', text: @station_name).click
+end
+
+Then(/^the created broadcast has got the exact data from above$/) do
+  broadcast = Broadcast.last
+  expect(broadcast.title).to eq @title
+  expect(broadcast.description).to eq @description
+  expect(broadcast.station.name).to eq @station_name
+  expect(broadcast.medium.name).to eq @medium_name
+end
+
+Given(/^we have these stations:$/) do |table|
+  table.hashes.each do |row|
+    medium = create(:medium, name_en: row['Medium'], name_de: row['Medium'])
+    create(:station, medium: medium, name: row['Station'])
+  end
+end
+
+
