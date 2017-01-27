@@ -5,11 +5,15 @@ Feature: Distinguish radio and TV shows
 
   Background:
     Given I am logged in
+    And we have these media:
+      | Medium |
+      | TV     |
+      | Radio  |
 
   Scenario: Check radio or TV as a medium
     Given I have these broadcasts in my database:
       | Title          | Medium |
-      | Babo-Bus       | radio  |
+      | Babo-Bus       | Radio  |
     When I visit the decision page
     Then a label indicates the medium 'Radio' on the decision card
 
