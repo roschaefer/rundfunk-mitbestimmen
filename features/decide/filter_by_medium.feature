@@ -8,17 +8,17 @@ Feature: Filter by medium
     Given I am logged in
     And we have these broadcasts in our database:
       | Title         | Medium |
-      | Panorama      | tv     |
-      | Refugee Radio | radio  |
-      | Protothon     | other  |
+      | Panorama      | TV     |
+      | Refugee Radio | Radio  |
+      | Protothon     | Other  |
 
   Scenario: Filter for radio broadcasts
     When I visit the decision page
-    And I click on the filter by medium select box and then on "Radio"
+    When I filter by medium "Radio"
     Then the only broadcast I see is "Refugee Radio"
 
   Scenario: Filter for other content
     When I visit the decision page
-    And I click on the filter by medium select box and then on "Other"
+    When I filter by medium "Other"
     Then the only broadcast I see is "Protothon"
 

@@ -7,6 +7,12 @@ Feature: Reselect broadcast
   Background:
     Given I am logged in
 
+  Scenario: Show only reviewed broadcasts
+    Given yesterday I deselected a broadcast called "Kontraste"
+    But there is another broadcast called "Aspekte" which I don't know yet
+    When I visit the broadcasts page
+    Then I see "Kontraste", because it's reviewed, but I don't see "Aspekte"
+
   Scenario: Reselect a previously neglected broadcast
     Given yesterday I deselected a broadcast called "Kontraste"
     And today I learned that it is actually a broadcast that I really like
