@@ -15,7 +15,7 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
     if row['Medium']
-      medium = Medium.find_by(name: row['Medium']) || create(:medium, name_en: row['Medium'])
+      medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
     end
     if row['Station']
@@ -835,7 +835,7 @@ end
 
 Given(/^we have these stations in our database:$/) do |table|
   table.hashes.each do |row|
-    medium = Medium.find_by(name: row['Medium']) || create(:medium, name_en: row['Medium'], name_de: row['Medium'])
+    medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     create(:station, name: row['Station'], medium: medium)
   end
 end
@@ -892,4 +892,28 @@ Given(/^we have these stations:$/) do |table|
   end
 end
 
+When(/^I click on the stations dropdown menu$/) do
+  find('.selection', text: 'Filter by station').click
+end
+
+Then(/^the stations are ordered like this:$/) do |table|
+  within('.selection', text: 'Filter by station') do
+    expect(all('.item').map(&:text)).to eq(table.rows.flatten)
+  end
+end
+
+Given(/^we have some more stations:$/) do |table|
+  table.hashes.each do |row|
+    medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
+    station = create(:station, name: row['Station'], medium: medium)
+    create_list(:broadcast, row['#Broadcasts'].to_i, station: station, medium: medium)
+  end
+end
+
+Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) do |title, medium, station|
+  expect(page).to have_css('.decision-card', count: 1)
+  expect(page).to have_css('.decision-card .header', text: title)
+  expect(page).to have_css('.decision-card .meta', text: medium)
+  expect(page).to have_css('.decision-card .meta', text: station)
+end
 

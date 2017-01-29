@@ -7,18 +7,20 @@ Feature: Filter by station
   Background:
     Given we have these stations in our database:
       | Station       | Medium |
-      | ZDF           | TV     |
       | Phoenix       | TV     |
       | WDR Fernsehen | TV     |
+      | ZDF           | TV     |
       | WDR 5         | Radio  |
     And we have these broadcasts in our database:
-      | Title           | Station       | Medium |
-      | Phoenix Runde   | Phoenix       | TV     |
-      | Fernsehgarten   | ZDF           | TV     |
-      | heute-journal   | ZDF           | TV     |
-      | Quarks & Co     | WDR Fernsehen | TV     |
-      | Leonardo        | WDR 5         | Radio  |
-      | Frei.Willig.Weg |               | Online |
+      | Title               | Station       | Medium |
+      | Phoenix Runde       | Phoenix       | TV     |
+      | Fernsehgarten       | ZDF           | TV     |
+      | heute-journal       | ZDF           | TV     |
+      | Quarks & Co         | WDR Fernsehen | TV     |
+      | Mitternachtsspitzen | WDR Fernsehen | TV     |
+      | Rockpalast          | WDR Fernsehen | TV     |
+      | Leonardo            | WDR 5         | Radio  |
+      | Frei.Willig.Weg     |               | Online |
     And I visit the decision page
 
   Scenario: Choosing a medium will narrow down selectable stations
@@ -40,3 +42,20 @@ Feature: Filter by station
     Then there are no stations to choose from
     And the only broadcast I see is "Frei.Willig.Weg"
 
+  Scenario: Stations are sorted by their broadcasts count in descending order
+    Given we have some more stations:
+      | Station       | Medium | #Broadcasts |
+      | rbb fernsehen | TV     | 5           |
+      | BR Fernsehen  | TV     | 9           |
+      | SWR           | TV     | 4           |
+    And I visit the decision page
+    When I filter by medium "TV"
+    When I click on the stations dropdown menu
+    Then the stations are ordered like this:
+      | Station       |
+      | BR Fernsehen  |
+      | rbb fernsehen |
+      | SWR           |
+      | WDR Fernsehen |
+      | ZDF           |
+      | Phoenix       |
