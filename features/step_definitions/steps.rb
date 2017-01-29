@@ -910,3 +910,10 @@ Given(/^we have some more stations:$/) do |table|
   end
 end
 
+Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) do |title, medium, station|
+  expect(page).to have_css('.decision-card', count: 1)
+  expect(page).to have_css('.decision-card .header', text: title)
+  expect(page).to have_css('.decision-card .meta', text: medium)
+  expect(page).to have_css('.decision-card .meta', text: station)
+end
+
