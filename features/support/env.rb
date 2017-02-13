@@ -11,7 +11,6 @@ rails_root = File.join(root, "backend")
 require File.expand_path("#{rails_root}/config/environment")
 
 
-
 # Database Cleaner to clear out the test DB between tests
 DatabaseCleaner.strategy = :truncation
 
@@ -20,13 +19,15 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.configure do |config|
-  # Use whatever driver you want
   config.app_host = Exhaust.ember_host
-  config.default_driver = (ENV['BROWSER'] || 'selenium').to_sym
+  config.default_driver = (ENV['BROWSER'] || :selenium).to_sym
 end
 
+
 Before do
-  page.driver.browser.manage.window.maximize
+  if page.driver.browser.respond_to?(:manage)
+    page.driver.browser.manage.window.maximize
+  end
 end
 
 After do

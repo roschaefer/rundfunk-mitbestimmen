@@ -14,33 +14,26 @@ Feature: Allow guest accounts
   Scenario: Responses to suggestions will be saved up account registration
     Given I responded 5 times with 'Yes' to a suggestion
     And at first, no selection and no account was created in the database
-    When I click on "Sign up"
-    And I fill in my email and password and confirm the password
-    And I click on the submit button
-    Then my login was successful
-    Then my all my responses are saved in the database along with my account
+    When I successfully log in
+    Then I am back on the decision page
+    And all my responses are saved in the database along with my account
 
   Scenario: Invoice will show question marks instead of amounts for guest users
     Given I responded 3 times with 'Yes' to a suggestion
-    And I click on "Distribute budget"
-    Then I see 3 invoice items with edit icons instead of amounts
-    And I am requested to sign up for the following reason:
+    When I click on "Distribute budget"
+    Then a modal pops up, telling me the following:
     """
-    Sign up to make your voice count. After your registration, the amounts
-    will be distributed evenly. Without registration, your data will not
-    change the results!
+    Sign up to continue
     """
 
   Scenario: Registration is possible on the invoice page
     Given I responded 3 times with 'Yes' to a suggestion
     And I click on "Distribute budget"
-    When I click on one of the edit icons to enter an amount
-    And the modal with the sign up form shows up, telling me the following:
-    """
-    With your registration you show that your data matters. Your data will
-    change the published results and that's how you gain an influence!
-    """
-    And I enter my login credentials and hit submit
+    And I make the modal go away
+    When I click on one of the euro icons to enter an amount
+    And the modal pops up again, asking me to register
+    And I finally login
     Then I will be redirected to the invoice page
     And my login was successful
+    And my selections are saved to the database
     And all 3 amounts are distributed evenly

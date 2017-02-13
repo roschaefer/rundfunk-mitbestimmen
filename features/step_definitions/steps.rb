@@ -2,13 +2,30 @@ def sanitize_amount(amount)
   amount.gsub('€','').to_f
 end
 
+def login()
+
+  # the following credentials are valid in our test account
+  @email ||= 'existing_user@example.org'
+  @password ||= '12341234'
+
+  if page.has_text?('Last time you signed in using')
+    find('.a0-strategy', text: 'existing_user@example.org').click
+  else
+
+    fill_in 'email', with: @email
+    fill_in 'password', with: @password
+    within('.a0-action') do
+      find('button[type=submit]').click # button is not labeled
+    end
+  end
+  expect(page).to have_text('Log out', wait: 6) # successfully logged in
+  @user = User.first
+end
+
 Given(/^I am logged in$/) do
-  @user = create(:user)
-  visit '/login'
-  fill_in 'email', with: @user.email
-  fill_in 'password', with: @user.password
-  click_on 'submit'
-  expect(page).to have_text('Log out')
+  visit '/'
+  click_on 'Log in'
+  login
 end
 
 Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
@@ -40,25 +57,23 @@ When(/^I click on "([^"]*)"$/) do |string|
 end
 
 When(/^I fill in my email and password and confirm the password$/) do
-  @email, @password = 'test@example.org', '12341234'
+  @password = '12341234' # given user password on auth0 testing account
   fill_in 'email', with: @email
   fill_in 'password', with: @password
   fill_in 'passwordConfirmation', with: @password
 end
 
 When(/^I fill in my email and password and click on the submit button$/) do
-  email, password = @user.email, @user.password
-  fill_in 'email', with: email
-  fill_in 'password', with: password
-  click_on 'submit'
+  login
 end
 
 Then(/^a new user was created in the database$/) do
   expect(User.count).to eq 1
 end
 
-Given(/^I already signed up$/) do
-  @user = create(:user)
+Given(/^I have signed up two months ago/) do
+  @email, @password = 'existing_user@example.org', '12341234'
+  @user = create(:user, email: @email)
 end
 
 Then(/^my login was successful$/) do
@@ -94,7 +109,7 @@ Then(/^the list of selectable broadcasts is empty$/) do
   expect(page).not_to have_css('.decision-card-action.positive')
 end
 
-Then(/^I the database contains these selections that belong to me:$/) do |table|
+Then(/^the database contains these selections that belong to me:$/) do |table|
   mapping = {'Yes' => 'positive', 'No' => 'neutral'}
   my_selections = @user.selections
   table.hashes.each do |row|
@@ -227,9 +242,13 @@ When(/^I click on the german flag$/) do
   click_on 'Deutsch'
 end
 
-Then(/^I(?: can)? see "([^"]*)" and "([^"]*)" menu items$/) do |label1, label2|
-  expect(page).to have_css('.button', text: label1)
-  expect(page).to have_css('.button', text: label2)
+Then(/^I(?: can)? see the "([^"]*)" menu item$/) do |label|
+  expect(page).to have_css('.button', text: label)
+end
+
+Given(/^I see a medium called "([^"]*)"$/) do |medium|
+  find('.ui.dropdown').click
+  expect(page).to have_text(medium)
 end
 
 When(/^I fill in an invalid email like "([^"]*)"$/) do |email|
@@ -280,10 +299,7 @@ Given(/^these users want to pay money for these broadcasts:$/) do |table|
     end
     user = User.find_by(email: row['Email'])
     unless user
-      user = create(:user,
-                    email: row['Email'],
-                    password: 'secret1234',
-                    password_confirmation: 'secret1234')
+      user = create(:user, email: row['Email'])
     end
     create(:selection,
            broadcast: broadcast,
@@ -656,7 +672,7 @@ Given(/^at first, no selection and no account was created in the database$/) do
   expect(Selection.count).to eq 0
 end
 
-Then(/^my all my responses are saved in the database along with my account$/) do
+Then(/^all my responses are saved in the database along with my account$/) do
   @user = User.first
   expect(@user.email).to eq @email
   expect(@user.selections.count).to eq @responses
@@ -665,16 +681,16 @@ Then(/^my all my responses are saved in the database along with my account$/) do
   end
 end
 
-Then(/^I see (\d+) invoice items with edit icons instead of amounts$/) do |arg1|
-  expect(page).to have_css('.invoice-item i.edit.icon', count: @responses)
+Then(/^I see (\d+) invoice items with euro icons instead of amounts$/) do |arg1|
+  expect(page).to have_css('.invoice-item i.euro.icon', count: @responses)
 end
 
 Then(/^I am requested to sign up for the following reason:$/) do |string|
   expect(page).to have_text(string)
 end
 
-When(/^I click on one of the edit icons to enter an amount$/) do
-  first('i.edit.icon').click
+When(/^I click on one of the euro icons to enter an amount$/) do
+  first('i.euro.icon').click
 end
 
 When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
@@ -693,6 +709,7 @@ When(/^I enter my login credentials and hit submit$/) do
 end
 
 Then(/^I will be redirected to the invoice page$/) do
+  expect(page).to have_css('#invoice-table')
   expect(current_path).to eq '/invoice'
 end
 
@@ -809,7 +826,10 @@ end
 
 Given(/^we have these media:$/) do |table|
   table.hashes.each do |row|
-    create(:medium, name_en: row['Medium'], name_de: row['Medium'])
+    create(:medium,
+           name_en: (row['Medium'] || row['Medium_en']),
+           name_de: (row['Medium'] || row['Medium_de']),
+          )
   end
 end
 
@@ -917,3 +937,54 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
+When(/^I successfully log in$/) do
+  click_on 'Log in'
+  login
+  wait_for_ajax
+end
+
+Then(/^a modal pops up, telling me the following:$/) do |string|
+  expect(find('.signup-modal')).to have_text(string)
+end
+
+Given(/^I make the modal go away$/) do
+  find('.icon.close').click
+end
+
+When(/^the modal pops up again, asking me to register$/) do
+  expect(find('.signup-modal')).to have_text('With your registration you can:')
+end
+
+When(/^I finally login$/) do
+  click_on 'Awesome!'
+  login
+end
+
+Then(/^my selections are saved to the database$/) do
+  @user.reload
+  expect(@user.selections).not_to be_empty
+end
+
+Then(/^I am back on the decision page$/) do
+  expect(page).to have_current_path('/decide')
+end
+
+Then(/^no other account was created$/) do
+  visit current_url
+  expect(find('.registered-users')).to have_text('1')
+end
+
+When(/^I click on "([^"]*)" and open the signup modal$/) do |string|
+  click_on string
+  find('.a0-create-account').click
+  expect(page).to have_text('Sign Up')
+end
+
+When(/^I enter a new email address and a password and hit the submit button$/) do
+  @email, @password = "#{('a'..'z').to_a.shuffle.join}@example.org", '12341234'
+  login
+end
+
+Given(/^there is no user in the database$/) do
+  expect(User.count).to eq 0
+end

@@ -4,21 +4,25 @@ Feature: Language chooser menu
   I want to have a button to change the language
   In order to override the settings of my browser, e.g. if it's not my machine
 
+  Background:
+    Given we have these media:
+      | Medium_en | Medium_de |
+      | Other     | Sonstige  |
+
   Scenario: Frontend is translated
     Given I visit the landing page
-    And I see "Log in" and "Sign up" menu items
+    And I see the "Log in" menu item
     When I click on the german flag
-    Then I can see "Einloggen" and "Konto erstellen" menu items
+    Then I see the "Einloggen" menu item
 
-  Scenario: Backend translates data
-    Given I visit the landing page
-    And I click on "Sign up"
-    When I fill in an invalid email like "justcrap"
-    And I click on the submit button
-    Then I can see the error message in english:
-    """
-    Email is not an email
-    """
+  Scenario: Backend translates to english
+    When I visit the decision page
+    Then I see a medium called "Other"
 
+  Scenario: Backend translates to german
+    When I visit the landing page
+    And I click on the german flag
+    And I click on "Jetzt mitbestimmen"
+    Then I see a medium called "Sonstige"
 
 
