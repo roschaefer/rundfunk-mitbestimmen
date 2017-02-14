@@ -3,6 +3,7 @@ require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
 require 'exhaust'
+require 'billy/capybara/cucumber'
 
 ENV['RAILS_ENV'] ||= 'test'
 puts Dir.pwd
@@ -20,9 +21,19 @@ end
 
 Capybara.configure do |config|
   config.app_host = Exhaust.ember_host
-  config.default_driver = (ENV['BROWSER'] || :selenium).to_sym
+  config.default_driver = (ENV['BROWSER'] || :selenium_chrome_billy).to_sym
 end
 
+Billy.configure do |c|
+  c.cache = true
+  c.persist_cache = true
+  c.cache_path = 'billy'
+
+  c.ignore_params = [
+    'https://piwik.rundfunk-mitbestimmen.de/piwik.php',
+    'https://cdn.eu.auth0.com/client/3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG.js',
+  ]
+end
 
 Before do
   if page.driver.browser.respond_to?(:manage)
@@ -41,3 +52,5 @@ include FactoryGirl::Syntax::Methods
 
 Exhaust.run!
 at_exit { Exhaust.shutdown! }
+
+
