@@ -28,7 +28,6 @@ Billy.configure do |c|
   c.cache = true
   c.persist_cache = true
   c.cache_path = 'billy'
-
   c.ignore_params = [
     'https://piwik.rundfunk-mitbestimmen.de/piwik.php',
     'https://cdn.eu.auth0.com/client/3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG.js',

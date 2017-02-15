@@ -3,7 +3,6 @@ def sanitize_amount(amount)
 end
 
 def login()
-
   # the following credentials are valid in our test account
   @email ||= 'existing_user@example.org'
   @password ||= '12341234'
@@ -948,7 +947,9 @@ Then(/^a modal pops up, telling me the following:$/) do |string|
 end
 
 Given(/^I make the modal go away$/) do
+  wait_for_transition('.signup-modal')
   find('.icon.close').click
+  wait_for_transition('.signup-modal')
 end
 
 When(/^the modal pops up again, asking me to register$/) do
