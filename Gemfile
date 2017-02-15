@@ -4,7 +4,6 @@ gem 'rake'
 gem "cucumber"            # Human Readable Specification by Example
 gem "capybara"
 gem 'selenium-webdriver'
-gem 'puffing-billy'
 gem 'childprocess'        # For managing the running Rails and Ember Apps
 gem "activesupport"       # For Autoloading model classes like Rails
 gem "activerecord"        # Database Access

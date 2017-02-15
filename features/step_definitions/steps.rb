@@ -2,45 +2,14 @@ def sanitize_amount(amount)
   amount.gsub('€','').to_f
 end
 
-def submit_auth0_form
-  fill_in 'email', with: @email
-  fill_in 'password', with: @password
-  within('.a0-action') do
-    find('button[type=submit]').click # button is not labeled
-  end
-end
-
-def open_signup_modal
-  if page.has_text?('Last time you signed in using')
-    find('a', text: 'Not your account?').click
-  end
-
-  find('.a0-create-account').click
-end
-
 def login
-  # the following credentials are valid in our test account
-  @email ||= 'existing_user@example.org'
-  @password ||= '12341234'
-
-  if page.has_text?('Last time you signed in using')
-    if page.has_css?('.a0-strategy', text: @email)
-      find('.a0-strategy', text: @email).click
-    else
-      click_on 'Not your account?'
-      submit_auth0_form
-    end
-  else
-    submit_auth0_form
-  end
-
-  expect(page).to have_text('Log out', wait: 6) # successfully logged in
-  @user = User.first
+  stub_jwt(@user)
+  click_on 'Log in'
 end
 
 Given(/^I am logged in$/) do
   visit '/'
-  click_on 'Log in'
+  @user = create(:user)
   login
 end
 
@@ -79,16 +48,12 @@ When(/^I fill in my email and password and confirm the password$/) do
   fill_in 'passwordConfirmation', with: @password
 end
 
-When(/^I fill in my email and password and click on the submit button$/) do
-  login
-end
-
 Then(/^a new user was created in the database$/) do
   expect(User.count).to eq 1
 end
 
 Given(/^I have signed up two months ago/) do
-  @email, @password = 'existing_user@example.org', '12341234'
+  @email = 'legacy_user@example.org'
   @user = create(:user, email: @email)
 end
 
@@ -651,6 +616,7 @@ When(/^I click the edit button next to the title "([^"]*)"$/) do |title|
   within('tr.broadcast', text: title) do
     find('button.edit').click
   end
+  wait_for_transition('.broadcast-form-modal')
 end
 
 When(/^I change the description to:$/) do |string|
@@ -666,10 +632,6 @@ end
 
 Then(/^I see the first suggestion$/) do
   expect(page).to have_css('.decision-card.fully-displayed')
-end
-
-Then(/^no account was created in the database$/) do
-  expect(User.count).to eq 0
 end
 
 Given(/^I responded (\d+) times with 'Yes' to a suggestion$/) do |number|
@@ -689,10 +651,9 @@ Given(/^at first, no selection and no account was created in the database$/) do
 end
 
 Then(/^all my responses are saved in the database along with my account$/) do
-  @user = User.first
-  expect(@user.email).to eq @email
-  expect(@user.selections.count).to eq @responses
-  @user.selections.find_each do |s|
+  user = User.find_by(email: @user.email) # @user might not be saved
+  expect(user.selections.count).to eq @responses
+  user.selections.find_each do |s|
     expect(s).to be_positive
   end
 end
@@ -954,9 +915,7 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
 end
 
 When(/^I successfully log in$/) do
-  click_on 'Log in'
   login
-  wait_for_ajax
 end
 
 Then(/^a modal pops up, telling me the following:$/) do |string|
@@ -975,9 +934,10 @@ When(/^the modal pops up again, asking me to register$/) do
   expect(find('.signup-modal')).to have_text('With your registration you can:')
 end
 
-When(/^I finally login$/) do
+When(/^I finally sign up$/) do
+  @user = build(:user)
+  stub_jwt(@user)
   click_on 'Awesome!'
-  login
 end
 
 Then(/^my selections are saved to the database$/) do
@@ -989,22 +949,40 @@ Then(/^I am back on the decision page$/) do
   expect(page).to have_current_path('/decide')
 end
 
-Then(/^no other account was created$/) do
-  visit current_url
+Then(/^no account was created/) do
+  expect(User.count).to eq 0
+  visit '/'
+  expect(find('.registered-users')).to have_text('0')
+end
+
+Then(/^no other account was created/) do
+  expect(User.count).to eq 1
+  visit '/'
   expect(find('.registered-users')).to have_text('1')
 end
 
-When(/^I click on "([^"]*)" and open the signup modal$/) do |string|
-  click_on string
-  open_signup_modal
-  expect(page).to have_text('Sign Up')
-end
-
 When(/^I enter a new email address and a password and hit the submit button$/) do
-  @email, @password = "#{('a'..'z').to_a.shuffle.join}@example.org", '12341234'
+  @email, @password = 'new_user@example.org', '12341234'
   login
 end
 
 Given(/^there is no user in the database$/) do
   expect(User.count).to eq 0
 end
+
+When(/^I sign up$/) do
+  @user = build(:user) # don't create
+  stub_jwt(@user)
+  expect(User.count).to eq 0
+  click_on 'Log in'
+end
+
+When(/^I log in$/) do
+  @user = create(:user)
+  login
+end
+
+When(/^I log in with my old credentials$/) do
+  login
+end
+

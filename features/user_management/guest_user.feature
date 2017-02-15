@@ -14,7 +14,7 @@ Feature: Allow guest accounts
   Scenario: Responses to suggestions will be saved up account registration
     Given I responded 5 times with 'Yes' to a suggestion
     And at first, no selection and no account was created in the database
-    When I successfully log in
+    When I sign up
     Then I am back on the decision page
     And all my responses are saved in the database along with my account
 
@@ -32,8 +32,8 @@ Feature: Allow guest accounts
     And I make the modal go away
     When I click on one of the euro icons to enter an amount
     And the modal pops up again, asking me to register
-    And I finally login
+    And I finally sign up
     Then I will be redirected to the invoice page
     And my login was successful
-    And my selections are saved to the database
+    And all my responses are saved in the database along with my account
     And all 3 amounts are distributed evenly
