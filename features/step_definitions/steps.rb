@@ -2,21 +2,38 @@ def sanitize_amount(amount)
   amount.gsub('€','').to_f
 end
 
-def login()
+def submit_auth0_form
+  fill_in 'email', with: @email
+  fill_in 'password', with: @password
+  within('.a0-action') do
+    find('button[type=submit]').click # button is not labeled
+  end
+end
+
+def open_signup_modal
+  if page.has_text?('Last time you signed in using')
+    find('a', text: 'Not your account?').click
+  end
+
+  find('.a0-create-account').click
+end
+
+def login
   # the following credentials are valid in our test account
   @email ||= 'existing_user@example.org'
   @password ||= '12341234'
 
   if page.has_text?('Last time you signed in using')
-    find('.a0-strategy', text: 'existing_user@example.org').click
-  else
-
-    fill_in 'email', with: @email
-    fill_in 'password', with: @password
-    within('.a0-action') do
-      find('button[type=submit]').click # button is not labeled
+    if page.has_css?('.a0-strategy', text: @email)
+      find('.a0-strategy', text: @email).click
+    else
+      click_on 'Not your account?'
+      submit_auth0_form
     end
+  else
+    submit_auth0_form
   end
+
   expect(page).to have_text('Log out', wait: 6) # successfully logged in
   @user = User.first
 end
@@ -943,6 +960,7 @@ When(/^I successfully log in$/) do
 end
 
 Then(/^a modal pops up, telling me the following:$/) do |string|
+  wait_for_transition('.signup-modal')
   expect(find('.signup-modal')).to have_text(string)
 end
 
@@ -953,6 +971,7 @@ Given(/^I make the modal go away$/) do
 end
 
 When(/^the modal pops up again, asking me to register$/) do
+  wait_for_transition('.signup-modal')
   expect(find('.signup-modal')).to have_text('With your registration you can:')
 end
 
@@ -977,7 +996,7 @@ end
 
 When(/^I click on "([^"]*)" and open the signup modal$/) do |string|
   click_on string
-  find('.a0-create-account').click
+  open_signup_modal
   expect(page).to have_text('Sign Up')
 end
 
