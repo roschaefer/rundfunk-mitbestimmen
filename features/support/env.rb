@@ -20,17 +20,19 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.configure do |config|
-  # Use whatever driver you want
   config.app_host = Exhaust.ember_host
-  config.default_driver = (ENV['BROWSER'] || 'selenium').to_sym
+  config.default_driver = (ENV['BROWSER'] || :chrome).to_sym
 end
 
 Before do
-  page.driver.browser.manage.window.maximize
+  if page.driver.browser.respond_to?(:manage)
+    page.driver.browser.manage.window.maximize
+  end
 end
 
 After do
   Capybara.reset_sessions!
+  page.execute_script("window.stubbedJwt = undefined")
   visit '/'
   page.execute_script("localStorage.clear()")
 end
@@ -40,3 +42,5 @@ include FactoryGirl::Syntax::Methods
 
 Exhaust.run!
 at_exit { Exhaust.shutdown! }
+
+

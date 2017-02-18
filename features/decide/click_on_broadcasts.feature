@@ -16,7 +16,7 @@ Feature: Click on broadcasts
     When I visit the decision page
     And I decide 'Yes' for Quarks & Co and Tagesschau but 'No' for Löwenzahn
     Then the list of selectable broadcasts is empty
-    And I the database contains these selections that belong to me:
+    And the database contains these selections that belong to me:
       | Title       | Answer |
       | Quarks & Co | Yes    |
       | Löwenzahn   | No     |

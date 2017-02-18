@@ -132,12 +132,11 @@ pwd # rundfunk-mitbestimmen
 bundle exec cucumber
 ```
 
-Tip: If you're running a recent version of firefox (e.g. 48.0) you will
-experience an `Unable to obtain stable firefox connection`. You can run
-chrome as an alternative to downgrading firefox:
+If you want to run firefox instead of chrome, you can set an environment
+variable:
 ```sh
 pwd # rundfunk-mitbestimmen
-BROWSER=chrome bundle exec cucumber
+BROWSER=selenium bundle exec cucumber
 ```
 
 ### Frontend tests
