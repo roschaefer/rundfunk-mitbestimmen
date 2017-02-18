@@ -41,13 +41,6 @@ When(/^I click on "([^"]*)"$/) do |string|
   click_on string
 end
 
-When(/^I fill in my email and password and confirm the password$/) do
-  @password = '12341234' # given user password on auth0 testing account
-  fill_in 'email', with: @email
-  fill_in 'password', with: @password
-  fill_in 'passwordConfirmation', with: @password
-end
-
 Then(/^a new user was created in the database$/) do
   expect(User.count).to eq 1
 end
@@ -215,10 +208,6 @@ Then(/^I see the remaining budget at the bottom of the invoice:$/) do |table|
   end
 end
 
-When(/^I click on the submit button$/) do
-  click_on 'submit'
-end
-
 When(/^I click on the german flag$/) do
   click_on 'Deutsch'
 end
@@ -230,17 +219,6 @@ end
 Given(/^I see a medium called "([^"]*)"$/) do |medium|
   find('.ui.dropdown').click
   expect(page).to have_text(medium)
-end
-
-When(/^I fill in an invalid email like "([^"]*)"$/) do |email|
-  password = '12341234'
-  fill_in 'email', with: email
-  fill_in 'password', with: password
-  fill_in 'passwordConfirmation', with: password
-end
-
-Then(/^I can see the error message in english:$/) do |string|
-  expect(page).to have_text(string)
 end
 
 When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
@@ -402,11 +380,6 @@ Then(/^a new broadcast was stored in the database with the data above$/) do
   broadcast = Broadcast.last
   expect(broadcast.title).to eq @title
   expect(broadcast.description).to eq @description
-end
-
-Then(/^when I click on "([^"]*)" I can choose that broadcast$/) do |button|
-  click_on button
-  expect(page).to have_text(@favourite_broadcast)
 end
 
 Given(/^there are (\d+) broadcasts in the database$/) do |number|
@@ -583,10 +556,6 @@ Then(/^a new radio broadcast is created in the database$/) do
   expect(Broadcast.first.medium.name).to eq 'Radio'
 end
 
-When(/^I click on the radio icon$/) do
-  click_on 'filter-by-radio'
-end
-
 Then(/^the only (?:thing|broadcast) I see is "([^"]*)"$/) do |string|
   expect(page).to have_text(string)
 end
@@ -600,11 +569,6 @@ end
 
 When(/^I filter by medium "([^"]*)"$/) do |label|
   filter_by_medium(label)
-end
-
-When(/^I click on the item "([^"]*)"$/) do |label|
-  expect(page).to have_css('.item', text: label)
-  find('.item', text: /#{label}/).click
 end
 
 Given(/^I reviewed the broadcast "([^"]*)" with this description:$/) do |title, description|
@@ -658,31 +622,8 @@ Then(/^all my responses are saved in the database along with my account$/) do
   end
 end
 
-Then(/^I see (\d+) invoice items with euro icons instead of amounts$/) do |arg1|
-  expect(page).to have_css('.invoice-item i.euro.icon', count: @responses)
-end
-
-Then(/^I am requested to sign up for the following reason:$/) do |string|
-  expect(page).to have_text(string)
-end
-
 When(/^I click on one of the euro icons to enter an amount$/) do
   first('i.euro.icon').click
-end
-
-When(/^the modal with the sign up form shows up, telling me the following:$/) do |string|
-  expect(page).to have_css('input#email')
-  expect(page).to have_css('input#password')
-  expect(page).to have_css('input#passwordConfirmation')
-  expect(page).to have_text(string)
-end
-
-When(/^I enter my login credentials and hit submit$/) do
-  @email, @password = 'test@example.org', '12341234'
-  fill_in 'email', with: @email
-  fill_in 'password', with: @password
-  fill_in 'passwordConfirmation', with: @password
-  click_on 'submit'
 end
 
 Then(/^I will be redirected to the invoice page$/) do
@@ -736,21 +677,11 @@ def filter_by_station(label)
   find('.item', text: label).click
 end
 
-When(/^I choose "([^"]*)" from the list of stations$/) do |station|
-  filter_by_station(station)
-end
-
 Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |option1, option2|
   ok = [option1, option2].any? do |option|
     page.has_css?('.decision-card.fully-displayed', text: /#{option}/)
   end
   expect(ok).to be true
-end
-
-When(/^I filter for radio broadcasts$/) do
-  find('.selections', text: 'Filter by medium').click
-  expect(page).to have_css('.item', text: 'Radio')
-  find('.item', text: 'Radio').click
 end
 
 Then(/^the only station to choose from is "([^"]*)"$/) do |station|
@@ -791,10 +722,6 @@ end
 
 Then(/^I am told to continue my search for more broadcasts:$/) do |string|
   expect(page).to have_text(string)
-end
-
-Then(/^I reload the page$/) do
-  visit current_path
 end
 
 Then(/^there are no stations to choose from$/) do
@@ -914,10 +841,6 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
-When(/^I successfully log in$/) do
-  login
-end
-
 Then(/^a modal pops up, telling me the following:$/) do |string|
   wait_for_transition('.signup-modal')
   expect(find('.signup-modal')).to have_text(string)
@@ -940,11 +863,6 @@ When(/^I finally sign up$/) do
   click_on 'Awesome!'
 end
 
-Then(/^my selections are saved to the database$/) do
-  @user.reload
-  expect(@user.selections).not_to be_empty
-end
-
 Then(/^I am back on the decision page$/) do
   expect(page).to have_current_path('/decide')
 end
@@ -961,11 +879,6 @@ Then(/^no other account was created/) do
   expect(find('.registered-users')).to have_text('1')
 end
 
-When(/^I enter a new email address and a password and hit the submit button$/) do
-  @email, @password = 'new_user@example.org', '12341234'
-  login
-end
-
 Given(/^there is no user in the database$/) do
   expect(User.count).to eq 0
 end
@@ -975,11 +888,6 @@ When(/^I sign up$/) do
   stub_jwt(@user)
   expect(User.count).to eq 0
   click_on 'Log in'
-end
-
-When(/^I log in$/) do
-  @user = create(:user)
-  login
 end
 
 When(/^I log in with my old credentials$/) do
