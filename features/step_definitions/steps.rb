@@ -217,8 +217,10 @@ Then(/^I(?: can)? see the "([^"]*)" menu item$/) do |label|
 end
 
 Given(/^I see a medium called "([^"]*)"$/) do |medium|
-  find('.ui.dropdown').click
-  expect(page).to have_text(medium)
+  within('.broadcast-search') do
+    find('.ui.dropdown').click
+    expect(page).to have_text(medium)
+  end
 end
 
 When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
@@ -747,10 +749,13 @@ When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
   find('.item:not(.blank)', text: medium).click
 end
 
-Then(/^no form but a message is there, telling me:$/) do |string|
-  expect(page).not_to have_field('title')
-  expect(page).not_to have_field('description')
-  expect(page).to have_text(string)
+Then(/^all form fields are disabled and there is a message telling me:$/) do |string|
+  expect(page).to have_css('.broadcast-form.warning')
+  within('.broadcast-form.warning') do
+    expect(page).to have_css('.field.disabled')
+    expect(page).not_to have_css('.field:not(.disabled)')
+    expect(page).to have_text(string)
+  end
 end
 
 Given(/^there are no broadcasts in the database$/) do

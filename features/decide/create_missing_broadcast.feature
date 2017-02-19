@@ -58,8 +58,8 @@ Feature: Create missing records
     Given I am not logged in
     And I visit the decision page
     And there are no broadcasts in the database
-    Then no form but a message is there, telling me:
+    Then all form fields are disabled and there is a message telling me:
     """
-    If you log in, you can create new broadcasts
+    Log in to create new broadcasts
     """
 
