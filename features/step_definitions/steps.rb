@@ -539,7 +539,7 @@ end
 When(/^I type in "([^"]*)" and choose "([^"]*)" as medium$/) do |title, medium|
   fill_in 'title', with: title
   find('.selection', text: 'Select medium').click
-  find('.item', text: medium).click
+  find('.item:not(.blank)', text: medium).click
 end
 
 When(/^I fill in a description and hit submit$/) do
@@ -563,8 +563,8 @@ end
 def filter_by_medium(label)
   expect(page).to have_css('.selection', text: /Filter by medium/)
   find('.selection', text: /Filter by medium/).click
-  expect(page).to have_css('.item', text: label)
-  find('.item', text: label).click
+  expect(page).to have_css('.item:not(.blank)', text: label)
+  find('.item:not(.blank)', text: label).click
 end
 
 When(/^I filter by medium "([^"]*)"$/) do |label|
@@ -673,8 +673,8 @@ end
 
 def filter_by_station(label)
   find('.selection', text: 'Filter by station').click
-  expect(page).to have_css('.item', text: label)
-  find('.item', text: label).click
+  expect(page).to have_css('.item:not(.blank)', text: label)
+  find('.item:not(blank)', text: label).click
 end
 
 Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |option1, option2|
@@ -687,8 +687,8 @@ end
 Then(/^the only station to choose from is "([^"]*)"$/) do |station|
   find('.selection', text: 'Filter by station').click
   within('.menu.visible') do
-    expect(page).to have_css('.item', text: station)
-    expect(page).to have_css('.item', count: 1)
+    expect(page).to have_css('.item:not(.blank)', text: station)
+    expect(page).to have_css('.item:not(.blank)', count: 1)
   end
 end
 
@@ -744,7 +744,7 @@ end
 
 When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
   find('.selection', text: 'Select medium').click
-  find('.item', text: medium).click
+  find('.item:not(.blank)', text: medium).click
 end
 
 Then(/^no form but a message is there, telling me:$/) do |string|
@@ -795,10 +795,10 @@ When(/^I enter the following data:$/) do |table|
   fill_in 'title', with: @title
   fill_in 'description', with: @description
   find('.selection', text: 'Select medium').click
-  find('.item', text: @medium_name).click
+  find('.item:not(.blank)', text: @medium_name).click
   expect(page).to have_css('.selection', text: 'Select station')
   find('.selection', text: 'Select station').click
-  find('.item', text: @station_name).click
+  find('.item:not(.blank)', text: @station_name).click
 end
 
 Then(/^the created broadcast has got the exact data from above$/) do
@@ -821,8 +821,8 @@ When(/^I click on the stations dropdown menu$/) do
 end
 
 Then(/^the stations are ordered like this:$/) do |table|
-  within('.selection', text: 'Filter by station') do
-    expect(all('.item').map(&:text)).to eq(table.rows.flatten)
+  within('.filter-stations-field') do
+    expect(all('.item:not(.blank)').map(&:text)).to eq(table.rows.flatten)
   end
 end
 
@@ -892,5 +892,27 @@ end
 
 When(/^I log in with my old credentials$/) do
   login
+end
+
+Then(/^there is just one result$/) do
+  expect(page).to have_text('1 result')
+end
+
+Then(/^when I unselect the station$/) do
+  within('.filter-stations-field') do
+    find('.selection').click
+    find('.item.blank').click
+  end
+end
+
+Then(/^there are (\d+) results$/) do |number|
+  expect(page).to have_text("#{number} result")
+end
+
+Then(/^when I unselect the medium$/) do
+  within('.filter-media-field') do
+    find('.selection').click
+    find('.item.blank').click
+  end
 end
 
