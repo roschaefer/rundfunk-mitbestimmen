@@ -59,3 +59,12 @@ Feature: Filter by station
       | WDR Fernsehen |
       | ZDF           |
       | Phoenix       |
+
+  @116
+  Scenario: Removing filter options will extend the number of results again
+    When I choose "Phoenix" from the list of "TV" stations
+    Then there is just one result
+    But when I unselect the station
+    Then there are 6 results
+    And when I unselect the medium
+    Then there are 8 results
