@@ -22,7 +22,7 @@ Feature: Language chooser menu
   Scenario: Backend translates to german
     When I visit the landing page
     And I click on the german flag
-    And I click on "Jetzt mitbestimmen"
+    And I click on "jetzt mitbestimmen"
     Then I see a medium called "Sonstige"
 
 

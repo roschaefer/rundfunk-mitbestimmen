@@ -8,5 +8,5 @@ Feature: Explain the purpose
     When I visit the landing page
     Then I can read:
     """
-    Which broadcasts should benefit from your monthly €17.50?
+    I pay €17.50 per month, therefore I wish to PARTICIPATE NOW
     """

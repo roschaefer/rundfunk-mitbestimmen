@@ -7,7 +7,7 @@ Feature: Allow guest accounts
   Scenario: Guests can see suggestions without being logged in
     Given I have 13 broadcasts in my database
     When I visit the landing page
-    And I click on "Participate now"
+    And I click on "participate now"
     Then I see the first suggestion
     But no account was created in the database
 
