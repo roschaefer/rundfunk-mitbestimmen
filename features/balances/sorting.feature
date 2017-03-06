@@ -5,14 +5,14 @@ Feature: Sort descending/ascending by column
   In order to quickly find the broadcasts with the highest approval
 
   Background:
-    Given the balances look like this:
+    Given the statistics look like this:
       | Broadcast   | Reviews | Approval | Per capita | Total |
       | Heute Show  | 3       | 100%     | 2.50€      | €7.50 |
       | extra 3     | 2       | 50%      | 3.00€      | €3.00 |
       | Die Anstalt | 10      | 20%      | 1.20€      | €2.40 |
 
   Scenario: Sort ascending
-    When I visit the public balances page
+    When I visit the public statistics page
     And I click on the header "Total" once
     Then the table is sorted ascending by column "Total"
     And I see this summary:
@@ -22,7 +22,7 @@ Feature: Sort descending/ascending by column
       | Heute Show  | 3       | 100%     | 2.50€      | €7.50 |
 
   Scenario: Sort by another column
-    When I visit the public balances page
+    When I visit the public statistics page
     And I click on the header "Approval" once
     Then the table is sorted descending by column "Approval"
     And I see this summary:
