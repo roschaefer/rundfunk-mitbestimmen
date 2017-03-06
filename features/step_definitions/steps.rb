@@ -270,13 +270,13 @@ Given(/^these users want to pay money for these broadcasts:$/) do |table|
   end
 end
 
-When(/^I visit the public balances page$/) do
-  visit '/balances'
+When(/^I visit the public statistics page$/) do
+  visit '/statistics'
 end
 
 Then(/^I see this summary:$/) do |table|
   table.hashes.each do |row|
-    item = find('.balance-item', text: /#{row['Broadcast']}/)
+    item = find('.statistic-item', text: /#{row['Broadcast']}/)
     within(item) do
       expect(find('.reviews')).to have_text(row['Reviews'])
       expect(find('.approval')).to have_text(row['Satisfaction'])
@@ -324,10 +324,10 @@ Then(/^I can see these numbers:$/) do |table|
   expect(page).to have_css('.statistics.money-assigned', text: row['Money assigned'])
 end
 
-Then(/^there is a link that brings me to the balances page$/) do
-  click_on 'Balances per broadcast'
-  expect(page).to have_css('.balances')
-  expect(current_path).to eq '/balances'
+Then(/^there is a link that brings me to the statistics page$/) do
+  click_on 'Statistics per broadcast'
+  expect(page).to have_css('.statistics')
+  expect(current_path).to eq '/statistics'
 end
 
 When(/^I click 'Next' when I am asked if I want to pay for the broadcast$/) do
@@ -638,7 +638,7 @@ Then(/^all (\d+) amounts are distributed evenly$/) do |count|
   expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
 end
 
-Given(/^the balances look like this:$/) do |table|
+Given(/^the statistics look like this:$/) do |table|
   table.hashes.each do |row|
     n_selections = row['Reviews'].to_i
     approval = row['Approval'].to_f/100.0

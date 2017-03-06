@@ -13,7 +13,7 @@ Feature: Total amount of collected money per broadcast
       | max.mustermann@example.org   | Heute Show  | €1.00  |
       | lieschen.mueller@example.org | extra 3     | €3.00  |
       | lieschen.mueller@example.org | Heute Show  | €5.00  |
-    When I visit the public balances page
+    When I visit the public statistics page
     Then I see this summary:
       | Broadcast   | Reviews | Approval | Per capita | Total |
       | Heute Show  | 3       | 100%     | 2.17€      | €6.50 |

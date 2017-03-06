@@ -50,7 +50,7 @@ the monthly fee of 17,50€ per month.
 
 The frontend should be as easy to use as possible. The user can
 login and register, fetch a set of not yet voted broadcasts, decide about
-broadcasts, assign money and see the public balances. Most of these
+broadcasts, assign money and see the public statistics. Most of these
 actions will send requests to the backend. The app should keep the required user
 action to a minimum. E.g. on the invoice page, amounts are evenly distributed
 with the option to set the amount explicitly.

@@ -10,8 +10,8 @@ In order to infer the popularity of my broadcast and how important it is for my 
     And the total amount collected for this show is €15.00
     And 4 users of the app never voted on this show
 
-  Scenario: Display total reviews, satisfaction and average amount
-    When I visit the public balances page
+  Scenario: Display number of votes, satisfaction and average amount
+    When I visit the public statistics page
     Then I see this summary:
       | Broadcast   | Reviews | Satisfaction | Average |
       | Die Anstalt | 10      | 30%          | €5.00   |

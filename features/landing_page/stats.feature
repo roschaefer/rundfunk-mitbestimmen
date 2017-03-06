@@ -14,4 +14,4 @@ Feature: Show some stats
     Then I can see these numbers:
       | Registered users | Reviews | Money assigned |
       | 12               | 60      | €210           |
-    And there is a link that brings me to the balances page
+    And there is a link that brings me to the statistics page
