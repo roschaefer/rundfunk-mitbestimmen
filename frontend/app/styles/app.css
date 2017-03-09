@@ -65,7 +65,6 @@ p {
 }
 
 .ui.menu .item .ui.button {
-  margin-left: 0.5em;
   font-size: 0.9em;
   box-shadow: 0px 0px 0px 1px #FFFFFF inset !important;
   padding: 0.6em 1.2em;
@@ -132,6 +131,15 @@ input.ember-inline-edit-input[type="text"] {
 @media only screen and (max-width: 767px) {
   .statement {
     width: 60%;
+  }
+  .ui.menu .item .ui.button {
+    margin-left: -4px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ui.menu .item {
+    margin-left: -11px;
   }
 }
 
