@@ -1,0 +1,309 @@
+signup-modal:
+  header: Anmelden um fortzufahren
+  content:
+    description: 'Mit der Anmeldung kannst Du:'
+    list:
+      change: Deine Daten später ändern
+      publish: Deine Daten anonym veröffentlichen
+      influence: Einen Einfluss erhalten
+  button: Großartig!
+broadcast-search:
+  results: '{count, plural, =0 {kein Ergebnis} =1 {# Ergebnis} other {# Ergebnisse }}'
+  query:
+    placeholder: Sendungstitel
+  filter:
+    medium:
+      placeholder: Filtern nach Medium
+    station:
+      placeholder: Nach Sendern filtern
+broadcast-form:
+  header:
+    new: Neue Sendung
+    edit: Sendung bearbeiten
+  title:
+    label: Titel
+    placeholder: ..unter dem die Sendung bekannt ist
+  description:
+    label: Beschreibung
+    placeholder: >
+      ..für die Beitragszahler, die die Sendung nicht kennen. Kurz und knackig!
+  medium:
+    label: Medium
+    placeholder: Medium auswählen
+  station:
+    label: Sender
+    placeholder: Sender auswählen
+  submit:
+    label:
+      create: Eintragen
+      update: Korrigieren
+    success-message: Erfolgreich gespeichert
+  another-one: Neue Sendung
+  log-in-message: Melde Dich an, um neue Sendungen einzutragen
+application:
+  menu:
+    item:
+      decide: Sendungen finden
+      invoice: Meine Sendungen
+      statistics: Statistik
+  language-chooser:
+    german: German
+    english: English
+  footer:
+    contact-us: Verbesserungsvorschläge und Kontakt
+    imprint: Impressum
+  logout: Ausloggen
+  login: Einloggen
+index:
+  header:
+    top: Der öffentlich-rechtliche Rundfunk erhält <h1>{amount}</h1> jedes Jahr.
+  action:
+    Ich zahle <h1>monatlich {amount}</h1> und daher möchte ich
+  start: jetzt mitbestimmen
+  statistics:
+    registered-users: Registrierte Nutzer
+    broadcasts: Sendungen
+    reviews: Abstimmungen
+    money-assigned: bereits zugewiesen
+    link-to-statistics: Statistiken pro Sendung
+  approval:
+    header: Verteile Deinen Rundfunkbeitrag
+    content: >
+      Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
+      nach Deinen Kriterien bewerten.<br> Fördere Deine Lieblingssendungen
+      und lass sie es wissen, selbstverständlich anonym.
+    steps:
+      find: Sendungen finden
+      decide: Sendungen auswählen
+      distribute: Budget verteilen
+  statement:
+    header: Setze ein Zeichen für mehr Mitbestimmung
+    content: >
+      Die Bewertungsergebnisse sind nicht verbindlich, jedoch öffentlich und
+      quantifizierbar. Dadurch erhalten Beitragszahler zum ersten Mal eine
+      aussagekräftige Stimme. Mit deiner Entscheidung können wir die
+      Aufmerksamkeit der Rundfunkräte gewinnen und die Programmdebatten
+      befördern und beleben.
+  goal:
+    actual:
+      header: Tatsächliche Verteilung
+      description: >
+        Ausgaben nach Genre, hier am Beispiel des Programms "Das Erste" (Quelle:
+        20. KEF Bericht)
+    target:
+      header: Gewünschter Zustand
+      description: >
+        Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
+  faq:
+    questions:
+      survey:
+        title: Ist das hier eine Umfrage?
+        content: >
+          Das hier ist keine Umfrage, sondern eine Demonstration wie man den
+          öffentlichen Rundfunk demokratisieren kann. Wir wollen zeigen, dass es
+          technisch möglich ist, es nichts kostet, die Beitragszahler ein
+          Interesse an so etwas haben und auch gute Entscheidungen treffen
+          können.
+      tv-rankings:
+        title: Warum reichen die Einschaltquoten denn nicht aus?
+        content: >
+          Viele Beitragszahler nutzen den Rundfunk gar nicht, zahlen aber wie
+          jeder andere auch und haben ein Recht auf Inhalte. Außerdem hat der
+          öffentliche Rundfunk einen Bildungs- und Demokratieauftrag, unabhängig
+          von Einschaltquoten.
+      quality:
+        title: Wie könnt ihr verhindern, dass die Leute nur Unsinn wählen?
+        content: >
+          Gar nicht. Das ist Demokratie. <a href="/statistics">Es sieht aber auch
+          nicht danach aus</a>, dass die Leute überhaupt Unsinn wählen. Im
+          Gegenteil, viele geben Geld für Kultursendungen oder investigativen
+          Journalismus aus, also Inhalte, die bei klassischen Einschaltquoten zu
+          kurz kommen.
+      binding:
+        title: Sind die Ergebnisse verbindlich?
+        content: >
+          Die Ergebnisse sind nicht verbindlich in einem rechtlichen Sinne,
+          sondern stellen einfach die Wünsche der Gebührenzahler dar. Dadurch
+          dass die Ergebnisse öffentlich und quantifizierbar sind, erhalten die
+          Gebührenzahler zum ersten Mal eine aussagekräftige Stimme.
+      minorities:
+        title: Was ist mit Minderheiten?
+        content: >
+          Gerade für Minderheiten ist "Rundfunk MITBESTIMMEN" gemacht. Auf der
+          <a href="/statistics">Seite mit den Ergebnissen</a> ist die Metrik "Pro
+          Kopf" zu sehen. Das ist der Betrag, den Unterstützer im Schnitt für
+          die jeweilige Sendung ausgeben. So gibt man kleinen Gruppen eine
+          Stimme, die ihre Sendung besonders stark unterstützen können. Die
+          Metrik bedeutet nämlich in etwa: "Wie wichtig ist die Sendung für die
+          spezifische Zielgruppe?"
+      responsible:
+        title: Wer seid ihr?
+        content: >
+          "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
+          <a href="https://github.com/roschaefer">Robert Schäfer</a>, Student
+          am <a href="https://hpi.de/">HPI</a> und
+          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, User
+          Experience Designerin aus Potsdam. Daneben arbeiten wir mit Vereinen,
+          die sich um offene Daten bemühen sowie Mitglieder von Rundfunkräten.
+          Aber vor Allem unterstützen uns alle Nutzer die mitmachen und ihre
+          Daten hier veröffentlichen.
+      consumption:
+        title: Was, wenn man den Rundfunk gar nicht nutzt?
+        content: >
+          Jeder hat ein Recht auf Inhalte, unabhängig davon ob man den Rundfunk
+          nutzt. Übrigens können viele Nutzer trotzdem sehr genau entscheiden ob
+          sie eine Sendung bezahlen wollen oder nicht.
+      representative:
+        title: Sind die Daten repräsentativ?
+        content: >
+          Nein. Müssen sie auch gar nicht. Denn es soll nur das Geld derjenigen
+          reserviert werden, die wirklich teilgenommen haben. Für alle anderen
+          Beitragszahler bleibt alles so wie es ist. Zurzeit verteilen nämlich
+          die Rundfunkanstalten alle Gelder ganz eigenverantwortlich.
+      impact:
+        title: Interessiert das denn irgendwen?
+        content: >
+          Ja. Die Daten allein reichen völlig aus, um einen Einfluss zu erzeugen.
+          Du sagst den Programm-Machern und den Rundfunkräten mit Deiner Stimme,
+          warum eine Sendung nicht abgesetzt werden darf.
+      finances:
+        title: Wer finanziert das?
+        content: >
+          Wir selber. Aus eigener Tasche. Allerdings werden wir uns bei
+          <a href="https://prototypefund.de/">öffentlichen Förderungen</a>
+          bewerben.
+      business-model:
+        title: Habt ihr ein Geschäftsmodell?
+        content: >
+          Nein. Wir haben auch nicht vor, jemals Profit mit dieser Anwendung zu
+          machen.
+      data-privacy:
+        title: Wer sieht meine E-Mail Adresse?
+        content: >
+          Unsere Daten liegen auf einem Server in Frankfurt am Main. Da die
+          Authentifizierung über einen Dienst namens
+          <a href="https://auth0.com/">Auth0</a> abläuft, liegt ein Teil der
+          Daten, nämlich die Login-Daten, auf zwei Datenzentren in Frankfurt und
+          Dublin. Zugriff auf diese Server haben nur die Hauptentwickler.
+          Selbstverständlich werden Passwörter nicht im Klartext abgespeichert,
+          noch nicht einmal die Hauptentwickler können die lesen.
+      source-code:
+        title: Ist das Freie Software / Open Source?
+        content: >
+          Ja, zu 100%, lizensiert unter der MIT Lizenz. Der Quellcode liegt auf
+          <a href="https://github.com/roschaefer/rundfunk-mitbestimmen">
+          GitHub</a>. Schreib uns, wenn Du mitmachen willst. Wir freuen uns!
+      help:
+        title: Wie kann ich euch helfen?
+        content: >
+          Probiere diese Anwendung aus und veröffentliche Deine Daten! Fallen
+          Dir Fehler auf oder vermisst Du eine bestimmte Funktion? Kennst Du
+          jemanden, der im Rundfunk oder in der Politik arbeitet? Kannst Du
+          programmieren? Dann
+          <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
+          kontaktiere uns!</a>
+      missing:
+        title: Hast Du weitere Fragen?
+        content: >
+          Dann schreib uns doch eine
+          <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
+          Mail.</a> Wir beantworten Deine Fragen gerne und
+          tragen sie hier nach.
+
+decide:
+  header: Sendungen auswählen
+  help-messages:
+    task:
+      header: Möchtest Du für diese Sendung bezahlen?
+      content: >
+        Klick auf <strong>Weiter</strong>, wenn Du nicht sicher bist. Das
+        kann z.B. bedeuten: <em>Kenne ich nicht</em>, <em>Ist mir egal</em> oder <em>Mag
+        ich nicht</em>.
+    missing-broadcast:
+      header: Fehlt eine Sendung?
+      content: Dann füge doch einfach eine neue Sendung hinzu!
+    result-set-empty:
+      content: >
+        Die aktuellen Suchparameter haben kein Ergebnis geliefert. Ändere die
+        Suche oder verteile jetzt Dein Budget.
+  previous-card: Letzte Sendung
+  next-cards: Nächste Sendungen
+  decision-card:
+    actions:
+      back: Zurück
+      response:
+        positive: Ja
+        neutral: Weiter
+      change-response:
+        positive: Doch!
+        neutral: Doch nicht
+  guide:
+    to-invoice:
+      header: Genug Sendungen ausgewählt
+      content: >
+        Du hast schon {positives} neue Sendungen gefunden, die Du bezahlen
+        möchtest. <strong>Verteile Dein Budget</strong> jetzt auf diese Sendungen.
+    load-more:
+      header: Zu wenige Sendungen ausgewählt
+      content: >
+        Du hast {positives, plural, =0 {keine Sendung} =1 {nur # neue Sendung} other
+        {nur # neue Sendungen}} gefunden, die Du bezahlen möchtest.
+        Klick auf <strong>mehr Sendungen</strong>, um noch mehr relevante
+        Sendungen zu finden.
+  button:
+    to-invoice: Budget verteilen
+    load-more: Mehr Vorschläge
+invoice:
+  header: Wie soll Dein Beitrag verteilt werden?
+  sub-header: >
+    In der rechten Spalte können Beträge mit einem Mausklick verändert werden!
+  invoice-header:
+    label:
+      title: Titel
+      amount: Betrag
+      budget: 'Budget (pro Monat):'
+  invoice-footer:
+    label:
+      remaining: 'Restliches Budget:'
+      total: 'Summe:'
+  invoice-item:
+    tooltips:
+      fix: Betrag festlegen
+      unfix: Betrag freigeben
+      change: Betrag ändern
+  table-reference:
+    button: Legende zur Tabelle
+    icon:
+      trash: Sendung entfernen
+      lock: Betrag wurde festgelegt
+      unlock: Betrag wird automatisch angepasst
+      euro: Klick um Betrag zu ändern
+  link-to:
+    broadcasts: Meine Abstimmungen
+    decide: Weitere Vorschläge
+    statistics: 'Öffentliche Statistiken'
+broadcasts:
+  header: Deine bisherigen Abstimmungen
+  sub-header: >
+    Das sind alle Sendungen, die Du schon bewertet hast
+  table:
+    header:
+      title: Titel
+  link-to:
+    invoice: Zurück zu meinen ausgewählten Sendungen
+  edit:
+    header: Sendung bearbeiten
+statistics:
+  header: Öffentliche Statistiken
+  sub-header: Das sind die Statistiken über alle Nutzer
+  summary:
+    table:
+      header:
+        broadcast: Sendung
+        reviews: Anzahl Stimmen
+        approval: Zustimmung
+        average: Pro Kopf
+        total: Insgesamt
+  link-to:
+    invoice: Zurück zu meinen ausgewählten Sendungen
+    index: Zurück zur Startseite

@@ -1,0 +1,56 @@
+{{#ui-sticky class="segment"}}
+  {{#ui-popup html=(
+    html-for-table-reference 
+    (t "invoice.table-reference.icon.trash")
+    (t "invoice.table-reference.icon.lock")
+    (t "invoice.table-reference.icon.unlock")
+    (t "invoice.table-reference.icon.euro")
+    ) }}
+    <button class="primary circular ui icon button">
+      <i class="info icon"></i>
+    </button>
+    {{t 'invoice.table-reference.button'}}
+  {{/ui-popup}}
+{{/ui-sticky}}
+
+<table id="invoice-table" class="ui selectable table two">
+  <thead>
+    <tr>
+      <th>
+        <strong>
+          {{t 'invoice.invoice-header.label.budget'}}
+        </strong>
+      </th>
+      <th class="right aligned">
+        <strong>
+          {{format-number 17.50 style='currency' currency='EUR'}}
+        </strong>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+<table class="ui selectable table three">
+  <thead>
+    <tr>
+      <th class="ten wide">{{t 'invoice.invoice-header.label.title'}}</th>
+      <th class="two wide"></th>
+      <th class="two wide"></th>
+      <th class="one wide right aligned">{{t 'invoice.invoice-header.label.amount'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each selections as |selection|}}
+      {{invoice-item selection=selection
+      removeAction=(action 'removeItem')
+      updateAction=(action 'updateItem')
+      fixAction=(action 'fixItem')
+      unfixAction=(action 'unfixItem')
+      showModal=showModal}}
+    {{/each}}
+  </tbody>
+</table>
+
+<table class="ui selectable table two">
+  {{invoice-footer total=totalExpenses remaining=remainingBudget}}
+</table>

@@ -1,0 +1,87 @@
+<div class="ui middle aligned stackable grid container">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui huge header">
+        {{t 'statistics.header'}}
+        <div class="sub header">
+          {{t 'statistics.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="row statistics">
+    <div class="ui sixteen wide column">
+      <table class="ui sortable celled table five">
+        <thead>
+          <tr>
+            {{#sortable-header current-column=column current-direction=direction column='title' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.broadcast'}}
+            {{/sortable-header}}
+            {{#sortable-header current-column=column current-direction=direction column='reviews' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.reviews'}}
+            {{/sortable-header}}
+            {{#sortable-header current-column=column current-direction=direction column='approval' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.approval'}}
+            {{/sortable-header}}
+            {{#sortable-header current-column=column current-direction=direction column='average' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.average'}}
+            {{/sortable-header}}
+            {{#sortable-header current-column=column current-direction=direction column='total' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.total'}}
+            {{/sortable-header}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model as |statistic|}}
+          <tr class="statistic-item">
+            <td>{{statistic.title}}</td>
+            <td class="reviews">{{statistic.reviews}}</td>
+            <td class="approval">{{format-number statistic.approval style='percent'}}</td>
+            <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
+            <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          {{
+          page-numbers
+          classNames='small-pagination'
+          tagName='tr'
+          content=model
+          showFL=true
+          numPagesToShow=1
+          action=(action 'pageClicked')
+          }}
+          {{
+          page-numbers
+          classNames='large-pagination'
+          tagName='tr'
+          content=model
+          showFL=true
+          numPagesToShow=5
+          action=(action 'pageClicked')
+          }}
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="ui sixteen wide column">
+    {{#if session.isAuthenticated}}
+      {{#link-to 'invoice' class='ui huge labeled primary icon button'}}
+        <i class="euro icon"></i>
+        {{t 'statistics.link-to.invoice' }}
+      {{/link-to}}
+    {{else}}
+      {{#link-to 'index' class='ui huge labeled primary icon button'}}
+        <i class="left arrow icon"></i>
+        {{t 'statistics.link-to.index' }}
+      {{/link-to}}
+    {{/if}}
+    </div>
+  </div>
+</div>

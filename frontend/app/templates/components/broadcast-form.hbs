@@ -1,0 +1,101 @@
+<div class="ui success message">
+  <div class="header">{{t 'broadcast-form.submit.success-message'}}</div>
+</div>
+
+{{#if broadcast.isNew}}
+  <h2 class="ui dividing header">
+    {{t 'broadcast-form.header.new'}}
+  </h2>
+{{else}}
+  <h2 class="ui dividing header">
+    {{t 'broadcast-form.header.edit'}}
+  </h2>
+{{/if}}
+
+<div class="{{isDisabled}} field">
+  <label>{{t 'broadcast-form.title.label'}}</label>
+  <div class="three fields">
+    <div class="eight wide {{isDisabled}} field">
+      {{input type="text" id="title" value=broadcast.title placeholder=(t 'broadcast-form.title.placeholder')}}
+    </div>
+
+    <div class="four wide {{isDisabled}} field">
+      {{#ui-dropdown class="fluid selection" selected=broadcast.medium.id onChange=(action 'selectMedium')}}
+        <div class="default text">{{t 'broadcast-form.medium.placeholder' }}</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {{#each media as |medium|}}
+            <div class="item" data-value="{{medium.id}}">
+              {{medium.name}}
+            </div>
+          {{/each}}
+        </div>
+      {{/ui-dropdown}}
+    </div>
+
+    <div class="four wide {{isDisabled}} field">
+      {{#if sortedStations}}
+        {{#ui-dropdown class="fluid selection" selected=broadcast.station.id onChange=(action 'selectStation')}}
+          <div class="default text">{{t 'broadcast-form.station.placeholder' }}</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            {{#each sortedStations as |station|}}
+              <div class="item" data-value="{{station.id}}">
+                {{station.name}}
+              </div>
+            {{/each}}
+          </div>
+        {{/ui-dropdown}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+<div class="{{isDisabled}} field">
+  <label>{{t 'broadcast-form.description.label'}}</label>
+  {{input type="text" id="description" value=broadcast.description placeholder=(t 'broadcast-form.description.placeholder')}}
+</div>
+
+
+
+{{#each broadcast.errors as |error|}}
+  <div class="ui error message">
+    <div class="header">{{t (concat 'broadcast-form.' error.attribute '.label')}}</div>
+    <p>
+    {{error.message}}
+    </p>
+  </div>
+{{/each}}
+
+<div class="{{isDisabled}} field">
+
+  <div class="ui stackable two column grid">
+    <div class="column">
+      <button class="ui fluid labeled huge primary icon button" type="submit">
+        <i class="check circle outline icon"></i>
+        {{#if broadcast.isNew}}
+          {{t 'broadcast-form.submit.label.create'}}
+        {{else}}
+          {{t 'broadcast-form.submit.label.update'}}
+        {{/if}}
+      </button>
+    </div>
+    <div class="column">
+      {{#if newBroadcast}}
+        {{#unless broadcast.isNew}}
+          <button class='ui fluid labeled huge icon button' {{action 'newBroadcast'}}>
+            <i class="plus square outline icon"></i>
+            {{t 'broadcast-form.another-one' }}
+          </button>
+        {{/unless}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{yield}}
+</div>
+
+<div class="ui warning message">
+  <i class="sign in icon"></i>
+  {{t 'broadcast-form.log-in-message'}}
+</div>

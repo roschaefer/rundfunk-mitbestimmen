@@ -1,0 +1,39 @@
+<th>
+  {{table-spinner pagedContent=content}}
+</th>
+<th colspan="4">
+  <div class="ui right floated pagination menu">
+    {{#if canStepBackward}}
+      <a class="icon item back" href="#" {{action "incrementPage" -1}}>
+        <i class="left chevron icon"></i>
+      </a>
+    {{else}}
+      <a class="icon item back">
+        <i class="left chevron icon grey"></i>
+      </a>
+    {{/if}}
+
+
+    {{#each pageItems as |item|}}
+      {{#if item.dots}}
+        <a class="item pagination dots">...</a>
+      {{/if}}
+      {{#if item.current}}
+        <a class="item active">{{item.page}}</a>
+      {{else}}
+        <a class="item" href="#" {{action "pageClicked" item.page}}>{{item.page}}</a>
+      {{/if}}
+    {{/each}}
+
+    {{#if canStepForward}}
+      <a class="icon item" href="#" {{action "incrementPage" 1}}>
+        <i class="right chevron icon"></i>
+      </a>
+    {{else}}
+      <a class="icon item">
+        <i class="right chevron icon grey"></i>
+      </a>
+    {{/if}}
+
+  </div>
+</th>

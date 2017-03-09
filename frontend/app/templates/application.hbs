@@ -1,0 +1,75 @@
+<div id="main-menu" class="ui stackable inverted menu">
+  <div class="ui container">
+    {{#link-to 'index' class='header item logo'}}
+      Rundfunk<br/>MITBESTIMMEN
+    {{/link-to}}
+
+    {{#link-to 'decide' (query-params q=null) class='item' }}
+      {{t 'application.menu.item.decide'}}
+    {{/link-to}}
+
+    {{#link-to 'invoice' class='item'}}
+      {{t 'application.menu.item.invoice'}}
+    {{/link-to}}
+
+    {{#link-to 'statistics' class='item'}}
+      {{t 'application.menu.item.statistics'}}
+    {{/link-to}}
+
+    <div class="inverted ui right stackable menu">
+      {{language-chooser}}
+      <div class="item">
+        {{#if session.isAuthenticated}}
+          <a href='#' class="ui button inverted" {{action 'logout'}}>
+            {{t 'application.logout'}}
+          </a>
+        {{else}}
+          <a href='#' class="ui button inverted" {{action 'login'}}>
+            {{t 'application.login'}}
+          </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui main container">
+  {{outlet}}
+</div>
+
+<div class="ui inverted footer segment">
+  <div class="ui center aligned container">
+    <div class="ui stackable inverted grid">
+      <div class="row">
+        <div class="sixteen wide column">
+          <h2 class="ui inverted header">{{t 'application.footer.contact-us'}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="tablet only four wide column">
+        </div>
+        <div class="computer only four wide column">
+        </div>
+        <div class="eight wide column">
+          <div class="ui large inverted horizontal vertical link list">
+            <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
+              <i class="mail outline icon"></i>
+              Feedback
+            </a>
+            <a class="item" target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen">
+              <i class="github icon"></i>
+              GitHub
+            </a>
+            {{#link-to 'imprint' class='item'}}
+              <i class="creative commons icon"></i>
+              {{t 'application.footer.imprint'}}
+            {{/link-to}}
+          </div>
+        </div>
+        <div class="four wide column">
+          <a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png"/></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

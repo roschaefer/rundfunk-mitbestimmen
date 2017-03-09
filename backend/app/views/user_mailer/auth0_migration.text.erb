@@ -1,0 +1,97 @@
+*english version below*
+
+Liebe Unterstützerin, Lieber Unterstützer,
+==========================================
+
+zunächst einmal ein großes Dankeschön für Deine Teilnahme am Prototypen
+"Rundfunk MITBESTIMMEN". Wir sind auf Dein Feedback angewiesen.
+
+Neben den vielen, kleineren Verbesserungen steht jetzt eine
+umfangreichere Änderung an, bei der wir Deine Hilfe brauchen. Aus
+technischen Gründen möchten wir gerne unsere Nutzerauthentifizierung
+(also: den Login-Vorgang) mit einem Partner realisieren, der den Dienst
+Auth0 anbietet: https://auth0.com/
+
+Was muss ich tun?
+
+Bei deiner nächsten Anmeldung auf Rundfunk MITBESTIMMEN
+(https://rundfunk-mitbestimmen.de/) musst Du Dein Passwort zurücksetzen.
+Beim Klick auf "Einloggen" erscheint der Dialog um Dir einen
+Passwort-Reset-Link an Deine E-Mail Adresse <%= @user.email %> zu
+schicken. Klick auf den Link und sende das ausgefüllte Formular ab. Dein
+verschlüsseltes Passwort wird nun bei Auth0 gespeichert.
+
+Was bringt das für mich?
+
+Mit Auth0 bietet Rundfunk MITBESTIMMEN einen erweitertes und
+komfortables Account-Management:
+
+-   Man kann sich das Passwort zurücksetzen lassen
+-   Es werden Willkommensmails bei der Registrierung verschickt
+-   Neben der E-Mail/Passwort Registrierung gibt es jetzt auch einen
+    Login mit Facebook oder Gmail
+-   Nutzeraccounts, deren E-Mail/Passwort-Kombinationen gestohlen wurden
+    und im Internet auftauchen, werden automatisch von Auth0 geschützt
+
+Für uns Entwickler verbessert der Umstieg die Sicherheit, Wartbarkeit,
+Entwicklungszeit und Einfachheit.
+
+Wo liegen die Daten?
+
+Auth0 speichert seine Daten alle innerhalb der EU, das primäre
+Datencenter steht in Frankfurt am Main, das zweite in Dublin - damit
+fallen die Daten unter die EU-Datenschutzrichtlinien. Bei Auth0 werden
+nur Login Daten gespeichert, alle anderen Daten (welche Sendungen Du
+ausgesucht hast) sind in unserem eigenen Server gespeichert, der
+zufälligerweise auch in Frankfurt steht. Möchtest Du nicht, dass wir bei
+Auth0 Deine Login Daten speichern, sag uns bitte Bescheid.
+
+Vielen Dank und viel Spaß bei der weiteren Nutzung wünscht
+
+das Team von Rundfunk MITBESTIMMEN
+
+Dear supporter,
+===============
+
+first of all, a big thank you for your participation in the prototype
+"Rundfunk MITBESTIMMEN". We depend on your valuable feedback.
+
+In addition to many minor changes, there is now a more comprehensive
+change in which we need your help. We decided to implement
+authentication using a service called Auth0: https://auth0.com/
+
+What do I have to do?
+
+The next time you log in at Rundfunk MITBESTIMMEN
+(https://rundfunk-mitbestimmen.de/), you need to reset your password.
+When you click on "Log in", the dialog appears to send a password reset
+link to your e-mail address <%= @user.email%>. Click on the link
+and submit the form. Your encrypted password will now be stored with
+Auth0.
+
+What are the advantages?
+
+Auth0 offers an extended and comfortable account management:
+
+-   You can reset your password
+-   Welcome mails are sent at registration
+-   For those who don't want to register with e-mail/password, you can
+    log in with Facebook or Gmail, too
+-   Users with a breached e-mail/password combination are automatically
+    protected by Auth0
+
+For us developers, the changes improve security, maintainability,
+development speed and simplicity.
+
+Where is the data stored?
+
+Auth0 stores all data within the EU, the primary data center is located
+in Frankfurt am Main, the second in Dublin, which means that the data is
+covered by EU data protection guidelines. Auth0 stores only login data,
+all other data (which broadcasts you selected) is stored in our own
+server, which happens to be in Frankfurt, too. If you don't want us to
+save your login data with Auth0, please contact us.
+
+Thank you and now enjoy the app
+
+Your team of Rundfunk MITBESTIMMEN

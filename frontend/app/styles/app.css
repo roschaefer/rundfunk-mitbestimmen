@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,700');
+
+html, body, h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Assistant', sans-serif;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+.description {
+  font-size: 1em;
+}
+
+.ui.header {
+  font-family: 'Assistant', sans-serif;
+  font-weight: normal;
+}
+
+.ui.menu {
+  font-family: 'Assistant', sans-serif;
+  font-size: 1.1em;
+}
+
+.ui.menu .active.item.logo {
+  font-weight: bold;
+}
+
+.ui.button {
+  font-family: 'Assistant', sans-serif;
+  font-size: 1.1em;
+}
+
+.ui.button.start-button {
+  text-transform: uppercase;
+  padding-left: 3em;
+  padding-right: 3em;
+  letter-spacing: 1px;
+}
+
+.ui.statistic > .label {
+  font-family: 'Assistant', sans-serif;
+}
+
+.ui.styled.accordion .title {
+  font-family: 'Assistant', sans-serif;
+  font-size: 1em;
+}
+
+.main.container {
+  margin-top: 3em;
+}
+
+.ui.footer.segment {
+  margin-top: 7em;
+  margin-bottom: 0em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
+.ui.footer.segment + .ui.footer.segment {
+  margin-top: 0em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.ui.menu .item .ui.button {
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  box-shadow: 0px 0px 0px 1px #FFFFFF inset !important;
+  padding: 0.6em 1.2em;
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.full-height {
+  min-height: calc(100vh - 54px); /*54px menu height on large screens*/
+  display: flex;
+  flex-direction: column;
+}
+
+.main >.footer {
+  flex: 1;
+}
+
+input.ember-inline-edit-input[type="text"] {
+  width: 80px !important;
+}
+
+.vertical-spaces .button + .button {
+  margin-top: 10px;
+}
+
+.ui.stackable.menu .language.item {
+  width: auto !important;
+  font-size: 0.8em;
+}
+
+#main-menu {
+  border-radius: 0px !important;
+}
+
+.ember-inline-edit:not(.is-editing) {
+  cursor: pointer;
+  background: #E0E1E2;
+  padding: 0.5em;
+  border-radius: 10em;
+}
+
+.decision-card > .content:first-child {
+  min-height: 12em !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+#index-page .divider {
+  margin-top: 5em;
+  margin-bottom: 5em;
+  font-size: 1rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-grow: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .statement {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .pagination.dots {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.table tfoot tr.large-pagination {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .ui.table tfoot tr.small-pagination {
+    display: none !important;
+  }
+}

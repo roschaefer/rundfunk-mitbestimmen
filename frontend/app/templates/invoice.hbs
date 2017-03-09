@@ -1,0 +1,47 @@
+<div class="ui middle aligned stackable grid container">
+
+  {{signup-modal onConfirm=(action 'showLogin')}}
+
+  <div class="row">
+    <div class="ui sixteen wide column">
+      <h1 class="ui huge header">
+        {{t 'invoice.header'}}
+        <div class="sub header">
+          {{t 'invoice.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ui sixteen wide column">
+      {{invoice-table selections=model invoice=invoice showModal=(action 'showModal')}}
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="eight wide column">
+      {{#link-to 'decide' (query-params q=null) class='ui huge labeled fluid primary icon button'}}
+         <i class="repeat icon"></i>
+        {{format-html-message 'invoice.link-to.decide' }}
+      {{/link-to}}
+      </div>
+      {{#if session.isAuthenticated}}
+      <div class="eight wide column">
+        {{#link-to 'broadcasts' class='ui huge labeled fluid primary icon button'}}
+        <i class="unordered list icon"></i>
+        {{t 'invoice.link-to.broadcasts'}}
+        {{/link-to}}
+      </div>
+      {{/if}}
+  </div>
+
+  <div class="row">
+    <div class="ui sixteen wide column">
+      {{#link-to 'statistics' class='ui huge labeled fluid primary icon button'}}
+       <i class="users icon"></i>
+        {{t 'invoice.link-to.statistics' }}
+      {{/link-to}}
+    </div>
+  </div>
+</div>

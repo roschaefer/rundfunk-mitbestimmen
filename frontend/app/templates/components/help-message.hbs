@@ -1,0 +1,18 @@
+<div class="ui icon {{ message-type }} message">
+  {{#if icon}}
+  <i class="{{icon}} icon"></i>
+  {{/if}}
+  <div class="content">
+    {{#if header}}
+    <div class="header">
+      {{t header}}
+    </div>
+    {{/if}}
+    {{#if content}}
+    <p>
+    {{format-html-message content}}
+    </p>
+    {{/if}}
+  </div>
+  {{yield}}
+</div>

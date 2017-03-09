@@ -1,0 +1,274 @@
+<div id="index-page" class="ui stackable grid container">
+
+  <div class="middle aligned row full-height">
+    <div class="column">
+      <div class="ui stackable grid">
+        <div class="two column row">
+          <div class="column">
+            <img class="ui centered huge image" src="assets/images/broadcasters.svg">
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="middle aligned center aligned column">
+            <div class="row">
+              <div class="column">
+                <p class="ui header">
+                {{format-html-message 'index.header.top'
+                amount=(format-number 8000000000 maximumFractionDigits=0
+                minimumFractionDigits=0 style='currency' currency='EUR')}}
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="column">
+                <div class="ui header">
+                  {{format-html-message 'index.action'
+                  amount=(format-number 17.5 maximumFractionDigits=2
+                  minimumFractionDigits=2 style='currency' currency='EUR')}}
+                </div>
+                <p>
+                {{#link-to 'decide' id="continue-to-decide"
+                  class="ui huge primary button start-button"}}
+                  {{t 'index.start' }}
+                {{/link-to}}
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <div class="ui basic padded segment"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="center aligned column">
+            <div class="ui huge image">
+              {{#scroll-to href='#approval' }}
+                <i class="large chevron down icon"></i>
+              {{/scroll-to}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  <div id="approval" class="ui center aligned row">
+    <div class="sixteen wide column">
+      <h1>
+        {{t 'index.approval.header'}}
+      </h1>
+      <p>
+      {{format-html-message 'index.approval.content'}}
+      </p>
+    </div>
+  </div>
+
+  <div class="ui centered row">
+    <div class="twelve wide column">
+
+      <div class="ui three steps">
+        <div class="step">
+          <i class="grey unhide icon"></i>
+          <div class="content">
+            <div class="description">
+              {{t 'index.approval.steps.find' }}
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="green checkmark box icon"></i>
+          <div class="content">
+            <div class="description">
+              {{t 'index.approval.steps.decide' }}
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="blue euro icon"></i>
+          <div class="content">
+            <div class="description">
+              {{t 'index.approval.steps.distribute' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row"></div>
+
+  <div class="ui divider"></div>
+  <div class="ui row">
+    <div class="five wide column">
+      <img class="ui centered statement image" src="assets/images/statement.svg">
+    </div>
+    <div class="nine wide column middle aligned">
+      <h1>
+        {{t 'index.statement.header'}}
+      </h1>
+      <p>
+      {{format-html-message 'index.statement.content'}}
+      </p>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+  <div class="two column centered row">
+    <div class="seven wide center aligned column">
+      <div class="row">
+        <h1>
+          {{t 'index.goal.actual.header'}}
+        </h1>
+      </div>
+      <div class="row">
+        {{high-charts chartOptions=actualChartOptions content=actualChartData}}
+      </div>
+      <div class="row">
+        <h3>
+          {{t 'index.goal.actual.description'}}
+        </h3>
+      </div>
+    </div>
+
+    <div class="seven wide center aligned column">
+      <div class="row">
+        <h1>
+          {{t 'index.goal.target.header'}}
+        </h1>
+      </div>
+      <div class="row">
+        {{high-charts chartOptions=targetChartOptions content=targetChartData}}
+      </div>
+      <div class="row">
+        <h3>
+          {{t 'index.goal.target.description'}}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="four column row">
+    <div class="four wide center aligned column">
+      <div class="ui statistic">
+        <div class="value statistics registered-users">
+          {{model.registeredUsers}}
+        </div>
+        <div class="label">
+          {{t 'index.statistics.registered-users' }}
+        </div>
+      </div>
+    </div>
+    <div class="four wide center aligned column">
+      <div class="ui statistic">
+        <div class="value statistics broadcasts">
+          {{model.broadcasts}}
+        </div>
+        <div class="label">
+          {{t 'index.statistics.broadcasts' }}
+        </div>
+      </div>
+    </div>
+    <div class="four wide center aligned column">
+      <div class="ui statistic">
+        <div class="value  statistics reviews">
+          {{model.reviews}}
+        </div>
+        <div class="label">
+          {{t 'index.statistics.reviews' }}
+        </div>
+      </div>
+    </div>
+    <div class="four wide center aligned column">
+      <div class="ui statistic">
+        <div class="value statistics money-assigned">
+          {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
+        </div>
+        <div class="label">
+          {{t 'index.statistics.money-assigned' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="centered row">
+    <div class="ui eight wide center aligned column">
+      <div class="ui padded basic segment"></div>
+      {{#link-to 'statistics' class='ui primary button' }}
+        {{t 'index.statistics.link-to-statistics'}}
+      {{/link-to}}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="ui horizontal divider">
+      FAQ
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ui two column stackable centered grid">
+      <div class="ui seven wide column">
+        {{#ui-accordion class="styled"}}
+          {{fa-question key='survey'}}
+          {{fa-question key='representative'}}
+          {{fa-question key='impact'}}
+          {{fa-question key='tv-rankings'}}
+          {{fa-question key='quality'}}
+          {{fa-question key='consumption'}}
+          {{fa-question key='data-privacy'}}
+        {{/ui-accordion}}
+      </div>
+
+      <div class="ui seven wide column">
+        {{#ui-accordion class="styled"}}
+          {{fa-question key='minorities'}}
+          {{fa-question key='binding'}}
+          {{fa-question key='finances'}}
+          {{fa-question key='business-model'}}
+          {{fa-question key='responsible'}}
+          {{fa-question key='source-code'}}
+          {{fa-question key='help'}}
+          {{fa-question key='missing'}}
+        {{/ui-accordion}}
+      </div>
+    </div>
+  </div>
+
+</div>

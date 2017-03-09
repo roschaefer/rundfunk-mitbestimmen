@@ -1,0 +1,299 @@
+signup-modal:
+  header: Sign up to continue
+  content:
+    description: 'With your registration you can:'
+    list:
+      change: Change your data at a later time
+      publish: Publish your data anonymously
+      influence: Get an influence
+  button: Awesome!
+broadcast-search:
+  results: '{count, plural, =0 {no result} =1 {# result} other {# results}}'
+  query:
+    placeholder: Broadcast title
+  filter:
+    medium:
+      placeholder: Filter by medium
+    station:
+      placeholder: Filter by station
+broadcast-form:
+  header:
+    new: New broadcast
+    edit: Edit broadcast
+  title:
+    label: Title
+    placeholder: ..a well known title
+  description:
+    label: Description
+    placeholder: >
+      ..for people who do not know this broadcast. Short and to the point!
+  medium:
+    label: Medium
+    placeholder: Select medium
+  station:
+    label: Station
+    placeholder: Select station
+  submit:
+    label:
+      create: Create
+      update: Update
+    success-message: Saved successfully
+  another-one: New broadcast
+  log-in-message: Log in to create new broadcasts
+application:
+  menu:
+    item:
+      decide: Find broadcasts
+      invoice: My broadcasts
+      statistics: Statistics
+  language-chooser:
+    german: Deutsch
+    english: Englisch
+  footer:
+    contact-us: Feature requests and contact
+    imprint: Imprint
+  logout: Log out
+  login: Log in
+index:
+  header:
+    top: Public broadcasting in Germany gets <h1>{amount}</h1> every year.
+  action:
+      I pay <h1>{amount} per month,</h1> therefore I wish to
+  start: participate now
+  statistics:
+    registered-users: Registered users
+    broadcasts: Broadcasts
+    reviews: Votes
+    money-assigned: Already assigned
+    link-to-statistics: Statistics per broadcast
+  approval:
+    header: Distribute your broadcasting fees
+    content: >
+      With a symbolic amount you can evaluate the quality of public
+      broadcasts according to your own criteria.<br> Support your favourite
+      broadcasts and let them know, of course anonymously.
+    steps:
+      find: Find broadcasts
+      decide: Select broadcasts
+      distribute: Distribute budget
+  statement:
+    header: Make a statement for having a say
+    content: >
+      The results are not binding in a legal sense, but public and quantifiable.
+      In this way people who pay the fees have got a strong voice which is enough
+      to have an impact. With your decision we can attract attention of the
+      broadcasting councils and increase the public debate on program diversity.
+  goal:
+    actual:
+      header: As-is situation
+      description: >
+        This figure shows the actual expenditure by genre for broadcaster "Das
+        Erste" (source: 20th KEF report)
+    target:
+      header: Desired state
+      description: So far, nobody knows how people who pay the fees would decide
+  faq:
+    questions:
+      survey:
+        title: Is this a survey?
+        content: >
+          This is not a survey but a demonstration how we could democratise
+          public broadcasting in Germany. We want to show that it is technically
+          possible, it is cheap, contributors want to participate and they can
+          make good decisions.
+      tv-rankings:
+        title: Why are TV rankings not enough?
+        content: >
+          Many contributors do not consume public broadcasting but
+          pay as much as everybody else and have a right on content. Besides
+          that, public broadcasting in Germany has a political and educational
+          mandate and is required to be independent of TV rankings.
+      quality:
+        title: How can you prevent people from voting nonsense?
+        content: >
+          Not at all. That is democracy. But apparently<a href="/statistics">
+          people do not give money to nonsense</a> after all. On the contrary,
+          many give money to cultural programmes and investigative journalism,
+          content that comes off badly in TV rankings.
+      binding:
+        title: Are the results binding in any sense?
+        content: >
+          The results are not binding in a legal sense, instead they simply
+          represent the opinion of the people who pay the fees. But the fact
+          that the results are public and quantifiable gives people a strong
+          voice, for the very first time.
+      minorities:
+        title: How about minorities?
+        content: >
+          "Rundfunk MITBESTIMMEN" is designed especially for minorities. The
+          metric "per capita" can be seen on the
+          <a href="/statistics">results page</a>. This is the amount that
+          supporters spend on average for the respective program.  Thus, small
+          groups are given a voice to particularly support their broadcast. The
+          metric means roughly: "How important is the broadcast for the specific
+          target group?"
+      responsible:
+        title: Who are you?
+        content: >
+          "Rundfunk Mitbestimmen" is mainly developed by
+          <a href="https://github.com/roschaefer">Robert Schäfer</a>, a student
+          at the <a href="https://hpi.de/">HPI</a> and
+          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, a
+          professional user experience designer from Potsdam. We are working
+          together with foundations that are committed to open data and members
+          of broadcasting councils. Last but not least, all our users who take
+          part and publish their data are supporting us.
+      representative:
+        title: Is the data representative?
+        content: >
+          No. And it does not need to be. Only the money of users who published
+          their preferences may be distributed to the respective broadcasts. For
+          everybody else, everything remains as it is. At the moment, just the
+          broadcasting boards distribute all the monies autonomously.
+      consumption:
+        title: What if someone does not consume public broadcasting?
+        content: >
+          Every contributor has a right on content, indifferent of usage.
+          By the way, many users know exactly if they want to pay for a
+          broadcast even if they do not use public broadcasting at all.
+      impact:
+        title: Does anybody care?
+        content: >
+          Yes. Just the data is enough to have an impact. With your decision,
+          you tell the creators and the broadcasting councils to keep your
+          favourite broadcasts on the air.
+      finances:
+        title: Who is financing this?
+        content: >
+          We ourselves. With our private money. But we applied for
+          <a href="https://prototypefund.de/">funding</a> already.
+      business-model:
+        title: Do you have a business model?
+        content: >
+          No. We are not planning to generate a profit with this app, ever.
+      data-privacy:
+        title: Who can see my email address?
+        content: >
+          Our data is stored in a server in Frankfurt am Main. Since the
+          authentication works through a service called
+          <a href="https://auth0.com/">Auth0</a>, the login data is stored in
+          two data centers in Frankfurt and Dublin. Only core developers have
+          access to the data. Of course, passwords are not stored in clear text,
+          so not even core developers are able to read them.
+      source-code:
+        title: Is it  free software / open-source?
+        content: >
+          Yes, it is. 100% free (as in freedom), licensed under MIT license. You can find the source code on
+          <a href="https://github.com/roschaefer/rundfunk-mitbestimmen">
+          Github</a>. Please contact us if you want to join. We are looking
+          forward to it!
+      help:
+        title: How can I help?
+        content: >
+          Test this app and publish your data! Do you encounter
+          bugs or do you miss a certain feature? Do you know somebody who works
+          in public broadcasting or in politics? Are you a developer? Then
+          <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
+          get in touch!</a>
+      missing:
+        title: You have more questions?
+        content: >
+          Simply drop us an
+          <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
+          email.</a> We love to answer your questions and we will add them here.
+decide:
+  header: Choose broadcasts
+  help-messages:
+    task:
+      header: Do you want to give money to this broadcast?
+      content: >
+        Choose <strong>next</strong> if you are not sure. It can mean:
+        <em>I don't know</em>, <em>I don't care</em> or <em>I don't
+        like</em>, etc.
+    missing-broadcast:
+      header: Something missing?
+      content: Just create a new broadcast!
+    result-set-empty:
+      content: >
+        The current search returned no results. Change the search parameters or
+        continue and distribute your budget.
+  previous-card: Last broadcast
+  next-cards: Next broadcasts
+  decision-card:
+    actions:
+      back: Back
+      response:
+        positive: Yes
+        neutral: Next
+      change-response:
+        positive: Yes, I do!
+        neutral: No, I don't
+  guide:
+    to-invoice:
+      header: Sufficient broadcasts selected
+      content: >
+        You have already found {positives} broadcasts, that you want to pay for.
+        Now <strong>distribute your budget</strong> among these broadcasts.
+    load-more:
+      header: Too few broadcasts selected
+      content: >
+        You have found {positives, plural, =0 {no broadcast at all} =1 {only
+        # broadcast} other {only # new broadcasts}} that you want to pay for.
+        Click on <strong>reload broadcasts</strong>, to find even more relevant
+        broadcasts.
+  button:
+    to-invoice: Distribute budget
+    load-more: More suggestions
+invoice:
+  header: How do you want to distribute your money?
+  sub-header: You can click on any amount in the right column to change it!
+  invoice-header:
+    label:
+      title: Title
+      amount: Amount
+      budget: 'Budget (per month):'
+  invoice-footer:
+    label:
+      remaining: 'Remaining:'
+      total: 'Total:'
+  invoice-item:
+    tooltips:
+      fix: Fix amount
+      unfix: Free amount
+      change: Change amount
+  table-reference:
+    button: Table reference
+    icon:
+      trash: Remove broadcast
+      lock: Amount was changed
+      unlock: Amount adjusts automatically
+      euro: Click to change amount
+  link-to:
+    decide: More suggestions
+    broadcasts: My votes
+    statistics: 'Public statistics'
+broadcasts:
+  header: Your votes so far
+  sub-header: >
+    Here are all your reviewed broadcasts
+  table:
+    header:
+      title: Title
+  link-to:
+    invoice: Back to my broadcasts
+  edit:
+    header: Edit broadcast
+statistics:
+  header: Public statistics
+  sub-header: Here are the results of all users
+  summary:
+    table:
+      header:
+        broadcast: Broadcast
+        reviews: Number of votes
+        approval: Approval
+        average: Per capita
+        total: Total
+  link-to:
+    invoice: Back to my broadcasts
+    index: Back to start
