@@ -1,0 +1,7 @@
+task :default => ['frontend:test']
+namespace :frontend do
+  desc 'Run frontend tests'
+  task :test do
+    sh 'ember test'
+  end
+end

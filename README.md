@@ -78,9 +78,9 @@ ruby --version
 # ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-linux]
 ```
 
-Clone the repository recursively with all submodules:
+Clone the repository:
 ```sh
-git clone --recursive https://github.com/roschaefer/rundfunk-mitbestimmen.git
+git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
 Install dependencies and run migrations:

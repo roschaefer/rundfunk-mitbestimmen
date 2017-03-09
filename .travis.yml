@@ -1,8 +1,9 @@
-language: ruby
-sudo: required
 dist: trusty
+sudo: required
 rvm:
   - 2.3.1
+node_js:
+  - "6"
 env:
   - TRAVIS_NODE_VERSION="6.2.1"
 services:
@@ -14,8 +15,17 @@ addons:
     packages:
     - google-chrome-stable
 
+env:
+  - TEST_SUITE=backend/
+  - TEST_SUITE=frontend/
+  - TEST_SUITE=./
+
 before_install:
-  #http://blog.500tech.com/setting-up-travis-ci-to-run-tests-on-latest-google-chrome-version/
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+
+    #http://blog.500tech.com/setting-up-travis-ci-to-run-tests-on-latest-google-chrome-version/
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - export CHROME_BIN=chromium-browser
@@ -28,18 +38,25 @@ before_install:
   - sudo cp chromedriver /usr/local/bin/.
   - sudo chmod +x /usr/local/bin/chromedriver
 
-  # http://austinpray.com/ops/2015/09/20/change-travis-node-version.html
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - npm install
   - cd frontend
   - npm config set spin false
   - npm install -g bower
   - npm install -g ember-cli
+  - npm install phantomjs-prebuilt
   - ember --version
   - bower --version
   - npm --version
   - node --version
+  - phantomjs --version
   - chromedriver --version
+  - cd ..
+
+install:
+  - bundle
+  - cd frontend
+  - npm install
+  - bower install
+  - ember build
   - cd ..
 
 before_script:
@@ -48,19 +65,6 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:schema:load
   - cd ..
-  - cd frontend
-  - ember build
-  - cd ..
-
-install:
-  - bundle
-  - cd frontend
-  - npm install
-  - bower install
-  - cd ..
-  - cd backend
-  - cd ..
-
 
 script:
-  - bundle exec rake
+  - "cd $TEST_SUITE && bundle exec rake"
