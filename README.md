@@ -103,21 +103,16 @@ cd ..
 
 Start the backend:
 ```sh
-pwd # rundfunk-mitbestimmen/backend
-bin/rails s
+cd backend && bin/rails s
 ```
 
-open another terminal and start the frontend:
+Open another terminal and start the frontend:
 ```sh
-pwd # rundfunk-mitbestimmen/frontend
-ember serve
+cd frontend && ember serve
 ```
 
-
-Alternatively, you can run both frontend and backend through foreman:
-
+If you are lazy, you can run both frontend and backend through foreman:
 ```sh
-pwd # rundfunk-mitbestimmen
 gem install foreman
 foreman start
 ```
@@ -128,29 +123,30 @@ App is running on [localhost:4200](http://localhost:4200/)
 
 Run:
 ```sh
-pwd # rundfunk-mitbestimmen
+foreman start -f ProcfileTesting
+```
+
+Open another terminal and run:
+```sh
 bundle exec cucumber
 ```
 
 If you want to run firefox instead of chrome, you can set an environment
 variable:
 ```sh
-pwd # rundfunk-mitbestimmen
 BROWSER=selenium bundle exec cucumber
 ```
 
 ### Frontend tests
 
 ```sh
-pwd # rundfunk-mitbestimmen/frontend
-ember test --serve
+cd frontend && ember test --serve
 ```
 
 ### Backend tests
 
 ```sh
-pwd # rundfunk-mitbestimmen/backend
-bin/rspec
+cd backend && bin/rspec
 ```
 
 ## Contributing
