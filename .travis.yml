@@ -18,7 +18,7 @@ addons:
 env:
   - TEST_SUITE=backend/
   - TEST_SUITE=frontend/
-  - TEST_SUITE=./
+  - TEST_SUITE=./ BOOTUP=foreman
 
 before_install:
   - . $HOME/.nvm/nvm.sh
@@ -58,6 +58,8 @@ install:
   - bower install
   - ember build
   - cd ..
+  - if [[ "$BOOTUP" == "foreman" ]]; then gem install foreman ; fi
+
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -65,6 +67,8 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:schema:load
   - cd ..
+  - if [[ "$BOOTUP" == "foreman" ]]; then foreman start -f ProcfileTesting > foreman.out & ; fi
+  - if [[ "$BOOTUP" == "foreman" ]]; then until grep -E 'Listening on' foreman.out && grep -E 'Serving on' foreman.out; do sleep 1; done ; fi
 
 script:
   - "cd $TEST_SUITE && bundle exec rake"

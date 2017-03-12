@@ -2,7 +2,6 @@ require 'factory_girl'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
-require 'exhaust'
 
 ENV['RAILS_ENV'] ||= 'test'
 puts Dir.pwd
@@ -20,7 +19,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.configure do |config|
-  config.app_host = Exhaust.ember_host
+  config.app_host = 'http://localhost:4200'
   config.default_driver = (ENV['BROWSER'] || :chrome).to_sym
 end
 
@@ -39,8 +38,3 @@ end
 
 # Shorthand FactoryGirl
 include FactoryGirl::Syntax::Methods
-
-Exhaust.run!
-at_exit { Exhaust.shutdown! }
-
-

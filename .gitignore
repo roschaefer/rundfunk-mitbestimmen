@@ -2,3 +2,4 @@
 db/*.sqlite3
 screenshots/
 notes.txt
+foreman.out

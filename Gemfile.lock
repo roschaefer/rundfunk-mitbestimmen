@@ -7,12 +7,6 @@ GIT
       activerecord (>= 4.2, < 5.1)
       request_store (~> 1.0)
 
-GIT
-  remote: https://github.com/roschaefer/exhaust.git
-  revision: 0400d9a79384a5c5d2934b5ef566406bb9ae42c1
-  specs:
-    exhaust (0.1.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -289,7 +283,6 @@ DEPENDENCIES
   childprocess
   cucumber
   database_cleaner
-  exhaust!
   factory_girl
   factory_girl_rails
   globalize!
@@ -318,4 +311,4 @@ DEPENDENCIES
   valid_email2
 
 BUNDLED WITH
-   1.13.7
+   1.14.6

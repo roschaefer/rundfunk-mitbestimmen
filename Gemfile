@@ -10,4 +10,3 @@ gem "activerecord"        # Database Access
 gem "factory_girl"        # For Creating Fixture Data
 gem 'database_cleaner'    # Clean the Database between runs
 gem 'rspec-expectations'  # Expectations Library
-gem 'exhaust', git: 'https://github.com/roschaefer/exhaust.git'
