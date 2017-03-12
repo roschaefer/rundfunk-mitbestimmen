@@ -12,14 +12,14 @@ Feature: Allow guest accounts
     But no account was created in the database
 
   Scenario: Responses to suggestions will be saved up account registration
-    Given I responded 5 times with 'Yes' to a suggestion
+    Given I responded 5 times with 'Support' to a suggestion
     And at first, no selection and no account was created in the database
     When I sign up
     Then I am back on the decision page
     And all my responses are saved in the database along with my account
 
   Scenario: Invoice will show question marks instead of amounts for guest users
-    Given I responded 3 times with 'Yes' to a suggestion
+    Given I responded 3 times with 'Support' to a suggestion
     When I click on "Distribute budget"
     Then a modal pops up, telling me the following:
     """
@@ -27,7 +27,7 @@ Feature: Allow guest accounts
     """
 
   Scenario: Registration is possible on the invoice page
-    Given I responded 3 times with 'Yes' to a suggestion
+    Given I responded 3 times with 'Support' to a suggestion
     And I click on "Distribute budget"
     And I make the modal go away
     When I click on one of the euro icons to enter an amount

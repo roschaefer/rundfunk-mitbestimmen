@@ -10,7 +10,7 @@ Feature: Reload broadcasts
   Scenario: Click on 'more broadcasts'
     Given I have many broadcasts in my database, let's say 17 broadcasts in total
     And I visit the decision page
-    And I click 10 times on 'Yes'
+    And I click 10 times on 'Support'
     And the list of selectable broadcasts is empty
     When I click on "More suggestions"
     Then all of a sudden, there are more broadcasts again

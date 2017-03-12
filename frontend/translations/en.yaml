@@ -223,11 +223,11 @@ decide:
     actions:
       back: Back
       response:
-        positive: Yes
+        positive: Support
         neutral: Next
       change-response:
-        positive: Yes, I do!
-        neutral: No, I don't
+        positive: I do support!
+        neutral: Don't support
   guide:
     to-invoice:
       header: Sufficient broadcasts selected

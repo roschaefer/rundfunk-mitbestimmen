@@ -13,7 +13,7 @@ Feature: Create missing records
     Given I am logged in
     And there are 3 broadcasts in the database
     And I visit the decision page
-    When I click 'Yes' three times in a row
+    When I click 'Support' three times in a row
     Then message pops up, telling me I could reload more broadcasts
     And I click on "More suggestions"
     But then, the message is replaced with another one, requesting me this:

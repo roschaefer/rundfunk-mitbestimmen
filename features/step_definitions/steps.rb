@@ -60,7 +60,7 @@ When(/^I visit the decision page$/) do
   expect(page).to have_css('.decision-page')
 end
 
-When(/^I decide 'Yes' for ([^"]*) and ([^"]*) but 'No' for ([^"]*)$/) do |title1, title2, title3|
+When(/^I decide 'Support' for ([^"]*) and ([^"]*) but 'Next' for ([^"]*)$/) do |title1, title2, title3|
   3.times do
     wait_for_transition('.decision-card')
     expect(page).to have_css('.decision-card.fully-displayed')
@@ -84,7 +84,7 @@ Then(/^the list of selectable broadcasts is empty$/) do
 end
 
 Then(/^the database contains these selections that belong to me:$/) do |table|
-  mapping = {'Yes' => 'positive', 'No' => 'neutral'}
+  mapping = {'Support' => 'positive', 'Next' => 'neutral'}
   my_selections = @user.selections
   table.hashes.each do |row|
     selection = my_selections.find {|s| s.broadcast.title == row['Title']}
@@ -168,7 +168,7 @@ Given(/^I have many broadcasts in my database, let's say (\d+) broadcasts in tot
   end
 end
 
-Given(/^I click (\d+) times on 'Yes'$/) do |number|
+Given(/^I click (\d+) times on 'Support'$/) do |number|
   number.to_i.times do
     wait_for_transition('.decision-card')
     expect(page).to have_css('.decision-card-action.positive')
@@ -291,7 +291,7 @@ Given(/^I have (\d+) broadcasts in my database$/) do |number|
   create_list(:broadcast, number.to_i, description: description)
 end
 
-Then(/^I see the buttons to click 'Yes' or 'No' only once, respectively$/) do
+Then(/^I see the buttons to click 'Support' or 'Next' only once, respectively$/) do
   expect(page).to have_css('.decision-card-action.positive', count: 1)
   expect(page).to have_css('.decision-card-action.neutral', count: 1)
 end
@@ -344,9 +344,9 @@ Then(/^I can still click on the 'Back' button$/) do
   find('.back.button').click
 end
 
-Then(/^click 'Yes, I do!'$/) do
-  expect(page).to have_css('.decision-card-action.positive', text: /Yes, I do!/)
-  find('.decision-card-action.positive', text: /Yes, I do!/).click
+Then(/^click 'I do support!'$/) do
+  expect(page).to have_css('.decision-card-action.positive', text: /I do support!/)
+  find('.decision-card-action.positive', text: /I do support!/).click
 end
 
 Then(/^the grey circle above turns into a green checkmark$/) do
@@ -388,7 +388,7 @@ Given(/^there are (\d+) broadcasts in the database$/) do |number|
   number.to_i.times { create(:broadcast) }
 end
 
-When(/^I click 'Yes' three times in a row$/) do
+When(/^I click 'Support' three times in a row$/) do
   3.times do
     expect(page).to have_css('.decision-card-action.positive')
     find('.decision-card-action.positive').click
@@ -600,7 +600,7 @@ Then(/^I see the first suggestion$/) do
   expect(page).to have_css('.decision-card.fully-displayed')
 end
 
-Given(/^I responded (\d+) times with 'Yes' to a suggestion$/) do |number|
+Given(/^I responded (\d+) times with 'Support' to a suggestion$/) do |number|
   create_list(:broadcast, number.to_i)
   visit '/decide'
   @responses = number.to_i
@@ -698,7 +698,7 @@ Given(/^we have (\d+) broadcasts in our database$/) do |count|
   create_list(:broadcast, count.to_i)
 end
 
-When(/^I click (\d+) times on 'Yes' and (\d+) times on 'Next'$/) do |positives, neutrals|
+When(/^I click (\d+) times on 'Support' and (\d+) times on 'Next'$/) do |positives, neutrals|
   positives.to_i.times do
     wait_for_transition('.decision-card')
     expect(page).to have_css('.decision-card-action.positive')

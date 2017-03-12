@@ -17,6 +17,6 @@ Feature: Go back one decision card
     And I click 'Next' when I am asked if I want to pay for the broadcast
     When the decision card has disappeared
     Then I can still click on the 'Back' button
-    And click 'Yes, I do!'
+    And click 'I do support!'
     And the grey circle above turns into a green checkmark
     And in the database my response is saved as 'positive'

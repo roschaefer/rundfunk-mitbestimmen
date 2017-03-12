@@ -26,6 +26,6 @@ test('shows display button if it has a decide action', function(assert) {
   this.render(hbs`{{decision-card decide=true broadcast=aBroadcast}}`);
 
   let text = this.$().text();
-  assert.ok(text.match(/Yes/));
+  assert.ok(text.match(/Support/));
   assert.ok(text.match(/Next/));
 });
