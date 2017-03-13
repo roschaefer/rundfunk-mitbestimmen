@@ -1,24 +1,21 @@
 dist: trusty
+language: ruby
 sudo: required
 rvm:
   - 2.3.1
 node_js:
   - "6"
 env:
-  - TRAVIS_NODE_VERSION="6.2.1"
+  - TRAVIS_NODE_VERSION="6.2.1" TRAVIS_RUBY_VERSION="2.3.1"
 services:
   - postgresql
 addons:
+  ssh_known_hosts: aldebaran.uberspace.de
   apt:
     sources:
        - google-chrome
     packages:
     - google-chrome-stable
-
-env:
-  - TEST_SUITE=backend/
-  - TEST_SUITE=frontend/
-  - TEST_SUITE=./ BOOTUP=foreman
 
 before_install:
   - . $HOME/.nvm/nvm.sh
@@ -58,7 +55,7 @@ install:
   - bower install
   - ember build
   - cd ..
-  - if [[ "$BOOTUP" == "foreman" ]]; then gem install foreman ; fi
+  - gem install foreman
 
 
 before_script:
@@ -67,8 +64,32 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:schema:load
   - cd ..
-  - if [[ "$BOOTUP" == "foreman" ]]; then foreman start -f ProcfileTesting > foreman.out & fi
-  - if [[ "$BOOTUP" == "foreman" ]]; then until grep -E 'Listening on' foreman.out && grep -E 'Build successful' foreman.out; do sleep 1; done ; fi
+  - foreman start -f ProcfileTesting &
+    # if we really want to wait, this would be it
+    # - foreman start -f ProcfileTesting > foreman.out &
+    # - until grep -E 'Listening on' foreman.out && grep -E 'Build successful' foreman.out; do sleep 1; done
 
 script:
-  - "cd $TEST_SUITE && bundle exec rake"
+  - cd frontend && ember test && cd -
+  - cd backend && bundle exec rake && cd -
+  - bundle exec rake
+
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_4104854cd040_key -iv $encrypted_4104854cd040_iv
+    -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
+  - rvm $TRAVIS_RUBY_VERSION do gem install bundler capistrano capistrano-rails capistrano-db-tasks
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
+    script: cd frontend && ember deploy production
+    on:
+      branch: master
