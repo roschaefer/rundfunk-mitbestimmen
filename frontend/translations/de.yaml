@@ -232,11 +232,11 @@ decide:
     actions:
       back: Zurück
       response:
-        positive: Ja
+        positive: Unterstützen
         neutral: Weiter
       change-response:
-        positive: Doch!
-        neutral: Doch nicht
+        positive: Doch, unterstützen!
+        neutral: Nicht unterstützen
   guide:
     to-invoice:
       header: Genug Sendungen ausgewählt

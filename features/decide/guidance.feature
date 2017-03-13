@@ -7,7 +7,7 @@ Feature: Lead the user through the suggestions
   Scenario: Tell the user to issue the invoice
     Given we have 10 broadcasts in our database
     When I visit the decision page
-    And I click 3 times on 'Yes' and 7 times on 'Next'
+    And I click 3 times on 'Support' and 7 times on 'Next'
     Then I see 3 checkmarks and 7 grey dots, labeled with "10/10"
     And I am told to issue the invoice:
     """
@@ -18,7 +18,7 @@ Feature: Lead the user through the suggestions
   Scenario: Tell the user to repeat until he finds enough broadcasts
     Given we have 10 broadcasts in our database
     When I visit the decision page
-    And I click 1 times on 'Yes' and 9 times on 'Next'
+    And I click 1 times on 'Support' and 9 times on 'Next'
     Then I see 1 checkmarks and 9 grey dots, labeled with "10/10"
     And I am told to continue my search for more broadcasts:
     """
