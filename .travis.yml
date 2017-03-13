@@ -67,8 +67,8 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:schema:load
   - cd ..
-  - if [[ "$BOOTUP" == "foreman" ]]; then foreman start -f ProcfileTesting > foreman.out & ; fi
-  - if [[ "$BOOTUP" == "foreman" ]]; then until grep -E 'Listening on' foreman.out && grep -E 'Serving on' foreman.out; do sleep 1; done ; fi
+  - if [[ "$BOOTUP" == "foreman" ]]; then foreman start -f ProcfileTesting > foreman.out & fi
+  - if [[ "$BOOTUP" == "foreman" ]]; then until grep -E 'Listening on' foreman.out && grep -E 'Build successful' foreman.out; do sleep 1; done ; fi
 
 script:
   - "cd $TEST_SUITE && bundle exec rake"
