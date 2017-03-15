@@ -12,12 +12,6 @@ export default Ember.Component.extend({
       return (s.get('response') === 'positive') && (!s.get('amount'));
     }).get('length');
   }),
-  primaryReloadButton:Ember.computed('positiveReviews', function() {
-    return (this.get('positiveReviews') > 1 ? '' :'primary');
-  }),
-  primaryInvoiceButton:Ember.computed('positiveReviews', function() {
-    return (this.get('positiveReviews') > 1 ? 'primary' :'');
-  }),
   currentBroadcast: Ember.computed('step', 'broadcasts', function() {
     let broadcasts = this.get('broadcasts');
     let step = this.get('step');
