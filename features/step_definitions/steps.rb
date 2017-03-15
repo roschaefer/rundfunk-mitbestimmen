@@ -921,3 +921,37 @@ Then(/^when I unselect the medium$/) do
   end
 end
 
+Given(/^I click the support button for every broadcast in the database$/) do
+  @selected_broadcasts_count = 3
+  create_list(:broadcast, @selected_broadcasts_count)
+  visit '/decide'
+  expect(page).to have_css('.decision-page')
+  @selected_broadcasts_count.times do
+    expect(page).to have_css('.decision-card-action.positive')
+    find('.decision-card-action.positive').click
+    wait_for_transition '.decision-card'
+  end
+end
+
+Given(/^I read a message next to it:$/) do |string|
+  expect(page).to have_text(string)
+end
+
+Then(/^I can see a button "([^"]*)" with a message next to it:$/) do |label, message|
+  @button_label = label
+  expect(page).to have_css('.primary.button', text: @button_label)
+  expect(page).to have_text(message)
+end
+
+When(/^if I click on that button and create an account$/) do
+  click_on @button_label
+end
+
+Then(/^I am brought to the 'My broadcasts' page$/) do
+  expect(current_path).to eq '/invoice'
+end
+
+Then(/^I can see all my selected broadcasts$/) do |number|
+  expect(page).to have_css('invoice-item', count: @selected_broadcasts_count.to_i)
+end
+
