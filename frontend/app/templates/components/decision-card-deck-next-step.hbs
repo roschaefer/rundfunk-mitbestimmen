@@ -2,17 +2,17 @@
   <div class="content">
     {{#if (gt positiveReviews 1)}}
       <div class="header">
-        {{t 'decide.guide.to-invoice.header' positives=positiveReviews }}
+        {{t 'decide.next-step.to-invoice.header' positives=positiveReviews }}
       </div>
       <div class="description">
-        {{format-html-message 'decide.guide.to-invoice.content' positives=positiveReviews }}
+        {{format-html-message 'decide.next-step.to-invoice.content' positives=positiveReviews }}
       </div>
     {{else}}
       <div class="header">
-        {{t 'decide.guide.load-more.header' positives=positiveReviews }}
+        {{t 'decide.next-step.load-more.header' positives=positiveReviews }}
       </div>
       <div class="description">
-        {{format-html-message 'decide.guide.load-more.content' positives=positiveReviews }}
+        {{format-html-message 'decide.next-step.load-more.content' positives=positiveReviews }}
       </div>
     {{/if}}
   </div>
@@ -22,9 +22,9 @@
         <div class="column">
         </div>
         <div class="column">
-          <button class='ui fluid labeled {{primaryReloadButton}} icon button' {{action 'loadMore'}}>
+          <button class="ui fluid {{additionalRepeatButtonClasses}} icon button" {{action 'loadMore'}}>
             <i class="repeat icon"></i>
-            {{t 'decide.button.load-more' }}
+            {{t 'decide.next-step.button.load-more' }}
           </button>
         </div>
       </div>
@@ -37,15 +37,20 @@
         </div>
         <div class="column">
           {{#if session.isAuthenticated }}
-            {{#link-to 'invoice' classNames=(concat 'ui fluid labeled icon button link-to-invoice ' primaryInvoiceButton)}}
+            {{#link-to 'invoice' classNames=(concat 'ui fluid labeled icon button link-to-invoice ' additionalDistributeButtonClasses)}}
               <i class="euro icon"></i>
-              {{t 'decide.button.to-invoice' }}
+              {{t 'decide.next-step.button.to-invoice' }}
             {{/link-to}}
           {{else}}
-            <button class="ui fluid icon back button {{primaryInvoiceButton}}">
+          <div class="field">
+            <button class="ui fluid icon back button {{additionalDistributeButtonClasses}}">
               <i class="sign in icon"></i>
-              Sign up
+              {{t 'decide.next-step.button.sign-up' }}
             </button>
+            <div class="ui pointing basic label">
+              {{t 'decide.next-step.label.sign-up' }}
+            </div>
+          </div>
           {{/if}}
         </div>
       </div>

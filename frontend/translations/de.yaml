@@ -237,7 +237,7 @@ decide:
       change-response:
         positive: Doch, unterstützen!
         neutral: Nicht unterstützen
-  guide:
+  next-step:
     to-invoice:
       header: Genug Sendungen ausgewählt
       content: >
@@ -250,9 +250,12 @@ decide:
         {nur # neue Sendungen}} gefunden, die Du bezahlen möchtest.
         Klick auf <strong>mehr Sendungen</strong>, um noch mehr relevante
         Sendungen zu finden.
-  button:
-    to-invoice: Budget verteilen
-    load-more: Mehr Vorschläge
+    button:
+      to-invoice: Budget verteilen
+      load-more: Mehr Vorschläge
+      sign-up: Anmelden
+    label:
+      sign-up: Um Dein Budget zu verteilen, melde Dich an.
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >

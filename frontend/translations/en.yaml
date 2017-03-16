@@ -228,7 +228,7 @@ decide:
       change-response:
         positive: I do support!
         neutral: Don't support
-  guide:
+  next-step:
     to-invoice:
       header: Sufficient broadcasts selected
       content: >
@@ -241,9 +241,12 @@ decide:
         # broadcast} other {only # new broadcasts}} that you want to pay for.
         Click on <strong>reload broadcasts</strong>, to find even more relevant
         broadcasts.
-  button:
-    to-invoice: Distribute budget
-    load-more: More suggestions
+    button:
+      to-invoice: Distribute budget
+      load-more: More suggestions
+      sign-up: Sign up
+    label:
+      sign-up: To distribute your budget, please sign up.
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!

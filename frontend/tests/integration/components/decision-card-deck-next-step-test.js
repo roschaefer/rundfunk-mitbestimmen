@@ -1,6 +1,11 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import instanceInitializer from '../../../instance-initializers/ember-intl';
+import Ember from 'ember';
+
+const sessionStub = Ember.Service.extend({
+  isAuthenticated: false
+});
 
 moduleForComponent('decision-card-deck-next-step', 'Integration | Component | decision card deck next step', {
   integration: true,
@@ -10,6 +15,10 @@ moduleForComponent('decision-card-deck-next-step', 'Integration | Component | de
     let intl = this.container.lookup('service:intl');
     intl.setLocale('en');
   },
+  beforeEach: function () {
+    this.register('service:session', sessionStub);
+    this.inject.service('session', { as: 'sessionService' });
+  }
 });
 
 test('it renders', function(assert) {
@@ -47,7 +56,7 @@ test('before authentication, user is asked to sign up', function(assert) {
 
 test('after authentication, user is can distribute budget', function(assert) {
   this.render(hbs`{{decision-card-deck-next-step positiveReviews=3}}`);
-  this.set('session.isAuthenticated', true);
+  this.set('sessionService.isAuthenticated', true);
   let primary = this.$('.primary.button').text();
   assert.ok(primary.match(/Distribute budget/));
 });
