@@ -1,12 +1,3 @@
-signup-modal:
-  header: Sign up to continue
-  content:
-    description: 'With your registration you can:'
-    list:
-      change: Change your data at a later time
-      publish: Publish your data anonymously
-      influence: Get an influence
-  button: Awesome!
 broadcast-search:
   results: '{count, plural, =0 {no result} =1 {# result} other {# results}}'
   query:

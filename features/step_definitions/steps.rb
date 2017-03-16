@@ -845,22 +845,6 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
-Then(/^a modal pops up, telling me the following:$/) do |string|
-  wait_for_transition('.signup-modal')
-  expect(find('.signup-modal')).to have_text(string)
-end
-
-Given(/^I make the modal go away$/) do
-  wait_for_transition('.signup-modal')
-  find('.icon.close').click
-  wait_for_transition('.signup-modal')
-end
-
-When(/^the modal pops up again, asking me to register$/) do
-  wait_for_transition('.signup-modal')
-  expect(find('.signup-modal')).to have_text('With your registration you can:')
-end
-
 When(/^I finally sign up$/) do
   @user = build(:user)
   stub_jwt(@user)
