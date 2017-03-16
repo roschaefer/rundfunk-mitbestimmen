@@ -15,6 +15,10 @@ export default Ember.Component.extend({
     },
     back(){
       this.get("back")();
+    },
+    signupAndDistributeBudget(){
+      this.get('signupAndDistributeBudget')();
     }
+
   }
 });

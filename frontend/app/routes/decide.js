@@ -69,6 +69,5 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
       this.get('controller').set('newBroadcast', this.store.createRecord('broadcast', {
       }));
     },
-
   }
 });

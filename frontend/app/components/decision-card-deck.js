@@ -31,6 +31,9 @@ export default Ember.Component.extend({
     },
     loadMore(){
       this.sendAction("loadMore");
+    },
+    signupAndDistributeBudget(){
+      this.sendAction("signupAndDistributeBudget");
     }
   }
 });

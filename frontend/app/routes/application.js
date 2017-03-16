@@ -25,13 +25,13 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login () {
+    login (afterLoginRoute) {
       const lang = this.get('intl').get('locale')[0];
       let lockOptions = {
         socialBigButtons: true,
         dict: lang,
         authParams: {
-          state: this.get('router.url'),
+          state: (afterLoginRoute || this.get('router.url')),
           scope: 'openid email'
         }
       };

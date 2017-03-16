@@ -19,6 +19,9 @@ export default Ember.Controller.extend({
     },
     searchAction(query){
       this.send('setQuery', query);
+    },
+    signupAndDistributeBudget(){
+      this.send('login', '/invoice');
     }
   }
 });

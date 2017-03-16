@@ -42,7 +42,12 @@
   {{#if broadcasts}}
     <div class="centered row">
       <div class="sixteen wide mobile twelve wide tablet eight wide computer column">
-        {{decision-card-deck-next-step positiveReviews=positiveReviews loadMore=(action 'loadMore') back=(action 'back')}}
+        {{decision-card-deck-next-step
+        positiveReviews=positiveReviews
+        loadMore=(action 'loadMore')
+        back=(action 'back')
+        signupAndDistributeBudget=(action 'signupAndDistributeBudget')
+        }}
       </div>
     </div>
   {{/if}}
