@@ -1,4 +1,3 @@
-  {{#if session.isAuthenticated}}
 <td>
   {{selection.broadcast.title}}
 </td>
@@ -27,15 +26,3 @@
     {{invoice-item-amount amount=selection.amount changeAmountAction=(action 'update')}}
   {{/ui-popup}}
 </td>
-  {{else}}
-    <td>
-      {{selection.broadcast.title}}
-    </td>
-    <td></td>
-    <td></td>
-    <td>
-      <button class="ui circular icon button" {{action 'showModal'}}>
-        <i class="euro icon"></i>
-      </button>
-    </td>
-  {{/if}}

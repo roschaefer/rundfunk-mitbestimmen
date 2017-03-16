@@ -8,9 +8,11 @@
       {{t 'application.menu.item.decide'}}
     {{/link-to}}
 
-    {{#link-to 'invoice' class='item'}}
-      {{t 'application.menu.item.invoice'}}
-    {{/link-to}}
+    {{#if session.isAuthenticated}}
+      {{#link-to 'invoice' class='item'}}
+        {{t 'application.menu.item.invoice'}}
+      {{/link-to}}
+    {{/if}}
 
     {{#link-to 'statistics' class='item'}}
       {{t 'application.menu.item.statistics'}}

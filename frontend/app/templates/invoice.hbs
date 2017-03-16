@@ -26,14 +26,12 @@
         {{format-html-message 'invoice.link-to.decide' }}
       {{/link-to}}
       </div>
-      {{#if session.isAuthenticated}}
       <div class="eight wide column">
         {{#link-to 'broadcasts' class='ui huge labeled fluid primary icon button'}}
         <i class="unordered list icon"></i>
         {{t 'invoice.link-to.broadcasts'}}
         {{/link-to}}
       </div>
-      {{/if}}
   </div>
 
   <div class="row">
