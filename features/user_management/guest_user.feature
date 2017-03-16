@@ -25,7 +25,6 @@ Feature: Allow guest accounts
     To distribute your symbolic budget of €17.50, please sign up.
     """
     And if I click on that button and create an account
-    Then all my responses are saved in the database along with my account
-    And I am brought to the 'My broadcasts' page
+    Then I am brought to the 'My broadcasts' page
+    And all my responses are saved in the database along with my account
     And I can see all my selected broadcasts
-

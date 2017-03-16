@@ -255,7 +255,7 @@ decide:
       load-more: Mehr Vorschläge
       sign-up: Anmelden
     label:
-      sign-up: Um Dein Budget zu verteilen, melde Dich an.
+      sign-up: Um Dein symbolisches Budget zu verteilen, melde Dich bitte an.
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
