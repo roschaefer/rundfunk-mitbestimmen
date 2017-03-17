@@ -19,10 +19,6 @@ export default Ember.Component.extend({
         this.get('fixAction')(this.get('selection'));
       }
     },
-    showModal(){
-      this.get('showModal')();
-    }
-
   }
 
 });
