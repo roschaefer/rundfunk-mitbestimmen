@@ -600,15 +600,19 @@ Then(/^I see the first suggestion$/) do
   expect(page).to have_css('.decision-card.fully-displayed')
 end
 
-Given(/^I responded (\d+) times with 'Support' to a suggestion$/) do |number|
-  create_list(:broadcast, number.to_i)
+def support_some_broadcasts(number)
+  create_list(:broadcast, number)
   visit '/decide'
-  @responses = number.to_i
+  @responses = number
   @responses.times do
     expect(page).to have_css('.decision-card-action.positive')
     find('.decision-card-action.positive').click
     wait_for_transition('.decision-card')
   end
+end
+
+Given(/^I responded (\d+) times with 'Support' to a suggestion$/) do |number|
+  support_some_broadcasts(number.to_i)
 end
 
 Given(/^at first, no selection and no account was created in the database$/) do
@@ -626,11 +630,6 @@ end
 
 When(/^I click on one of the euro icons to enter an amount$/) do
   first('i.euro.icon').click
-end
-
-Then(/^I will be redirected to the invoice page$/) do
-  expect(page).to have_css('#invoice-table')
-  expect(current_path).to eq '/invoice'
 end
 
 Then(/^all (\d+) amounts are distributed evenly$/) do |count|
@@ -846,22 +845,6 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
-Then(/^a modal pops up, telling me the following:$/) do |string|
-  wait_for_transition('.signup-modal')
-  expect(find('.signup-modal')).to have_text(string)
-end
-
-Given(/^I make the modal go away$/) do
-  wait_for_transition('.signup-modal')
-  find('.icon.close').click
-  wait_for_transition('.signup-modal')
-end
-
-When(/^the modal pops up again, asking me to register$/) do
-  wait_for_transition('.signup-modal')
-  expect(find('.signup-modal')).to have_text('With your registration you can:')
-end
-
 When(/^I finally sign up$/) do
   @user = build(:user)
   stub_jwt(@user)
@@ -919,5 +902,34 @@ Then(/^when I unselect the medium$/) do
     find('.selection').click
     find('.item.blank').click
   end
+end
+
+Given(/^I click the support button for every broadcast in the database$/) do
+  support_some_broadcasts(3)
+end
+
+Given(/^I read a message next to it:$/) do |string|
+  expect(page).to have_text(string)
+end
+
+Then(/^I can see a button "([^"]*)" with a message next to it:$/) do |label, message|
+  @button_label = label
+  expect(page).to have_css('.primary.button', text: @button_label)
+  expect(page).to have_text(message)
+end
+
+When(/^if I click on that button and create an account$/) do
+  @user = build(:user)
+  stub_jwt(@user)
+  click_on @button_label
+end
+
+Then(/^I am brought to the 'My broadcasts' page$/) do
+  expect(page).to have_css('#invoice-table')
+  expect(current_path).to eq '/invoice'
+end
+
+Then(/^I can see all my selected broadcasts$/) do
+  expect(page).to have_css('.invoice-item', count: @responses.to_i)
 end
 

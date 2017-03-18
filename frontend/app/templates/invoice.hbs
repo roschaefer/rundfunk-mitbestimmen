@@ -1,7 +1,5 @@
 <div class="ui middle aligned stackable grid container">
 
-  {{signup-modal onConfirm=(action 'showLogin')}}
-
   <div class="row">
     <div class="ui sixteen wide column">
       <h1 class="ui huge header">
@@ -15,7 +13,7 @@
 
   <div class="row">
     <div class="ui sixteen wide column">
-      {{invoice-table selections=model invoice=invoice showModal=(action 'showModal')}}
+      {{invoice-table selections=model invoice=invoice}}
     </div>
   </div>
 
@@ -26,14 +24,12 @@
         {{format-html-message 'invoice.link-to.decide' }}
       {{/link-to}}
       </div>
-      {{#if session.isAuthenticated}}
       <div class="eight wide column">
         {{#link-to 'broadcasts' class='ui huge labeled fluid primary icon button'}}
         <i class="unordered list icon"></i>
         {{t 'invoice.link-to.broadcasts'}}
         {{/link-to}}
       </div>
-      {{/if}}
   </div>
 
   <div class="row">

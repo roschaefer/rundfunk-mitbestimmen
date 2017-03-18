@@ -47,6 +47,12 @@ p {
   font-size: 1em;
 }
 
+.ui.tooltip-font {
+  font-weight: normal;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .main.container {
   margin-top: 3em;
 }

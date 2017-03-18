@@ -3,3 +3,4 @@ db/*.sqlite3
 screenshots/
 notes.txt
 foreman.out
+.DS_Store

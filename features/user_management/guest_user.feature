@@ -18,22 +18,13 @@ Feature: Allow guest accounts
     Then I am back on the decision page
     And all my responses are saved in the database along with my account
 
-  Scenario: Invoice will show question marks instead of amounts for guest users
-    Given I responded 3 times with 'Support' to a suggestion
-    When I click on "Distribute budget"
-    Then a modal pops up, telling me the following:
+  Scenario: Unregistered users will be asked to sign up first before they distribute their budget
+    When I click the support button for every broadcast in the database
+    Then I can see a button "Sign up" with a message next to it:
     """
-    Sign up to continue
+    To distribute your symbolic budget of €17.50, please sign up.
     """
-
-  Scenario: Registration is possible on the invoice page
-    Given I responded 3 times with 'Support' to a suggestion
-    And I click on "Distribute budget"
-    And I make the modal go away
-    When I click on one of the euro icons to enter an amount
-    And the modal pops up again, asking me to register
-    And I finally sign up
-    Then I will be redirected to the invoice page
-    And my login was successful
+    And if I click on that button and create an account
+    Then I am brought to the 'My broadcasts' page
     And all my responses are saved in the database along with my account
-    And all 3 amounts are distributed evenly
+    And I can see all my selected broadcasts

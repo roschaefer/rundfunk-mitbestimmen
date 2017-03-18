@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 
-export default Ember.Route.extend(ResetScrollPositionMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScrollPositionMixin, {
   session: Ember.inject.service('session'),
   setupController(controller, model) {
     // Call _super for default behavior
@@ -11,32 +12,23 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
     let invoice = this.get('store').createRecord('invoice', {
       selections: model,
     });
-    if (this.get('session').get('isAuthenticated')) {
-      let reduceFirstSelections = invoice.reduceFirstSelections();
-      invoice.initializeAmounts();
-      Ember.RSVP.all(reduceFirstSelections.map((s) => {
-        //free some budget, first
-        return s.save();
-      })).then(() => {
-        invoice.get('selections').forEach((s) => {
-          s.save();
-        });
+    let reduceFirstSelections = invoice.reduceFirstSelections();
+    invoice.initializeAmounts();
+    Ember.RSVP.all(reduceFirstSelections.map((s) => {
+      //free some budget, first
+      return s.save();
+    })).then(() => {
+      invoice.get('selections').forEach((s) => {
+        s.save();
       });
-    }
+    });
     controller.set('invoice', invoice);
   },
   model() {
-    if (this.get('session').get('isAuthenticated')) {
-      return this.store.query('selection', {
-        filter: {
-          response: 'positive'
-        }
-      });
-    } else  {
-      let selections = this.store.peekAll('selection');
-      return selections.filter((s) => {
-        return s.get('response') === 'positive';
-      });
-    }
+    return this.store.query('selection', {
+      filter: {
+        response: 'positive'
+      }
+    });
   },
 });
