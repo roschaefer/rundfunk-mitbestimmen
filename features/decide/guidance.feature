@@ -22,7 +22,7 @@ Feature: Lead the user through the suggestions
     Then I see 1 checkmarks and 9 grey dots, labeled with "10/10"
     And I am told to continue my search for more broadcasts:
     """
-    You have found only 1 broadcast that you want to pay for. Click on reload
-    broadcasts, to find even more relevant broadcasts.
+    You have found only 1 broadcast that you want to pay for. Click on More
+    suggestions, to find even more relevant broadcasts.
     """
 
