@@ -4,6 +4,8 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 20
+  username: <%= ENV["POSTGRES_USERNAME"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 development:
   <<: *default
@@ -19,6 +21,3 @@ test:
 production:
   <<: *default
   database: rundfunk-backend-production
-  username: <%= ENV["POSTGRES_USERNAME"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-
