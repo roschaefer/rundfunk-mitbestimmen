@@ -1,0 +1,32 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - '4200:4200'
+      - '49152:49152'
+    volumes:
+      - ./frontend/app:/frontend/app
+      - ./frontend/config:/frontend/config
+      - ./frontend/public:/frontend/public
+      - ./frontend/tests:/frontend/tests
+      - ./frontend/translations:/frontend/translations
+    command: ember serve
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/backend
+    environment:
+      - DATABASE_URL=postgresql://db
+      - POSTGRES_USERNAME=postgres
+    links:
+      - db
+    command: bin/rails s -b 0.0.0.0
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_DB=rundfunk-backend-development
