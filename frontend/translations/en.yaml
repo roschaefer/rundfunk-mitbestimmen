@@ -43,6 +43,7 @@ application:
   footer:
     contact-us: Feature requests and contact
     imprint: Imprint
+    data-privacy: Data privacy
   logout: Log out
   login: Log in
 index:
