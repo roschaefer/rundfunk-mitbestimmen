@@ -230,7 +230,7 @@ decide:
       content: >
         You have found {positives, plural, =0 {no broadcast at all} =1 {only
         # broadcast} other {only # new broadcasts}} that you want to pay for.
-        Click on <strong>reload broadcasts</strong>, to find even more relevant
+        Click on <strong>More suggestions</strong>, to find even more relevant
         broadcasts.
     button:
       to-invoice: Distribute budget

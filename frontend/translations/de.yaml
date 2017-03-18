@@ -239,7 +239,7 @@ decide:
       content: >
         Du hast {positives, plural, =0 {keine Sendung} =1 {nur # neue Sendung} other
         {nur # neue Sendungen}} gefunden, die Du bezahlen möchtest.
-        Klick auf <strong>mehr Sendungen</strong>, um noch mehr relevante
+        Klick auf <strong>Mehr Vorschläge</strong>, um noch mehr relevante
         Sendungen zu finden.
     button:
       to-invoice: Budget verteilen
