@@ -14,7 +14,7 @@ services:
       - ./frontend/public:/frontend/public
       - ./frontend/tests:/frontend/tests
       - ./frontend/translations:/frontend/translations
-    command: ember serve
+    command: npm start
   backend:
     build:
       context: ./backend

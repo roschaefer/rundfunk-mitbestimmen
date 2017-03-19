@@ -6,7 +6,7 @@ WORKDIR /frontend
 
 ADD . /frontend
 
-RUN npm install -g ember-cli bower
+RUN npm install -g bower@1.8.0
 RUN npm install
 RUN bower install --allow-root
 
