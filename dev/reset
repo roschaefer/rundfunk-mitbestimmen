@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Remove old containers
+docker-compose down -v
+
+# Rebuild Docker images again
+docker-compose build --pull
+
+# Start database in the background
+docker-compose up -d db
+
+# Initialize local database
+docker-compose run --rm backend bin/rails db:migrate
