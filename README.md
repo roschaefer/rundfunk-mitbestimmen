@@ -59,23 +59,21 @@ with the option to set the amount explicitly.
 
 ## Installation
 
-This repository contains both applications as git submodules:
+This repository contains three important folders:
 
-1. [rundfunk-frontend](https://github.com/roschaefer/rundfunk-frontend) (ember app)
-2. [rundfunk-backend](https://github.com/roschaefer/rundfunk-backend) (rails - api only)
+1. [frontend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/frontend) (EmberJS)
+2. [backend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/backend) (Ruby on Rails)
+3. [features](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/features) (Cucumber/Capybara)
 
-Make sure that you have a recent version of [ember.js](http://emberjs.com/) and
+Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
 [ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have
 the following versions:
 
 ```sh
-ember --version
-# ember-cli: 2.9.1
-# node: 6.2.1
-# os: linux x64
-
+npm --version
+# 4.0.2
 ruby --version
-# ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-linux]
+# ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
 ```
 
 Clone the repository:
@@ -85,7 +83,6 @@ git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 
 Install dependencies and run migrations:
 ```sh
-pwd # rundfunk-mitbestimmen
 bundle
 
 cd frontend
@@ -94,7 +91,14 @@ bower install
 
 cd ../backend
 bundle
-bin/rails db:create db:migrate db:seed
+bin/rails db:create db:migrate
+cd ..
+```
+
+If you want, you can create some seed data
+```
+cd backend
+bin/rails db:seed
 cd ..
 ```
 
