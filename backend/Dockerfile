@@ -2,8 +2,7 @@ FROM ruby:2.4
 
 WORKDIR /backend
 
-ADD Gemfile /backend/Gemfile
-ADD Gemfile.lock /backend/Gemfile.lock
+ADD . /backend
 
 RUN bundle install
 

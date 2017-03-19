@@ -21,7 +21,16 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./backend:/backend
+      - ./backend/Gemfile:/backend/Gemfile
+      - ./backend/Gemfile.lock:/backend/Gemfile.lock
+      - ./backend/Rakefile:/backend/Rakefile
+      - ./backend/app:/backend/app
+      - ./backend/config:/backend/config
+      - ./backend/config.ru:/backend/config.ru
+      - ./backend/db:/backend/db
+      - ./backend/lib:/backend/lib
+      - ./backend/public:/backend/public
+      - ./backend/spec:/backend/spec
     environment:
       - DATABASE_URL=postgresql://db
       - POSTGRES_USERNAME=postgres
