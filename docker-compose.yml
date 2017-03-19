@@ -38,6 +38,6 @@ services:
       - db
     command: bin/rails s -b 0.0.0.0
   db:
-    image: postgres:9.6
+    image: postgres:9.2-alpine
     environment:
       - POSTGRES_DB=rundfunk-backend-development

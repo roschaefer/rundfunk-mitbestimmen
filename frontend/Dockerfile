@@ -1,4 +1,6 @@
-FROM node:6.10
+FROM node:6.10-alpine
+
+RUN apk add --no-cache git
 
 WORKDIR /frontend
 
