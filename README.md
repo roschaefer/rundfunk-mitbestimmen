@@ -55,6 +55,33 @@ requirements as user stories in our Github issues and implement them as cucumber
 features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
+
+## Installation and Usage with Docker
+
+Clone the repository:
+```sh
+git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
+```
+
+If you have `docker-compose` installed, you can install `frontend`,
+`backend` and `db` with a single command:
+
+```sh
+dev/reset
+```
+
+After the installation, you can start the entire stack with:
+```sh
+dev/start
+```
+App is running on [localhost:4200](http://localhost:4200/)
+
+If you want, you can create some seed data
+```
+docker-compose run backend bin/rails db:seed
+```
+
+
 ## Installation
 
 Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
