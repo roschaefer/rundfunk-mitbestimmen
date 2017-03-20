@@ -4,23 +4,9 @@
 [![Build
 Status](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen.svg?branch=master)](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen)
 
-Since 2013, every household in Germany has to pay fees for public
-broadcasting without any legal opt-out.
-
-We think this is a great example for a "cultural flatrate", a system where
-every citizen must pay a certain amount on a regular basis and the money gets
-re-distributed to authors of creative content e.g. music, films, books,
-podcasts, newspapers, software etc. Only question: Who should decide who
-gets how much and for what?
-
-Well, we let **YOU** decide!
-
-That's right, who could decide better about the quality of content than
-the consumer?
-
-In Germany, certain broadcasting councils have the exclusive rights to
-determine our TV and radio programme and to govern the mind-boggling amount of
-*€8,000,000,000* every year.
+Public broadcasting in Germany receives *€8,000,000,000* (eight billion
+euros) annually, yet it is subject to little or no public feedback, ranking, or
+even debate on what constitutes value or quality.
 
 We want to change that: With this app you can make your voice heard and propose
 on which shows your €17.50 per month should be spent.
@@ -32,11 +18,14 @@ Visit [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/)
 
 ## Structure
 
-This repository serves as meta-repository for both frontend and backend. We
-track user requirements and general documentation here. It contains acceptance
-tests as they need to be run against the entire stack.
+This repository contains three important folders:
 
-## Process explanation
+1. [frontend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/frontend) (EmberJS)
+2. [backend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/backend) (Ruby on Rails)
+3. [features](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/features) (Cucumber/Capybara)
+
+
+### Backend
 
 The backend is responsible to store the data. Who wants to pay for which
 broadcast and how much? Users are related to broadcasts via `selections` in the
@@ -48,22 +37,25 @@ the monthly fee of 17,50€ per month.
 
 ![ER diagram](/documentation/images/er.png)
 
+### Frontend
+
 The frontend should be as easy to use as possible. The user can
 login and register, fetch a set of not yet voted broadcasts, decide about
 broadcasts, assign money and see the public statistics. Most of these
-actions will send requests to the backend. The app should keep the required user
-action to a minimum. E.g. on the invoice page, amounts are evenly distributed
-with the option to set the amount explicitly.
+actions will send requests to the backend. The frontend should be comfortable to
+use, e.g. by default amounts are evenly distributed with the option to set the
+amount explicitly.
 
 ![Process diagram](/documentation/images/process.png)
 
+### Features
+
+We do full stack testing with Cucumber and Capybara. We specify the
+requirements as user stories in our Github issues and implement them as cucumber
+features. The cucumber features are a good starting for you to understand the
+current behaviour and the reasoning behind it.
+
 ## Installation
-
-This repository contains three important folders:
-
-1. [frontend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/frontend) (EmberJS)
-2. [backend](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/backend) (Ruby on Rails)
-3. [features](https://github.com/roschaefer/rundfunk-mitbestimmen/tree/master/features) (Cucumber/Capybara)
 
 Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
 [ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have
