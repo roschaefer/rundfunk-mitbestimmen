@@ -6,8 +6,7 @@ export default Ember.Controller.extend({
   column: 'total',
   direction: 'desc',
 
-  totalPagesBinding: 'model.totalPages',
-
+  totalPages: Ember.computed.alias("content.totalPages"),
   page: 1,
   perPage: 10,
   actions: {
