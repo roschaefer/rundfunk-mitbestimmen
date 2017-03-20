@@ -5,17 +5,17 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
- Rails.application.config.middleware.insert_before 0, Rack::Cors do
-   allow do
-     origins(
-       'localhost:4200',
-       'https://www.rundfunk-mitbestimmen.de',
-       'https://rundfunk-mitbestimmen.de'
-     )
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins(
+      'localhost',
+      'https://rundfunk-mitbestimmen.de',
+      'https://www.rundfunk-mitbestimmen.de'
+    )
 
-     resource '*',
-       headers: :any,
-       expose: ['Authorization'],
-       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-   end
- end
+    resource '*',
+             headers: :any,
+             expose: ['Authorization'],
+             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end

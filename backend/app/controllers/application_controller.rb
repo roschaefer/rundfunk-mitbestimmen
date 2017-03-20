@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
     I18n.locale = params[:locale] || request.headers['locale'] || I18n.default_locale
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     head :forbidden
   end
 end

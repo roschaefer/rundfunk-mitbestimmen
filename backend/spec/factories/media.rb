@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :medium do
-    name "SomeMedium"
+    name 'SomeMedium'
   end
 end

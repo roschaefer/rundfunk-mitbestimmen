@@ -5,12 +5,9 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-
     @broadcasts = Broadcast.all
 
-    if params[:q].present?
-      @broadcasts = @broadcasts.search_by_title(params[:q])
-    end
+    @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
 
     filter_params = params[:filter]
     if filter_params
@@ -32,17 +29,17 @@ class BroadcastsController < ApplicationController
       end
     end
 
-    if params[:sort] == 'random'
-      @broadcasts = @broadcasts.order("RANDOM()")
-    else
-      @broadcasts = @broadcasts.order(title: :asc) # induce unique sort order for pagination
-    end
+    @broadcasts = if params[:sort] == 'random'
+                    @broadcasts.order('RANDOM()')
+                  else
+                    @broadcasts.order(title: :asc) # induce unique sort order for pagination
+                  end
 
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
 
-    render json: @broadcasts, scope: current_user, meta: {total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages}
+    render json: @broadcasts, scope: current_user, meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
   # GET /broadcasts/1
@@ -77,22 +74,22 @@ class BroadcastsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_broadcast
-      @broadcast = Broadcast.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def broadcast_params
-      ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :description, :medium, :station])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_broadcast
+    @broadcast = Broadcast.find(params[:id])
+  end
 
+  # Only allow a trusted parameter "white list" through.
+  def broadcast_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :description, :medium, :station])
+  end
 
-    def reviewed_broadcasts
-      @broadcasts = current_user.broadcasts.includes(:selections)
-    end
+  def reviewed_broadcasts
+    @broadcasts = current_user.broadcasts.includes(:selections)
+  end
 
-    def unreviewed_broadcasts
-      @broadcasts = @broadcasts.unevaluated(current_user)
-    end
+  def unreviewed_broadcasts
+    @broadcasts = @broadcasts.unevaluated(current_user)
+  end
 end

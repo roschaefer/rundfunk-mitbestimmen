@@ -6,7 +6,7 @@ class ChangeBroadcastMediumToReferenceMedium < ActiveRecord::Migration[5.0]
     media_ids.each do |id|
       Medium.create(id: id)
     end
-    Broadcast.update_all("medium_id=medium")
+    Broadcast.update_all('medium_id=medium')
     remove_column :broadcasts, :medium
   end
 

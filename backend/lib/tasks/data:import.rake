@@ -1,6 +1,6 @@
 namespace :data do
   desc 'Import broadcasts from /tmp/import'
-  task :import => [:environment] do
+  task import: [:environment] do
     require 'csv'
 
     Broadcast.transaction do

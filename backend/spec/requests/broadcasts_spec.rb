@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-
-RSpec.describe "Broadcasts", type: :request do
-  let(:headers) { { } }
-  let(:params)  { { } }
+RSpec.describe 'Broadcasts', type: :request do
+  let(:headers) { {} }
+  let(:params)  { {} }
   let(:broadcasts) {  create_list(:broadcast, 23) }
   let(:user) { create :user }
 
@@ -11,18 +10,21 @@ RSpec.describe "Broadcasts", type: :request do
   let(:radio) { Medium.create(id: 1, name: 'radio') }
   let(:other) { Medium.create(id: 2, name: 'other') }
 
-  let(:tv_broadcast)    { create(:broadcast, id: 0, medium: tv)  }
+  let(:tv_broadcast)    { create(:broadcast, id: 0, medium: tv) }
   let(:radio_broadcast) { create(:broadcast, id: 1, medium: radio) }
-  let(:other_broadcast) { create(:broadcast, id: 2, medium: other)  }
+  let(:other_broadcast) { create(:broadcast, id: 2, medium: other) }
 
   let(:dasErste) { create(:station, id: 47, name: 'Das Erste') }
 
-  describe "GET /broadcasts" do
+  describe 'GET /broadcasts' do
     let(:url) { '/broadcasts' }
     let(:action) { get url, params: params, headers: headers }
     let(:js) { JSON.parse(response.body) }
     before { broadcasts }
-    subject { action; js }
+    subject do
+      action
+      js
+    end
 
     it 'returns a limited set of broadcast' do
       expect(subject['data'].length).to eq(10)
@@ -34,7 +36,7 @@ RSpec.describe "Broadcasts", type: :request do
 
     describe 'with additional query parameter' do
       describe '?q=' do
-        let(:params) {  { q: 'find me' } }
+        let(:params) { { q: 'find me' } }
 
         before { create(:broadcast, title: 'This is an interesting broadcast, find me') }
 
@@ -45,7 +47,7 @@ RSpec.describe "Broadcasts", type: :request do
         end
 
         describe 'query parameter empty' do
-          let(:params) { { q:  ''} }
+          let(:params) { { q: '' } }
           it 'is ignored' do
             expect(subject['data'].length).to eq(10)
           end
@@ -58,7 +60,7 @@ RSpec.describe "Broadcasts", type: :request do
         let(:broadcasts) { [radio_broadcast, tv_broadcast, other_broadcast] }
 
         describe '_' do
-          let(:params) { {filter: { medium: '' } } }
+          let(:params) { { filter: { medium: '' } } }
 
           it 'returns all broadcasts' do
             expect(subject['data'].length).to eq 3
@@ -67,7 +69,7 @@ RSpec.describe "Broadcasts", type: :request do
         end
 
         describe 'radio' do
-          let(:params) { {filter: { medium: radio.id } } }
+          let(:params) { { filter: { medium: radio.id } } }
 
           it 'returns radio broadcasts only' do
             expect(subject['data'].length).to eq 1
@@ -76,17 +78,17 @@ RSpec.describe "Broadcasts", type: :request do
         end
 
         describe 'tv+radio' do
-          let(:params) { {filter: { medium: [radio.id,tv.id] } } }
+          let(:params) { { filter: { medium: [radio.id, tv.id] } } }
 
           it 'returns radio and tv broadcasts' do
             expect(subject['data'].length).to eq 2
-            media = [0,1].collect {|i| subject['data'][i]['relationships']['medium']['data']['id'] }
+            media = [0, 1].collect { |i| subject['data'][i]['relationships']['medium']['data']['id'] }
             expect(media.sort).to eq [tv.id.to_s, radio.id.to_s]
           end
         end
 
         describe 'other' do
-          let(:params) { {filter: { medium: other.id } } }
+          let(:params) { { filter: { medium: other.id } } }
 
           it 'returns special broadcasts only' do
             expect(subject['data'].length).to eq 1
@@ -95,7 +97,7 @@ RSpec.describe "Broadcasts", type: :request do
         end
 
         describe 'unknown' do
-          let(:params) { {filter: { medium: 4711 } } }
+          let(:params) { { filter: { medium: 4711 } } }
 
           it 'will be ignored' do
             expect(subject['data'].length).to eq 0
@@ -107,9 +109,9 @@ RSpec.describe "Broadcasts", type: :request do
         let(:das_erste) { create(:station, name: 'Das Erste') }
         let(:wdr_fernsehen) { create(:station, name: 'WDR Fernsehen') }
         let(:wdr_broadcast) { create(:broadcast, station: wdr_fernsehen) }
-        let(:ard_broadcast) { create(:broadcast, station: das_erste)  }
+        let(:ard_broadcast) { create(:broadcast, station: das_erste) }
         let(:broadcasts) { [ard_broadcast, wdr_broadcast] }
-        let(:params) {  { filter: { station: wdr_fernsehen.id } } }
+        let(:params) { { filter: { station: wdr_fernsehen.id } } }
 
         it 'returns broadcasts of a given station' do
           expect(subject['data'].length).to eq 1
@@ -128,7 +130,11 @@ RSpec.describe "Broadcasts", type: :request do
 
       describe '#selections' do
         before  { create(:selection) }
-        subject { action; js['data'][0]['relationships']['selections']['data'] }
+        subject do
+          action
+          js['data'][0]['relationships']['selections']['data']
+        end
+
         it 'does not expose foreign selections' do
           is_expected.to be_empty
         end
@@ -145,7 +151,7 @@ RSpec.describe "Broadcasts", type: :request do
       end
 
       context 'page param' do
-        let(:params) { { page: 4} }
+        let(:params) { { page: 4 } }
         it 'returns the next page' do
           expect(Broadcast.count).to eq 33
           expect(subject['data'].length).to eq 3
@@ -160,7 +166,7 @@ RSpec.describe "Broadcasts", type: :request do
       let(:broadcasts) { [unevaluated_broadcast, evaluated_broadcast] }
 
       describe 'filter: {review: "reviewed"}' do
-        let(:params) { {filter: { review: 'reviewed' } } }
+        let(:params) { { filter: { review: 'reviewed' } } }
 
         context 'not logged in' do
           it 'ignores reviewed parameter' do
@@ -204,9 +210,9 @@ RSpec.describe "Broadcasts", type: :request do
         before do
           create_list(:broadcast, 23)
           get url, params: params, headers: headers
-          @first_request_ids = JSON.parse(response.body)['data'].collect{|json| json['id']}
+          @first_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
           get url, params: params, headers: headers
-          @seconds_request_ids = JSON.parse(response.body)['data'].collect{|json| json['id']}
+          @seconds_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
         end
 
         it 'shuffles result set' do
@@ -220,7 +226,6 @@ RSpec.describe "Broadcasts", type: :request do
 
       describe 'filter: {review: "unreviewed"}' do
         let(:params) { { filter: { review: 'unreviewed' } } }
-
 
         context 'not logged in' do
           it 'ignores reviewed parameter' do
@@ -255,7 +260,6 @@ RSpec.describe "Broadcasts", type: :request do
     end
   end
 
-
   describe 'POST /broadcasts' do
     before { radio }
 
@@ -264,17 +268,17 @@ RSpec.describe "Broadcasts", type: :request do
         data: {
           type: 'broadcasts',
           attributes: {
-          title: 'Nice broadcast',
-          description: 'A nice broadcast, everybody will love it',
-        },relationships: {
-          medium: {
-            data: {
-              id: '1',
-              type: 'media'
+            title: 'Nice broadcast',
+            description: 'A nice broadcast, everybody will love it'
+          }, relationships: {
+            medium: {
+              data: {
+                id: '1',
+                type: 'media'
+              }
             }
           }
         }
-        },
       }
     end
 
@@ -330,29 +334,32 @@ RSpec.describe "Broadcasts", type: :request do
   end
 
   describe 'PATCH /broadcasts' do
-    before { other; dasErste }
-    let (:broadcast) { tv_broadcast }
+    before do
+      other
+      dasErste
+    end
 
+    let(:broadcast) { tv_broadcast }
     let(:action) { patch "/broadcasts/#{broadcast.id}", params: params, headers: headers }
     let(:params) do
       {
         data: {
           type: 'broadcasts',
           attributes: {
-        },relationships: {
-          medium: {
-            data: {
-              id: '2',
-              type: 'media'
-            }
-          },
-          station: {
-            data: {
-              id: '47',
-              type: 'stations'
+          }, relationships: {
+            medium: {
+              data: {
+                id: '2',
+                type: 'media'
+              }
+            },
+            station: {
+              data: {
+                id: '47',
+                type: 'stations'
+              }
             }
           }
-        }
         }
       }
     end
@@ -363,16 +370,21 @@ RSpec.describe "Broadcasts", type: :request do
         let(:user) { create(:user, :contributor) }
 
         it 'is allowed to change medium of a broadcast' do
-          expect { action }.to change { broadcast.reload; broadcast.medium }.from(tv).to(other)
+          expect { action }.to change {
+            broadcast.reload
+            broadcast.medium
+          }.from(tv).to(other)
         end
 
         it 'is allowed to add a new station to a broadcasts' do
-          expect { action }.to change { broadcast.reload; broadcast.station}.from(nil).to(dasErste)
+          expect { action }.to change {
+            broadcast.reload
+            broadcast.station
+          }.from(nil).to(dasErste)
         end
       end
     end
   end
-
 
   describe 'DELETE /broadcasts/:id' do
     let(:broadcast) { create(:broadcast) }

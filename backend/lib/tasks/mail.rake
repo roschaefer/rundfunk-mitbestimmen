@@ -1,5 +1,5 @@
 namespace :mail do
-  desc "Send an explanation for the migration to auth0 and tell them to reset their password"
+  desc 'Send an explanation for the migration to auth0 and tell them to reset their password'
 
   task auth0_migration: :environment do
     User.find_each do |user|

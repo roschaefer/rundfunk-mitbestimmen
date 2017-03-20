@@ -1,19 +1,24 @@
 require 'rails_helper'
 
-
-RSpec.describe "Selections", type: :request do
-  let(:headers) { { } }
-  let(:params)  { { } }
+RSpec.describe 'Selections', type: :request do
+  let(:headers) { {} }
+  let(:params)  { {} }
   let(:user)    { create :user }
   let(:positive_selection) { create(:selection, user: user, response: :positive) }
   let(:negative_selection) { create(:selection, user: user, response: :negative) }
-  let(:json_body) { subject; JSON.parse(response.body) }
-
+  let(:json_body) do
+    subject
+    JSON.parse(response.body)
+  end
 
   describe 'GET /selections' do
     let(:action) { get '/selections', params: params, headers: headers }
     let(:selections) { [positive_selection, negative_selection] }
-    subject { selections; action; response }
+    subject do
+      selections
+      action
+      response
+    end
 
     it { is_expected.to have_http_status(:unauthorized) }
 
@@ -26,12 +31,10 @@ RSpec.describe "Selections", type: :request do
         expect(json_body['data'].length).to eq 2
         selection_json = {
           data: UnorderedArray({
-            id: positive_selection.id.to_s,
-            attributes: { response: 'positive' }
-          },{
-            id: negative_selection.id.to_s,
-            attributes: { response: 'negative' }
-          })
+                                 id: positive_selection.id.to_s,
+                                 attributes: { response: 'positive' }
+                               }, id: negative_selection.id.to_s,
+                                  attributes: { response: 'negative' })
         }
         expect(json_body).to include_json(selection_json)
       end
@@ -51,7 +54,7 @@ RSpec.describe "Selections", type: :request do
 
         it 'does not return selections with a negative response' do
           selection_json = {
-            data: UnorderedArray( id: negative_selection.id.to_s )
+            data: UnorderedArray(id: negative_selection.id.to_s)
           }
           expect(json_body).not_to include_json(selection_json)
         end
@@ -63,16 +66,18 @@ RSpec.describe "Selections", type: :request do
     let(:action) { get "/selections/#{selection.id}", params: params, headers: headers }
     let(:selection) { create(:selection, user: user) }
 
-    subject { selection; action; response }
+    subject do
+      selection
+      action
+      response
+    end
 
     it { is_expected.to have_http_status(:unauthorized) }
 
     context 'signed in' do
       let(:headers) { authenticated_header(user) }
 
-
       context 'access to own selection' do
-
         it { is_expected.to have_http_status(:ok) }
 
         it 'returns selection' do
@@ -87,11 +92,13 @@ RSpec.describe "Selections", type: :request do
     end
   end
 
-
-  describe "POST /selections" do
+  describe 'POST /selections' do
     let(:action) { post '/selections', params: params, headers: headers }
 
-    subject { action; response }
+    subject do
+      action
+      response
+    end
 
     it { is_expected.to have_http_status(:unauthorized) }
 
@@ -101,23 +108,24 @@ RSpec.describe "Selections", type: :request do
       context 'given a broadcast' do
         let(:broadcast) { create :broadcast }
         describe 'sending params[response,user_id,broadcast_id]' do
-          let(:params) do {
-            data: {
-              type: 'selections',
-              attributes: {
-              response: :positive
-            },
-            relationships: {
-              broadcast: {
-                data: { id: broadcast.id, type: 'broadcasts' }
-              },
+          let(:params) do
+            {
+              data: {
+                type: 'selections',
+                attributes: {
+                  response: :positive
+                },
+                relationships: {
+                  broadcast: {
+                    data: { id: broadcast.id, type: 'broadcasts' }
+                  }
+                }
+              }
             }
-            }
-          }
           end
 
           it 'creates a selection' do
-            expect{ action }.to change{ Selection.count }.from(0).to(1)
+            expect { action }.to change { Selection.count }.from(0).to(1)
           end
 
           it 'user creates a selection, thus he wants to pay for the broadcast' do
@@ -130,16 +138,19 @@ RSpec.describe "Selections", type: :request do
             let(:other_user) { create :user }
             let(:params) do
               params = super()
-              params[:data][:relationships].merge!(user: {
+              params[:data][:relationships][:user] = {
                 data: {
                   id: other_user.id,
-                  type: 'users'}
-              })
+                  type: 'users'
+                }
+              }
               params
             end
 
             it 'cannot create a selection for another user' do
-              action; user.reload; other_user.reload;
+              action
+              user.reload
+              other_user.reload
               expect(other_user.liked_broadcasts).to be_empty
               expect(user.liked_broadcasts).to include(broadcast)
             end

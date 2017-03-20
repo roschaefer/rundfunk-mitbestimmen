@@ -1,7 +1,7 @@
-Medium.find(0).update(name_de: 'TV'       , name_en: 'TV')
-Medium.find(1).update(name_de: 'Radio'    , name_en: 'Radio')
-Medium.find(2).update(name_de: 'Sonstige' , name_en: 'Other')
-Medium.find(3).update(name_de: 'Online'   , name_en: 'Online')
+Medium.find(0).update(name_de: 'TV', name_en: 'TV')
+Medium.find(1).update(name_de: 'Radio', name_en: 'Radio')
+Medium.find(2).update(name_de: 'Sonstige', name_en: 'Other')
+Medium.find(3).update(name_de: 'Online', name_en: 'Online')
 
 Station.create!(id: 1, medium_id: 1, name: '103.7 UnserDing')
 Station.create!(id: 2, medium_id: 1, name: '1LIVE')
@@ -59,14 +59,13 @@ Station.create!(id: 53, medium_id: 1, name: 'Bremen Vier')
 Station.create!(id: 54, medium_id: 1, name: 'Bremen NEXT')
 Station.create!(id: 55, medium_id: 0, name: 'ZDFneo')
 
- #these broadcasts are stations!
+# these broadcasts are stations!
 ['Bremen Vier', 'Bremen NEXT'].each do |title|
   b = Broadcast.find_by(title: title)
-  if b
-    puts "Selections going to be destroyed: #{b.selections.count}"
-    b.selections.destroy_all
-    b.destroy
-  end
+  next unless b
+  puts "Selections going to be destroyed: #{b.selections.count}"
+  b.selections.destroy_all
+  b.destroy
 end
 
 # manually set

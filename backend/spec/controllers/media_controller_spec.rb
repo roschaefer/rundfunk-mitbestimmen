@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe MediaController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Medium. As you add validations to Medium, be sure to
   # adjust the attributes here as well.
@@ -29,18 +28,18 @@ RSpec.describe MediaController, type: :controller do
   # MediaController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all media as @media" do
+  describe 'GET #index' do
+    it 'assigns all media as @media' do
       medium = create(:medium)
       get :index, params: {}, session: valid_session
       expect(assigns(:media)).to eq([medium])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested medium as @medium" do
+  describe 'GET #show' do
+    it 'assigns the requested medium as @medium' do
       medium = create(:medium)
-      get :show, params: {id: medium.to_param}, session: valid_session
+      get :show, params: { id: medium.to_param }, session: valid_session
       expect(assigns(:medium)).to eq(medium)
     end
   end

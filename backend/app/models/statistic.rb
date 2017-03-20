@@ -1,6 +1,7 @@
 class Statistic < ApplicationRecord
   self.primary_key = :id
   paginates_per 10
+
   private
 
   # this isn't strictly necessary, but it will prevent

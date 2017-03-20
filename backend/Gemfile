@@ -1,20 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem 'cancancan'
 gem 'globalize', github: 'globalize/globalize'
 gem 'globalize-accessors'
-gem 'cancancan'
-gem 'rack-cors', :require => 'rack/cors'
 gem 'kaminari'
-gem 'scenic'
-gem 'pg_search'
 gem 'knock'
+gem 'pg_search'
+gem 'rack-cors', require: 'rack/cors'
+gem 'scenic'
 gem 'valid_email2'
-
 
 gem 'rails', '~> 5.0', '>= 5.0.0.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-#gem 'rails', github: 'rails/rails'
+# gem 'rails', github: 'rails/rails'
 
 # Use Puma as the app server
 gem 'pg'
@@ -34,22 +33,24 @@ gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'rspec-json_expectations'
+  gem 'pry'
   gem 'rails-controller-testing'
+  gem 'rspec-json_expectations'
+  gem 'rspec-rails'
 end
 
 group :development do
+  gem 'brakeman', require: false
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'capistrano'
+  gem 'capistrano-db-tasks', require: false
+  gem 'capistrano-rails'
+  gem 'highline'
+  gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem "capistrano-db-tasks", require: false
-  gem 'highline'
 end
 
 group :production do

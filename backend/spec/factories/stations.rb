@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :station do
-    name "MyString"
+    name 'MyString'
     medium
   end
 end

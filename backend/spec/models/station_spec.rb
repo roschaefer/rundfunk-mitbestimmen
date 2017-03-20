@@ -14,12 +14,12 @@ RSpec.describe Station, type: :model do
     it 'updates when adding broadcasts' do
       station
       broadcast = create(:broadcast)
-      expect{ broadcast.update(station: station) }.to change{station.broadcasts_count}.from(0).to(1)
+      expect { broadcast.update(station: station) }.to change { station.broadcasts_count }.from(0).to(1)
     end
 
     it 'updates when removing broadcasts' do
       broadcast = create(:broadcast, station: station)
-      expect{ broadcast.update(station: nil) }.to change{station.broadcasts_count}.from(1).to(0)
+      expect { broadcast.update(station: nil) }.to change { station.broadcasts_count }.from(1).to(0)
     end
   end
 end

@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe StationsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Station. As you add validations to Station, be sure to
   # adjust the attributes here as well.
@@ -29,18 +28,18 @@ RSpec.describe StationsController, type: :controller do
   # StationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all stations as @stations" do
+  describe 'GET #index' do
+    it 'assigns all stations as @stations' do
       station = create(:station)
       get :index, params: {}, session: valid_session
       expect(assigns(:stations)).to eq([station])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested station as @station" do
+  describe 'GET #show' do
+    it 'assigns the requested station as @station' do
       station = create(:station)
-      get :show, params: {id: station.to_param}, session: valid_session
+      get :show, params: { id: station.to_param }, session: valid_session
       expect(assigns(:station)).to eq(station)
     end
   end
