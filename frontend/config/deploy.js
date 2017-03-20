@@ -20,7 +20,7 @@ module.exports = function(deployTarget) {
     ENV.build.environment = 'production';
     ENV['scp'] = {
         username: 'rschafer',
-        host: 'aldebaran.uberspace.de',
+        host: 'rundfunk-mitbestimmen.de',
         path: 'html'
     }
   }

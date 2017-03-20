@@ -3,19 +3,8 @@ language: ruby
 sudo: required
 rvm:
   - 2.3.1
-node_js:
-  - "6"
-env:
-  - TRAVIS_NODE_VERSION="6.2.1" TRAVIS_RUBY_VERSION="2.3.1"
-services:
-  - postgresql
 addons:
-  ssh_known_hosts: aldebaran.uberspace.de
-  apt:
-    sources:
-       - google-chrome
-    packages:
-    - google-chrome-stable
+  ssh_known_hosts: rundfunk-mitbestimmen.de
 
 before_install:
   - . $HOME/.nvm/nvm.sh
@@ -83,13 +72,8 @@ before_deploy:
   - rvm $TRAVIS_RUBY_VERSION do gem install bundler capistrano capistrano-rails capistrano-db-tasks
 
 deploy:
-  - provider: script
-    skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy
-    on:
-      branch: master
-  - provider: script
-    skip_cleanup: true
-    script: cd frontend && ember deploy production
-    on:
-      branch: master
+  provider: script
+  skip_cleanup: true
+  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember build --environment=production && scp -r dist/* rschafer@rundfunk-mitbestimmen.de:html
+  on:
+    branch: master
