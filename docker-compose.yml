@@ -1,0 +1,43 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - '4200:4200'
+      - '49152:49152'
+    volumes:
+      - ./frontend/package.json:/frontend/package.json
+      - ./frontend/bower.json:/frontend/bower.json
+      - ./frontend/app:/frontend/app
+      - ./frontend/config:/frontend/config
+      - ./frontend/public:/frontend/public
+      - ./frontend/tests:/frontend/tests
+      - ./frontend/translations:/frontend/translations
+    command: npm start
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend/Gemfile:/backend/Gemfile
+      - ./backend/Gemfile.lock:/backend/Gemfile.lock
+      - ./backend/Rakefile:/backend/Rakefile
+      - ./backend/app:/backend/app
+      - ./backend/config:/backend/config
+      - ./backend/config.ru:/backend/config.ru
+      - ./backend/db:/backend/db
+      - ./backend/lib:/backend/lib
+      - ./backend/public:/backend/public
+      - ./backend/spec:/backend/spec
+    environment:
+      - DATABASE_URL=postgresql://db
+      - POSTGRES_USERNAME=postgres
+    links:
+      - db
+    command: bin/rails s -b 0.0.0.0
+  db:
+    image: postgres:9.2-alpine
+    environment:
+      - POSTGRES_DB=rundfunk-backend-development
