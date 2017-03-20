@@ -43,6 +43,7 @@ application:
   footer:
     contact-us: Verbesserungsvorschläge und Kontakt
     imprint: Impressum
+    data-privacy: Datenschutz
   logout: Ausloggen
   login: Einloggen
 index:

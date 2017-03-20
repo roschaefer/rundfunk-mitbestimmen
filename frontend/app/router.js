@@ -28,6 +28,7 @@ Router.map(function() {
   this.route('imprint');
   this.route('broadcasts');
   this.route('login');
+  this.route('data-privacy');
 });
 
 export default Router;
