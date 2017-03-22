@@ -8,6 +8,10 @@ p {
   font-size: 1.2em;
 }
 
+#inner-explanation-accordion {
+  padding-left: 10px;
+}
+
 .description {
   font-size: 1em;
 }
