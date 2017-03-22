@@ -12,6 +12,16 @@ p {
   padding-left: 10px;
 }
 
+.accordion-header {
+  font-weight: bold;
+}
+
+.accordion-text {
+  margin-left: 25px;
+  font-size: 0.9em;
+  color: #777;
+}
+
 .description {
   font-size: 1em;
 }
