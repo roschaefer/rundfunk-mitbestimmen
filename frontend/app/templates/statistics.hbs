@@ -13,31 +13,36 @@
 
   <div class="row">
     <div class="ui sixteen wide column">
-      {{#ui-accordion class="fluid styled"}}
+      {{#ui-accordion class="fluid"}}
         <div class="title">
+          <i class="dropdown icon"></i>
           {{t 'statistics.explanations.header'}}
         </div>
         <div class="content">
           <div class="accordion transition hidden">
             <div class="title">
+              <i class="dropdown icon"></i>
               {{t 'statistics.summary.table.header.votes'}}
             </div>
             <div class="content">
               {{format-html-message 'statistics.explanations.content.votes'}}
             </div>
             <div class="title">
+              <i class="dropdown icon"></i>
               {{t 'statistics.summary.table.header.approval'}}
             </div>
             <div class="content">
               {{format-html-message 'statistics.explanations.content.approval'}}
             </div>
             <div class="title">
+              <i class="dropdown icon"></i>
               {{t 'statistics.summary.table.header.average'}}
             </div>
             <div class="content">
               {{format-html-message 'statistics.explanations.content.average'}}
             </div>
             <div class="title">
+              <i class="dropdown icon"></i>
               {{t 'statistics.summary.table.header.total'}}
             </div>
             <div class="content">
