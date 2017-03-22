@@ -55,7 +55,7 @@ index:
   statistics:
     registered-users: Registrierte Nutzer
     broadcasts: Sendungen
-    reviews: Abstimmungen
+    votes: Abstimmungen
     money-assigned: bereits zugewiesen
     link-to-statistics: Statistiken pro Sendung
   approval:
@@ -291,13 +291,39 @@ broadcasts:
 statistics:
   header: Öffentliche Statistiken
   sub-header: Das sind die Statistiken über alle Nutzer
+  explanations:
+    header: Wie wird das berechnet?
+    content:
+      votes: >
+        <p> Wie oft wurde die Sendung schon vorgeschlagen? </p> <p>
+        Zurzeit summieren wir die Anzahl der Nutzer die auf
+        <strong>Unterstützen</strong> oder <strong>Weiter</strong> geklickt
+        haben.</p>
+      approval: >
+        <p>Wieviele registrierte Nutzer, denen eine Sendung vorgeschlagen wurde,
+        haben auf <strong>Unterstützen</strong> anstatt auf <strong>Weiter
+        </strong> geklickt?</p><p> Die Formel (in Anzahl Klicks) lautet:
+        <div class="ui basic center aligned segment">
+        <h1><sup>Unterstützen</sup>/<sub>(Unterstützen + Weiter)</sub></h1>
+        </div> </p>
+      average: >
+        <p> Was ist der Durschnittsbetrag pro Unterstützer? Wie wichtig ist die
+        Sendung für meine spezifische Zielgruppe?</p><p>Die Formel lautet:
+        <div class="ui basic center aligned segment">
+        <h1><sup>Gesamtbetrag</sup>/<sub>Unterstützer</sub></h1>
+        </div></p>
+      total: >
+        <p> Wie hoch ist der Gesamtbetrag aller Unterstützer?</p><p> Es wäre
+        interessant, diesen Wert mit den tatsächlichen Produktionskosten einer
+        Sendung zu vergleichen. Leider ist diese Information <strong>nicht
+        öffentlich</strong>.</p>
   summary:
     table:
       header:
         broadcast: Sendung
-        reviews: Anzahl Stimmen
+        votes: Anzahl Stimmen
         approval: Zustimmung
-        average: Pro Kopf
+        average: Im Schnitt
         total: Insgesamt
   link-to:
     invoice: Zurück zu meinen ausgewählten Sendungen

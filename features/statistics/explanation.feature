@@ -1,9 +1,9 @@
 Feature:
   As a user
-  I want a tooltip in the table header explaining the respective metric
+  I want an explanation above the table header
   In order to understand how a metric is computed
 
-  Scenario: Click on tooltip
+  Scenario: Click on accordion
     When I visit the public statistics page
     And I click the accordion on "Explain these metrics, please"
     And I click the accordion once again on "Approval"

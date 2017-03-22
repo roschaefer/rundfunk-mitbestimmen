@@ -15,64 +15,33 @@
     <div class="ui sixteen wide column">
       {{#ui-accordion class="fluid styled"}}
         <div class="title">
-          Explain these metrics, please
+          {{t 'statistics.explanations.header'}}
         </div>
         <div class="content">
           <div class="accordion transition hidden">
             <div class="title">
-              Number of votes
+              {{t 'statistics.summary.table.header.votes'}}
             </div>
             <div class="content">
-              <p>
-              How often was this broadcast suggested to people?
-              </p>
-              <p>
-              Right now, we track how many registered users clicked on either <strong>Support</strong> or <strong>Next</strong>.
-              </p>
+              {{format-html-message 'statistics.explanations.content.votes'}}
             </div>
             <div class="title">
-              Approval
+              {{t 'statistics.summary.table.header.approval'}}
             </div>
             <div class="content">
-              <p>
-              From those people, who got a broadcast suggested, how many clicked on <strong>Support</strong> instead of <strong>Next</strong>?
-              </p>
-              <p>
-              The formula is (in number of clicks):
-              <div class="ui basic center aligned segment">
-                <h1>
-                  <sup>support</sup>/<sub>(support + next)</sub>
-                </h1>
-              </div>
-              </p>
+              {{format-html-message 'statistics.explanations.content.approval'}}
             </div>
             <div class="title">
-              Average
+              {{t 'statistics.summary.table.header.average'}}
             </div>
             <div class="content">
-              <p>
-              How much money do supporters give on average?
-              How important is this broadcast to the specific target group?
-              </p>
-              <p>
-              The formular is:
-              <div class="ui basic center aligned segment">
-                <h1>
-                  <sup>total amount</sup>/<sub>supporters</sub>
-                </h1>
-              </div>
-              </p>
+              {{format-html-message 'statistics.explanations.content.average'}}
             </div>
             <div class="title">
-              Total amount
+              {{t 'statistics.summary.table.header.total'}}
             </div>
             <div class="content">
-              <p>
-              What is the sum of all amounts?
-              </p>
-              <p>
-              It would be interesting to compare this to the actual production cost per broadcast. Unfortunately, that information <strong>remains unknown</strong>.
-              </p>
+              {{format-html-message 'statistics.explanations.content.total'}}
             </div>
           </div>
         </div>
@@ -88,8 +57,8 @@
             {{#sortable-header current-column=column current-direction=direction column='title' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.broadcast'}}
             {{/sortable-header}}
-            {{#sortable-header current-column=column current-direction=direction column='reviews' clickAction=(action 'order')}}
-              {{t 'statistics.summary.table.header.reviews'}}
+            {{#sortable-header current-column=column current-direction=direction column='votes' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.votes'}}
             {{/sortable-header}}
             {{#sortable-header current-column=column current-direction=direction column='approval' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.approval'}}
@@ -104,13 +73,13 @@
         </thead>
         <tbody>
           {{#each model as |statistic|}}
-          <tr class="statistic-item">
-            <td>{{statistic.title}}</td>
-            <td class="reviews">{{statistic.reviews}}</td>
-            <td class="approval">{{format-number statistic.approval style='percent'}}</td>
-            <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
-            <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
-          </tr>
+            <tr class="statistic-item">
+              <td>{{statistic.title}}</td>
+              <td class="votes">{{statistic.reviews}}</td>
+              <td class="approval">{{format-number statistic.approval style='percent'}}</td>
+              <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
+              <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
+            </tr>
           {{/each}}
         </tbody>
         <tfoot>
@@ -140,17 +109,17 @@
 
   <div class="row">
     <div class="ui sixteen wide column">
-    {{#if session.isAuthenticated}}
-      {{#link-to 'invoice' class='ui huge labeled primary icon button'}}
-        <i class="euro icon"></i>
-        {{t 'statistics.link-to.invoice' }}
-      {{/link-to}}
-    {{else}}
-      {{#link-to 'index' class='ui huge labeled primary icon button'}}
-        <i class="left arrow icon"></i>
-        {{t 'statistics.link-to.index' }}
-      {{/link-to}}
-    {{/if}}
+      {{#if session.isAuthenticated}}
+        {{#link-to 'invoice' class='ui huge labeled primary icon button'}}
+          <i class="euro icon"></i>
+          {{t 'statistics.link-to.invoice' }}
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'index' class='ui huge labeled primary icon button'}}
+          <i class="left arrow icon"></i>
+          {{t 'statistics.link-to.index' }}
+        {{/link-to}}
+      {{/if}}
     </div>
   </div>
 </div>
