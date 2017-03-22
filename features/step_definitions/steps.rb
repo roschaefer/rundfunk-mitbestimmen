@@ -278,7 +278,7 @@ Then(/^I see this summary:$/) do |table|
   table.hashes.each do |row|
     item = find('.statistic-item', text: /#{row['Broadcast']}/)
     within(item) do
-      expect(find('.reviews')).to have_text(row['Reviews'])
+      expect(find('.votes')).to have_text(row['Reviews'])
       expect(find('.approval')).to have_text(row['Satisfaction'])
       expect(find('.average')).to have_text(row['Average'])
       expect(find('.total')).to have_text(row['Total'])
@@ -320,7 +320,7 @@ end
 Then(/^I can see these numbers:$/) do |table|
   row = table.hashes.first
   expect(page).to have_css('.statistics.registered-users', text: row['Registered users'])
-  expect(page).to have_css('.statistics.reviews', text: row['Reviews'])
+  expect(page).to have_css('.statistics.votes', text: row['Reviews'])
   expect(page).to have_css('.statistics.money-assigned', text: row['Money assigned'])
 end
 
@@ -933,3 +933,6 @@ Then(/^I can see all my selected broadcasts$/) do
   expect(page).to have_css('.invoice-item', count: @responses.to_i)
 end
 
+When(/^I click the accordion(?:.*)? on "([^"]*)"$/) do |label|
+  find('.accordion .title', text: label).click
+end

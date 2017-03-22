@@ -11,6 +11,67 @@
   </div>
 
 
+  <div class="row">
+    <div class="ui sixteen wide mobile eight wide computer column">
+      {{#ui-accordion class="fluid"}}
+        <div class="title">
+          <i class="dropdown icon"></i>
+          {{t 'statistics.explanations.header'}}
+        </div>
+        <div class="content">
+          <div id='inner-explanation-accordion' class="accordion transition hidden">
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{t 'statistics.summary.table.header.votes'}}
+            </div>
+            <div class="content">
+              <p>
+              {{format-html-message 'statistics.explanations.content.votes'}}
+              </p>
+            </div>
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{t 'statistics.summary.table.header.approval'}}
+            </div>
+            <div class="content">
+              <p>
+              {{format-html-message 'statistics.explanations.content.approval'}}
+              <br>
+              {{t 'statistics.explanations.content.formula'}}
+              <div class="ui basic compact aligned segment">
+                <h3><sup>supporters</sup>/<sub>(supporters + non-supporters)</sub></h3>
+              </div>
+              </p>
+            </div>
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{t 'statistics.summary.table.header.average'}}
+            </div>
+            <div class="content">
+              <p>
+              {{format-html-message 'statistics.explanations.content.average'}}
+              <br>
+              {{t 'statistics.explanations.content.formula'}}
+              <div class="ui basic compact aligned segment">
+                <h3><sup>total-amount</sup>/<sub>supporters</sub></h3>
+              </div>
+              </p>
+            </div>
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{t 'statistics.summary.table.header.total'}}
+            </div>
+            <div class="content">
+              <p>
+              {{format-html-message 'statistics.explanations.content.total'}}
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/ui-accordion}}
+    </div>
+  </div>
+
   <div class="row statistics">
     <div class="ui sixteen wide column">
       <table class="ui sortable celled table five">
@@ -19,8 +80,8 @@
             {{#sortable-header current-column=column current-direction=direction column='title' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.broadcast'}}
             {{/sortable-header}}
-            {{#sortable-header current-column=column current-direction=direction column='reviews' clickAction=(action 'order')}}
-              {{t 'statistics.summary.table.header.reviews'}}
+            {{#sortable-header current-column=column current-direction=direction column='votes' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.votes'}}
             {{/sortable-header}}
             {{#sortable-header current-column=column current-direction=direction column='approval' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.approval'}}
@@ -35,13 +96,13 @@
         </thead>
         <tbody>
           {{#each model as |statistic|}}
-          <tr class="statistic-item">
-            <td>{{statistic.title}}</td>
-            <td class="reviews">{{statistic.reviews}}</td>
-            <td class="approval">{{format-number statistic.approval style='percent'}}</td>
-            <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
-            <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
-          </tr>
+            <tr class="statistic-item">
+              <td>{{statistic.title}}</td>
+              <td class="votes">{{statistic.reviews}}</td>
+              <td class="approval">{{format-number statistic.approval style='percent'}}</td>
+              <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
+              <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
+            </tr>
           {{/each}}
         </tbody>
         <tfoot>
@@ -71,17 +132,17 @@
 
   <div class="row">
     <div class="ui sixteen wide column">
-    {{#if session.isAuthenticated}}
-      {{#link-to 'invoice' class='ui huge labeled primary icon button'}}
-        <i class="euro icon"></i>
-        {{t 'statistics.link-to.invoice' }}
-      {{/link-to}}
-    {{else}}
-      {{#link-to 'index' class='ui huge labeled primary icon button'}}
-        <i class="left arrow icon"></i>
-        {{t 'statistics.link-to.index' }}
-      {{/link-to}}
-    {{/if}}
+      {{#if session.isAuthenticated}}
+        {{#link-to 'invoice' class='ui huge labeled primary icon button'}}
+          <i class="euro icon"></i>
+          {{t 'statistics.link-to.invoice' }}
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'index' class='ui huge labeled primary icon button'}}
+          <i class="left arrow icon"></i>
+          {{t 'statistics.link-to.index' }}
+        {{/link-to}}
+      {{/if}}
     </div>
   </div>
 </div>

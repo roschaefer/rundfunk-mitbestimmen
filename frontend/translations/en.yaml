@@ -55,7 +55,7 @@ index:
   statistics:
     registered-users: Registered users
     broadcasts: Broadcasts
-    reviews: Votes
+    votes: Votes
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
@@ -281,13 +281,31 @@ broadcasts:
 statistics:
   header: Public statistics
   sub-header: Here are the results of all users
+  explanations:
+    header: Which formula is used to calculate the results?
+    content:
+      formula: 'The formula is:'
+      votes: >
+        How often was the broadcast displayed to users?<br>
+        At the moment, we count how many registered users clicked on either
+        <strong>Support</strong> or <strong>Next</strong>.
+      approval: >
+        From those people, who have viewed a broadcast, how many clicked
+        on <strong>Support</strong> instead of <strong>Next</strong>?
+      average: >
+        How much money do supporters give on average? Meaning: How important is
+        this broadcast to the specific target group?
+      total: >
+        What is the sum of all amounts? <br>It would be interesting to compare
+        this amount to the actual production costs per broadcast. Unfortunately,
+        the real production costs are <strong>not published</strong>.
   summary:
     table:
       header:
         broadcast: Broadcast
-        reviews: Number of votes
+        votes: Number of votes
         approval: Approval
-        average: Per capita
+        average: On average
         total: Total
   link-to:
     invoice: Back to my broadcasts
