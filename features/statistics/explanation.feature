@@ -5,11 +5,11 @@ Feature:
 
   Scenario: Click on accordion
     When I visit the public statistics page
-    And I click the accordion on "Explain these metrics, please"
+    And I click the accordion on "Which formula is used to calculate the results?"
     And I click the accordion once again on "Approval"
     Then I can read:
     """
-    From those people, who got a broadcast suggested, how many clicked on Support instead of Next?
-    The formula is (in number of clicks): support/(support + next)
+    From those people, who have viewed a broadcast, how many clicked on Support
+    instead of Next?
     """
 
