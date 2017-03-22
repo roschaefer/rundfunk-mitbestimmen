@@ -292,31 +292,25 @@ statistics:
   header: Öffentliche Statistiken
   sub-header: Das sind die Statistiken über alle Nutzer
   explanations:
-    header: Wie wird das berechnet?
+    header: Wie werden die Ergebnisse berechnet?
     content:
+      formula: 'Die Formel lautet:'
       votes: >
-        <p> Wie oft wurde die Sendung schon vorgeschlagen? </p> <p>
-        Zurzeit summieren wir die Anzahl der Nutzer die auf
-        <strong>Unterstützen</strong> oder <strong>Weiter</strong> geklickt
-        haben.</p>
+        Wie vielen Nutzern wurde die Sendung schon angezeigt? <br>Zum jetzigen
+        Zeitpunkt zählen wir die Anzahl der Nutzer die auf <strong>Unterstützen
+        </strong> oder <strong>Weiter</strong> geklickt haben.
       approval: >
-        <p>Wieviele registrierte Nutzer, denen eine Sendung vorgeschlagen wurde,
+        Wieviele registrierte Nutzer, denen eine Sendung vorgeschlagen wurde,
         haben auf <strong>Unterstützen</strong> anstatt auf <strong>Weiter
-        </strong> geklickt?</p><p> Die Formel (in Anzahl Klicks) lautet:
-        <div class="ui basic center aligned segment">
-        <h1><sup>Unterstützen</sup>/ <sub>(Unterstützen+Weiter)</sub></h1>
-        </div> </p>
+        </strong> geklickt?
       average: >
-        <p> Was ist der Durschnittsbetrag pro Unterstützer? Wie wichtig ist die
-        Sendung für meine spezifische Zielgruppe?</p><p>Die Formel lautet:
-        <div class="ui basic center aligned segment">
-        <h1><sup>Gesamtbetrag</sup>/<sub>Unterstützer</sub></h1>
-        </div></p>
+        Wie hoch ist der Durschnittsbetrag pro Unterstützer? Was soviel heißt
+        wie: Wie wichtig ist die Sendung für die spezifische Zielgruppe?
       total: >
-        <p> Wie hoch ist der Gesamtbetrag aller Unterstützer?</p><p> Es wäre
-        interessant, diesen Wert mit den tatsächlichen Produktionskosten einer
-        Sendung zu vergleichen. Leider ist diese Information <strong>nicht
-        öffentlich</strong>.</p>
+        Wie hoch ist der Gesamtbetrag aller Unterstützer? Es wäre interessant,
+        diesen Wert mit den tatsächlichen Produktionskosten einer Sendung zu
+        vergleichen. Leider sind die tatsächlichen Produktionskosten pro Sendung
+        <strong>nicht öffentlich</strong>.
   summary:
     table:
       header:

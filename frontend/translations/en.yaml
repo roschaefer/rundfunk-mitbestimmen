@@ -282,28 +282,23 @@ statistics:
   header: Public statistics
   sub-header: Here are the results of all users
   explanations:
-    header: Explain these metrics, please
+    header: Which formula is used to calculate the results?
     content:
+      formula: 'The formula is:'
       votes: >
-        <p> How often was this broadcast suggested to people? </p> <p>
-        Right now, we track how many registered users clicked on either
-        <strong>Support</strong> or <strong>Next</strong>. </p>
+        How often was the broadcast displayed to users?<br>
+        At the moment, we count how many registered users clicked on either
+        <strong>Support</strong> or <strong>Next</strong>.
       approval: >
-        <p>From those people, who got a broadcast suggested, how many clicked
-        on <strong>Support</strong> instead of <strong>Next</strong>?</p><p> The
-        formula is (in number of clicks): <div class="ui basic center aligned
-        segment"><h1><sup>support</sup>/<sub>(support + next)</sub></h1></div>
-        </p>
+        From those people, who have viewed a broadcast, how many clicked
+        on <strong>Support</strong> instead of <strong>Next</strong>?
       average: >
-        <p> How much money do supporters give on average?  How important is this
-        broadcast to the specific target group?</p><p> The formular is:
-        <div class="ui basic center aligned segment">
-        <h1><sup>total amount</sup>/<sub>supporters</sub></h1>
-        </div></p>
+        How much money do supporters give on average? Meaning: How important is
+        this broadcast to the specific target group?
       total: >
-        <p> What is the sum of all amounts? </p> <p> It would be interesting to
-        compare this to the actual production cost per broadcast. Unfortunately,
-        that information <strong>remains unknown</strong>.</p>
+        What is the sum of all amounts? <br>It would be interesting to compare
+        this amount to the actual production costs per broadcast. Unfortunately,
+        the real production costs are <strong>not published</strong>.
   summary:
     table:
       header:
