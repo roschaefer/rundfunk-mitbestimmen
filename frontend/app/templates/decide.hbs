@@ -33,10 +33,12 @@
             {{help-message content='decide.help-messages.result-set-empty.content' }}
           </div>
           <div class="column">
-            {{#link-to 'invoice' classNames='ui huge labeled icon fluid button link-to-invoice primary'}}
-            <i class="euro icon"></i>
-            {{t 'decide.button.to-invoice' }}
-            {{/link-to}}
+            {{#if session.isAuthenticated }}
+              {{#link-to 'invoice' classNames='ui fluid huge primary button link-to-invoice'}}
+                <i class="euro icon"></i>
+                {{t 'decide.next-step.button.to-invoice' }}
+              {{/link-to}}
+            {{/if}}
           </div>
         </div>
       </div>
