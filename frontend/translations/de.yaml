@@ -307,10 +307,10 @@ statistics:
         Wie hoch ist der Durschnittsbetrag pro Unterstützer? Was so viel heißt
         wie: Wie wichtig ist die Sendung für die spezifische Zielgruppe?
       total: >
-        Wie hoch ist der Gesamtbetrag aller Unterstützer? Es wäre interessant,
-        diesen Wert mit den tatsächlichen Produktionskosten einer Sendung zu
-        vergleichen. Leider sind die tatsächlichen Produktionskosten pro Sendung
-        <strong>nicht öffentlich</strong>.
+        Wie hoch ist der Gesamtbetrag aller Unterstützer? <br>Es wäre
+        interessant, diesen Wert mit den tatsächlichen Produktionskosten einer
+        Sendung zu vergleichen. Leider sind die tatsächlichen Produktionskosten
+        pro Sendung <strong>nicht öffentlich</strong>.
   summary:
     table:
       header:
