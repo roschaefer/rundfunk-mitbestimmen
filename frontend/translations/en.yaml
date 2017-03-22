@@ -47,9 +47,10 @@ application:
   login: Log in
 index:
   header:
-    top: Public broadcasting in Germany gets <h1>{amount}</h1> every year.
+    top: Public broadcasting in Germany gets <b>{amount}</b> every year.
   action:
-      I pay <h1>{amount} per month,</h1> therefore I wish to
+      Which programme should be created with <div>your <span class="amount-color">{amount}</span> per month?</div>
+  manual: Distribute your broadcasting fees to your favourite broadcasts.
   start: participate now
   statistics:
     registered-users: Registered users
