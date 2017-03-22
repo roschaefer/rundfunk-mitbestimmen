@@ -28,6 +28,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     login (afterLoginRoute) {
       const lang = this.get('intl').get('locale')[0];
       let lockOptions = {
+        icon: 'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
         socialBigButtons: true,
         dict: lang,
         authParams: {
