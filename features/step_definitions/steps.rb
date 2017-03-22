@@ -933,3 +933,6 @@ Then(/^I can see all my selected broadcasts$/) do
   expect(page).to have_css('.invoice-item', count: @responses.to_i)
 end
 
+When(/^I click the accordion(?:.*)? on "([^"]*)"$/) do |label|
+  find('.accordion .title', text: label).click
+end
