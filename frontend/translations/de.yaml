@@ -304,7 +304,7 @@ statistics:
         haben auf <strong>Unterstützen</strong> anstatt auf <strong>Weiter
         </strong> geklickt?</p><p> Die Formel (in Anzahl Klicks) lautet:
         <div class="ui basic center aligned segment">
-        <h1><sup>Unterstützen</sup>/<sub>(Unterstützen + Weiter)</sub></h1>
+        <h1><sup>Unterstützen</sup>/ <sub>(Unterstützen+Weiter)</sub></h1>
         </div> </p>
       average: >
         <p> Was ist der Durschnittsbetrag pro Unterstützer? Wie wichtig ist die
