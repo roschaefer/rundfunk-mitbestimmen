@@ -37,7 +37,7 @@
         </div>
         <div class="column">
           {{#if session.isAuthenticated }}
-            {{#link-to 'invoice' classNames=(concat 'ui fluid labeled icon button link-to-invoice ' additionalDistributeButtonClasses)}}
+            {{#link-to 'invoice' classNames=(concat 'ui fluid button link-to-invoice ' additionalDistributeButtonClasses)}}
               <i class="euro icon"></i>
               {{t 'decide.next-step.button.to-invoice' }}
             {{/link-to}}
