@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
           autoclose: true,
           redirect: false,
           responseType: 'token',
+          redirectUrl: 'http://localhost:4200/login',
           params: {
             state: (afterLoginRoute || this.get('router.url')),
             scope: 'openid email',
