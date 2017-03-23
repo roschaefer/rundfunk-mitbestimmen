@@ -51,6 +51,7 @@
     "ember-resolver": "^3.0.0",
     "ember-scroll-to": "0.6.4",
     "ember-simple-auth": "1.2.0",
+    "ember-simple-auth-auth0": "^3.0.1",
     "ember-truth-helpers": "1.3.0",
     "ember-welcome-page": "^2.0.2",
     "highcharts": "5.0.9",

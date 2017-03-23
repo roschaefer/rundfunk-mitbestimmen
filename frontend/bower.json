@@ -5,6 +5,9 @@
     "ember-cli-shims": "0.1.3",
     "ember-qunit-notifications": "0.1.0",
     "jquery-mockjax": "2.2.1",
-    "semantic-ui": "^2.2.6"
+    "semantic-ui": "^2.2.6",
+    "auth0-lock": "^10.13.0",
+    "auth0.js": "^8.4.0",
+    "auth0-lock-passwordless": "^2.2.3"
   }
 }
