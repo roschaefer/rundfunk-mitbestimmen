@@ -4,6 +4,7 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 
 export default Ember.Route.extend(ApplicationRouteMixin , {
   intl: Ember.inject.service(),
+  routeAfterAuthentication: 'login',
   beforeModel() {
     // define the app's runtime locale
     // For example, here you would maybe do an API lookup to resolver
