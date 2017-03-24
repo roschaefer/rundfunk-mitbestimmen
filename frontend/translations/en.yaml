@@ -49,8 +49,9 @@ index:
   header:
     top: Public broadcasting in Germany gets <b>{amount}</b> every year.
   action:
-      Which programme should be created with <div>your <span class="amount-color">{amount}</span> per month?</div>
-  manual: Distribute your broadcasting fees to your favourite broadcasts.
+      You pay <span class="amount-color">{amount}</span> per month</div>.</br>
+      Don't you want to have a say?
+  manual: Distribute your broadcasting fees to broadcasts, which you want to support.
   start: participate now
   statistics:
     registered-users: Registered users
@@ -59,10 +60,10 @@ index:
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
-    header: Distribute your broadcasting fees
+    header: Improve the quality of programs
     content: >
       With a symbolic amount you can evaluate the quality of public
-      broadcasts according to your own criteria.<br> Support your favourite
+      broadcasts according to your own criteria. Support your favourite
       broadcasts and let them know, of course anonymously.
     steps:
       find: Find broadcasts
