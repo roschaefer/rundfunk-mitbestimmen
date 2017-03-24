@@ -50,7 +50,7 @@ index:
     top: Public broadcasting in Germany gets <b>{amount}</b> every year.
   action:
       You pay <span class="amount-color">{amount}</span> per month</div>.</br>
-      Don't you want to have a say?
+      Don't you want to get a say?
   manual: Distribute your broadcasting fees to broadcasts, which you want to support.
   start: participate now
   statistics:

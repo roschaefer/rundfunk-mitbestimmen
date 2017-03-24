@@ -8,5 +8,5 @@ Feature: Explain the purpose
     When I visit the landing page
     Then I can read:
     """
-    You pay €17.50 per month. Don't you want to have a say?
+    You pay €17.50 per month. Don't you want to get a say?
     """
