@@ -26,9 +26,15 @@ p {
   font-size: 1em;
 }
 
-.ui.header {
+.ui.header.intro-text {
   font-family: 'Assistant', sans-serif;
   font-weight: normal;
+  color: #555;
+}
+
+.start-question {
+  font-size: 2.5em;
+  margin-bottom: 50px;
 }
 
 .ui.menu {
@@ -40,6 +46,10 @@ p {
   font-weight: bold;
 }
 
+.amount-color {
+  color: #2185D0;
+}
+
 .ui.button {
   font-family: 'Assistant', sans-serif;
   font-size: 1.1em;
@@ -47,9 +57,19 @@ p {
 
 .ui.button.start-button {
   text-transform: uppercase;
-  padding-left: 3em;
-  padding-right: 3em;
+  padding-left: 3.3em;
+  padding-right: 3.3em;
   letter-spacing: 1px;
+  margin-top: 30px;
+}
+
+.ui.step-border {
+  border: 0;
+}
+
+.ui.steps > .step-style {
+  flex: none;
+  border-right: none;
 }
 
 .ui.statistic > .label {
@@ -148,10 +168,19 @@ input.ember-inline-edit-input[type="text"] {
   flex-grow: 0;
 }
 
+.statement {
+  width: 80%;
+}
+
 @media only screen and (max-width: 767px) {
   .statement {
     width: 60%;
   }
+
+  .broadcasts {
+    width: 70%;
+  }
+
   .ui.menu .item .ui.button {
     margin-left: -4px;
   }

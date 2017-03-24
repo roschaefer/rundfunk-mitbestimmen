@@ -48,9 +48,11 @@ application:
   login: Log in
 index:
   header:
-    top: Public broadcasting in Germany gets <h1>{amount}</h1> every year.
+    top: Public broadcasting in Germany gets <b>{amount}</b> every year.
   action:
-      I pay <h1>{amount} per month,</h1> therefore I wish to
+      You pay <span class="amount-color">{amount}</span> per month</div>.</br>
+      Don't you want to get a say?
+  manual: Distribute your broadcasting fees to broadcasts, which you want to support.
   start: participate now
   statistics:
     registered-users: Registered users
@@ -59,10 +61,10 @@ index:
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
-    header: Distribute your broadcasting fees
+    header: Improve the quality of programs
     content: >
       With a symbolic amount you can evaluate the quality of public
-      broadcasts according to your own criteria.<br> Support your favourite
+      broadcasts according to your own criteria. Support your favourite
       broadcasts and let them know, of course anonymously.
     steps:
       find: Find broadcasts

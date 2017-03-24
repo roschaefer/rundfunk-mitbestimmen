@@ -48,9 +48,11 @@ application:
   login: Einloggen
 index:
   header:
-    top: Der öffentlich-rechtliche Rundfunk erhält <h1>{amount}</h1> jedes Jahr.
+    top: Der öffentlich-rechtliche Rundfunk erhält <b>{amount}</b> jedes Jahr.
   action:
-    Ich zahle <h1>monatlich {amount}</h1> und daher möchte ich
+    Du zahlst jeden Monat <span class="amount-color">{amount}</span></br>
+    und möchtest mitbestimmen?
+  manual: Verteile Deinen Rundfunkbeitrag auf Sendungen, die du unterstützen möchtest.
   start: jetzt mitbestimmen
   statistics:
     registered-users: Registrierte Nutzer
@@ -59,10 +61,10 @@ index:
     money-assigned: bereits zugewiesen
     link-to-statistics: Statistiken pro Sendung
   approval:
-    header: Verteile Deinen Rundfunkbeitrag
+    header: Verbessere die Programmqualität
     content: >
       Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
-      nach Deinen Kriterien bewerten.<br> Fördere Deine Lieblingssendungen
+      nach Deinen Kriterien bewerten. Fördere Deine Lieblingssendungen
       und lass sie es wissen, selbstverständlich anonym.
     steps:
       find: Sendungen finden

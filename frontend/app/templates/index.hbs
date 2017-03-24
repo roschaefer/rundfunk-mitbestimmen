@@ -3,73 +3,66 @@
   <div class="middle aligned row full-height">
     <div class="column">
       <div class="ui stackable grid">
-        <div class="two column row">
-          <div class="column">
-            <img class="ui centered huge image" src="assets/images/broadcasters.svg">
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-          </div>
-
+        <div class="row">
           <div class="middle aligned center aligned column">
-            <div class="row">
-              <div class="column">
-                <p class="ui header">
-                {{format-html-message 'index.header.top'
-                amount=(format-number 8000000000 maximumFractionDigits=0
-                minimumFractionDigits=0 style='currency' currency='EUR')}}
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="column">
-                <div class="ui header">
-                  {{format-html-message 'index.action'
-                  amount=(format-number 17.5 maximumFractionDigits=2
-                  minimumFractionDigits=2 style='currency' currency='EUR')}}
-                </div>
-                <p>
-                {{#link-to 'decide' id="continue-to-decide"
-                  class="ui huge primary button start-button"}}
-                  {{t 'index.start' }}
-                {{/link-to}}
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui basic padded segment"></div>
-              </div>
-            </div>
-
+            <p class="ui header intro-text">
+              {{format-html-message 'index.header.top'
+              amount=(format-number 8000000000 maximumFractionDigits=0
+              minimumFractionDigits=0 style='currency' currency='EUR')}}
+            </p>
+            <h1 class="start-question">
+              {{format-html-message 'index.action'
+              amount=(format-number 17.5 maximumFractionDigits=2
+              minimumFractionDigits=2 style='currency' currency='EUR')}}
+            </h1>
           </div>
         </div>
-
+        <div class="ui centered row">
+          <div class="twelve wide column">
+            <p class="ui header intro-text center aligned">
+              {{format-html-message 'index.manual'}}
+            </p>
+            <div class="ui three steps step-border">
+              <div class="step step-style">
+                <i class="grey unhide icon"></i>
+                <div class="content">
+                  <div class="description">
+                    {{t 'index.approval.steps.find' }}
+                  </div>
+                </div>
+              </div>
+              <div class="step step-style">
+                <i class="green checkmark box icon"></i>
+                <div class="content">
+                  <div class="description">
+                    {{t 'index.approval.steps.decide' }}
+                  </div>
+                </div>
+              </div>
+              <div class="step step-style">
+                <i class="blue euro icon"></i>
+                <div class="content">
+                  <div class="description">
+                    {{t 'index.approval.steps.distribute' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="center aligned column">
+            {{#link-to 'decide' id="continue-to-decide"
+              class="ui huge primary button start-button"}}
+              {{t 'index.start' }}
+            {{/link-to}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <div class="ui basic padded segment"></div>
+          </div>
+        </div>
         <div class="row">
           <div class="center aligned column">
             <div class="ui huge image">
@@ -85,8 +78,11 @@
   </div>
 
   <div class="ui divider"></div>
-  <div id="approval" class="ui center aligned row">
-    <div class="sixteen wide column">
+  <div id="approval" class="ui row">
+    <div class="six wide column">
+      <img class="ui centered broadcasts image" src="assets/images/broadcasters.svg">
+    </div>
+    <div class="eight wide column middle aligned">
       <h1>
         {{t 'index.approval.header'}}
       </h1>
@@ -96,47 +92,14 @@
     </div>
   </div>
 
-  <div class="ui centered row">
-    <div class="twelve wide column">
-
-      <div class="ui three steps">
-        <div class="step">
-          <i class="grey unhide icon"></i>
-          <div class="content">
-            <div class="description">
-              {{t 'index.approval.steps.find' }}
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <i class="green checkmark box icon"></i>
-          <div class="content">
-            <div class="description">
-              {{t 'index.approval.steps.decide' }}
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <i class="blue euro icon"></i>
-          <div class="content">
-            <div class="description">
-              {{t 'index.approval.steps.distribute' }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
   <div class="row"></div>
 
   <div class="ui divider"></div>
   <div class="ui row">
-    <div class="five wide column">
+    <div class="six wide column">
       <img class="ui centered statement image" src="assets/images/statement.svg">
     </div>
-    <div class="nine wide column middle aligned">
+    <div class="eight wide column middle aligned">
       <h1>
         {{t 'index.statement.header'}}
       </h1>
