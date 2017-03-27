@@ -37,7 +37,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
           autoclose: true,
           redirect: false,
           responseType: 'token',
-          redirectUrl: 'http://localhost:4200/login',
+          redirectUrl: window.location.href,
           params: {
             state: (afterLoginRoute || this.get('router.url')),
             scope: 'openid email',
