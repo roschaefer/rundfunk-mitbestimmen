@@ -29,7 +29,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       BACKEND_URL: (process.env.API_HOST || 'http://localhost:3000'),
-      authenticator: 'authenticator:custom-authenticator'
+      authenticator: 'authenticator:auth0-lock'
     },
     metricsAdapters: [
       {

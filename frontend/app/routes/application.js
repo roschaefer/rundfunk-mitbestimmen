@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'frontend/config/environment';
 // app/routes/application.js
 import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
 
@@ -44,8 +45,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
           }
         }
       };
-
-      this.get('session').authenticate('authenticator:auth0-lock', lockOptions);
+      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
     },
 
     logout () {

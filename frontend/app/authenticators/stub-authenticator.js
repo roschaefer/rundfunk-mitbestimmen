@@ -1,13 +1,13 @@
 import Ember from 'ember';
-import Base from 'auth0-ember-simple-auth/authenticators/lock';
-export default Base.extend({
+import Base from 'ember-simple-auth/authenticators/base';
 
-  authenticate (options) {
-    return new Ember.RSVP.Promise((res) => {
-      const jwt = window.stubbedJwt;
-      const state = options.authParams.state;
-      var sessionData = { jwt, state };
-      this.afterAuth(sessionData).then(response => res(this._setupFutureEvents(response)));
+export default Base.extend({
+  authenticate(options) {
+    return new Ember.RSVP.Promise((resolve) => {
+      const idToken = window.stubbedJwt;
+      const state = options.auth.params.state;
+      const sessionData = {idToken, state };
+      resolve(sessionData);
     });
   },
 });
