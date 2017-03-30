@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ENV from 'frontend/config/environment';
 // app/routes/application.js
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin , {
   intl: Ember.inject.service(),
@@ -27,13 +27,22 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
   actions: {
     login (afterLoginRoute) {
       const lang = this.get('intl').get('locale')[0];
-      let lockOptions = {
-        icon: 'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
-        socialBigButtons: true,
-        dict: lang,
-        authParams: {
-          state: (afterLoginRoute || this.get('router.url')),
-          scope: 'openid email'
+      // Check out the docs for all the options:
+      // https://auth0.com/docs/libraries/lock/customization
+      const lockOptions = {
+        theme: {
+          logo:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png'
+        },
+        language: lang,
+        auth: {
+          autoclose: true,
+          redirect: false,
+          responseType: 'token',
+          redirectUrl: window.location.href,
+          params: {
+            state: (afterLoginRoute || this.get('router.url')),
+            scope: 'openid email',
+          }
         }
       };
       this.get('session').authenticate(ENV.APP.authenticator, lockOptions);

@@ -13,11 +13,10 @@ module.exports = function(environment) {
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com"
     },
     'ember-simple-auth': {
-      authorizer: 'simple-auth-authorizer:jwt'
-    },
-    'auth0-ember-simple-auth': {
-      clientID: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
-      domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
+      auth0: {
+        clientID: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
+        domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
+      },
     },
     EmberENV: {
       FEATURES: {
@@ -30,7 +29,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       BACKEND_URL: (process.env.API_HOST || 'http://localhost:3000'),
-      authenticator: 'authenticator:custom-authenticator'
+      authenticator: 'authenticator:auth0-lock'
     },
     metricsAdapters: [
       {
