@@ -68,7 +68,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.APP.BACKEND_URL = 'https://api.rundfunk-mitbestimmen.de/';
-    ENV['auth0-ember-simple-auth'] = {
+    ENV['ember-simple-auth']['auth0'] = {
       clientID: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
       domain: 'rundfunk-mitbestimmen.eu.auth0.com'
     };
