@@ -14,6 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // method with the results of the XHR request
 
     // whatever you do to pick a locale for the user:
+    this._super(...arguments);
     return this.get('intl').setLocale(calculateLocale());
 
     // OR for those that sideload, an array is accepted to handle fallback lookups
@@ -36,12 +37,10 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         language: lang,
         auth: {
           autoclose: true,
-          redirect: false,
-          responseType: 'token',
-          redirectUrl: window.location.href,
           params: {
             state: (afterLoginRoute || this.get('router.url')),
             scope: 'openid email',
+            responseType: 'id_token token',
           }
         }
       };

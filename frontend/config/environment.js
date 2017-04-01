@@ -63,7 +63,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'integration') {
-    ENV.APP.authenticator = 'authenticator:stub-authenticator'
+    ENV.APP.authenticator = 'authenticator:stub-authenticator';
   }
 
   if (environment === 'production') {
