@@ -26,11 +26,14 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
   },
   actions: {
     login (givenState) {
-      console.log(`givenState: ${givenState}`);
-      const state = givenState || { toRoute: this.get('router.url') };
-      console.log(`state: ${state}`);
+      const defaultState = {
+        toRoute: this.get('router.url'),
+        selections: this.store.peekAll('selection').map((s) => {
+          return s.toJSON();
+        })
+      };
+      const state = Object.assign({}, defaultState, givenState);
       const encodedState = btoa(JSON.stringify(state));
-      console.log(`encodedState: ${encodedState}`);
       const lang = this.get('intl').get('locale')[0];
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization

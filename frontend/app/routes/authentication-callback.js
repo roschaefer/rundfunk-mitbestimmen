@@ -3,30 +3,24 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
-  beforeModel() {
-    this._super(...arguments);
+  model() {
     if (window._paq){
       window._paq.push(['trackGoal', 4]);
       //goalId 4 is "Signup/Login successful"
     }
-    this.store.findRecord('condensed-balance', 0, {reload: true}).then(() => {
+    return this.store.findRecord('condensed-balance', 0, {reload: true}).then(() => {
       // make a random request to the database, the user will be saved to the
       // datatabase and all subsequent request will be associated to that user
-      return Ember.RSVP.allSettled(this.store.peekAll('selection').map((s) => {
-        return s.save();
+      const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));
+
+      return Ember.RSVP.allSettled(state.selections.map((s) => {
+        return this.store.findRecord('broadcast', s.broadcast).then((b) => {
+          let selection = this.store.createRecord('selection', s);
+          selection.set('broadcast', b);
+          return selection.save();
+        });
       })).finally(() => {
-        const encodedState = this.get('session').get('data.authenticated.state');
-        console.log(encodedState);
-        let toRoute;
-        if (encodedState) {
-          const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));
-          console.log(state);
-          toRoute = state.toRoute;
-        } else {
-          toRoute = '/';
-        }
-        console.log(toRoute);
-        return this.transitionTo(toRoute);
+        return this.transitionTo(state.toRoute);
       });
     });
   }
