@@ -40,8 +40,9 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
           params: {
             state: (afterLoginRoute || this.get('router.url')),
             scope: 'openid email',
-            responseType: 'id_token token',
-          }
+            responseType: 'id_token token'
+          },
+          redirectUrl: window.location.origin + '/login'
         }
       };
       this.get('session').authenticate(ENV.APP.authenticator, lockOptions);

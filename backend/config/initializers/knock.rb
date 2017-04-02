@@ -47,8 +47,8 @@ Knock.setup do |config|
   ## Configure the public key used to decode tokens, if required.
   ##
   ## Default:
-  public_key_path = if Rails.env.production? then 'config/rundfunk-mitbestimmen.pem' else 'config/rundfunk-testing.pem' end
-  config.token_public_key = OpenSSL::PKey::RSA.new File.read(public_key_path)
+  public_key_file = if Rails.env.production? then 'rundfunk-mitbestimmen.pem' else 'rundfunk-testing.pem' end
+  config.token_public_key = OpenSSL::PKey::RSA.new File.read(File.join(Rails.root, 'config', public_key_file))
   ## Exception Class
   ## ---------------
   ##
