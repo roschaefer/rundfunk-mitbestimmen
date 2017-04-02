@@ -29,6 +29,7 @@ Router.map(function() {
   this.route('broadcasts');
   this.route('login');
   this.route('data-privacy');
+  this.route('authenticationCallback');
 });
 
 export default Router;
