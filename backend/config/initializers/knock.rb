@@ -28,7 +28,7 @@ Knock.setup do |config|
   ## Configure the algorithm used to encode the token
   ##
   ## Default:
-  # config.token_signature_algorithm = 'HS256'
+  config.token_signature_algorithm = 'RS256'
 
   ## Signature key
   ## -------------
@@ -47,8 +47,8 @@ Knock.setup do |config|
   ## Configure the public key used to decode tokens, if required.
   ##
   ## Default:
-  # config.token_public_key = nil
-
+  public_key_path = if Rails.env.production? then 'config/rundfunk-mitbestimmen.pem' else 'config/rundfunk-testing.pem' end
+  config.token_public_key = OpenSSL::PKey::RSA.new File.read(public_key_path)
   ## Exception Class
   ## ---------------
   ##
