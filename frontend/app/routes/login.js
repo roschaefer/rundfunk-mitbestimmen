@@ -4,6 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
   beforeModel() {
+    this._super(...arguments);
     if (window._paq){
       window._paq.push(['trackGoal', 4]);
       //goalId 4 is "Signup/Login successful"
@@ -14,7 +15,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       return Ember.RSVP.allSettled(this.store.peekAll('selection').map((s) => {
         return s.save();
       })).finally(() => {
-        const toRoute = this.get('session').get('data.authenticated.state') || '/';
+        const encodedState = this.get('session').get('data.authenticated.state');
+        console.log(encodedState);
+        let toRoute;
+        if (encodedState) {
+          const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));
+          console.log(state);
+          toRoute = state.toRoute;
+        } else {
+          toRoute = '/';
+        }
+        console.log(toRoute);
         return this.transitionTo(toRoute);
       });
     });

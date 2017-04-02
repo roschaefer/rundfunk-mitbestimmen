@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
       this.send('setQuery', query);
     },
     signupAndDistributeBudget(){
-      this.send('login', '/invoice');
+      this.send('login', { toRoute: '/invoice' });
     }
   }
 });

@@ -5,7 +5,6 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 
 export default Ember.Route.extend(ApplicationRouteMixin , {
   intl: Ember.inject.service(),
-  routeAfterAuthentication: 'login',
   beforeModel() {
     // define the app's runtime locale
     // For example, here you would maybe do an API lookup to resolver
@@ -26,7 +25,12 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (afterLoginRoute) {
+    login (givenState) {
+      console.log(`givenState: ${givenState}`);
+      const state = givenState || { toRoute: this.get('router.url') };
+      console.log(`state: ${state}`);
+      const encodedState = btoa(JSON.stringify(state));
+      console.log(`encodedState: ${encodedState}`);
       const lang = this.get('intl').get('locale')[0];
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
@@ -38,7 +42,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         auth: {
           autoclose: true,
           params: {
-            state: (afterLoginRoute || this.get('router.url')),
+            state: encodedState,
             scope: 'openid email',
             responseType: 'id_token token'
           },
