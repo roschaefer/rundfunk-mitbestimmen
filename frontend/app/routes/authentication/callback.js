@@ -14,9 +14,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));
 
       return Ember.RSVP.allSettled(state.selections.map((s) => {
-        return this.store.findRecord('broadcast', s.broadcast).then((b) => {
-          let selection = this.store.createRecord('selection', s);
-          selection.set('broadcast', b);
+        // magic numbers FTW!
+        return this.store.findRecord('broadcast', s[0]).then((b) => {
+          let selection = this.store.createRecord('selection', {
+            response: s[1],
+            broadcast: b
+          });
           return selection.save();
         });
       })).finally(() => {

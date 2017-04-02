@@ -29,7 +29,9 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       const defaultState = {
         toRoute: this.get('router.url'),
         selections: this.store.peekAll('selection').map((s) => {
-          return s.toJSON();
+          // keep the redirect url short
+          // JSON.stringify exceeds 2000 characters quickly
+          return [s.get('broadcast').get('id'), s.get('response')];
         })
       };
       const state = Object.assign({}, defaultState, givenState);
