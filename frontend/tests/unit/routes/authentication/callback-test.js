@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:authentication-callback', 'Unit | Route | authentication callback', {
+moduleFor('route:authentication/callback', 'Unit | Route | authentication/callback', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

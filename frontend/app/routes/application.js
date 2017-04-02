@@ -49,7 +49,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
             scope: 'openid email',
             responseType: 'id_token token'
           },
-          redirectUrl: window.location.origin + '/authenticationCallback'
+          redirectUrl: window.location.origin + '/authentication/callback'
         }
       };
       this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
