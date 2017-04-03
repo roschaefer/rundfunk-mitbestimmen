@@ -2,7 +2,8 @@
 lock '3.8.0'
 
 set :application, 'rundfunk-backend'
-set :repo_url, 'https://github.com/roschaefer/rundfunk-backend.git'
+set :repo_url, 'https://github.com/roschaefer/rundfunk-mitbestimmen.git'
+set :repo_tree, 'backend/'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
