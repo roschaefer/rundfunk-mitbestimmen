@@ -1,3 +1,7 @@
+auth0-lock:
+  email:
+    headerText: >
+      Remember your broadcasts to later find them and change your distribution
 authentication:
   loading:
     message: Your selection is being published...

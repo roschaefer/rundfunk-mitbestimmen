@@ -37,14 +37,19 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       };
       const state = Object.assign({}, defaultState, givenState);
       const encodedState = btoa(JSON.stringify(state));
-      const lang = this.get('intl').get('locale')[0];
-
-
+      const dict = {
+        email: {
+          headerText: this.get('intl').t('auth0-lock.email.headerText')
+        },
+        title: ''
+      };
 
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
         icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
+        primaryColor: '#2185D0',
+        dict: dict,
         authParams: {
           state: encodedState,
           scope: 'openid email',
