@@ -845,14 +845,9 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
-When(/^I finally sign up$/) do
-  @user = build(:user)
-  stub_jwt(@user)
-  click_on 'Awesome!'
-end
-
 Then(/^I am back on the decision page$/) do
   expect(page).to have_current_path('/decide')
+  expect(page).to have_css('.decision-page')
 end
 
 Then(/^no account was created/) do

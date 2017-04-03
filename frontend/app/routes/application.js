@@ -5,7 +5,7 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 
 export default Ember.Route.extend(ApplicationRouteMixin , {
   intl: Ember.inject.service(),
-  routeAfterAuthentication: 'login',
+  routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale
     // For example, here you would maybe do an API lookup to resolver
@@ -14,6 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // method with the results of the XHR request
 
     // whatever you do to pick a locale for the user:
+    this._super(...arguments);
     return this.get('intl').setLocale(calculateLocale());
 
     // OR for those that sideload, an array is accepted to handle fallback lookups
@@ -25,7 +26,17 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (afterLoginRoute) {
+    login (givenState) {
+      const defaultState = {
+        toRoute: this.get('router.url'),
+        selections: this.store.peekAll('selection').map((s) => {
+          // keep the redirect url short
+          // JSON.stringify exceeds 2000 characters quickly
+          return [s.get('broadcast').get('id'), s.get('response')];
+        })
+      };
+      const state = Object.assign({}, defaultState, givenState);
+      const encodedState = btoa(JSON.stringify(state));
       const lang = this.get('intl').get('locale')[0];
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
@@ -36,13 +47,12 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         language: lang,
         auth: {
           autoclose: true,
-          redirect: false,
-          responseType: 'token',
-          redirectUrl: window.location.href,
           params: {
-            state: (afterLoginRoute || this.get('router.url')),
+            state: encodedState,
             scope: 'openid email',
-          }
+            responseType: 'id_token token'
+          },
+          redirectUrl: window.location.origin + '/authentication/callback'
         }
       };
       this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
