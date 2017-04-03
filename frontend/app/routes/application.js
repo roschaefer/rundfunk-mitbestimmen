@@ -38,24 +38,21 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       const state = Object.assign({}, defaultState, givenState);
       const encodedState = btoa(JSON.stringify(state));
       const lang = this.get('intl').get('locale')[0];
+
+
+
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
-        theme: {
-          logo:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png'
+        icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
+        authParams: {
+          state: encodedState,
+          scope: 'openid email',
         },
-        language: lang,
-        auth: {
-          autoclose: true,
-          params: {
-            state: encodedState,
-            scope: 'openid email',
-            responseType: 'id_token token'
-          },
-          redirectUrl: window.location.origin + '/authentication/callback'
-        }
+        responseType: 'token',
+        callbackURL: window.location.origin + '/authentication/callback'
       };
-      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
+      this.get('session').authenticate(ENV.APP.authenticator, 'magiclink', lockOptions);
     },
 
     logout () {
