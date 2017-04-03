@@ -47,6 +47,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
+        connections: ["facebook", "google-oauth2"],
         icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
         primaryColor: '#2185D0',
         dict: dict,
@@ -57,7 +58,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         responseType: 'token',
         callbackURL: window.location.origin + '/authentication/callback'
       };
-      this.get('session').authenticate(ENV.APP.authenticator, 'magiclink', lockOptions);
+      this.get('session').authenticate(ENV.APP.authenticator, 'socialOrMagiclink', lockOptions);
     },
 
     logout () {
