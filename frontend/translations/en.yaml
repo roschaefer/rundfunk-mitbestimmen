@@ -1,7 +1,12 @@
 auth0-lock:
-  email:
-    headerText: >
-      Remember your broadcasts to later find them and change your distribution
+  socialOrMagiclink:
+    emailSent:
+      success: Sent!
+      sentLabel: We sent you a link to sign in
+    networkOrEmail:
+      separatorText: >
+        Remember your broadcasts to later find them and change your distribution
+      smallSocialButtonsHeader: Remember with
 authentication:
   loading:
     message: Your selection is being published...

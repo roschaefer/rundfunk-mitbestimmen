@@ -38,10 +38,19 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       const state = Object.assign({}, defaultState, givenState);
       const encodedState = btoa(JSON.stringify(state));
       const dict = {
-        email: {
-          headerText: this.get('intl').t('auth0-lock.email.headerText')
+        socialOrMagiclink: {
+          emailSent: {
+            sentLabel: this.get('intl').t('auth0-lock.socialOrMagiclink.emailSent.sentLabel'),
+            success: this.get('intl').t('auth0-lock.socialOrMagiclink.emailSent.success'),
+          },
+          networkOrEmail: {
+            footerText: "",
+            headerText: "",
+            separatorText: this.get('intl').t('auth0-lock.socialOrMagiclink.networkOrEmail.separatorText'),
+            smallSocialButtonsHeader: this.get('intl').t('auth0-lock.socialOrMagiclink.networkOrEmail.smallSocialButtonsHeader'),
+          }
         },
-        title: ''
+        title: ""
       };
 
       // Check out the docs for all the options:

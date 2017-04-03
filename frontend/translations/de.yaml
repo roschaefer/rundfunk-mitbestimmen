@@ -1,8 +1,13 @@
 auth0-lock:
-  email:
-    headerText: >
-      Merke Dir Deine Sendungen damit Du sie später wiederfinden und Deine
-      Verteilung ändern kannst
+  socialOrMagiclink:
+    emailSent:
+      success: Geklappt!
+      sentLabel: Wir haben Dir einen Link per Mail geschickt
+    networkOrEmail:
+      separatorText: >
+        Merke Dir Deine Sendungen damit Du sie später wiederfinden und Deine
+        Verteilung ändern kannst
+      smallSocialButtonsHeader: Merken mit
 authentication:
   loading:
     message: Deine Auswahl wird veröffentlicht...
