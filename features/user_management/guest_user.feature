@@ -20,9 +20,9 @@ Feature: Allow guest accounts
 
   Scenario: Unregistered users will be asked to sign up first before they distribute their budget
     When I click the support button for every broadcast in the database
-    Then I can see a button "Sign up" with a message next to it:
+    Then I can see a button "Save broadcasts" with a message next to it:
     """
-    To distribute your symbolic budget of €17.50, please sign up.
+    Save your selected broadcasts and distribute your symbolic budget of €17.50
     """
     And if I click on that button and create an account
     Then I am brought to the 'My broadcasts' page

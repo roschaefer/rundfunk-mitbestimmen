@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
             separatorText: this.get('intl').t('decide.next-step.auth0-lock.networkOrEmail.separatorText'),
           },
         title: this.get('intl').t('decide.next-step.auth0-lock.title')
-      }
+      };
       this.send('login', { toRoute: '/invoice' }, dict);
     }
   }
