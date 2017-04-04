@@ -26,7 +26,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (givenState) {
+    login (givenState, givenDict) {
       const defaultState = {
         toRoute: this.get('router.url'),
         selections: this.store.peekAll('selection').map((s) => {
@@ -37,25 +37,38 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       };
       const state = Object.assign({}, defaultState, givenState);
       const encodedState = btoa(JSON.stringify(state));
-      const lang = this.get('intl').get('locale')[0];
+
+      const dict = Object.assign({
+          emailSent: {
+            sentLabel: this.get('intl').t('auth0-lock.emailSent.sentLabel'),
+            resendLabel: this.get('intl').t('auth0-lock.emailSent.resendLabel'),
+            success: this.get('intl').t('auth0-lock.emailSent.success'),
+          },
+          networkOrEmail: {
+            footerText: "",
+            headerText: "",
+            smallSocialButtonsHeader: this.get('intl').t('auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
+            separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
+          },
+        title: 'Rundfunk MITBESTIMMEN'
+      }, givenDict);
+
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
-        theme: {
-          logo:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png'
+        connections: ["facebook", "google-oauth2"],
+        icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
+        primaryColor: '#2185D0',
+        dict: dict,
+        authParams: {
+          state: encodedState,
+          scope: 'openid email',
         },
-        language: lang,
-        auth: {
-          autoclose: true,
-          params: {
-            state: encodedState,
-            scope: 'openid email',
-            responseType: 'id_token token'
-          },
-          redirectUrl: window.location.origin + '/authentication/callback'
-        }
+        socialBigButtons: false,
+        responseType: 'token',
+        callbackURL: window.location.origin + '/authentication/callback'
       };
-      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
+      this.get('session').authenticate(ENV.APP.authenticator, 'socialOrMagiclink', lockOptions);
     },
 
     logout () {

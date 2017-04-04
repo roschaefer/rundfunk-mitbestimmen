@@ -5,10 +5,10 @@ export default Base.extend({
   restore(data) {
     return Ember.RSVP.resolve(data);
   },
-  authenticate(options) {
+  authenticate(_, options) {
     return new Ember.RSVP.Promise((resolve) => {
       const idToken = window.stubbedJwt;
-      const state = options.auth.params.state;
+      const state = options.authParams.state;
       const sessionData =  {
         idToken,
         idTokenPayload: {

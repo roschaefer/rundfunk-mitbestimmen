@@ -51,7 +51,7 @@ test('encourages the user to load more suggestions', function(assert) {
 test('before authentication, user is asked to sign up', function(assert) {
   this.render(hbs`{{decision-card-deck-next-step positiveReviews=3}}`);
   let primary = this.$('.primary.button').text();
-  assert.ok(primary.match(/Sign up/));
+  assert.ok(primary.match(/Save broadcasts/));
 });
 
 test('after authentication, user is can distribute budget', function(assert) {
