@@ -1,7 +1,7 @@
 auth0-lock:
   emailSent:
     resendLabel: Resend
-    success: Sent!
+    success: Check your mailbox!
     sentLabel: We sent you a link to sign in
   networkOrEmail:
     smallSocialButtonsHeader: >

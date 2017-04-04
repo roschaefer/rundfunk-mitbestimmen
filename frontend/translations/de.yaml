@@ -1,7 +1,7 @@
 auth0-lock:
   emailSent:
     resendLabel: Erneut senden
-    success: Gesendet!
+    success: Öffne Dein Postfach!
     sentLabel: Wir haben Dir einen Link per Mail geschickt
   networkOrEmail:
     smallSocialButtonsHeader: >
