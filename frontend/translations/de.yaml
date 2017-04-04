@@ -1,13 +1,13 @@
 auth0-lock:
-  socialOrMagiclink:
-    emailSent:
-      success: Geklappt!
-      sentLabel: Wir haben Dir einen Link per Mail geschickt
-    networkOrEmail:
-      separatorText: >
-        Merke Dir Deine Sendungen damit Du sie später wiederfinden und Deine
-        Verteilung ändern kannst
-      smallSocialButtonsHeader: Merken mit
+  emailSent:
+    resendLabel: Erneut senden
+    success: Gesendet!
+    sentLabel: Wir haben Dir einen Link per Mail geschickt
+  networkOrEmail:
+    smallSocialButtonsHeader: >
+      Anmelden mit
+    separatorText: >
+      oder gib eine E-Mail Adresse an
 authentication:
   loading:
     message: Deine Auswahl wird veröffentlicht...
@@ -262,9 +262,19 @@ decide:
     button:
       to-invoice: Budget verteilen
       load-more: Mehr Vorschläge
-      sign-up: Anmelden
+      sign-up: Sendungen speichern
     label:
-      sign-up: Um Dein symbolisches Budget zu verteilen, melde Dich bitte an.
+      sign-up:
+        Speichere Deine ausgewählten Sendungen und verteile Dein symbolisches
+        Budget von 17,50€
+    auth0-lock:
+      title: Sendungen speichern
+      networkOrEmail:
+        headerText: >
+          Um die Auswahl zu speichern und die Verteilung des Budgets
+          jederzeit anzupassen
+        smallSocialButtonsHeader: verknüpfe ein Konto
+        separatorText: oder gib eine E-Mail Adresse an
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >

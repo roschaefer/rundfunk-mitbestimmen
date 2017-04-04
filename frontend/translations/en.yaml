@@ -1,12 +1,13 @@
 auth0-lock:
-  socialOrMagiclink:
-    emailSent:
-      success: Sent!
-      sentLabel: We sent you a link to sign in
-    networkOrEmail:
-      separatorText: >
-        Remember your broadcasts to later find them and change your distribution
-      smallSocialButtonsHeader: Remember with
+  emailSent:
+    resendLabel: Resend
+    success: Sent!
+    sentLabel: We sent you a link to sign in
+  networkOrEmail:
+    smallSocialButtonsHeader: >
+      Log in with
+    separatorText: >
+      or enter an email address
 authentication:
   loading:
     message: Your selection is being published...
@@ -252,9 +253,19 @@ decide:
     button:
       to-invoice: Distribute budget
       load-more: More suggestions
-      sign-up: Sign up
+      sign-up: Save broadcasts
     label:
-      sign-up: To distribute your symbolic budget of €17.50, please sign up.
+      sign-up: >
+        Save your selected broadcasts and distribute your symbolic budget of
+        €17.50
+    auth0-lock:
+      title: Save broadcasts
+      networkOrEmail:
+        headerText: >
+          To save the selection and change the distribution of your budget at
+          any time
+        smallSocialButtonsHeader: connect an account
+        separatorText: or enter an email address
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
