@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('condensed-balance', 'Unit | Model | condensed balance', {
+moduleForModel('condensed-balance', 'Unit | Model | condensed statistic', {
   // Specify the other units that are required for this test.
   needs: []
 });

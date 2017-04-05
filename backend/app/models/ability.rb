@@ -46,6 +46,6 @@ class Ability
     can :read, Topic
     can :read, Medium
     can :read, Station
-    can [:read, :condensed], Balance
+    can [:read, :condensed], Statistic
   end
 end

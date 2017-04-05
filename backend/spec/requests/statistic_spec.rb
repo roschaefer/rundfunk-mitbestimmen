@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Balances", type: :request do
-  let(:url) { '/balances' }
+RSpec.describe "Statistics", type: :request do
+  let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { { } }
     let(:request) { get url, params: params }
@@ -16,7 +16,7 @@ RSpec.describe "Balances", type: :request do
           create(:selection, broadcast: broadcast, amount: amount)
         end
       end
-      let(:url) { "/balances" }
+      let(:url) { "/statistics" }
       let(:data) { selections; request; JSON.parse(response.body)['data'] }
 
       it 'orders by total amount descending by default' do
@@ -67,7 +67,7 @@ RSpec.describe "Balances", type: :request do
             create(:selection, response: :neutral, broadcast: broadcast)
             create(:selection, response: :neutral, broadcast: broadcast)
           end
-          # Balances have same total
+          # Statistics have same total
 
           ids_per_request = []
           ids_per_request = 10.times.collect do |i|
@@ -90,8 +90,8 @@ RSpec.describe "Balances", type: :request do
       end
     end
 
-    describe "/condensed_balances/:id" do
-      let(:url) { "/condensed_balances/1" }
+    describe "/condensed_statistics/:id" do
+      let(:url) { "/condensed_statistics/1" }
 
       before(:all) do
         create_list(:user, 42).each do |user|
@@ -111,8 +111,8 @@ RSpec.describe "Balances", type: :request do
 
       let(:data) { JSON.parse(response.body)['data'] }
 
-      it "returns 'condensed-balances' as type" do
-        expect(data['type']).to eq 'condensed-balances'
+      it "returns 'condensed-statistics' as type" do
+        expect(data['type']).to eq 'condensed-statistics'
       end
 
       it "returns the given id" do

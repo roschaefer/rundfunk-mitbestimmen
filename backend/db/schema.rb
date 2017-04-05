@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405202023) do
+ActiveRecord::Schema.define(version: 20170405203335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170405202023) do
   add_foreign_key "selections", "users"
   add_foreign_key "stations", "media"
 
-  create_view :balances,  sql_definition: <<-SQL
+  create_view :statistics,  sql_definition: <<-SQL
       SELECT t.id,
       t.title,
       t.votes,

@@ -8,7 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       window._paq.push(['trackGoal', 4]);
       //goalId 4 is "Signup/Login successful"
     }
-    return this.store.findRecord('condensed-balance', 0, {reload: true}).then(() => {
+    return this.store.findRecord('condensed-statistic', 0, {reload: true}).then(() => {
       // make a random request to the database, the user will be saved to the
       // datatabase and all subsequent request will be associated to that user
       const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));

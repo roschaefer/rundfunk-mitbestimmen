@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'balances/', to: 'balances#index'
-  get 'condensed_balances/:id', to: 'balances#condensed'
+  get 'statistics/', to: 'statistics#index'
+  get 'condensed_statistics/:id', to: 'statistics#condensed'
 
   resources :media, only: [:index, :show]
   resources :stations, only: [:index, :show]

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Balance, type: :model do
+RSpec.describe Statistic, type: :model do
   let(:broadcast) { create(:broadcast) }
 
-  subject { Balance.find(broadcast.id) }
+  subject { Statistic.find(broadcast.id) }
 
   context 'given only neutral selections' do
     before { create(:selection, broadcast: broadcast, response: :neutral) }
