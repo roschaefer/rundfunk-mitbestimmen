@@ -24,7 +24,7 @@ RSpec.describe "Balances", type: :request do
         expect(data).to eq sorted.reverse
       end
 
-      context 'given :order params' do
+      context 'given :order params average and ascending' do
         let(:params) {  {column: 'average', direction: 'asc'} }
 
         it 'orders by average and ascending' do
@@ -32,6 +32,25 @@ RSpec.describe "Balances", type: :request do
           expect(data).to eq sorted
         end
       end
+
+      context 'given :order params average and ascending' do
+        let(:params) {  {column: 'votes', direction: 'asc'} }
+        let(:selections) do
+          votes = [3,2,4]
+          votes.each do |vote|
+            broadcast = create(:broadcast)
+            create_list(:selection, vote, broadcast: broadcast)
+          end
+        end
+
+      it 'orders by number of votes and ascending' do
+        selections
+        request
+        data = JSON.parse(response.body)['data']
+        sorted = data.sort {|b1,b2| b1["attributes"]["reviews"] <=> b2["attributes"]["reviews"] }
+        expect(data).to eq sorted
+      end
+    end
 
       describe 'per_page' do
         let(:params) {  {per_page: 1} }
@@ -114,4 +133,3 @@ RSpec.describe "Balances", type: :request do
     end
   end
 end
-
