@@ -4,6 +4,7 @@ moduleFor('controller:statistics', 'Unit | Controller | statistics', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:session',
     'service:metrics',
     'ember-metrics@metrics-adapter:piwik', // bundled adapter
   ]

@@ -6,21 +6,23 @@
         <div class="row">
           <div class="middle aligned center aligned column">
             <p class="ui header intro-text">
-              {{format-html-message 'index.header.top'
+              {{t 'index.header.top'
               amount=(format-number 8000000000 maximumFractionDigits=0
-              minimumFractionDigits=0 style='currency' currency='EUR')}}
+              minimumFractionDigits=0 style='currency' currency='EUR')
+              htmlSafe=true}}
             </p>
             <h1 class="start-question">
-              {{format-html-message 'index.action'
+              {{t 'index.action'
               amount=(format-number 17.5 maximumFractionDigits=2
-              minimumFractionDigits=2 style='currency' currency='EUR')}}
+              minimumFractionDigits=2 style='currency' currency='EUR')
+              htmlSafe=true }}
             </h1>
           </div>
         </div>
         <div class="ui centered row">
           <div class="twelve wide column">
             <p class="ui header intro-text center aligned">
-              {{format-html-message 'index.manual'}}
+              {{t 'index.manual' htmlSafe=true }}
             </p>
             <div class="ui three steps step-border">
               <div class="step step-style">
@@ -87,7 +89,7 @@
         {{t 'index.approval.header'}}
       </h1>
       <p>
-      {{format-html-message 'index.approval.content'}}
+      {{t 'index.approval.content' htmlSafe=true}}
       </p>
     </div>
   </div>
@@ -104,7 +106,7 @@
         {{t 'index.statement.header'}}
       </h1>
       <p>
-      {{format-html-message 'index.statement.content'}}
+      {{t 'index.statement.content' htmlSafe=true}}
       </p>
     </div>
   </div>

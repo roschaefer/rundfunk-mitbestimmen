@@ -5,14 +5,14 @@
         {{t 'decide.next-step.to-invoice.header' positives=positiveReviews }}
       </div>
       <div class="description">
-        {{format-html-message 'decide.next-step.to-invoice.content' positives=positiveReviews }}
+        {{t 'decide.next-step.to-invoice.content' positives=positiveReviews htmlSafe=true }}
       </div>
     {{else}}
       <div class="header">
         {{t 'decide.next-step.load-more.header' positives=positiveReviews }}
       </div>
       <div class="description">
-        {{format-html-message 'decide.next-step.load-more.content' positives=positiveReviews }}
+        {{t 'decide.next-step.load-more.content' positives=positiveReviews htmlSafe=true }}
       </div>
     {{/if}}
   </div>
