@@ -90,8 +90,8 @@ RSpec.describe "Statistics", type: :request do
       end
     end
 
-    describe "/condensed_statistics/:id" do
-      let(:url) { "/condensed_statistics/1" }
+    describe "/summarized_statistics/:id" do
+      let(:url) { "/summarized_statistics/1" }
 
       before(:all) do
         create_list(:user, 42).each do |user|
@@ -111,8 +111,8 @@ RSpec.describe "Statistics", type: :request do
 
       let(:data) { JSON.parse(response.body)['data'] }
 
-      it "returns 'condensed-statistics' as type" do
-        expect(data['type']).to eq 'condensed-statistics'
+      it "returns 'summarized-statistics' as type" do
+        expect(data['type']).to eq 'summarized-statistics'
       end
 
       it "returns the given id" do

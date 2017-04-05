@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'statistics/', to: 'statistics#index'
-  get 'condensed_statistics/:id', to: 'statistics#condensed'
+  get 'summarized_statistics/:id', to: 'statistics#summarized'
 
   resources :media, only: [:index, :show]
   resources :stations, only: [:index, :show]

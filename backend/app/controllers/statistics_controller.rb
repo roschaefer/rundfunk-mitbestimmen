@@ -1,6 +1,6 @@
 class StatisticsController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource only: :condensed
+  skip_load_resource only: :summarized
 
   def index
     page = (statistics_params[:page] || 1).to_i
@@ -16,12 +16,12 @@ class StatisticsController < ApplicationController
   end
 
 
-  def condensed
+  def summarized
     # fake the model
     render json: {
       data: {
         id: params[:id],
-        type: 'condensed-statistics',
+        type: 'summarized-statistics',
         attributes: {
           "broadcasts" => Broadcast.count,
           "registered-users" => User.count,
