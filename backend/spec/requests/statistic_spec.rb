@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Balances", type: :request do
-  let(:url) { '/balances' }
+RSpec.describe "Statistics", type: :request do
+  let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { { } }
     let(:request) { get url, params: params }
@@ -16,7 +16,7 @@ RSpec.describe "Balances", type: :request do
           create(:selection, broadcast: broadcast, amount: amount)
         end
       end
-      let(:url) { "/balances" }
+      let(:url) { "/statistics" }
       let(:data) { selections; request; JSON.parse(response.body)['data'] }
 
       it 'orders by total amount descending by default' do
@@ -24,7 +24,7 @@ RSpec.describe "Balances", type: :request do
         expect(data).to eq sorted.reverse
       end
 
-      context 'given :order params' do
+      context 'given :order params average and ascending' do
         let(:params) {  {column: 'average', direction: 'asc'} }
 
         it 'orders by average and ascending' do
@@ -32,6 +32,25 @@ RSpec.describe "Balances", type: :request do
           expect(data).to eq sorted
         end
       end
+
+      context 'given :order params average and ascending' do
+        let(:params) {  {column: 'votes', direction: 'asc'} }
+        let(:selections) do
+          votes = [3,2,4]
+          votes.each do |vote|
+            broadcast = create(:broadcast)
+            create_list(:selection, vote, broadcast: broadcast)
+          end
+        end
+
+      it 'orders by number of votes and ascending' do
+        selections
+        request
+        data = JSON.parse(response.body)['data']
+        sorted = data.sort {|b1,b2| b1["attributes"]["votes"] <=> b2["attributes"]["votes"] }
+        expect(data).to eq sorted
+      end
+    end
 
       describe 'per_page' do
         let(:params) {  {per_page: 1} }
@@ -48,7 +67,7 @@ RSpec.describe "Balances", type: :request do
             create(:selection, response: :neutral, broadcast: broadcast)
             create(:selection, response: :neutral, broadcast: broadcast)
           end
-          # Balances have same total
+          # Statistics have same total
 
           ids_per_request = []
           ids_per_request = 10.times.collect do |i|
@@ -71,8 +90,8 @@ RSpec.describe "Balances", type: :request do
       end
     end
 
-    describe "/condensed_balances/:id" do
-      let(:url) { "/condensed_balances/1" }
+    describe "/summarized_statistics/:id" do
+      let(:url) { "/summarized_statistics/1" }
 
       before(:all) do
         create_list(:user, 42).each do |user|
@@ -92,8 +111,8 @@ RSpec.describe "Balances", type: :request do
 
       let(:data) { JSON.parse(response.body)['data'] }
 
-      it "returns 'condensed-balances' as type" do
-        expect(data['type']).to eq 'condensed-balances'
+      it "returns 'summarized-statistics' as type" do
+        expect(data['type']).to eq 'summarized-statistics'
       end
 
       it "returns the given id" do
@@ -105,7 +124,7 @@ RSpec.describe "Balances", type: :request do
       end
 
       it 'returns the total number of selections' do
-        expect(data['attributes']['reviews']).to eq 42*7
+        expect(data['attributes']['votes']).to eq 42*7
       end
 
       it 'returns the total amount of assigned money' do
@@ -114,4 +133,3 @@ RSpec.describe "Balances", type: :request do
     end
   end
 end
-

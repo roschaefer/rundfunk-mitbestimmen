@@ -17,6 +17,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     params.paramMapping = {
       total_pages: "total-pages"
     };
-    return this.findPaged('balance', params);
+    return this.findPaged('statistic', params);
   }
 });

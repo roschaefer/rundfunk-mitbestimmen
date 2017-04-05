@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220233015) do
+ActiveRecord::Schema.define(version: 20170405203335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,16 +128,16 @@ ActiveRecord::Schema.define(version: 20170220233015) do
   add_foreign_key "selections", "users"
   add_foreign_key "stations", "media"
 
-  create_view :balances,  sql_definition: <<-SQL
+  create_view :statistics,  sql_definition: <<-SQL
       SELECT t.id,
       t.title,
-      t.reviews,
-      ((t.positives)::double precision / (NULLIF(t.reviews, 0))::double precision) AS approval,
+      t.votes,
+      ((t.positives)::double precision / (NULLIF(t.votes, 0))::double precision) AS approval,
       COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
       t.total
      FROM ( SELECT selections.broadcast_id AS id,
               broadcasts.title,
-              count(*) AS reviews,
+              count(*) AS votes,
               COALESCE(sum(
                   CASE
                       WHEN (selections.response = 1) THEN 1

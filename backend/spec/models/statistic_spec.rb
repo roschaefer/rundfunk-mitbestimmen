@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Balance, type: :model do
+RSpec.describe Statistic, type: :model do
   let(:broadcast) { create(:broadcast) }
 
-  subject { Balance.find(broadcast.id) }
+  subject { Statistic.find(broadcast.id) }
 
   context 'given only neutral selections' do
     before { create(:selection, broadcast: broadcast, response: :neutral) }
@@ -26,9 +26,9 @@ RSpec.describe Balance, type: :model do
       create(:user) # one for a missing user
     end
 
-    describe '#reviews' do
+    describe '#votes' do
       it 'number of selections per broadcast' do
-        expect(subject.reviews).to eq 9
+        expect(subject.votes).to eq 9
       end
     end
 

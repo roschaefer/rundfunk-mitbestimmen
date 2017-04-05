@@ -1,4 +1,4 @@
-class Balance < ApplicationRecord
+class Statistic < ApplicationRecord
   self.primary_key = :id
   paginates_per 10
   private
