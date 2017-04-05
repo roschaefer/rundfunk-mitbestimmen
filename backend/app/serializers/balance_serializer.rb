@@ -1,3 +1,3 @@
 class BalanceSerializer < ActiveModel::Serializer
-  attributes :id, :title, :reviews, :approval, :average, :total
+  attributes :id, :title, :votes, :approval, :average, :total
 end

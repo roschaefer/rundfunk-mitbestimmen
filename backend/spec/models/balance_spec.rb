@@ -26,9 +26,9 @@ RSpec.describe Balance, type: :model do
       create(:user) # one for a missing user
     end
 
-    describe '#reviews' do
+    describe '#votes' do
       it 'number of selections per broadcast' do
-        expect(subject.reviews).to eq 9
+        expect(subject.votes).to eq 9
       end
     end
 

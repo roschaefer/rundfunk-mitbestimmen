@@ -47,7 +47,7 @@ RSpec.describe "Balances", type: :request do
         selections
         request
         data = JSON.parse(response.body)['data']
-        sorted = data.sort {|b1,b2| b1["attributes"]["reviews"] <=> b2["attributes"]["reviews"] }
+        sorted = data.sort {|b1,b2| b1["attributes"]["votes"] <=> b2["attributes"]["votes"] }
         expect(data).to eq sorted
       end
     end
@@ -124,7 +124,7 @@ RSpec.describe "Balances", type: :request do
       end
 
       it 'returns the total number of selections' do
-        expect(data['attributes']['reviews']).to eq 42*7
+        expect(data['attributes']['votes']).to eq 42*7
       end
 
       it 'returns the total amount of assigned money' do

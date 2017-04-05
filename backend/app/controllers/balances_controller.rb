@@ -25,7 +25,7 @@ class BalancesController < ApplicationController
         attributes: {
           "broadcasts" => Broadcast.count,
           "registered-users" => User.count,
-          "reviews" => Selection.count,
+          "votes" => Selection.count,
           "assigned-money" => Balance.sum(:total)
         }
       }
