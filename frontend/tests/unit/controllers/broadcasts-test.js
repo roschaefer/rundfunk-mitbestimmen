@@ -5,6 +5,7 @@ moduleFor('controller:broadcasts', 'Unit | Controller | broadcasts', {
   // needs: ['controller:foo']
   needs: [
     'service:metrics',
+    'service:session',
     'ember-metrics@metrics-adapter:piwik', // bundled adapter
   ]
 });

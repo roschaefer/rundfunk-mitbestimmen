@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   queryParams: ["page", "perPage"],
 
-  totalPagesBinding: 'model.totalPages',
+  totalPagesBinding: Ember.computed.alias("content.totalPages"),
 
   page: 1,
   perPage: 10,

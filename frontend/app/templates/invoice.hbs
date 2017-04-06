@@ -21,7 +21,7 @@
       <div class="eight wide column">
       {{#link-to 'decide' (query-params q=null) class='ui huge labeled fluid primary icon button'}}
          <i class="repeat icon"></i>
-        {{format-html-message 'invoice.link-to.decide' }}
+        {{t 'invoice.link-to.decide' htmlSafe=true }}
       {{/link-to}}
       </div>
       <div class="eight wide column">

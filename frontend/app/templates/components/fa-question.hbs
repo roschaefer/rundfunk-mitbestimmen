@@ -3,7 +3,7 @@
   <strong>{{t (concat 'index.faq.questions.' key '.title') }}</strong>
 </div>
 <div class="content">
-  {{format-html-message (concat 'index.faq.questions.' key '.content') }}
+  {{t (concat 'index.faq.questions.' key '.content') htmlSafe=true }}
 
   {{yield}}
 </div>
