@@ -8,18 +8,16 @@
 
 User.create(email: 'test@example.org')
 
-tv    = Medium.create!(id: 0 , name_de: 'TV'       , name_en: 'TV')
-radio = Medium.create!(id: 1 , name_de: 'Radio'    , name_en: 'Radio')
-        Medium.create!(id: 2 , name_de: 'Sonstige' , name_en: 'Other')
-        Medium.create!(id: 3 , name_de: 'Online'   , name_en: 'Online')
-
+tv    = Medium.create!(id: 0, name_de: 'TV', name_en: 'TV')
+radio = Medium.create!(id: 1, name_de: 'Radio', name_en: 'Radio')
+Medium.create!(id: 2, name_de: 'Sonstige', name_en: 'Other')
+Medium.create!(id: 3, name_de: 'Online', name_en: 'Online')
 
 das_erste     = Station.create!(name: 'Das Erste', medium: tv)
 wdr_fernsehen = Station.create!(name: 'WDR Fernsehen', medium: tv)
 zdf           = Station.create!(name: 'ZDF', medium: tv)
 einslive      = Station.create!(name: '1Live', medium: radio)
 fritz         = Station.create!(name: 'Fritz', medium: radio)
-
 
 Broadcast.create!(title: 'Quarks & Co',              station: wdr_fernsehen, medium: tv,    description: 'Bei Quarks & Co soll Wissenschaft unterhalten. Deshalb fährt die Sendung alles auf, was das Fernsehen zu bieten hat: spannende Experimente, abenteuerliche Selbstversuche, überzeugende Grafiken und faszinierende Computeranimationen.')
 Broadcast.create!(title: 'Tagesschau',               station: das_erste,     medium: tv,    description: 'Die Nachrichtensendung im Ersten.')

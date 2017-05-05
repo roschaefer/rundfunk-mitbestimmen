@@ -1,4 +1,4 @@
 FactoryGirl.define do
-  factory :statistic do
+  factory :balance do
   end
 end

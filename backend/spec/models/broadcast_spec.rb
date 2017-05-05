@@ -65,7 +65,7 @@ RSpec.describe Broadcast, type: :model do
     subject { build(:broadcast, attributes) }
     describe 'empty description' do
       let(:attributes) { { description: '' } }
-      it {  is_expected.not_to be_valid }
+      it { is_expected.not_to be_valid }
     end
 
     describe 'no description' do
@@ -79,12 +79,12 @@ RSpec.describe Broadcast, type: :model do
     end
 
     describe 'description contains URL' do
-      let(:description) {( 'a' * 100) + 'http://alternativlos.org/' }
-      let(:attributes) { { description: description}   }
+      let(:description) { ('a' * 100) + 'http://alternativlos.org/' }
+      let(:attributes) { { description: description } }
       it { is_expected.not_to be_valid }
 
       describe 'just a colon' do
-        let(:description) {'Im Babo-Bus fahren ... und bestehen gemeinsam brisante Aufgaben: wer hat z.B. ...?'}
+        let(:description) { 'Im Babo-Bus fahren ... und bestehen gemeinsam brisante Aufgaben: wer hat z.B. ...?' }
         it { is_expected.to be_valid }
       end
     end
@@ -99,17 +99,17 @@ RSpec.describe Broadcast, type: :model do
     end
 
     it 'destroys associated selections only' do
-      expect { broadcast.destroy }.to change{ Selection.count }.from(3).to(1)
+      expect { broadcast.destroy }.to change { Selection.count }.from(3).to(1)
       expect(Selection.first.id).to eq 3
     end
   end
 
   describe '#medium' do
-      subject { build(:broadcast, medium: medium) }
+    subject { build(:broadcast, medium: medium) }
 
-      context 'missing' do
-        let(:medium) { nil }
-        it { is_expected.not_to be_valid }
-      end
+    context 'missing' do
+      let(:medium) { nil }
+      it { is_expected.not_to be_valid }
+    end
   end
 end

@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
-
   enum role: { guest: -1, contributor: 0, broadcaster: 1, admin: 2 }
 
   has_many :selections
-  has_many :liked_broadcasts, -> { where(selections: {response: 1}) }, :source => :broadcast , :through => :selections
+  has_many :liked_broadcasts, -> { where(selections: { response: 1 }) }, source: :broadcast, through: :selections
   has_many :broadcasts, through: :selections
 
   before_validation do
@@ -15,11 +14,11 @@ class User < ActiveRecord::Base
 
   def self.from_token_payload(payload)
     if payload['sub'].blank?
-      return nil
+      nil
     else
 
       if payload['email'].present?
-        legacy_user = self.find_by(email: payload['email'])
+        legacy_user = find_by(email: payload['email'])
         if legacy_user
           if legacy_user.auth0_uid.blank?
             legacy_user.auth0_uid = payload['sub']
@@ -29,7 +28,7 @@ class User < ActiveRecord::Base
         end
       end
 
-      return self.find_or_create_by(auth0_uid: payload['sub'], email: payload['email'])
+      find_or_create_by(auth0_uid: payload['sub'], email: payload['email'])
     end
   end
 end

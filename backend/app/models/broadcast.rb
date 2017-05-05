@@ -1,7 +1,7 @@
 class Broadcast < ApplicationRecord
   include PgSearch
 
-  pg_search_scope :search_by_title, :against => :title
+  pg_search_scope :search_by_title, against: :title
 
   has_many :selections, dependent: :destroy
 
@@ -17,11 +17,11 @@ class Broadcast < ApplicationRecord
   validates :mediathek_identification, uniqueness: { allow_nil: true }
   validate :description_should_not_contain_urls
 
-  scope :unevaluated, -> (user) { where.not(id: user.broadcasts.pluck(:id)) }
+  scope :unevaluated, ->(user) { where.not(id: user.broadcasts.pluck(:id)) }
   # TODO: Replace with SQL query, user.broadcasts.pluck(:id) might become large
 
   before_validation do
-    if self.title
+    if title
       self.title = title.gsub(/\s+/, ' ')
       self.title = title.strip
     end
@@ -30,9 +30,7 @@ class Broadcast < ApplicationRecord
   private
 
   def description_should_not_contain_urls
-    if description =~ URI.regexp(['http', 'https'])
-      errors.add(:description, :no_urls)
-    end
+    return unless description =~ URI.regexp(%w(http https))
+    errors.add(:description, :no_urls)
   end
-
 end

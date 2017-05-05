@@ -41,13 +41,14 @@ class FormatsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_format
-      @format = Format.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def format_params
-      params.require(:format).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_format
+    @format = Format.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def format_params
+    params.require(:format).permit(:name)
+  end
 end

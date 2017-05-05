@@ -40,7 +40,7 @@ RSpec.describe Statistic, type: :model do
 
     describe '#average' do
       it 'how much money per broadcast per capita' do
-        expect(subject.average).to eq (15.7/4.0)
+        expect(subject.average).to eq(15.7 / 4.0)
       end
     end
 

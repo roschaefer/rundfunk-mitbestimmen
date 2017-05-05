@@ -1,5 +1,4 @@
 Knock.setup do |config|
-
   ## Expiration claim
   ## ----------------
   ##
@@ -8,7 +7,6 @@ Knock.setup do |config|
   ##
   ## Default:
   # config.token_lifetime = 1.day
-
 
   ## Audience claim
   ## --------------
@@ -33,7 +31,7 @@ Knock.setup do |config|
     config.token_signature_algorithm = 'HS256'
   else
     config.token_signature_algorithm = 'RS256'
-    public_key_file = if Rails.env.production? then 'rundfunk-mitbestimmen.pem' else 'rundfunk-testing.pem' end
+    public_key_file = Rails.env.production? ? 'rundfunk-mitbestimmen.pem' : 'rundfunk-testing.pem'
     config.token_public_key = OpenSSL::PKey::RSA.new File.read(File.join(Rails.root, 'config', public_key_file))
   end
 
