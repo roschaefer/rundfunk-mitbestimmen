@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Balances', type: :request do
-  let(:url) { '/balances' }
+  let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { {} }
     let(:request) { get url, params: params }
@@ -16,7 +16,7 @@ RSpec.describe 'Balances', type: :request do
           create(:selection, broadcast: broadcast, amount: amount)
         end
       end
-      let(:url) { '/balances' }
+      let(:url) { '/statistics' }
       let(:data) do
         selections
         request
@@ -93,8 +93,8 @@ RSpec.describe 'Balances', type: :request do
       end
     end
 
-    describe '/condensed_balances/:id' do
-      let(:url) { '/condensed_balances/1' }
+    describe '/summarized_statistics/:id' do
+      let(:url) { '/summarized_statistics/1' }
 
       before(:all) do
         create_list(:user, 42).each do |user|
@@ -127,7 +127,7 @@ RSpec.describe 'Balances', type: :request do
       end
 
       it 'returns the total number of selections' do
-        expect(data['attributes']['reviews']).to eq 42 * 7
+        expect(data['attributes']['votes']).to eq 42 * 7
       end
 
       it 'returns the total amount of assigned money' do
