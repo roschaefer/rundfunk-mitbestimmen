@@ -1,18 +1,3 @@
-{{#if broadcasts}}
-  <div class="centered row">
-    <div class="sixteen wide mobile twelve wide tablet eight wide computer center aligned column">
-      <div class="ui horizontal list">
-        {{#each broadcasts as |broadcast index|}}
-          {{decision-progress-icon broadcast=broadcast current=(eq step index)}}
-        {{/each}}
-      </div>
-      <div class="ui left pointing label">
-        {{step}}/{{broadcasts.length}}
-      </div>
-    </div>
-  </div>
-{{/if}}
-
 {{#if currentBroadcast}}
   <div class="row">
     <div class="four wide computer column">
@@ -52,4 +37,19 @@
     </div>
   {{/if}}
 
+{{/if}}
+
+{{#if broadcasts}}
+  <div class="centered row">
+    <div class="sixteen wide mobile twelve wide tablet eight wide computer right aligned column">
+      <div class="ui mini horizontal list">
+        {{#each broadcasts as |broadcast index|}}
+          {{decision-progress-icon broadcast=broadcast current=(eq step index)}}
+        {{/each}}
+      </div>
+      <div class="ui left pointing label">
+        {{step}}/{{broadcasts.length}}
+      </div>
+    </div>
+  </div>
 {{/if}}
