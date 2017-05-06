@@ -7,8 +7,8 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
-        'font-src': "'self' data: https://cdn.auth0.com",
-        'style-src': "'self' 'unsafe-inline'",
+        'font-src': "'self' data: https://cdn.auth0.com fonts.gstatic.com",
+        'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
         'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com",
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com"
     },
@@ -40,7 +40,10 @@ module.exports = function(environment) {
           siteId: 1
         }
       }
-    ]
+    ],
+    googleFonts: [
+      'Assistant:400,700'
+    ],
   };
 
   if (environment === 'development') {
