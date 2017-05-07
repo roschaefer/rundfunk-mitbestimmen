@@ -1,5 +1,5 @@
 class SelectionsController < ApplicationController
-  before_action :set_selection, only: [:show, :update, :destroy]
+  before_action :set_selection, only: %i(show update destroy)
   before_action :authenticate_user
   load_and_authorize_resource
 
@@ -51,6 +51,6 @@ class SelectionsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def selection_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:amount, :response, :fixed, :broadcast])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i(amount response fixed broadcast))
   end
 end

@@ -16,14 +16,14 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'sends mail' do
-      expect { mail.deliver }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect { mail.deliver }.to(change { ActionMailer::Base.deliveries.count }.by(1))
     end
 
     context 'user has bad email' do
       let(:user) { create(:user, email: 'trash@trash-mail.com') }
 
       it 'won\'t send mail' do
-        expect { mail.deliver }.not_to change { ActionMailer::Base.deliveries.count }
+        expect { mail.deliver }.not_to(change { ActionMailer::Base.deliveries.count })
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe UserMailer, type: :mailer do
       let(:user) { create(:user, email: nil) }
 
       it 'won\'t send mail' do
-        expect { mail.deliver }.not_to change { ActionMailer::Base.deliveries.count }
+        expect { mail.deliver }.not_to(change { ActionMailer::Base.deliveries.count })
       end
     end
   end

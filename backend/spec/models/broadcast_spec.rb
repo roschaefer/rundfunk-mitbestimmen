@@ -99,7 +99,7 @@ RSpec.describe Broadcast, type: :model do
     end
 
     it 'destroys associated selections only' do
-      expect { broadcast.destroy }.to change { Selection.count }.from(3).to(1)
+      expect { broadcast.destroy }.to(change { Selection.count }.from(3).to(1))
       expect(Selection.first.id).to eq 3
     end
   end
