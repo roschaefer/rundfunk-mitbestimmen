@@ -106,20 +106,13 @@ index:
   faq:
     questions:
       survey:
-        title: Ist das hier eine Umfrage?
+        title: Ist das hier eine repräsentative Umfrage?
         content: >
-          Das hier ist keine Umfrage, sondern eine Demonstration wie man den
-          öffentlichen Rundfunk demokratisieren kann. Wir wollen zeigen, dass es
-          technisch möglich ist, es nichts kostet, die Beitragszahler ein
-          Interesse an so etwas haben und auch gute Entscheidungen treffen
-          können.
-      tv-rankings:
-        title: Warum reichen die Einschaltquoten denn nicht aus?
-        content: >
-          Viele Beitragszahler nutzen den Rundfunk gar nicht, zahlen aber wie
-          jeder andere auch und haben ein Recht auf Inhalte. Außerdem hat der
-          öffentliche Rundfunk einen Bildungs- und Demokratieauftrag, unabhängig
-          von Einschaltquoten.
+          Das hier ist keine repräsentative Umfrage, sondern ein konkretes
+          Beispiel wie man mehr Demokratie in den öffentlichen Rundfunk bringen
+          kann. Wir wollen zeigen, dass es technisch möglich ist, es nichts
+          kostet, die Beitragszahler eine eigene Motivation haben ihre Wünsche
+          zu veröffentlichen und auch gute Entscheidungen treffen können.
       quality:
         title: Wie könnt ihr verhindern, dass die Leute nur Unsinn wählen?
         content: >
@@ -128,53 +121,61 @@ index:
           Gegenteil, viele geben Geld für Kultursendungen oder investigativen
           Journalismus aus, also Inhalte, die bei klassischen Einschaltquoten zu
           kurz kommen.
-      binding:
-        title: Sind die Ergebnisse verbindlich?
-        content: >
-          Die Ergebnisse sind nicht verbindlich in einem rechtlichen Sinne,
-          sondern stellen einfach die Wünsche der Gebührenzahler dar. Dadurch
-          dass die Ergebnisse öffentlich und quantifizierbar sind, erhalten die
-          Gebührenzahler zum ersten Mal eine aussagekräftige Stimme.
-      minorities:
-        title: Was ist mit Minderheiten?
-        content: >
-          Gerade für Minderheiten ist "Rundfunk MITBESTIMMEN" gemacht. Auf der
-          <a href="/statistics">Seite mit den Ergebnissen</a> ist die Metrik "Pro
-          Kopf" zu sehen. Das ist der Betrag, den Unterstützer im Schnitt für
-          die jeweilige Sendung ausgeben. So gibt man kleinen Gruppen eine
-          Stimme, die ihre Sendung besonders stark unterstützen können. Die
-          Metrik bedeutet nämlich in etwa: "Wie wichtig ist die Sendung für die
-          spezifische Zielgruppe?"
-      responsible:
-        title: Wer seid ihr?
-        content: >
-          "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, Student
-          am <a href="https://hpi.de/">HPI</a> und
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, User
-          Experience Designerin aus Potsdam. Daneben arbeiten wir mit Vereinen,
-          die sich um offene Daten bemühen sowie Mitglieder von Rundfunkräten.
-          Aber vor Allem unterstützen uns alle Nutzer die mitmachen und ihre
-          Daten hier veröffentlichen.
-      consumption:
-        title: Was, wenn man den Rundfunk gar nicht nutzt?
-        content: >
-          Jeder hat ein Recht auf Inhalte, unabhängig davon ob man den Rundfunk
-          nutzt. Übrigens können viele Nutzer trotzdem sehr genau entscheiden ob
-          sie eine Sendung bezahlen wollen oder nicht.
-      representative:
-        title: Sind die Daten repräsentativ?
-        content: >
-          Nein. Müssen sie auch gar nicht. Denn es soll nur das Geld derjenigen
-          reserviert werden, die wirklich teilgenommen haben. Für alle anderen
-          Beitragszahler bleibt alles so wie es ist. Zurzeit verteilen nämlich
-          die Rundfunkanstalten alle Gelder ganz eigenverantwortlich.
       impact:
         title: Interessiert das denn irgendwen?
         content: >
           Ja. Die Daten allein reichen völlig aus, um einen Einfluss zu erzeugen.
           Du sagst den Programm-Machern und den Rundfunkräten mit Deiner Stimme,
           warum eine Sendung nicht abgesetzt werden darf.
+      tv-rankings:
+        title: Wo ist der Unterschied zur Einschaltquote?
+        content: >
+          Die Ergebnisse sind nutzungsunabhängig. Offenbar korrelieren
+          <a href="/statistics">die aktuellen Ergebnisse</a> auch nicht mit der
+          Einschaltquote. Wir stellen die Hypothese auf, dass es an der anderen
+          Fragestellung liegt: Welche Inhalte hält man für wertvoll? So
+          reflektieren Benutzer ihre Entscheidungen und es kommt zwangsläufig
+          zu anderen Ergebnissen.
+      representative:
+        title: Sind die Daten repräsentativ?
+        content: >
+          Jeder darf mitmachen, wir selektieren nicht vor. Also können wir
+          auch nicht sicherstellen, dass wirklich ein repräsentativer
+          Querschnitt mitmacht. Rundfunk MITBESTIMMEN hat auch nicht den
+          Anspruch einer repräsentativen Umfrage: Die Ergebnisse werden nicht
+          hochgerechnet. Jeder Benutzer entscheidet nur über seine eigenen
+          Gebühren. Um eine Verbesserung herbeizuführen reicht das aber völlig
+          aus. Denn wenige Daten sind beser als gar keine Daten.
+      consumption:
+        title: Ich nutze den Rundfunk gar nicht, warum sollte ich mitmachen?
+        content: >
+          Aber Du zahlst doch Rundfunkgebühren, oder? Dann solltest Du auch ein
+          Recht auf Inhalte haben und darüber mitentscheiden können, wie Deine
+          Gebühren verwendet werden.
+      binding:
+        title: Sind die Ergebnisse verbindlich?
+        content: >
+          Die Ergebnisse sind nicht verbindlich und sie sind auch kein Angriff
+          auf die Programmautonomie des öffentlichen Rundfunks. Sie sind aber
+          eine Gesprächsgrundlage. Dadurch dass die Ergebnisse öffentlich und
+          quantifizierbar sind, erhalten die Gebührenzahler zum ersten Mal eine
+          aussagekräftige Stimme.
+      minorities:
+        title: Was ist mit Minderheiten?
+        content: >
+          Gerade für Minderheiten ist "Rundfunk MITBESTIMMEN" gemacht. Etwa
+          kann man wenige Sendungen unterstützen, aber diese besonders stark.
+          So würden auch kleine Gruppen gehört. Eine solche Aussage hat z.B.
+          <a href="/statistics">die Metrik "Pro Kopf"</a>, nämlich wie wichtig
+          eine Sendung auch für kleine Zielgruppen ist.
+      responsible:
+        title: Wer seid ihr?
+        content: >
+          "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
+          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, User
+          Experience Designerin aus Potsdam und
+          <a href="https://github.com/roschaefer">Robert Schäfer</a>, Student
+          am <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
       finances:
         title: Wer finanziert das?
         content: >
