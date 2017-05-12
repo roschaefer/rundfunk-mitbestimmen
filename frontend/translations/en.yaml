@@ -104,19 +104,13 @@ index:
   faq:
     questions:
       survey:
-        title: Is this a survey?
+        title: Is this a representative survey?
         content: >
-          This is not a survey but a demonstration how we could democratise
-          public broadcasting in Germany. We want to show that it is technically
-          possible, it is cheap, contributors want to participate and they can
-          make good decisions.
-      tv-rankings:
-        title: Why are TV rankings not enough?
-        content: >
-          Many contributors do not consume public broadcasting but
-          pay as much as everybody else and have a right on content. Besides
-          that, public broadcasting in Germany has a political and educational
-          mandate and is required to be independent of TV rankings.
+          This is not a representative survey, but an example how to bring more
+          democracy into public broadcasting. We want to show that it is
+          technically possible, it does not cost much, the contributors have
+          their own motivation to publish their wishes and they make wise
+          decisions.
       quality:
         title: How can you prevent people from voting nonsense?
         content: >
@@ -124,53 +118,58 @@ index:
           people do not give money to nonsense</a> after all. On the contrary,
           many give money to cultural programmes and investigative journalism,
           content that comes off badly in TV rankings.
-      binding:
-        title: Are the results binding in any sense?
-        content: >
-          The results are not binding in a legal sense, instead they simply
-          represent the opinion of the people who pay the fees. But the fact
-          that the results are public and quantifiable gives people a strong
-          voice, for the very first time.
-      minorities:
-        title: How about minorities?
-        content: >
-          "Rundfunk MITBESTIMMEN" is designed especially for minorities. The
-          metric "per capita" can be seen on the
-          <a href="/statistics">results page</a>. This is the amount that
-          supporters spend on average for the respective program.  Thus, small
-          groups are given a voice to particularly support their broadcast. The
-          metric means roughly: "How important is the broadcast for the specific
-          target group?"
-      responsible:
-        title: Who are you?
-        content: >
-          "Rundfunk Mitbestimmen" is mainly developed by
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, a student
-          at the <a href="https://hpi.de/">HPI</a> and
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, a
-          professional user experience designer from Potsdam. We are working
-          together with foundations that are committed to open data and members
-          of broadcasting councils. Last but not least, all our users who take
-          part and publish their data are supporting us.
-      representative:
-        title: Is the data representative?
-        content: >
-          No. And it does not need to be. Only the money of users who published
-          their preferences may be distributed to the respective broadcasts. For
-          everybody else, everything remains as it is. At the moment, just the
-          broadcasting boards distribute all the monies autonomously.
-      consumption:
-        title: What if someone does not consume public broadcasting?
-        content: >
-          Every contributor has a right on content, indifferent of usage.
-          By the way, many users know exactly if they want to pay for a
-          broadcast even if they do not use public broadcasting at all.
       impact:
         title: Does anybody care?
         content: >
           Yes. Just the data is enough to have an impact. With your decision,
           you tell the creators and the broadcasting councils to keep your
           favourite broadcasts on the air.
+      tv-rankings:
+        title: Where is the difference to TV ratings?
+        content: >
+          The results are independent of usage. Apparently,
+          <a href="/statistics">the current results</a> do not correlate with TV
+          ratings. We hypothesize that it is caused by the different question:
+          Which content does one consider valuable? Thus, users reflect their
+          decisions and the results are necessarily different.
+      representative:
+        title: Are the data representative?
+        content: >
+          Everyone is allowed to participate, there is no pre-selection. So we
+          can not garantee that a truly representative cross-section is
+          involved. Rundfunk MITBTIMIMMEN also does not claim to be a
+          representative survey anyway: The results are not extrapolated. Each
+          user decides only about his own fees. In order to achieve an
+          improvement, however, this is quite sufficient. Few data are better
+          than no data at all.
+      consumption:
+        title: I do not use public broadcasting, why should I join?
+        content: >
+          But you pay the broadcasting fee, don't you? Then you should also have
+          a right on content and decide how your fees should be used.
+      binding:
+        title: Are the results binding in any sense?
+        content: >
+          The results are not binding and they are not an attack on the autonomy
+          of public broadcasting. But they are a basis for a debate about
+          quality. The fact that the results are public and quantifiable means
+          that fee payers receive a strong voice for the very first time.
+      minorities:
+        title: How about minorities?
+        content: >
+          "Rundfunk MITBESTIMMEN" is made especially for minorities. For
+          example, you can support a few programs, but support these programs
+          particularly strong. Small groups would be heard. Such an information
+          would be expressed by e.g. the metric <a href="/statistics">"per
+          capita"</a>, ie. how important a program is for the target group.
+      responsible:
+        title: Who are you?
+        content: >
+          "Rundfunk Mitbestimmen" is mainly developed by
+          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, a
+          professional user experience designer from Potsdam and
+          <a href="https://github.com/roschaefer">Robert Schäfer</a>, a student
+          at the <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
       finances:
         title: Who is financing this?
         content: >
