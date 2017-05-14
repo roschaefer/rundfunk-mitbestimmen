@@ -10,114 +10,109 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405203335) do
+ActiveRecord::Schema.define(version: 20170505133857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
 
-  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
-    t.string   "value"
+  create_table "broadcasts", id: :serial, force: :cascade do |t|
+    t.citext "title"
+    t.string "description"
+    t.integer "topic_id"
+    t.integer "format_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "broadcasts", force: :cascade do |t|
-    t.citext   "title"
-    t.string   "description"
-    t.integer  "topic_id"
-    t.integer  "format_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "creator_id"
-    t.integer  "mediathek_identification"
-    t.integer  "medium_id"
-    t.integer  "station_id"
-    t.index ["format_id"], name: "index_broadcasts_on_format_id", using: :btree
-    t.index ["mediathek_identification"], name: "index_broadcasts_on_mediathek_identification", unique: true, using: :btree
-    t.index ["medium_id"], name: "index_broadcasts_on_medium_id", using: :btree
-    t.index ["station_id"], name: "index_broadcasts_on_station_id", using: :btree
-    t.index ["title"], name: "index_broadcasts_on_title", unique: true, using: :btree
-    t.index ["topic_id"], name: "index_broadcasts_on_topic_id", using: :btree
+    t.integer "creator_id"
+    t.integer "mediathek_identification"
+    t.integer "medium_id"
+    t.integer "station_id"
+    t.index ["format_id"], name: "index_broadcasts_on_format_id"
+    t.index ["mediathek_identification"], name: "index_broadcasts_on_mediathek_identification", unique: true
+    t.index ["medium_id"], name: "index_broadcasts_on_medium_id"
+    t.index ["station_id"], name: "index_broadcasts_on_station_id"
+    t.index ["title"], name: "index_broadcasts_on_title", unique: true
+    t.index ["topic_id"], name: "index_broadcasts_on_topic_id"
   end
 
   create_table "format_translations", force: :cascade do |t|
-    t.integer  "format_id",  null: false
-    t.string   "locale",     null: false
+    t.integer "format_id", null: false
+    t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
-    t.index ["format_id"], name: "index_format_translations_on_format_id", using: :btree
-    t.index ["locale"], name: "index_format_translations_on_locale", using: :btree
+    t.string "name"
+    t.index ["format_id"], name: "index_format_translations_on_format_id"
+    t.index ["locale"], name: "index_format_translations_on_locale"
   end
 
-  create_table "formats", force: :cascade do |t|
+  create_table "formats", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "media", force: :cascade do |t|
+  create_table "media", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "medium_translations", force: :cascade do |t|
-    t.integer  "medium_id",  null: false
-    t.string   "locale",     null: false
+    t.integer "medium_id", null: false
+    t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
-    t.index ["locale"], name: "index_medium_translations_on_locale", using: :btree
-    t.index ["medium_id"], name: "index_medium_translations_on_medium_id", using: :btree
+    t.string "name"
+    t.index ["locale"], name: "index_medium_translations_on_locale"
+    t.index ["medium_id"], name: "index_medium_translations_on_medium_id"
   end
 
-  create_table "selections", force: :cascade do |t|
-    t.integer  "response"
-    t.decimal  "amount"
-    t.integer  "user_id"
-    t.integer  "broadcast_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.boolean  "fixed"
-    t.index ["broadcast_id"], name: "index_selections_on_broadcast_id", using: :btree
-    t.index ["user_id", "broadcast_id"], name: "index_selections_on_user_id_and_broadcast_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_selections_on_user_id", using: :btree
+  create_table "selections", id: :serial, force: :cascade do |t|
+    t.integer "response"
+    t.decimal "amount"
+    t.integer "user_id"
+    t.integer "broadcast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "fixed"
+    t.index ["broadcast_id"], name: "index_selections_on_broadcast_id"
+    t.index ["user_id", "broadcast_id"], name: "index_selections_on_user_id_and_broadcast_id", unique: true
+    t.index ["user_id"], name: "index_selections_on_user_id"
   end
 
-  create_table "stations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "medium_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.integer  "broadcasts_count", default: 0
-    t.index ["medium_id"], name: "index_stations_on_medium_id", using: :btree
+  create_table "stations", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "medium_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "broadcasts_count", default: 0
+    t.index ["medium_id"], name: "index_stations_on_medium_id"
+    t.index ["name"], name: "index_stations_on_name", unique: true
   end
 
   create_table "topic_translations", force: :cascade do |t|
-    t.integer  "topic_id",   null: false
-    t.string   "locale",     null: false
+    t.integer "topic_id", null: false
+    t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
-    t.index ["locale"], name: "index_topic_translations_on_locale", using: :btree
-    t.index ["topic_id"], name: "index_topic_translations_on_topic_id", using: :btree
+    t.string "name"
+    t.index ["locale"], name: "index_topic_translations_on_locale"
+    t.index ["topic_id"], name: "index_topic_translations_on_topic_id"
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "encrypted_password", default: "",    null: false
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "role",               default: 0
-    t.string   "auth0_uid"
-    t.boolean  "has_bad_email",      default: false
-    t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true, using: :btree
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "encrypted_password", default: "", null: false
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0
+    t.string "auth0_uid"
+    t.boolean "has_bad_email", default: false
+    t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "broadcasts", "formats"
@@ -128,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170405203335) do
   add_foreign_key "selections", "users"
   add_foreign_key "stations", "media"
 
-  create_view :statistics,  sql_definition: <<-SQL
+  create_view "statistics",  sql_definition: <<-SQL
       SELECT t.id,
       t.title,
       t.votes,
