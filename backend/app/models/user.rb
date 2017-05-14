@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
     # allow bad emails but don't sent out mails
     self.has_bad_email ||= ValidEmail2::Address.new(email).disposable?
   end
-  validates :email, uniqueness: true, if: 'email.present?'
-  validates :auth0_uid, uniqueness: true, if: 'auth0_uid.present?'
+  validates :email, uniqueness: true, if: Proc.new {|u| u.email.present? }
+  validates :auth0_uid, uniqueness: true, if: Proc.new {|u| u.auth0_uid.present? }
 
   def self.from_token_payload(payload)
     if payload['sub'].blank?
