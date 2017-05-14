@@ -34,7 +34,7 @@ class Ability
       if user.admin?
         can :manage, :all
       elsif user.contributor?
-        can [:update, :create], Broadcast
+        can %i[update create], Broadcast
       end
 
       can :crud, Selection, user_id: user.id
@@ -46,6 +46,6 @@ class Ability
     can :read, Topic
     can :read, Medium
     can :read, Station
-    can [:read, :summarized], Statistic
+    can %i[read summarized], Statistic
   end
 end

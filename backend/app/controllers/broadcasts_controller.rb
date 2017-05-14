@@ -1,5 +1,5 @@
 class BroadcastsController < ApplicationController
-  before_action :set_broadcast, only: %i(show update destroy)
+  before_action :set_broadcast, only: %i[show update destroy]
   before_action :authenticate_user, except: [:index]
   load_and_authorize_resource
 
@@ -82,7 +82,7 @@ class BroadcastsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def broadcast_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i(title description medium station))
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description medium station])
   end
 
   def reviewed_broadcasts
