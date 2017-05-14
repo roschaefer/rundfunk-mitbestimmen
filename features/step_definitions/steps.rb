@@ -1,3 +1,4 @@
+feature_directory = Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
   amount.gsub('€','').to_f
 end
@@ -645,7 +646,13 @@ Given(/^the statistics look like this:$/) do |table|
     average_amount = sanitize_amount(row['Total'])/n_positive
     n_neutral = (1.0 - approval)*n_selections
 
-    broadcast = create(:broadcast, title: row['Broadcast'])
+    station = if row['Station']
+                Station.find_by(name: row['Station']) || create(:station, name: row['Station'])
+              else
+                nil
+              end
+
+    broadcast = create(:broadcast, title: row['Broadcast'], station: station)
     create_list(:selection, n_positive.to_i,
                 broadcast: broadcast,
                 response: :positive,
@@ -930,4 +937,32 @@ end
 
 When(/^I click the accordion(?:.*)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
+end
+
+When(/^I visit the visualization page$/) do
+  visit '/visualize'
+end
+
+Then(/^from the diff in the distribution I can see/) do |block|
+  # just documentation
+end
+
+When(/^download the chart as SVG$/) do
+  expect(page).to have_css('#chart-area')
+  # export_button
+  find('path.highcharts-button-symbol').click
+  find('.highcharts-menu-item', text: 'SVG').click
+end
+
+def strip_highcharts_svg(content)
+  result = content
+  result = result.gsub(/\(#highcharts-[^)]*\)/, '(#highcharts)')
+  result = result.gsub(/"highcharts-[^"]*"/, '"highcharts"')
+  result
+end
+
+Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do |path|
+  expected_content = strip_highcharts_svg(File.read(feature_directory.join(path)))
+  actual_content = strip_highcharts_svg(download_content)
+  expect(expected_content).to eq actual_content
 end

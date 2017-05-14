@@ -15,7 +15,11 @@ require File.expand_path("#{rails_root}/config/environment")
 DatabaseCleaner.strategy = :truncation
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  profile["download.default_directory"] = DownloadHelpers::PATH.to_s
+
+  Capybara::Selenium::Driver.new(app, profile: profile, :browser => :chrome)
 end
 
 Capybara.configure do |config|
@@ -27,6 +31,8 @@ Before do
   if page.driver.browser.respond_to?(:manage)
     page.driver.browser.manage.window.maximize
   end
+
+  clear_downloads
 end
 
 After do
@@ -34,6 +40,8 @@ After do
   page.execute_script("window.stubbedJwt = undefined")
   visit '/'
   page.execute_script("localStorage.clear()")
+
+  clear_downloads
 end
 
 # Shorthand FactoryGirl
