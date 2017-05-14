@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
     order_params = {}
     # TODO: is there a better way to do this with strong params?
     column = Statistic.column_names.include?(statistics_params[:column]) ? statistics_params[:column] : :total
-    direction = %w(asc desc).include?(statistics_params[:direction]) ? statistics_params[:direction] : :desc
+    direction = %w[asc desc].include?(statistics_params[:direction]) ? statistics_params[:direction] : :desc
     order_params.store(column, direction)
 
     @statistics = Statistic.order(order_params).order(title: :asc).page(page).per(per_page)
