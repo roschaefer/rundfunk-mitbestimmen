@@ -52,6 +52,7 @@ application:
       decide: Find broadcasts
       invoice: My broadcasts
       statistics: Statistics
+      visualization: Visualization
   language-chooser:
     german: Deutsch
     english: Englisch
@@ -349,3 +350,10 @@ statistics:
   link-to:
     invoice: Back to my broadcasts
     index: Back to start
+visualize:
+  diff-chart:
+    yAxis:
+      title: € per month
+    title: >
+      Amounts to be expected given a uniform distribution and amounts as desired
+      by users - grouped by TV and radio station
