@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  intl: Ember.inject.service(),
   actualChartOptions: {
     chart: {
       plotBackgroundColor: null,
@@ -28,41 +29,43 @@ export default Ember.Controller.extend({
       }
     },
   },
-  actualChartData: [{
-    innerSize: '50%',
-    colorByPoint: true,
-    data: [{
-      name: 'Sport',
-      y: 461.833
-    }, {
-      name: 'Politik & Gesellschaft',
-      y: 309.752,
-    }, {
-      name: 'Fernsehspiel',
-      y: 262.747
-    }, {
-      name: 'Unterhaltung',
-      y: 225.554
-    }, {
-      name: 'Spielfilm',
-      y: 213.776
-    }, {
-      name: 'Familie',
-      y: 114.992
-    }, {
-      name: 'Kultur & Wissenschaft',
-      y: 50.995
-    }, {
-      name: 'Religion',
-      y: 10.074
-    }, {
-      name: 'Spot/Überleitung',
-      y: 3.648
-    }, {
-      name: 'Musik',
-      y: 1.663
-    } ]
-  }],
+  actualChartData: Ember.computed('intl.locale', function() {
+    return [{
+      innerSize: '50%',
+      colorByPoint: true,
+      data: [{
+        name:  this.get('intl').t('index.goal.actual.series.sport'),
+        y: 461.833
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.politics'),
+        y: 309.752,
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.television-play'),
+        y: 262.747
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.entertainment'),
+        y: 225.554
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.movie'),
+        y: 213.776
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.family'),
+        y: 114.992
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.culture'),
+        y: 50.995
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.religion'),
+        y: 10.074
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.spot'),
+        y: 3.648
+      }, {
+        name:  this.get('intl').t('index.goal.actual.series.music'),
+        y: 1.663
+      } ]
+    }];
+  }),
   targetChartOptions: {
     chart: {
       plotBackgroundColor: null,
@@ -96,13 +99,15 @@ export default Ember.Controller.extend({
       },
     },
   },
-  targetChartData: [{
-    innerSize: '50%',
-    colorByPoint: true,
-    data: [{
-      name: 'Das gilt es herauszufinden',
-      y: 1
-    }]
-  }]
-
+  targetChartData: Ember.computed('intl.locale', function() {
+    return [{
+      innerSize: '50%',
+      colorByPoint: true,
+      data: [{
+        name: this.get('intl').t('index.goal.target.series.figure-out'),
+        color: '#BBBBBB',
+        y: 1
+      }]
+    }];
+  })
 });
