@@ -15,7 +15,7 @@ Feature:
       | Lokalzeit            | WDR Fernsehen | 1       | 100%     | 2.00€  |
     When I visit the visualization page
     And download the chart as SVG
-    Then the downloaded chart is exactly the same like the one in "data/expected/distribution_by_genre.svg"
+    Then the downloaded chart is exactly the same like the one in "data/expected/distribution_by_station.svg"
     And from the diff in the distribution I can see that ZDF is doing well and WDR is not:
       | Station       | Total amount | Random expectation |
       | ZDF           | 13.00€       | 10.00€             |

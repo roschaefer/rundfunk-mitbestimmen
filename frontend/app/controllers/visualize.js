@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     return {
       chart: {
         type: 'bar',
-        height: '100%',
+        height: this.get('model').get('categories').length * 20 + 200,
       },
       title: {
         text: this.get('intl').t('visualize.diff-chart.title')
