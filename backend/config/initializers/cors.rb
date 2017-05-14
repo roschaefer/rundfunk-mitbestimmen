@@ -7,11 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins(
-      'localhost',
-      'https://rundfunk-mitbestimmen.de',
-      'https://www.rundfunk-mitbestimmen.de'
-    )
+    origins '*'
 
     resource '*',
              headers: :any,

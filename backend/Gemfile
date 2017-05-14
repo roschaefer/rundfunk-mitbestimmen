@@ -11,7 +11,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'scenic'
 gem 'valid_email2'
 
-gem 'rails', '~> 5.0', '>= 5.0.0.1'
+gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', github: 'rails/rails'
 
