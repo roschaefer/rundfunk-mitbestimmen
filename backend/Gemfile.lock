@@ -264,7 +264,7 @@ DEPENDENCIES
   pry
   puma
   rack-cors
-  rails (~> 5.0, >= 5.0.0.1)
+  rails
   rails-controller-testing
   rails_12factor
   rspec-json_expectations
