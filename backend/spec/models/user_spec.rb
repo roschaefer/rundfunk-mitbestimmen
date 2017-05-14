@@ -48,17 +48,17 @@ RSpec.describe User, type: :model do
       context 'with email in payload' do
         let(:payload) { { 'sub' => 'blablabla', 'email' => 'email@example.org' } }
 
-        it('saves email') { expect { subject }.to change { User.pluck(:email).first }.from(nil).to('email@example.org') }
+        it('saves email') { expect { subject }.to(change { User.pluck(:email).first }.from(nil).to('email@example.org')) }
 
         it { is_expected.to be_a User }
 
-        it('creates a new user') { expect { subject }.to change { User.count }.from(0).to(1) }
+        it('creates a new user') { expect { subject }.to(change { User.count }.from(0).to(1)) }
       end
 
       context 'without email in payload' do
         let(:payload) { { 'sub' => 'blablabla', 'email' => nil } }
 
-        it('creates a new user') { expect { subject }.to change { User.count }.from(0).to(1) }
+        it('creates a new user') { expect { subject }.to(change { User.count }.from(0).to(1)) }
         it 'new user has no email' do
           subject
           expect(User.first.email).to be_nil
@@ -71,20 +71,20 @@ RSpec.describe User, type: :model do
           let(:payload) { { 'sub' => 'blablabla', 'email' => 'legacy@example.org' } }
           before { user }
 
-          it('saves the auth0_uid') { expect { subject }.to change { User.find_by(email: 'legacy@example.org').auth0_uid }.from(nil).to('blablabla') }
+          it('saves the auth0_uid') { expect { subject }.to(change { User.find_by(email: 'legacy@example.org').auth0_uid }.from(nil).to('blablabla')) }
           it('returns a user') { is_expected.to be_a User }
-          it('does not create new user') { expect { subject }.not_to change { User.count } }
+          it('does not create new user') { expect { subject }.not_to(change { User.count }) }
         end
       end
     end
 
     describe 'request without sub in payload' do
       let(:payload) { {} }
-      it('does not create new user') { expect { subject }.not_to change { User.count } }
+      it('does not create new user') { expect { subject }.not_to(change { User.count }) }
 
       context 'even if email in payload' do
         let(:payload) { { 'email' => 'test@example.org' } }
-        it('does not create new user') { expect { subject }.not_to change { User.count } }
+        it('does not create new user') { expect { subject }.not_to(change { User.count }) }
       end
     end
 
@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
       let(:user) { create(:user, email: 'existing@example.org', auth0_uid: 'blablabla') }
       before { user }
 
-      it('does not create new user') { expect { subject }.not_to change { User.count } }
+      it('does not create new user') { expect { subject }.not_to(change { User.count }) }
       it('returns the existing user') { is_expected.to eq user }
 
       context 'without email in payload' do

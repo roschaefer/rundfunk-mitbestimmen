@@ -305,7 +305,7 @@ RSpec.describe 'Broadcasts', type: :request do
       context 'as guest' do
         let(:user) { create(:user, :guest) }
         it 'not allowed to create new broadcasts' do
-          expect { action }.not_to change { Broadcast.count }
+          expect { action }.not_to(change { Broadcast.count })
           expect(response).to have_http_status(:forbidden)
         end
       end
@@ -313,7 +313,7 @@ RSpec.describe 'Broadcasts', type: :request do
       context 'as contributor' do
         let(:user) { create(:user, :contributor) }
         it 'allowed to create new broadcasts' do
-          expect { action }.to change { Broadcast.count }
+          expect { action }.to(change { Broadcast.count })
           expect(response).to have_http_status(:created)
         end
 
@@ -326,7 +326,7 @@ RSpec.describe 'Broadcasts', type: :request do
       context 'as admin' do
         let(:user) { create(:user, :admin) }
         it 'allowed to create new broadcasts' do
-          expect { action }.to change { Broadcast.count }.from(0).to(1)
+          expect { action }.to(change { Broadcast.count }.from(0).to(1))
           expect(response).to have_http_status(:created)
         end
       end
@@ -370,17 +370,17 @@ RSpec.describe 'Broadcasts', type: :request do
         let(:user) { create(:user, :contributor) }
 
         it 'is allowed to change medium of a broadcast' do
-          expect { action }.to change {
+          expect { action }.to(change do
             broadcast.reload
             broadcast.medium
-          }.from(tv).to(other)
+          end.from(tv).to(other))
         end
 
         it 'is allowed to add a new station to a broadcasts' do
-          expect { action }.to change {
+          expect { action }.to(change do
             broadcast.reload
             broadcast.station
-          }.from(nil).to(dasErste)
+          end.from(nil).to(dasErste))
         end
       end
     end
@@ -397,7 +397,7 @@ RSpec.describe 'Broadcasts', type: :request do
       context 'as contributor' do
         let(:user) { create(:user, :contributor) }
         it 'not allowed to delete broadcasts' do
-          expect { action }.not_to change { Broadcast.count }
+          expect { action }.not_to(change { Broadcast.count })
           expect(response).to have_http_status(:forbidden)
         end
       end
@@ -405,7 +405,7 @@ RSpec.describe 'Broadcasts', type: :request do
       context 'as admin' do
         let(:user) { create(:user, :admin) }
         it 'allowed to delete broadcasts' do
-          expect { action }.to change { Broadcast.count }.from(1).to(0)
+          expect { action }.to(change { Broadcast.count }.from(1).to(0))
           expect(response).to have_http_status(:no_content)
         end
       end

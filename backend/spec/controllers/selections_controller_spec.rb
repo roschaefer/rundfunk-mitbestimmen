@@ -22,7 +22,7 @@ RSpec.describe SelectionsController, type: :controller do
     end
 
     it 'does not create selections' do
-      expect { request }.not_to change { Selection.count }
+      expect { request }.not_to(change { Selection.count })
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe SelectionsController, type: :controller do
 
         it 'keeps the selection as it is' do
           selection
-          expect { request }.not_to change { Selection.first.amount }
+          expect { request }.not_to(change { Selection.first.amount })
         end
       end
     end
@@ -58,7 +58,7 @@ RSpec.describe SelectionsController, type: :controller do
 
         it 'keeps the selection as it is' do
           selection
-          expect { request }.not_to change { Selection.count }
+          expect { request }.not_to(change { Selection.count })
         end
       end
     end
