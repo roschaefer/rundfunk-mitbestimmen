@@ -2,6 +2,8 @@ class Statistic < ApplicationRecord
   self.primary_key = :id
   paginates_per 10
 
+  belongs_to :broadcast, foreign_key: :id
+
   private
 
   # this isn't strictly necessary, but it will prevent

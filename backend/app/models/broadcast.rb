@@ -11,6 +11,7 @@ class Broadcast < ApplicationRecord
   belongs_to :medium
   belongs_to :station, counter_cache: true
   belongs_to :creator, class_name: 'User'
+  belongs_to :statistic, foreign_key: :id
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { minimum: 30 }
   validates :medium, presence: true
