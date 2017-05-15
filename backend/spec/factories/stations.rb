@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :station do
-    name 'MyString'
+    sequence(:name) { |i| "MyStation #{i}" }
     medium
   end
 end

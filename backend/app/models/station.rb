@@ -3,4 +3,5 @@ class Station < ApplicationRecord
   has_many :broadcasts
   attribute :name
   validates :medium, presence: true
+  validates :name, uniqueness: true
 end

@@ -33,6 +33,7 @@ Router.map(function() {
   this.route('authentication', function() {
     this.route('callback');
   });
+  this.route('visualize');
 });
 
 export default Router;

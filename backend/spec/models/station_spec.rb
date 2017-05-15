@@ -1,7 +1,10 @@
 require 'rails_helper'
+require 'support/shared_examples/database_unique_attribute'
 
 RSpec.describe Station, type: :model do
   let(:station) { create(:station) }
+
+  it_behaves_like 'database unique attribute', :station, name: 'JustAnotherStation'
 
   describe '#medium' do
     context 'missing' do

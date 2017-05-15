@@ -52,6 +52,7 @@ application:
       decide: Sendungen finden
       invoice: Meine Sendungen
       statistics: Statistik
+      visualization: Visualisierung
   language-chooser:
     german: German
     english: English
@@ -363,3 +364,10 @@ statistics:
   link-to:
     invoice: Zurück zu meinen ausgewählten Sendungen
     index: Zurück zur Startseite
+visualize:
+  diff-chart:
+    yAxis:
+      title: € pro Monat
+    title: >
+      Zu erwartende Beträge gegeben einer Gleichverteilung und von den Nutzern
+      gewünschte Beträge - jeweils gruppiert nach Sender
