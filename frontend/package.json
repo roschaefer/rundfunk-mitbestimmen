@@ -20,7 +20,6 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-ajax": "3.0.0",
     "ember-cli": "^2.12.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.1.0",
@@ -39,7 +38,6 @@
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
-    "ember-cli-surge": "1.1.17",
     "ember-cli-test-loader": "^2.0.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "^2.7.0",
