@@ -4,6 +4,7 @@ moduleFor('controller:index', 'Unit | Controller | index', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:intl',
     'service:metrics',
     'ember-metrics@metrics-adapter:piwik', // bundled adapter
   ]

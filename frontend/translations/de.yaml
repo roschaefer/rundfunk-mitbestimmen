@@ -99,10 +99,23 @@ index:
       description: >
         Ausgaben nach Genre, hier am Beispiel des Programms "Das Erste" (Quelle:
         20. KEF Bericht)
+      series:
+        sport: Sport
+        politics: Politik & Gesellschaft
+        television-play: Fernsehspiel
+        entertainment: Unterhaltung
+        movie: Spielfilm
+        family: Familie
+        culture: Kultur & Wissenschaft
+        religion: Religion
+        spot: Spot/Überleitung
+        music: Musik
     target:
       header: Gewünschter Zustand
       description: >
         Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
+      series:
+        figure-out: Das gilt es herauszufinden
   faq:
     questions:
       survey:

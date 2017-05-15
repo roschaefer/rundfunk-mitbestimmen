@@ -98,9 +98,22 @@ index:
       description: >
         This figure shows the actual expenditure by genre for broadcaster "Das
         Erste" (source: 20th KEF report)
+      series:
+        sport: Sport
+        politics: Politics & Society
+        television-play: Television play
+        entertainment: Entertainment
+        movie: Movie
+        family: Family
+        culture: Culture & Science
+        religion: Religion
+        spot: Spot/Transition
+        music: Music
     target:
       header: Desired state
       description: So far, nobody knows how people who pay the fees would decide
+      series:
+        figure-out: That's what we need to figure out
   faq:
     questions:
       survey:
