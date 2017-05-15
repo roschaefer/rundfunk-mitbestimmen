@@ -35,6 +35,7 @@
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jshint": "^2.0.1",
     "ember-cli-pagination": "3.0.1",
+    "ember-cli-polyfill-io": "^1.2.2",
     "ember-cli-qunit": "^3.0.2",
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-shims": "^1.1.0",
