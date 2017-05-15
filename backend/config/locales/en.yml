@@ -3,8 +3,8 @@ en:
   chart_data:
     diff:
       series:
-        actual: Actual distribution
-        uniform: Expected value for uniform distribution
+        actual: Amounts based on voting
+        uniform: If every broadcast would receive the same amount
   activerecord:
     errors:
       models:

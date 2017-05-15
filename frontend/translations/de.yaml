@@ -365,9 +365,11 @@ statistics:
     invoice: Zurück zu meinen ausgewählten Sendungen
     index: Zurück zur Startseite
 visualize:
+  header: Beträge nach Sender
+  sub-header: >
+    Die tatsächlichen Produktionskosten sind nicht öffentlich. Also nehmen wir
+    an, dass jede Sendung gleich viel erhält und nehmen diesen Betrag als
+    Referenz.
   diff-chart:
     yAxis:
       title: € pro Monat
-    title: >
-      Zu erwartende Beträge gegeben einer Gleichverteilung und von den Nutzern
-      gewünschte Beträge - jeweils gruppiert nach Sender

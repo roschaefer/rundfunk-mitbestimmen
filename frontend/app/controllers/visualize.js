@@ -6,10 +6,10 @@ export default Ember.Controller.extend({
     return {
       chart: {
         type: 'bar',
-        height: this.get('model').get('categories').length * 20 + 200,
+        height: this.get('model').get('categories').length * 30 + 250,
       },
       title: {
-        text: this.get('intl').t('visualize.diff-chart.title')
+        text: ''
       },
       xAxis: {
         categories: this.get('model').get('categories')
@@ -23,6 +23,9 @@ export default Ember.Controller.extend({
         valueDecimals: 2,
         valueSuffix: '€'
       },
+      legend: {
+        verticalAlign: 'top'
+      }
     };
   }),
 

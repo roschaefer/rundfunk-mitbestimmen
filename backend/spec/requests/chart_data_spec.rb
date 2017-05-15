@@ -40,8 +40,8 @@ RSpec.describe 'ChartData', type: :request do
           it 'compares distributions between expected random and actual distribution' do
             expect(subject['data']['attributes']['series']).to eq(
               [
-                { 'name' => 'Tatsächliche Verteilung', 'data' => ['11.0', '39.0', '35.0'] },
-                { 'name' => 'Erwartungswert bei Gleichverteilung', 'data' => ['34.0', '34.0', '17.0'] }
+                { 'name' => 'Auf Abstimmungen der Nutzer basierender Betrag', 'data' => ['11.0', '39.0', '35.0'] },
+                { 'name' => 'Jede Sendung erhält den gleichen Betrag', 'data' => ['34.0', '34.0', '17.0'] }
               ]
             )
           end
@@ -59,8 +59,8 @@ RSpec.describe 'ChartData', type: :request do
               end
               expect(subject['data']['attributes']['series']).to eq(
                 [
-                  { 'name' => 'Tatsächliche Verteilung', 'data' => ['46.0', '39.0', '0.0'] },
-                  { 'name' => 'Erwartungswert bei Gleichverteilung', 'data' => ['34.0', '34.0', '17.0'] }
+                  { 'name' => 'Auf Abstimmungen der Nutzer basierender Betrag', 'data' => ['46.0', '39.0', '0.0'] },
+                  { 'name' => 'Jede Sendung erhält den gleichen Betrag', 'data' => ['34.0', '34.0', '17.0'] }
                 ]
               )
             end
