@@ -93,6 +93,15 @@ index:
       In this way people who pay the fees have got a strong voice which is enough
       to have an impact. With your decision we can attract attention of the
       broadcasting councils and increase the public debate on program diversity.
+  reactions:
+    title: Reactions to Rundfunk&nbsp;MITBESTIMMEN
+    people:
+      bieber:
+        position: University Duisburg-Essen, WDR broadcasting commitee
+      roessner:
+        position: member of the German Bundestag, Green Party
+      wille:
+        position: director of MDR, head of ARD
   goal:
     actual:
       header: As-is situation
