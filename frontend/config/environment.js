@@ -18,6 +18,12 @@ module.exports = function(environment) {
         domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
       },
     },
+    'polyfill-io': {
+      features: [
+        'Intl.~locale.en-US',
+        'Intl.~locale.de-DE'
+      ]
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
