@@ -5,13 +5,13 @@ Feature: Create missing records
   To add missing entries to the database
 
   Background:
-    Given we have these stations:
+    Given I am logged in
+    And we have these stations:
       | Station | Medium |
       | Arte    | TV     |
 
  Scenario: A form appears if all broadcasts have been reviewed
-    Given I am logged in
-    And there are 3 broadcasts in the database
+    Given there are 3 broadcasts in the database
     And I visit the decision page
     When I click 'Support' three times in a row
     Then message pops up, telling me I could reload more broadcasts
@@ -23,8 +23,7 @@ Feature: Create missing records
     And I see a form to enter a title and a description
 
  Scenario: Review all broadcasts and create a missing one
-    Given I am logged in
-    And I really like a broadcast called "Neo Magazin Royale"
+    Given I really like a broadcast called "Neo Magazin Royale"
     And I have reviewed all broadcasts already
     And I visit the decision page
     And the form to create a new broadcast is there
@@ -41,8 +40,7 @@ Feature: Create missing records
     And a new broadcast was stored in the database with the data above
 
  Scenario: Create a broadcast and connect it to a TV station
-    Given I am logged in
-    And I want to create a new broadcast that does not exist yet
+    Given I want to create a new broadcast that does not exist yet
     When I enter the following data:
       | Title      | Medium | Station | Description                                                                    |
       | Metropolis | TV     | Arte    | Metropolis berichtet über das künstlerische und intellektuelle Leben in Europa |
@@ -52,14 +50,3 @@ Feature: Create missing records
     Saved successfully
     """
     And the created broadcast has got the exact data from above
-
-
- Scenario: Guest users are asked to log in to create a new broadcast
-    Given I am not logged in
-    And I visit the decision page
-    And there are no broadcasts in the database
-    Then all form fields are disabled and there is a message telling me:
-    """
-    Log in to create new broadcasts
-    """
-
