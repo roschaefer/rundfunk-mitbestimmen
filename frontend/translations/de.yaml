@@ -284,14 +284,14 @@ decide:
       sign-up:
         Speichere Deine ausgewählten Sendungen und verteile Dein symbolisches
         Budget von 17,50€
-    auth0-lock:
-      title: Sendungen speichern
-      networkOrEmail:
-        headerText: >
-          Um die Auswahl zu speichern und die Verteilung des Budgets
-          jederzeit anzupassen
-        smallSocialButtonsHeader: verknüpfe ein Konto
-        separatorText: oder gib eine E-Mail Adresse an
+  auth0-lock:
+    title: Entscheidungen speichern
+    networkOrEmail:
+      headerText: >
+        Um Deine Daten <strong>jederzeit zu ändern</strong>
+      smallSocialButtonsHeader: Verknüpfe ein Konto
+      separatorText: oder gib eine E-Mail Adresse an
+      footerText: <h4>Ohne Anmeldung würden Leute duplizierte Daten hinterlassen</h4>
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >

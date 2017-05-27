@@ -11,20 +11,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.store.findRecord('summarized-statistic', 0, {reload: true}).then(() => {
       // make a random request to the database, the user will be saved to the
       // datatabase and all subsequent request will be associated to that user
-      const state = JSON.parse(atob(this.get('session').get('data.authenticated.state')));
-
-      return Ember.RSVP.allSettled(state.selections.map((s) => {
-        // magic numbers FTW!
-        return this.store.findRecord('broadcast', s[0]).then((b) => {
-          let selection = this.store.createRecord('selection', {
-            response: s[1],
-            broadcast: b
-          });
-          return selection.save();
-        });
-      })).finally(() => {
-        return this.transitionTo(state.toRoute);
-      });
+      const state = this.get('session').get('data.authenticated.state');
+      return this.transitionTo(state);
     });
   }
 });
