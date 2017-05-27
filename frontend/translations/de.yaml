@@ -45,7 +45,6 @@ broadcast-form:
       update: Korrigieren
     success-message: Erfolgreich gespeichert
   another-one: Neue Sendung
-  log-in-message: Melde Dich an, um neue Sendungen einzutragen
 application:
   menu:
     item:

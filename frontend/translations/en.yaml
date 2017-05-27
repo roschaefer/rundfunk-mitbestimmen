@@ -45,7 +45,6 @@ broadcast-form:
       update: Update
     success-message: Saved successfully
   another-one: New broadcast
-  log-in-message: Log in to create new broadcasts
 application:
   menu:
     item:
