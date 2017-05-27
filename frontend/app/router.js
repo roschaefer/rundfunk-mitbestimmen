@@ -34,6 +34,7 @@ Router.map(function() {
     this.route('callback');
   });
   this.route('visualize');
+  this.route('about-us');
 });
 
 export default Router;

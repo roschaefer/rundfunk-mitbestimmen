@@ -48,7 +48,7 @@
     <div class="ui stackable inverted grid">
       <div class="row">
         <div class="sixteen wide column">
-          <h2 class="ui inverted header">{{t 'application.footer.contact-us'}}</h2>
+          <h2 class="ui inverted header">{{t 'application.footer.title'}}</h2>
         </div>
       </div>
       <div class="row">
@@ -57,10 +57,10 @@
         <div class="computer only four wide column">
         </div>
         <div class="eight wide column">
-          <div class="ui large inverted horizontal vertical link list">
+          <div class="ui huge inverted horizontal link list">
             <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
               <i class="mail outline icon"></i>
-              Feedback
+              Email
             </a>
             <a class="item" target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen">
               <i class="github icon"></i>
@@ -70,18 +70,30 @@
               <i class="twitter icon"></i>
               Twitter
             </a>
-            {{#link-to 'imprint' class='item'}}
-              <i class="creative commons icon"></i>
-              {{t 'application.footer.imprint'}}
-            {{/link-to}}
-            {{#link-to 'data-privacy' class='item'}}
-              <i class="protect icon"></i>
-              {{t 'application.footer.data-privacy'}}
+            {{#link-to 'about-us' class='item'}}
+              <i class="smile icon"></i>
+              {{t 'application.footer.about-us'}}
             {{/link-to}}
           </div>
         </div>
         <div class="four wide column">
           <a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-dark.png"/></a>
+        </div>
+      </div>
+      <div class="ui inverted section divider"></div>
+      <div class="centered row">
+        <div class="eight wide center aligned column">
+          <div class="ui horizontal inverted small divided link list">
+            <a class="item" href="mailto:team@rundfunk-mitbestimmen.de">
+              {{t 'application.footer.contact-us'}}
+            </a>
+            {{#link-to 'data-privacy' class='item'}}
+              {{t 'application.footer.data-privacy'}}
+            {{/link-to}}
+            {{#link-to 'imprint' class='item'}}
+              {{t 'application.footer.imprint'}}
+            {{/link-to}}
+          </div>
         </div>
       </div>
     </div>

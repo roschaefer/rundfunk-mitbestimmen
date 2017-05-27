@@ -57,9 +57,11 @@ application:
     german: German
     english: English
   footer:
-    contact-us: Verbesserungsvorschläge und Kontakt
+    title: Verbesserungsvorschläge und Kontakt
     imprint: Impressum
     data-privacy: Datenschutz
+    about-us: Über uns
+    contact-us: Kontakt
   logout: Ausloggen
   login: Einloggen
 index:
@@ -373,3 +375,28 @@ visualize:
   diff-chart:
     yAxis:
       title: € pro Monat
+about-us:
+  team:
+    you:
+      name: Hier könntest Du sein
+      position: Neues Team-Mitglied
+      description: >
+        Bist Du ein Entwickler, Designer, Aktivist, PR Manager, Datenforscher,
+        Journalist oder möchtest Dich einfach engagieren? Es gibt so viele
+        Möglichkeiten mitzumachen!
+        <a class="item" href="mailto:team@rundfunk-mitbestimmen.de">
+        Kontaktiere uns einfach :)
+        </a>
+    katharina:
+      position: User Experience Designerin
+      description: >
+        Katharina ist eine erfahrene User Experience Designerin aus Potsdam. Sie
+        engagiert sich für gemeinnützige Software Projekte um mit innovativen
+        Lösungen offensichtliche Probleme anzugehen.
+    robert:
+      position: Software-Entwickler
+      description: >
+        Robert ist EmberJS und Ruby on Rails Entwickler aus Potsdam. Als
+        Selbständiger hilft er Neueinsteigern das Programmieren zu erlernen und
+        Journalisten beim Entwickeln von Prototypen für innovative Formate.
+        Zurzeit schreibt er seine Master-Arbeit am Hasso-Plattner-Institut.
