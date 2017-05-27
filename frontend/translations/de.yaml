@@ -7,7 +7,7 @@ auth0-lock:
     smallSocialButtonsHeader: >
       Anmelden mit
     separatorText: >
-      oder gib eine E-Mail Adresse an
+      oder gib eine E-Mail Adresse an:
 authentication:
   loading:
     message: Deine Auswahl wird veröffentlicht...
@@ -287,10 +287,9 @@ decide:
     title: Entscheidungen speichern
     networkOrEmail:
       headerText: >
-        Um Deine Daten <strong>jederzeit zu ändern</strong>
-      smallSocialButtonsHeader: Verknüpfe ein Konto
-      separatorText: oder gib eine E-Mail Adresse an
-      footerText: <h4>Ohne Anmeldung würden Leute duplizierte Daten hinterlassen</h4>
+        Um Deine Daten <strong>jederzeit zu ändern,</strong>
+      smallSocialButtonsHeader: verknüpfe ein Konto
+      footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
