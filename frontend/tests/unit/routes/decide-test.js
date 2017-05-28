@@ -6,6 +6,8 @@ moduleFor('route:decide', 'Unit | Route | decide', {
   needs: [
     'service:metrics',
     'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    'service:session',
+    'service:intl'
   ]
 });
 

@@ -1,4 +1,5 @@
 auth0-lock:
+  title: Login
   emailSent:
     resendLabel: Resend
     success: Check your mailbox!
@@ -7,7 +8,7 @@ auth0-lock:
     smallSocialButtonsHeader: >
       Log in with
     separatorText: >
-      or enter an email address
+      or enter an email address:
 authentication:
   loading:
     message: Your selection is being published...
@@ -45,7 +46,6 @@ broadcast-form:
       update: Update
     success-message: Saved successfully
   another-one: New broadcast
-  log-in-message: Log in to create new broadcasts
 application:
   menu:
     item:
@@ -273,14 +273,12 @@ decide:
       sign-up: >
         Save your selected broadcasts and distribute your symbolic budget of
         €17.50
-    auth0-lock:
-      title: Save broadcasts
-      networkOrEmail:
-        headerText: >
-          To save the selection and change the distribution of your budget at
-          any time
-        smallSocialButtonsHeader: connect an account
-        separatorText: or enter an email address
+  auth0-lock:
+    networkOrEmail:
+      headerText: >
+        To change your decisions <strong>any time</strong>
+      smallSocialButtonsHeader: connect an account
+      footerText: <h4>Why? This is the only way you can access your data again.</h4>
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!

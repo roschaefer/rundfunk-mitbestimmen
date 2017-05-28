@@ -4,10 +4,13 @@ Feature: Lead the user through the suggestions
   I want to get a suggestion when a pile of decision cards runs out - issue the invoice or draw new cards?
   Because I do not know when it is a good moment to review the invoice
 
-  Scenario: Tell the user to issue the invoice
+  Background:
     Given we have 10 broadcasts in our database
+    And I am logged in
     When I visit the decision page
-    And I click 3 times on 'Support' and 7 times on 'Next'
+
+  Scenario: Tell the user to issue the invoice
+    When I click 3 times on 'Support' and 7 times on 'Next'
     Then I see 3 checkmarks and 7 grey dots, labeled with "10/10"
     And I am told to issue the invoice:
     """
@@ -16,9 +19,7 @@ Feature: Lead the user through the suggestions
     """
 
   Scenario: Tell the user to repeat until he finds enough broadcasts
-    Given we have 10 broadcasts in our database
-    When I visit the decision page
-    And I click 1 times on 'Support' and 9 times on 'Next'
+    When I click 1 times on 'Support' and 9 times on 'Next'
     Then I see 1 checkmarks and 9 grey dots, labeled with "10/10"
     And I am told to continue my search for more broadcasts:
     """

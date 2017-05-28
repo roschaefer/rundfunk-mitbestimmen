@@ -48,13 +48,7 @@ test('encourages the user to load more suggestions', function(assert) {
   assert.ok(primary.match(/More suggestions/));
 });
 
-test('before authentication, user is asked to sign up', function(assert) {
-  this.render(hbs`{{decision-card-deck-next-step positiveReviews=3}}`);
-  let primary = this.$('.primary.button').text();
-  assert.ok(primary.match(/Save broadcasts/));
-});
-
-test('after authentication, user is can distribute budget', function(assert) {
+test('when selected 3 positives, user is can distribute budget', function(assert) {
   this.render(hbs`{{decision-card-deck-next-step positiveReviews=3}}`);
   this.set('sessionService.isAuthenticated', true);
   let primary = this.$('.primary.button').text();

@@ -597,10 +597,6 @@ Then(/^this better description was saved$/) do
   expect(@broadcast.description).to eq @better_description
 end
 
-Then(/^I see the first suggestion$/) do
-  expect(page).to have_css('.decision-card.fully-displayed')
-end
-
 def support_some_broadcasts(number)
   create_list(:broadcast, number)
   visit '/decide'
@@ -610,32 +606,6 @@ def support_some_broadcasts(number)
     find('.decision-card-action.positive').click
     wait_for_transition('.decision-card')
   end
-end
-
-Given(/^I responded (\d+) times with 'Support' to a suggestion$/) do |number|
-  support_some_broadcasts(number.to_i)
-end
-
-Given(/^at first, no selection and no account was created in the database$/) do
-  expect(User.count).to eq 0
-  expect(Selection.count).to eq 0
-end
-
-Then(/^all my responses are saved in the database along with my account$/) do
-  user = User.find_by(email: @user.email) # @user might not be saved
-  expect(user.selections.count).to eq @responses
-  user.selections.find_each do |s|
-    expect(s).to be_positive
-  end
-end
-
-When(/^I click on one of the euro icons to enter an amount$/) do
-  first('i.euro.icon').click
-end
-
-Then(/^all (\d+) amounts are distributed evenly$/) do |count|
-  amount = (17.5/count.to_f).round(2)
-  expect(page).to have_css('.ember-inline-edit', text: /#{amount}/, count: count)
 end
 
 Given(/^the statistics look like this:$/) do |table|
@@ -745,27 +715,9 @@ Given(/^we have these media:$/) do |table|
   end
 end
 
-Given(/^I am not logged in$/) do
-  visit '/'
-  expect(page).to have_text('Log in')
-end
-
 When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
   find('.selection', text: 'Select medium').click
   find('.item:not(.blank)', text: medium).click
-end
-
-Then(/^all form fields are disabled and there is a message telling me:$/) do |string|
-  expect(page).to have_css('.broadcast-form.warning')
-  within('.broadcast-form.warning') do
-    expect(page).to have_css('.field.disabled')
-    expect(page).not_to have_css('.field:not(.disabled)')
-    expect(page).to have_text(string)
-  end
-end
-
-Given(/^there are no broadcasts in the database$/) do
-  expect(Broadcast.count).to eq 0
 end
 
 Given(/^we have these stations in our database:$/) do |table|
@@ -852,17 +804,6 @@ Then(/^I see that "([^"]*)" is aired on a "([^"]*)" station called "([^"]*)"$/) 
   expect(page).to have_css('.decision-card .meta', text: station)
 end
 
-Then(/^I am back on the decision page$/) do
-  expect(page).to have_current_path('/decide')
-  expect(page).to have_css('.decision-page')
-end
-
-Then(/^no account was created/) do
-  expect(User.count).to eq 0
-  visit '/'
-  expect(find('.registered-users')).to have_text('0')
-end
-
 Then(/^no other account was created/) do
   expect(User.count).to eq 1
   visit '/'
@@ -906,36 +847,7 @@ Then(/^when I unselect the medium$/) do
   end
 end
 
-Given(/^I click the support button for every broadcast in the database$/) do
-  support_some_broadcasts(3)
-end
-
-Given(/^I read a message next to it:$/) do |string|
-  expect(page).to have_text(string)
-end
-
-Then(/^I can see a button "([^"]*)" with a message next to it:$/) do |label, message|
-  @button_label = label
-  expect(page).to have_css('.primary.button', text: @button_label)
-  expect(page).to have_text(message)
-end
-
-When(/^if I click on that button and create an account$/) do
-  @user = build(:user)
-  stub_jwt(@user)
-  click_on @button_label
-end
-
-Then(/^I am brought to the 'My broadcasts' page$/) do
-  expect(page).to have_css('#invoice-table')
-  expect(current_path).to eq '/invoice'
-end
-
-Then(/^I can see all my selected broadcasts$/) do
-  expect(page).to have_css('.invoice-item', count: @responses.to_i)
-end
-
-When(/^I click the accordion(?:.*)? on "([^"]*)"$/) do |label|
+When(/^I click the accordion(?: once again)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
 end
 

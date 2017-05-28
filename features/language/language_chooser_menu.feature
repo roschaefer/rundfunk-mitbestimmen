@@ -16,10 +16,12 @@ Feature: Language chooser menu
     Then I see the "Einloggen" menu item
 
   Scenario: Backend translates to english
+    Given I am logged in
     When I visit the decision page
     Then I see a medium called "Other"
 
   Scenario: Backend translates to german
+    Given I am logged in
     When I visit the landing page
     And I click on the german flag
     And I click on "jetzt mitbestimmen"

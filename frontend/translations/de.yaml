@@ -1,4 +1,5 @@
 auth0-lock:
+  title: Anmelden
   emailSent:
     resendLabel: Erneut senden
     success: Öffne Dein Postfach!
@@ -7,7 +8,7 @@ auth0-lock:
     smallSocialButtonsHeader: >
       Anmelden mit
     separatorText: >
-      oder gib eine E-Mail Adresse an
+      oder gib eine E-Mail Adresse an:
 authentication:
   loading:
     message: Deine Auswahl wird veröffentlicht...
@@ -45,7 +46,6 @@ broadcast-form:
       update: Korrigieren
     success-message: Erfolgreich gespeichert
   another-one: Neue Sendung
-  log-in-message: Melde Dich an, um neue Sendungen einzutragen
 application:
   menu:
     item:
@@ -284,14 +284,12 @@ decide:
       sign-up:
         Speichere Deine ausgewählten Sendungen und verteile Dein symbolisches
         Budget von 17,50€
-    auth0-lock:
-      title: Sendungen speichern
-      networkOrEmail:
-        headerText: >
-          Um die Auswahl zu speichern und die Verteilung des Budgets
-          jederzeit anzupassen
-        smallSocialButtonsHeader: verknüpfe ein Konto
-        separatorText: oder gib eine E-Mail Adresse an
+  auth0-lock:
+    networkOrEmail:
+      headerText: >
+        Um Deine Daten <strong>jederzeit zu ändern,</strong>
+      smallSocialButtonsHeader: verknüpfe ein Konto
+      footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >

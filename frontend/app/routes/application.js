@@ -26,17 +26,8 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (givenState, givenDict) {
-      const defaultState = {
-        toRoute: this.get('router.url'),
-        selections: this.store.peekAll('selection').map((s) => {
-          // keep the redirect url short
-          // JSON.stringify exceeds 2000 characters quickly
-          return [s.get('broadcast').get('id'), s.get('response')];
-        })
-      };
-      const state = Object.assign({}, defaultState, givenState);
-      const encodedState = btoa(JSON.stringify(state));
+    login (givenDict) {
+      const toRoute = this.get('router.url');
 
       const dict = Object.assign({
           emailSent: {
@@ -50,7 +41,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
             smallSocialButtonsHeader: this.get('intl').t('auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
             separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
           },
-        title: 'Rundfunk MITBESTIMMEN'
+        title: this.get('intl').t('auth0-lock.title'),
       }, givenDict);
 
       // Check out the docs for all the options:
@@ -60,8 +51,9 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
         primaryColor: '#2185D0',
         dict: dict,
+        closable: false,
         authParams: {
-          state: encodedState,
+          state: toRoute,
           scope: 'openid email',
         },
         socialBigButtons: false,

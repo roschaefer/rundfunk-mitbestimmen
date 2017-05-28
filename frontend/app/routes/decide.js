@@ -3,6 +3,8 @@ import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 
 
 export default Ember.Route.extend(ResetScrollPositionMixin, {
+  intl: Ember.inject.service(),
+  session: Ember.inject.service('session'),
   queryParams: {
     q: {
       refreshModel: true
@@ -25,6 +27,19 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
         station: params.station
       }
     });
+  },
+  afterModel(_, transition) {
+    if (this.get('session').get('isAuthenticated') === false){
+      const customDict = {
+        networkOrEmail: {
+          headerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.headerText'),
+          smallSocialButtonsHeader: this.get('intl').t('decide.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
+          separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
+          footerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.footerText'),
+        },
+      };
+      transition.send('login', customDict);
+    }
   },
   setupController: function(controller, model) {
     // Call _super for default behavior

@@ -8,12 +8,8 @@ export default Ember.Component.extend({
     'broadcast.isValid::error',
     'broadcast.isSaving:loading',
     'broadcast.success:success',
-    'isDisabled:warning'
   ],
   tagName: 'form',
-  isDisabled: Ember.computed('session.isAuthenticated', function() {
-    return this.get('session.isAuthenticated') ? '' : 'disabled';
-  }),
   displayedStations: Ember.computed('broadcast.medium', function() {
     let filteredStations = this.get('stations');
     if (this.get('broadcast')){

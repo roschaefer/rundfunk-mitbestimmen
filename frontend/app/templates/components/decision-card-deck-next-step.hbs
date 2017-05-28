@@ -36,22 +36,10 @@
           </button>
         </div>
         <div class="column">
-          {{#if session.isAuthenticated }}
-            {{#link-to 'invoice' classNames=(concat 'ui fluid button link-to-invoice ' additionalDistributeButtonClasses)}}
-              <i class="euro icon"></i>
-              {{t 'decide.next-step.button.to-invoice' }}
-            {{/link-to}}
-          {{else}}
-          <div class="field">
-            <button class="ui fluid icon back button {{additionalDistributeButtonClasses}}" {{action 'signupAndDistributeBudget'}}>
-              <i class="sign in icon"></i>
-              {{t 'decide.next-step.button.sign-up' }}
-            </button>
-            <div class="ui pointing basic label tooltip-font">
-              {{t 'decide.next-step.label.sign-up' }}
-            </div>
-          </div>
-          {{/if}}
+          {{#link-to 'invoice' classNames=(concat 'ui fluid button link-to-invoice ' additionalDistributeButtonClasses)}}
+            <i class="euro icon"></i>
+            {{t 'decide.next-step.button.to-invoice' }}
+          {{/link-to}}
         </div>
       </div>
     </div>
