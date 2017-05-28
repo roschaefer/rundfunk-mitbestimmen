@@ -41,7 +41,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
             smallSocialButtonsHeader: this.get('intl').t('auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
             separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
           },
-        title: 'Rundfunk MITBESTIMMEN'
+        title: this.get('intl').t('auth0-lock.title'),
       }, givenDict);
 
       // Check out the docs for all the options:

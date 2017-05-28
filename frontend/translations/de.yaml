@@ -1,4 +1,5 @@
 auth0-lock:
+  title: Anmelden
   emailSent:
     resendLabel: Erneut senden
     success: Öffne Dein Postfach!
@@ -284,7 +285,6 @@ decide:
         Speichere Deine ausgewählten Sendungen und verteile Dein symbolisches
         Budget von 17,50€
   auth0-lock:
-    title: Entscheidungen speichern
     networkOrEmail:
       headerText: >
         Um Deine Daten <strong>jederzeit zu ändern,</strong>

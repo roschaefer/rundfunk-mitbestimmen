@@ -1,4 +1,5 @@
 auth0-lock:
+  title: Login
   emailSent:
     resendLabel: Resend
     success: Check your mailbox!
@@ -273,7 +274,6 @@ decide:
         Save your selected broadcasts and distribute your symbolic budget of
         €17.50
   auth0-lock:
-    title: Save decisions
     networkOrEmail:
       headerText: >
         To change your decisions <strong>any time</strong>
