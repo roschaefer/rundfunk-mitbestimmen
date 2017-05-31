@@ -56,7 +56,7 @@ features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
 
-## Installation and Usage with Docker
+## Installation and Usage with Docker (quick but without software tests)
 
 Clone the repository:
 ```sh
@@ -82,7 +82,7 @@ docker-compose run backend bin/rails db:seed
 ```
 
 
-## Installation
+## Local Installation (best option for developers)
 
 Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
 [ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have
@@ -174,11 +174,37 @@ cd backend && bin/rspec
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :heart:
+We use this [milestone](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1) as priority queue for issues.
+
+High prioritized issues will go to the top. Issues are tagged with
+`backend` and `frontend` depending on where code needs to be changed.
+
+Because GitHub lacks functionality to display estimation hours, we use [Zenhub's browser plugin](https://www.zenhub.com/).
+Installing this plugin will show you the estimated hours per issue.
+
+Don't be afraid about Auth0. As long as your local installation runs in
+development environment your login will reach the "Testing" database
+of Auth0. This will not pollute the production database of Auth0.
+
+### Workflow for contributing:
+
+1. Fork it
+2. Pick a user story from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1)
+3. Create your feature branch: `git checkout -b [issue number]_my_new_feature_branch`
+4. Create`features/[site of change]/your.feature` and copy+paste the feature description from GitHub
+5. Run `foreman start -f ProcfileTesting` and `bundle exec cucumber features/[site of change]/your.feature`
+6. Append the terminal output to `features/step_definitions/steps.rb` and write expectations
+7. Run `bundle exec cucumber` - tests should fail
+8. Implement the feature
+9. Run `bundle exec cucumber` - tests should pass
+10. Commit your changes: `git commit -am 'Add some feature'`
+11. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
+12. Submit a pull request :heart:
+
+## Deployment
+
+Our [build server Travis CI](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen) takes care about automatic deployment.
+Approximately 15 minutes after your pull request was merged into master, you should see the changes in production.
 
 
 ## Useful Links
