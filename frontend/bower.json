@@ -2,7 +2,6 @@
   "name": "frontend",
   "dependencies": {
     "ember": "~2.12.0",
-    "ember-qunit-notifications": "0.1.0",
     "jquery-mockjax": "2.2.1",
     "semantic-ui": "^2.2.6",
     "auth0-lock": "^10.13.0",
