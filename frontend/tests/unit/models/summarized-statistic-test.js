@@ -1,12 +1,18 @@
-import { moduleForModel, test } from 'ember-qunit';
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupModelTest } from 'ember-mocha';
 
-moduleForModel('summarized-statistic', 'Unit | Model | summarized statistic', {
-  // Specify the other units that are required for this test.
-  needs: []
-});
+describe('Unit | Model | summarized statistic', function() {
+  setupModelTest('summarized-statistic', {
+    // Specify the other units that are required for this test.
+      needs: []
+  });
 
-test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
+  // Replace this with your real tests.
+  it('exists', function() {
+    let model = this.subject();
+    // var store = this.store();
+    expect(model).to.be.ok;
+  });
 });
