@@ -1,24 +1,28 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { beforeEach, describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { makeList, manualSetup } from 'ember-data-factory-guy';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('decision-card-deck', 'Integration | Component | decision card deck', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  },
-  beforeEach() {
+describe('Integration | Component | decision card deck', function() {
+  setupComponentTest('decision-card-deck', {
+    integration: true
+  });
+  beforeEach(function(){
     manualSetup(this.container);
-  }
-});
+  });
 
-test('initially 1 visible broadcast', function(assert) {
-  this.set('someBroadcasts', makeList('broadcast', 3));
-  this.render(hbs`{{decision-card-deck broadcasts=someBroadcasts}}`);
-  let length = this.$('.decision-card').length;
-  assert.equal(length, 1);
+  it('renders', function() {
+    this.set('someBroadcasts', makeList('broadcast', 3));
+    this.render(hbs`{{decision-card-deck broadcasts=someBroadcasts}}`);
+    expect(this.$()).to.have.length(1);
+  });
+
+  it('initially 1 visible broadcast', function() {
+    this.set('someBroadcasts', makeList('broadcast', 3));
+    this.render(hbs`{{decision-card-deck broadcasts=someBroadcasts}}`);
+    let length = this.$('.decision-card').length;
+    expect(length).to.eq(1);
+  });
+
 });

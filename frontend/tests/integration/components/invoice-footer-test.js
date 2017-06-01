@@ -1,27 +1,29 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('invoice-footer', 'Integration | Component | invoice footer', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  },
+describe('Integration | Component | invoice footer', function() {
+  setupComponentTest('invoice-footer', {
+    integration: true
+  });
 
-});
+  it('renders', function() {
+    this.set('remaining', 5.0);
+    this.set('total', 10.0);
+    this.render(hbs`{{invoice-footer total=total remaining=remaining}}`);
+    expect(this.$()).to.have.length(1);
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('formats the currencies', function() {
+    this.inject.service('intl');
+    this.container.lookup('service:intl').setLocale('en');
+    this.set('remaining', 5.0);
+    this.set('total', 10.0);
+    this.render(hbs`{{invoice-footer total=total remaining=remaining}}`);
 
-  this.set('remaining', 5.0);
-  this.set('total', 10.0);
-  this.render(hbs`{{invoice-footer total=total remaining=remaining}}`);
-
-  let text = this.$().text();
-  assert.ok(text.match(/€5.00/));
-  assert.ok(text.match(/€10.00/));
+    let text = this.$().text();
+    expect(text).to.match(/€5.00/);
+    expect(text).to.match(/€10.00/);
+  });
 });

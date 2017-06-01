@@ -1,15 +1,20 @@
-import { moduleFor, test } from 'ember-qunit';
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
-moduleFor('route:imprint', 'Unit | Route | imprint', {
+describe('Unit | Route | imprint', function() {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
-  needs: [
-    'service:metrics',
-    'ember-metrics@metrics-adapter:piwik', // bundled adapter
-  ]
-});
+  setupTest('route:imprint', {
+    needs: [
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
+  });
 
-test('it exists', function(assert) {
-  let route = this.subject();
-  assert.ok(route);
+  it('exists', function() {
+    let route = this.subject();
+    expect(route).to.be.ok;
+  });
 });

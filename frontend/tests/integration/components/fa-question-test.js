@@ -1,34 +1,32 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('fa-question', 'Integration | Component | fa question', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  }
-});
+describe('Integration | Component | fa question', function() {
+  setupComponentTest('fa-question', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    this.inject.service('intl');
+    this.container.lookup('service:intl').setLocale('en');
 
-  this.render(hbs`{{fa-question key='finances'}}`);
+    this.render(hbs`{{fa-question key='finances'}}`);
+    expect(this.$()).to.have.length(1);
 
-  let text = this.$().text().trim();
-  assert.ok(text.match(/Who is financing this\?/));
-  assert.ok(text.match(/We ourselves/));
+    let text = this.$().text().trim();
+    expect(text).to.match(/Who is financing this\?/);
+    expect(text).to.match(/We ourselves/);
 
-  // Template block usage:
-  this.render(hbs`
+    // Template block usage:
+    this.render(hbs`
     {{#fa-question key='finances'}}
       template block text
     {{/fa-question}}
   `);
 
-  text = this.$().text().trim();
-  assert.ok(text.match(/template block text/));
+    text = this.$().text().trim();
+    expect(text).to.match(/template block text/);
+  });
 });

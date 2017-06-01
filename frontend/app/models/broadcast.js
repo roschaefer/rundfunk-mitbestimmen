@@ -5,8 +5,6 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   medium: DS.belongsTo('medium'),
   station: DS.belongsTo('station'),
-  topic: DS.belongsTo('topic'),
-  format: DS.belongsTo('format'),
   selections: DS.hasMany('selection'),
 
   respond(response){

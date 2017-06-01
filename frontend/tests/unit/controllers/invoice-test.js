@@ -1,17 +1,20 @@
-import { moduleFor, test } from 'ember-qunit';
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
-moduleFor('controller:invoice', 'Unit | Controller | invoice', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-  needs: [
-    'service:session',
-    'service:metrics',
-    'ember-metrics@metrics-adapter:piwik', // bundled adapter
-  ]
-});
+describe('Unit | Controller | invoice', function() {
+  setupTest('controller:invoice', {
+    needs: [
+      'service:session',
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
+  });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  let controller = this.subject();
-  assert.ok(controller);
+  // Replace this with your real tests.
+  it('exists', function() {
+    let controller = this.subject();
+    expect(controller).to.be.ok;
+  });
 });

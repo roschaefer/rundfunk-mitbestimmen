@@ -1,31 +1,28 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('broadcast-form-modal', 'Integration | Component | broadcast form modal', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  }
-});
+describe('Integration | Component | broadcast form modal', function() {
+  setupComponentTest('broadcast-form-modal', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    this.inject.service('intl');
+    this.container.lookup('service:intl').setLocale('en');
 
-  this.render(hbs`{{broadcast-form-modal}}`);
+    this.render(hbs`{{broadcast-form-modal}}`);
+    expect(this.$()).to.have.length(1);
+    expect(this.$().text().trim()).to.match(/Edit broadcast/);
 
-  assert.ok(this.$().text().trim().match(/Edit broadcast/));
-
-  // Template block usage:
-  this.render(hbs`
+    // Template block usage:
+    this.render(hbs`
     {{#broadcast-form-modal}}
       template block text
     {{/broadcast-form-modal}}
   `);
 
-  assert.ok(this.$().text().match(/template block text/));
+    expect(this.$().text()).to.match(/template block text/);
+  });
 });

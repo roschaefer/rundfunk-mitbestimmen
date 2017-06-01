@@ -1,18 +1,21 @@
-import { moduleFor, test } from 'ember-qunit';
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
-moduleFor('controller:visualize', 'Unit | Controller | visualize', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-  needs: [
-    'service:session',
-    'service:intl',
-    'service:metrics',
-    'ember-metrics@metrics-adapter:piwik', // bundled adapter
-  ]
-});
+describe('Unit | Controller | visualize', function() {
+  setupTest('controller:visualize', {
+    needs: [
+      'service:session',
+      'service:intl',
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
+  });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  let controller = this.subject();
-  assert.ok(controller);
+  // Replace this with your real tests.
+  it('exists', function() {
+    let controller = this.subject();
+    expect(controller).to.be.ok;
+  });
 });

@@ -1,17 +1,20 @@
-import { moduleFor, test } from 'ember-qunit';
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
-moduleFor('route:decide', 'Unit | Route | decide', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-  needs: [
-    'service:metrics',
-    'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    'service:session',
-    'service:intl'
-  ]
-});
+describe('Unit | Route | decide', function() {
+  setupTest('route:decide', {
+    needs: [
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+      'service:session',
+      'service:intl'
+    ]
+  });
 
-test('it exists', function(assert) {
-  let route = this.subject();
-  assert.ok(route);
+  it('exists', function() {
+    let route = this.subject();
+    expect(route).to.be.ok;
+  });
 });

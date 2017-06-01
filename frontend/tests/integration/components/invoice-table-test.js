@@ -1,34 +1,31 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('invoice-table', 'Integration | Component | invoice table', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  },
+describe('Integration | Component | invoice table', function() {
+  setupComponentTest('invoice-table', {
+    integration: true
+  });
 
-});
+  it('renders', function() {
+    let invoiceStub = {
+      total: function() {
+        return 11.0;
+      },
+      leftOver: function() {
+        return 6.5;
+      }
+    };
+    this.inject.service('intl');
+    this.container.lookup('service:intl').setLocale('en');
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-  let invoiceStub = {
-    total: function() {
-      return 11.0;
-    },
-    leftOver: function() {
-      return 6.5;
-    }
-  };
-
-  this.set('invoice', invoiceStub);
-  this.render(hbs`{{invoice-table invoice=invoice}}`);
-  let text = this.$().text();
-  assert.ok(text.match(/Title/));
-  assert.ok(text.match(/Amount/));
-  assert.ok(text.match(/Budget/));
+    this.set('invoice', invoiceStub);
+    this.render(hbs`{{invoice-table invoice=invoice}}`);
+    expect(this.$()).to.have.length(1);
+    let text = this.$().text();
+    expect(text).to.match(/Title/);
+    expect(text).to.match(/Amount/);
+    expect(text).to.match(/Budget/);
+  });
 });
