@@ -1,12 +1,14 @@
+/* jshint expr: true */
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
 import Ember from 'ember';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
-import { module, test } from 'qunit';
 
-module('Unit | Mixin | reset scroll position');
-
-// Replace this with your real tests.
-test('it works', function(assert) {
-  let ResetScrollPositionObject = Ember.Object.extend(ResetScrollPositionMixin);
-  let subject = ResetScrollPositionObject.create();
-  assert.ok(subject);
+describe('Unit | Mixin | reset scroll position', function() {
+  // Replace this with your real tests.
+  it('works', function() {
+    let ResetScrollPositionObject = Ember.Object.extend(ResetScrollPositionMixin);
+    let subject = ResetScrollPositionObject.create();
+    expect(subject).to.be.ok;
+  });
 });
