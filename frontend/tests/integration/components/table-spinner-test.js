@@ -1,24 +1,24 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('table-spinner', 'Integration | Component | table spinner', {
-  integration: true
-});
+describe('Integration | Component | table spinner', function() {
+  setupComponentTest('table-spinner', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+    // Template block usage:
+    // this.render(hbs`
+    //   {{#table-spinner}}
+    //     template content
+    //   {{/table-spinner}}
+    // `);
 
-  this.render(hbs`{{table-spinner}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#table-spinner}}
-      template block text
-    {{/table-spinner}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+    this.render(hbs`{{table-spinner}}`);
+    expect(this.$()).to.have.length(1);
+  });
 });

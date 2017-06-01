@@ -1,31 +1,32 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { beforeEach, describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { make, manualSetup } from 'ember-data-factory-guy';
-import instanceInitializer from '../../../instance-initializers/ember-intl';
 
-moduleForComponent('decision-card', 'Integration | Component | decision card', {
-  integration: true,
-  setup() {
-    // manually invoke the ember-intl initializer
-    instanceInitializer.initialize(this);
-    let intl = this.container.lookup('service:intl');
-    intl.setLocale('en');
-  },
-  beforeEach() {
+describe('Integration | Component | decision card', function() {
+  setupComponentTest('decision-card', {
+    integration: true
+  });
+  beforeEach(function(){
     manualSetup(this.container);
-  }
+  });
 
+  it('renders', function() {
+    this.set('aBroadcast', make('broadcast'));
+    this.render(hbs`{{decision-card decide=true broadcast=aBroadcast}}`);
+    expect(this.$()).to.have.length(1);
+  });
 
-});
+  it('shows display button if it has a decide action', function() {
+    this.inject.service('intl');
+    this.container.lookup('service:intl').setLocale('en');
 
-test('shows display button if it has a decide action', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    this.set('aBroadcast', make('broadcast'));
+    this.render(hbs`{{decision-card decide=true broadcast=aBroadcast}}`);
 
-  this.set('aBroadcast', make('broadcast'));
-  this.render(hbs`{{decision-card decide=true broadcast=aBroadcast}}`);
-
-  let text = this.$().text();
-  assert.ok(text.match(/Support/));
-  assert.ok(text.match(/Next/));
+    let text = this.$().text();
+    expect(text).to.match(/Support/);
+    expect(text).to.match(/Next/);
+  });
 });

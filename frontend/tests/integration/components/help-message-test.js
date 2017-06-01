@@ -1,24 +1,15 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('help-message', 'Integration | Component | help message', {
-  integration: true
-});
+describe('Integration | Component | help message', function() {
+  setupComponentTest('help-message', {
+    integration: true
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{help-message}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#help-message}}
-      template block text
-    {{/help-message}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  it('renders', function() {
+    this.render(hbs`{{help-message}}`);
+    expect(this.$()).to.have.length(1);
+  });
 });

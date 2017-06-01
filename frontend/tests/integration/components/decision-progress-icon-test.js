@@ -1,29 +1,35 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { expect } from 'chai';
+import { beforeEach, describe, it } from 'mocha';
+import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
-moduleForComponent('decision-progress-icon', 'Integration | Component | decision progress icon', {
-  integration: true,
-  beforeEach() {
+describe('Integration | Component | decision progress icon', function() {
+  setupComponentTest('decision-progress-icon', {
+    integration: true
+  });
+  beforeEach(function(){
     manualSetup(this.container);
-  }
-});
+  });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  it('renders', function() {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.set('aBroadcast', make('broadcast'));
-  this.render(hbs`{{decision-progress-icon broadcast=aBroadcast}}`);
+    this.set('aBroadcast', make('broadcast'));
+    this.render(hbs`{{decision-progress-icon broadcast=aBroadcast}}`);
 
-  assert.equal(this.$().text().trim(), '');
+    expect(this.$()).to.have.length(1);
+    expect(this.$().text().trim()).to.eq('');
 
-  // Template block usage:
-  this.render(hbs`
+    // Template block usage:
+    this.render(hbs`
     {{#decision-progress-icon broadcast=aBroadcast}}
       template block text
     {{/decision-progress-icon}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    expect(this.$()).to.have.length(1);
+    expect(this.$().text().trim()).to.eq('template block text');
+  });
 });
