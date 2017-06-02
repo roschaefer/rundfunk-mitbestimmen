@@ -134,25 +134,30 @@ Open another terminal and start the frontend:
 cd frontend && ember serve
 ```
 
-If you are lazy, you can run both frontend and backend through foreman:
-```sh
-gem install foreman
-foreman start
-```
-
 App is running on [localhost:4200](http://localhost:4200/)
 
 ## Full stack testing
 
 Run:
 ```sh
-foreman start -f ProcfileTesting
+cd frontend && ember serve --environment=integration
 ```
 
 Open another terminal and run:
 ```sh
+cd backend && bin/rails server --environment=test
+```
+
+Open yet another terminal and run:
+```sh
 bundle exec cucumber
 ```
+
+These environments serve the purpose to
+1. Stub out external services in the frontend, e.g. authentication
+   via Auth0.
+2. Use a separate test database in the backend, which will be cleaned after each
+   test run.
 
 If you want to run firefox instead of chrome, you can set an environment
 variable:
@@ -188,18 +193,19 @@ of Auth0. This will not pollute the production database of Auth0.
 
 ### Workflow for contributing:
 
-1. Fork it
+1. Fork it :fork_and_knife:
 2. Pick a user story from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1)
 3. Create your feature branch: `git checkout -b [issue number]_my_new_feature_branch`
 4. Create`features/[site of change]/your.feature` and copy+paste the feature description from GitHub
-5. Run `foreman start -f ProcfileTesting` and `bundle exec cucumber features/[site of change]/your.feature`
-6. Append the terminal output to `features/step_definitions/steps.rb` and write expectations
-7. Run `bundle exec cucumber` - tests should fail
-8. Implement the feature
-9. Run `bundle exec cucumber` - tests should pass
-10. Commit your changes: `git commit -am 'Add some feature'`
-11. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
-12. Submit a pull request :heart:
+5. Boot both frontend and backend as described in the [section about testing](https://github.com/roschaefer/rundfunk-mitbestimmen#full-stack-testing)
+6. Run `bundle exec cucumber`
+7. Append the terminal output to `features/step_definitions/steps.rb` and write expectations
+8. Run `bundle exec cucumber` - tests should fail
+9. Implement the feature
+10. Run `bundle exec cucumber` - tests should pass
+11. Commit your changes: `git commit -am 'Add some feature'`
+12. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
+13. Submit a pull request :heart:
 
 ## Deployment
 
