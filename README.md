@@ -85,14 +85,19 @@ docker-compose run backend bin/rails db:seed
 ## Local Installation (best option for developers)
 
 Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
-[ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have
-the following versions:
+[ruby](https://www.ruby-lang.org/en/) and [EmberJS](https://www.emberjs.com/)
+installed before you proceed. E.g. we have the following versions:
 
 ```sh
 npm --version
-# 4.0.2
+# 5.0.1
 ruby --version
-# ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+#ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+ember --version
+# WARNING: Node v8.0.0 is not tested against Ember CLI on your platform. We recommend that you use the most-recent "Active LTS" version of Node.js.
+# ember-cli: 3.13.2
+# node: 8.0.0
+# os: linux x64
 ```
 
 Clone the repository:
@@ -131,7 +136,7 @@ cd backend && bin/rails s
 
 Open another terminal and start the frontend:
 ```sh
-cd frontend && ember serve
+cd frontend && ember server
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
@@ -140,7 +145,7 @@ App is running on [localhost:4200](http://localhost:4200/)
 
 Run:
 ```sh
-cd frontend && ember serve --environment=integration
+cd frontend && ember server --environment=integration
 ```
 
 Open another terminal and run:
@@ -168,7 +173,7 @@ BROWSER=selenium bundle exec cucumber
 ### Frontend tests
 
 ```sh
-cd frontend && ember test --serve
+cd frontend && ember test --server
 ```
 
 ### Backend tests
