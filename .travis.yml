@@ -28,7 +28,7 @@ before_install:
   - npm config set spin false
   - npm install -g bower
   - npm install -g ember-cli
-  - npm install phantomjs-prebuilt
+  - npm install -g phantomjs-prebuilt
   - ember --version
   - bower --version
   - npm --version
