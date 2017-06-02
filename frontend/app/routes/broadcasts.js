@@ -5,8 +5,6 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, RouteMixin, ResetScrollPositionMixin, {
   model: function(params) {
-    // todo is your model name
-    // returns a PagedRemoteArray
     params.paramMapping = {
       total_pages: "total-pages"
     };

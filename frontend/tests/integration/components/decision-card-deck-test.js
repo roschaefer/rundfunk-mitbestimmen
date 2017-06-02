@@ -18,11 +18,11 @@ describe('Integration | Component | decision card deck', function() {
     expect(this.$()).to.have.length(1);
   });
 
-  it('initially 1 visible broadcast', function() {
-    this.set('someBroadcasts', makeList('broadcast', 3));
+  it('initially 9 visible broadcast', function() {
+    this.set('someBroadcasts', makeList('broadcast', 23));
     this.render(hbs`{{decision-card-deck broadcasts=someBroadcasts}}`);
     let length = this.$('.decision-card').length;
-    expect(length).to.eq(1);
+    expect(length).to.eq(9);
   });
 
 });
