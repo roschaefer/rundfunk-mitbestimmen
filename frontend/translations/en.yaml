@@ -248,10 +248,6 @@ decide:
       back: Back
       response:
         positive: Support
-        neutral: Next
-      change-response:
-        positive: I do support!
-        neutral: Don't support
   next-step:
     to-invoice:
       header: Sufficient broadcasts selected

@@ -259,10 +259,6 @@ decide:
       back: Zurück
       response:
         positive: Unterstützen
-        neutral: Weiter
-      change-response:
-        positive: Doch, unterstützen!
-        neutral: Nicht unterstützen
   next-step:
     to-invoice:
       header: Genug Sendungen ausgewählt

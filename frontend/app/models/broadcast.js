@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
@@ -7,6 +8,14 @@ export default DS.Model.extend({
   station: DS.belongsTo('station'),
   selections: DS.hasMany('selection'),
 
+  response: Ember.computed('selections', function() {
+    let firstSelection = this.get('selections.firstObject');
+    if (firstSelection) {
+      return firstSelection.get('response');
+    } else {
+      return 'neutral';
+    }
+  }),
   respond(response){
     let selection = this.get('selections').objectAt(0);
     if ((response !== 'positive') && (response !== 'neutral')){
