@@ -8,15 +8,17 @@ export default Ember.Controller.extend({
   q: null,
   medium: null,
   station: null,
+  page: 1,
+  perPage: 9,
 
   actions: {
-    createOrUpdateSelection(broadcast, response){
-      let selection = broadcast.respond(response);
-      return selection.save();
-    },
     searchAction(query){
       this.send('setQuery', query);
+    },
+    browse(step){
+      console.log(`browse in decide controller: ${step}`);
     }
+
   }
 });
 

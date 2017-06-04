@@ -39,13 +39,15 @@ describe('Integration | Component | decision card', function() {
       expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.true;
     });
 
-    it('displays positive support button', function() {
+    it('saves the response on the broadcast', function() {
       this.set('broadcast', broadcast);
       this.render(hbs`{{decision-card broadcast=broadcast}}`);
-      expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.false;
+      expect(broadcast.get('response')).to.eq('neutral');
       this.$('.decision-card-support-button').click();
-      expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.true;
+      expect(broadcast.get('response')).to.eq('positive');
     });
+
+    it('stores the selection with the response in the store');
 
     context('broadcast is already supported', function() {
       beforeEach(function(){
@@ -61,6 +63,14 @@ describe('Integration | Component | decision card', function() {
         expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.true;
         this.$('.decision-card-support-button').click();
         expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.false;
+      });
+
+      it('toggles the response on the broadcast', function() {
+        this.set('broadcast', broadcast);
+        this.render(hbs`{{decision-card broadcast=broadcast}}`);
+        expect(broadcast.get('response')).to.eq('positive');
+        this.$('.decision-card-support-button').click();
+        expect(broadcast.get('response')).to.eq('neutral');
       });
     });
   });

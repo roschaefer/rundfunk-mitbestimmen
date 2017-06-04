@@ -10,9 +10,6 @@ export default Ember.Component.extend({
     return (this.get('positiveReviews') > 1 ? 'primary' :'');
   }),
   actions: {
-    loadMore(){
-      this.get("loadMore")();
-    },
     back(){
       this.get("back")();
     }

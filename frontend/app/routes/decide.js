@@ -71,10 +71,6 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
         controller.set('loading', '');
       });
     },
-    loadMore() {
-      this.get('controller').set('q', null);
-      this.refresh();
-    },
     setQuery(filterParams){
       this.get('controller').set( 'q', filterParams.get('query'));
       this.get('controller').set( 'medium', filterParams.get('medium'));

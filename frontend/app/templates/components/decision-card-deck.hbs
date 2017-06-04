@@ -17,11 +17,7 @@
     <div class="three ui cards">
       {{#each broadcasts as |broadcast|}}
       <div class="card">
-        {{decision-card broadcast=broadcast
-        step=step
-        decide=(action 'decide')
-        next=(action 'next')
-        back=(action 'back')}}
+        {{decision-card broadcast=broadcast}}
       </div>
       {{/each}}
     </div>
@@ -32,7 +28,6 @@
   <div class="sixteen wide mobile twelve wide tablet eight wide computer column">
     {{decision-card-deck-next-step
     positiveReviews=positiveReviews
-    loadMore=(action 'loadMore')
     back=(action 'back')
     }}
   </div>

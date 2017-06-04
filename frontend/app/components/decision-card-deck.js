@@ -27,10 +27,6 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    decide(broadcast, response) {
-      let updateAction = this.get('update');
-      updateAction(broadcast, response);
-    },
     back(){
       this.decrementProperty('step');
       this.get('browse')(this.get('step'));
@@ -38,9 +34,6 @@ export default Ember.Component.extend({
     next(){
       this.incrementProperty('step');
       this.get('browse')(this.get('step'));
-    },
-    loadMore(){
-      this.sendAction("loadMore");
     },
   }
 });
