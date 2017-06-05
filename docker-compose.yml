@@ -5,7 +5,7 @@ services:
       context: ./frontend
     ports:
       - '4200:4200'
-      - '49152:49152'
+      - '49153:49153'
     volumes:
       - ./frontend/package.json:/frontend/package.json
       - ./frontend/bower.json:/frontend/bower.json
