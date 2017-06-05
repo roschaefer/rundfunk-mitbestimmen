@@ -8,8 +8,10 @@ export default Ember.Controller.extend({
   q: null,
   medium: null,
   station: null,
-  page: 1,
-  perPage: 9,
+
+  page: Ember.computed.alias("content.page"),
+  perPage: Ember.computed.alias("content.perPage"),
+  totalPages: Ember.computed.alias("content.totalPages"),
 
   actions: {
     searchAction(query){
@@ -17,6 +19,7 @@ export default Ember.Controller.extend({
     },
     browse(step){
       console.log(`browse in decide controller: ${step}`);
+      this.set('page', step);
     }
 
   }

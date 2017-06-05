@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 
 
-export default Ember.Route.extend(ResetScrollPositionMixin, {
+export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
   intl: Ember.inject.service(),
   session: Ember.inject.service('session'),
   queryParams: {
@@ -16,17 +17,19 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
       refreshModel: true
     }
   },
+  perPage: 9,
 
   model(params) {
-    return this.store.query('broadcast', {
-      sort: 'random',
-      q: params.q,
-      filter: {
-        review: 'unreviewed',
-        medium: params.medium,
-        station: params.station
-      }
-    });
+    params.paramMapping = {
+      total_pages: "total-pages"
+    };
+    params.sort = 'random';
+    params.filter= {
+      review: 'unreviewed',
+      medium: params.medium,
+      station: params.station
+    };
+    return this.findPaged('broadcast', params);
   },
   afterModel(_, transition) {
     if (this.get('session').get('isAuthenticated') === false){
