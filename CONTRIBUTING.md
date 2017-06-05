@@ -3,7 +3,7 @@ Development Process
 
 Our default working branch is `master`.  We do work by creating branches off `master` for new features and bugfixes.  Any feature should include appropriate Cucumber acceptance tests and RSpec unit tests.  We try to avoid view and controller specs, and focus purely on unit tests at the model and service level where possible. A bugfix may include an acceptance test depending on where the bug occurred, but fixing a bug should start with the creation of a test that replicates the bug, so that any bugfix submission will include an appropriate test as well as the fix itself.
 
-Each developer will usually work with a [fork](https://help.github.com/articles/fork-a-repo/) of the [main repository on Strawberry Canyon](https://github.com/strawberrycanyon/redeemify). Before starting work on a new feature or bugfix, please ensure you have [synced your fork to upstream/develop](https://help.github.com/articles/syncing-a-fork/):
+Each developer will usually work with a [fork](https://help.github.com/articles/fork-a-repo/) of the [main repository](https://github.com/roschaefer/rundfunk-mitbestimmen). Before starting work on a new feature or bugfix, please ensure you have [synced your fork to upstream/develop](https://help.github.com/articles/syncing-a-fork/):
 
 ```
 git pull upstream master
@@ -31,7 +31,7 @@ This PR adds a CONTRIBUTING.md file and a docs directory
 fixes #799
 ```
 
-which will associate the pull request with the issue in GitHub or the story in Pivatol Tracker.
+which will associate the pull request with the issue in GitHub.
 
 See also [more details on submitting pull requests](https://github.com/AgileVentures/WebsiteOne/blob/develop/docs/how_to_submit_a_pull_request_on_github.md).
 
