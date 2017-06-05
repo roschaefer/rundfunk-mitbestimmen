@@ -212,6 +212,8 @@ of Auth0. This will not pollute the production database of Auth0.
 12. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
 13. Submit a pull request :heart:
 
+[See our detailed contribution guidelines :mag:](/CONTRIBUTING.md)
+
 ## Deployment
 
 Our [build server Travis CI](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen) takes care about automatic deployment.
