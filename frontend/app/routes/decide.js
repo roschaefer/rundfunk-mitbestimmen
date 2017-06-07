@@ -6,6 +6,8 @@ import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
   intl: Ember.inject.service(),
   session: Ember.inject.service('session'),
+  seed: Math.random(),
+
   queryParams: {
     q: {
       refreshModel: true
@@ -24,6 +26,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       total_pages: "total-pages"
     };
     params.sort = 'random';
+    params.seed = this.get('seed');
     params.filter= {
       review: 'unreviewed',
       medium: params.medium,
