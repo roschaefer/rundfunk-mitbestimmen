@@ -21,10 +21,28 @@ describe('Unit | Model | broadcast', function() {
     expect(model).to.be.ok;
   });
 
-  describe('response', function() {
-    it('neutral if no selections', function() {
+  describe('setDefaultResponse', function() {
+    it('creates a selection with a response', function() {
       let broadcast = make('broadcast');
+      broadcast.setDefaultResponse('positive');
+      expect(broadcast.get('response')).to.eq('positive');
+    });
+
+    it('leaves existing selection untouched', function() {
+      let broadcast = make('broadcast');
+      make('selection', {
+        broadcast: broadcast,
+        response: 'neutral'
+      });
+      broadcast.setDefaultResponse('positive');
       expect(broadcast.get('response')).to.eq('neutral');
+    });
+  });
+
+  describe('response', function() {
+    it('undefined if no selections', function() {
+      let broadcast = make('broadcast');
+      expect(broadcast.get('response')).to.be.undefined;
     });
 
     it('returns the response of the first selection', function() {

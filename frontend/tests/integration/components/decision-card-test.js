@@ -42,7 +42,7 @@ describe('Integration | Component | decision card', function() {
     it('saves the response on the broadcast', function() {
       this.set('broadcast', broadcast);
       this.render(hbs`{{decision-card broadcast=broadcast}}`);
-      expect(broadcast.get('response')).to.eq('neutral');
+      expect(broadcast.get('response')).to.be.undefined;
       this.$('.decision-card-support-button').click();
       expect(broadcast.get('response')).to.eq('positive');
     });

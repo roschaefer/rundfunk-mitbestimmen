@@ -19,6 +19,10 @@ export default Ember.Controller.extend({
     },
     browse(step){
       console.log(`browse in decide controller: ${step}`);
+      this.get('model').forEach((broadcast) => {
+        let selection = broadcast.setDefaultResponse('neutral');
+        selection.save();
+      });
       this.set('page', step);
     }
 

@@ -2,7 +2,7 @@
   <div class="right floated meta">
     {{ broadcast.medium.name}}
     {{#if broadcast.station }}
-    &mdash; {{ broadcast.station.name}}
+      &mdash; {{ broadcast.station.name}}
     {{/if}}
   </div>
   <div id="title" class="header">
@@ -12,14 +12,14 @@
     {{ broadcast.description }}
   </div>
 </div>
-{{#if (eq response 'neutral')}}
-<button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'positive'}}>
-  <i class="empty heart icon"></i>
-  {{ t 'decide.decision-card.actions.response.positive' }}
-</button>
+{{#if (eq response 'positive')}}
+  <button class="ui bottom attached positive button decision-card-support-button" {{action 'respond' 'neutral'}}>
+    <i class="red heart icon"></i>
+    {{ t 'decide.decision-card.actions.response.positive' }}
+  </button>
 {{else}}
-<button class="ui bottom attached positive button decision-card-support-button" {{action 'respond' 'neutral'}}>
-  <i class="red heart icon"></i>
-  {{ t 'decide.decision-card.actions.response.positive' }}
-</button>
+  <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'positive'}}>
+    <i class="empty heart icon"></i>
+    {{ t 'decide.decision-card.actions.response.positive' }}
+  </button>
 {{/if}}

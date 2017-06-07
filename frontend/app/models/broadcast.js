@@ -9,8 +9,12 @@ export default DS.Model.extend({
   selections: DS.hasMany('selection'),
 
   response: Ember.computed('selections.firstObject.response', function() {
-    return this.get('selections.firstObject.response') || 'neutral';
+    return this.get('selections.firstObject.response');
   }),
+
+  setDefaultResponse(response){
+    return this.get('selections.firstObject') || this.respond(response);
+  },
   respond(response){
     let firstSelection = this.get('selections.firstObject');
     if (['positive', 'neutral'].includes(response)){
