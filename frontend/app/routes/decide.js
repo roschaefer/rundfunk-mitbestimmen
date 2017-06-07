@@ -28,7 +28,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     params.sort = 'random';
     params.seed = this.get('seed');
     params.filter= {
-      review: 'unreviewed',
       medium: params.medium,
       station: params.station
     };
