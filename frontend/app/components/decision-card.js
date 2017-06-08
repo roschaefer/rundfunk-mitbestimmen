@@ -6,6 +6,9 @@ export default Ember.Component.extend({
   actions: {
     respond(response){
       this.get('broadcast').respond(response);
+      if (this.get('respondAction')) {
+        this.get('respondAction')(this.get('broadcast'));
+      }
       this.rerender();
     }
   }

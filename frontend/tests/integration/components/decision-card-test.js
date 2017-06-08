@@ -47,7 +47,18 @@ describe('Integration | Component | decision card', function() {
       expect(broadcast.get('response')).to.eq('positive');
     });
 
-    it('stores the selection with the response in the store');
+    it('calls respondAction and returns the broadcast, if respondAction given', function(done) {
+      let broadcast = make('broadcast', {
+        title: 'this title is to be expected'
+      });
+      this.set('broadcast', broadcast);
+      this.set('callback', function(broadcast) {
+        expect(broadcast.get('title')).to.eq('this title is to be expected');
+        done();
+      });
+      this.render(hbs`{{decision-card broadcast=broadcast respondAction=callback}}`);
+      this.$('.decision-card-support-button').click();
+    });
 
     context('broadcast is already supported', function() {
       beforeEach(function(){

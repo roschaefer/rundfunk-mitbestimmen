@@ -17,6 +17,9 @@ export default Ember.Controller.extend({
     searchAction(query){
       this.send('setQuery', query);
     },
+    respond(broadcast){
+      broadcast.get('selections.firstObject').save();
+    },
     browse(step){
       console.log(`browse in decide controller: ${step}`);
       this.get('model').forEach((broadcast) => {
