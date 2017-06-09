@@ -5,7 +5,7 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.all
+    @broadcasts = Broadcast.all.includes(:selections)
 
     @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
 
