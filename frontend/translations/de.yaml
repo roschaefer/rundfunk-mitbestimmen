@@ -259,7 +259,7 @@ decide:
       back: Zurück
       response:
         positive: Unterstützen
-  next-step:
+  progress:
     to-invoice:
       header: Genug Sendungen ausgewählt
       content: >

@@ -248,7 +248,7 @@ decide:
       back: Back
       response:
         positive: Support
-  next-step:
+  progress:
     to-invoice:
       header: Sufficient broadcasts selected
       content: >
