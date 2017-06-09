@@ -1,26 +1,32 @@
 <div class="ui grid">
-<div class="row">
-  <div class="sixteen wide column">
-    <button class="ui left labeled left floated icon {{backButtonCss}} button decision-card-deck-back" {{action 'back'}}>
-      <i class="left arrow icon"></i>
-      Back
-    </button>
-    <button class="ui right labeled right floated icon {{nextButtonCss}} button decision-card-deck-next" {{action 'next'}}>
-      Next
-      <i class="right arrow icon"></i>
-    </button>
-  </div>
-</div>
+  <div class="doubling three column row">
+    <div class="three wide column">
+      <button class="ui left labeled left floated icon {{backButtonCss}} button decision-card-deck-back" {{action 'back'}}>
+        <i class="left arrow icon"></i>
+        Back
+      </button>
+    </div>
 
-<div class="row">
-  <div class="column">
-    <div class="three ui cards">
-      {{#each broadcasts as |broadcast|}}
-      <div class="card">
-        {{decision-card broadcast=broadcast respondAction=respondAction}}
-      </div>
-      {{/each}}
+    <div class="ten wide column">
+      {{find-broadcasts/progress}}
+    </div>
+    <div class="three wide column">
+      <button class="ui right labeled right floated icon {{nextButtonCss}} button decision-card-deck-next" {{action 'next'}}>
+        Next
+        <i class="right arrow icon"></i>
+      </button>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="column">
+      <div class="ui centered cards">
+        {{#each broadcasts as |broadcast|}}
+        <div class="card">
+          {{decision-card broadcast=broadcast respondAction=respondAction}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </div>
