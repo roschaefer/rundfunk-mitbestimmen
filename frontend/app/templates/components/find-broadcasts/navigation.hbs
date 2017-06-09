@@ -1,37 +1,33 @@
-<div class="row">
-  <div class="column">
-    <div class="ui four item massive fluid secondary pointing stackable menu">
-      <div class="item">
-        <button class="ui left labeled icon {{backButtonCss}} button find-broadcasts-navigation-back" {{action 'back'}}>
-          <i class="left arrow icon"></i>
-          Back
-        </button>
-      </div>
+<div class="ui four item massive fluid secondary pointing stackable menu">
+  <div class="item">
+    <button class="ui left labeled icon {{backButtonCss}} button find-broadcasts-navigation-back" {{action 'back'}}>
+      <i class="left arrow icon"></i>
+      Back
+    </button>
+  </div>
 
-      <div class="item">
-        <div class="ui mini statistic">
-          <div class="value">
-            <i class="small red heart icon"></i>
-            10/220
-          </div>
-          <div class="label">
-            Recently supported
-          </div>
-        </div>
+  <div class="item">
+    <div class="ui mini statistic">
+      <div class="value">
+        <i class="small red heart icon"></i>
+        10/220
       </div>
-      <div class="item">
-        {{#link-to 'invoice' class='ui primary button'}}
-        <i class="euro icon"></i>
-        {{t 'decide.progress.button.to-invoice'}}
-        {{/link-to}}
-      </div>
-      {{yield}}
-      <div class="item">
-        <button class="ui right labeled icon {{nextButtonCss}} button find-broadcasts-navigation-next" {{action 'next'}}>
-          Next
-          <i class="right arrow icon"></i>
-        </button>
+      <div class="label">
+        Recently supported
       </div>
     </div>
+  </div>
+  <div class="item">
+    {{#link-to 'invoice' class='ui primary button'}}
+    <i class="euro icon"></i>
+    {{t 'decide.progress.button.to-invoice'}}
+    {{/link-to}}
+  </div>
+  {{yield}}
+  <div class="item">
+    <button class="ui right labeled icon {{nextButtonCss}} button find-broadcasts-navigation-next" {{action 'next'}}>
+      Next
+      <i class="right arrow icon"></i>
+    </button>
   </div>
 </div>
