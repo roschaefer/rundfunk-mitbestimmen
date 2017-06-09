@@ -16,8 +16,12 @@
   <div class="item">
     <div class="ui mini statistic">
       <div class="value">
-        <i class="small red heart icon"></i>
-        10/220
+        {{#if (gt recentPositives 0)}}
+          <i class="small red heart icon"></i>
+        {{else}}
+          <i class="small heart icon"></i>
+        {{/if}}
+        {{recentPositives}}/{{recentNeutrals}}
       </div>
       <div class="label">
         Recently supported
@@ -26,10 +30,17 @@
   </div>
 
   <div class="item">
-    {{#link-to 'invoice' class='ui primary button'}}
-    <i class="euro icon"></i>
-    {{t 'decide.progress.button.to-invoice'}}
-    {{/link-to}}
+    {{#if (gt recentPositives 2)}}
+      {{#link-to 'invoice' class='ui primary button find-broadcasts-navigation-distribute-button'}}
+        <i class="euro icon"></i>
+        {{t 'decide.progress.button.to-invoice'}}
+      {{/link-to}}
+    {{else}}
+      {{#link-to 'invoice' class='ui button find-broadcasts-navigation-distribute-button'}}
+        <i class="euro icon"></i>
+        {{t 'decide.progress.button.to-invoice'}}
+      {{/link-to}}
+    {{/if}}
   </div>
 
   {{yield}}
