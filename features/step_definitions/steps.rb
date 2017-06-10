@@ -61,18 +61,13 @@ When(/^I visit the decision page$/) do
   expect(page).to have_css('.decision-page')
 end
 
-When(/^I decide 'Support' for ([^"]*) and ([^"]*) but 'Next' for ([^"]*)$/) do |title1, title2, title3|
-  3.times do
-    wait_for_transition('.decision-card')
-    expect(page).to have_css('.decision-card.fully-displayed')
-    card = find('.decision-card.fully-displayed')
-    [title1, title2].each do |title|
-      if card.text.include? title
-        find('.positive').click
-      end
-    end
-    if card.text.include? title3
-      find('.neutral').click
+When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, title3|
+  expect(page).to have_text(title1)
+  expect(page).to have_text(title2)
+  expect(page).to have_text(title3)
+  [title1, title2].each do |title|
+    within('.decision-card', text: title) do
+      click_on 'Support'
     end
   end
 end
@@ -84,12 +79,17 @@ Then(/^the list of selectable broadcasts is empty$/) do
   expect(page).not_to have_css('.decision-card-action.positive')
 end
 
-Then(/^the database contains these selections that belong to me:$/) do |table|
-  mapping = {'Support' => 'positive', 'Next' => 'neutral'}
-  my_selections = @user.selections
+
+Then(/^my responses in the database are like this:$/) do |table|
   table.hashes.each do |row|
-    selection = my_selections.find {|s| s.broadcast.title == row['Title']}
-    expect(selection.response).to eq(mapping[row['Answer']])
+    broadcast = Broadcast.find_by(title: row['Title'])
+    unless (row['Response'] == 'no response')
+      selection = broadcast.selections.first
+      expect(selection.user_id).to eq @user.id
+      expect(selection.response).to eq row['Response']
+    else
+      expect(broadcast.selections).to be_empty
+    end
   end
 end
 
