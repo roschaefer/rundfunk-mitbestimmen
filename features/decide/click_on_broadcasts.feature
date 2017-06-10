@@ -16,8 +16,8 @@ Feature: Click on broadcasts
     When I visit the decision page
     And I support Quarks & Co and Tagesschau but not Löwenzahn
     Then my responses in the database are like this:
-      | Title       | Response    |
-      | Quarks & Co | positive    |
-      | Löwenzahn   | no response |
-      | Tagesschau  | positive    |
+      | Title       | Response |
+      | Quarks & Co | positive |
+      | Löwenzahn   | neutral  |
+      | Tagesschau  | positive |
 

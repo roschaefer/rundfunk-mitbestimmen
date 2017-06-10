@@ -70,6 +70,7 @@ When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, titl
       click_on 'Support'
     end
   end
+  click_on 'Next'
 end
 
 Then(/^the list of selectable broadcasts is empty$/) do
@@ -83,13 +84,9 @@ end
 Then(/^my responses in the database are like this:$/) do |table|
   table.hashes.each do |row|
     broadcast = Broadcast.find_by(title: row['Title'])
-    unless (row['Response'] == 'no response')
-      selection = broadcast.selections.first
-      expect(selection.user_id).to eq @user.id
-      expect(selection.response).to eq row['Response']
-    else
-      expect(broadcast.selections).to be_empty
-    end
+    selection = broadcast.selections.first
+    expect(selection.user_id).to eq @user.id
+    expect(selection.response).to eq row['Response']
   end
 end
 
