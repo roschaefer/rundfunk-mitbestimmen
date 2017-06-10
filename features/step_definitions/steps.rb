@@ -38,7 +38,7 @@ Then(/^I can read:$/) do |string|
   expect(page).to have_text string
 end
 
-When(/^I click on "([^"]*)"$/) do |string|
+When(/^(?:then )?I click on "([^"]*)"/) do |string|
   click_on string
 end
 
@@ -331,11 +331,6 @@ Then(/^there is a link that brings me to the statistics page$/) do
   expect(current_path).to eq '/statistics'
 end
 
-When(/^I click 'Next' when I am asked if I want to pay for the broadcast$/) do
-  expect(page).to have_css('.decision-card-action.neutral')
-  find('.decision-card-action.neutral').click
-end
-
 When(/^the decision card has disappeared$/) do
   wait_for_transition('.decision-card')
 end
@@ -355,10 +350,10 @@ Then(/^the grey circle above turns into a green checkmark$/) do
   expect(page).to have_css('i.green.checkmark', count: 1)
 end
 
-Then(/^in the database my response is saved as 'positive'$/) do
+Then(/^I have one positive response in the database$/) do
   wait_for_ajax
-  expect(Selection.count).to eq 1
-  expect(Selection.first.response).to eq 'positive'
+  expect(Selection.count).to be > 1 # more than just once
+  expect(Selection.positive.count).to eq 1
 end
 
 Given(/^I really like a broadcast called "([^"]*)"$/) do |title|
@@ -878,3 +873,33 @@ Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do 
   actual_content = strip_highcharts_svg(download_content)
   expect(expected_content).to eq actual_content
 end
+
+Given(/^I have (\d+) broadcasts in my database:$/) do |number|
+  create_list(:broadcast, number.to_i)
+end
+
+When(/^the next page is on$/) do
+  expect(page).to have_css('.decision-page')
+end
+
+When(/^in the database all my responses are 'neutral'$/) do
+  wait_for_ajax
+  expect(Selection.count).to be > 0
+  expect(Selection.all.all? {|s| s.neutral? }).to be true
+end
+
+When(/^support the first broadcast$/) do
+  expect(page).to have_css('.decision-page')
+  within first('.decision-card') do
+    click_on 'Support'
+  end
+end
+
+Then(/^the first broadcast turns green$/) do
+  expect(first('.decision-card')).to have_css('button.positive', text: 'Support')
+  within first('.decision-card') do
+    expect(find('button.positive', text: 'Support')).to have_css('i.red.heart.icon')
+  end
+end
+
+
