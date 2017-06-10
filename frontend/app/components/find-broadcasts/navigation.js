@@ -3,14 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   canStepForward: Ember.computed("step", "totalSteps", function() {
-    const page = Number(this.get("step"));
+    const step = Number(this.get("step"));
     const totalSteps = Number(this.get("totalSteps"));
-    return page < totalSteps;
+    return step < totalSteps;
   }),
 
   canStepBackward: Ember.computed("step", function() {
-    const page = Number(this.get("step"));
-    return page > 1;
+    const step = Number(this.get("step"));
+    return step > 1;
   }),
 
   distibuteButtonCss: Ember.computed('recentPositives', function() {
@@ -27,15 +27,13 @@ export default Ember.Component.extend({
     back(){
       const step = Number(this.get('step'));
       if(step <= 1) { return false; }
-      this.decrementProperty('step');
-      this.get('browse')(this.get('step'));
+      this.get('browse')(this.get('step') - 1);
     },
     next(){
       const step = Number(this.get('step'));
       const totalSteps = Number(this.get('totalSteps'));
       if(step >= totalSteps) { return false; }
-      this.incrementProperty('step');
-      this.get('browse')(this.get('step'));
+      this.get('browse')(this.get('step') + 1);
     }
   }
 });

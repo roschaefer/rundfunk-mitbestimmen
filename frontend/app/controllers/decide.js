@@ -12,9 +12,7 @@ export default Ember.Controller.extend({
   perPage: Ember.computed.alias("content.broadcasts.perPage"),
   totalPages: Ember.computed.alias("content.broadcasts.totalPages"),
 
-  positiveSelectionsWithoutAmount:  Ember.computed.filter('model.selections.@each.needsAmount', (s) => {
-    return s.get('needsAmount');
-  }),
+  positiveSelectionsWithoutAmount: Ember.computed.filterBy('model.selections','needsAmount', true),
 
   actions: {
     searchAction(query){
@@ -24,7 +22,10 @@ export default Ember.Controller.extend({
       broadcast.get('selections.firstObject').save();
     },
     browse(step){
-      this.get('model.broadcasts').forEach((broadcast) => {
+      if(this.store.peekAll('selection').isAny('isLoading', true)){
+        return; // avoid willCommit in root.loading state error
+      }
+      this.get('model.broadcasts').map((broadcast) => {
         let selection = broadcast.setDefaultResponse('neutral');
         selection.save();
       });
