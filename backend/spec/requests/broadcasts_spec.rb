@@ -208,7 +208,7 @@ RSpec.describe 'Broadcasts', type: :request do
         before do
           create_list(:broadcast, 23)
         end
-        let(:params) { { sort: 'random'} }
+        let(:params) { { sort: 'random' } }
 
         context 'params { random: null }' do
           before do
@@ -217,7 +217,6 @@ RSpec.describe 'Broadcasts', type: :request do
             get url, params: params, headers: headers
             @seconds_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
           end
-
 
           it 'shuffles result set' do
             expect(@first_request_ids).not_to eq(@seconds_request_ids)
@@ -228,11 +227,11 @@ RSpec.describe 'Broadcasts', type: :request do
         context 'given random seed' do
           before do
             @request_ids = []
-            get url, params: params.merge({ seed: seed[0] }), headers: headers
+            get url, params: params.merge(seed: seed[0]), headers: headers
             @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
-            get url, params: params.merge({ seed: seed[1] }), headers: headers
+            get url, params: params.merge(seed: seed[1]), headers: headers
             @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
-            get url, params: params.merge({ seed: seed[2] }), headers: headers
+            get url, params: params.merge(seed: seed[2]), headers: headers
             @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
           end
 
@@ -247,7 +246,7 @@ RSpec.describe 'Broadcasts', type: :request do
           end
 
           describe 'invalid random seeds' do
-            let(:seed) { ['foo', 'bar', 'baz'] }
+            let(:seed) { %w[foo bar baz] }
             it 'is ignored, ie. deterministic' do
               expect(@request_ids[0]).to eq(@request_ids[1])
               expect(@request_ids[0]).to match_array(@request_ids[1])
@@ -322,16 +321,16 @@ RSpec.describe 'Broadcasts', type: :request do
         data: {
           type: 'broadcasts',
           attributes: {
-          title: 'Nice broadcast',
-          description: 'A nice broadcast, everybody will love it'
-        }, relationships: {
-          medium: {
-            data: {
-              id: '1',
-              type: 'media'
+            title: 'Nice broadcast',
+            description: 'A nice broadcast, everybody will love it'
+          }, relationships: {
+            medium: {
+              data: {
+                id: '1',
+                type: 'media'
+              }
             }
           }
-        }
         }
       }
     end
@@ -400,20 +399,20 @@ RSpec.describe 'Broadcasts', type: :request do
         data: {
           type: 'broadcasts',
           attributes: {
-        }, relationships: {
-          medium: {
-            data: {
-              id: '2',
-              type: 'media'
-            }
-          },
-          station: {
-            data: {
-              id: '47',
-              type: 'stations'
+          }, relationships: {
+            medium: {
+              data: {
+                id: '2',
+                type: 'media'
+              }
+            },
+            station: {
+              data: {
+                id: '47',
+                type: 'stations'
+              }
             }
           }
-        }
         }
       }
     end

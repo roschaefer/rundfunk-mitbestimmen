@@ -12,12 +12,12 @@ AllCops:
 
 # Offense count: 5
 Metrics/AbcSize:
-  Max: 45
+  Max: 46
 
 # Offense count: 35
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
-  Max: 346
+  Max: 395
 
 # Offense count: 1
 # Configuration parameters: CountBlocks.
