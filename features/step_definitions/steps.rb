@@ -389,18 +389,6 @@ When(/^I click 'Support' three times in a row$/) do
   end
 end
 
-Then(/^message pops up, telling me I could reload more broadcasts$/) do
-  within('.decision-card.reload-or-invoice') do
-    expect(page).to have_text 'More suggestions'
-  end
-end
-
-Then(/^then, the message is replaced with another one, requesting me this:$/) do |string|
-  within('#help-message-new-broadcast') do
-    expect(page).to have_text string
-  end
-end
-
 Then(/^I see a form to enter a title and a description$/) do
   expect(page).to have_field('title')
   expect(page).to have_field('description')
@@ -896,6 +884,27 @@ Then(/^the first broadcast turns green$/) do
   expect(first('.decision-card')).to have_css('button.positive', text: 'Support')
   within first('.decision-card') do
     expect(find('button.positive', text: 'Support')).to have_css('i.red.heart.icon')
+  end
+end
+
+When(/^I support all broadcasts$/) do
+  expect(page).to have_css('.decision-page')
+  all('.decision-card').each do |node|
+    within node do
+      click_on 'Support'
+    end
+  end
+  click_on 'Next'
+end
+
+Then(/^there are no broadcasts left$/) do
+  expect(page).to have_css('.decision-page')
+  expect(page).not_to have_css('.decision-card')
+end
+
+Then(/^then a message pops up, telling me:$/) do |string|
+  within('#help-message-new-broadcast') do
+    expect(page).to have_text string
   end
 end
 
