@@ -1,15 +1,15 @@
 <div class="ui basic segment">
-  <div class="ui four item massive secondary pointing menu">
+  <div class="ui four item massive secondary pointing stackable menu">
     <div class="item">
       {{#if canStepBackward}}
         <button class="ui left labeled icon button find-broadcasts-navigation-back" {{action 'back'}}>
           <i class="left arrow icon"></i>
-          Back
+          {{t 'find-broadcasts.navigation.buttons.back'}}
         </button>
       {{else}}
         <button class="ui left labeled icon button disabled find-broadcasts-navigation-back">
           <i class="left arrow icon"></i>
-          Back
+          {{t 'find-broadcasts.navigation.buttons.back'}}
         </button>
       {{/if}}
     </div>
@@ -18,9 +18,9 @@
       <strong>
         {{recentPositives}}
         {{#if (gt recentPositives 0)}}
-          <i class="small red heart icon"></i>
+          <i class="red heart icon"></i>
         {{else}}
-          <i class="small grey heart icon"></i>
+          <i class="grey heart icon"></i>
         {{/if}}
       </strong>
       <small>
@@ -40,12 +40,12 @@
     <div class="item">
       {{#if canStepForward}}
         <button class="ui right labeled icon button find-broadcasts-navigation-next" {{action 'next'}}>
-          Next
+          {{t 'find-broadcasts.navigation.buttons.next'}}
           <i class="right arrow icon"></i>
         </button>
       {{else}}
         <button class="ui right labeled icon disabled button find-broadcasts-navigation-next">
-          Next
+          {{t 'find-broadcasts.navigation.buttons.next'}}
           <i class="right arrow icon"></i>
         </button>
       {{/if}}
