@@ -38,7 +38,7 @@ Then(/^I can read:$/) do |string|
   expect(page).to have_text string
 end
 
-When(/^(?:then )?I click on "([^"]*)"/) do |string|
+When(/^(?:then |when )?I click on "([^"]*)"/) do |string|
   click_on string
 end
 
@@ -929,5 +929,8 @@ Then(/^the indicator of recently supported broadcasts says:$/) do |string|
   end
 end
 
+When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
+  expect(page).to have_css('.decision-card', count: number.to_i)
+end
 
 

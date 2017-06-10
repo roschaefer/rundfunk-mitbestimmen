@@ -8,9 +8,10 @@ Feature: Reload broadcasts
     Given I am logged in
 
   Scenario: Click on 'more broadcasts'
-    Given I have many broadcasts in my database, let's say 17 broadcasts in total
+    Given we have 20 broadcasts in our database
     And I visit the decision page
-    And I click 10 times on 'Support'
-    And the list of selectable broadcasts is empty
-    When I click on "More suggestions"
-    Then all of a sudden, there are more broadcasts again
+    And I see 9 broadcasts to choose from
+    When I click on "Next"
+    And again, I see 9 broadcasts to choose from
+    But when I click on "Next" once more
+    Then I see 2 broadcasts to choose from
