@@ -11,10 +11,10 @@ Feature: Search on decision page
     Given I have 10 broadcasts in my database
     And one broadcast with title "Search for: keyword"
     And I visit the decision page
-    And do not see the desired broadcast by coincidence
+    And I see 9 broadcasts to choose from
     When I search for "keyword"
     Then there is exactly one search result
-    And the displayed broadcast has the title:
+    And the only displayed broadcast has the title:
     """
     Search for: keyword
     """

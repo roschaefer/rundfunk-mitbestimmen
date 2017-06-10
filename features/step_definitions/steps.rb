@@ -421,8 +421,8 @@ Then(/^there is exactly one search result$/) do
   expect(page).to have_text("1 result")
 end
 
-Then(/^the displayed broadcast has the title:$/) do |title|
-  expect(page).to have_css '.decision-card'
+Then(/^the only displayed broadcast has the title:$/) do |title|
+  expect(page).to have_css('.decision-card', count: 1)
   within '.decision-card' do
     expect(page).to have_text title
   end
