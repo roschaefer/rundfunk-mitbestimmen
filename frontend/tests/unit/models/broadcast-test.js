@@ -1,4 +1,3 @@
-/* jshint expr: true */
 import Ember from 'ember';
 import { expect } from 'chai';
 import { beforeEach, describe, it } from 'mocha';

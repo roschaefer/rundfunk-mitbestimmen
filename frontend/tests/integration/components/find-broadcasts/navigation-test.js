@@ -1,4 +1,3 @@
-/* jshint expr: true */
 import { expect } from 'chai';
 import { context, beforeEach, describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';

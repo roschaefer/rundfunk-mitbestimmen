@@ -1,11 +1,10 @@
-/* jshint expr: true */
 import { expect } from 'chai';
 import { context, beforeEach, describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
-let broadcast, selection;
+let broadcast;
 
 describe('Integration | Component | decision card', function() {
   setupComponentTest('decision-card', {
@@ -62,7 +61,7 @@ describe('Integration | Component | decision card', function() {
 
     context('broadcast is already supported', function() {
       beforeEach(function(){
-        selection = make('selection', {
+        make('selection', {
           broadcast: broadcast,
           response: 'positive'
         });
