@@ -763,6 +763,7 @@ When(/^in the database all my responses are 'neutral'$/) do
 end
 
 When(/^support the first broadcast$/) do
+  wait_for_ajax
   expect(page).to have_css('.decision-page')
   within first('.decision-card') do
     click_on 'Support'
@@ -825,5 +826,3 @@ end
 When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
-
-
