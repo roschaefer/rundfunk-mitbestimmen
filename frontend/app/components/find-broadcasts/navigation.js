@@ -13,6 +13,16 @@ export default Ember.Component.extend({
     return page > 1;
   }),
 
+  distibuteButtonCss: Ember.computed('recentPositives', function() {
+    const recentPositives = this.get('recentPositives');
+    switch(recentPositives) {
+      case 0: return ' disabled ';
+      case 1: return ' ';
+      case 2: return ' ';
+      default: return ' primary ';
+    }
+  }),
+
   actions: {
     back(){
       const step = Number(this.get('step'));

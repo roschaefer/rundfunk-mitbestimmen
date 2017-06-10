@@ -25,19 +25,26 @@ describe('Integration | Component | find broadcasts/navigation', function() {
       it('shows grey heart', function() {
         this.set('recentPositives', recentPositives);
         this.render(hbs`{{find-broadcasts/navigation step=1 totalSteps=10 browse=browse recentPositives=recentPositives}}`);
-        expect(this.$('.heart.icon').hasClass('red')).to.be.false;
+        expect(this.$('.heart.icon').hasClass('grey')).to.be.true;
       });
 
-      it('does not suggest to distribute the budget', function() {
+      it('unable to distribute the budget', function() {
         this.set('recentPositives', recentPositives);
         this.render(hbs`{{find-broadcasts/navigation step=1 totalSteps=10 browse=browse recentPositives=recentPositives}}`);
-        expect(this.$('.find-broadcasts-navigation-distribute-button').hasClass('primary')).to.be.false;
+        expect(this.$('.find-broadcasts-navigation-distribute-button').hasClass('disabled')).to.be.true;
       });
     });
 
     context('recentPositives = 1', function() {
       beforeEach(function(){
         recentPositives = 1;
+      });
+
+      it('does not suggest to distribute the budget', function() {
+        this.set('recentPositives', recentPositives);
+        this.render(hbs`{{find-broadcasts/navigation step=1 totalSteps=10 browse=browse recentPositives=recentPositives}}`);
+        expect(this.$('.find-broadcasts-navigation-distribute-button').hasClass('disabled')).to.be.false;
+        expect(this.$('.find-broadcasts-navigation-distribute-button').hasClass('primary')).to.be.false;
       });
 
       it('shows red heart', function() {

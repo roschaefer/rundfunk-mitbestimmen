@@ -8,9 +8,13 @@ export default Ember.Controller.extend({
   medium: null,
   station: null,
 
-  page: Ember.computed.alias("content.page"),
-  perPage: Ember.computed.alias("content.perPage"),
-  totalPages: Ember.computed.alias("content.totalPages"),
+  page: Ember.computed.alias("content.broadcasts.page"),
+  perPage: Ember.computed.alias("content.broadcasts.perPage"),
+  totalPages: Ember.computed.alias("content.broadcasts.totalPages"),
+
+  positiveSelectionsWithoutAmount:  Ember.computed.filter('model.selections.@each.needsAmount', (s) => {
+    return s.get('needsAmount');
+  }),
 
   actions: {
     searchAction(query){
@@ -20,14 +24,12 @@ export default Ember.Controller.extend({
       broadcast.get('selections.firstObject').save();
     },
     browse(step){
-      console.log(`browse in decide controller: ${step}`);
-      this.get('model').forEach((broadcast) => {
+      this.get('model.broadcasts').forEach((broadcast) => {
         let selection = broadcast.setDefaultResponse('neutral');
         selection.save();
       });
       this.set('page', step);
-    }
-
+    },
   }
 });
 

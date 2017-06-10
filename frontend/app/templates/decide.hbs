@@ -4,13 +4,23 @@
   </div>
 </div>
 
-{{broadcast-search searchAction=(action 'searchAction') broadcasts=model media=media stations=stations filterParams=filterParams loading=loading}}
+{{broadcast-search searchAction=(action 'searchAction') broadcasts=model.broadcasts media=media stations=stations filterParams=filterParams loading=loading}}
 
+<div class="row">
+  <div class="column">
+    {{find-broadcasts/navigation
+    step=page
+    totalSteps=totalPages
+    recentPositives=positiveSelectionsWithoutAmount.length
+    browse=(action 'browse')
+    }}
+  </div>
+</div>
 
 <div class="row">
   <div class="column">
     <div class="ui centered cards">
-      {{#each model as |broadcast|}}
+      {{#each model.broadcasts as |broadcast|}}
         <div class="card">
           {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
         </div>
@@ -19,15 +29,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="column">
-    {{find-broadcasts/navigation
-    step=page
-    totalSteps=totalPages
-    browse=(action 'browse')
-    }}
-  </div>
-</div>
 
 {{#unless model}}
   <div class="doubling two column row">

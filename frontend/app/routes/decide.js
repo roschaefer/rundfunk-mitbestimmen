@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
+import RSVP from 'rsvp';
 
 
 export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
@@ -31,7 +32,10 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       medium: params.medium,
       station: params.station
     };
-    return this.findPaged('broadcast', params);
+    return RSVP.hash({
+      selections: this.get('store').peekAll('selection'),
+      broadcasts: this.findPaged('broadcast', params)
+    });
   },
   afterModel(_, transition) {
     if (this.get('session').get('isAuthenticated') === false){

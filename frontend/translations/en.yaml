@@ -248,33 +248,21 @@ decide:
       back: Back
       response:
         positive: Support
-  progress:
-    to-invoice:
-      header: Sufficient broadcasts selected
-      content: >
-        You have already found {positives} broadcasts, that you want to pay for.
-        Now <strong>distribute your budget</strong> among these broadcasts.
-    load-more:
-      header: Too few broadcasts selected
-      content: >
-        You have found {positives, plural, =0 {no broadcast at all} =1 {only
-        # broadcast} other {only # new broadcasts}} that you want to pay for.
-        Click on <strong>More suggestions</strong>, to find even more relevant
-        broadcasts.
-    button:
-      to-invoice: Distribute budget
-      load-more: More suggestions
-      sign-up: Save broadcasts
-    label:
-      sign-up: >
-        Save your selected broadcasts and distribute your symbolic budget of
-        €17.50
   auth0-lock:
     networkOrEmail:
       headerText: >
         To change your decisions <strong>any time</strong>
       smallSocialButtonsHeader: connect an account
       footerText: <h4>Why? This is the only way you can access your data again.</h4>
+find-broadcasts:
+  navigation:
+    buttons:
+      next: Next
+      back: Back
+      distribute: Distribute budget
+    description: >
+      {positives, plural, =0 {recently supported broadcasts} =1 {recently supported
+      broadcast} other {recently supported broadcasts}}
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
