@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['find-broadcasts-navigation'],
 
   canStepForward: Ember.computed("step", "totalSteps", function() {
     const step = Number(this.get("step"));

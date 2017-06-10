@@ -674,12 +674,6 @@ Then(/^I am told to issue the invoice:$/) do |string|
   expect(page).to have_text(string)
 end
 
-Then(/^I see (\d+) checkmarks and (\d+) grey dots, labeled with "([^"]*)"$/) do |checkmarks, dots, string|
-  expect(page).to have_css('i.green.checkmark.icon', count: checkmarks.to_i)
-  expect(page).to have_css('i.grey.circle.icon', count: dots.to_i)
-  expect(page).to have_css('.label', text: string)
-end
-
 Then(/^I am told to continue my search for more broadcasts:$/) do |string|
   expect(page).to have_text(string)
 end
@@ -909,5 +903,31 @@ Then(/^then a message pops up, telling me:$/) do |string|
     expect(page).to have_text string
   end
 end
+
+
+When(/^I support (\d+) broadcasts? out of (\d+)$/) do |support_times, out_of|
+  expect(page).to have_css('.decision-card', count: out_of.to_i)
+  all('.decision-card').to_a.slice(0, support_times.to_i).each do |node|
+    within node do
+      click_on 'Support'
+    end
+  end
+end
+
+Then(/^button to distribute the budget is only a secondary button$/) do
+  expect(page).to have_css('.find-broadcasts-navigation-distribute-button.button')
+  expect(page).not_to have_css('.find-broadcasts-navigation-distribute-button.primary.button')
+end
+
+Then(/^the button to distribute the budget has turned into a primary button$/) do
+  expect(page).to have_css('.find-broadcasts-navigation-distribute-button.primary.button')
+end
+
+Then(/^the indicator of recently supported broadcasts says:$/) do |string|
+  string.split('<3').each do |part|
+    expect(find('.find-broadcasts-navigation')).to have_text(part)
+  end
+end
+
 
 
