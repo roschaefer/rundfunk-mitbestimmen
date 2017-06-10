@@ -16,7 +16,7 @@ describe('Integration | Component | find broadcasts/navigation', function() {
     expect(this.$()).to.have.length(1);
   });
 
-  describe('heart label', function() {
+  describe('recent supported broadcasts', function() {
     context('recentPositives = 0', function() {
       beforeEach(function(){
         recentPositives = 0;
@@ -126,7 +126,4 @@ describe('Integration | Component | find broadcasts/navigation', function() {
       });
     });
   });
-
-  it('keeps track of all positive decisions');
-  it('keeps track of all neutral decisions');
 });
