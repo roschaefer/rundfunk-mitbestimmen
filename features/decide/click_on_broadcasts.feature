@@ -13,7 +13,7 @@ Feature: Click on broadcasts
       | Quarks & Co |
       | Löwenzahn   |
       | Tagesschau  |
-    When I visit the decision page
+    When I visit the find broadcasts page
     And I support Quarks & Co and Tagesschau but not Löwenzahn
     Then my responses in the database are like this:
       | Title       | Response |

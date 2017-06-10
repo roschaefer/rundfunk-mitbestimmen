@@ -56,9 +56,9 @@ Then(/^my login was successful$/) do
   expect(page).to have_text('Log out')
 end
 
-When(/^I visit the decision page$/) do
-  visit '/decide'
-  expect(page).to have_css('.decision-page')
+When(/^I visit the find broadcasts page$/) do
+  visit '/find-broadcasts'
+  expect(page).to have_css('.find-broadcasts-page')
 end
 
 When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, title3|
@@ -438,7 +438,7 @@ Then(/^a label indicates the medium 'Radio' on the decision card$/) do
 end
 
 When(/^I want to create a new broadcast$/) do
-  visit '/decide'
+  visit '/find-broadcasts'
   expect(page).to have_css('.broadcast-form')
 end
 
@@ -502,7 +502,7 @@ end
 
 def support_some_broadcasts(number)
   create_list(:broadcast, number)
-  visit '/decide'
+  visit '/find-broadcasts'
   @responses = number
   @responses.times do
     expect(page).to have_css('.decision-card-action.positive')
@@ -613,9 +613,9 @@ end
 
 Given(/^I want to create a new broadcast that does not exist yet$/) do
   expect(Broadcast.count).to eq 0
-  # if there are no broadcasts, a visit of /decide will open up the broadcast form
+  # if there are no broadcasts, a visit of /find-broadcasts will open up the broadcast form
 
-  visit '/decide'
+  visit '/find-broadcasts'
   expect(page).to have_css('#broadcast-form')
 end
 
@@ -754,7 +754,7 @@ Given(/^I have (\d+) broadcasts in my database:$/) do |number|
 end
 
 When(/^the next page is on$/) do
-  expect(page).to have_css('.decision-page')
+  expect(page).to have_css('.find-broadcasts-page')
 end
 
 When(/^in the database all my responses are 'neutral'$/) do
@@ -765,7 +765,7 @@ end
 
 When(/^support the first broadcast$/) do
   wait_for_ajax
-  expect(page).to have_css('.decision-page')
+  expect(page).to have_css('.find-broadcasts-page')
   within first('.decision-card') do
     click_on 'Support'
   end
@@ -779,7 +779,7 @@ Then(/^the first broadcast turns green$/) do
 end
 
 When(/^I support all broadcasts$/) do
-  expect(page).to have_css('.decision-page')
+  expect(page).to have_css('.find-broadcasts-page')
   all('.decision-card').each do |node|
     within node do
       click_on 'Support'
@@ -789,7 +789,7 @@ When(/^I support all broadcasts$/) do
 end
 
 Then(/^there are no broadcasts left$/) do
-  expect(page).to have_css('.decision-page')
+  expect(page).to have_css('.find-broadcasts-page')
   expect(page).not_to have_css('.decision-card')
 end
 

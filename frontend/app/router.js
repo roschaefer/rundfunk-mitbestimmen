@@ -22,7 +22,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('decide');
+  this.route('find-broadcasts');
   this.route('invoice');
   this.route('statistics');
   this.route('imprint');

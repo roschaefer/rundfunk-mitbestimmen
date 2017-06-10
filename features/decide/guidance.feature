@@ -7,7 +7,7 @@ Feature: Lead the user through the suggestions
   Background:
     Given we have 10 broadcasts in our database
     And I am logged in
-    When I visit the decision page
+    When I visit the find broadcasts page
 
   Scenario: Tell the user to repeat until he finds enough broadcasts
     When I support 1 broadcast out of 9

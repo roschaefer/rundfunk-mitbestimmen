@@ -41,10 +41,10 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     if (this.get('session').get('isAuthenticated') === false){
       const customDict = {
         networkOrEmail: {
-          headerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.headerText'),
-          smallSocialButtonsHeader: this.get('intl').t('decide.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
+          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
+          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
           separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-          footerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.footerText'),
+          footerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.footerText'),
         },
       };
       transition.send('login', customDict);
@@ -74,7 +74,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
   },
   actions: {
     loading(transition) {
-      let controller = this.controllerFor('decide');
+      let controller = this.controllerFor('find-broadcasts');
       controller.set('loading', 'loading');
       transition.promise.finally(function() {
         controller.set('loading', '');

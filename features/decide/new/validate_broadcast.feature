@@ -18,7 +18,7 @@ Feature: Validate broadcasts
     Given I am logged in
 
   Scenario: Stop lazy people from creating records
-    Given I visit the decision page
+    Given I visit the find broadcasts page
     And I search for "Sylvesterstadl"
     And I get no search results
     But then the broadcast form pops up, encouraging me to create a new one

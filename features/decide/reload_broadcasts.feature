@@ -1,7 +1,7 @@
 @13
 Feature: Reload broadcasts
   As a user
-  I want to load more broadcasts on the decision page
+  I want to load more broadcasts on the find broadcasts page
   Because I am not tired and I want to make a decision on even more broadcasts
 
   Background:
@@ -9,7 +9,7 @@ Feature: Reload broadcasts
 
   Scenario: Click on 'more broadcasts'
     Given we have 20 broadcasts in our database
-    And I visit the decision page
+    And I visit the find broadcasts page
     And I see 9 broadcasts to choose from
     When I click on "Next"
     And again, I see 9 broadcasts to choose from

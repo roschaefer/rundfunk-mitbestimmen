@@ -49,7 +49,7 @@ broadcast-form:
 application:
   menu:
     item:
-      decide: Find broadcasts
+      find-broadcasts: Find broadcasts
       invoice: My broadcasts
       statistics: Statistics
       visualization: Visualization
@@ -86,7 +86,7 @@ index:
       broadcasts and let them know, of course anonymously.
     steps:
       find: Find broadcasts
-      decide: Select broadcasts
+      find-broadcasts: Select broadcasts
       distribute: Distribute budget
   statement:
     header: Make a statement for having a say
@@ -225,7 +225,7 @@ index:
           Simply drop us an
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           email.</a> We love to answer your questions and we will add them here.
-decide:
+find-broadcasts:
   header: Choose broadcasts
   help-messages:
     missing-broadcast:
@@ -246,7 +246,6 @@ decide:
         To change your decisions <strong>any time</strong>
       smallSocialButtonsHeader: connect an account
       footerText: <h4>Why? This is the only way you can access your data again.</h4>
-find-broadcasts:
   navigation:
     buttons:
       next: Next
@@ -280,7 +279,7 @@ invoice:
       unlock: Amount adjusts automatically
       euro: Click to change amount
   link-to:
-    decide: More suggestions
+    find-broadcasts: More suggestions
     broadcasts: My votes
     statistics: 'Public statistics'
 broadcasts:

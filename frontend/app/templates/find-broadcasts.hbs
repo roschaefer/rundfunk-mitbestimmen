@@ -1,6 +1,6 @@
 <div class="row">
   <div class="column">
-    <h1 class="ui huge header decision-page">{{t 'decide.header'}} </h1>
+    <h1 class="ui huge header find-broadcasts-page">{{t 'find-broadcasts.header'}} </h1>
   </div>
 </div>
 
@@ -35,14 +35,14 @@
       <div class="two column doubling row">
         <div class="eight wide column">
           <div class="ui basic padded segment">
-            {{help-message id='help-message-new-broadcast' icon='smile' header='decide.help-messages.missing-broadcast.header' content='decide.help-messages.missing-broadcast.content'}}
+            {{help-message id='help-message-new-broadcast' icon='smile' header='find-broadcasts.help-messages.missing-broadcast.header' content='find-broadcasts.help-messages.missing-broadcast.content'}}
           </div>
         </div>
         {{#if (eq model.broadcasts.totalPages 0)}}
           {{!-- TODO: test --}}
         <div class="eight wide column">
           <div class="ui basic padded segment">
-            {{help-message content='decide.help-messages.result-set-empty.content' }}
+            {{help-message content='find-broadcasts.help-messages.result-set-empty.content' }}
           </div>
         </div>
         {{/if}}

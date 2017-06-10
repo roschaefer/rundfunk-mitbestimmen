@@ -49,7 +49,7 @@ broadcast-form:
 application:
   menu:
     item:
-      decide: Sendungen finden
+      find-broadcasts: Sendungen finden
       invoice: Meine Sendungen
       statistics: Statistik
       visualization: Visualisierung
@@ -86,7 +86,7 @@ index:
       und lass sie es wissen, selbstverständlich anonym.
     steps:
       find: Sendungen finden
-      decide: Sendungen auswählen
+      find-broadcasts: Sendungen auswählen
       distribute: Budget verteilen
   statement:
     header: Setze ein Zeichen für mehr Mitbestimmung
@@ -235,8 +235,7 @@ index:
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           Mail.</a> Wir beantworten Deine Fragen gerne und
           tragen sie hier nach.
-
-decide:
+find-broadcasts:
   header: Sendungen auswählen
   help-messages:
     missing-broadcast:
@@ -257,7 +256,6 @@ decide:
         Um Deine Daten <strong>jederzeit zu ändern,</strong>
       smallSocialButtonsHeader: verknüpfe ein Konto
       footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
-find-broadcasts:
   navigation:
     buttons:
       next: Weiter
@@ -293,7 +291,7 @@ invoice:
       euro: Klick um Betrag zu ändern
   link-to:
     broadcasts: Meine Abstimmungen
-    decide: Weitere Vorschläge
+    find-broadcasts: Weitere Vorschläge
     statistics: 'Öffentliche Statistiken'
 broadcasts:
   header: Deine bisherigen Abstimmungen
