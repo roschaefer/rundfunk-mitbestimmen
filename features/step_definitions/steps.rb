@@ -73,14 +73,6 @@ When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, titl
   click_on 'Next'
 end
 
-Then(/^the list of selectable broadcasts is empty$/) do
-  wait_for_ajax
-  expect(page).to have_css('.decision-page')
-  expect(page).to have_css('.decision-card', count: 1) # the last one
-  expect(page).not_to have_css('.decision-card-action.positive')
-end
-
-
 Then(/^my responses in the database are like this:$/) do |table|
   table.hashes.each do |row|
     broadcast = Broadcast.find_by(title: row['Title'])
@@ -159,20 +151,6 @@ Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |ti
   expect(selection.response).to eq response
 end
 
-
-Given(/^I have many broadcasts in my database, let's say (\d+) broadcasts in total$/) do |number|
-  number.to_i.times do
-    create(:broadcast)
-  end
-end
-
-Given(/^I click (\d+) times on 'Support'$/) do |number|
-  number.to_i.times do
-    wait_for_transition('.decision-card')
-    expect(page).to have_css('.decision-card-action.positive')
-    find('.decision-card-action.positive').click
-  end
-end
 
 def change_amount(title, amount)
   invoice_table = find('#invoice-table')
@@ -289,22 +267,6 @@ Given(/^I have (\d+) broadcasts in my database$/) do |number|
   create_list(:broadcast, number.to_i, description: description)
 end
 
-Then(/^I see the buttons to click 'Support' or 'Next' only once, respectively$/) do
-  expect(page).to have_css('.decision-card-action.positive', count: 1)
-  expect(page).to have_css('.decision-card-action.neutral', count: 1)
-end
-
-Then(/^only the first card on the stack is displayed$/) do
-  expect(page).to have_css('.decision-card .description', count: 1)
-  description = find('.decision-card .description')
-  expect(description).to have_text 'I am displayed on fully visible decision cards'
-  expect(page).to have_css('.decision-card', count: 1) # only one card initially
-end
-
-Then(/^all of a sudden, there are more broadcasts again$/) do
-  expect(page).to have_css('.decision-card', count: 1)
-end
-
 Given(/^there are (\d+) registered users$/) do |number|
   number.to_i.times { create(:user) }
 end
@@ -328,25 +290,6 @@ Then(/^there is a link that brings me to the statistics page$/) do
   expect(current_path).to eq '/statistics'
 end
 
-When(/^the decision card has disappeared$/) do
-  wait_for_transition('.decision-card')
-end
-
-Then(/^I can still click on the 'Back' button$/) do
-  expect(page).to have_css('.back.button')
-  find('.back.button').click
-end
-
-Then(/^click 'I do support!'$/) do
-  expect(page).to have_css('.decision-card-action.positive', text: /I do support!/)
-  find('.decision-card-action.positive', text: /I do support!/).click
-end
-
-Then(/^the grey circle above turns into a green checkmark$/) do
-  wait_for_transition('.decision-card')
-  expect(page).to have_css('i.green.checkmark', count: 1)
-end
-
 Then(/^I have one positive response in the database$/) do
   wait_for_ajax
   expect(Selection.count).to be > 1 # more than just once
@@ -354,7 +297,7 @@ Then(/^I have one positive response in the database$/) do
 end
 
 Given(/^I really like a broadcast called "([^"]*)"$/) do |title|
-  @favourite_broadcast
+  # just doc
 end
 
 Given(/^I have reviewed all broadcasts already$/) do
@@ -381,14 +324,6 @@ Given(/^there are (\d+) broadcasts in the database$/) do |number|
   number.to_i.times { create(:broadcast) }
 end
 
-When(/^I click 'Support' three times in a row$/) do
-  3.times do
-    expect(page).to have_css('.decision-card-action.positive')
-    find('.decision-card-action.positive').click
-    wait_for_transition '.decision-card'
-  end
-end
-
 Then(/^I see a form to enter a title and a description$/) do
   expect(page).to have_field('title')
   expect(page).to have_field('description')
@@ -396,19 +331,6 @@ end
 
 Given(/^one broadcast with title "([^"]*)"$/) do |title|
   @broadcast = create(:broadcast, title: title)
-end
-
-Given(/^do not see the desired broadcast by coincidence$/) do
-  Timeout::timeout(5) do
-    expect(page).to have_css('.decision-card')
-    its_there = find('.decision-card').text.include? @broadcast.title
-    while its_there
-      page.reset!
-      visit '/decide'
-      expect(page).to have_css('.decision-card')
-      its_there = find('.decision-card').text.include? @broadcast.title
-    end
-  end
 end
 
 When(/^I search for "([^"]*)"$/) do |query|
@@ -637,13 +559,6 @@ def filter_by_station(label)
   find('.item:not(blank)', text: label).click
 end
 
-Then(/^the displayed broadcast is either "([^"]*)" or "([^"]*)"$/) do |option1, option2|
-  ok = [option1, option2].any? do |option|
-    page.has_css?('.decision-card.fully-displayed', text: /#{option}/)
-  end
-  expect(ok).to be true
-end
-
 Then(/^the only station to choose from is "([^"]*)"$/) do |station|
   find('.selection', text: 'Filter by station').click
   within('.menu.visible') do
@@ -654,28 +569,6 @@ end
 
 Given(/^we have (\d+) broadcasts in our database$/) do |count|
   create_list(:broadcast, count.to_i)
-end
-
-When(/^I click (\d+) times on 'Support' and (\d+) times on 'Next'$/) do |positives, neutrals|
-  positives.to_i.times do
-    wait_for_transition('.decision-card')
-    expect(page).to have_css('.decision-card-action.positive')
-    find('.decision-card-action.positive').click
-  end
-
-  neutrals.to_i.times do
-    wait_for_transition('.decision-card')
-    expect(page).to have_css('.decision-card-action.neutral')
-    find('.decision-card-action.neutral').click
-  end
-end
-
-Then(/^I am told to issue the invoice:$/) do |string|
-  expect(page).to have_text(string)
-end
-
-Then(/^I am told to continue my search for more broadcasts:$/) do |string|
-  expect(page).to have_text(string)
 end
 
 Then(/^there are no stations to choose from$/) do
