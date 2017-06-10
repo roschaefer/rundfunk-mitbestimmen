@@ -21,7 +21,7 @@
   <div class="column">
     <div class="ui centered cards">
       {{#each model.broadcasts as |broadcast|}}
-      {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
+        {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
       {{/each}}
     </div>
   </div>
@@ -29,36 +29,13 @@
 
 
 {{#unless model.broadcasts}}
-<div class="ui grid">
-  <div class="ui two column doubling row">
-    <div class="six wide column">
-      <div class="two column doubling row">
-        <div class="eight wide column">
-          <div class="ui basic padded segment">
-            {{help-message id='help-message-new-broadcast' icon='smile' header='find-broadcasts.help-messages.missing-broadcast.header' content='find-broadcasts.help-messages.missing-broadcast.content'}}
-          </div>
-        </div>
-        {{#if (eq model.broadcasts.totalPages 0)}}
-          {{!-- TODO: test --}}
-        <div class="eight wide column">
-          <div class="ui basic padded segment">
-            {{help-message content='find-broadcasts.help-messages.result-set-empty.content' }}
-          </div>
-        </div>
-        {{/if}}
-      </div>
-    </div>
-    <div class="ten wide column">
-      {{broadcast-form
-      broadcast=newBroadcast
-      media=media
-      stations=stations
-      errorMessages=errorMessages
-      newBroadcast='newBroadcast'
-      }}
-    </div>
-  </div>
-</div>
+  {{find-broadcasts/empty-list
+  broadcasts=model.broadcasts
+  broadcast=newBroadcast
+  media=media
+  stations=stations
+  errorMessages=errorMessages
+  }}
 {{/unless}}
 
 {{outlet}}
