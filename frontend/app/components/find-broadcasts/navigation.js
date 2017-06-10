@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   canStepForward: Ember.computed("step", "totalSteps", function() {
     const step = Number(this.get("step"));
     const totalSteps = Number(this.get("totalSteps"));
-    return step < totalSteps;
+    return step <= totalSteps;
   }),
 
   canStepBackward: Ember.computed("step", function() {
@@ -25,14 +25,11 @@ export default Ember.Component.extend({
 
   actions: {
     back(){
-      const step = Number(this.get('step'));
-      if(step <= 1) { return false; }
+      if(!this.get('canStepBackward')) { return false; }
       this.get('browse')(this.get('step') - 1);
     },
     next(){
-      const step = Number(this.get('step'));
-      const totalSteps = Number(this.get('totalSteps'));
-      if(step >= totalSteps) { return false; }
+      if(!this.get('canStepForward')) { return false; }
       this.get('browse')(this.get('step') + 1);
     }
   }

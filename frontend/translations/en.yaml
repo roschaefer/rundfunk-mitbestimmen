@@ -228,12 +228,6 @@ index:
 decide:
   header: Choose broadcasts
   help-messages:
-    task:
-      header: Do you want to give money to this broadcast?
-      content: >
-        Choose <strong>next</strong> if you are not sure. It can mean:
-        <em>I don't know</em>, <em>I don't care</em> or <em>I don't
-        like</em>, etc.
     missing-broadcast:
       header: Something missing?
       content: Just create a new broadcast!
@@ -241,8 +235,6 @@ decide:
       content: >
         The current search returned no results. Change the search parameters or
         continue and distribute your budget.
-  previous-card: Last broadcast
-  next-cards: Next broadcasts
   decision-card:
     actions:
       back: Back

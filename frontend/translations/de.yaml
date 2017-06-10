@@ -239,12 +239,6 @@ index:
 decide:
   header: Sendungen auswählen
   help-messages:
-    task:
-      header: Möchtest Du für diese Sendung bezahlen?
-      content: >
-        Klick auf <strong>Weiter</strong>, wenn Du nicht sicher bist. Das
-        kann z.B. bedeuten: <em>Kenne ich nicht</em>, <em>Ist mir egal</em> oder <em>Mag
-        ich nicht</em>.
     missing-broadcast:
       header: Fehlt eine Sendung?
       content: Dann füge doch einfach eine neue Sendung hinzu!
@@ -252,8 +246,6 @@ decide:
       content: >
         Die aktuellen Suchparameter haben kein Ergebnis geliefert. Ändere die
         Suche oder verteile jetzt Dein Budget.
-  previous-card: Letzte Sendung
-  next-cards: Nächste Sendungen
   decision-card:
     actions:
       back: Zurück
