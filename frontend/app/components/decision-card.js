@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['decision-card ui fluid card'],
+  classNames: ['decision-card ui card'],
 
   actions: {
     respond(response){

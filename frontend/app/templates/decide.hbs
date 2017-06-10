@@ -21,9 +21,7 @@
   <div class="column">
     <div class="ui centered cards">
       {{#each model.broadcasts as |broadcast|}}
-        <div class="card">
-          {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
-        </div>
+        {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
       {{/each}}
     </div>
   </div>
