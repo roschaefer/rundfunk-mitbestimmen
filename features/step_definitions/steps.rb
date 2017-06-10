@@ -625,8 +625,10 @@ Then(/^the table is sorted descending by column "([^"]*)"$/) do |header|
   expect(page).to have_css('th.sorted.descending', text: header)
 end
 
-Given(/^there are (\d+) remaining broadcasts$/) do |number|
+Then(/^there are (\d+) remaining broadcasts, namely "([^"]*)" and "([^"]*)"$/) do |number, title1, title2|
   expect(page).to have_text("#{number} results")
+  expect(page).to have_text(title1)
+  expect(page).to have_text(title2)
 end
 
 def filter_by_station(label)

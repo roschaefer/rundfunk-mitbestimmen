@@ -34,8 +34,7 @@ Feature: Filter by station
 
   Scenario: Filter for a station can yield many results
     When I choose "ZDF" from the list of "TV" stations
-    Then there are 2 remaining broadcasts
-    And the displayed broadcast is either "Fernsehgarten" or "heute-journal"
+    Then there are 2 remaining broadcasts, namely "Fernsehgarten" and "heute-journal"
 
   Scenario: The medium 'online' has no stations
     When I filter by medium "Online"
