@@ -74,6 +74,7 @@ When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, titl
 end
 
 Then(/^my responses in the database are like this:$/) do |table|
+  wait_for_ajax
   table.hashes.each do |row|
     broadcast = Broadcast.find_by(title: row['Title'])
     selection = broadcast.selections.first
