@@ -1,4 +1,3 @@
-/* jshint expr: true */
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { htmlForTableReference } from 'frontend/helpers/html-for-table-reference';
