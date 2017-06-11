@@ -772,9 +772,9 @@ When(/^support the first broadcast$/) do
 end
 
 Then(/^the first broadcast turns green$/) do
-  expect(first('.decision-card')).to have_css('button.positive', text: 'Support')
+  expect(first('.decision-card')).to have_css('button', text: 'Support')
   within first('.decision-card') do
-    expect(find('button.positive', text: 'Support')).to have_css('i.red.heart.icon')
+    expect(find('button', text: 'Support')).to have_css('i.red.heart.icon')
   end
 end
 

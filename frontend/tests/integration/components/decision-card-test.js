@@ -31,12 +31,12 @@ describe('Integration | Component | decision card', function() {
   });
 
   describe('click on support button', function() {
-    it('renders a positive button', function() {
+    it('turns the heart red', function() {
       this.set('broadcast', broadcast);
       this.render(hbs`{{decision-card broadcast=broadcast}}`);
-      expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.false;
+      expect(this.$('.decision-card-support-button i.icon.heart').hasClass('red')).to.be.false;
       this.$('.decision-card-support-button').click();
-      expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.true;
+      expect(this.$('.decision-card-support-button i.icon.heart').hasClass('red')).to.be.true;
     });
 
     it('saves the response on the broadcast', function() {
@@ -68,12 +68,12 @@ describe('Integration | Component | decision card', function() {
         });
       });
 
-      it('neutralizes the support button', function() {
+      it('turns the heart grey', function() {
         this.set('broadcast', broadcast);
         this.render(hbs`{{decision-card broadcast=broadcast}}`);
-        expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.true;
+        expect(this.$('.decision-card-support-button i.icon.heart').hasClass('red')).to.be.true;
         this.$('.decision-card-support-button').click();
-        expect(this.$('.decision-card-support-button').hasClass('positive')).to.be.false;
+        expect(this.$('.decision-card-support-button i.icon.heart').hasClass('red')).to.be.false;
       });
 
       it('toggles the response on the broadcast', function() {
