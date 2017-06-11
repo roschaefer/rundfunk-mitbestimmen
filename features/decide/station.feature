@@ -9,5 +9,5 @@ Feature: See station name on decision card
       | Fernsehgarten       | ZDF           | TV     |
 
   Scenario: See the station's label
-    When I visit the decision page
+    When I visit the find broadcasts page
     Then I see that "Fernsehgarten" is aired on a "TV" station called "ZDF"

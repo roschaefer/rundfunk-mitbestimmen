@@ -1,7 +1,7 @@
 @46
 Feature: Go back one decision card
   As a user
-  I want to have a 'Back' button on the decision page
+  I want to have a 'Back' button on the find broadcasts page
   To fix an error e.g. I pushed the button 'Next' but that was by accident
 
 
@@ -9,14 +9,11 @@ Feature: Go back one decision card
     Given I am logged in
 
   Scenario: Revise on decision
-    Given I have these broadcasts in my database:
-      | Title       |
-      | Quarks & Co |
-      | Löwenzahn   |
-    And I visit the decision page
-    And I click 'Next' when I am asked if I want to pay for the broadcast
-    When the decision card has disappeared
-    Then I can still click on the 'Back' button
-    And click 'I do support!'
-    And the grey circle above turns into a green checkmark
-    And in the database my response is saved as 'positive'
+    Given I have 20 broadcasts in my database:
+    When I visit the find broadcasts page
+    And I click on "Next", but missed a broadcast which I like
+    And in the database all my responses are 'neutral'
+    But then I click on "Back"
+    And support the first broadcast
+    Then the first broadcast turns green
+    And I have one positive response in the database

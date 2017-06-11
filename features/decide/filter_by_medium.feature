@@ -13,12 +13,12 @@ Feature: Filter by medium
       | Protothon     | Other  |
 
   Scenario: Filter for radio broadcasts
-    When I visit the decision page
+    When I visit the find broadcasts page
     When I filter by medium "Radio"
     Then the only broadcast I see is "Refugee Radio"
 
   Scenario: Filter for other content
-    When I visit the decision page
+    When I visit the find broadcasts page
     When I filter by medium "Other"
     Then the only broadcast I see is "Protothon"
 

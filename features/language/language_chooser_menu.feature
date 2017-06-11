@@ -17,7 +17,7 @@ Feature: Language chooser menu
 
   Scenario: Backend translates to english
     Given I am logged in
-    When I visit the decision page
+    When I visit the find broadcasts page
     Then I see a medium called "Other"
 
   Scenario: Backend translates to german

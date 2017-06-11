@@ -49,7 +49,7 @@ broadcast-form:
 application:
   menu:
     item:
-      decide: Find broadcasts
+      find-broadcasts: Find broadcasts
       invoice: My broadcasts
       statistics: Statistics
       visualization: Visualization
@@ -86,7 +86,7 @@ index:
       broadcasts and let them know, of course anonymously.
     steps:
       find: Find broadcasts
-      decide: Select broadcasts
+      find-broadcasts: Select broadcasts
       distribute: Distribute budget
   statement:
     header: Make a statement for having a say
@@ -225,15 +225,9 @@ index:
           Simply drop us an
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           email.</a> We love to answer your questions and we will add them here.
-decide:
+find-broadcasts:
   header: Choose broadcasts
   help-messages:
-    task:
-      header: Do you want to give money to this broadcast?
-      content: >
-        Choose <strong>next</strong> if you are not sure. It can mean:
-        <em>I don't know</em>, <em>I don't care</em> or <em>I don't
-        like</em>, etc.
     missing-broadcast:
       header: Something missing?
       content: Just create a new broadcast!
@@ -241,44 +235,25 @@ decide:
       content: >
         The current search returned no results. Change the search parameters or
         continue and distribute your budget.
-  previous-card: Last broadcast
-  next-cards: Next broadcasts
   decision-card:
     actions:
       back: Back
       response:
         positive: Support
-        neutral: Next
-      change-response:
-        positive: I do support!
-        neutral: Don't support
-  next-step:
-    to-invoice:
-      header: Sufficient broadcasts selected
-      content: >
-        You have already found {positives} broadcasts, that you want to pay for.
-        Now <strong>distribute your budget</strong> among these broadcasts.
-    load-more:
-      header: Too few broadcasts selected
-      content: >
-        You have found {positives, plural, =0 {no broadcast at all} =1 {only
-        # broadcast} other {only # new broadcasts}} that you want to pay for.
-        Click on <strong>More suggestions</strong>, to find even more relevant
-        broadcasts.
-    button:
-      to-invoice: Distribute budget
-      load-more: More suggestions
-      sign-up: Save broadcasts
-    label:
-      sign-up: >
-        Save your selected broadcasts and distribute your symbolic budget of
-        €17.50
   auth0-lock:
     networkOrEmail:
       headerText: >
         To change your decisions <strong>any time</strong>
       smallSocialButtonsHeader: connect an account
       footerText: <h4>Why? This is the only way you can access your data again.</h4>
+  navigation:
+    buttons:
+      next: Next
+      back: Back
+      distribute: Distribute budget
+    description: >
+      {positives, plural, =0 {recently supported broadcasts} =1 {recently supported
+      broadcast} other {recently supported broadcasts}}
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
@@ -304,7 +279,7 @@ invoice:
       unlock: Amount adjusts automatically
       euro: Click to change amount
   link-to:
-    decide: More suggestions
+    find-broadcasts: More suggestions
     broadcasts: My votes
     statistics: 'Public statistics'
 broadcasts:

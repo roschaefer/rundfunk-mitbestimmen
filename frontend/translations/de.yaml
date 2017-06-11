@@ -49,7 +49,7 @@ broadcast-form:
 application:
   menu:
     item:
-      decide: Sendungen finden
+      find-broadcasts: Sendungen finden
       invoice: Meine Sendungen
       statistics: Statistik
       visualization: Visualisierung
@@ -86,7 +86,7 @@ index:
       und lass sie es wissen, selbstverständlich anonym.
     steps:
       find: Sendungen finden
-      decide: Sendungen auswählen
+      find-broadcasts: Sendungen auswählen
       distribute: Budget verteilen
   statement:
     header: Setze ein Zeichen für mehr Mitbestimmung
@@ -235,16 +235,9 @@ index:
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           Mail.</a> Wir beantworten Deine Fragen gerne und
           tragen sie hier nach.
-
-decide:
+find-broadcasts:
   header: Sendungen auswählen
   help-messages:
-    task:
-      header: Möchtest Du für diese Sendung bezahlen?
-      content: >
-        Klick auf <strong>Weiter</strong>, wenn Du nicht sicher bist. Das
-        kann z.B. bedeuten: <em>Kenne ich nicht</em>, <em>Ist mir egal</em> oder <em>Mag
-        ich nicht</em>.
     missing-broadcast:
       header: Fehlt eine Sendung?
       content: Dann füge doch einfach eine neue Sendung hinzu!
@@ -252,44 +245,25 @@ decide:
       content: >
         Die aktuellen Suchparameter haben kein Ergebnis geliefert. Ändere die
         Suche oder verteile jetzt Dein Budget.
-  previous-card: Letzte Sendung
-  next-cards: Nächste Sendungen
   decision-card:
     actions:
       back: Zurück
       response:
         positive: Unterstützen
-        neutral: Weiter
-      change-response:
-        positive: Doch, unterstützen!
-        neutral: Nicht unterstützen
-  next-step:
-    to-invoice:
-      header: Genug Sendungen ausgewählt
-      content: >
-        Du hast schon {positives} neue Sendungen gefunden, die Du bezahlen
-        möchtest. <strong>Verteile Dein Budget</strong> jetzt auf diese Sendungen.
-    load-more:
-      header: Zu wenige Sendungen ausgewählt
-      content: >
-        Du hast {positives, plural, =0 {keine Sendung} =1 {nur # neue Sendung} other
-        {nur # neue Sendungen}} gefunden, die Du bezahlen möchtest.
-        Klick auf <strong>Mehr Vorschläge</strong>, um noch mehr relevante
-        Sendungen zu finden.
-    button:
-      to-invoice: Budget verteilen
-      load-more: Mehr Vorschläge
-      sign-up: Sendungen speichern
-    label:
-      sign-up:
-        Speichere Deine ausgewählten Sendungen und verteile Dein symbolisches
-        Budget von 17,50€
   auth0-lock:
     networkOrEmail:
       headerText: >
         Um Deine Daten <strong>jederzeit zu ändern,</strong>
       smallSocialButtonsHeader: verknüpfe ein Konto
       footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
+  navigation:
+    buttons:
+      next: Weiter
+      back: Zurück
+      distribute: Budget verteilen
+    description: >
+      {positives, plural, =0 {neu unterstützte Sendungen} =1 {neu
+      unterstützte Sendung} other {neue unterstützte Sendungen}}
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
@@ -317,7 +291,7 @@ invoice:
       euro: Klick um Betrag zu ändern
   link-to:
     broadcasts: Meine Abstimmungen
-    decide: Weitere Vorschläge
+    find-broadcasts: Weitere Vorschläge
     statistics: 'Öffentliche Statistiken'
 broadcasts:
   header: Deine bisherigen Abstimmungen

@@ -1,5 +1,5 @@
 @33
-Feature: Search on decision page
+Feature: Search on find broadcasts page
   As a user
   I want to search the list of broadcasts by title
   To find my favourite shows
@@ -10,11 +10,11 @@ Feature: Search on decision page
   Scenario: Search by title
     Given I have 10 broadcasts in my database
     And one broadcast with title "Search for: keyword"
-    And I visit the decision page
-    And do not see the desired broadcast by coincidence
+    And I visit the find broadcasts page
+    And I see 9 broadcasts to choose from
     When I search for "keyword"
     Then there is exactly one search result
-    And the displayed broadcast has the title:
+    And the only displayed broadcast has the title:
     """
     Search for: keyword
     """

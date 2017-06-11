@@ -5,7 +5,7 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.all
+    @broadcasts = Broadcast.all.includes(:selections)
 
     @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
 
@@ -30,7 +30,7 @@ class BroadcastsController < ApplicationController
     end
 
     @broadcasts = if params[:sort] == 'random'
-                    @broadcasts.order('RANDOM()')
+                    broadcasts_randomly_ordered
                   else
                     @broadcasts.order(title: :asc) # induce unique sort order for pagination
                   end
@@ -91,5 +91,14 @@ class BroadcastsController < ApplicationController
 
   def unreviewed_broadcasts
     @broadcasts = @broadcasts.unevaluated(current_user)
+  end
+
+  def broadcasts_randomly_ordered
+    if params[:seed]
+      clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
+      query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
+      Broadcast.connection.execute(query)
+    end
+    @broadcasts.order('RANDOM()')
   end
 end

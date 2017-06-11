@@ -7,23 +7,18 @@ Feature: Lead the user through the suggestions
   Background:
     Given we have 10 broadcasts in our database
     And I am logged in
-    When I visit the decision page
-
-  Scenario: Tell the user to issue the invoice
-    When I click 3 times on 'Support' and 7 times on 'Next'
-    Then I see 3 checkmarks and 7 grey dots, labeled with "10/10"
-    And I am told to issue the invoice:
-    """
-    You have already found 3 broadcasts, that you want to pay for. Now
-    distribute your budget among these broadcasts.
-    """
+    When I visit the find broadcasts page
 
   Scenario: Tell the user to repeat until he finds enough broadcasts
-    When I click 1 times on 'Support' and 9 times on 'Next'
-    Then I see 1 checkmarks and 9 grey dots, labeled with "10/10"
-    And I am told to continue my search for more broadcasts:
+    When I support 1 broadcast out of 9
+    Then button to distribute the budget is only a secondary button
+
+  Scenario: Tell the user to issue the invoice
+    When I support 3 broadcasts out of 9
+    Then the indicator of recently supported broadcasts says:
     """
-    You have found only 1 broadcast that you want to pay for. Click on More
-    suggestions, to find even more relevant broadcasts.
+    3 <3 recently supported broadcasts
     """
+    And the button to distribute the budget has turned into a primary button
+
 

@@ -1,10 +1,14 @@
 import Ember from 'ember';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
+import RSVP from 'rsvp';
 
 
-export default Ember.Route.extend(ResetScrollPositionMixin, {
+export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
   intl: Ember.inject.service(),
   session: Ember.inject.service('session'),
+  seed: Math.random(),
+
   queryParams: {
     q: {
       refreshModel: true
@@ -16,26 +20,31 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
       refreshModel: true
     }
   },
+  perPage: 9,
 
   model(params) {
-    return this.store.query('broadcast', {
-      sort: 'random',
-      q: params.q,
-      filter: {
-        review: 'unreviewed',
-        medium: params.medium,
-        station: params.station
-      }
+    params.paramMapping = {
+      total_pages: "total-pages"
+    };
+    params.sort = 'random';
+    params.seed = this.get('seed');
+    params.filter= {
+      medium: params.medium,
+      station: params.station
+    };
+    return RSVP.hash({
+      selections: this.get('store').peekAll('selection'),
+      broadcasts: this.findPaged('broadcast', params)
     });
   },
   afterModel(_, transition) {
     if (this.get('session').get('isAuthenticated') === false){
       const customDict = {
         networkOrEmail: {
-          headerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.headerText'),
-          smallSocialButtonsHeader: this.get('intl').t('decide.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
+          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
+          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
           separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-          footerText: this.get('intl').t('decide.auth0-lock.networkOrEmail.footerText'),
+          footerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.footerText'),
         },
       };
       transition.send('login', customDict);
@@ -65,15 +74,11 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
   },
   actions: {
     loading(transition) {
-      let controller = this.controllerFor('decide');
+      let controller = this.controllerFor('find-broadcasts');
       controller.set('loading', 'loading');
       transition.promise.finally(function() {
         controller.set('loading', '');
       });
-    },
-    loadMore() {
-      this.get('controller').set('q', null);
-      this.refresh();
     },
     setQuery(filterParams){
       this.get('controller').set( 'q', filterParams.get('query'));

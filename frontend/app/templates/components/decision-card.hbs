@@ -5,48 +5,21 @@
       &mdash; {{ broadcast.station.name}}
     {{/if}}
   </div>
-  <div class="header">
+  <div id="title" class="header">
     {{ broadcast.title }}
   </div>
   <div class="description">
     {{ broadcast.description }}
   </div>
 </div>
-<div class="content">
-  <div class="ui grid">
-    <div class="two column row">
-      <div class="column">
-      </div>
-      <div class="column">
-        <button class="decision-card-action ui positive fluid icon button" {{action 'decideAndNext' 'positive'}}>
-          {{#if responseNeutral}}
-            {{ t 'decide.decision-card.actions.change-response.positive' }}
-          {{else}}
-            {{ t 'decide.decision-card.actions.response.positive' }}
-          {{/if}}
-          <i class="checkmark icon"></i>
-        </button>
-      </div>
-    </div>
-    <div class="two column row">
-      <div class="column">
-        {{#unless (eq step 0)}}
-          <button class="ui fluid icon back button" {{action 'back'}}>
-            <i class="backward icon"></i>
-            {{ t 'decide.decision-card.actions.back' }}
-          </button>
-        {{/unless}}
-      </div>
-      <div class="column">
-        <button class="decision-card-action ui neutral fluid icon button" {{action 'decideAndNext' 'neutral'}}>
-          {{#if responsePositive}}
-            {{ t 'decide.decision-card.actions.change-response.neutral' }}
-          {{else}}
-            {{ t 'decide.decision-card.actions.response.neutral' }}
-          {{/if}}
-          <i class="forward icon"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+{{#if (eq broadcast.response 'positive')}}
+  <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'neutral'}}>
+    <i class="red heart icon"></i>
+    {{ t 'find-broadcasts.decision-card.actions.response.positive' }}
+  </button>
+{{else}}
+  <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'positive'}}>
+    <i class="empty heart icon"></i>
+    {{ t 'find-broadcasts.decision-card.actions.response.positive' }}
+  </button>
+{{/if}}

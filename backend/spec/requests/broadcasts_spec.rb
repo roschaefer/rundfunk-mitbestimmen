@@ -204,23 +204,76 @@ RSpec.describe 'Broadcasts', type: :request do
         end
       end
 
-      describe 'param sort: "random"' do
-        let(:params) { { sort: 'random' } }
-
+      describe 'randomization ' do
         before do
           create_list(:broadcast, 23)
-          get url, params: params, headers: headers
-          @first_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
-          get url, params: params, headers: headers
-          @seconds_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
+        end
+        let(:params) { { sort: 'random' } }
+
+        context 'params { random: null }' do
+          before do
+            get url, params: params, headers: headers
+            @first_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
+            get url, params: params, headers: headers
+            @seconds_request_ids = JSON.parse(response.body)['data'].collect { |json| json['id'] }
+          end
+
+          it 'shuffles result set' do
+            expect(@first_request_ids).not_to eq(@seconds_request_ids)
+            expect(@first_request_ids).not_to match_array(@seconds_request_ids)
+          end
         end
 
-        it 'shuffles result set' do
-          expect(@first_request_ids).not_to eq(@seconds_request_ids)
-        end
+        context 'given random seed' do
+          before do
+            @request_ids = []
+            get url, params: params.merge(seed: seed[0]), headers: headers
+            @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
+            get url, params: params.merge(seed: seed[1]), headers: headers
+            @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
+            get url, params: params.merge(seed: seed[2]), headers: headers
+            @request_ids << JSON.parse(response.body)['data'].collect { |json| json['id'] }
+          end
 
-        it 'may return broadcasts beyond index 10' do
-          expect(@first_request_ids).not_to match_array(@seconds_request_ids)
+          describe 'random seeds not in [-1, 1]' do
+            let(:seed) { [10, 10, 10] }
+            it 'is ignored, ie. deterministic' do
+              expect(@request_ids[0]).to eq(@request_ids[1])
+              expect(@request_ids[0]).to match_array(@request_ids[1])
+              expect(@request_ids[0]).to eq(@request_ids[2])
+              expect(@request_ids[0]).to match_array(@request_ids[2])
+            end
+          end
+
+          describe 'invalid random seeds' do
+            let(:seed) { %w[foo bar baz] }
+            it 'is ignored, ie. deterministic' do
+              expect(@request_ids[0]).to eq(@request_ids[1])
+              expect(@request_ids[0]).to match_array(@request_ids[1])
+              expect(@request_ids[0]).to eq(@request_ids[2])
+              expect(@request_ids[0]).to match_array(@request_ids[2])
+            end
+          end
+
+          describe 'same random seeds' do
+            let(:seed) { [0.1, 0.1, 0.1] }
+            it 'pagination is deterministic' do
+              expect(@request_ids[0]).to eq(@request_ids[1])
+              expect(@request_ids[0]).to match_array(@request_ids[1])
+              expect(@request_ids[0]).to eq(@request_ids[2])
+              expect(@request_ids[0]).to match_array(@request_ids[2])
+            end
+          end
+
+          context 'different random seeds' do
+            let(:seed) { [-1, 0.2, 1.0] }
+            it 'pagination is non-deterministic' do
+              expect(@request_ids[0]).not_to eq(@request_ids[1])
+              expect(@request_ids[0]).not_to match_array(@request_ids[1])
+              expect(@request_ids[0]).not_to eq(@request_ids[2])
+              expect(@request_ids[0]).not_to match_array(@request_ids[2])
+            end
+          end
         end
       end
 

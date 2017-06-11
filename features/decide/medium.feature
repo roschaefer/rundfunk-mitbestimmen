@@ -14,7 +14,7 @@ Feature: Distinguish radio and TV shows
     Given I have these broadcasts in my database:
       | Title          | Medium |
       | Babo-Bus       | Radio  |
-    When I visit the decision page
+    When I visit the find broadcasts page
     Then a label indicates the medium 'Radio' on the decision card
 
   Scenario: Create a radio broadcast

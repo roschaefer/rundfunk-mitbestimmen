@@ -21,33 +21,69 @@ describe('Unit | Model | broadcast', function() {
     expect(model).to.be.ok;
   });
 
-  it('respond response must be "positive" or "negative"', function() {
-    let model = this.subject();
-    let selection = model.respond('foobar');
-    expect(selection).to.be.undefined;
-    expect(model.get('selections').get('length')).to.eq(0);
-  });
-
-  it('respond returns a new selection with the response', function() {
-    let model = this.subject();
-    let selection = model.respond('positive');
-    expect(selection.get('response')).to.eq('positive');
-  });
-
-  it('respond adds a new selection to the broadcast', function() {
-    let model = this.subject();
-    model.respond('positive');
-    expect(model.get('selections').get('length')).to.eq(1);
-  });
-
-  it('respond updates the current selection if any', function() {
-    let model = this.subject();
-    let selection = make('selection', {response: 'neutral'});
-    Ember.run(function() {
-      model.set('selections', [selection]);
-      model.respond('positive');
+  describe('setDefaultResponse', function() {
+    it('creates a selection with a response', function() {
+      let broadcast = make('broadcast');
+      broadcast.setDefaultResponse('positive');
+      expect(broadcast.get('response')).to.eq('positive');
     });
-    expect(selection.get('response')).to.eq('positive');
+
+    it('leaves existing selection untouched', function() {
+      let broadcast = make('broadcast');
+      make('selection', {
+        broadcast: broadcast,
+        response: 'neutral'
+      });
+      broadcast.setDefaultResponse('positive');
+      expect(broadcast.get('response')).to.eq('neutral');
+    });
+  });
+
+  describe('response', function() {
+    it('undefined if no selections', function() {
+      let broadcast = make('broadcast');
+      expect(broadcast.get('response')).to.be.undefined;
+    });
+
+    it('returns the response of the first selection', function() {
+      let broadcast = make('broadcast');
+      make('selection', {
+        broadcast: broadcast,
+        response: 'positive'
+      });
+      expect(broadcast.get('response')).to.eq('positive');
+    });
+  });
+
+  describe('respond(response)', function() {
+    it('response must be "positive" or "negative"', function() {
+      let model = this.subject();
+      let selection = model.respond('foobar');
+      expect(selection).to.be.undefined;
+      expect(model.get('selections').get('length')).to.eq(0);
+    });
+
+    it('returns a new selection with the response', function() {
+      let model = this.subject();
+      let selection = model.respond('positive');
+      expect(selection.get('response')).to.eq('positive');
+    });
+
+    it('adds a new selection to the broadcast', function() {
+      let model = this.subject();
+      model.respond('positive');
+      expect(model.get('selections').get('length')).to.eq(1);
+    });
+
+    it('updates the current selection if any', function() {
+      let model = this.subject();
+      let selection = make('selection', {response: 'neutral'});
+      Ember.run(function() {
+        model.set('selections', [selection]);
+        model.respond('positive');
+      });
+      expect(selection.get('response')).to.eq('positive');
+    });
   });
 
   it('respond updates and does not create more than one selection', function() {

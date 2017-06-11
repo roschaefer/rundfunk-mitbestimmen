@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
@@ -7,26 +8,31 @@ export default DS.Model.extend({
   station: DS.belongsTo('station'),
   selections: DS.hasMany('selection'),
 
+  response: Ember.computed('selections.firstObject.response', function() {
+    return this.get('selections.firstObject.response');
+  }),
+
+  setDefaultResponse(response){
+    return this.get('selections.firstObject') || this.respond(response);
+  },
   respond(response){
-    let selection = this.get('selections').objectAt(0);
-    if ((response !== 'positive') && (response !== 'neutral')){
-      return selection;
-    } else {
-      if (selection){
-        selection.set('response', response);
+    let firstSelection = this.get('selections.firstObject');
+    if (['positive', 'neutral'].includes(response)){
+      if (firstSelection){
+        firstSelection.set('response', response);
         if (response === 'neutral'){
-          selection.set('amount', null);
-          selection.set('fixed', false);
+          firstSelection.set('amount', null);
+          firstSelection.set('fixed', false);
         }
       } else {
-        selection = this.get('store').createRecord('selection', {
+        firstSelection = this.get('store').createRecord('selection', {
           broadcast: this,
           response: response,
         });
-        this.get('selections').addObject(selection);
+        this.get('selections').addObject(firstSelection);
       }
-      return selection;
     }
+    return firstSelection;
   },
 
   saveAndSetSuccess(){

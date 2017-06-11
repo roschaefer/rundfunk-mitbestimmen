@@ -21,7 +21,7 @@ Feature: Filter by station
       | Rockpalast          | WDR Fernsehen | TV     |
       | Leonardo            | WDR 5         | Radio  |
       | Frei.Willig.Weg     |               | Online |
-    And I visit the decision page
+    And I visit the find broadcasts page
 
   Scenario: Choosing a medium will narrow down selectable stations
     When I filter by medium "Radio"
@@ -34,8 +34,7 @@ Feature: Filter by station
 
   Scenario: Filter for a station can yield many results
     When I choose "ZDF" from the list of "TV" stations
-    Then there are 2 remaining broadcasts
-    And the displayed broadcast is either "Fernsehgarten" or "heute-journal"
+    Then there are 2 remaining broadcasts, namely "Fernsehgarten" and "heute-journal"
 
   Scenario: The medium 'online' has no stations
     When I filter by medium "Online"
@@ -48,7 +47,7 @@ Feature: Filter by station
       | rbb fernsehen | TV     | 5           |
       | BR Fernsehen  | TV     | 9           |
       | SWR           | TV     | 4           |
-    And I visit the decision page
+    And I visit the find broadcasts page
     When I filter by medium "TV"
     When I click on the stations dropdown menu
     Then the stations are ordered like this:
