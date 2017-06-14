@@ -26,8 +26,8 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (givenDict) {
-      const toRoute = this.get('router.url');
+    login (givenDict, afterLoginRoute) {
+      const toRoute = afterLoginRoute || this.get('router.url');
 
       const dict = Object.assign({
           emailSent: {

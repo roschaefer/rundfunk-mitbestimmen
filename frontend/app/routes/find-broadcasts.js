@@ -47,7 +47,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
           footerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.footerText'),
         },
       };
-      transition.send('login', customDict);
+      transition.send('login', customDict, 'find-broadcasts');
     }
   },
   setupController: function(controller, model) {
