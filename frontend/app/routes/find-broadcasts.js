@@ -20,7 +20,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       refreshModel: true
     }
   },
-  perPage: 9,
+  perPage: 6,
 
   model(params) {
     params.paramMapping = {
