@@ -11,7 +11,7 @@ Feature: Search on find broadcasts page
     Given I have 10 broadcasts in my database
     And one broadcast with title "Search for: keyword"
     And I visit the find broadcasts page
-    And I see 9 broadcasts to choose from
+    And I see 6 broadcasts to choose from
     When I search for "keyword"
     Then there is exactly one search result
     And the only displayed broadcast has the title:

@@ -10,11 +10,11 @@ Feature: Lead the user through the suggestions
     When I visit the find broadcasts page
 
   Scenario: Tell the user to repeat until he finds enough broadcasts
-    When I support 1 broadcast out of 9
+    When I support 1 broadcast out of 6
     Then button to distribute the budget is only a secondary button
 
   Scenario: Tell the user to issue the invoice
-    When I support 3 broadcasts out of 9
+    When I support 3 broadcasts out of 6
     Then the indicator of recently supported broadcasts says:
     """
     3 <3 recently supported broadcasts
