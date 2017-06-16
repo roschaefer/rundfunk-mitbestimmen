@@ -10,6 +10,7 @@ gem 'pg_search'
 gem 'rack-cors', require: 'rack/cors'
 gem 'scenic'
 gem 'valid_email2'
+gem 'geocoder'
 
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
