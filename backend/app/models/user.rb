@@ -20,10 +20,8 @@ class User < ActiveRecord::Base
       if payload['email'].present?
         legacy_user = find_by(email: payload['email'])
         if legacy_user
-          if legacy_user.auth0_uid.blank?
-            legacy_user.auth0_uid = payload['sub']
-            legacy_user.save!
-          end
+          legacy_user.auth0_uid = payload['sub']
+          legacy_user.save if legacy_user.changed?
           return legacy_user
         end
       end
