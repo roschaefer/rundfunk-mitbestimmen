@@ -29,4 +29,16 @@ class User < ActiveRecord::Base
       find_or_create_by(auth0_uid: payload['sub'], email: payload['email'])
     end
   end
+
+
+  def update_location(request)
+    if latitude.blank? || longitude.blank?
+      location = request.location
+      if location
+        self.latitude = location.latitude
+        self.longitude = location.longitude
+        self.save
+      end
+    end
+  end
 end
