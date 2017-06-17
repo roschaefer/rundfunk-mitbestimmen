@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to include(disliked_broadcast) }
   end
 
-  describe '#update_location' do
+  describe '#update_location', :vcr do
     let(:ip_address) { '2.247.0.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
