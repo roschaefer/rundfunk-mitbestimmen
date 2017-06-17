@@ -21,12 +21,12 @@ RSpec.describe User, type: :model do
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
     subject { user.update_location geocoder_result }
 
-    specify { expect{ subject }.to change{User.first.latitude}.from(nil).to(51.2993) }
-    specify { expect{ subject }.to change{User.first.longitude}.from(nil).to(9.491) }
+    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(51.2993) }
+    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(9.491) }
 
     context 'no internet connection' do
       let(:geocoder_result) { nil }
-      specify { expect{ subject }.not_to change{User.first.latitude} }
+      specify { expect { subject }.not_to(change { User.first.latitude }) }
     end
   end
 

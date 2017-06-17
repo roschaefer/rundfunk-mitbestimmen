@@ -12,7 +12,6 @@ FactoryGirl.define do
       longitude nil
     end
 
-
     trait :admin do
       role :admin
     end

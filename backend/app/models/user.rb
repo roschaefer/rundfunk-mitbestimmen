@@ -30,15 +30,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  def has_location?
+  def location?
     latitude.present? && longitude.present?
   end
 
   def update_location(location)
-    if location
-      self.latitude = location.latitude
-      self.longitude = location.longitude
-      self.save
-    end
+    return unless location
+    self.latitude = location.latitude
+    self.longitude = location.longitude
+    save
   end
 end

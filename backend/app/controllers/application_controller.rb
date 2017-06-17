@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
   def authenticate_user
     user = authenticate_for(User)
     if user
-      user.update_location(request.location) unless user.has_location?
+      user.update_location(request.location) unless user.location?
       user
     else
       unauthorized_entity('user')

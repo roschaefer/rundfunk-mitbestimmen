@@ -11,7 +11,6 @@ RSpec.describe 'Selections', type: :request do
     JSON.parse(response.body)
   end
 
-
   describe '*' do
     let(:url) { '/selections' } # as an example
     let(:request) { get url, params: params, headers: headers }
@@ -21,16 +20,16 @@ RSpec.describe 'Selections', type: :request do
       let(:headers) { super().merge(authenticated_header(user)) }
 
       describe 'updates the location of the user' do
-        specify { expect{ request }.to change{User.first.has_location?}.from(false).to(true) }
-        specify { expect{ request }.to change{User.first.latitude}.from(nil).to(0) }
-        specify { expect{ request }.to change{User.first.longitude}.from(nil).to(0) }
+        specify { expect { request }.to change { User.first.location? }.from(false).to(true) }
+        specify { expect { request }.to change { User.first.latitude }.from(nil).to(0) }
+        specify { expect { request }.to change { User.first.longitude }.from(nil).to(0) }
       end
 
       context 'user has a location' do
         let(:user) { create(:user, latitude: 42.0, longitude: 23.0) }
         describe 'does not unnecessarily call the geo lookup service' do
-          specify { expect{ request }.not_to change{User.first.latitude} }
-          specify { expect{ request }.not_to change{User.first.longitude} }
+          specify { expect { request }.not_to(change { User.first.latitude }) }
+          specify { expect { request }.not_to(change { User.first.longitude }) }
         end
       end
     end
@@ -56,10 +55,10 @@ RSpec.describe 'Selections', type: :request do
         expect(json_body['data'].length).to eq 2
         selection_json = {
           data: UnorderedArray({
-            id: positive_selection.id.to_s,
-            attributes: { response: 'positive' }
-          }, id: negative_selection.id.to_s,
-          attributes: { response: 'negative' })
+                                 id: positive_selection.id.to_s,
+                                 attributes: { response: 'positive' }
+                               }, id: negative_selection.id.to_s,
+                                  attributes: { response: 'negative' })
         }
         expect(json_body).to include_json(selection_json)
       end
@@ -138,13 +137,13 @@ RSpec.describe 'Selections', type: :request do
               data: {
                 type: 'selections',
                 attributes: {
-                response: :positive
-              },
-              relationships: {
-                broadcast: {
-                  data: { id: broadcast.id, type: 'broadcasts' }
+                  response: :positive
+                },
+                relationships: {
+                  broadcast: {
+                    data: { id: broadcast.id, type: 'broadcasts' }
+                  }
                 }
-              }
               }
             }
           end
