@@ -1,5 +1,5 @@
 class ChartDataController < ApplicationController
-  skip_authorization_check only: :diff
+  skip_authorization_check only: [:diff, :geo]
 
   def diff
     actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
@@ -22,5 +22,9 @@ class ChartDataController < ApplicationController
 
     diff_chart = ChartData::Diff.new(series: series, categories: categories)
     render json: diff_chart
+  end
+
+  def geo
+    render json: User.where.not(latitude: nil, longitude: nil), each_serializer: ChartData::Geo::MarkerSerializer
   end
 end
