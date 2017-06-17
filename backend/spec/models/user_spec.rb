@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
 
   describe '#update_location' do
     let(:ip_address) { '2.247.0.0' }
+    let(:user) { create(:user, :without_geolocation) }
     before { user }
     let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
