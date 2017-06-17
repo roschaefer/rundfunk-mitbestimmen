@@ -1,4 +1,28 @@
-{{outlet}}
+<div class="ui grid">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui huge header">
+        {{t 'visualize.geo.header'}}
+        <div class="sub header">
+          {{t 'visualize.geo.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div>
+        {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+          {{tile-layer url=tileLayerUrl}}
+        {{/leaflet-map}}
+      </div>
+      <div>
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+</div>
 
 {{#link-to 'visualize.index' class="ui huge primary button"}}
 <i class="left arrow icon"></i>
