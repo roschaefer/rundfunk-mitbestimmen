@@ -55,16 +55,18 @@ namespace :geocode do
     end
 
     desc 'Geocode users based on their last ip address in Auth0'
-    task :last_ip, %i[domain client_id client_secret] => :environment do |_t, _args|
+    task last_ip: :environment do
       domain = ENV['AUTH0_DOMAIN'] # 'rundfunk-testing.eu.auth0.com'
-      client_id = ENV['AUTH0_CLIENT_ID'] # 'YeAqKKICU4HSLt3ECfdid2gEAcAdzdE4'
-      client_secret = ENV['AUTH0_CLIENT_SECRET'] # 'fn3ErQZRDslgpmo-Jnv8oD29iEw5RIYQbfj4YQby-wcUm_3d31BbLfDSLoJsdFRW'
+      client_id = ENV['AUTH0_API_CLIENT_ID'] # 'YeAqKKICU4HSLt3ECfdid2gEAcAdzdE4'
+      client_secret = ENV['AUTH0_API_CLIENT_SECRET'] # 'fn3ErQZRDslgpmo-Jnv8oD29iEw5RIYQbfj4YQby-wcUm_3d31BbLfDSLoJsdFRW'
       (domain && client_id && client_id) || abort('Configure your environment variables')
       access_token = get_access_token(domain: domain, client_id: client_id, client_secret: client_secret)
       User.where.not(auth0_uid: nil).find_each do |user|
-        user.last_ip = get_user_last_ip(user: user, domain: domain, access_token: access_token)
-        user.geocode
-        user.save! if user.changed?
+        break if user.location?
+        last_ip = get_user_last_ip(user: user, domain: domain, access_token: access_token)
+        geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
+        geocoder_result = geocoder_lookup.search(last_ip).first
+        user.update_location(geocoder_result)
       end
     end
   end
