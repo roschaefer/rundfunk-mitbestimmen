@@ -1,1 +1,75 @@
-{{yield}}
+<div class="ui grid">
+  <div class="row">
+    <div class="ui icon massive message">
+      <i class="smile icon"></i>
+      <div class="content">
+        <div class="header">
+          {{t 'missing-feature.main-message.header'}}
+        </div>
+        <p>
+          {{t 'missing-feature.main-message.sub-header'}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="two column stackable row">
+    <div class="column">
+      <div>
+        <img class="ui fluid image" src="{{concat '/assets/images/missing-features/visualize/' feature '.png'}}">
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="ui grid">
+        <div class="row">
+          <div class="column">
+            {{yield}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <div class="ui icon large message">
+              <div class="header">
+                <div class="content">
+                  {{t 'missing-feature.call-to-action.header'}}
+                </div>
+                <p></p>
+                <div class="large fluid ui buttons">
+                  <a class="ui black icon button" target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen">
+                    <i class="github icon"></i>
+                    GitHub
+                  </a>
+                  <a class="ui icon button" href="mailto:team@rundfunk-mitbestimmen.de?subject=missing feature: {{feature}}">
+                    <i class="mail icon"></i>
+                    Email
+                  </a>
+                  <a class="ui twitter button" target="_blank" href="https://twitter.com/RundfunkMB">
+                    <i class="twitter icon"></i>
+                    Twitter
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="column">
+            <div class="ui icon large message">
+              <div class="content">
+                <div class="header">
+                  {{t 'missing-feature.not-a-developer.header'}}
+                </div>
+                <p>
+                  {{t 'missing-feature.not-a-developer.sub-header'}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

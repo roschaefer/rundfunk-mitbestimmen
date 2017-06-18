@@ -46,6 +46,15 @@ broadcast-form:
       update: Korrigieren
     success-message: Erfolgreich gespeichert
   another-one: Neue Sendung
+missing-feature:
+  main-message:
+    header: Herzlichen Glückwunsch! Du hast eine fehlende Funktion gefunden.
+    sub-header: Das hier ist freie Open-Source Software - auch Du kannst mithelfen!
+  call-to-action:
+    header: Möchtest Du uns bei dieser Funktion helfen? Melde Dich einfach!
+  not-a-developer:
+    header: Du bist kein Entwickler?
+    sub-header: Überhaupt kein Problem, es gibt ganz vielfältige Möglichkeiten mitzumachen! Melde Dich einfach bei uns.
 application:
   menu:
     item:
@@ -357,7 +366,7 @@ visualize:
   geo:
     header: Geographische Visualisierung
     sub-header: >
-      Wo kommen unsere Nutzer her?
+      Verteilung nach Region
 about-us:
   team:
     you:

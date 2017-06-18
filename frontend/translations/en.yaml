@@ -46,6 +46,15 @@ broadcast-form:
       update: Update
     success-message: Saved successfully
   another-one: New broadcast
+missing-feature:
+  main-message:
+    header: Congratulations! You found a missing feature.
+    sub-header: This is free and open-source software - it depends on your contribution!
+  call-to-action:
+    header: Do you want to help us out with this feature? Get in touch!
+  not-a-developer:
+    header: You are not a developer?
+    sub-header: No problem, we need all kind of help. Just get in touch.
 application:
   menu:
     item:
@@ -343,7 +352,7 @@ visualize:
   geo:
     header: Geographical visualization
     sub-header: >
-      Where do our users live?
+      Distribution by region
 about-us:
   team:
     you:
