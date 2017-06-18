@@ -339,6 +339,12 @@ statistics:
     invoice: Zurück zu meinen ausgewählten Sendungen
     index: Zurück zur Startseite
 visualize:
+  index:
+    headers:
+      diff: Erwartungswert vs. tatsächlicher Wert
+      geo: Geographische Visualisierung
+      time: Veränderungen über die Zeit
+      graph: Beziehungen zwischen Sendungen
   diff:
     header: Beträge nach Sender
     sub-header: >

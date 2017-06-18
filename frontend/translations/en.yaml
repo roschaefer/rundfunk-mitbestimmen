@@ -326,6 +326,12 @@ statistics:
     invoice: Back to my broadcasts
     index: Back to start
 visualize:
+  index:
+    headers:
+      diff: Comparison expected vs. actual
+      geo: Geographical visualization
+      time: Changes over time
+      graph: Relationships between broadcasts
   diff:
     header: Total amounts by TV or radio station
     sub-header: >
