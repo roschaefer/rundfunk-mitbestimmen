@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://freegeoip.io/json/2.247.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.11.8
+      Date:
+      - Sat, 17 Jun 2017 14:15:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '189'
+      Connection:
+      - keep-alive
+      Vary:
+      - Origin
+      X-Database-Date:
+      - Sat, 10 Jun 2017 18:27:59 GMT
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: '{"ip":"2.247.0.0","country_code":"DE","country_name":"Germany","region_code":"","region_name":"","city":"","zip_code":"","time_zone":"","latitude":51.2993,"longitude":9.491,"metro_code":0}
+
+'
+    http_version: 
+  recorded_at: Sat, 17 Jun 2017 14:15:31 GMT
+recorded_with: VCR 3.0.3

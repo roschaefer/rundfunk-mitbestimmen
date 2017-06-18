@@ -52,6 +52,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
@@ -77,6 +79,8 @@ GEM
       activesupport
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     diff-lcs (1.3)
     erubi (1.6.0)
     factory_girl (4.8.0)
@@ -85,10 +89,12 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.18)
+    geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
+    hashdiff (0.3.2)
     highline (1.7.8)
     i18n (0.8.4)
     jsonapi-renderer (0.1.2)
@@ -142,6 +148,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
     rack-cors (0.4.1)
@@ -213,6 +220,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
+    safe_yaml (1.0.4)
     scenic (1.4.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
@@ -240,6 +248,11 @@ GEM
     valid_email2 (1.2.14)
       activemodel (>= 3.2)
       mail (~> 2.5)
+    vcr (3.0.3)
+    webmock (2.3.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -255,6 +268,7 @@ DEPENDENCIES
   capistrano-db-tasks
   capistrano-rails
   factory_girl_rails
+  geocoder
   globalize!
   globalize-accessors
   highline
@@ -277,6 +291,8 @@ DEPENDENCIES
   spring-watcher-listen
   tzinfo-data
   valid_email2
+  vcr
+  webmock
 
 BUNDLED WITH
    1.15.1

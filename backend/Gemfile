@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'active_model_serializers'
 gem 'cancancan'
+gem 'geocoder'
 gem 'globalize', github: 'globalize/globalize'
 gem 'globalize-accessors'
 gem 'kaminari'
@@ -38,6 +39,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-json_expectations'
   gem 'rspec-rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

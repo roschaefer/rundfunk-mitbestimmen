@@ -13,6 +13,23 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to include(disliked_broadcast) }
   end
 
+  describe '#update_location', :vcr do
+    let(:ip_address) { '2.247.0.0' }
+    let(:user) { create(:user, :without_geolocation) }
+    before { user }
+    let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
+    let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
+    subject { user.update_location geocoder_result }
+
+    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(51.2993) }
+    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(9.491) }
+
+    context 'no internet connection' do
+      let(:geocoder_result) { nil }
+      specify { expect { subject }.not_to(change { User.first.latitude }) }
+    end
+  end
+
   describe '#create' do
     let(:user) { User.create!(email: 'test@example.org') }
     it { is_expected.to be_contributor }

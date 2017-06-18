@@ -11,6 +11,30 @@ RSpec.describe 'Selections', type: :request do
     JSON.parse(response.body)
   end
 
+  describe '*' do
+    let(:url) { '/selections' } # as an example
+    let(:request) { get url, params: params, headers: headers }
+    context 'logged in' do
+      before { user }
+      let(:user) { create(:user, latitude: nil, longitude: nil) }
+      let(:headers) { super().merge(authenticated_header(user)) }
+
+      describe 'updates the location of the user' do
+        specify { expect { request }.to change { User.first.location? }.from(false).to(true) }
+        specify { expect { request }.to change { User.first.latitude }.from(nil).to(0) }
+        specify { expect { request }.to change { User.first.longitude }.from(nil).to(0) }
+      end
+
+      context 'user has a location' do
+        let(:user) { create(:user, latitude: 42.0, longitude: 23.0) }
+        describe 'does not unnecessarily call the geo lookup service' do
+          specify { expect { request }.not_to(change { User.first.latitude }) }
+          specify { expect { request }.not_to(change { User.first.longitude }) }
+        end
+      end
+    end
+  end
+
   describe 'GET /selections' do
     let(:action) { get '/selections', params: params, headers: headers }
     let(:selections) { [positive_selection, negative_selection] }
