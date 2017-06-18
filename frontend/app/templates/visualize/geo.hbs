@@ -13,21 +13,6 @@
   <div class="row">
     <div class="column">
       <div>
-        {{#leaflet-map lat=lat lng=lng zoom=zoom}}
-          {{tile-layer url=tileLayerUrl}}
-
-          {{#each model as |marker|}}
-            {{#marker-layer location=marker.location}}
-              {{#popup-layer}}
-                <h3>User id: {{marker.id}}</h3>
-              {{/popup-layer}}
-            {{/marker-layer}}
-          {{/each}}
-
-        {{/leaflet-map}}
-      </div>
-      <div>
-        {{outlet}}
       </div>
     </div>
   </div>
