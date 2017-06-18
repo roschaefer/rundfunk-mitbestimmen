@@ -61,8 +61,11 @@ namespace :geocode do
       client_secret = ENV['AUTH0_API_CLIENT_SECRET'] # 'fn3ErQZRDslgpmo-Jnv8oD29iEw5RIYQbfj4YQby-wcUm_3d31BbLfDSLoJsdFRW'
       (domain && client_id && client_id) || abort('Configure your environment variables')
       access_token = get_access_token(domain: domain, client_id: client_id, client_secret: client_secret)
-      User.where.not(auth0_uid: nil).find_each do |user|
-        break if user.location?
+
+      user_relation = User.where(latitude: nil, longitude: nil).where.not(auth0_uid: nil)
+      puts "About to geocode #{user_relation.count} users"
+
+      user_relation.find_each do |user|
         last_ip = get_user_last_ip(user: user, domain: domain, access_token: access_token)
         geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
         geocoder_result = geocoder_lookup.search(last_ip).first
