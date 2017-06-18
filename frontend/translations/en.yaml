@@ -326,13 +326,18 @@ statistics:
     invoice: Back to my broadcasts
     index: Back to start
 visualize:
-  header: Total amounts by TV or radio station
-  sub-header: >
-    The actual production costs are not public. So we assume every broadcast
-    gets the same amount and take that as a reference.
-  diff-chart:
-    yAxis:
-      title: € per month
+  diff:
+    header: Total amounts by TV or radio station
+    sub-header: >
+      The actual production costs are not public. So we assume every broadcast
+      gets the same amount and take that as a reference.
+    chart:
+      yAxis:
+        title: € per month
+  geo:
+    header: Geographical visualization
+    sub-header: >
+      Where do our users live?
 about-us:
   team:
     you:

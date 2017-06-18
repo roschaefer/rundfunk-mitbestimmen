@@ -1,0 +1,20 @@
+<div class="ui middle aligned stackable grid container">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui huge header">
+        {{t 'visualize.diff.header'}}
+        <div class="sub header">
+          {{t 'visualize.diff.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div id='chart-area'>
+        {{dynamic-high-charts chartOptions=chartOptions content=chartData}}
+      </div>
+    </div>
+  </div>
+</div>

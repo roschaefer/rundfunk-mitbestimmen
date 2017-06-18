@@ -1,0 +1,34 @@
+<div class="ui middle aligned stackable grid container">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui huge header">
+        {{t 'visualize.geo.header'}}
+        <div class="sub header">
+          {{t 'visualize.geo.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div>
+        {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+          {{tile-layer url=tileLayerUrl}}
+
+          {{#each model as |marker|}}
+            {{#marker-layer location=marker.location}}
+              {{#popup-layer}}
+                <h3>User id: {{marker.id}}</h3>
+              {{/popup-layer}}
+            {{/marker-layer}}
+          {{/each}}
+
+        {{/leaflet-map}}
+      </div>
+      <div>
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+</div>

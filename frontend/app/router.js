@@ -33,7 +33,10 @@ Router.map(function() {
   this.route('authentication', function() {
     this.route('callback');
   });
-  this.route('visualize');
+  this.route('visualize', function() {
+    this.route('geo');
+    this.route('diff');
+  });
   this.route('about-us');
 });
 
