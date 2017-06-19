@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
       },
       yAxis: {
         title: {
-          text: this.get('intl').t('visualize.chart.yAxis.title')
+          text: this.get('intl').t('visualize.diff.chart.yAxis.title')
         }
       },
       tooltip: {
