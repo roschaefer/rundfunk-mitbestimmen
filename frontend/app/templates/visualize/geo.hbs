@@ -1,19 +1,15 @@
-<div class="ui middle aligned stackable grid container">
-  <div class="row">
-    <div class="column">
-      <h1 class="ui huge header">
-        {{t 'visualize.geo.header'}}
-        <div class="sub header">
-          {{t 'visualize.geo.sub-header'}}
-        </div>
-      </h1>
+{{#missing-feature feature='geo'}}
+  <h1 class="ui huge header">
+    {{t 'visualize.geo.header'}}
+    <div class="sub header">
+      {{t 'visualize.geo.sub-header'}}
     </div>
-  </div>
-
-  <div class="row">
-    <div class="column">
-      <div>
-      </div>
-    </div>
-  </div>
-</div>
+  </h1>
+  <p>
+  {{t 'visualize.geo.paragraph.explanation'}}
+  </p>
+  <p>
+  {{t 'visualize.geo.paragraph.reason'}}
+  </p>
+{{/missing-feature}}
+{{outlet}}

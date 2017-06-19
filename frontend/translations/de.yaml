@@ -367,6 +367,39 @@ visualize:
     header: Geographische Visualisierung
     sub-header: >
       Verteilung nach Region
+    paragraph:
+      explanation: >
+        Das sind die Beträge gruppiert nach Regionen. Eine dunkler gefärbte
+        Region bedeutet, dass aus dieser Region viele Beträge stammen.
+      reason: >
+        Das ist insbesondere für Sendungen mit einem regionalen Bezug
+        interessant, z.B. Radio-Sendungen oder Lokalnachrichten.
+  time:
+    header: Veränderungen über die Zeit
+    sub-header: >
+      Vergleiche mehrere Sendungen über einen Zeitram
+    paragraph:
+      explanation: >
+        Hier sieht man die Veränderung der Unterstützung für mehrere Sendungen
+        während eines bestimmten Zeitraums. Man kann die Werte für die Y-Achse
+        nach mehreren Attributen wechseln, z.b. Zustimmung, durchschnittlicher
+        und absoluter Betrag.
+      reason: >
+        Das ist interessant wenn man wissen will, wann eine Sendung besonders
+        viel Zuspruch erhalten hat oder wann viele Unterstützer ihre Meinung
+        geändert haben.
+  graph:
+    header: Beziehungen zwischen Sendungen
+    sub-header: >
+      Finde Bündelungen von Sendungen
+    paragraph:
+      explanation: >
+        Sendungen sind als Kreise dargestellt, die Größe der Kreise basierend
+        auf dem Gesamtbetrag. Werden zwei Sendungen besonders oft von den
+        gleichen Nutzern ausgewählt, werden die Verbindungen zwischen den
+        Sendungen deutlicher.
+      reason: >
+        Das ist interessant z.B. um Ähnlichkeiten zwischen Sendungen zu finden.
 about-us:
   team:
     you:

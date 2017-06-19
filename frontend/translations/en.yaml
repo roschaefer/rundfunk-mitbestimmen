@@ -353,6 +353,33 @@ visualize:
     header: Geographical visualization
     sub-header: >
       Distribution by region
+    paragraph:
+      explanation: >
+        Here are all amounts for one broadcast grouped by region. A darker
+        region means much of the expenditure comes from there.
+      reason: >
+        This is especially important for broadcasts with a regional connection,
+        e.g. radio broadcasts or local news.
+  time:
+    header: Changes over time
+    sub-header: >
+      Compare many broadcasts over time
+    paragraph:
+      explanation: >
+        Here you can see the change of support for many broadcasts during a certain time.
+        You can switch between different values like approval, average and total amount.
+      reason: >
+        This is interesting if you want to know when a particular broadcast received a lot of support or when many people changed their mind.
+  graph:
+    header: Relationships between broadcasts
+    sub-header: >
+      Find clusters of broadcasts
+    paragraph:
+      explanation: >
+        Broadcasts are displayed as nodes, their sizes based on the respective total amount.
+        If two broadcasts are supported by the same users, their connection becomes thicker.
+      reason: >
+        This is interesting to find e.g. similar broadcasts.
 about-us:
   team:
     you:
