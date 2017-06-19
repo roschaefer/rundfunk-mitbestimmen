@@ -1,5 +1,6 @@
 class Broadcast < ApplicationRecord
   include PgSearch
+  has_paper_trail
 
   pg_search_scope :search_by_title, against: :title
 
