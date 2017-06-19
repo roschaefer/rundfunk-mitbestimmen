@@ -341,6 +341,7 @@ visualize:
       geo: Geographical visualization
       time: Changes over time
       graph: Relationships between broadcasts
+  overview: Visualization overview
   diff:
     header: Total amounts by TV or radio station
     sub-header: >

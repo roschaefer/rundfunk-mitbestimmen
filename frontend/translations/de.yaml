@@ -51,7 +51,7 @@ missing-feature:
     header: Herzlichen Glückwunsch! Du hast eine fehlende Funktion gefunden.
     sub-header: Das hier ist freie Open-Source Software - auch Du kannst mithelfen!
   call-to-action:
-    header: Möchtest Du uns bei dieser Funktion helfen? Melde Dich einfach!
+    header: Möchtest Du uns bei dieser Funktion helfen? Melde Dich doch einfach!
   not-a-developer:
     header: Du bist kein Entwickler?
     sub-header: Überhaupt kein Problem, es gibt ganz vielfältige Möglichkeiten mitzumachen! Melde Dich einfach bei uns.
@@ -354,6 +354,7 @@ visualize:
       geo: Geographische Visualisierung
       time: Veränderungen über die Zeit
       graph: Beziehungen zwischen Sendungen
+  overview: Visualisierungsübersicht
   diff:
     header: Beträge nach Sender
     sub-header: >
@@ -370,7 +371,7 @@ visualize:
     paragraph:
       explanation: >
         Das sind die Beträge gruppiert nach Regionen. Eine dunkler gefärbte
-        Region bedeutet, dass aus dieser Region viele Beträge stammen.
+        Region bedeutet, dass viele Beträge aus dieser Region stammen.
       reason: >
         Das ist insbesondere für Sendungen mit einem regionalen Bezug
         interessant, z.B. Radio-Sendungen oder Lokalnachrichten.
