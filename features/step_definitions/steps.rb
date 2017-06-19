@@ -721,8 +721,10 @@ When(/^I click the accordion(?: once again)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
 end
 
-When(/^I visit the visualization page$/) do
-  visit '/visualize'
+When(/^I navigate to the visualization of expected vs. actual values$/) do
+  visit '/'
+  click_on 'Visualization'
+  click_on 'visualize-diff'
 end
 
 Then(/^from the diff in the distribution I can see/) do |block|
