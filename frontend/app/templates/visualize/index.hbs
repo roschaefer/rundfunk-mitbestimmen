@@ -1,0 +1,32 @@
+{{outlet}}
+<div class="ui grid">
+  <div class="doubling two column row">
+    <div class="column">
+      <div class="ui huge header">{{t 'visualize.index.headers.diff'}}</div>
+      {{#link-to 'visualize.diff' id='visualize-diff' class="ui image"}}
+        <img src="/assets/images/missing-features/visualize/diff.png">
+      {{/link-to}}
+    </div>
+
+    <div class="column">
+      <div class="ui huge header">{{t 'visualize.index.headers.geo'}}</div>
+      {{#link-to 'visualize.geo' class="ui image"}}
+        <img src="/assets/images/missing-features/visualize/geo.png">
+      {{/link-to}}
+    </div>
+
+    <div class="column">
+      <div class="ui huge header">{{t 'visualize.index.headers.time'}}</div>
+      {{#link-to 'visualize.time' class="ui image"}}
+        <img src="/assets/images/missing-features/visualize/time.png">
+      {{/link-to}}
+    </div>
+
+    <div class="column">
+      <div class="ui huge header">{{t 'visualize.index.headers.graph'}}</div>
+      {{#link-to 'visualize.graph' class="ui image"}}
+        <img src="/assets/images/missing-features/visualize/graph.png">
+      {{/link-to}}
+    </div>
+  </div>
+</div>

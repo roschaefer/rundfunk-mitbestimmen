@@ -6,6 +6,11 @@ p {
   font-size: 1.2em;
 }
 
+.leaflet-container {
+  width: 600px;
+  height: 600px;
+}
+
 #inner-explanation-accordion {
   padding-left: 10px;
 }

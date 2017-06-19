@@ -46,6 +46,15 @@ broadcast-form:
       update: Update
     success-message: Saved successfully
   another-one: New broadcast
+missing-feature:
+  main-message:
+    header: Congratulations! You found a missing feature.
+    sub-header: This is free and open-source software - it depends on your contribution!
+  call-to-action:
+    header: Do you want to help us out with this feature? Get in touch!
+  not-a-developer:
+    header: You are not a developer?
+    sub-header: No problem, we need all kind of help. Just get in touch.
 application:
   menu:
     item:
@@ -326,13 +335,52 @@ statistics:
     invoice: Back to my broadcasts
     index: Back to start
 visualize:
-  header: Total amounts by TV or radio station
-  sub-header: >
-    The actual production costs are not public. So we assume every broadcast
-    gets the same amount and take that as a reference.
-  diff-chart:
-    yAxis:
-      title: € per month
+  index:
+    headers:
+      diff: Comparison expected vs. actual
+      geo: Geographical visualization
+      time: Changes over time
+      graph: Relationships between broadcasts
+  overview: Visualization overview
+  diff:
+    header: Total amounts by TV or radio station
+    sub-header: >
+      The actual production costs are not public. So we assume every broadcast
+      gets the same amount and take that as a reference.
+    chart:
+      yAxis:
+        title: € per month
+  geo:
+    header: Geographical visualization
+    sub-header: >
+      Distribution by region
+    paragraph:
+      explanation: >
+        Here are all amounts for one broadcast grouped by region. A darker
+        region means much of the expenditure comes from there.
+      reason: >
+        This is especially important for broadcasts with a regional connection,
+        e.g. radio broadcasts or local news.
+  time:
+    header: Changes over time
+    sub-header: >
+      Compare many broadcasts over time
+    paragraph:
+      explanation: >
+        Here you can see the change of support for many broadcasts during a certain time.
+        You can switch between different values like approval, average and total amount.
+      reason: >
+        This is interesting if you want to know when a particular broadcast received a lot of support or when many people changed their mind.
+  graph:
+    header: Relationships between broadcasts
+    sub-header: >
+      Find clusters of broadcasts
+    paragraph:
+      explanation: >
+        Broadcasts are displayed as nodes, their sizes based on the respective total amount.
+        If two broadcasts are supported by the same users, their connection becomes thicker.
+      reason: >
+        This is interesting to find e.g. similar broadcasts.
 about-us:
   team:
     you:
