@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     return filteredStations;
   }),
   sortedStations: Ember.computed.sort('displayedStations', 'sortDefinition'),
-  sortDefinition: [ 'broadcasts_count:desc' ],
+  sortDefinition: [ 'name:asc' ],
 
   submit(event) {
     event.preventDefault();

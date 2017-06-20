@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     });
   }),
   sortedStations: Ember.computed.sort('displayedStations', 'sortDefinition'),
-  sortDefinition: [ 'broadcasts_count:desc' ],
+  sortDefinition: [ 'name:asc' ],
   actions: {
     search(){
       let searchAction = this.get('searchAction');
