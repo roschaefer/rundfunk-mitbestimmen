@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   include CanCan::ControllerAdditions
   check_authorization
 
+  before_action :set_paper_trail_whodunnit
   before_action :set_locale
 
   def set_locale
