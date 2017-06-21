@@ -40,7 +40,8 @@
                 <div class="item blank" data-value=""></div>
                 {{#each sortedStations as |station|}}
                   <div class="item" data-value="{{station.id}}">
-                    {{station.name}} ({{station.broadcasts_count}})
+                    <span class="text">{{station.name}}</span>
+                    <span class="description">{{t 'broadcast-search.filter.station.description' count=station.broadcasts_count}}</span>
                   </div>
                 {{/each}}
               </div>
