@@ -23,8 +23,8 @@ Feature: Sort stations by name and show their number of broadcasts
   Scenario: Dropdown menu ordered by name and number of broadcasts visible
     When I filter by medium "TV"
     Then the drop down menu has excactly these items:
-      | Label             |
-      | Phoenix (1)       |
-      | WDR Fernsehen (3) |
-      | ZDF (2)           |
+      | Label                      |
+      | Phoenix 1 broadcast        |
+      | WDR Fernsehen 3 broadcasts |
+      | ZDF 2 broadcasts           |
 
