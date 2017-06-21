@@ -1,7 +1,7 @@
 import FactoryGuy from 'ember-data-factory-guy';
 
-FactoryGuy.define('station', {
+FactoryGuy.define('medium', {
   default: {
-    name: 'I am a station',
+    name: 'I am a medium',
   }
 });

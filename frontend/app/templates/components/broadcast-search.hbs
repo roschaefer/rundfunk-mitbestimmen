@@ -40,7 +40,7 @@
                 <div class="item blank" data-value=""></div>
                 {{#each sortedStations as |station|}}
                   <div class="item" data-value="{{station.id}}">
-                    {{station.name}}
+                    {{station.name}} ({{station.broadcasts_count}})
                   </div>
                 {{/each}}
               </div>
