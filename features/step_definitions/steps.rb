@@ -829,3 +829,11 @@ end
 When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
 end
+
+Then(/^the drop down menu has excactly these items:$/) do |table|
+  find('.selection', text: 'Filter by station').click
+  labels = all('.dropdown .item:not(.blank)').map(&:text)
+  table.hashes.each_with_index do |row, i|
+    expect(labels[i]).to eq row['Label']
+  end
+end
