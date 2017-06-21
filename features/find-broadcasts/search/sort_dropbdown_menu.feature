@@ -1,4 +1,8 @@
-Feature:
+Feature: Sort stations by name and show their number of broadcasts
+  As a user who is interested into broadcasts of a particular station
+  I want the dropdown with stations to be sorted alphabetically
+  In order quickly scroll through the list of stations
+
 
   Background:
     Given we have these stations in our database:
