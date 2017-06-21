@@ -51,13 +51,13 @@ Feature: Filter by station
     When I filter by medium "TV"
     When I click on the stations dropdown menu
     Then the stations are ordered like this:
-      | Station       |
-      | BR Fernsehen  |
-      | rbb fernsehen |
-      | SWR           |
-      | WDR Fernsehen |
-      | ZDF           |
-      | Phoenix       |
+      | Station           |
+      | BR Fernsehen (9)  |
+      | Phoenix (1)       |
+      | rbb fernsehen (5) |
+      | SWR (4)           |
+      | WDR Fernsehen (3) |
+      | ZDF (2)           |
 
   @116
   Scenario: Removing filter options will extend the number of results again
