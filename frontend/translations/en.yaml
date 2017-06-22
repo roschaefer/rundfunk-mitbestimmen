@@ -204,7 +204,9 @@ index:
       business-model:
         title: Do you have a business model?
         content: >
-          No. We are not planning to generate a profit with this app, ever.
+          No. We are not planning to generate a profit with this app.
+          Although donations, seed funding and crowdfunding are also regarded as
+          business models. We can imagine that for the future.
       data-privacy:
         title: Who can see my email address?
         content: >
@@ -212,8 +214,7 @@ index:
           authentication works through a service called
           <a href="https://auth0.com/">Auth0</a>, the login data is stored in
           two data centers in Frankfurt and Dublin. Only core developers have
-          access to the data. Of course, passwords are not stored in clear text,
-          so not even core developers are able to read them.
+          access to the data.
       source-code:
         title: Is it  free software / open-source?
         content: >

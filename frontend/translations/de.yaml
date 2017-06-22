@@ -212,7 +212,9 @@ index:
         title: Habt ihr ein Geschäftsmodell?
         content: >
           Nein. Wir haben auch nicht vor, jemals Profit mit dieser Anwendung zu
-          machen.
+          machen. Spenden, Seed- und Crowdfunding gelten allerdings auch als
+          Geschäftsmodelle, so etwas könnten wir uns durchaus für die Zukunft
+          vorstellen.
       data-privacy:
         title: Wer sieht meine E-Mail Adresse?
         content: >
@@ -221,8 +223,6 @@ index:
           <a href="https://auth0.com/">Auth0</a> abläuft, liegt ein Teil der
           Daten, nämlich die Login-Daten, auf zwei Datenzentren in Frankfurt und
           Dublin. Zugriff auf diese Server haben nur die Hauptentwickler.
-          Selbstverständlich werden Passwörter nicht im Klartext abgespeichert,
-          noch nicht einmal die Hauptentwickler können die lesen.
       source-code:
         title: Ist das Freie Software / Open Source?
         content: >
