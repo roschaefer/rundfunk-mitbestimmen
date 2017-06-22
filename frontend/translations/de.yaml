@@ -263,9 +263,8 @@ find-broadcasts:
   auth0-lock:
     networkOrEmail:
       headerText: >
-        Um Deine Daten <strong>jederzeit zu ändern,</strong>
+        <p><strong>Damit Deine Daten aktuell bleiben,<br> brauchst Du einen Zugang.</strong></p><p>Um Deine Daten später wiederzufinden</p>
       smallSocialButtonsHeader: verknüpfe ein Konto
-      footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
   navigation:
     buttons:
       next: Weiter
