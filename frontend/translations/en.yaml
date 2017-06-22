@@ -204,7 +204,9 @@ index:
       business-model:
         title: Do you have a business model?
         content: >
-          No. We are not planning to generate a profit with this app, ever.
+          No. We are not planning to generate a profit with this app.
+          Although donations, seed funding and crowdfunding are also regarded as
+          business models. We can imagine that for the future.
       data-privacy:
         title: Who can see my email address?
         content: >
@@ -212,8 +214,7 @@ index:
           authentication works through a service called
           <a href="https://auth0.com/">Auth0</a>, the login data is stored in
           two data centers in Frankfurt and Dublin. Only core developers have
-          access to the data. Of course, passwords are not stored in clear text,
-          so not even core developers are able to read them.
+          access to the data.
       source-code:
         title: Is it  free software / open-source?
         content: >
@@ -253,9 +254,8 @@ find-broadcasts:
   auth0-lock:
     networkOrEmail:
       headerText: >
-        To change your decisions <strong>any time</strong>
+        <p><strong>In order to keep your data up-to-date,<br> you need some kind of access.</strong></p><p>To retrieve your data later on</p>
       smallSocialButtonsHeader: connect an account
-      footerText: <h4>Why? This is the only way you can access your data again.</h4>
   navigation:
     buttons:
       next: Next
@@ -391,7 +391,7 @@ about-us:
         Are you a developer, designer, campaigner, public relations manager,
         data scientist, journalist or simply a responsible citizen? There are
         so many ways to support us!
-        <a class="item" href="mailto:team@rundfunk-mitbestimmen.de">
+        <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Just get in touch :)
         </a>
     katharina:

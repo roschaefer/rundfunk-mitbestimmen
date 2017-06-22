@@ -50,6 +50,15 @@ RSpec.describe 'ChartData', type: :request do
             expect(subject['data']['attributes']['categories']).to eq(['Station 1', 'Station 2', 'Station 3'])
           end
 
+          describe 'broadcasts without stations' do
+            it 'do not count' do
+              action
+              online_broadcast = create(:broadcast, station: nil)
+              create_list(:selection, 5, broadcast: online_broadcast, response: :positive, amount: 10.0)
+              expect { get url, params: params, headers: headers }.not_to(change { JSON.parse(response.body) })
+            end
+          end
+
           describe 'stations with broadcasts but without selections' do
             it 'assigns 0 to stations without selections' do
               # let last selection point on first broadcast

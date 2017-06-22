@@ -1,3 +1,5 @@
 import Ember from 'ember';
-export default Ember.Route.extend({
+import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
+
+export default Ember.Route.extend(ResetScrollPositionMixin, {
 });

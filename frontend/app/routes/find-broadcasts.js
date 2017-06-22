@@ -44,7 +44,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
           headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
           smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
           separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-          footerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.footerText'),
         },
       };
       transition.send('login', customDict, 'find-broadcasts');

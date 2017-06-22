@@ -212,7 +212,9 @@ index:
         title: Habt ihr ein Geschäftsmodell?
         content: >
           Nein. Wir haben auch nicht vor, jemals Profit mit dieser Anwendung zu
-          machen.
+          machen. Spenden, Seed- und Crowdfunding gelten allerdings auch als
+          Geschäftsmodelle, so etwas könnten wir uns durchaus für die Zukunft
+          vorstellen.
       data-privacy:
         title: Wer sieht meine E-Mail Adresse?
         content: >
@@ -221,8 +223,6 @@ index:
           <a href="https://auth0.com/">Auth0</a> abläuft, liegt ein Teil der
           Daten, nämlich die Login-Daten, auf zwei Datenzentren in Frankfurt und
           Dublin. Zugriff auf diese Server haben nur die Hauptentwickler.
-          Selbstverständlich werden Passwörter nicht im Klartext abgespeichert,
-          noch nicht einmal die Hauptentwickler können die lesen.
       source-code:
         title: Ist das Freie Software / Open Source?
         content: >
@@ -263,9 +263,8 @@ find-broadcasts:
   auth0-lock:
     networkOrEmail:
       headerText: >
-        Um Deine Daten <strong>jederzeit zu ändern,</strong>
+        <p><strong>Damit Deine Daten aktuell bleiben,<br> brauchst Du einen Zugang.</strong></p><p>Um Deine Daten später wiederzufinden</p>
       smallSocialButtonsHeader: verknüpfe ein Konto
-      footerText: <h4>Warum? Nur so kannst Du Deine Daten wiederfinden.</h4>
   navigation:
     buttons:
       next: Weiter
@@ -411,7 +410,7 @@ about-us:
         Bist Du ein Entwickler, Designer, Aktivist, PR Manager, Datenforscher,
         Journalist oder möchtest Dich einfach engagieren? Es gibt so viele
         Möglichkeiten mitzumachen!
-        <a class="item" href="mailto:team@rundfunk-mitbestimmen.de">
+        <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Kontaktiere uns einfach :)
         </a>
     katharina:
