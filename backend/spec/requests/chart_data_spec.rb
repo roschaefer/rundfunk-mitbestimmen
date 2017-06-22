@@ -55,7 +55,7 @@ RSpec.describe 'ChartData', type: :request do
               action
               online_broadcast = create(:broadcast, station: nil)
               create_list(:selection, 5, broadcast: online_broadcast, response: :positive, amount: 10.0)
-              expect{ get url, params: params, headers: headers }.not_to change{ JSON.parse(response.body) }
+              expect { get url, params: params, headers: headers }.not_to(change { JSON.parse(response.body) })
             end
           end
 
