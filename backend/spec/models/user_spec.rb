@@ -23,15 +23,19 @@ RSpec.describe User, type: :model do
   end
 
   describe '#update_location', vcr: { cassette_name: 'update_location' } do
-    let(:ip_address) { '2.247.0.0' }
+    let(:ip_address) { '141.3.135.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
     let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
     subject { user.update_location geocoder_result }
 
-    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(51.2993) }
-    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(9.491) }
+    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(49.0047) }
+    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(8.3858) }
+    specify { expect { subject }.to change { User.first.country_code }.from(nil).to('DE') }
+    specify { expect { subject }.to change { User.first.state_code}.from(nil).to('BW') }
+    specify { expect { subject }.to change { User.first.postal_code }.from(nil).to('76139') }
+    specify { expect { subject }.to change { User.first.city }.from(nil).to('Karlsruhe') }
 
     context 'no internet connection' do
       let(:geocoder_result) { nil }
