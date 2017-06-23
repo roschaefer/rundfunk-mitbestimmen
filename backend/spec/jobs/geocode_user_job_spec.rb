@@ -11,6 +11,6 @@ RSpec.describe GeocodeUserJob, type: :job do
 
   context 'missing auth0_uid' do
     let(:auth0_uid) { nil }
-    it { expect{ subject }.not_to raise_error }
+    it { expect { subject }.not_to raise_error }
   end
 end

@@ -38,9 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def geocode_last_ip
-    unless location?
-      GeocodeUserJob.perform_later(self.auth0_uid)
-    end
+    GeocodeUserJob.perform_later(auth0_uid) unless location?
   end
 
   def update_location(geocoder_result)

@@ -10,7 +10,7 @@ class GeocodeUserJob < ApplicationJob
     token = access_token || self.class.get_access_token(
       domain: domain,
       client_id: client_id,
-      client_secret: client_secret,
+      client_secret: client_secret
     )
     last_ip = self.class.get_user_last_ip(
       user: user,

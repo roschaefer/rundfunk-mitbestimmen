@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     context 'user has no auth0_uid and no location' do
       let(:user) { build(:user, :without_geolocation, auth0_uid: nil) }
       it 'raises no error' do
-        expect{ user.save! }.not_to raise_error
+        expect { user.save! }.not_to raise_error
       end
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
     specify { expect { subject }.to change { User.first.latitude }.from(nil).to(49.0047) }
     specify { expect { subject }.to change { User.first.longitude }.from(nil).to(8.3858) }
     specify { expect { subject }.to change { User.first.country_code }.from(nil).to('DE') }
-    specify { expect { subject }.to change { User.first.state_code}.from(nil).to('BW') }
+    specify { expect { subject }.to change { User.first.state_code }.from(nil).to('BW') }
     specify { expect { subject }.to change { User.first.postal_code }.from(nil).to('76139') }
     specify { expect { subject }.to change { User.first.city }.from(nil).to('Karlsruhe') }
 

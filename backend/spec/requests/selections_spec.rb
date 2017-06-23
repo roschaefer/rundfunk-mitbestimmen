@@ -32,7 +32,7 @@ RSpec.describe 'Selections', type: :request do
 
         describe 'updates the location of the user' do
           around(:each) do |example|
-            VCR.use_cassette("auth0_access_token_and_geo_ip_lookup") do
+            VCR.use_cassette('auth0_access_token_and_geo_ip_lookup') do
               Sidekiq::Testing.inline! do
                 example.run
               end
@@ -67,10 +67,10 @@ RSpec.describe 'Selections', type: :request do
         expect(json_body['data'].length).to eq 2
         selection_json = {
           data: UnorderedArray({
-            id: positive_selection.id.to_s,
-            attributes: { response: 'positive' }
-          }, id: negative_selection.id.to_s,
-          attributes: { response: 'negative' })
+                                 id: positive_selection.id.to_s,
+                                 attributes: { response: 'positive' }
+                               }, id: negative_selection.id.to_s,
+                                  attributes: { response: 'negative' })
         }
         expect(json_body).to include_json(selection_json)
       end
@@ -149,13 +149,13 @@ RSpec.describe 'Selections', type: :request do
               data: {
                 type: 'selections',
                 attributes: {
-                response: :positive
-              },
-              relationships: {
-                broadcast: {
-                  data: { id: broadcast.id, type: 'broadcasts' }
+                  response: :positive
+                },
+                relationships: {
+                  broadcast: {
+                    data: { id: broadcast.id, type: 'broadcasts' }
+                  }
                 }
-              }
               }
             }
           end
