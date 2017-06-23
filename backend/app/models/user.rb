@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
     # allow bad emails but don't sent out mails
     self.has_bad_email ||= ValidEmail2::Address.new(email).disposable?
   end
+
+  after_save :geocode_last_ip
+
   validates :email, uniqueness: true, if: proc { |u| u.email.present? }
   validates :auth0_uid, uniqueness: true, if: proc { |u| u.auth0_uid.present? }
 
@@ -32,6 +35,12 @@ class User < ActiveRecord::Base
 
   def location?
     latitude.present? && longitude.present?
+  end
+
+  def geocode_last_ip
+    unless location?
+      GeocodeUserWorker.perform_async(self.auth0_uid)
+    end
   end
 
   def update_location(location)
