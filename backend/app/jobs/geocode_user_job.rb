@@ -4,6 +4,7 @@ class GeocodeUserJob < ApplicationJob
   def perform(auth0_uid, access_token = nil)
     return unless auth0_uid
     user = User.find_by(auth0_uid: auth0_uid)
+    return unless user
     domain = Rails.application.secrets.auth0_domain
     client_id = Rails.application.secrets.auth0_api_client_id
     client_secret = Rails.application.secrets.auth0_api_client_secret
