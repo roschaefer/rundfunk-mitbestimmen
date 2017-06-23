@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619230928) do
+ActiveRecord::Schema.define(version: 20170623142711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,10 @@ ActiveRecord::Schema.define(version: 20170619230928) do
     t.boolean "has_bad_email", default: false
     t.float "latitude"
     t.float "longitude"
+    t.string "country_code"
+    t.string "state_code"
+    t.string "postal_code"
+    t.string "city"
     t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
