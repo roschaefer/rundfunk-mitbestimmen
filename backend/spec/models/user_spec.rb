@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'support/shared_examples/database_unique_attribute'
+require 'sidekiq/testing'
 
 RSpec.describe User, type: :model do
   subject { user }
@@ -73,6 +74,18 @@ RSpec.describe User, type: :model do
 
   describe '::from_token_payload' do
     subject { User.from_token_payload(payload) }
+
+    context 'no connection to redis server' do
+      subject do
+        Sidekiq.stub(:redis) { raise Redis::CannotConnectError }
+        Sidekiq::Testing.disable! do
+          super()
+        end
+      end
+
+      let(:payload) { { 'sub' => 'blablabla', 'email' => 'email@example.org' } }
+      it('creates a new user') { expect { subject }.to(change { User.count }.from(0).to(1)) }
+    end
 
     describe 'first login' do
       context 'with email in payload' do

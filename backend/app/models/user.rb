@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
   end
 
   def geocode_last_ip
-    GeocodeUserJob.perform_later(auth0_uid) unless location?
+    begin
+      GeocodeUserJob.perform_later(auth0_uid) unless location?
+    rescue Redis::CannotConnectError
+      # ignore
+    end
   end
 
   def update_location(geocoder_result)
