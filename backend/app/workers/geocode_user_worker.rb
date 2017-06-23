@@ -2,6 +2,7 @@ class GeocodeUserWorker
   include Sidekiq::Worker
 
   def perform(auth0_uid, access_token = nil)
+    return unless auth0_uid
     user = User.find_by(auth0_uid: auth0_uid)
     domain = Rails.application.secrets.auth0_domain
     client_id = Rails.application.secrets.auth0_api_client_id
