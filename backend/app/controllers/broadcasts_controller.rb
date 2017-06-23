@@ -38,7 +38,6 @@ class BroadcastsController < ApplicationController
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
-
     render json: @broadcasts, scope: current_user, meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
