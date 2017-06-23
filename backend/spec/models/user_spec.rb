@@ -13,7 +13,16 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to include(disliked_broadcast) }
   end
 
-  describe '#update_location', :vcr do
+  describe 'geocode_last_ip' do
+    context 'user has no auth0_uid and no location' do
+      let(:user) { build(:user, :without_geolocation, auth0_uid: nil) }
+      it 'raises no error' do
+        expect{ user.save! }.not_to raise_error
+      end
+    end
+  end
+
+  describe '#update_location', vcr: { cassette_name: 'update_location' } do
     let(:ip_address) { '2.247.0.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
