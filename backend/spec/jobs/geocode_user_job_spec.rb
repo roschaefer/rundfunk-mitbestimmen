@@ -1,13 +1,13 @@
 require 'rails_helper'
 require 'sidekiq/testing'
 
-RSpec.describe GeocodeUserWorker, type: :worker do
+RSpec.describe GeocodeUserJob, type: :job do
   around(:each) do |example|
     Sidekiq::Testing.inline! do
       example.run
     end
   end
-  subject { GeocodeUserWorker.perform_async(auth0_uid) }
+  subject { GeocodeUserJob.perform_later(auth0_uid) }
 
   context 'missing auth0_uid' do
     let(:auth0_uid) { nil }

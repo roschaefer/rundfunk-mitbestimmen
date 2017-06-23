@@ -5,7 +5,7 @@ namespace :geocode do
       user_relation = User.where(latitude: nil, longitude: nil).where.not(auth0_uid: nil)
       puts "About to geocode #{user_relation.count} users"
       user_relation.find_each do |user|
-        GeocodeUserWorker.perform_async(user.auth0_uid)
+        GeocodeUserJob.perform_later(user.auth0_uid)
       end
     end
   end

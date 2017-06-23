@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def geocode_last_ip
     unless location?
-      GeocodeUserWorker.perform_async(self.auth0_uid)
+      GeocodeUserJob.perform_later(self.auth0_uid)
     end
   end
 

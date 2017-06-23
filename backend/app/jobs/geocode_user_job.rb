@@ -1,5 +1,5 @@
-class GeocodeUserWorker
-  include Sidekiq::Worker
+class GeocodeUserJob < ApplicationJob
+  queue_as :default
 
   def perform(auth0_uid, access_token = nil)
     return unless auth0_uid
