@@ -43,10 +43,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  def update_location(location)
-    return unless location
-    self.latitude = location.latitude
-    self.longitude = location.longitude
+  def update_location(geocoder_result)
+    return unless geocoder_result
+    self.latitude = geocoder_result.latitude
+    self.longitude = geocoder_result.longitude
+    self.country_code = geocoder_result.country_code
+    self.state_code = geocoder_result.state_code
+    self.postal_code = geocoder_result.postal_code
+    self.city = geocoder_result.city
     save
   end
 end
