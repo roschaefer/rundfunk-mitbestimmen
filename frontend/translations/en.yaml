@@ -254,7 +254,8 @@ find-broadcasts:
   auth0-lock:
     networkOrEmail:
       headerText: >
-        <p><strong>In order to keep your data up-to-date,<br> you need some kind of access.</strong></p><p>To retrieve your data later on</p>
+        <p><strong>To keep access to your data<br>and be able to change it
+        </strong></p>
       smallSocialButtonsHeader: connect an account
   navigation:
     buttons:
