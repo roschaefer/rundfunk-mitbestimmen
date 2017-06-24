@@ -47,3 +47,6 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
+Lint/HandleExceptions:
+  Exclude:
+    - 'app/models/user.rb'
