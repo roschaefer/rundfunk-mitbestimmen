@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'support/shared_examples/database_unique_attribute'
+require 'sidekiq/testing'
 
 RSpec.describe User, type: :model do
   subject { user }
@@ -13,16 +14,29 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to include(disliked_broadcast) }
   end
 
-  describe '#update_location', :vcr do
-    let(:ip_address) { '2.247.0.0' }
+  describe 'geocode_last_ip' do
+    context 'user has no auth0_uid and no location' do
+      let(:user) { build(:user, :without_geolocation, auth0_uid: nil) }
+      it 'raises no error' do
+        expect { user.save! }.not_to raise_error
+      end
+    end
+  end
+
+  describe '#update_location', vcr: { cassette_name: 'update_location' } do
+    let(:ip_address) { '141.3.135.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
     let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
     subject { user.update_location geocoder_result }
 
-    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(51.2993) }
-    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(9.491) }
+    specify { expect { subject }.to change { User.first.latitude }.from(nil).to(49.0047) }
+    specify { expect { subject }.to change { User.first.longitude }.from(nil).to(8.3858) }
+    specify { expect { subject }.to change { User.first.country_code }.from(nil).to('DE') }
+    specify { expect { subject }.to change { User.first.state_code }.from(nil).to('BW') }
+    specify { expect { subject }.to change { User.first.postal_code }.from(nil).to('76139') }
+    specify { expect { subject }.to change { User.first.city }.from(nil).to('Karlsruhe') }
 
     context 'no internet connection' do
       let(:geocoder_result) { nil }
@@ -60,6 +74,18 @@ RSpec.describe User, type: :model do
 
   describe '::from_token_payload' do
     subject { User.from_token_payload(payload) }
+
+    context 'no connection to redis server' do
+      subject do
+        Sidekiq.stub(:redis) { raise Redis::CannotConnectError }
+        Sidekiq::Testing.disable! do
+          super()
+        end
+      end
+
+      let(:payload) { { 'sub' => 'blablabla', 'email' => 'email@example.org' } }
+      it('creates a new user') { expect { subject }.to(change { User.count }.from(0).to(1)) }
+    end
 
     describe 'first login' do
       context 'with email in payload' do

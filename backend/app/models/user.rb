@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
     # allow bad emails but don't sent out mails
     self.has_bad_email ||= ValidEmail2::Address.new(email).disposable?
   end
+
+  after_save :geocode_last_ip
+
   validates :email, uniqueness: true, if: proc { |u| u.email.present? }
   validates :auth0_uid, uniqueness: true, if: proc { |u| u.auth0_uid.present? }
 
@@ -34,10 +37,20 @@ class User < ActiveRecord::Base
     latitude.present? && longitude.present?
   end
 
-  def update_location(location)
-    return unless location
-    self.latitude = location.latitude
-    self.longitude = location.longitude
+  def geocode_last_ip
+    GeocodeUserJob.perform_later(auth0_uid) unless location?
+  rescue Redis::CannotConnectError
+    # ignore
+  end
+
+  def update_location(geocoder_result)
+    return unless geocoder_result
+    self.latitude = geocoder_result.latitude
+    self.longitude = geocoder_result.longitude
+    self.country_code = geocoder_result.country_code
+    self.state_code = geocoder_result.state_code
+    self.postal_code = geocoder_result.postal_code
+    self.city = geocoder_result.city
     save
   end
 end

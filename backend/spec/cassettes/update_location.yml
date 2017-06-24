@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://freegeoip.io/json/2.247.0.0
+    uri: https://freegeoip.io/json/141.3.135.0
     body:
       encoding: US-ASCII
       string: ''
@@ -21,24 +21,23 @@ http_interactions:
       Server:
       - nginx/1.11.8
       Date:
-      - Sat, 17 Jun 2017 14:15:31 GMT
+      - Fri, 23 Jun 2017 14:37:36 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '189'
+      - '246'
       Connection:
       - keep-alive
       Vary:
       - Origin
       X-Database-Date:
-      - Sat, 10 Jun 2017 18:27:59 GMT
+      - Thu, 22 Jun 2017 20:39:52 GMT
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: UTF-8
-      string: '{"ip":"2.247.0.0","country_code":"DE","country_name":"Germany","region_code":"","region_name":"","city":"","zip_code":"","time_zone":"","latitude":51.2993,"longitude":9.491,"metro_code":0}
-
-'
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpcCI6IjE0MS4zLjEzNS4wIiwiY291bnRyeV9jb2RlIjoiREUiLCJjb3VudHJ5X25hbWUiOiJHZXJtYW55IiwicmVnaW9uX2NvZGUiOiJCVyIsInJlZ2lvbl9uYW1lIjoiQmFkZW4tV8O8cnR0ZW1iZXJnIFJlZ2lvbiIsImNpdHkiOiJLYXJsc3J1aGUiLCJ6aXBfY29kZSI6Ijc2MTM5IiwidGltZV96b25lIjoiRXVyb3BlL0JlcmxpbiIsImxhdGl0dWRlIjo0OS4wMDQ3LCJsb25naXR1ZGUiOjguMzg1OCwibWV0cm9fY29kZSI6MH0K
     http_version: 
-  recorded_at: Sat, 17 Jun 2017 14:15:31 GMT
+  recorded_at: Fri, 23 Jun 2017 14:37:36 GMT
 recorded_with: VCR 3.0.3

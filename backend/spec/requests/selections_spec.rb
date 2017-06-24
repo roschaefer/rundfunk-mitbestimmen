@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'sidekiq/testing'
 
 RSpec.describe 'Selections', type: :request do
   let(:headers) { {} }
@@ -14,22 +15,33 @@ RSpec.describe 'Selections', type: :request do
   describe '*' do
     let(:url) { '/selections' } # as an example
     let(:request) { get url, params: params, headers: headers }
-    context 'logged in' do
+    context 'legacy user without auth0_uid or location' do
       before { user }
-      let(:user) { create(:user, latitude: nil, longitude: nil) }
-      let(:headers) { super().merge(authenticated_header(user)) }
-
-      describe 'updates the location of the user' do
-        specify { expect { request }.to change { User.first.location? }.from(false).to(true) }
-        specify { expect { request }.to change { User.first.latitude }.from(nil).to(0) }
-        specify { expect { request }.to change { User.first.longitude }.from(nil).to(0) }
+      let(:user) do
+        User.skip_callback(:save, :after, :geocode_last_ip)
+        user = create(:user, :without_geolocation, auth0_uid: nil)
+        User.set_callback(:save, :after, :geocode_last_ip)
+        user
       end
 
-      context 'user has a location' do
-        let(:user) { create(:user, latitude: 42.0, longitude: 23.0) }
-        describe 'does not unnecessarily call the geo lookup service' do
-          specify { expect { request }.not_to(change { User.first.latitude }) }
-          specify { expect { request }.not_to(change { User.first.longitude }) }
+      context 'logs in the first time with AUTH0' do
+        let(:headers) do
+          user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
+          super().merge(authenticated_header(user))
+        end
+
+        describe 'updates the location of the user' do
+          around(:each) do |example|
+            VCR.use_cassette('auth0_access_token_and_geo_ip_lookup') do
+              Sidekiq::Testing.inline! do
+                example.run
+              end
+            end
+          end
+
+          specify { expect { request }.to change { User.first.location? }.from(false).to(true) }
+          specify { expect { request }.to change { User.first.latitude }.from(nil).to(52.4) }
+          specify { expect { request }.to change { User.first.longitude }.from(nil).to(13.0667) }
         end
       end
     end
