@@ -4,7 +4,7 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
-    babel: {
+    "ember-cli-babel": {
       includePolyfill: true
     },
     emberHighCharts: {
