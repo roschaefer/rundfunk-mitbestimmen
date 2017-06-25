@@ -828,6 +828,7 @@ end
 
 When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
   expect(page).to have_css('.decision-card', count: number.to_i)
+end
 
 When(/^I see broadcasts in random order$/) do
   pending # Write code here that turns the phrase above into concrete actions
@@ -839,7 +840,6 @@ end
 
 Then(/^I see broadcasts ascending in order$/) do
   pending # Write code here that turns the phrase above into concrete actions
-
 end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
