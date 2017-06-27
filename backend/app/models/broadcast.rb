@@ -22,6 +22,9 @@ class Broadcast < ApplicationRecord
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
   # TODO: Replace with SQL query, user.broadcasts.pluck(:id) might become large
 
+  scope :random_order, (-> { order by random() })
+  # TODO: Very slow with large tables; several alternatives exist
+
   before_validation do
     if title
       self.title = title.gsub(/\s+/, ' ')
