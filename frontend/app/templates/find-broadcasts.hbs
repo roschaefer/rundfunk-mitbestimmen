@@ -9,24 +9,15 @@
 <div class="row">
   <div class="column">
     {{find-broadcasts/navigation
-    step=page
-    totalSteps=totalPages
-    recentPositives=positiveSelectionsWithoutAmount.length
-    browse=(action 'browse')
+      step=page
+      totalSteps=totalPages
+      recentPositives=positiveSelectionsWithoutAmount.length
+      browse=(action 'browse')
     }}
   </div>
 </div>
 
-<div class="row">
-  <div class="column">
-    <div class="ui centered three stackable cards">
-      {{#each model.broadcasts as |broadcast|}}
-      {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
-      {{/each}}
-    </div>
-  </div>
-</div>
-
+{{broadcast-list broadcasts=model.broadcasts}}
 
 {{#unless model.broadcasts}}
 <div class="ui grid">
