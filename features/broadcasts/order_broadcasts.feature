@@ -8,15 +8,9 @@ Feature: Order Broadcasts
     Given I am logged in
 
   Scenario: Check ascending
-    Given I have these broadcasts in my database:
-      | Title                | Medium |
-      | extra3               | radio  |
-      | Löwenzahn            | tv     |
-      | Heute Show           | tv     |
-      | Quarks & Co          | tv     |
-      | Zapp                 | tv     |
-      | Sendung mit der Maus | tv     |
     When I visit the broadcasts page
     And  I see broadcasts in random order
+    And  I visit the broadcasts page
+    And  I see broadcasts in another random order
     And  I click on the ascending button
     Then I see broadcasts ascending in order
