@@ -1,6 +1,14 @@
-<div class="field">
-    {{radio-button value='ascending'  radioClass='ui primary' groupValue=sort}} Ascending
-    {{radio-button value='descending' radioClass='ui primary' groupValue=sort selected=reverseSort}} Descending
-    {{radio-button value='random'     radioClass='ui primary' groupValue=sort selected=randomSort}} Random
+<div class="four wide field">
+  <div class="ui right floated buttons">
+    <button id="alphabetical_order_ascending" class="ui icon button">
+      <i class="sort alphabet ascending icon"></i>
+    </button>
+    <button class="ui active icon button">
+      <i class="dont icon"></i>
+    </button>
+    <button class="ui icon button">
+      <i class="sort alphabet descending icon"></i>
+    </button>
+  </div>
 </div>
 {{yield}}
