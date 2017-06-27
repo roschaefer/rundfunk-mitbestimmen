@@ -12,5 +12,7 @@ Feature: Order Broadcasts
     And  I see broadcasts in random order
     And  I visit the broadcasts page
     And  I see broadcasts in another random order
+    And  I visit the broadcasts page
+    And  I see broadcasts in another random order
     And  I click on the ascending button
     Then I see broadcasts ascending in order
