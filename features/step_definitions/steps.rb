@@ -831,7 +831,6 @@ When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
 end
 
 When(/^I see broadcasts in random order$/) do
-  create_list(:broadcast, 10)
   random_order = false
   ordered_by_coincidence = 0
   until random_order
