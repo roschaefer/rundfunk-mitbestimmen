@@ -831,7 +831,41 @@ When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
 end
 
 When(/^I see broadcasts in random order$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit('/find-broadcasts')
+  expect(page).to have_css('.decision-card')
+
+  all_cards = all('.decision-card div#title.header')
+  @text1a = all_cards[0].text
+  @index1a = page.body.index(@text1a)
+  @text2a = all_cards[1].text
+  @index2a = page.body.index(@text2a)
+  @text3a = all_cards[2].text
+  @index3a = page.body.index(@text3a)
+  @text4a = all_cards[3].text
+  @index4a = page.body.index(@text4a)
+  @text5a = all_cards[4].text
+  @index5a = page.body.index(@text5a)
+  @text6a = all_cards[5].text
+  @index6a = page.body.index(@text6a)
+end
+
+When(/^I see broadcasts in another random order$/) do
+  visit('/find-broadcasts')
+  expect(page).to have_css('.decision-card')
+  
+  all_cards2 = all('.decision-card div#title.header')
+  index1b = page.body.index(all_cards2[0].text)
+  index2b = page.body.index(all_cards2[1].text)
+  index3b = page.body.index(all_cards2[2].text)
+  index4b = page.body.index(all_cards2[3].text)
+  index5b = page.body.index(all_cards2[4].text)
+  index6b = page.body.index(all_cards2[5].text)
+  expect(index1b).not_to eq @index1a
+  expect(index2b).not_to eq @index2a
+  expect(index3b).not_to eq @index3a
+  expect(index4b).not_to eq @index4a
+  expect(index5b).not_to eq @index5a
+  expect(index6b).not_to eq @index6a
 end
 
 When(/^I click on the ascending button$/) do
@@ -839,7 +873,7 @@ When(/^I click on the ascending button$/) do
 end
 
 Then(/^I see broadcasts ascending in order$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  'Der beste Tag der Welt'.should appear_before('Die Sendung mit der Maus')
 end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
