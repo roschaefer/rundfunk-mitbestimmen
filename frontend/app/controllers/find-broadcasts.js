@@ -18,9 +18,6 @@ export default Ember.Controller.extend({
     searchAction(query){
       this.send('setQuery', query);
     },
-    respond(broadcast){
-      broadcast.get('selections.firstObject').save();
-    },
     browse(step){
       if(this.store.peekAll('selection').isAny('isLoading', true)){
         return; // avoid willCommit in root.loading state error

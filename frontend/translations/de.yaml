@@ -274,6 +274,11 @@ find-broadcasts:
     description: >
       {positives, plural, =0 {neu unterstützte Sendungen} =1 {neu
       unterstützte Sendung} other {neue unterstützte Sendungen}}
+    sorting:
+      button:
+        random: Random
+        asc: Ascending
+        desc: Descending
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
