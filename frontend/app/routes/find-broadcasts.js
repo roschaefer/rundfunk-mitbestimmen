@@ -88,9 +88,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       this.get('controller').set( 'medium', filterParams.get('medium'));
       this.get('controller').set('station', filterParams.get('station'));
     },
-    reQuery(groupValue) {
-      this.transitionTo({queryParams: {sort: groupValue}});
-    },
     newBroadcast(){
       this.get('controller').set('newBroadcast', this.store.createRecord('broadcast', {
       }));

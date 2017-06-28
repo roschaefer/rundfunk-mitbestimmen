@@ -17,7 +17,15 @@
   </div>
 </div>
 
-{{broadcast-list broadcasts=model.broadcasts}}
+<div class="row">
+  <div class="column">
+    <div class="ui centered three stackable cards">
+      {{#each model.broadcasts as |broadcast|}}
+        {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
+      {{/each}}
+    </div>
+  </div>
+</div>
 
 {{#unless model.broadcasts}}
 <div class="ui grid">
