@@ -3,10 +3,11 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  queryParams: ['q', 'medium', 'station'],
+  queryParams: ['q', 'medium', 'station','sort'],
   q: null,
   medium: null,
   station: null,
+  sort: 'random',
 
   page: Ember.computed.alias("content.broadcasts.page"),
   perPage: Ember.computed.alias("content.broadcasts.perPage"),

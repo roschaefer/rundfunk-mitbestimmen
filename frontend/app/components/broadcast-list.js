@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   sortBy: 'title',
   reverseSort: false,
   randomSort: false,
-  sortedBroadcasts: Ember.computed.sort('broadcasts', 'sortDefinition'),
+
   sortDefinition: Ember.computed('sort', function() {
     let sortOrder = this.get('reverseSort') ? 'desc' : 'asc';
     if (this.get('randomSort'))
