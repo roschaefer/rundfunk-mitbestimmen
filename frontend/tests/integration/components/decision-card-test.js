@@ -26,7 +26,7 @@ describe('Integration | Component | decision card', function() {
   it('displays the title', function() {
     this.set('broadcast', broadcast);
     this.render(hbs`{{decision-card broadcast=broadcast}}`);
-    expect(this.$('#title').text().trim()).to.eq('This is the title');
+    expect(this.$('.title').text().trim()).to.eq('This is the title');
   });
 
   describe('click on support button', function() {
