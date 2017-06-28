@@ -409,3 +409,11 @@ about-us:
         beginners to learn programming and journalists to develop prototypes for
         innovative formats. At the moment he writes his master thesis at the
         Hasso-Plattner-Institut.
+    matt:
+      position: Software developer
+      description: >
+        Matt is an full stack web and database developer from Boston, USA. He is
+        committed to helping non-profits through his work as a project manager
+        and scrum master at
+        <a href="https://www.agileventures.org/">AgileVentures</a>. At the
+        moment he is an independent consultant.
