@@ -831,34 +831,19 @@ When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
 end
 
 When(/^I see broadcasts in random order$/) do
-  visit('/find-broadcasts')
-  expect(page).to have_css('.decision-card')
-
-  all_cards = all('.decision-card div#title.header')
-  @text1a = all_cards[0].text
-  @text2a = all_cards[1].text
-  @text3a = all_cards[2].text
-end
-
-When(/^I see broadcasts in another random order$/) do
-  visit('/find-broadcasts')
-  expect(page).to have_css('.decision-card')
-
-  all_cards = all('.decision-card div#title.header')
-  text1b = all_cards[0].text
-  text2b = all_cards[1].text
-  text3b = all_cards[2].text
-  expect(text1b).not_to eq @text1a
-  expect(text2b).not_to eq @text2a
-  expect(text3b).not_to eq @text3a
-end
-
-When(/^I click on the ascending button$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^I see broadcasts ascending in order$/) do
-  'Der beste Tag der Welt'.should appear_before('Die Sendung mit der Maus')
+  create_list(:broadcast, 10)
+  random_order = false
+  ordered_by_coincidence = 0
+  until random_order
+    page.evaluate_script("window.location.reload()") # refresh page
+    expect(page).to have_css('.decision-card .title')
+    titles = all('.decision-card .title').map(&:text)
+    random_order = titles != titles.sort_by(&:downcase)
+    unless random_order
+      ordered_by_coincidence += 1
+      fail 'The broadcasts are not in random order' if ordered_by_coincidence > 5
+    end
+  end
 end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
@@ -866,5 +851,17 @@ Then(/^the drop down menu has excactly these items:$/) do |table|
   labels = all('.dropdown .item:not(.blank)').map(&:text)
   table.hashes.each_with_index do |row, i|
     expect(labels[i]).to eq row['Label']
+  end
+end
+
+When(/^I click on the button to order broadcasts in ascending order$/) do
+  click_on 'alphabetical_order_ascending' # that would be the id of the button
+end
+
+Then(/^I see broadcasts ascending in order like this:$/) do |table|
+  titles = all('.decision-card .title').map(&:text)
+  expect(titles).to eq titles.sort_by(&:downcase)
+  tables.hashes.each_with_index do |row, i|
+    expect(row['Title']).to eq titles[i]
   end
 end
