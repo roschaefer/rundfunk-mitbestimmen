@@ -18,6 +18,9 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     },
     station: {
       refreshModel: true
+    },
+    sort: {
+      refreshModel: true
     }
   },
   perPage: 6,
@@ -69,6 +72,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       controller.set('q', null);
       controller.set('medium', null);
       controller.set('station', null);
+      controller.set('sort', 'random');
     }
   },
   actions: {
@@ -83,6 +87,9 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       this.get('controller').set( 'q', filterParams.get('query'));
       this.get('controller').set( 'medium', filterParams.get('medium'));
       this.get('controller').set('station', filterParams.get('station'));
+    },
+    reQuery(groupValue) {
+      this.transitionTo({queryParams: {sort: groupValue}});
     },
     newBroadcast(){
       this.get('controller').set('newBroadcast', this.store.createRecord('broadcast', {
