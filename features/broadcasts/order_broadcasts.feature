@@ -6,13 +6,24 @@ Feature: Order Broadcasts
 
   Background:
     Given I am logged in
+    And we have these broadcasts in our database:
+      | Title           |
+      | This            |
+      | is just         |
+      | an example      |
+      | of six          |
+      | broadcasts      |
+      | in random order |
 
-  Scenario: Check ascending
-    When I visit the broadcasts page
+  Scenario: Check broadcast titles are ascending alphabetically
+    Given I visit the find broadcasts page
     And  I see broadcasts in random order
-    And  I visit the broadcasts page
-    And  I see broadcasts in another random order
-    And  I visit the broadcasts page
-    And  I see broadcasts in another random order
-    And  I click on the ascending button
-    Then I see broadcasts ascending in order
+    When I click on the button to order broadcasts in ascending order
+    Then I see broadcasts ascending in order like this:
+      | Title           |
+      | an example      |
+      | broadcasts      |
+      | in random order |
+      | is just         |
+      | of six          |
+      | This            |
