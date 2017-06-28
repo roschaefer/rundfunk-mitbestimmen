@@ -29,6 +29,9 @@ export default Ember.Controller.extend({
       });
       this.set('page', step);
     },
+    respond(broadcast){
+      broadcast.get('selections.firstObject').save();
+    },
   }
 });
 
