@@ -428,3 +428,11 @@ about-us:
         Selbständiger hilft er Neueinsteigern das Programmieren zu erlernen und
         Journalisten beim Entwickeln von Prototypen für innovative Formate.
         Zurzeit schreibt er seine Master-Arbeit am Hasso-Plattner-Institut.
+    matt:
+      position: Software developer
+      description: >
+        Matt ist ein Full-Stack Web- und Datenbank-Entickler aus Boston, USA.
+        Durch seine Arbeit als Scrum und Projektmanager bei
+        <a href="https://www.agileventures.org/">AgileVentures</a> engagiert er
+        sich für soziale Projekte. Zurzeit arbeitet er als selbständiger
+        Berater.
