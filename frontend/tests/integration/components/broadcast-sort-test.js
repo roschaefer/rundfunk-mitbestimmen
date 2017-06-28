@@ -9,16 +9,38 @@ describe('Integration | Component | broadcast sort', function() {
   });
 
   it('renders', function() {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#broadcast-sort}}
-    //     template content
-    //   {{/broadcast-sort}}
-    // `);
-
     this.render(hbs`{{broadcast-sort}}`);
     expect(this.$()).to.have.length(1);
+  });
+
+  describe('given sort param', function() {
+    it('respective button is active', function() {
+      this.render(hbs`{{broadcast-sort sort='asc'}}`);
+      expect(this.$('#alphabetical_order_ascending').hasClass('active')).to.be.true;
+    });
+
+    it('other buttons are inactive', function() {
+      this.render(hbs`{{broadcast-sort sort='asc'}}`);
+      expect(this.$('#random_order').hasClass('active')).to.be.false;
+      expect(this.$('#alphabetical_order_descending').hasClass('active')).to.be.false;
+    });
+  });
+
+  describe('click on sort buttons', function() {
+    it('calls the changeOrder action', function(done) {
+      this.set('changeOrder', (order) => {
+        expect(order).to.eq('desc');
+        done();
+      });
+      this.render(hbs`{{broadcast-sort sort='random'}}`);
+      this.$('#alphabetical_order_descending').click();
+    });
+
+    it('switches the active button', function() {
+      this.render(hbs`{{broadcast-sort sort='random'}}`);
+      this.$('#alphabetical_order_descending').click();
+      expect(this.$('#alphabetical_order_descending').hasClass('active')).to.be.true;
+      expect(this.$('#random_order').hasClass('active')).to.be.false;
+    });
   });
 });
