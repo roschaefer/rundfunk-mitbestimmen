@@ -265,11 +265,6 @@ find-broadcasts:
     description: >
       {positives, plural, =0 {recently supported broadcasts} =1 {recently supported
       broadcast} other {recently supported broadcasts}}
-  sorting:
-    button:
-      random: Random
-      asc: Ascending
-      desc: Descending
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
