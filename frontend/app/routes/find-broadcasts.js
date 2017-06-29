@@ -60,7 +60,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     }));
     controller.set('media', this.store.findAll('medium'));
     controller.set('stations', this.store.findAll('station'));
-    controller.set('sort', 'random');
     controller.set('filterParams', this.store.createRecord('filterParams', {
       query: controller.get('q'),
       medium: controller.get('medium'),
@@ -73,7 +72,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       controller.set('q', null);
       controller.set('medium', null);
       controller.set('station', null);
-      controller.set('sort', null);
+      controller.set('sort', 'random');
     }
   },
   actions: {
