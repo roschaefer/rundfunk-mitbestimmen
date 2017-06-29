@@ -29,5 +29,11 @@ export default Ember.Component.extend({
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
     },
+    sortBroadcasts(direction) {
+      this.set('sort', direction);
+      this.get('filterParams').set('sort', direction);
+      let searchAction = this.get('searchAction');
+      searchAction(this.get('filterParams'));
+    },
   }
 });
