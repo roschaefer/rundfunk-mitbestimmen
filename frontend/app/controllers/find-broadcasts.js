@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
   queryParams: ['sort', 'q', 'medium', 'station'],
-  sort: null,
+  sort: 'random',
   q: null,
   medium: null,
   station: null,
