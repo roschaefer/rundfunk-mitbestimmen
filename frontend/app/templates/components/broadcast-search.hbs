@@ -16,8 +16,8 @@
           </div>
         </div>
       </div>
-      <div class="two fields">
-        <div class="field filter-media-field">
+      <div class="three fields">
+        <div class="six wide field filter-media-field">
           {{#ui-dropdown class="fluid selection" selected='' onChange=(action 'filterMedium')}}
             <div class="default text">{{t 'broadcast-search.filter.medium.placeholder' }}</div>
             <i class="dropdown icon"></i>
@@ -31,7 +31,7 @@
             </div>
           {{/ui-dropdown}}
         </div>
-        <div class="field filter-stations-field">
+        <div class="six wide field filter-stations-field">
           {{#if sortedStations}}
             {{#ui-dropdown class="fluid selection" selected='' onChange=(action 'filterStation')}}
               <div class="default text">{{t 'broadcast-search.filter.station.placeholder' }}</div>
@@ -48,8 +48,10 @@
             {{/ui-dropdown}}
           {{/if}}
         </div>
-      </div>
+        {{broadcast-sort sortBroadcasts=sortBroadcasts}}
+        </div>
     </form>
   </div>
 </div>
+
 {{yield}}

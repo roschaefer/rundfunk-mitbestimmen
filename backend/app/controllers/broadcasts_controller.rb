@@ -31,14 +31,15 @@ class BroadcastsController < ApplicationController
 
     @broadcasts = if params[:sort] == 'random'
                     broadcasts_randomly_ordered
-                  else
+                  elsif params[:sort] == 'asc'
                     @broadcasts.order(title: :asc) # induce unique sort order for pagination
+                  elsif params[:sort] == 'desc'
+                    @broadcasts.order(title: :desc)
                   end
 
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
-
     render json: @broadcasts, scope: current_user, meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
