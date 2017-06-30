@@ -31,8 +31,10 @@ class BroadcastsController < ApplicationController
 
     @broadcasts = if params[:sort] == 'random'
                     broadcasts_randomly_ordered
-                  else
+                  elsif params[:sort] == 'asc'
                     @broadcasts.order(title: :asc) # induce unique sort order for pagination
+                  elsif params[:sort] == 'desc'
+                    @broadcasts.order(title: :desc)
                   end
 
     page = (params[:page] || 1).to_i

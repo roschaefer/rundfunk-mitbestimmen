@@ -28,12 +28,6 @@ export default Ember.Component.extend({
       this.get('filterParams').set('station', stationId);
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
-    },
-    sortBroadcasts(direction) {
-      this.set('sort', direction);
-      this.get('filterParams').set('sort', direction);
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
-    },
+    }
   }
 });
