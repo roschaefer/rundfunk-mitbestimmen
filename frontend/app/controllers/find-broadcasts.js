@@ -32,6 +32,11 @@ export default Ember.Controller.extend({
     respond(broadcast){
       broadcast.get('selections.firstObject').save();
     },
+    sortBroadcasts(direction) {
+      this.set('sort', direction);
+      this.get('filterParams').set('sort', direction);
+      this.searchAction(this.get('filterParams'));
+    },
   }
 });
 
