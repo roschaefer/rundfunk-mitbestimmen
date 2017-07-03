@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
 
     context 'no connection to redis server' do
       subject do
-        Sidekiq.stub(:redis) { raise Redis::CannotConnectError }
+        allow(Sidekiq).to receive(:redis) { raise Redis::CannotConnectError }
         Sidekiq::Testing.disable! do
           super()
         end
