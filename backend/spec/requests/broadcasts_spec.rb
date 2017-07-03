@@ -204,6 +204,31 @@ RSpec.describe 'Broadcasts', type: :request do
         end
       end
 
+      describe 'sort' do
+        let(:broadcasts) do
+          create(:broadcast, title: '1234')
+          create(:broadcast, title: 'aaa')
+          create(:broadcast, title: 'BBB')
+          create(:broadcast, title: 'cCc')
+          create(:broadcast, title: 'XXY')
+        end
+
+        describe 'no sort param' do
+          it 'it has a default order to allow repeatable pagination' do
+            titles = subject['data'].map {|item| item['attributes']['title']}
+            expect(titles).to eq ['1234', 'aaa','BBB','cCc', 'XXY']
+          end
+        end
+
+        describe '=desc' do
+          let(:params) { { sort: 'desc' } }
+          it 'sorts broadcasts by title in descending order' do
+            titles = subject['data'].map {|item| item['attributes']['title']}
+            expect(titles).to eq ['XXY', 'cCc', 'BBB', 'aaa', '1234']
+          end
+        end
+      end
+
       describe 'randomization ' do
         before do
           create_list(:broadcast, 23)
