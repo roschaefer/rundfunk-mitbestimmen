@@ -84,8 +84,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       });
     },
     setQuery(filterParams){
-      let controller = this.controllerFor('find-broadcasts');
-      this.get('controller').set('sort', controller.get('sort'));
+      this.get('controller').set('sort', filterParams.get('sort'));
       this.get('controller').set( 'q', filterParams.get('query'));
       this.get('controller').set( 'medium', filterParams.get('medium'));
       this.get('controller').set('station', filterParams.get('station'));

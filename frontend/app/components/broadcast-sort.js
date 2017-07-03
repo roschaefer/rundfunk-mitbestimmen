@@ -4,7 +4,8 @@ export default Ember.Component.extend({
   tagName: '',
   actions: {
     submitSort(direction) {
-      this.sendAction('sortBroadcasts', direction);
+      this.set('sort', direction);
+      this.get('sortBroadcasts')(direction);
     }
   }
 });

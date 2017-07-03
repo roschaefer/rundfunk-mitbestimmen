@@ -1,12 +1,12 @@
 <div class="four wide field">
   <div class="ui right floated buttons">
-    <button id="alphabetical_order_ascending" class="ui icon button" {{action 'submitSort' 'asc'}}>
+    <button id="alphabetical_order_ascending" class={{broadcast-sort-button-css 'asc' sort}} {{action 'submitSort' 'asc'}}>
       <i class="sort alphabet ascending icon"></i>
     </button>
-    <button id="random_order" class="ui active icon button" {{action 'submitSort' 'random'}}>
-      <i class="dont icon"></i>
+    <button id="random_order" class={{broadcast-sort-button-css 'random' sort}} {{action 'submitSort' 'random'}}>
+      <i class="random icon"></i>
     </button>
-    <button id="alphabetical_order_descending" class="ui icon button" {{action 'submitSort' 'desc'}}>
+    <button id="alphabetical_order_descending" class={{broadcast-sort-button-css 'desc' sort}} {{action 'submitSort' 'desc'}}>
       <i class="sort alphabet descending icon"></i>
     </button>
   </div>
