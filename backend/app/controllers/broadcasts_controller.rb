@@ -9,36 +9,12 @@ class BroadcastsController < ApplicationController
 
     @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
 
-    filter_params = params[:filter]
-    if filter_params
-
-      if filter_params[:medium].present?
-        @broadcasts = @broadcasts.where(medium: filter_params[:medium])
-      end
-
-      if filter_params[:station].present?
-        @broadcasts = @broadcasts.where(station_id: filter_params[:station])
-      end
-
-      if current_user && filter_params[:review] == 'reviewed'
-        reviewed_broadcasts
-      end
-
-      if current_user && filter_params[:review] == 'unreviewed'
-        unreviewed_broadcasts
-      end
-    end
-
-    @broadcasts = if params[:sort] == 'random'
-                    broadcasts_randomly_ordered
-                  else
-                    @broadcasts.order(title: :asc) # induce unique sort order for pagination
-                  end
+    filter_broadcasts
+    order_broadcasts
 
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
-
     render json: @broadcasts, scope: current_user, meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
@@ -93,12 +69,33 @@ class BroadcastsController < ApplicationController
     @broadcasts = @broadcasts.unevaluated(current_user)
   end
 
-  def broadcasts_randomly_ordered
-    if params[:seed]
-      clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
-      query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
-      Broadcast.connection.execute(query)
+  def order_broadcasts
+    @broadcasts = if params[:sort] == 'random'
+                    if params[:seed]
+                      clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
+                      query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
+                      Broadcast.connection.execute(query)
+                    end
+                    @broadcasts.order('RANDOM()')
+                  elsif params[:sort] == 'desc'
+                    @broadcasts.order(title: :desc)
+                  else # have at least one order for repeatable pagination
+                    @broadcasts.order(title: :asc)
+                  end
+  end
+
+  def filter_broadcasts
+    filter_params = params[:filter]
+    return unless filter_params
+
+    @broadcasts = @broadcasts.where(medium: filter_params[:medium]) if filter_params[:medium].present?
+    @broadcasts = @broadcasts.where(station_id: filter_params[:station]) if filter_params[:station].present?
+
+    return unless current_user
+    if filter_params[:review] == 'reviewed'
+      reviewed_broadcasts
+    elsif filter_params[:review] == 'unreviewed'
+      unreviewed_broadcasts
     end
-    @broadcasts.order('RANDOM()')
   end
 end

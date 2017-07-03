@@ -4,15 +4,22 @@
   </div>
 </div>
 
-{{broadcast-search searchAction=(action 'searchAction') broadcasts=model.broadcasts media=media stations=stations filterParams=filterParams loading=loading}}
+{{broadcast-search
+searchAction=(action 'searchAction')
+sortBroadcasts=(action "sortBroadcasts")
+broadcasts=model.broadcasts
+media=media
+stations=stations
+filterParams=filterParams
+loading=loading}}
 
 <div class="row">
   <div class="column">
     {{find-broadcasts/navigation
-    step=page
-    totalSteps=totalPages
-    recentPositives=positiveSelectionsWithoutAmount.length
-    browse=(action 'browse')
+      step=page
+      totalSteps=totalPages
+      recentPositives=positiveSelectionsWithoutAmount.length
+      browse=(action 'browse')
     }}
   </div>
 </div>
@@ -21,12 +28,11 @@
   <div class="column">
     <div class="ui centered three stackable cards">
       {{#each model.broadcasts as |broadcast|}}
-      {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
+        {{decision-card broadcast=broadcast respondAction=(action 'respond')}}
       {{/each}}
     </div>
   </div>
 </div>
-
 
 {{#unless model.broadcasts}}
 <div class="ui grid">

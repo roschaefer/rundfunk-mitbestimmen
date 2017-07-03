@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  queryParams: ['q', 'medium', 'station'],
+  queryParams: ['sort', 'q', 'medium', 'station'],
+  sort: 'random',
   q: null,
   medium: null,
   station: null,
@@ -18,9 +19,6 @@ export default Ember.Controller.extend({
     searchAction(query){
       this.send('setQuery', query);
     },
-    respond(broadcast){
-      broadcast.get('selections.firstObject').save();
-    },
     browse(step){
       if(this.store.peekAll('selection').isAny('isLoading', true)){
         return; // avoid willCommit in root.loading state error
@@ -30,6 +28,13 @@ export default Ember.Controller.extend({
         selection.save();
       });
       this.set('page', step);
+    },
+    respond(broadcast){
+      broadcast.get('selections.firstObject').save();
+    },
+    sortBroadcasts(direction) {
+      this.set('sort', direction);
+      this.get('filterParams').set('sort', direction);
     },
   }
 });
