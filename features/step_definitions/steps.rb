@@ -855,12 +855,13 @@ end
 
 When(/^I click on the button to order broadcasts in ascending order$/) do
   click_on 'alphabetical_order_ascending' # that would be the id of the button
+  wait_for_ajax
 end
 
 Then(/^I see broadcasts ascending in order like this:$/) do |table|
   titles = all('.decision-card .title').map(&:text)
   expect(titles).to eq titles.sort_by(&:downcase)
-  tables.hashes.each_with_index do |row, i|
+  table.hashes.each_with_index do |row, i|
     expect(row['Title']).to eq titles[i]
   end
 end
