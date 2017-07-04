@@ -106,6 +106,15 @@ index:
       aussagekräftige Stimme. Mit deiner Entscheidung können wir die
       Aufmerksamkeit der Rundfunkräte gewinnen und die Programmdebatten
       befördern und beleben.
+  reactions:
+    title: Reaktionen auf Rundfunk&nbsp;MITBESTIMMEN
+    people:
+      bieber:
+        position: Universität Duisburg-Essen, WDR Rundfunkrat
+      roessner:
+        position: MdB, Bundestagsfraktion Bündnis 90/Die Grünen
+      wille:
+        position: Intendantin des MDR, Vorsitzende der ARD
   goal:
     actual:
       header: Tatsächliche Verteilung
