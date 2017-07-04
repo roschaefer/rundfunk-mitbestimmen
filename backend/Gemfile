@@ -53,6 +53,7 @@ group :development do
   gem 'capistrano-db-tasks', require: false
   gem 'capistrano-rails'
   gem 'highline'
+  gem 'rails-erd'
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen'

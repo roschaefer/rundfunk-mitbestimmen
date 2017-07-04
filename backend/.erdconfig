@@ -1,0 +1,15 @@
+attributes:
+  - content
+  - foreign_key
+disconnected: false
+filename: ../documentation/images/er
+filetype: png
+orientation: vertical
+title:
+only:
+  - Selection
+  - User
+  - Broadcast
+  - Medium
+  - Station
+only_recursion_depth: null
