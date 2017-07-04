@@ -6,10 +6,10 @@
         <div class="row">
           <div class="middle aligned center aligned column">
             <p class="ui header intro-text">
-              {{t 'index.header.top'
-              amount=(format-number 8000000000 maximumFractionDigits=0
-              minimumFractionDigits=0 style='currency' currency='EUR')
-              htmlSafe=true}}
+            {{t 'index.header.top'
+            amount=(format-number 8000000000 maximumFractionDigits=0
+            minimumFractionDigits=0 style='currency' currency='EUR')
+            htmlSafe=true}}
             </p>
             <h1 class="start-question">
               {{t 'index.action'
@@ -22,7 +22,7 @@
         <div class="ui centered row">
           <div class="twelve wide column">
             <p class="ui header intro-text center aligned">
-              {{t 'index.manual' htmlSafe=true }}
+            {{t 'index.manual' htmlSafe=true }}
             </p>
             <div class="ui three steps step-border">
               <div class="step step-style">
@@ -200,6 +200,24 @@
     </div>
   </div>
 
+
+  <div class="row">
+    <div class="column">
+      <div class="ui basic padded segment"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ui one column grid">
+      <div class="centered row">
+        <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
+          {{#twitter-feed}}
+            <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB">Tweets by RundfunkMB</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          {{/twitter-feed}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="ui horizontal divider">
