@@ -1,32 +1,37 @@
 <div class="ui grid">
   <div class="row">
-    <div class="column">
-      <h1 class="ui huge header">
-        {{t 'visualize.geo.header'}}
-        <div class="sub header">
-          {{t 'visualize.geo.sub-header'}}
-        </div>
-      </h1>
-    </div>
+    {{#missing-feature feature='geo' as |missing|}}
+    {{#missing.explanation}}
+    <h1 class="ui huge header">
+      {{t 'visualize.geo.header'}}
+      <div class="sub header">
+        {{t 'visualize.geo.sub-header'}}
+      </div>
+    </h1>
+    <p>
+    {{t 'visualize.geo.paragraph.explanation'}}
+    </p>
+    <p>
+    {{t 'visualize.geo.paragraph.reason'}}
+    </p>
+    {{/missing.explanation}}
+
+    {{#missing.preview}}
+      {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+        {{layers.tile url=tileLayerUrl}}
+        {{layers.geoJSON geoJSON=model.geojson style=(action 'style')}}
+      {{/leaflet-map}}
+    {{/missing.preview}}
+
+    {{/missing-feature}}
   </div>
 
   <div class="row">
-    <div class="column">
-      <div>
-        {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
-          {{layers.tile url=tileLayerUrl}}
-          {{layers.geoJSON geoJSON=model.geojson style=(action 'style')}}
+    {{outlet}}
 
-        {{/leaflet-map}}
-      </div>
-      <div>
-        {{outlet}}
-      </div>
-    </div>
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
   </div>
 </div>
-
-{{#link-to 'visualize.index' class="ui huge primary button"}}
-<i class="left arrow icon"></i>
-{{t 'visualize.overview' }}
-{{/link-to}}
