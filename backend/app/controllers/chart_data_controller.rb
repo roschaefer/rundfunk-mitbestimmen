@@ -1,5 +1,6 @@
+require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[diff geo]
+  skip_authorization_check only: %i[diff geo geojson]
 
   def diff
     actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
@@ -26,5 +27,19 @@ class ChartDataController < ApplicationController
 
   def geo
     render json: User.where.not(latitude: nil, longitude: nil), each_serializer: ChartData::Geo::MarkerSerializer
+  end
+
+  def geojson
+    state_codes = [ 'BW', 'BY', 'BE', 'BB', 'HB', 'HH', 'HE', 'MV', 'NI', 'NW', 'RP', 'SL', 'ST', 'SN', 'SH', 'TH' ]
+    users = User.where(country_code: 'DE', state_code: state_codes)
+    template_feature_collection = RGeo::GeoJSON.decode(File.read(File.join(Rails.root, 'public', 'bundeslaender.geojson')), json_parser: :json)
+    feature_array = template_feature_collection.collect do |bundesland|
+      properties = bundesland.properties
+      users_in_bundesland = users.where(state_code: state_codes[bundesland.feature_id])
+      properties['user_count_total'] = users_in_bundesland.count
+      properties['user_count_fraction'] = (users_in_bundesland.count.to_f/users.count.to_f)
+      RGeo::GeoJSON::Feature.new(bundesland.geometry, bundesland.feature_id, properties)
+    end
+    render json: RGeo::GeoJSON.encode(RGeo::GeoJSON::FeatureCollection.new(feature_array))
   end
 end
