@@ -1,5 +1,5 @@
 class ChartDataController < ApplicationController
-  skip_authorization_check only: [:diff, :geo]
+  skip_authorization_check only: %i[diff geo]
 
   def diff
     actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
