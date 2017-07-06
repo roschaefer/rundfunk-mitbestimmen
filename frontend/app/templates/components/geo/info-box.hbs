@@ -1,0 +1,26 @@
+<h5 class="ui top attached header">
+    <div class="header">{{displayedProperties.name}}</div>
+</h5>
+<div class="ui horizontal segments">
+  <div class="ui segment">
+    <div class="ui mini horizontal statistic">
+      <div class="value">
+        {{displayedProperties.user_count_total}}
+      </div>
+      <div class="label">
+        Users
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <div class="ui mini horizontal statistic">
+      <div class="value">
+        {{displayedProperties.user_count_percentage}}
+      </div>
+      <div class="label">
+        of all
+      </div>
+    </div>
+  </div>
+  {{yield}}
+</div>

@@ -14,17 +14,20 @@
     <p>
     {{t 'visualize.geo.paragraph.reason'}}
     </p>
+    {{geo/info-box displayedProperties=displayedProperties}}
     {{/missing.explanation}}
 
     {{#missing.preview}}
       {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
         {{layers.tile url=tileLayerUrl}}
-        {{layers.geoJSON geoJSON=model.geojson style=(action 'style')}}
+        {{layers.geoJSON geoJSON=model.geojson style=(action 'style') onEachFeature=(action 'onEachFeature')}}
 
         {{#each model.locations as |location|}}
           {{#layers.marker location=location.coordinates as |marker|}}
             {{#marker.popup}}
               <h3>Your location</h3>
+              <strong>Country code:</strong>
+              {{location.countryCode}}<br>
               <strong>State code:</strong>
               {{location.stateCode}}<br>
               <strong>City:</strong>
