@@ -4,9 +4,9 @@ import RSVP from 'rsvp';
 
 export default Ember.Route.extend(ResetScrollPositionMixin, {
   model() {
-    const host = this.store.adapterFor('chart-data/geo/marker').get('host');
+    const host = this.store.adapterFor('chart-data/geo/location').get('host');
     return RSVP.hash({
-      markers: this.store.findAll('chart-data/geo/marker'),
+      locations: this.store.findAll('chart-data/geo/location'),
       geojson: Ember.$.get(`${host}/chart_data/geo/geojson`)
     });
   }

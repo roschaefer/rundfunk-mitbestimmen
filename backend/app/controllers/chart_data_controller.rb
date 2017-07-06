@@ -1,6 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[diff geo geojson]
+  skip_authorization_check only: %i[diff location geojson]
 
   def diff
     actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
@@ -25,8 +25,10 @@ class ChartDataController < ApplicationController
     render json: diff_chart
   end
 
-  def geo
-    render json: User.where.not(latitude: nil, longitude: nil), each_serializer: ChartData::Geo::MarkerSerializer
+  def location
+    locations = []
+    locations << current_user if current_user
+    render json: locations, each_serializer: ChartData::Geo::LocationSerializer
   end
 
   def geojson

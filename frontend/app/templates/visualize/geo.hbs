@@ -20,6 +20,20 @@
       {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
         {{layers.tile url=tileLayerUrl}}
         {{layers.geoJSON geoJSON=model.geojson style=(action 'style')}}
+
+        {{#each model.locations as |location|}}
+          {{#layers.marker location=location.coordinates as |marker|}}
+            {{#marker.popup}}
+              <h3>Your location</h3>
+              <strong>State code:</strong>
+              {{location.stateCode}}<br>
+              <strong>City:</strong>
+              {{location.city}}<br>
+              <strong>Postal code:</strong>
+              {{location.postalCode}}
+            {{/marker.popup}}
+          {{/layers.marker}}
+        {{/each}}
       {{/leaflet-map}}
     {{/missing.preview}}
 
