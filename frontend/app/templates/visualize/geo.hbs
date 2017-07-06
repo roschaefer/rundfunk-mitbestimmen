@@ -8,13 +8,10 @@
         {{t 'visualize.geo.sub-header'}}
       </div>
     </h1>
-    <p>
-    {{t 'visualize.geo.paragraph.explanation'}}
-    </p>
-    <p>
-    {{t 'visualize.geo.paragraph.reason'}}
-    </p>
     {{geo/info-box state=state count=count totalGermanUsers=totalGermanUsers totalUsers=totalUsers}}
+    <p>
+    {{t 'visualize.geo.paragraph.explanation' htmlSafe=true}}
+    </p>
     {{/missing.explanation}}
 
     {{#missing.preview}}
