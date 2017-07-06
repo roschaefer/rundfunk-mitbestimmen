@@ -5,13 +5,17 @@ export default Ember.Component.extend({
     return this.get('state') || 'Germany';
   }),
   displayedNumber: Ember.computed('count', function() {
-    return this.get('count') || this.get('totalGermanUsers');
+    if (Ember.isNone(this.get('count'))) {
+      return this.get('totalGermanUsers');
+    } else {
+      return this.get('count');
+    }
   }),
   displayedPercentage: Ember.computed('count', function() {
-    if (this.get('count')) {
-      return `${((this.get('count')/this.get('totalGermanUsers')) * 100).toFixed(2)}`;
-    } else {
+    if (Ember.isNone(this.get('count'))) {
       return `${((this.get('totalGermanUsers')/this.get('totalUsers')) * 100).toFixed(2)}`;
+    } else {
+      return `${((this.get('count')/this.get('totalGermanUsers')) * 100).toFixed(2)}`;
     }
   }),
   displayedPercentageTranslation: Ember.computed('count', function() {

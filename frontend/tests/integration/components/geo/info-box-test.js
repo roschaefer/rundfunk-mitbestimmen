@@ -32,6 +32,7 @@ describe('Integration | Component | geo/info box', function() {
 
   context('given no federal state, just the numbers of all Germany', function() {
     beforeEach(function(){
+      count = 0;
       totalGermanUsers = 200;
       totalUsers = 220;
     });
