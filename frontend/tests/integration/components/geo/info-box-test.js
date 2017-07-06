@@ -8,20 +8,21 @@ describe('Integration | Component | geo/info box', function() {
     integration: true
   });
 
-  let properties;
+  let state, count, totalGermanUsers, totalUsers;
   context('given a property set of a federal state', function() {
     beforeEach(function(){
-      properties = {
-        state: 'Brandenburg',
-        count: 24,
-        totalGermanUsers: 200,
-        totalUsers: 220,
-      };
+      state = 'Brandenburg';
+      count =  24;
+      totalGermanUsers = 200;
+      totalUsers = 220;
     });
 
     it('shows number of users in state and the percentage compared to Germany', function() {
-      this.set('properties', properties);
-      this.render(hbs`{{geo/info-box properties=properties}}`);
+      this.set('state', state);
+      this.set('count', count);
+      this.set('totalGermanUsers', totalGermanUsers);
+      this.set('totalUsers', totalUsers);
+      this.render(hbs`{{geo/info-box state=state count=count totalGermanUsers=totalGermanUsers totalUsers=totalUsers}}`);
       let text = this.$().text();
       expect(text).to.match(/Brandenburg/);
       expect(text).to.match(/24/);
@@ -31,15 +32,14 @@ describe('Integration | Component | geo/info box', function() {
 
   context('given no federal state, just the numbers of all Germany', function() {
     beforeEach(function(){
-      properties = {
-        totalGermanUsers: 200,
-        totalUsers: 220,
-      };
+      totalGermanUsers = 200;
+      totalUsers = 220;
     });
 
     it('shows number of users in state and the percentage compared to Germany', function() {
-      this.set('properties', properties);
-      this.render(hbs`{{geo/info-box properties=properties}}`);
+      this.set('totalGermanUsers', totalGermanUsers);
+      this.set('totalUsers', totalUsers);
+      this.render(hbs`{{geo/info-box totalGermanUsers=totalGermanUsers totalUsers=totalUsers}}`);
       let text = this.$().text();
       expect(text).to.match(/Germany/);
       expect(text).to.match(/200/);
