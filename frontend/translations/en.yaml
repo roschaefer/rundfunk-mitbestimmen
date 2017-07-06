@@ -363,6 +363,16 @@ visualize:
       reason: >
         This is especially important for broadcasts with a regional connection,
         e.g. radio broadcasts or local news.
+    user-location:
+      header: Your location
+      countryCode: Country code
+      stateCode: State code
+      city: City
+      postalCode: Postal code
+    info-box:
+      users: User
+      of-the-world: of all users
+      of-germany: of German users
   time:
     header: Changes over time
     sub-header: >

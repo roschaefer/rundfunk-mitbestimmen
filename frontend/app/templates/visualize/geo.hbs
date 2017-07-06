@@ -25,14 +25,14 @@
         {{#each model.locations as |location|}}
           {{#layers.marker location=location.coordinates as |marker|}}
             {{#marker.popup}}
-              <h3>Your location</h3>
-              <strong>Country code:</strong>
+              <h3>{{t 'visualize.geo.user-location.header'}}</h3>
+              <strong>{{t 'visualize.geo.user-location.countryCode'}}:</strong>
               {{location.countryCode}}<br>
-              <strong>State code:</strong>
+              <strong>{{t 'visualize.geo.user-location.stateCode'}}:</strong>
               {{location.stateCode}}<br>
-              <strong>City:</strong>
+              <strong>{{t 'visualize.geo.user-location.city'}}:</strong>
               {{location.city}}<br>
-              <strong>Postal code:</strong>
+              <strong>{{t 'visualize.geo.user-location.postalCode'}}:</strong>
               {{location.postalCode}}
             {{/marker.popup}}
           {{/layers.marker}}

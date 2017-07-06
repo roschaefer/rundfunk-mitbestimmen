@@ -376,6 +376,16 @@ visualize:
       reason: >
         Das ist insbesondere für Sendungen mit einem regionalen Bezug
         interessant, z.B. Radio-Sendungen oder Lokalnachrichten.
+    user-location:
+      header: Dein Standort
+      countryCode: Ländercode
+      stateCode: Bundesland
+      city: Stadt
+      postalCode: PLZ
+    info-box:
+      users: Nutzer
+      of-the-world: aller Nutzer
+      of-germany: aller deutschen Nutzer
   time:
     header: Veränderungen über die Zeit
     sub-header: >

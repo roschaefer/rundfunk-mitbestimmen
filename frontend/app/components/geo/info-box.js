@@ -14,4 +14,11 @@ export default Ember.Component.extend({
       return `${((this.get('totalGermanUsers')/this.get('totalUsers')) * 100).toFixed(2)}`;
     }
   }),
+  displayedPercentageTranslation: Ember.computed('count', function() {
+    if (Ember.isNone(this.get('count'))){
+        return 'visualize.geo.info-box.of-the-world';
+    } else {
+        return 'visualize.geo.info-box.of-germany';
+    }
+  })
 });
