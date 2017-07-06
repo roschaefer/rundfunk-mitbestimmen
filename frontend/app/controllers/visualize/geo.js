@@ -7,29 +7,26 @@ export default Ember.Controller.extend({
   lng: 10,
   zoom: 6,
   tileLayerUrl: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+  scale: chroma.scale('OrRd').classes([0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.10, 0.15, 0.2, 0.3, 0.5, 0.7]),
   feature: null,
-  germanUserCount: Ember.computed('model.geojson', function() {
+  totalGermanUsers: Ember.computed('model.geojson', function() {
     return this.get('model.geojson.features').reduce((sum, feature) =>{
       return sum + feature.properties.user_count_total;
     }, 0);
   }),
-  germanUserFraction: Ember.computed('germanUserCount', 'summarizedStatistic', function() {
-    return this.get('germanUserCount')/this.get('model.summarizedStatistic.registeredUsers');
-  }),
-  scale: chroma.scale('OrRd').classes([0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.10, 0.15, 0.2, 0.3, 0.5, 0.7]),
   displayedProperties: Ember.computed('feature', function() {
     const feature = this.get('feature');
     if (feature){
       return {
-        name: feature.properties.NAME_1,
-        user_count_total: feature.properties.user_count_total,
-        user_count_percentage: `${(feature.properties.user_count_fraction * 100).toFixed(2)}%`
+        count: feature.properties.user_count_total,
+        state: feature.properties.NAME_1,
+        totalGermanUsers: this.get('totalGermanUsers'),
+        totalUsers: this.get('model.summarizedStatistic.registeredUsers')
       }
     } else {
       return {
-        name: 'Germany',
-        user_count_total: this.get('germanUserCount'),
-        user_count_percentage: `${(this.get('germanUserFraction') * 100).toFixed(2)}%`
+        totalGermanUsers: this.get('totalGermanUsers'),
+        totalUsers: this.get('model.summarizedStatistic.registeredUsers')
       }
     }
   }),
