@@ -17,11 +17,9 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'rspec/json_expectations'
 require_relative 'support/knock_helper'
 
 RSpec.configure do |config|
-  config.include RSpec::JsonExpectations::Matchers
   config.include KnockHelper, type: :request
 
   # rspec-expectations config goes here. You can use an alternate

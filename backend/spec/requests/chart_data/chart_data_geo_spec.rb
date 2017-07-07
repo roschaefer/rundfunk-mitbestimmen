@@ -30,12 +30,12 @@ RSpec.describe 'ChartData', type: :request do
           let(:headers) { super().merge(authenticated_header(user)) }
           it 'returns the own location' do
             expected = {
-              "latitude" => 54.4,
-              "longitude" => 13.0,
-              "country-code" => "DE",
-              "state-code" => "BB",
-              "city" => "Potsdam",
-              "postal-code" => "14482"
+              'latitude' => 54.4,
+              'longitude' => 13.0,
+              'country-code' => 'DE',
+              'state-code' => 'BB',
+              'city' => 'Potsdam',
+              'postal-code' => '14482'
             }
             expect(parse_json(subject, 'data/0/attributes')).to include(expected)
           end
@@ -63,7 +63,7 @@ RSpec.describe 'ChartData', type: :request do
       end
 
       it 'returns state codes for all federal states' do
-        response_state_codes = subject.collect {|feature| feature.properties['state_code'] }
+        response_state_codes = subject.collect { |feature| feature.properties['state_code'] }
         expect(response_state_codes).to eq(state_codes)
       end
 
@@ -76,12 +76,12 @@ RSpec.describe 'ChartData', type: :request do
         before { users }
 
         it 'returns counts for all federal states' do
-          counts = subject.collect {|feature| feature.properties['user_count_total'] }
-          expect(counts).to eq (0..15).to_a
+          counts = subject.collect { |feature| feature.properties['user_count_total'] }
+          expect(counts).to eq((0..15).to_a)
         end
 
         it 'returns normalized counts for all federal states' do
-          normalized_counts = subject.collect {|feature| feature.properties['user_count_normalized'] }
+          normalized_counts = subject.collect { |feature| feature.properties['user_count_normalized'] }
           expect(normalized_counts).to all(be_between(0, 1))
         end
       end

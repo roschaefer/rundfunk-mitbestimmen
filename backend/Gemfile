@@ -38,13 +38,12 @@ gem 'puma'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'factory_girl_rails'
+  gem 'json_spec'
   gem 'pry'
   gem 'rails-controller-testing'
-  gem 'rspec-json_expectations'
   gem 'rspec-rails'
   gem 'vcr'
   gem 'webmock'
-  gem 'json_spec'
 end
 
 group :development do

@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
   actions: {
     style(feature) {
       return {
-        fillColor: this.get('scale')(feature.properties.user_count_fraction).hex(),
+        fillColor: this.get('scale')(feature.properties.user_count_normalized).hex(),
         opacity: 1,
         weight: 2,
         dashArray: '5',

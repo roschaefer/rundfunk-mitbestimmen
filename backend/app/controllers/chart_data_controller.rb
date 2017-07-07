@@ -33,7 +33,7 @@ class ChartDataController < ApplicationController
 
   def geojson
     template_feature_collection = RGeo::GeoJSON.decode(File.read(File.join(Rails.root, 'public', 'bundeslaender.geojson')), json_parser: :json)
-    state_codes = template_feature_collection.collect {|feature| feature.properties['state_code'] }
+    state_codes = template_feature_collection.collect { |feature| feature.properties['state_code'] }
     users = User.where(country_code: 'DE', state_code: state_codes)
     feature_array = template_feature_collection.collect do |feature|
       properties = feature.properties
