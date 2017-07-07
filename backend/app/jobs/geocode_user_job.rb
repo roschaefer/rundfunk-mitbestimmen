@@ -18,6 +18,7 @@ class GeocodeUserJob < ApplicationJob
       domain: domain,
       access_token: token
     )
+    return unless last_ip # we can't do anything about it
     geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
     geocoder_result = geocoder_lookup.search(last_ip).first
     user.update_location(geocoder_result)
