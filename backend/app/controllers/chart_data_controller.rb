@@ -27,7 +27,7 @@ class ChartDataController < ApplicationController
 
   def location
     locations = []
-    locations << current_user if current_user
+    locations << current_user if current_user && current_user.location?
     render json: locations, each_serializer: ChartData::Geo::LocationSerializer
   end
 
