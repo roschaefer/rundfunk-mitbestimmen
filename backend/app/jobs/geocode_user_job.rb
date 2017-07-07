@@ -18,10 +18,11 @@ class GeocodeUserJob < ApplicationJob
       domain: domain,
       access_token: token
     )
-    return unless last_ip # we can't do anything about it
+    raise('No ip adress returned') unless last_ip
     geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
     geocoder_result = geocoder_lookup.search(last_ip).first
     user.update_location(geocoder_result)
+    raise('User has still no location') unless user.location?
   end
 
   def self.get_access_token(domain:, client_id:, client_secret:)
@@ -69,8 +70,7 @@ class GeocodeUserJob < ApplicationJob
     json_body = JSON.parse(response.read_body)
     case response.code
     when '404'
-      puts "User(id: #{user.id}, auth0_uid: #{user.auth0_uid}) not found in Auth0"
-      nil
+      raise("User(id: #{user.id}, auth0_uid: #{user.auth0_uid}) not found in Auth0")
     when '200'
       json_body['last_ip']
     else
