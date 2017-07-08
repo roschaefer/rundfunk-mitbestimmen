@@ -47,7 +47,7 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
       // Check out the docs for all the options:
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
-        connections: ["facebook", "google-oauth2"],
+        connections: ["facebook", "google-oauth2", "twitter"],
         icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
         primaryColor: '#2185D0',
         dict: dict,
