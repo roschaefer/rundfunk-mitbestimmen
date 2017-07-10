@@ -64,35 +64,20 @@ RSpec.describe 'Selections', type: :request do
       it { is_expected.to have_http_status(:ok) }
 
       it 'returns selections of the current user' do
-        expect(json_body['data'].length).to eq 2
-        selection_json = {
-          data: UnorderedArray({
-                                 id: positive_selection.id.to_s,
-                                 attributes: { response: 'positive' }
-                               }, id: negative_selection.id.to_s,
-                                  attributes: { response: 'negative' })
-        }
-        expect(json_body).to include_json(selection_json)
+        expect(subject.body).to have_json_size(2).at_path('data')
+        expect(parse_json(subject.body, 'data/0/attributes')).to include('response' => 'positive')
+        expect(parse_json(subject.body, 'data/0/id')).to eq positive_selection.id.to_s
+        expect(parse_json(subject.body, 'data/1/attributes')).to include('response' => 'negative')
+        expect(parse_json(subject.body, 'data/1/id')).to eq negative_selection.id.to_s
       end
 
       describe '?response=positive' do
         let(:params) { { filter: { response: 'positive' } } }
 
         it 'returns only selections with a positive response' do
-          selection_json = {
-            data: UnorderedArray(
-              id: positive_selection.id.to_s,
-              attributes: { response: 'positive' }
-            )
-          }
-          expect(json_body).to include_json(selection_json)
-        end
-
-        it 'does not return selections with a negative response' do
-          selection_json = {
-            data: UnorderedArray(id: negative_selection.id.to_s)
-          }
-          expect(json_body).not_to include_json(selection_json)
+          expect(subject.body).to have_json_size(1).at_path('data')
+          expect(parse_json(subject.body, 'data/0/attributes')).to include('response' => 'positive')
+          expect(parse_json(subject.body, 'data/0/id')).to eq positive_selection.id.to_s
         end
       end
     end

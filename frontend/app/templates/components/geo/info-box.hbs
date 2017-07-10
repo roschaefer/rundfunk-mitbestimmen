@@ -1,0 +1,26 @@
+<h5 class="ui top attached header">
+    <div class="header">{{displayedState}}</div>
+</h5>
+<div class="ui two horizontal segments">
+  <div class="ui segment">
+    <div class="ui mini horizontal statistic">
+      <div class="value">
+        {{displayedNumber}}
+      </div>
+      <div class="label">
+        {{t 'visualize.geo.info-box.users'}}
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <div class="ui mini horizontal statistic">
+      <div class="value">
+        {{displayedPercentage}}%
+      </div>
+      <div class="label">
+        {{t displayedPercentageTranslation}}
+      </div>
+    </div>
+  </div>
+  {{yield}}
+</div>

@@ -1,21 +1,31 @@
-{{#missing-feature feature='graph' imageUrl="/assets/images/missing-features/visualize/graph.png"}}
-  <h1 class="ui huge header">
-    {{t 'visualize.graph.header'}}
-    <div class="sub header">
-      {{t 'visualize.graph.sub-header'}}
-    </div>
-  </h1>
-  <p>
-  {{t 'visualize.graph.paragraph.explanation'}}
-  </p>
-  <p>
-  {{t 'visualize.graph.paragraph.reason'}}
-  </p>
-{{/missing-feature}}
+<div class="ui grid">
+  <div class="row">
+    {{#missing-feature feature='graph' as |missing|}}
+      {{missing.preview imageUrl="/assets/images/missing-features/visualize/graph.png"}}
+      {{#missing.explanation}}
+        <h1 class="ui huge header">
+          {{t 'visualize.graph.header'}}
+          <div class="sub header">
+            {{t 'visualize.graph.sub-header'}}
+          </div>
+        </h1>
+        <p>
+        {{t 'visualize.graph.paragraph.explanation'}}
+        </p>
+        <p>
+        {{t 'visualize.graph.paragraph.reason'}}
+        </p>
+      {{/missing.explanation}}
+    {{/missing-feature}}
+  </div>
 
-{{outlet}}
+  <div class="row">
 
-{{#link-to 'visualize.index' class="ui huge primary button"}}
-  <i class="left arrow icon"></i>
-  {{t 'visualize.overview' }}
-{{/link-to}}
+    {{outlet}}
+
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
+  </div>
+</div>

@@ -371,11 +371,27 @@ visualize:
       Verteilung nach Region
     paragraph:
       explanation: >
-        Das sind die Beträge gruppiert nach Regionen. Eine dunkler gefärbte
-        Region bedeutet, dass viele Beträge aus dieser Region stammen.
-      reason: >
-        Das ist insbesondere für Sendungen mit einem regionalen Bezug
-        interessant, z.B. Radio-Sendungen oder Lokalnachrichten.
+        Bisher implementiert:
+          <ul>
+          <li>Nutzerverteilung über Bundesländer anzeigen</li>
+          <li>Eingeloggten Nutzern eigenen Standort anzeigen</li>
+          </ul>
+        Es fehlt noch:
+          <ul>
+          <li>Einzelne Sendungen auswählen</li>
+          <li>Unterschiedliche Metriken auswählen</li>
+          <li>Eigenen Standort korrigieren</li>
+          </ul>
+    user-location:
+      header: Dein Standort
+      countryCode: Ländercode
+      stateCode: Bundesland
+      city: Stadt
+      postalCode: PLZ
+    info-box:
+      users: Nutzer
+      of-the-world: aller Nutzer
+      of-germany: aller deutschen Nutzer
   time:
     header: Veränderungen über die Zeit
     sub-header: >

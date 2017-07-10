@@ -16,7 +16,7 @@
   <div class="two column stackable row">
     <div class="column">
       <div>
-        <img class="ui fluid image" src={{imageUrl}}>
+        {{yield (hash preview=(component 'missing-feature/preview' imageUrl=imageUrl))}}
       </div>
     </div>
 
@@ -24,7 +24,7 @@
       <div class="ui grid">
         <div class="row">
           <div class="column">
-            {{yield}}
+            {{yield (hash explanation=(component 'missing-feature/explanation'))}}
           </div>
         </div>
 

@@ -1,21 +1,51 @@
-{{#missing-feature feature='geo' imageUrl="/assets/images/missing-features/visualize/geo.png"}}
-<h1 class="ui huge header">
-  {{t 'visualize.geo.header'}}
-  <div class="sub header">
-    {{t 'visualize.geo.sub-header'}}
+<div class="ui grid">
+  <div class="row">
+    {{#missing-feature feature='geo' as |missing|}}
+    {{#missing.explanation}}
+    <h1 class="ui huge header">
+      {{t 'visualize.geo.header'}}
+      <div class="sub header">
+        {{t 'visualize.geo.sub-header'}}
+      </div>
+    </h1>
+    {{geo/info-box state=state count=count totalGermanUsers=totalGermanUsers totalUsers=totalUsers}}
+    <p>
+    {{t 'visualize.geo.paragraph.explanation' htmlSafe=true}}
+    </p>
+    {{/missing.explanation}}
+
+    {{#missing.preview}}
+      {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+        {{layers.tile url=tileLayerUrl}}
+        {{layers.geoJSON geoJSON=model.geojson style=(action 'style') onEachFeature=(action 'onEachFeature')}}
+
+        {{#each model.locations as |location|}}
+          {{#layers.marker location=location.coordinates as |marker|}}
+            {{#marker.popup}}
+              <h3>{{t 'visualize.geo.user-location.header'}}</h3>
+              <strong>{{t 'visualize.geo.user-location.countryCode'}}:</strong>
+              {{location.countryCode}}<br>
+              <strong>{{t 'visualize.geo.user-location.stateCode'}}:</strong>
+              {{location.stateCode}}<br>
+              <strong>{{t 'visualize.geo.user-location.city'}}:</strong>
+              {{location.city}}<br>
+              <strong>{{t 'visualize.geo.user-location.postalCode'}}:</strong>
+              {{location.postalCode}}
+            {{/marker.popup}}
+          {{/layers.marker}}
+        {{/each}}
+      {{/leaflet-map}}
+    {{/missing.preview}}
+
+    {{/missing-feature}}
   </div>
-</h1>
-<p>
-{{t 'visualize.geo.paragraph.explanation'}}
-</p>
-<p>
-{{t 'visualize.geo.paragraph.reason'}}
-</p>
-{{/missing-feature}}
 
-{{outlet}}
+  <div class="row">
+    {{outlet}}
 
-{{#link-to 'visualize.index' class="ui huge primary button"}}
-<i class="left arrow icon"></i>
-{{t 'visualize.overview' }}
-{{/link-to}}
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
+  </div>
+</div>
