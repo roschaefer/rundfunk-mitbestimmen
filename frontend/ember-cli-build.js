@@ -14,6 +14,15 @@ module.exports = function(defaults) {
       boost, broken-axis, canvas-tools, data, drilldown, exporting, funnel,
       heatmap, map, no-data-to-display, offline-exporting, solid-gauge, treemap
       */
+    },
+    fingerprint: {
+      exclude: [
+        'images/layers-2x.png',
+        'images/layers.png',
+        'images/marker-icon-2x.png',
+        'images/marker-icon.png',
+        'images/marker-shadow.png'
+      ]
     }
   });
 
