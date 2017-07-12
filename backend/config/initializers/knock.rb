@@ -26,7 +26,7 @@ Knock.setup do |config|
   ## Configure the algorithm used to encode the token
   ##
   ## Default:
-  if Rails.env.test?
+  if Rails.env.test? || Rails.env.fullstack?
     # it is fine to use a symmetric encryption algorithm for testing
     config.token_signature_algorithm = 'HS256'
   else

@@ -63,7 +63,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'integration') {
+  if ((environment === 'integration') || (environment === 'fullstack')) {
     ENV.APP.authenticator = 'authenticator:stub-authenticator';
   }
 
