@@ -47,10 +47,15 @@ broadcast-form:
       update: Update
     success-message: Saved successfully
   another-one: New broadcast
+incomplete-feature:
+  main-message:
+    header: Hooray! You found an incomplete feature.
 missing-feature:
   main-message:
-    header: Congratulations! You found a missing feature.
-    sub-header: This is free and open-source software - it depends on your contribution!
+    header: Hooray! You found a missing feature.
+    sub-header: >
+      This is free and open-source software - it depends on
+      <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen">your contribution!</a>
   call-to-action:
     header: Do you want to help us out with this feature? Get in touch!
   not-a-developer:

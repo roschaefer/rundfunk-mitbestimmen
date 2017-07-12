@@ -47,10 +47,15 @@ broadcast-form:
       update: Korrigieren
     success-message: Erfolgreich gespeichert
   another-one: Neue Sendung
+incomplete-feature:
+  main-message:
+    header: Hurra! Du hast eine unvollständige Funktion gefunden.
 missing-feature:
   main-message:
-    header: Herzlichen Glückwunsch! Du hast eine fehlende Funktion gefunden.
-    sub-header: Das hier ist freie Open-Source Software - auch Du kannst mithelfen!
+    header: Hurra! Du hast eine fehlende Funktion gefunden.
+    sub-header: >
+      Das hier ist freie Open-Source Software - auch Du
+      <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen">kannst mithelfen!</a>
   call-to-action:
     header: Möchtest Du uns bei dieser Funktion helfen? Melde Dich doch einfach!
   not-a-developer:
