@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/globalize/globalize.git
+  remote: https://github.com/globalize/globalize
   revision: 89755a4b8962aa439e1517bfb681df8ff3313df1
   specs:
     globalize (5.1.0.beta1)
