@@ -145,12 +145,12 @@ App is running on [localhost:4200](http://localhost:4200/)
 
 Run:
 ```sh
-cd frontend && ember server --environment=integration
+cd frontend && ember server --environment=fullstack
 ```
 
 Open another terminal and run:
 ```sh
-cd backend && bin/rails server --environment=test
+cd backend && bin/rails server --environment=fullstack
 ```
 
 Open yet another terminal and run:

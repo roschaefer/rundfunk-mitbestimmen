@@ -3,7 +3,7 @@ require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
 
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] ||= 'fullstack'
 puts Dir.pwd
 root = Dir[File.dirname(File.expand_path('../../', __FILE__))].first
 rails_root = File.join(root, "backend")
