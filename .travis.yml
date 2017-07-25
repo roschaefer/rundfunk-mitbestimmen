@@ -83,3 +83,7 @@ deploy:
   script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember build --environment=production && scp -r dist/* rschafer@rundfunk-mitbestimmen.de:html
   on:
     branch: master
+
+notifications:
+  slack:
+    secure: M0Ku5Hv2S4C/sAoZKHzsh5IEDFqRvXsuVD+2vNdmMRQNAX2iSxjK2IrQN906+1fWf9ZO1ezPFR1vpnkqLDrp/eZowGP9O6/LkCTVljyFycwfS7KNb4Zz5XRMUedGcTr8jorR45ecTa/gY3xlpy3V+bWoqT5BzRsvfIjGFEYksQOUpCPweJvovx3ZMpouNzHP11D/N7Zw830az3Vf2et9MqN2CXW38z9nWV26v2iNvr/YqBClzQ1o1aKBNDjaKvW2NATGLaN1IBDsTYjgFgCyjHMRmeTvE0rOU5Em7P8ZKkKXazlHmuFsmb+mGwLdxkmwBgT14R1fel39lZNuKUBFQvZM1OIfkZCouxx8cSnAx3YOdSszbwYCuUAXC1E/KnYPtmuIHXpF6b8E8MqyA6R4971MKXfgr7T/js9ET7uT9NmN0DDpr1MvYs4nf8rkZI9nkLKiBRN7mxX9RYbmy8w/rXSWbVAofvaNAprV3YafyLGRUEFiTMkZn0VZevxCRTIHk4h09Ofn9YbqPcJ3zyMXhFy0HNfTf/fRBRzKN1CFqFWw5KZhvBA4Vzutpw9yzlAvVBG7U2KSxMAatMbwYXNeAhOKt9+t5GAtk4UPKE9GIISUaFkBTQqa69nd62iHhKiygv7se3TfNHI6Eq50hC5f058dihcCp1i1Y8RSS04JZnM=
