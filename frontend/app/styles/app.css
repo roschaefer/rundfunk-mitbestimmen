@@ -128,10 +128,6 @@ p {
   flex: 1;
 }
 
-input.ember-inline-edit-input[type="text"] {
-  width: 80px !important;
-}
-
 .vertical-spaces .button + .button {
   margin-top: 10px;
 }
@@ -143,13 +139,6 @@ input.ember-inline-edit-input[type="text"] {
 
 #main-menu {
   border-radius: 0px !important;
-}
-
-.ember-inline-edit:not(.is-editing) {
-  cursor: pointer;
-  background: #E0E1E2;
-  padding: 0.5em;
-  border-radius: 10em;
 }
 
 .decision-card > .content:first-child {
