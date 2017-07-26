@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623142711) do
+ActiveRecord::Schema.define(version: 20170726152244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,9 @@ ActiveRecord::Schema.define(version: 20170623142711) do
       t.votes,
       ((t.positives)::double precision / (NULLIF(t.votes, 0))::double precision) AS approval,
       COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
-      t.total
-     FROM ( SELECT selections.broadcast_id AS id,
+      t.total,
+      ((t.votes)::numeric * a.average_amount_per_selection) AS expected_amount
+     FROM (( SELECT selections.broadcast_id AS id,
               broadcasts.title,
               count(*) AS votes,
               COALESCE(sum(
@@ -157,7 +158,9 @@ ActiveRecord::Schema.define(version: 20170623142711) do
               COALESCE(sum(selections.amount), (0)::numeric) AS total
              FROM (selections
                JOIN broadcasts ON ((selections.broadcast_id = broadcasts.id)))
-            GROUP BY selections.broadcast_id, broadcasts.title) t;
+            GROUP BY selections.broadcast_id, broadcasts.title) t
+       LEFT JOIN ( SELECT (sum(selections.amount) / (count(*))::numeric) AS average_amount_per_selection
+             FROM selections) a ON (true));
   SQL
 
 end
