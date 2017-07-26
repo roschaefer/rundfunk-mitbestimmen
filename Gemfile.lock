@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/globalize/globalize.git
-  revision: 89755a4b8962aa439e1517bfb681df8ff3313df1
+  remote: https://github.com/globalize/globalize
+  revision: ce823d437b38472365adc01a6a46f5e1bf6a4080
   specs:
-    globalize (5.1.0.beta1)
+    globalize (5.1.0.beta2)
       activemodel (>= 4.2, < 5.2)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
@@ -124,7 +124,7 @@ GEM
     json_spec (1.1.5)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
-    jsonapi-renderer (0.1.2)
+    jsonapi-renderer (0.1.3)
     jwt (1.5.6)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
@@ -155,7 +155,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.10.3)
     multi_json (1.12.1)
     multi_test (0.1.2)
     net-scp (1.2.1)
@@ -167,7 +167,7 @@ GEM
     paper_trail (7.1.0)
       activerecord (>= 4.0, < 5.2)
       request_store (~> 1.1)
-    parallel (1.11.2)
+    parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.21.0)
@@ -183,7 +183,7 @@ GEM
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
-    rack-cors (0.4.1)
+    rack-cors (1.0.1)
     rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
@@ -272,7 +272,7 @@ GEM
     scenic (1.4.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
-    selenium-webdriver (3.4.3)
+    selenium-webdriver (3.4.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
     sidekiq (5.0.4)
@@ -301,7 +301,7 @@ GEM
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     unicode-display_width (1.3.0)
-    valid_email2 (1.2.20)
+    valid_email2 (1.2.21)
       activemodel (>= 3.2)
       mail (~> 2.5)
     vcr (3.0.3)
