@@ -5,26 +5,55 @@ RSpec.describe 'ChartData', type: :request do
   let(:action) { get url, params: params, headers: headers }
   let(:js) { JSON.parse(response.body) }
 
-  describe 'GET' do
-    context 'given some selections and some stations' do
-      before { selections }
-      let(:stations) { (1..3).collect { |i| create(:station, name: "Station #{i}") } }
-      let(:broadcasts) do
-        [
-          create(:broadcast, station: stations[0]),
-          create(:broadcast, station: stations[0]),
-          create(:broadcast, station: stations[1]),
-          create(:broadcast, station: stations[1]),
-          create(:broadcast, station: stations[2])
-        ]
-      end
+  context 'given selections and stations' do
+    before(:all) do
+      stations =  [
+        create(:station, id: 1, name: 'Station 1'),
+        create(:station, id: 2, name: 'Station 2'),
+        create(:station, id: 3, name: 'Station 3')
+      ]
+      broadcasts = [
+        create(:broadcast, id: 1, station_id: 1),
+        create(:broadcast, id: 2, station_id: 1),
 
-      let(:selections) do
-        broadcasts.each_with_index do |b, i|
-          create_list(:selection, (i + 1), broadcast: b, response: :positive, amount: (i + 3))
-        end
-      end
+        create(:broadcast, id: 3, station_id: 2),
+        create(:broadcast, id: 4, station_id: 2),
 
+        create(:broadcast, id: 5, station_id: 3)
+      ]
+      selections = [
+        create(:selection, broadcast_id: 1, response: :positive, amount: 3),
+
+        create(:selection, broadcast_id: 2, response: :positive, amount: 4),
+        create(:selection, broadcast_id: 2, response: :positive, amount: 4),
+
+        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
+        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
+        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
+
+        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
+        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
+        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
+        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
+
+        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
+        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
+        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
+        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
+        create(:selection, broadcast_id: 5, response: :positive, amount: 7)
+      ]
+    end
+
+    after(:all) do
+      Selection.destroy_all
+      User.destroy_all
+      Broadcast.destroy_all
+      Station.destroy_all
+      Medium.destroy_all
+    end
+
+
+    describe 'GET' do
       describe '/chart_data/diffs/:id' do
         let(:url) { '/chart_data/diffs/0' }
         subject do
@@ -62,8 +91,8 @@ RSpec.describe 'ChartData', type: :request do
           describe 'stations with broadcasts but without selections' do
             it 'assigns 0 to stations without selections' do
               # let last selection point on first broadcast
-              Selection.where(broadcast: broadcasts.last).find_each do |s|
-                s.broadcast = broadcasts.first
+              Selection.where(broadcast_id: 5).find_each do |s|
+                s.broadcast_id = 1 # assign them to another broadcast
                 s.save!
               end
               expect(subject['data']['attributes']['series']).to eq(
