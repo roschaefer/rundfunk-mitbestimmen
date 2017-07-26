@@ -53,7 +53,6 @@ RSpec.describe Statistic, type: :model do
 
   describe '#expected_amount', issue: 221 do
     describe 'given broadcasts with varying number of votes', issue: 221 do
-
       before(:all) do
         # create the records in the database
         create_list(:selection, 2,  response: :positive, amount: 15.0, broadcast: create(:broadcast, id: 4711)) # <= that's our broadcast for now
@@ -69,7 +68,7 @@ RSpec.describe Statistic, type: :model do
 
       let(:broadcast) { Broadcast.find(4711) }
 
-      let(:sum_of_all_amounts) { 2*15.0 + 3*10.0 + 5*5.0 }
+      let(:sum_of_all_amounts) { 2 * 15.0 + 3 * 10.0 + 5 * 5.0 }
       let(:number_of_votes) { 2 + 3 + 5 }
       let(:average_amount_per_selection) { (sum_of_all_amounts / number_of_votes) }
 
@@ -78,41 +77,41 @@ RSpec.describe Statistic, type: :model do
       end
 
       it '= number_of_votes(broadcast) * ( sum_of_all_amounts / number_of_votes)' do
-        expect(expected_amount_of_broadcast).to eq( 2 * (sum_of_all_amounts / number_of_votes) ) # 17
+        expect(expected_amount_of_broadcast).to eq(2 * (sum_of_all_amounts / number_of_votes)) # 17
       end
 
       it 'is based on the number of votes of the broadcast' do
-        expect{ create(:selection, broadcast: broadcast, response: :positive, amount: 3.0) }.to(change{ expected_amount_of_broadcast })
+        expect { create(:selection, broadcast: broadcast, response: :positive, amount: 3.0) }.to(change { expected_amount_of_broadcast })
       end
 
       it 'is based on the number of votes in total' do
-        expect{ Selection.first.destroy }.to(change{ expected_amount_of_broadcast })
+        expect { Selection.first.destroy }.to(change { expected_amount_of_broadcast })
       end
 
       it 'is based on the sum of all amounts' do
-        expect{ Selection.last.update_attributes(amount: 15.0) }.to(change{ expected_amount_of_broadcast })
+        expect { Selection.last.update_attributes(amount: 15.0) }.to(change { expected_amount_of_broadcast })
       end
 
       it 'will decrease for every neutral vote (amount = 0)' do
-        expect { create_list(:selection, 6, response: :neutral) }.to(change{ expected_amount_of_broadcast }.from(17).to(10.625))
+        expect { create_list(:selection, 6, response: :neutral) }.to(change { expected_amount_of_broadcast }.from(17).to(10.625))
       end
 
       it 'will increase for every positive vote with amount > average_of_all_amounts' do
         # old: 2 * 7.5
         # new: 2 * 9
-        expect { create(:selection, response: :positive, amount: 14.0) }.to(change{ expected_amount_of_broadcast }.from(17).to(18))
+        expect { create(:selection, response: :positive, amount: 14.0) }.to(change { expected_amount_of_broadcast }.from(17).to(18))
       end
 
       it 'will increase for every vote of the specific broadcast' do
         # old: 2 * 7.5
         # new: 4 * 85.0/16.0
-        expect { create_list(:selection, 6, response: :neutral, broadcast: broadcast) }.to(change{ expected_amount_of_broadcast }.from(17).to( 8 * (85.0/16.0) ))
+        expect { create_list(:selection, 6, response: :neutral, broadcast: broadcast) }.to(change { expected_amount_of_broadcast }.from(17).to(8 * (85.0 / 16.0)))
       end
 
       it 'will increase even more for every positive vote of the specific broadcast' do
         # old: 2 * 7.5
         # new: 3 * 9
-        expect { create(:selection, response: :positive, amount: 14.0, broadcast: broadcast) }.to(change{ expected_amount_of_broadcast }.from(17).to(27))
+        expect { create(:selection, response: :positive, amount: 14.0, broadcast: broadcast) }.to(change { expected_amount_of_broadcast }.from(17).to(27))
       end
     end
   end

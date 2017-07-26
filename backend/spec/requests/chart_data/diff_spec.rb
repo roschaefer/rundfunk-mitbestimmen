@@ -5,43 +5,42 @@ RSpec.describe 'ChartData', type: :request do
   let(:action) { get url, params: params, headers: headers }
   let(:js) { JSON.parse(response.body) }
 
-  context 'given selections and stations' do
+  context 'given stations, broadcasts and selections' do
     before(:all) do
-      stations =  [
-        create(:station, id: 1, name: 'Station 1'),
-        create(:station, id: 2, name: 'Station 2'),
-        create(:station, id: 3, name: 'Station 3')
-      ]
-      broadcasts = [
-        create(:broadcast, id: 1, station_id: 1),
-        create(:broadcast, id: 2, station_id: 1),
+      # STATIONS
+      create(:station, id: 1, name: 'Station 1')
+      create(:station, id: 2, name: 'Station 2')
+      create(:station, id: 3, name: 'Station 3')
 
-        create(:broadcast, id: 3, station_id: 2),
-        create(:broadcast, id: 4, station_id: 2),
+      # BROADCASTS
+      create(:broadcast, id: 1, station_id: 1)
+      create(:broadcast, id: 2, station_id: 1)
 
-        create(:broadcast, id: 5, station_id: 3)
-      ]
-      selections = [
-        create(:selection, broadcast_id: 1, response: :positive, amount: 3),
+      create(:broadcast, id: 3, station_id: 2)
+      create(:broadcast, id: 4, station_id: 2)
 
-        create(:selection, broadcast_id: 2, response: :positive, amount: 4),
-        create(:selection, broadcast_id: 2, response: :positive, amount: 4),
+      create(:broadcast, id: 5, station_id: 3)
 
-        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
-        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
-        create(:selection, broadcast_id: 3, response: :positive, amount: 5),
+      # SELECTIONS
+      create(:selection, broadcast_id: 1, response: :positive, amount: 3)
 
-        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
-        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
-        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
-        create(:selection, broadcast_id: 4, response: :positive, amount: 6),
+      create(:selection, broadcast_id: 2, response: :positive, amount: 4)
+      create(:selection, broadcast_id: 2, response: :positive, amount: 4)
 
-        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
-        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
-        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
-        create(:selection, broadcast_id: 5, response: :positive, amount: 7),
-        create(:selection, broadcast_id: 5, response: :positive, amount: 7)
-      ]
+      create(:selection, broadcast_id: 3, response: :positive, amount: 5)
+      create(:selection, broadcast_id: 3, response: :positive, amount: 5)
+      create(:selection, broadcast_id: 3, response: :positive, amount: 5)
+
+      create(:selection, broadcast_id: 4, response: :positive, amount: 6)
+      create(:selection, broadcast_id: 4, response: :positive, amount: 6)
+      create(:selection, broadcast_id: 4, response: :positive, amount: 6)
+      create(:selection, broadcast_id: 4, response: :positive, amount: 6)
+
+      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
+      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
+      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
+      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
+      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
     end
 
     after(:all) do
@@ -51,7 +50,6 @@ RSpec.describe 'ChartData', type: :request do
       Station.destroy_all
       Medium.destroy_all
     end
-
 
     describe 'GET' do
       describe '/chart_data/diffs/:id' do
