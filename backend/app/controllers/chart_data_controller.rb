@@ -12,7 +12,7 @@ class ChartDataController < ApplicationController
 
     series = [
       { 'name' => I18n.t('chart_data.diff.series.actual'), 'data' => [] },
-      { 'name' => I18n.t('chart_data.diff.series.uniform'), 'data' => [] }
+      { 'name' => I18n.t('chart_data.diff.series.expected'), 'data' => [] }
     ]
     categories = uniform_expectation.keys.sort
 
