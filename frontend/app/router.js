@@ -40,6 +40,7 @@ Router.map(function() {
     this.route('time');
   });
   this.route('about-us');
+  this.route('broadcast', { path: '/broadcast/:broadcast_id' } );
 });
 
 export default Router;
