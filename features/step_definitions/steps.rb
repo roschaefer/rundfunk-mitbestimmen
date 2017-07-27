@@ -1,6 +1,10 @@
 feature_directory = Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
-  amount.gsub('€','').to_f
+  begin
+    Float(amount.gsub('€',''))
+  rescue
+    nil
+  end
 end
 
 def login
@@ -113,23 +117,24 @@ Then(/^also in the database all selections have the same amount of "([^"]*)"$/) 
   expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
 end
 
-Given(/^my invoice looks like this:$/) do |table|
+Given(/^my votes look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
     amount = sanitize_amount(row['Amount'])
     fixed = !! (row['Fixed'] =~ /yes/i)
-    broadcast = create(:broadcast, title: title)
+    response = (row['Support'] =~ /yes/i) ? :positive : :neutral
+    broadcast = Broadcast.find_by(title: title) || create(:broadcast, title: title)
     create(:selection,
            user: @user,
            broadcast: broadcast,
-           response: :positive,
-           amount: amount.to_f,
+           response: response,
+           amount: amount,
            fixed: fixed
           )
   end
 end
 
-When(/^I look at my invoice/) do
+When(/^I look at my broadcasts/) do
   visit '/invoice'
 end
 
@@ -865,5 +870,32 @@ Then(/^I see broadcasts ascending in order like this:$/) do |table|
   expect(titles).to eq titles.sort_by(&:downcase)
   table.hashes.each_with_index do |row, i|
     expect(row['Title']).to eq titles[i]
+  end
+end
+
+When(/^I click on title of the broadcast card of "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I see only this broadcast an nothing else, in order to stay focused$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I see even more details of "([^"]*)" like:$/) do |arg1, table|
+  # table is a Cucumber::MultilineArgument::DataTable
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When(/^I ask myself: What was "([^"]*)" about\?$/) do |arg1|
+  # just documentation
+end
+
+Then(/^I can see these details:$/) do |table|
+  table.transpose.hashes.each do |broadcast_details|
+    broadcast_details.each do |label, value|
+      # change the expecation to match the template of the broadcast page
+      expect(page).to have_css('.field', text: /#{label}.*#{value}/)
+      # this is just a guess how the html may look like
+    end
   end
 end
