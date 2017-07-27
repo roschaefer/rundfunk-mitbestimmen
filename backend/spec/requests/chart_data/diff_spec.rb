@@ -103,7 +103,7 @@ RSpec.describe 'ChartData', type: :request do
               end
 
               it 'contains expected amounts for every station' do
-                expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq ['19.0', '12.666666666666666667', '6.333333333333333333']
+                expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq ['19.0', '12.6667', '6.3333']
               end
 
               it 'arrays align with categories array' do
@@ -124,7 +124,7 @@ RSpec.describe 'ChartData', type: :request do
                 end
 
                 it 'expected amount is 0.0' do
-                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq ['19.0', '12.666666666666666667', '6.333333333333333333', '0.0']
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq ['19.0', '12.6667', '6.3333', '0.0']
                 end
               end
             end

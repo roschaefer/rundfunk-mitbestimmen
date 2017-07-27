@@ -6,15 +6,27 @@ class ChartDataController < ApplicationController
     actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
     actual_distribution.default = '0.0'
     broadcasts_with_stations = Broadcast.where.not(station: nil)
-    per_broadcast = broadcasts_with_stations.joins(:selections).sum(:amount) / broadcasts_with_stations.count
-    uniform_expectation = Station.joins(:broadcasts).group('"stations"."name"').count
-    uniform_expectation = uniform_expectation.update(uniform_expectation) { |_k, v| v * per_broadcast }
+
+    total_amount = broadcasts_with_stations.joins(:selections).sum(:amount)
+    total_number_of_selections = broadcasts_with_stations.joins(:selections).count
+    amount_per_broadcast =  total_amount / total_number_of_selections
+
+    broadcasts_per_station = Station.joins(:broadcasts).group('"stations"."name"').count
+    stations_with_selections = Station.joins(:selections).each.collect { |s| s.name }
+
+    uniform_expectation = {}
+    uniform_expectation.default = '0.0'
+    broadcasts_per_station.each.map do |k, v|
+      if stations_with_selections.include?(k)
+       uniform_expectation.update({k => (v * amount_per_broadcast).round(4)})
+      end
+    end
 
     series = [
       { 'name' => I18n.t('chart_data.diff.series.actual'), 'data' => [] },
       { 'name' => I18n.t('chart_data.diff.series.expected'), 'data' => [] }
     ]
-    categories = uniform_expectation.keys.sort
+    categories = broadcasts_per_station.keys.sort #stations_with_selections.sort
 
     categories.each do |station_name|
       series[0]['data'] << actual_distribution[station_name]
