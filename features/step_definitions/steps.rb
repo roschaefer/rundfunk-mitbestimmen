@@ -21,6 +21,9 @@ end
 Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
+    attributes[:created_at] = row['Created at'] || Date.today
+    attributes[:updated_at] = row['Updated at'] || Date.today
+    attributes[:description] = row['Description']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
@@ -874,16 +877,17 @@ Then(/^I see broadcasts ascending in order like this:$/) do |table|
 end
 
 When(/^I click on title of the broadcast card of "([^"]*)"$/) do |title|
-  find('.decision-card .title.header', text: title).click
+  within('.decision-card', text: title) do
+    find('.broadcast-details').click
+  end
 end
 
 Then(/^I see only this broadcast and nothing else/) do
-  expect(page).to have_css('.header', count: 1)
   expect(page).to have_css('.title', count: 1)
   Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
     expect(page).not_to have_text(broadcast.title)
   end
-  expect(page).to have_css('.header', text: 'Medienmagazin')
+  expect(page).to have_css('.title.header', text: 'Medienmagazin')
 end
 
 When(/^I ask myself: What was "([^"]*)" about\?$/) do |arg1|
@@ -894,7 +898,7 @@ Then(/^I can see (?:even more|these) details:$/) do |table|
   table.transpose.hashes.each do |broadcast_details|
     broadcast_details.each do |label, value|
       # change the expecation to match the template of the broadcast page
-      expect(page).to have_css('.field', text: /#{label}.*#{value}/)
+      expect(page).to have_css('.detail', text: /#{Regexp.escape(label)}.*#{Regexp.escape(value)}/)
       # this is just a guess how the html may look like
     end
   end

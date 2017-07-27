@@ -279,10 +279,12 @@ index:
 broadcast:
   broadcast-details:
     labels:
+      title: Titel
+      description: Beschreibung
       medium: Medium
       station: Sender
       createdAt: Erstellt am
-      updatedAt: Geändert am
+      updatedAt: Zuletzt geändert am
 find-broadcasts:
   header: Sendungen auswählen
   help-messages:

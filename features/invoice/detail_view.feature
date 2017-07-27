@@ -22,9 +22,9 @@ Feature: Click on broadcast title to see details
     And I ask myself: What was "Medienmagazin" about?
     And I click on "Medienmagazin"
     Then I can see these details:
-      | Title       | Medienmagazin                                                  |
-      | Medium      | Radio                                                          |
-      | Station     | radioeins                                                      |
-      | Created at  | 2017-07-27                                                     |
-      | Updated at  | 2017-08-01                                                     |
-      | Description | Welche Zukunft hat die ARD? Antworten gibt's im Medienmagazin. |
+      | Title           | Medienmagazin                                                  |
+      | Medium          | Radio                                                          |
+      | Station         | radioeins                                                      |
+      | Created at      | 7/27/2017                                                      |
+      | Last updated at | 8/1/2017                                                       |
+      | Description     | Welche Zukunft hat die ARD? Antworten gibt's im Medienmagazin. |

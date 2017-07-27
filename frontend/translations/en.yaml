@@ -260,10 +260,12 @@ index:
 broadcast:
   broadcast-details:
     labels:
+      title: Title
+      description: Description
       medium: Medium
       station: Station
       createdAt: Created at
-      updatedAt: Updated at
+      updatedAt: Last updated at
 find-broadcasts:
   header: Choose broadcasts
   help-messages:

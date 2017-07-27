@@ -1,5 +1,7 @@
 <td>
-  {{selection.broadcast.title}}
+  {{#link-to 'broadcast' selection.broadcast }}
+    {{selection.broadcast.title}}
+  {{/link-to}}
 </td>
 <td>
   <button class="invoice-item-action-remove left floated ui circular icon button" {{action 'remove'}} >

@@ -16,5 +16,5 @@ Feature: Link to broadcast details page on every broadcast card
     When I click on title of the broadcast card of "Medienmagazin"
     Then I see only this broadcast and nothing else, in order to stay focused
     And I can see even more details:
-      | Created at      | 27th July 2017  |
-      | Last updated at | 1st August 2017 |
+      | Created at      | 7/27/2017 |
+      | Last updated at | 8/1/2017  |

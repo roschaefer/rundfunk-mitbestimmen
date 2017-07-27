@@ -3,22 +3,22 @@
     <button class="ui mini right floated circular icon button" {{action 'close'}}>
       <i class="remove icon"></i>
     </button>
-    <div class="title header">
-      {{ broadcast.title }}
+    <div class="title header detail">
+      {{t 'broadcast.broadcast-details.labels.title' }}: {{ broadcast.title }}
     </div>
-    <div class="description">
-      {{ broadcast.description }}
+    <div class="description detail">
+      {{t 'broadcast.broadcast-details.labels.description' }}: {{ broadcast.description }}
     </div>
   </div>
 
   <div class="content">
-    <span class="category">{{t 'broadcast.broadcast-details.labels.medium'}}: {{broadcast.medium.name}}</span>
-    <span class="right floated category">{{t 'broadcast.broadcast-details.labels.station'}}: {{broadcast.station.name}}</span>
+    <span class="category detail">{{t 'broadcast.broadcast-details.labels.medium'}}: {{broadcast.medium.name}}</span>
+    <span class="right floated category detail">{{t 'broadcast.broadcast-details.labels.station'}}: {{broadcast.station.name}}</span>
   </div>
 
   <div class="extra content">
-    <span class="date">{{t 'broadcast.broadcast-details.labels.createdAt'}} {{format-date broadcast.createdAt}}</span>
-    <span class="right floated date">{{t 'broadcast.broadcast-details.labels.updatedAt'}} {{format-date broadcast.updatedAt}}</span>
+    <span class="date detail">{{t 'broadcast.broadcast-details.labels.createdAt'}}: {{format-date broadcast.createdAt}}</span>
+    <span class="right floated date detail">{{t 'broadcast.broadcast-details.labels.updatedAt'}}: {{format-date broadcast.updatedAt}}</span>
   </div>
 
   {{#if (eq broadcast.response 'positive')}}
