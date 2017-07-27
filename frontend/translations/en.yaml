@@ -257,6 +257,13 @@ index:
           Simply drop us an
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           email.</a> We love to answer your questions and we will add them here.
+broadcast:
+  broadcast-details:
+    labels:
+      medium: Medium
+      station: Station
+      createdAt: Created at
+      updatedAt: Updated at
 find-broadcasts:
   header: Choose broadcasts
   help-messages:

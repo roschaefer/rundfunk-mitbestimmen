@@ -1,1 +1,8 @@
-{{outlet}}
+<div class="ui one column centered grid">
+  <div class="row">
+    <div class="eight wide large screen sixteen wide mobile column">
+      {{broadcast/broadcast-details broadcast=model close=(action 'back')}}
+    </div>
+  </div>
+  {{outlet}}
+</div>
