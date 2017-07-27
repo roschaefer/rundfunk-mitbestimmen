@@ -873,24 +873,24 @@ Then(/^I see broadcasts ascending in order like this:$/) do |table|
   end
 end
 
-When(/^I click on title of the broadcast card of "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I click on title of the broadcast card of "([^"]*)"$/) do |title|
+  find('.decision-card .title.header', text: title).click
 end
 
-Then(/^I see only this broadcast an nothing else, in order to stay focused$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^I see even more details of "([^"]*)" like:$/) do |arg1, table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I see only this broadcast and nothing else/) do
+  expect(page).to have_css('.header', count: 1)
+  expect(page).to have_css('.title', count: 1)
+  Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
+    expect(page).not_to have_text(broadcast.title)
+  end
+  expect(page).to have_css('.header', text: 'Medienmagazin')
 end
 
 When(/^I ask myself: What was "([^"]*)" about\?$/) do |arg1|
   # just documentation
 end
 
-Then(/^I can see these details:$/) do |table|
+Then(/^I can see (?:even more|these) details:$/) do |table|
   table.transpose.hashes.each do |broadcast_details|
     broadcast_details.each do |label, value|
       # change the expecation to match the template of the broadcast page

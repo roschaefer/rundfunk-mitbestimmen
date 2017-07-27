@@ -14,7 +14,7 @@ Feature: Link to broadcast details page on every broadcast card
   Scenario: Click on details button to get to broadcast details page
     Given I visit the find broadcasts page
     When I click on title of the broadcast card of "Medienmagazin"
-    Then I see only this broadcast an nothing else, in order to stay focused
-    And I see even more details of "Medienmagazin" like:
-      | Created at     | Last updated at |
-      | 27th July 2017 | 1st August 2017 |
+    Then I see only this broadcast and nothing else, in order to stay focused
+    And I can see even more details:
+      | Created at      | 27th July 2017  |
+      | Last updated at | 1st August 2017 |
