@@ -4,8 +4,11 @@ import { setupTest } from 'ember-mocha';
 
 describe('Unit | Controller | broadcast', function() {
   setupTest('controller:broadcast', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: [
+      'service:intl',
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
   });
 
   // Replace this with your real tests.

@@ -4,8 +4,11 @@ import { setupTest } from 'ember-mocha';
 
 describe('Unit | Controller | application', function() {
   setupTest('controller:application', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: [
+      'service:session',
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
   });
 
   // Replace this with your real tests.
