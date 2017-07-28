@@ -3,8 +3,10 @@ class ChartDataController < ApplicationController
   skip_authorization_check only: %i[diff location geojson]
 
   def diff
-    base_query = Station.left_joins(broadcasts: :statistic).group(:name).order(:name)
+    medium_id = params[:medium_id]
+    base_query = Station.where(medium_id: medium_id).left_joins(broadcasts: :statistic).group('"stations"."name"').order('"stations"."name"')
     results = base_query.pluck('name', 'SUM(CASE WHEN total IS NOT NULL THEN 1 ELSE 0 END)', 'SUM(total)', 'SUM(expected_amount)').transpose
+    results = [[], [], [], []] if results.empty?
     categories = results[0]
     number_of_broadcasts = results[1].map(&:to_f)
 
@@ -30,10 +32,10 @@ class ChartDataController < ApplicationController
         'yAxis' => 1,
         'data' => number_of_broadcasts,
         'type' => 'spline',
-        'marker' => { 'enabled' => false },
+        'marker' => { 'enabled' => false }
       }
     ]
-    diff_chart = ChartData::Diff.new(series: series, categories: categories)
+    diff_chart = ChartData::Diff.new(id: medium_id, series: series, categories: categories)
     render json: diff_chart
   end
 

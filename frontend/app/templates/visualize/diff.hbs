@@ -13,10 +13,19 @@
   <div class="row">
     <div class="column">
       <div id='chart-area'>
-        {{dynamic-high-charts chartOptions=chartOptions content=chartData}}
+        {{dynamic-high-charts chartOptions=tvChartOptions content=tvChartData}}
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="column">
+      <div id='chart-area'>
+        {{dynamic-high-charts chartOptions=radioChartOptions content=radioChartData}}
+      </div>
+    </div>
+  </div>
+
 </div>
 
 {{#link-to 'visualize.index' class="ui huge primary button"}}

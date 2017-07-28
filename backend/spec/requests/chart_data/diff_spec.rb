@@ -3,12 +3,26 @@ RSpec.describe 'ChartData', type: :request do
   let(:headers) { {} }
   let(:params)  { {} }
 
-  context 'given stations, broadcasts and selections' do
+  context 'no stations at all' do
+    describe 'GET' do
+      describe '/chart_data/diffs/:medium_id' do
+        let(:url) { '/chart_data/diffs/0' }
+        before { get url, params: params, headers: headers }
+        subject { response }
+        it { is_expected.to have_http_status(:ok) }
+      end
+    end
+  end
+
+  context 'given only TV stations, broadcasts and selections' do
+    let(:medium) { Medium.first }
     before(:all) do
+      # Medium
+      medium = create(:medium, id: 0, name: :tv)
       # STATIONS
-      create(:station, id: 1, name: 'Station 1')
-      create(:station, id: 2, name: 'Station 2')
-      create(:station, id: 3, name: 'Station 3')
+      create(:station, medium: medium, id: 1, name: 'Station 1')
+      create(:station, medium: medium, id: 2, name: 'Station 2')
+      create(:station, medium: medium, id: 3, name: 'Station 3')
 
       # BROADCASTS
       # Station 1
@@ -60,7 +74,7 @@ RSpec.describe 'ChartData', type: :request do
     end
 
     describe 'GET' do
-      describe '/chart_data/diffs/:id' do
+      describe '/chart_data/diffs/:medium_id' do
         let(:url) { '/chart_data/diffs/0' }
         before { get url, params: params, headers: headers }
 
@@ -79,8 +93,8 @@ RSpec.describe 'ChartData', type: :request do
         describe 'chart data' do
           describe 'categories' do
             it 'contains station names ordered alphabetically' do
-              create(:station, id: 47, name: 'Station 4')
-              create(:station, id: 11, name: 'Station 5') # this will disorder the normal enumeration
+              create(:station, medium: medium, id: 47, name: 'Station 4')
+              create(:station, medium: medium, id: 11, name: 'Station 5') # this will disorder the normal enumeration
               create(:broadcast, id: 7, station_id: 47)
               create(:broadcast, id: 8, station_id: 11) # and add some broadcasts, to have the new stations included
               get url, params: params, headers: headers.merge('locale' => 'en')
@@ -122,7 +136,7 @@ RSpec.describe 'ChartData', type: :request do
 
               context 'if no broadcast of a station ever received a vote' do
                 before do
-                  create(:broadcast, id: 7, station: create(:station, id: 4, name: 'Station 4'), selections: [])
+                  create(:broadcast, id: 7, station: create(:station, medium: medium, id: 4, name: 'Station 4'), selections: [])
                   get url, params: params, headers: headers
                 end
 
@@ -137,6 +151,82 @@ RSpec.describe 'ChartData', type: :request do
                 it 'number of broadcasts is 0' do
                   expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3, 2, 1, 0]
                 end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  context 'given TV and radio stations' do
+    before(:all) do
+      # Medium
+      tv    = create(:medium, id: 0, name: :tv)
+      radio = create(:medium, id: 1, name: :radio)
+      # STATIONS
+      create(:station, medium: tv,    id: 1, name: 'TV 1')
+      create(:station, medium: radio, id: 2, name: 'Radio 2')
+      create(:station, medium: radio, id: 3, name: 'Radio 3')
+
+      # BROADCASTS
+      # Station 1
+      create(:broadcast, id: 1, station_id: 1)
+      create(:broadcast, id: 2, station_id: 2)
+      create(:broadcast, id: 3, station_id: 3)
+
+      # SELECTIONS
+      # Station1
+      create_list(:selection, 1,  broadcast_id: 1, response: :positive, amount: 13)
+      create_list(:selection, 5,  broadcast_id: 2, response: :positive, amount: 7)
+      create_list(:selection, 10, broadcast_id: 3, response: :positive, amount: 3)
+    end
+
+    after(:all) do
+      Selection.destroy_all
+      User.destroy_all
+      Broadcast.destroy_all
+      Station.destroy_all
+      Medium.destroy_all
+    end
+
+    describe 'GET' do
+      describe '/chart_data/diffs/:medium_id' do
+        let(:url) { "/chart_data/diffs/#{medium_id}" }
+        before { get url, params: params, headers: headers }
+
+        describe 'chart data' do
+          describe ':medium_id = 1 (radio)' do
+            let(:medium_id) { 1 }
+
+            describe 'categories' do
+              it 'contains only names of radio stations' do
+                expect(parse_json(response.body, 'data/attributes/categories')).to eq(['Radio 2', 'Radio 3'])
+              end
+            end
+
+            describe 'series' do
+              describe 'data' do
+                it 'contains actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [35.0, 30.0]
+                end
+
+                it 'contains expected amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.375, 48.75]
+                end
+
+                it 'contains number of broadcasts 0 for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 1.0]
+                end
+              end
+            end
+          end
+
+          describe ':medium_id = 0 (TV)' do
+            let(:medium_id) { 0 }
+            describe 'categories' do
+              it 'contains only names of TV stations' do
+                expect(parse_json(response.body, 'data/attributes/categories')).to eq(['TV 1'])
               end
             end
           end

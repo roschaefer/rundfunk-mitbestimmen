@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :broadcasts
   resources :selections
 
-  get 'chart_data/diffs/:id', to: 'chart_data#diff'
+  get 'chart_data/diffs/:medium_id', to: 'chart_data#diff'
   get 'chart_data/geo/locations/', to: 'chart_data#location'
   get 'chart_data/geo/geojson/', to: 'chart_data#geojson'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
