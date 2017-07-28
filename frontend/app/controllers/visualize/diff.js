@@ -15,11 +15,21 @@ export default Ember.Controller.extend({
       },
       yAxis: [{
         title: {
-          text: this.get('intl').t('visualize.diff.chart.yAxis.amount_per_month')
-        },
+          text: this.get('intl').t('visualize.diff.chart.yAxis.amount_per_month'),
+          align: 'low',
+          style: {
+            fontWeight: 'bold',
+            fontSize: '16px'
+          }
+        }
       }, {
         title: {
-          text: this.get('intl').t('visualize.diff.chart.yAxis.number_of_broadcasts')
+          text: this.get('intl').t('visualize.diff.chart.yAxis.number_of_broadcasts'),
+          align: 'low',
+          style: {
+            fontWeight: 'bold',
+            fontSize: '16px'
+          }
         },
         opposite: true,
       }],
@@ -27,8 +37,10 @@ export default Ember.Controller.extend({
         shared: true
       },
       legend: {
-        layout: 'horizontal',
-        verticalAlign: 'top'
+        layout: 'vertical',
+        align: 'right',
+        floating: true,
+        verticalAlign: 'middle'
       }
     };
   }),

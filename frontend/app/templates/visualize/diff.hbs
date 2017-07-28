@@ -11,7 +11,60 @@
   </div>
 
   <div class="row">
+    <div class="ui sixteen wide mobile ten wide computer column">
+      {{#ui-accordion class="fluid"}}
+        <div class="title accordion-header">
+          <i class="dropdown icon"></i>
+          {{t 'visualize.diff.explanations.header'}}
+        </div>
+        <div class="content">
+          <div id="inner-explanation-accordion" class="accordion transition hidden">
+            <div class="title accordion-header">
+              <i class="dropdown icon"></i>
+              {{t 'visualize.diff.explanations.actual-amount.header'}}
+            </div>
+            <div class="content accordion-text">
+              <p>
+              {{t 'visualize.diff.explanations.actual-amount.content'}}
+              </p>
+            </div>
+            <div class="title accordion-header">
+              <i class="dropdown icon"></i>
+              {{t 'visualize.diff.explanations.expected-amount.header'}}
+            </div>
+            <div class="content accordion-text">
+              <p>
+              {{t 'visualize.diff.explanations.expected-amount.content'}}
+              <br>
+              <div class="ui basic compact segment">
+                <strong>
+                <span>expected_amount(broadcast) = number_of_votes(broadcast) * average_per_vote</span>
+                <br>
+                <span>average_per_vote = total_amount / total_number_of_votes </span>
+                </strong>
+              </div>
+              </p>
+            </div>
+            <div class="title accordion-header">
+              <i class="dropdown icon"></i>
+              {{t 'visualize.diff.explanations.number-of-broadcasts.header'}}
+            </div>
+            <div class="content accordion-text">
+              <p>
+              {{t 'visualize.diff.explanations.number-of-broadcasts.content'}}
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/ui-accordion}}
+    </div>
+  </div>
+
+  <div class="row">
     <div class="column">
+      <h1 class="ui large centered header">
+        {{t 'visualize.diff.charts.tv.header'}}
+      </h1>
       <div id='chart-area'>
         {{dynamic-high-charts chartOptions=tvChartOptions content=tvChartData}}
       </div>
@@ -20,15 +73,29 @@
 
   <div class="row">
     <div class="column">
+      <div class="ui padded basic segment">
+    </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <h1 class="ui large centered header">
+        {{t 'visualize.diff.charts.radio.header'}}
+      </h1>
       <div id='chart-area'>
         {{dynamic-high-charts chartOptions=radioChartOptions content=radioChartData}}
       </div>
     </div>
   </div>
 
-</div>
 
-{{#link-to 'visualize.index' class="ui huge primary button"}}
-<i class="left arrow icon"></i>
-{{t 'visualize.overview' }}
-{{/link-to}}
+  <div class="row">
+    <div class="column">
+      {{#link-to 'visualize.index' class="ui huge primary button"}}
+        <i class="left arrow icon"></i>
+        {{t 'visualize.overview' }}
+      {{/link-to}}
+    </div>
+  </div>
+</div>
