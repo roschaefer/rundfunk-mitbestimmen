@@ -17,21 +17,4 @@ describe('Unit | Transform | series', function() {
     let deserialized = transform.deserialize(serialized);
     expect(deserialized[0]['data'][0]).to.equal(12.0);
   });
-
-  it('camelizes attribute names', function() {
-    let transform = this.subject();
-    let serialized = [
-      { "name":"Actual distribution",
-        "tooltip": {
-          'value-suffix': '€',
-          'value-decimals': 2
-        },
-        'y-axis': 3
-      },
-    ];
-    let deserialized = transform.deserialize(serialized);
-    expect(deserialized[0]['tooltip']['valueSuffix']).to.equal('€');
-    expect(deserialized[0]['tooltip']['valueDecimals']).to.equal(2);
-    expect(deserialized[0]['yAxis']).to.equal(3);
-  });
 });

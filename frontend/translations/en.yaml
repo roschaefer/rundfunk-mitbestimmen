@@ -368,8 +368,10 @@ visualize:
         content: The number of all broadcasts of a station in the database.
     chart:
       yAxis:
-        amount_per_month: € per month
-        number_of_broadcasts: Number of broadcasts
+        actual-amount: Actual amount
+        expected-amount: Expected amount
+        amount-per-month: Euro per month
+        number-of-broadcasts: Number of broadcasts
     charts:
       tv:
         header: TV stations

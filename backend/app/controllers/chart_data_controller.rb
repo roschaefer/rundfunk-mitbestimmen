@@ -17,22 +17,13 @@ class ChartDataController < ApplicationController
     series = [
       {
         'name' => I18n.t('chart_data.diff.series.actual'),
-        'tooltip' => { 'valueSuffix' => '€', 'valueDecimals' => 2 },
-        'yAxis' => 0,
-        'data' => actual_amounts,
-        'type' => 'column'
+        'data' => actual_amounts
       }, {
         'name' => I18n.t('chart_data.diff.series.expected'),
-        'tooltip' => { 'valueSuffix' => '€', 'valueDecimals' => 2 },
-        'yAxis' => 0,
-        'data' => expected_amounts,
-        'type' => 'column'
+        'data' => expected_amounts
       }, {
         'name' => I18n.t('chart_data.diff.series.number_of_broadcasts'),
-        'yAxis' => 1,
-        'data' => number_of_broadcasts,
-        'type' => 'spline',
-        'marker' => { 'enabled' => false }
+        'data' => number_of_broadcasts
       }
     ]
     diff_chart = ChartData::Diff.new(id: medium_id, series: series, categories: categories)

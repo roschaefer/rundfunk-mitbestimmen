@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
       },
       yAxis: [{
         title: {
-          text: this.get('intl').t('visualize.diff.chart.yAxis.amount_per_month'),
+          text: this.get('intl').t('visualize.diff.chart.yAxis.amount-per-month'),
           align: 'low',
           style: {
             fontWeight: 'bold',
@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
         }
       }, {
         title: {
-          text: this.get('intl').t('visualize.diff.chart.yAxis.number_of_broadcasts'),
+          text: this.get('intl').t('visualize.diff.chart.yAxis.number-of-broadcasts'),
           align: 'low',
           style: {
             fontWeight: 'bold',
@@ -56,10 +56,38 @@ export default Ember.Controller.extend({
     chartOptions.xAxis.categories = this.get('model.radio.categories');
     return chartOptions;
   }),
-  tvChartData: Ember.computed('model.tv', function() {
-    return this.get('model.tv.series');
+
+  defaultChartData: Ember.computed('intl.locale', function() {
+    return [{
+        name: this.get('intl').t('visualize.diff.chart.yAxis.actual-amount'),
+        tooltip: { valueSuffix: '€', valueDecimals: 2 },
+        yAxis: 0,
+        type: 'column'
+      }, {
+        name: this.get('intl').t('visualize.diff.chart.yAxis.expected-amount'),
+        tooltip: { valueSuffix: '€', valueDecimals: 2 },
+        yAxis: 0,
+        type: 'column'
+      }, {
+        name: this.get('intl').t('visualize.diff.chart.yAxis.number-of-broadcasts'),
+        marker: { enabled: false},
+        yAxis: 1,
+        type: 'spline',
+      }
+    ]
   }),
-  radioChartData: Ember.computed('model.radio', function() {
-    return this.get('model.radio.series');
+  tvChartData: Ember.computed('defaultChartData', 'model.tv', function() {
+    let chartData = Ember.copy(this.get('defaultChartData'), true);
+    chartData[0].data = this.get('model.tv.series').objectAt(0).data;
+    chartData[1].data = this.get('model.tv.series').objectAt(1).data;
+    chartData[2].data = this.get('model.tv.series').objectAt(2).data;
+    return chartData;
+  }),
+  radioChartData: Ember.computed('defaultChartData', 'model.radio', function() {
+    let chartData = Ember.copy(this.get('defaultChartData'), true);
+    chartData[0].data = this.get('model.radio.series').objectAt(0).data;
+    chartData[1].data = this.get('model.radio.series').objectAt(1).data;
+    chartData[2].data = this.get('model.radio.series').objectAt(2).data;
+    return chartData;
   }),
 });

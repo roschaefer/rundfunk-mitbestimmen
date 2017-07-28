@@ -368,8 +368,10 @@ visualize:
       basierenden Beträgen, jeweils gruppiert nach Sender.
     chart:
       yAxis:
-        amount_per_month: € pro Monat
-        number_of_broadcasts: Anzahl Sendungen
+        actual-amount: Tatsächlicher Betrag
+        expected-amount: Zu erwartender Betrag
+        amount-per-month: Euro pro Monat
+        number-of-broadcasts: Anzahl Sendungen
     charts:
       tv:
         header: Fernsehsender
