@@ -3,36 +3,19 @@ class ChartDataController < ApplicationController
   skip_authorization_check only: %i[diff location geojson]
 
   def diff
-    actual_distribution = Station.joins(broadcasts: :statistic).group('"stations"."name"').sum(:total)
-    actual_distribution.default = '0.0'
-    broadcasts_with_stations = Broadcast.where.not(station: nil)
+    base_query = Station.left_joins(broadcasts: :statistic).group(:name).order(:name)
+    results = base_query.pluck('name', 'SUM(total)', 'SUM(expected_amount)').transpose
 
-    total_amount = broadcasts_with_stations.joins(:selections).sum(:amount)
-    total_number_of_selections = broadcasts_with_stations.joins(:selections).count
-    amount_per_broadcast =  total_amount / total_number_of_selections
+    categories = results[0]
 
-    broadcasts_per_station = Station.joins(:broadcasts).group('"stations"."name"').count
-    stations_with_selections = Station.joins(:selections).each.collect { |s| s.name }
-
-    uniform_expectation = {}
-    uniform_expectation.default = '0.0'
-    broadcasts_per_station.each.map do |k, v|
-      if stations_with_selections.include?(k)
-       uniform_expectation.update({k => (v * amount_per_broadcast).round(4)})
-      end
-    end
+    # to_f turns nil into 0.0 and rounds 0.999999999 to 1
+    actual_amounts = results[1].map(&:to_f)
+    expected_amounts = results[2].map(&:to_f)
 
     series = [
-      { 'name' => I18n.t('chart_data.diff.series.actual'), 'data' => [] },
-      { 'name' => I18n.t('chart_data.diff.series.expected'), 'data' => [] }
+      { 'name' => I18n.t('chart_data.diff.series.actual'), 'data' => actual_amounts },
+      { 'name' => I18n.t('chart_data.diff.series.expected'), 'data' => expected_amounts }
     ]
-    categories = broadcasts_per_station.keys.sort #stations_with_selections.sort
-
-    categories.each do |station_name|
-      series[0]['data'] << actual_distribution[station_name]
-      series[1]['data'] << uniform_expectation[station_name]
-    end
-
     diff_chart = ChartData::Diff.new(series: series, categories: categories)
     render json: diff_chart
   end
