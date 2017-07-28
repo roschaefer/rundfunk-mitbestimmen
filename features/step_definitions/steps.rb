@@ -519,13 +519,14 @@ Given(/^the statistics look like this:$/) do |table|
     average_amount = sanitize_amount(row['Total'])/n_positive
     n_neutral = (1.0 - approval)*n_selections
 
+    tv = Medium.find_by(id: 0) || create(:medium, id: 0, name: 'TV')
     station = if row['Station']
-                Station.find_by(name: row['Station']) || create(:station, name: row['Station'])
+                Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)
               else
                 nil
               end
 
-    broadcast = create(:broadcast, title: row['Broadcast'], station: station)
+    broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, station: station)
     create_list(:selection, n_positive.to_i,
                 broadcast: broadcast,
                 response: :positive,
@@ -734,7 +735,7 @@ end
 When(/^download the chart as SVG$/) do
   expect(page).to have_css('#chart-area')
   # export_button
-  find('path.highcharts-button-symbol').click
+  first('path.highcharts-button-symbol').click
   find('.highcharts-menu-item', text: 'SVG').click
 end
 
