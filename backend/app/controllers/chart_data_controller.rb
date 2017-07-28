@@ -29,7 +29,8 @@ class ChartDataController < ApplicationController
         'name' => I18n.t('chart_data.diff.series.number_of_broadcasts'),
         'yAxis' => 1,
         'data' => number_of_broadcasts,
-        'type' => 'spline'
+        'type' => 'spline',
+        'marker' => { 'enabled' => false },
       }
     ]
     diff_chart = ChartData::Diff.new(series: series, categories: categories)

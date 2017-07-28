@@ -3,9 +3,11 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize(serialized) {
     serialized.map((series) => {
-      series['data'] = series['data'].map((d) => {
-        return parseFloat(d);
-      });
+      if (series['data']){
+        series['data'] = series['data'].map((d) => {
+          return parseFloat(d);
+        });
+      }
       if (series['y-axis']){
         series['yAxis'] = series['y-axis'];
       }
