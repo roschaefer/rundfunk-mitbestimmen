@@ -4,17 +4,33 @@ class ChartDataController < ApplicationController
 
   def diff
     base_query = Station.left_joins(broadcasts: :statistic).group(:name).order(:name)
-    results = base_query.pluck('name', 'SUM(total)', 'SUM(expected_amount)').transpose
-
+    results = base_query.pluck('name', 'SUM(CASE WHEN total IS NOT NULL THEN 1 ELSE 0 END)', 'SUM(total)', 'SUM(expected_amount)').transpose
     categories = results[0]
+    number_of_broadcasts = results[1].map(&:to_f)
 
     # to_f turns nil into 0.0 and rounds 0.999999999 to 1
-    actual_amounts = results[1].map(&:to_f)
-    expected_amounts = results[2].map(&:to_f)
+    actual_amounts = results[2].map(&:to_f)
+    expected_amounts = results[3].map(&:to_f)
 
     series = [
-      { 'name' => I18n.t('chart_data.diff.series.actual'), 'data' => actual_amounts },
-      { 'name' => I18n.t('chart_data.diff.series.expected'), 'data' => expected_amounts }
+      {
+        'name' => I18n.t('chart_data.diff.series.actual'),
+        'tooltip' => { 'valueSuffix' => '€', 'valueDecimals' => 2 },
+        'yAxis' => 0,
+        'data' => actual_amounts,
+        'type' => 'column'
+      }, {
+        'name' => I18n.t('chart_data.diff.series.expected'),
+        'tooltip' => { 'valueSuffix' => '€', 'valueDecimals' => 2 },
+        'yAxis' => 0,
+        'data' => expected_amounts,
+        'type' => 'column'
+      }, {
+        'name' => I18n.t('chart_data.diff.series.number_of_broadcasts'),
+        'yAxis' => 1,
+        'data' => number_of_broadcasts,
+        'type' => 'spline'
+      }
     ]
     diff_chart = ChartData::Diff.new(series: series, categories: categories)
     render json: diff_chart

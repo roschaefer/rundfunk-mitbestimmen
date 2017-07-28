@@ -3,6 +3,7 @@ de:
   chart_data:
     diff:
       series:
+        number_of_broadcasts: Anzahl Sendungen
         actual: Tatsächlicher Betrag
         expected: Zu erwartender Betrag
   activerecord:

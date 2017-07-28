@@ -369,7 +369,8 @@ visualize:
       Referenz.
     chart:
       yAxis:
-        title: € pro Monat
+        amount_per_month: € pro Monat
+        number_of_broadcasts: Anzahl Sendungen
   geo:
     header: Geographische Visualisierung
     sub-header: >

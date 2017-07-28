@@ -356,7 +356,8 @@ visualize:
       gets the same amount and take that as a reference.
     chart:
       yAxis:
-        title: € per month
+        amount_per_month: € per month
+        number_of_broadcasts: Number of broadcasts
   geo:
     header: Geographical visualization
     sub-header: >

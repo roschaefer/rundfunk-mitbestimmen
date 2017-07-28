@@ -108,11 +108,16 @@ RSpec.describe 'ChartData', type: :request do
                 expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25]
               end
 
+              it 'contains number of broadcasts 0' do
+                expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3, 2, 1]
+              end
+
               it 'arrays align with categories array' do
-                category        = parse_json(response.body, 'data/attributes/categories/0')
-                actual_amount   = parse_json(response.body, 'data/attributes/series/0/data/0')
-                expected_amount = parse_json(response.body, 'data/attributes/series/1/data/0')
-                expect([category, actual_amount, expected_amount]).to eq(['Station 1', 21.0, 24.3])
+                category             = parse_json(response.body, 'data/attributes/categories/0')
+                actual_amount        = parse_json(response.body, 'data/attributes/series/0/data/0')
+                expected_amount      = parse_json(response.body, 'data/attributes/series/1/data/0')
+                number_of_broadcasts = parse_json(response.body, 'data/attributes/series/2/data/0')
+                expect([category, actual_amount, expected_amount, number_of_broadcasts]).to eq(['Station 1', 21.0, 24.3, 3])
               end
 
               context 'if no broadcast of a station ever received a vote' do
@@ -127,6 +132,10 @@ RSpec.describe 'ChartData', type: :request do
 
                 it 'expected amount is 0.0' do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25, 0.0]
+                end
+
+                it 'number of broadcasts is 0' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3, 2, 1, 0]
                 end
               end
             end

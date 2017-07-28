@@ -12,18 +12,24 @@ export default Ember.Controller.extend({
         text: ''
       },
       xAxis: {
+        crosshair: true,
         categories: this.get('model').get('categories')
       },
-      yAxis: {
+      yAxis: [{
         title: {
-          text: this.get('intl').t('visualize.diff.chart.yAxis.title')
-        }
-      },
+          text: this.get('intl').t('visualize.diff.chart.yAxis.amount_per_month')
+        },
+      }, {
+        title: {
+          text: this.get('intl').t('visualize.diff.chart.yAxis.number_of_broadcasts')
+        },
+        opposite: true,
+      }],
       tooltip: {
-        valueDecimals: 2,
-        valueSuffix: '€'
+        shared: true
       },
       legend: {
+        layout: 'horizontal',
         verticalAlign: 'top'
       }
     };
