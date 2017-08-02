@@ -3,8 +3,9 @@ de:
   chart_data:
     diff:
       series:
-        actual: Auf Abstimmungen der Nutzer basierender Betrag
-        uniform: Jede Sendung erhält den gleichen Betrag
+        number_of_broadcasts: Anzahl Sendungen
+        actual: Tatsächlicher Betrag
+        expected: Zu erwartender Betrag
   activerecord:
     attributes:
       broadcast:

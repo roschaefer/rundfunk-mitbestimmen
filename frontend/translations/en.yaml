@@ -344,19 +344,39 @@ statistics:
 visualize:
   index:
     headers:
-      diff: Comparison expected vs. actual
+      diff: Expected vs. actual
       geo: Geographical visualization
       time: Changes over time
       graph: Relationships between broadcasts
   overview: Visualization overview
   diff:
-    header: Total amounts by TV or radio station
+    header: Expected vs. Actual
     sub-header: >
-      The actual production costs are not public. So we assume every broadcast
-      gets the same amount and take that as a reference.
+      Comparison of the average, expected amounts with actual amounts based on
+      voting, grouped by station.
+    explanations:
+      header: Which formula is used to calculate the results?
+      actual-amount:
+        header: Actual amount
+        content: The total amount of all broadcasts of a station.
+      expected-amount:
+        header: Expected amount
+        content: >
+          The sum of all expected amounts of all broadcasts of a station.
+      number-of-broadcasts:
+        header: Number of broadcasts
+        content: The number of all broadcasts of a station in the database.
     chart:
       yAxis:
-        title: € per month
+        actual-amount: Actual amount
+        expected-amount: Expected amount
+        amount-per-month: Euro per month
+        number-of-broadcasts: Number of broadcasts
+    charts:
+      tv:
+        header: TV stations
+      radio:
+        header: Radio stations
   geo:
     header: Geographical visualization
     sub-header: >

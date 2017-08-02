@@ -1,9 +1,5 @@
 module ChartData
   class Diff < ActiveModelSerializers::Model
-    attributes :series, :categories
-
-    def id
-      0
-    end
+    attributes :id, :series, :categories
   end
 end
