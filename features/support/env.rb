@@ -28,10 +28,6 @@ Capybara.configure do |config|
 end
 
 Before do
-  if page.driver.browser.respond_to?(:manage)
-    page.driver.browser.manage.window.maximize
-  end
-
   clear_downloads
 end
 
