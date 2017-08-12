@@ -84,20 +84,22 @@ docker-compose run backend bin/rails db:seed
 
 ## Local Installation (best option for developers)
 
-Make sure that you have a recent version of [npm](https://www.npmjs.com/) and
-[ruby](https://www.ruby-lang.org/en/) and [EmberJS](https://www.emberjs.com/)
-installed before you proceed. E.g. we have the following versions:
+Make sure that you have a recent version of [node](https://nodejs.org/en/), [npm](https://www.npmjs.com/), [bower](https://bower.io/), [EmberJS](https://www.emberjs.com/) and [ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have the following versions:
 
 ```sh
-npm --version
-# 5.0.1
-ruby --version
-#ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
-ember --version
-# WARNING: Node v8.0.0 is not tested against Ember CLI on your platform. We recommend that you use the most-recent "Active LTS" version of Node.js.
-# ember-cli: 3.13.2
-# node: 8.0.0
-# os: linux x64
+$ node --version
+v6.11.2
+$ npm --version
+5.2.0
+$ bower --version
+1.8.0
+$ ember --version
+ember-cli: 2.14.2
+node: 6.11.2
+os: linux x64
+
+$ ruby --version
+ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 ```
 
 Clone the repository:
