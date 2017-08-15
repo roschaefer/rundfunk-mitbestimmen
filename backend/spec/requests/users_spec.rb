@@ -43,8 +43,8 @@ RSpec.describe 'Users', type: :request do
       context 'logged in' do
         let(:headers) { super().merge(authenticated_header(user)) }
 
-        specify { expect { action }.to(change { user.reload.latitude}.to(36.72)) }
-        specify { expect { action }.to(change { user.reload.longitude}.to(-4.42)) }
+        specify { expect { action }.to(change { user.reload.latitude }.to(36.72)) }
+        specify { expect { action }.to(change { user.reload.longitude }.to(-4.42)) }
         specify { expect { action }.to(change { user.reload.city }.to('Malaga')) }
         specify { expect { action }.to(change { user.reload.postal_code }.to('29001')) }
         specify { expect { action }.to(change { user.reload.state_code }.to('334')) }
@@ -53,8 +53,8 @@ RSpec.describe 'Users', type: :request do
         context 'already geocoded user' do
           let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'DE', state_code: 'BB', city: 'Potsdam', postal_code: '14482') }
           describe 'overwrites geo location' do
-            specify { expect { action }.to(change { user.reload.latitude}.to(36.72)) }
-            specify { expect { action }.to(change { user.reload.longitude}.to(-4.42)) }
+            specify { expect { action }.to(change { user.reload.latitude }.to(36.72)) }
+            specify { expect { action }.to(change { user.reload.longitude }.to(-4.42)) }
             specify { expect { action }.to(change { user.reload.city }.to('Malaga')) }
           end
         end
