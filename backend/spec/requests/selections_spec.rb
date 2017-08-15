@@ -62,13 +62,13 @@ RSpec.describe 'Selections', type: :request do
       let(:headers) { authenticated_header(user) }
 
       it { is_expected.to have_http_status(:ok) }
-
       it 'returns selections of the current user' do
         expect(subject.body).to have_json_size(2).at_path('data')
-        expect(parse_json(subject.body, 'data/0/attributes')).to include('response' => 'positive')
-        expect(parse_json(subject.body, 'data/0/id')).to eq positive_selection.id.to_s
-        expect(parse_json(subject.body, 'data/1/attributes')).to include('response' => 'negative')
-        expect(parse_json(subject.body, 'data/1/id')).to eq negative_selection.id.to_s
+        data = parse_json(subject.body, 'data').sort_by { |key| key['attributes']['response'] }
+        expect(data.first['id']).to eq(negative_selection.id.to_s)
+        expect(data.first['attributes']).to include('response' => 'negative')
+        expect(data.second['id']).to eq(positive_selection.id.to_s)
+        expect(data.second['attributes']).to include('response' => 'positive')
       end
 
       describe '?response=positive' do
