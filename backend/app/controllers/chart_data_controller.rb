@@ -1,6 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[diff location geojson]
+  skip_authorization_check only: %i[diff geojson]
 
   def diff
     medium_id = params[:medium_id]
@@ -28,12 +28,6 @@ class ChartDataController < ApplicationController
     ]
     diff_chart = ChartData::Diff.new(id: medium_id, series: series, categories: categories)
     render json: diff_chart
-  end
-
-  def location
-    locations = []
-    locations << current_user if current_user && current_user.location?
-    render json: locations, each_serializer: ChartData::Geo::LocationSerializer
   end
 
   def geojson

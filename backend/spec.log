@@ -1,0 +1,64 @@
+
+Users
+  GET
+    /users/:id
+      given three users
+        not logged in
+          does not return any location (FAILED - 1)
+        logged in
+          returns the own location (FAILED - 2)
+          returns no other location (FAILED - 3)
+          user has no location for any reason
+            does not return any location (FAILED - 4)
+
+Failures:
+
+  1) Users GET /users/:id given three users not logged in does not return any location
+     Failure/Error: is_expected.to have_json_size(0).at_path('data')
+
+     JsonSpec::MissingPath:
+       Missing JSON path "data"
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:51:in `missing_json_path!'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:45:in `block in value_at_json_path'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `each'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `inject'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `value_at_json_path'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:9:in `parse_json'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/matchers/have_json_size.rb:13:in `matches?'
+     # ./spec/requests/users_spec.rb:29:in `block (6 levels) in <top (required)>'
+
+  2) Users GET /users/:id given three users logged in returns the own location
+     Failure/Error: expect(parse_json(subject, 'data/0/attributes')).to include(expected)
+
+     JsonSpec::MissingPath:
+       Missing JSON path "data/0/attributes"
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:51:in `missing_json_path!'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:40:in `block (2 levels) in value_at_json_path'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:40:in `fetch'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:40:in `block in value_at_json_path'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `each'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `inject'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:37:in `value_at_json_path'
+     # /home/robert/.gem/ruby/2.4.0/gems/json_spec-1.1.5/lib/json_spec/helpers.rb:9:in `parse_json'
+     # ./spec/requests/users_spec.rb:44:in `block (6 levels) in <top (required)>'
+
+  3) Users GET /users/:id given three users logged in returns no other location
+     Failure/Error: is_expected.to have_json_size(1).at_path('data')
+       Expected JSON value size to be 1, got 3 at path "data"
+     # ./spec/requests/users_spec.rb:48:in `block (6 levels) in <top (required)>'
+
+  4) Users GET /users/:id given three users logged in user has no location for any reason does not return any location
+     Failure/Error: is_expected.to have_json_size(0).at_path('data')
+       Expected JSON value size to be 0, got 3 at path "data"
+     # ./spec/requests/users_spec.rb:54:in `block (7 levels) in <top (required)>'
+
+Finished in 1.88 seconds (files took 16.77 seconds to load)
+4 examples, 4 failures
+
+Failed examples:
+
+rspec ./spec/requests/users_spec.rb:28 # Users GET /users/:id given three users not logged in does not return any location
+rspec ./spec/requests/users_spec.rb:35 # Users GET /users/:id given three users logged in returns the own location
+rspec ./spec/requests/users_spec.rb:47 # Users GET /users/:id given three users logged in returns no other location
+rspec ./spec/requests/users_spec.rb:53 # Users GET /users/:id given three users logged in user has no location for any reason does not return any location
+

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :topics
   resources :broadcasts
   resources :selections
+  resources :users, only: %i[update show]
 
   get 'chart_data/diffs/:medium_id', to: 'chart_data#diff'
   get 'chart_data/geo/locations/', to: 'chart_data#location'
