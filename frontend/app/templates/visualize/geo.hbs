@@ -19,7 +19,7 @@
         {{layers.tile url=tileLayerUrl}}
         {{layers.geoJSON geoJSON=model.geojson style=(action 'style') onEachFeature=(action 'onEachFeature')}}
 
-        {{#if model.user}}
+        {{#if model.user.hasLocation}}
           {{#layers.marker location=model.user.coordinates as |marker|}}
             {{#marker.popup}}
               <h3>{{t 'visualize.geo.user-location.header'}}</h3>
@@ -35,6 +35,12 @@
           {{/layers.marker}}
         {{/if}}
       {{/leaflet-map}}
+      {{geo/update-location
+        user=model.user
+        startUpdateLocationAction=(action 'startUpdateLocation')
+        loginAction=(action 'loginAction')
+        isUpdatingLocation=isUpdatingLocation
+      }}
     {{/missing.preview}}
 
     {{/missing-feature}}

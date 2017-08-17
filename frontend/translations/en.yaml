@@ -395,12 +395,12 @@ visualize:
           <ul>
           <li>Display user distribution across federal states</li>
           <li>Show own location to logged in users</li>
+          <li>Change your location</li>
           </ul>
         Still missing:
           <ul>
           <li>Select specific broadcasts</li>
           <li>Select different metrics</li>
-          <li>Change your location</li>
           </ul>
     user-location:
       header: Your location
