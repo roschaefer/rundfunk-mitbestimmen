@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_authorization_check only: %i[show update] # manual authorization with cancancan
+  skip_authorization_check only: %i[show update]
+  before_action :authenticate_user
 
   # GET /users/1
   def show
@@ -8,8 +9,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    authorize! :update, current_user # manual authorization
-
     if current_user.update(user_params)
       render json: current_user
     else
