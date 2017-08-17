@@ -8,7 +8,7 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
     return RSVP.hash({
       user: this.store.findRecord('user', 'me'),
       geojson: Ember.$.get(`${host}/chart_data/geo/geojson`),
-      summarizedStatistic: this.store.findRecord('summarized-statistic', 0)
+      summarizedStatistic: this.store.queryRecord('summarized-statistic', {})
     });
   }
 });
