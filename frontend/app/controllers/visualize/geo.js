@@ -18,8 +18,15 @@ export default Ember.Controller.extend({
   totalUsers: Ember.computed('feature', function() {
     return this.get('model.summarizedStatistic.registeredUsers');
   }),
+  isUpdatingLocation: false,
 
   actions: {
+    loginAction(){
+      this.send('login');
+    },
+    startUpdateLocation(){
+      this.toggleProperty('isUpdatingLocation');
+    },
     style(feature) {
       return {
         fillColor: this.get('scale')(feature.properties.user_count_normalized).hex(),
@@ -42,6 +49,15 @@ export default Ember.Controller.extend({
           layer.bringToFront();
           this.set('count', feature.properties.user_count_total);
           this.set('state', feature.properties.NAME_1);
+        },
+        click: (e) => {
+          if (this.get('isUpdatingLocation')) {
+            let user = this.get('model.user');
+            user.set('coordinates', [e.latlng.lat, e.latlng.lng]);
+            user.save().then(() => {
+              this.set('isUpdatingLocation', false);
+            });
+          }
         },
         mouseout: (e) => {
           let layer = e.target;

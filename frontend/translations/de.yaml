@@ -407,12 +407,12 @@ visualize:
           <ul>
           <li>Nutzerverteilung über Bundesländer anzeigen</li>
           <li>Eingeloggten Nutzern eigenen Standort anzeigen</li>
+          <li>Eigenen Standort korrigieren</li>
           </ul>
         Es fehlt noch:
           <ul>
           <li>Einzelne Sendungen auswählen</li>
           <li>Unterschiedliche Metriken auswählen</li>
-          <li>Eigenen Standort korrigieren</li>
           </ul>
     user-location:
       header: Dein Standort
