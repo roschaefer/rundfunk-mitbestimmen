@@ -4,20 +4,20 @@ import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { makeList, manualSetup } from 'ember-data-factory-guy';
 
+let intl;
 describe('Integration | Component | broadcast search', function() {
   setupComponentTest('broadcast-search', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
   beforeEach(function(){
     manualSetup(this.container);
   });
 
   it('renders', function() {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    this.inject.service('intl');
-    this.container.lookup('service:intl').setLocale('en');
-
     this.set('totalCount', 10);
     this.set('filterParams', {
       get(){

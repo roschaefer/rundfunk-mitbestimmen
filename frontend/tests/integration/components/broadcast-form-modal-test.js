@@ -3,15 +3,17 @@ import { describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
+let intl;
 describe('Integration | Component | broadcast form modal', function() {
   setupComponentTest('broadcast-form-modal', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
 
   it('renders', function() {
-    this.inject.service('intl');
-    this.container.lookup('service:intl').setLocale('en');
-
     this.render(hbs`{{broadcast-form-modal}}`);
     expect(this.$()).to.have.length(1);
     expect(this.$().text().trim()).to.match(/Edit broadcast/);
