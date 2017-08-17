@@ -5,6 +5,7 @@ import { setupTest } from 'ember-mocha';
 describe('Unit | Route | visualize/geo', function() {
   setupTest('route:visualize/geo', {
     needs: [
+      'service:session',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik'
     ]
