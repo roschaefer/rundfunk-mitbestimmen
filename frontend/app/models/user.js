@@ -9,7 +9,17 @@ export default DS.Model.extend({
   stateCode: DS.attr('string'),
   city: DS.attr('string'),
   postalCode: DS.attr('string'),
-  coordinates: Ember.computed('latitude', 'longitude', function() {
-    return [this.get('latitude'), this.get('longitude')];
+  coordinates: Ember.computed('latitude', 'longitude', {
+    get(){
+      return [this.get('latitude'), this.get('longitude')];
+    },
+    set(key, coordinates){
+      let [latitude, longitude ] = coordinates;
+      this.setProperties({latitude, longitude});
+      return coordinates;
+    }
+  }),
+  hasLocation: Ember.computed('latitude', 'longitude', function() {
+    return (this.get('latitude') && this.get('longitude') && true);
   }),
 });
