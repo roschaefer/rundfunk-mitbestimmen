@@ -19,7 +19,7 @@ class StatisticsController < ApplicationController
     # fake the model
     render json: {
       data: {
-        id: params[:id],
+        id: 1,
         type: 'summarized-statistics',
         attributes: {
           'broadcasts' => Broadcast.count,

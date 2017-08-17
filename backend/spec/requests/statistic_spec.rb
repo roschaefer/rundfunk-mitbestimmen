@@ -93,8 +93,8 @@ RSpec.describe 'Balances', type: :request do
       end
     end
 
-    describe '/summarized_statistics/:id' do
-      let(:url) { '/summarized_statistics/1' }
+    describe '/summarized_statistics/' do
+      let(:url) { '/summarized_statistics' }
 
       before(:all) do
         create_list(:user, 42).each do |user|
