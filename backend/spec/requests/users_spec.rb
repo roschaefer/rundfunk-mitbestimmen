@@ -35,7 +35,7 @@ RSpec.describe 'Users', type: :request do
           describe 'http status' do
             before { action }
             subject { response }
-            it { is_expected.to have_http_status(:forbidden) }
+            it { is_expected.to have_http_status(:unauthorized) }
           end
         end
       end
@@ -66,8 +66,8 @@ RSpec.describe 'Users', type: :request do
     let(:action) { get url, params: params, headers: headers }
     let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'DE', state_code: 'BB', city: 'Potsdam', postal_code: '14482') }
     before { user }
-    describe '/users/:id' do
-      let(:url) { '/users/given_id_does_not_matter' }
+    describe '/users/' do
+      let(:url) { '/users/' }
       let(:js) { JSON.parse(response.body) }
       subject do
         action
@@ -76,10 +76,10 @@ RSpec.describe 'Users', type: :request do
 
       context 'not logged in' do
         it 'does not return any location' do
-          expect(subject.body).to eq('null')
+          expect(subject.body).to eq('')
         end
 
-        it { is_expected.to have_http_status(:ok) }
+        it { is_expected.to have_http_status(:unauthorized) }
       end
 
       context 'logged in' do
