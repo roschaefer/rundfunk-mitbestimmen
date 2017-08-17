@@ -4,11 +4,15 @@ import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
-let broadcast;
+let broadcast, intl;
 
 describe('Integration | Component | decision card', function() {
   setupComponentTest('decision-card', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
   beforeEach(function(){
     manualSetup(this.container);
