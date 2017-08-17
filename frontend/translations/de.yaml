@@ -61,6 +61,14 @@ missing-feature:
   not-a-developer:
     header: Du bist kein Entwickler?
     sub-header: Überhaupt kein Problem, es gibt ganz vielfältige Möglichkeiten mitzumachen! Melde Dich einfach bei uns.
+update-location:
+  click-map: Klicke auf die Karte
+  click-here: Klicke hier um Deinen Standort zu ändern
+  login: Logge Dich ein um Deinen Standort einzutragen
+  button:
+    update: Standort ändern
+    add: Standort hinzufügen
+    cancel: Abbrechen
 application:
   menu:
     item:
