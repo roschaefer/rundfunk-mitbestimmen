@@ -3,9 +3,14 @@ import { beforeEach, context, describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
+let intl;
 describe('Integration | Component | geo/info box', function() {
   setupComponentTest('geo/info-box', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
 
   let state, count, totalGermanUsers, totalUsers;
