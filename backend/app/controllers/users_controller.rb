@@ -9,7 +9,9 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if current_user.update(user_params)
+    authorize! :update, current_user # manual authorization
+    # Only update geolocation for now
+    if current_user.update_location_data(user_params[:latitude], user_params[:longitude])
       render json: current_user
     else
       render json: current_user, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
