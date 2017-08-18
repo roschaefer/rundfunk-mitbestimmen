@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   }),
   displayedStations: Ember.computed('filterParams', 'stations', function() {
     return this.get('stations').filter((s) => {
-      return s.get('medium').get('id') === this.get('filterParams').get('medium');
+      return s.get('medium').get('id') === this.get('filterParams').medium;
     });
   }),
   sortedStations: Ember.computed.sort('displayedStations', 'sortDefinition'),
@@ -19,13 +19,13 @@ export default Ember.Component.extend({
       searchAction(this.get('filterParams'));
     },
     filterMedium(mediumId){
-      this.get('filterParams').set('medium', mediumId);
-      this.get('filterParams').set('station', null); //clear station
+      this.get('filterParams').medium = mediumId;
+      this.get('filterParams').station = null; //clear station
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
     },
     filterStation(stationId){
-      this.get('filterParams').set('station', stationId);
+      this.get('filterParams').station = stationId;
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
     }

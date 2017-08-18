@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);
-      this.get('filterParams').set('sort', direction);
+      this.get('filterParams').sort = direction;
     },
   }
 });
