@@ -1,0 +1,41 @@
+<div class="ui {{if user.isSaving 'loading' 'clearing'}} segment update-location-hint">
+  <div class="ui middle aligned grid">
+    <div class="two column row">
+      {{#if isUpdatingLocation}}
+      <div class="ten wide column">
+        {{t 'update-location.click-map'}}
+      </div>
+      <div class="six wide column">
+        <button class="ui right floated button" {{action 'startUpdateLocationAction'}}>
+          {{t 'update-location.button.cancel'}}
+        </button>
+      </div>
+      {{else}}
+      {{#if session.isAuthenticated}}
+      <div class="ui ten wide column">
+          {{t 'update-location.click-here'}}
+      </div>
+      <div class="ui six wide column">
+        <button class="ui right floated primary button" {{action 'startUpdateLocationAction'}}>
+          {{#if user.hasLocation}}
+            {{t 'update-location.button.update'}}
+          {{else}}
+            {{t 'update-location.button.add'}}
+          {{/if}}
+        </button>
+      </div>
+      {{else}}
+      <div class="ten wide column">
+        {{t 'update-location.login'}}
+      </div>
+      <div class="six wide column">
+        <button class="ui right floated primary button" {{action 'loginAction'}}>
+          {{t 'application.login'}}
+        </button>
+      </div>
+      {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+{{yield}}

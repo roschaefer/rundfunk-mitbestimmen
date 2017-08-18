@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   get 'statistics/', to: 'statistics#index'
-  get 'summarized_statistics/:id', to: 'statistics#summarized'
+  get 'summarized_statistics/', to: 'statistics#summarized'
 
   resources :media, only: %i[index show]
   resources :stations, only: %i[index show]
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :topics
   resources :broadcasts
   resources :selections
+  resources :users, only: :update
+  resource  :users, only: :show
 
   get 'chart_data/diffs/:medium_id', to: 'chart_data#diff'
   get 'chart_data/geo/locations/', to: 'chart_data#location'

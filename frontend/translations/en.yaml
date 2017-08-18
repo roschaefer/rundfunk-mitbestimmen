@@ -61,6 +61,14 @@ missing-feature:
   not-a-developer:
     header: You are not a developer?
     sub-header: No problem, we need all kind of help. Just get in touch.
+update-location:
+  click-map: Click on the map
+  click-here: Click here to add your location on the map
+  login: Log in to add your location
+  button:
+    update: Update location
+    add: Add location
+    cancel: Cancel
 application:
   menu:
     item:
@@ -387,12 +395,12 @@ visualize:
           <ul>
           <li>Display user distribution across federal states</li>
           <li>Show own location to logged in users</li>
+          <li>Change your location</li>
           </ul>
         Still missing:
           <ul>
           <li>Select specific broadcasts</li>
           <li>Select different metrics</li>
-          <li>Change your location</li>
           </ul>
     user-location:
       header: Your location

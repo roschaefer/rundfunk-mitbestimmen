@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     # ignore
   end
 
-  def update_location(geocoder_result)
+  def update_location(geocoder_result) # This method is used by a geocode_user_job YA ESTABA
     return unless geocoder_result
     self.latitude = geocoder_result.latitude
     self.longitude = geocoder_result.longitude
@@ -52,5 +52,10 @@ class User < ActiveRecord::Base
     self.postal_code = geocoder_result.postal_code
     self.city = geocoder_result.city
     save
+  end
+
+  def update_location_data(latitude, longitude)
+    geocoder_result = Geocoder.search("#{latitude},#{longitude}").first
+    update_location(geocoder_result)
   end
 end

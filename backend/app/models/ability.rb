@@ -38,6 +38,7 @@ class Ability
       end
 
       can :crud, Selection, user_id: user.id
+      can %i[read update], User, id: user.id
     end
 
     # defaults for any user
