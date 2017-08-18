@@ -119,7 +119,7 @@ RSpec.describe 'Balances', type: :request do
       end
 
       it 'returns the given id' do
-        expect(data['id']).to eq '1'
+        expect(data['id']).to eq(1)
       end
 
       it 'returns the number of registered users' do
