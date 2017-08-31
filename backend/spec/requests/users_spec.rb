@@ -5,7 +5,6 @@ RSpec.describe 'Users', type: :request do
   let(:params)  { {} }
 
   describe 'PATCH', vcr: { cassette_name: 'reverse_geo_location' } do
-    use_vcr_cassette
     let(:action) { patch url, params: params, headers: headers }
     describe '/users/:id' do
       let(:url) { '/users/we_trust_our_authentication_not_your_supplied_id' }
