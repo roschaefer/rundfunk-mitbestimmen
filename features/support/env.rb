@@ -15,11 +15,17 @@ require File.expand_path("#{rails_root}/config/environment")
 DatabaseCleaner.strategy = :truncation
 
 Capybara.register_driver :chrome do |app|
-
-  profile = Selenium::WebDriver::Chrome::Profile.new
-  profile["download.default_directory"] = DownloadHelpers::PATH.to_s
-
-  Capybara::Selenium::Driver.new(app, profile: profile, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app,
+    browser: :chrome,
+    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+      'chromeOptions' => {
+        'prefs' => {
+          'download.default_directory' => DownloadHelpers::PATH.to_s,
+          'download.prompt_for_download' => false,
+        }
+      }
+    )
+  )
 end
 
 Capybara.configure do |config|
