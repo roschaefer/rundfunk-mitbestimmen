@@ -6,10 +6,10 @@
         <div class="row">
           <div class="middle aligned center aligned column">
             <p class="ui header intro-text">
-            {{t 'index.header.top'
-            amount=(format-number 8000000000 maximumFractionDigits=0
-            minimumFractionDigits=0 style='currency' currency='EUR')
-            htmlSafe=true}}
+              {{t 'index.header.top'
+              amount=(format-number 8000000000 maximumFractionDigits=0
+              minimumFractionDigits=0 style='currency' currency='EUR')
+              htmlSafe=true}}
             </p>
             <h1 class="start-question">
               {{t 'index.action'
@@ -22,7 +22,7 @@
         <div class="ui centered row">
           <div class="twelve wide column">
             <p class="ui header intro-text center aligned">
-            {{t 'index.manual' htmlSafe=true }}
+              {{t 'index.manual' htmlSafe=true }}
             </p>
             <div class="ui three steps step-border">
               <div class="step step-style">
@@ -55,8 +55,8 @@
         <div class="row">
           <div class="center aligned column">
             {{#link-to 'find-broadcasts'
-              class="ui huge primary button start-button"}}
-              {{t 'index.start' }}
+            class="ui huge primary button start-button"}}
+            {{t 'index.start' }}
             {{/link-to}}
           </div>
         </div>
@@ -69,7 +69,7 @@
           <div class="center aligned column">
             <div class="ui huge image">
               {{#scroll-to href='#approval' }}
-                <i class="large chevron down icon"></i>
+              <i class="large chevron down icon"></i>
               {{/scroll-to}}
             </div>
           </div>
@@ -89,13 +89,12 @@
         {{t 'index.approval.header'}}
       </h1>
       <p>
-      {{t 'index.approval.content' htmlSafe=true}}
+        {{t 'index.approval.content' htmlSafe=true}}
       </p>
     </div>
   </div>
 
   <div class="row"></div>
-
   <div class="ui divider"></div>
   <div class="ui row">
     <div class="six wide column">
@@ -106,8 +105,38 @@
         {{t 'index.statement.header'}}
       </h1>
       <p>
-      {{t 'index.statement.content' htmlSafe=true}}
+        {{t 'index.statement.content' htmlSafe=true}}
       </p>
+    </div>
+  </div>
+
+  <div class="row"></div>
+  <div class="ui divider"></div>
+  <div class="ui one column centered row">
+    <div class="fourteen wide column">
+      <div class="ui basic center aligned segment">
+        <h1>
+        {{t 'index.tv-ratings.header'}}
+        </h1>
+      </div>
+      <div class="ui horizontal piled segments">
+        <div class="ui segment">
+          <h3>
+            Rundfunk MITBESTIMMEN
+          </h3>
+          <p>
+          {{t 'index.tv-ratings.content.left' htmlSafe=true}}
+          </p>
+        </div>
+        <div class="ui segment">
+          <h3>
+          {{t 'index.tv-ratings.name'}}
+          </h3>
+          <p>
+          {{t 'index.tv-ratings.content.right' htmlSafe=true}}
+          </p>
+        </div> 
+      </div>
     </div>
   </div>
 
@@ -195,7 +224,7 @@
     <div class="ui eight wide center aligned column">
       <div class="ui padded basic segment"></div>
       {{#link-to 'statistics' class='ui primary button' }}
-        {{t 'index.statistics.link-to-statistics'}}
+      {{t 'index.statistics.link-to-statistics'}}
       {{/link-to}}
     </div>
   </div>
@@ -212,7 +241,7 @@
       <div class="centered row">
         <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
           {{#twitter-feed}}
-            <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB">Tweets by RundfunkMB</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB">Tweets by RundfunkMB</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
           {{/twitter-feed}}
         </div>
       </div>
@@ -229,26 +258,26 @@
     <div class="ui two column stackable centered grid">
       <div class="ui seven wide column">
         {{#ui-accordion class="styled"}}
-          {{fa-question key='survey'}}
-          {{fa-question key='quality'}}
-          {{fa-question key='impact'}}
-          {{fa-question key='tv-rankings'}}
-          {{fa-question key='representative'}}
-          {{fa-question key='consumption'}}
-          {{fa-question key='binding'}}
-          {{fa-question key='minorities'}}
+        {{fa-question key='survey'}}
+        {{fa-question key='quality'}}
+        {{fa-question key='impact'}}
+        {{fa-question key='tv-rankings'}}
+        {{fa-question key='representative'}}
+        {{fa-question key='consumption'}}
+        {{fa-question key='binding'}}
+        {{fa-question key='minorities'}}
         {{/ui-accordion}}
       </div>
 
       <div class="ui seven wide column">
         {{#ui-accordion class="styled"}}
-          {{fa-question key='finances'}}
-          {{fa-question key='business-model'}}
-          {{fa-question key='responsible'}}
-          {{fa-question key='data-privacy'}}
-          {{fa-question key='source-code'}}
-          {{fa-question key='help'}}
-          {{fa-question key='missing'}}
+        {{fa-question key='finances'}}
+        {{fa-question key='business-model'}}
+        {{fa-question key='responsible'}}
+        {{fa-question key='data-privacy'}}
+        {{fa-question key='source-code'}}
+        {{fa-question key='help'}}
+        {{fa-question key='missing'}}
         {{/ui-accordion}}
       </div>
     </div>

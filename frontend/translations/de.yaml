@@ -119,6 +119,24 @@ index:
       aussagekräftige Stimme. Mit deiner Entscheidung können wir die
       Aufmerksamkeit der Rundfunkräte gewinnen und die Programmdebatten
       befördern und beleben.
+  tv-ratings:
+    name: Einschaltquote
+    header: Die wichtigsten Unterschiede zur Einschaltquote
+    content:
+      left: >
+        Hier <mark>darf jeder teilnehmen</mark>. Die Erhebung läuft über eine
+        <mark>Website</mark> und die Ergebnisse <mark>stehen öffentlich im
+        Netz</mark>. Die Nutzer entscheiden sich <mark>unabhängig von</mark> der Nutzung
+        der Inhalte, einfach <mark>nach ihrem Gewissen</mark>. Es gibt <mark>fortlaufend
+        neue Nutzer</mark> und die Ergebnisse werden <mark>nicht hochgerechnet</mark>.
+        Das Ziel dabei ist: <mark>Mehr Demokratie.</mark>
+      right: >
+        Hier <mark>werden die Teilnehmer ausgewählt</mark>. Die Erhebung läuft über
+        eine <mark>Quotenbox</mark> und die Ergebnisse stehen <mark>gebührenpflichtig
+        zur Verfügung</mark>. Die Nutzer entscheiden sich <mark>basierend auf</mark> der
+        Nutzung der Inhalte, einfach <mark>über die Fernbedienung</mark>. Es gibt
+        <mark>5000 repräsentative Haushalte</mark> und die Ergebnisse <mark>werden
+        hochgerechnet</mark>. Das Ziel dabei ist: <mark> Zielgerichtete Werbung.</mark>
   goal:
     actual:
       header: Tatsächliche Verteilung

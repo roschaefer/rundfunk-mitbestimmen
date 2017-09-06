@@ -118,6 +118,14 @@ index:
       In this way people who pay the fees have got a strong voice which is enough
       to have an impact. With your decision we can attract attention of the
       broadcasting councils and increase the public debate on program diversity.
+  tv-ratings:
+    header: Most important differences compared to TV ratings
+    name: TV ratings
+    content:
+      left: >
+        <mark>Everyone</mark> can participate. The data is collected through a <mark>website</mark> and the results are <mark>published on the web</mark>. The users decide <mark>independently of usage</mark>, simply <mark>according to their conscience</mark>. There are <mark>more and more new users</mark> and the results are <mark>not extrapolated</mark>. The goal is: <mark>More democracy</mark>.
+      right: >
+        <mark>A preselected group</mark> can participate. The data is collected through a <mark>special TV box</mark> and the results are <mark>subject to charges</mark>. The users decide <mark>depending on usage</mark>, simply <mark>throuh the remote control</mark>. There are <mark>5000 representative homes</mark> and the results are <mark>extrapolated</mark>. The goal is: <mark>Targeted advertising</mark>.
   goal:
     actual:
       header: As-is situation
