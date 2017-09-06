@@ -124,19 +124,19 @@ index:
     header: Die wichtigsten Unterschiede zur Einschaltquote
     content:
       left: >
-        Hier <mark>darf jeder teilnehmen</mark>. Die Erhebung läuft über eine
-        <mark>Website</mark> und die Ergebnisse <mark>stehen öffentlich im
-        Netz</mark>. Die Nutzer entscheiden sich <mark>unabhängig von</mark> der Nutzung
-        der Inhalte, einfach <mark>nach ihrem Gewissen</mark>. Es gibt <mark>fortlaufend
-        neue Nutzer</mark> und die Ergebnisse werden <mark>nicht hochgerechnet</mark>.
-        Das Ziel dabei ist: <mark>Mehr Demokratie.</mark>
+        Hier <em>darf jeder teilnehmen</em>. Die Erhebung läuft über eine
+        <em>Website</em> und die Ergebnisse <em>stehen öffentlich im
+        Netz</em>. Die Nutzer entscheiden sich <em>unabhängig von</em> der Nutzung
+        der Inhalte, einfach <em>nach ihrem Gewissen</em>. Es gibt <em>fortlaufend
+        neue Nutzer</em> und die Ergebnisse werden <em>nicht hochgerechnet</em>.
+        Das Ziel dabei ist: <em>Mehr Demokratie.</em>
       right: >
-        Hier <mark>werden die Teilnehmer ausgewählt</mark>. Die Erhebung läuft über
-        eine <mark>Quotenbox</mark> und die Ergebnisse stehen <mark>gebührenpflichtig
-        zur Verfügung</mark>. Die Nutzer entscheiden sich <mark>basierend auf</mark> der
-        Nutzung der Inhalte, einfach <mark>über die Fernbedienung</mark>. Es gibt
-        <mark>5000 repräsentative Haushalte</mark> und die Ergebnisse <mark>werden
-        hochgerechnet</mark>. Das Ziel dabei ist: <mark> Zielgerichtete Werbung.</mark>
+        Hier <em>werden die Teilnehmer ausgewählt</em>. Die Erhebung läuft über
+        eine <em>Quotenbox</em> und die Ergebnisse stehen <em>gebührenpflichtig
+        zur Verfügung</em>. Die Nutzer entscheiden sich <em>basierend auf</em> der
+        Nutzung der Inhalte, einfach <em>über die Fernbedienung</em>. Es gibt
+        <em>5000 repräsentative Haushalte</em> und die Ergebnisse <em>werden
+        hochgerechnet</em>. Das Ziel dabei ist: <em> Zielgerichtete Werbung.</em>
   goal:
     actual:
       header: Tatsächliche Verteilung

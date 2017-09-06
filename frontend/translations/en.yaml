@@ -123,9 +123,9 @@ index:
     name: TV ratings
     content:
       left: >
-        <mark>Everyone</mark> can participate. The data is collected through a <mark>website</mark> and the results are <mark>published on the web</mark>. The users decide <mark>independently of usage</mark>, simply <mark>according to their conscience</mark>. There are <mark>more and more new users</mark> and the results are <mark>not extrapolated</mark>. The goal is: <mark>More democracy</mark>.
+        Everyone can participate. The data is collected through a website and the results are published on the web. The users decide independently of usage, simply according to their conscience. There are more and more new users and the results are not extrapolated. The goal is: More democracy.
       right: >
-        <mark>A preselected group</mark> can participate. The data is collected through a <mark>special TV box</mark> and the results are <mark>subject to charges</mark>. The users decide <mark>depending on usage</mark>, simply <mark>throuh the remote control</mark>. There are <mark>5000 representative homes</mark> and the results are <mark>extrapolated</mark>. The goal is: <mark>Targeted advertising</mark>.
+        A preselected group can participate. The data is collected through a special TV box and the results are subject to charges. The users decide depending on usage, simply throuh the remote control. There are 5000 representative homes and the results are extrapolated. The goal is: Targeted advertising.
   goal:
     actual:
       header: As-is situation
