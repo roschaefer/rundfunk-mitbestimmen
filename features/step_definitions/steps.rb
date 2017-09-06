@@ -286,6 +286,7 @@ Then(/^I can see these numbers:$/) do |table|
 end
 
 Then(/^there is a link that brings me to the statistics page$/) do
+  scroll_to(find('a[href="/statistics"]', text: 'Statistics per broadcast'))
   click_on 'Statistics per broadcast'
   expect(page).to have_css('.statistics')
   expect(current_path).to eq '/statistics'
