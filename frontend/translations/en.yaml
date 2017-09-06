@@ -123,9 +123,9 @@ index:
     name: TV ratings
     content:
       left: >
-        <mark>Everyone</mark> can participate. The data is collected through a <mark>website</mark> and the results are <mark>published on the web</mark>. The users decide <mark>independently of usage</mark>, simply <mark>according to their conscience</mark>. There are <mark>more and more new users</mark> and the results are <mark>not extrapolated</mark>. The goal is: <mark>More democracy</mark>.
+        <strong>Everyone</strong> can participate. The data is collected through a <strong>website</strong> and the results are <strong>published on the web</strong>. The users decide <strong>independently of usage</strong>, simply <strong>according to their conscience</strong>. There are <strong>more and more new users</strong> and the results are <strong>not extrapolated</strong>. The goal is: <strong>More democracy</strong>.
       right: >
-        <mark>A preselected group</mark> can participate. The data is collected through a <mark>special TV box</mark> and the results are <mark>subject to charges</mark>. The users decide <mark>depending on usage</mark>, simply <mark>throuh the remote control</mark>. There are <mark>5000 representative homes</mark> and the results are <mark>extrapolated</mark>. The goal is: <mark>Targeted advertising</mark>.
+        <strong>A preselected group</strong> can participate. The data is collected through a <strong>special TV box</strong> and the results are <strong>subject to charges</strong>. The users decide <strong>depending on usage</strong>, simply <strong>throuh the remote control</strong>. There are <strong>5000 representative homes</strong> and the results are <strong>extrapolated</strong>. The goal is: <strong>Targeted advertising</strong>.
   goal:
     actual:
       header: As-is situation

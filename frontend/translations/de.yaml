@@ -124,19 +124,19 @@ index:
     header: Die wichtigsten Unterschiede zur Einschaltquote
     content:
       left: >
-        Hier <mark>darf jeder teilnehmen</mark>. Die Erhebung läuft über eine
-        <mark>Website</mark> und die Ergebnisse <mark>stehen öffentlich im
-        Netz</mark>. Die Nutzer entscheiden sich <mark>unabhängig von</mark> der Nutzung
-        der Inhalte, einfach <mark>nach ihrem Gewissen</mark>. Es gibt <mark>fortlaufend
-        neue Nutzer</mark> und die Ergebnisse werden <mark>nicht hochgerechnet</mark>.
-        Das Ziel dabei ist: <mark>Mehr Demokratie.</mark>
+        Hier <strong>darf jeder teilnehmen</strong>. Die Erhebung läuft über eine
+        <strong>Website</strong> und die Ergebnisse <strong>stehen öffentlich im
+        Netz</strong>. Die Nutzer entscheiden sich <strong>unabhängig von</strong> der Nutzung
+        der Inhalte, einfach <strong>nach ihrem Gewissen</strong>. Es gibt <strong>fortlaufend
+        neue Nutzer</strong> und die Ergebnisse werden <strong>nicht hochgerechnet</strong>.
+        Das Ziel dabei ist: <strong>Mehr Demokratie.</strong>
       right: >
-        Hier <mark>werden die Teilnehmer ausgewählt</mark>. Die Erhebung läuft über
-        eine <mark>Quotenbox</mark> und die Ergebnisse stehen <mark>gebührenpflichtig
-        zur Verfügung</mark>. Die Nutzer entscheiden sich <mark>basierend auf</mark> der
-        Nutzung der Inhalte, einfach <mark>über die Fernbedienung</mark>. Es gibt
-        <mark>5000 repräsentative Haushalte</mark> und die Ergebnisse <mark>werden
-        hochgerechnet</mark>. Das Ziel dabei ist: <mark> Zielgerichtete Werbung.</mark>
+        Hier <strong>werden die Teilnehmer ausgewählt</strong>. Die Erhebung läuft über
+        eine <strong>Quotenbox</strong> und die Ergebnisse stehen <strong>gebührenpflichtig
+        zur Verfügung</strong>. Die Nutzer entscheiden sich <strong>basierend auf</strong> der
+        Nutzung der Inhalte, einfach <strong>über die Fernbedienung</strong>. Es gibt
+        <strong>5000 repräsentative Haushalte</strong> und die Ergebnisse <strong>werden
+        hochgerechnet</strong>. Das Ziel dabei ist: <strong> Zielgerichtete Werbung.</strong>
   goal:
     actual:
       header: Tatsächliche Verteilung
