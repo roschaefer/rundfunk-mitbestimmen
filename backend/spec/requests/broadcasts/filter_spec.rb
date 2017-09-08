@@ -27,25 +27,6 @@ RSpec.describe 'Broadcasts', type: :request do
       js
     end
 
-    describe '?q=' do
-      let(:params) { { q: 'find me' } }
-
-      before { create(:broadcast, title: 'This is an interesting broadcast, find me') }
-
-      it 'returns only relevant broadcasts' do
-        expect(subject['data'].length).to eq(1)
-        found_title = js['data'][0]['attributes']['title']
-        expect(found_title).to eq 'This is an interesting broadcast, find me'
-      end
-
-      describe 'query parameter empty' do
-        let(:params) { { q: '' } }
-        it 'is ignored' do
-          expect(subject['data'].length).to eq(10)
-        end
-      end
-    end
-
     describe '?filter' do
       describe '?filter[medium]=' do
         let(:broadcasts) { [radio_broadcast, tv_broadcast, other_broadcast] }
