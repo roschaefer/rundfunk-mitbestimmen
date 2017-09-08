@@ -1,7 +1,21 @@
-{{
-ember-inline-edit class='ui action input'
-value=(format-number currentAmount style='currency' currency='EUR' fallback='???')
-saveLabel='✓'
-onSave='changeAmount'
-onClose='rollback'
-}}
+{{#ember-inline-edit
+  value=currentAmount
+  field='number'
+  onSave=changeAmountAction
+  saveLabel=(t 'invoice.invoice-item-amount.saveLabel')
+  cancelLabel=(t 'invoice.invoice-item-amount.cancelLabel')
+  saveButtonClass='ui compact mini icon button'
+  cancelButtonClass='ui compact mini icon button'
+  as |inline|}}
+  {{#inline.editable}}
+    <button class="ui circular button">
+      {{format-number currentAmount style='currency' currency='EUR' fallback='???'}}
+    </button>
+  {{/inline.editable}}
+
+  {{#inline.editor}}
+    <div class="ui action small input">
+      <input type="number" min="0" step="0.01" max="17.50" value={{currentAmount}} onchange={{action (mut currentAmount) value="target.value"}}>
+    </div>
+  {{/inline.editor}}
+{{/ember-inline-edit}}

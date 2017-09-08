@@ -2723,7 +2723,7 @@ ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
     json-stable-stringify "^1.0.0"
     strip-bom "^2.0.0"
 
-ember-cli-htmlbars@^2.0.3:
+ember-cli-htmlbars@^2.0.1, ember-cli-htmlbars@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-2.0.3.tgz#e116e1500dba12f29c94b05b9ec90f52cb8bb042"
   dependencies:
@@ -3105,12 +3105,12 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-inline-edit@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ember-inline-edit/-/ember-inline-edit-0.2.1.tgz#addae1f84d4a2607c924339f3fe42cb629b531d0"
+ember-inline-edit@1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-inline-edit/-/ember-inline-edit-1.0.0-beta.2.tgz#b2f7997ecabd88b312fd5829536e858a50126fdc"
   dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-intl-format-cache@^2.6.0:
   version "2.6.0"
@@ -3273,9 +3273,9 @@ ember-scroll-to@0.6.4:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
 
-"ember-simple-auth-auth0@git+https://github.com/seawatts/ember-simple-auth-auth0.git#develop":
+"ember-simple-auth-auth0@git+https://github.com/roschaefer/ember-simple-auth-auth0.git#develop":
   version "3.0.1"
-  resolved "git+https://github.com/seawatts/ember-simple-auth-auth0.git#3e3b3e07769a6bee342edf2487c80a01934433e3"
+  resolved "git+https://github.com/roschaefer/ember-simple-auth-auth0.git#4afe5d3087389720a4b98f8ca8757de411fc6508"
   dependencies:
     auth0-js "^8.2.0"
     auth0-lock "^10.10.1"
@@ -7475,7 +7475,7 @@ sax@>=0.6.0:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-semantic-ui-ember@2.0.1:
+semantic-ui-ember@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/semantic-ui-ember/-/semantic-ui-ember-2.0.1.tgz#69912623be81dd8bb4d70f50a675962f117c8b25"
   dependencies:

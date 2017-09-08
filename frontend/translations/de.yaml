@@ -323,6 +323,9 @@ invoice:
       fix: Betrag festlegen
       unfix: Betrag freigeben
       change: Betrag ändern
+  invoice-item-amount:
+    saveLabel: OK
+    cancelLabel: Abbruch
   table-reference:
     button: Legende zur Tabelle
     icon:

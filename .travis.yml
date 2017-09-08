@@ -25,13 +25,14 @@ before_install:
   - sudo chmod +x /usr/local/bin/chromedriver
 
   - cd frontend
-  - npm config set spin false
+  - npm install -g yarn
   - npm install -g bower
   - npm install -g ember-cli
   - npm install -g phantomjs-prebuilt
   - ember --version
   - bower --version
   - npm --version
+  - yarn --version
   - node --version
   - phantomjs --version
   - chromedriver --version
@@ -40,7 +41,7 @@ before_install:
 install:
   - bundle
   - cd frontend
-  - npm install
+  - yarn install --pure-lockfile
   - bower install
   - ember build
   - cd ..
