@@ -63,6 +63,7 @@ export default Ember.Component.extend({
       } else {
         selection.set('amount', newAmount);
         selection.set('fixed', true);
+        selection.notifyPropertyChange('amount');
         selection.save().then(() => {
           selections.forEach((s) => {
             s.save();
