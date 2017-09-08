@@ -62,6 +62,9 @@
     "highcharts": "5.0.14",
     "leaflet": "^1.2.0",
     "loader.js": "^4.6.0",
-    "semantic-ui-ember": "2.0.1"
+    "semantic-ui-ember": "^2.0.1"
+  },
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
   }
 }
