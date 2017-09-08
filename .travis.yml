@@ -28,13 +28,11 @@ before_install:
   - npm install -g yarn
   - npm install -g bower
   - npm install -g ember-cli
-  - npm install -g phantomjs-prebuilt
   - ember --version
   - bower --version
   - npm --version
   - yarn --version
   - node --version
-  - phantomjs --version
   - chromedriver --version
   - cd ..
 
