@@ -23,7 +23,7 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
     attributes = { title: row['Title'] }
     attributes[:created_at] = row['Created at'] || Date.today
     attributes[:updated_at] = row['Updated at'] || Date.today
-    attributes[:description] = row['Description']
+    attributes[:description] = row['Description'] if row['Description']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
