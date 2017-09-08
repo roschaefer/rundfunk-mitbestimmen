@@ -3,14 +3,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  queryParams: ['sort', 'q', 'medium', 'station'],
+  queryParams: ['page', 'perPage', 'sort', 'q', 'medium', 'station'],
   sort: 'random',
   q: null,
   medium: null,
   station: null,
 
-  page: Ember.computed.alias("content.broadcasts.page"),
-  perPage: Ember.computed.alias("content.broadcasts.perPage"),
+  page: 1,
+  perPage: 6,
   totalPages: Ember.computed.alias("content.broadcasts.totalPages"),
 
   positiveSelectionsWithoutAmount: Ember.computed.filterBy('model.selections','needsAmount', true),
