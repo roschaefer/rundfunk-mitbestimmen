@@ -60,12 +60,12 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     }));
     controller.set('media', this.store.findAll('medium'));
     controller.set('stations', this.store.findAll('station'));
-    controller.set('filterParams', this.store.createRecord('filterParams', {
+    controller.set('filterParams', {
       query: controller.get('q'),
       medium: controller.get('medium'),
       station: controller.get('station'),
       sort: controller.get('sort')
-    }));
+    });
   },
   resetController(controller, isExiting) {
     if (isExiting) {
@@ -84,10 +84,10 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       });
     },
     setQuery(filterParams){
-      this.get('controller').set('sort', filterParams.get('sort'));
-      this.get('controller').set( 'q', filterParams.get('query'));
-      this.get('controller').set( 'medium', filterParams.get('medium'));
-      this.get('controller').set('station', filterParams.get('station'));
+      this.get('controller').set('sort', filterParams.sort);
+      this.get('controller').set( 'q', filterParams.query);
+      this.get('controller').set( 'medium', filterParams.medium);
+      this.get('controller').set('station', filterParams.station);
     },
     newBroadcast(){
       this.get('controller').set('newBroadcast', this.store.createRecord('broadcast', {
