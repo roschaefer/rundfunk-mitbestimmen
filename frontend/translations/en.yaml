@@ -303,6 +303,9 @@ invoice:
       fix: Fix amount
       unfix: Free amount
       change: Change amount
+  invoice-item-amount:
+    saveLabel: OK
+    cancelLabel: Cancel
   table-reference:
     button: Table reference
     icon:
