@@ -1,14 +1,15 @@
 <td>
-  {{#link-to 'broadcast' selection.broadcast }}
-    {{selection.broadcast.title}}
+  {{#link-to 'broadcast' selection.broadcast class="ui circular mini icon button" }}
+  <i class="search icon"></i>
   {{/link-to}}
+</td>
+<td>
+  {{selection.broadcast.title}}
 </td>
 <td>
   <button class="invoice-item-action-remove left floated ui circular icon button" {{action 'remove'}} >
     <i class="icon trash"></i>
   </button>
-</td>
-<td>
   {{#if selection.fixed}}
     {{#ui-popup content=(t 'invoice.invoice-item.tooltips.unfix')}}
       <button class="invoice-item-action-unfix ui circular secondary icon button" {{action 'toggleFixed'}}>
@@ -23,7 +24,7 @@
     {{/ui-popup}}
   {{/if}}
 </td>
-<td class="right aligned">
+<td>
   {{#ui-popup content=(t 'invoice.invoice-item.tooltips.change')}}
     {{invoice-item-amount amount=selection.amount changeAmountAction=(action 'update')}}
   {{/ui-popup}}
