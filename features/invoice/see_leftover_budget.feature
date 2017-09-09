@@ -8,13 +8,13 @@ Feature: See leftover budget
     Given I am logged in
 
   Scenario: See remaining and total budget
-    Given my invoice looks like this:
+    Given my votes look like this:
       | Title            | Amount | Fixed |
       | Tagesthemen      | €4.16  | no    |
       | Morgenmagazin    | €4.16  | no    |
       | Sportschau       | €4.16  | no    |
       | Tagesschau       | €5.00  | yes   |
-    When I look at my invoice
+    When I look at my broadcasts
     Then the main part of the invoice looks like this:
       | Title              | Amount   |
       | Tagesthemen        | €4.16    |

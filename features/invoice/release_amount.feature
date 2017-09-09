@@ -8,16 +8,16 @@ Feature: Release a fixed amount
     Given I am logged in
 
   Scenario: Release a fixed amount
-    Given my invoice looks like this:
+    Given my votes look like this:
       | Title            | Amount | Fixed |
       | Tagesthemen      | €3.00  | no    |
       | Morgenmagazin    | €3.00  | no    |
       | Sportschau       | €3.00  | no    |
       | Tagesschau       | €5.50  | yes   |
       | Blickpunkt Sport | €3.00  | no    |
-    When I look at my invoice
+    When I look at my broadcasts
     And I click on the unlock symbol next to "Tagesschau"
-    Then my updated invoice looks like this:
+    Then my updated votes look like this:
       | Title            | Amount |
       | Tagesthemen      | €3.50  |
       | Morgenmagazin    | €3.50  |
@@ -26,7 +26,7 @@ Feature: Release a fixed amount
       | Blickpunkt Sport | €3.50  |
 
   Scenario: Just set an amount fixed
-    Given my invoice looks like this:
+    Given my votes look like this:
       | Title            | Amount |
       | Tagesthemen      | €3.50  |
       | Morgenmagazin    | €3.50  |
@@ -34,6 +34,6 @@ Feature: Release a fixed amount
       | Tagesschau       | €3.50  |
       | Blickpunkt Sport | €3.50  |
     And the attribute 'fixed' is "false" for my selected broadcast "Tagesschau"
-    When I look at my invoice
+    When I look at my broadcasts
     When I click on the lock symbol next to "Tagesschau"
     Then the attribute 'fixed' is "true" for my selected broadcast "Tagesschau"

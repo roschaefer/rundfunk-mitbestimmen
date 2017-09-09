@@ -123,9 +123,13 @@ end
 Given(/^my votes look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
-    amount = sanitize_amount(row['Amount'])
+    amount = sanitize_amount(row['Amount']) if row['Amount']
     fixed = !! (row['Fixed'] =~ /yes/i)
-    response = (row['Support'] =~ /yes/i) ? :positive : :neutral
+    if row['Support']
+      response = (row['Support'] =~ /yes/i) ? :positive : :neutral
+    else
+      response = :positive
+    end
     broadcast = Broadcast.find_by(title: title) || create(:broadcast, title: title)
     create(:selection,
            user: @user,
@@ -150,7 +154,7 @@ When(/^I click on the 'X' next to ([^"]*)$/) do |title|
   end
 end
 
-Then(/^my updated invoice looks like this:$/) do |table|
+Then(/^my updated votes look like this:$/) do |table|
   wait_for_ajax
   check_invoice(table)
 end
