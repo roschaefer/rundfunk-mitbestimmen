@@ -876,12 +876,6 @@ Then(/^I see broadcasts ascending in order like this:$/) do |table|
   end
 end
 
-When(/^I click on title of the broadcast card of "([^"]*)"$/) do |title|
-  within('.decision-card', text: title) do
-    find('.broadcast-details').click
-  end
-end
-
 Then(/^I see only this broadcast and nothing else/) do
   expect(page).to have_css('.title', count: 1)
   Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
@@ -917,3 +911,14 @@ Then(/^I see the broadcast "([^"]*)" among (\d+) other broadcasts again$/) do |t
   expect(page).to have_css('.title.header', text: title)
 end
 
+When(/^I click on the magnifier symbol next to "([^"]*)"$/) do |title|
+  if page.has_css?('.decision-card')
+    within('.decision-card', text: title) do
+      find('.broadcast-details').click
+    end
+  else
+    within('.invoice-item', text: title) do
+      find('.broadcast-details').click
+    end
+  end
+end

@@ -12,7 +12,7 @@ Feature: Link to broadcast details page on every broadcast card
 
   Scenario: Click on details button to get to broadcast details page
     Given I visit the find broadcasts page
-    When I click on title of the broadcast card of "Medienmagazin"
+    And I click on the magnifier symbol next to "Medienmagazin"
     Then I see only this broadcast and nothing else, in order to stay focused
     And I can see even more details:
       | Created at      | 7/27/2017 |
@@ -23,7 +23,7 @@ Feature: Link to broadcast details page on every broadcast card
     And I visit the find broadcasts page
     And I click on the button to order broadcasts in ascending order
     When I click on "Next"
-    And I click on title of the broadcast card of "Medienmagazin"
+    And I click on the magnifier symbol next to "Medienmagazin"
     Then I see only this broadcast and nothing else, in order to stay focused
     But if I click on the close icon
     Then I see the broadcast "Medienmagazin" among 5 other broadcasts again

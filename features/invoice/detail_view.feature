@@ -20,7 +20,7 @@ Feature: Click on broadcast title to see details
       | Sendung mit der Maus | Yes     | €10.00 |
     When I look at my broadcasts
     And I ask myself: What was "Medienmagazin" about?
-    And I click on "Medienmagazin"
+    And I click on the magnifier symbol next to "Medienmagazin"
     Then I can see these details:
       | Title           | Medienmagazin                                                  |
       | Medium          | Radio                                                          |
