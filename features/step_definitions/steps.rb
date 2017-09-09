@@ -903,3 +903,17 @@ Then(/^I can see (?:even more|these) details:$/) do |table|
     end
   end
 end
+
+Given(/^there are (\d+) other broadcasts, with a title lexicographically before 'Medienmagazin'$/) do |count|
+  count.to_i.times {|i| create(:broadcast, title: "Broadcast ##{i}") }
+end
+
+Then(/^if I click on the close icon$/) do
+  find('i.remove.icon').click
+end
+
+Then(/^I see the broadcast "([^"]*)" among (\d+) other broadcasts again$/) do |title, count|
+  expect(page).to have_css('.title', count: count.to_i)
+  expect(page).to have_css('.title.header', text: title)
+end
+
