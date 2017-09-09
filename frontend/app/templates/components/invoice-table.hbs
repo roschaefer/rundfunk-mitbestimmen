@@ -41,8 +41,8 @@
     </tr>
   </thead>
   <tbody>
-    {{#each selections as |selection|}}
-      {{invoice-item selection=selection
+    {{#each impressions as |impression|}}
+      {{invoice-item impression=impression
       removeAction=(action 'removeItem')
       updateAction=(action 'updateItem')
       fixAction=(action 'fixItem')

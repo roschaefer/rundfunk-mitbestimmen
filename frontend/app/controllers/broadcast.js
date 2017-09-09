@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
       history.back();
     },
     respond(broadcast){
-      broadcast.get('selections.firstObject').save();
+      broadcast.get('impressions.firstObject').save();
     }
   }
 });

@@ -7,7 +7,7 @@ filetype: png
 orientation: vertical
 title:
 only:
-  - Selection
+  - Impression
   - User
   - Broadcast
   - Medium

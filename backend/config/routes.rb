@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :formats
   resources :topics
   resources :broadcasts
-  resources :selections
+  resources :impressions
   resources :users, only: :update
   resource  :users, only: :show
 

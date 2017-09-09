@@ -8,7 +8,7 @@ Feature: Release a fixed amount
     Given I am logged in
 
   Scenario: Release a fixed amount
-    Given my votes look like this:
+    Given my broadcasts look like this:
       | Title            | Amount | Fixed |
       | Tagesthemen      | €3.00  | no    |
       | Morgenmagazin    | €3.00  | no    |
@@ -17,7 +17,7 @@ Feature: Release a fixed amount
       | Blickpunkt Sport | €3.00  | no    |
     When I look at my broadcasts
     And I click on the unlock symbol next to "Tagesschau"
-    Then my updated votes look like this:
+    Then my updated broadcasts look like this:
       | Title            | Amount |
       | Tagesthemen      | €3.50  |
       | Morgenmagazin    | €3.50  |
@@ -26,7 +26,7 @@ Feature: Release a fixed amount
       | Blickpunkt Sport | €3.50  |
 
   Scenario: Just set an amount fixed
-    Given my votes look like this:
+    Given my broadcasts look like this:
       | Title            | Amount |
       | Tagesthemen      | €3.50  |
       | Morgenmagazin    | €3.50  |

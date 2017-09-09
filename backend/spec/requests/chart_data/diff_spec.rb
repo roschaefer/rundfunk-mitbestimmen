@@ -14,7 +14,7 @@ RSpec.describe 'ChartData', type: :request do
     end
   end
 
-  context 'given only TV stations, broadcasts and selections' do
+  context 'given only TV stations, broadcasts and impressions' do
     let(:medium) { Medium.first }
     before(:all) do
       # Medium
@@ -37,36 +37,36 @@ RSpec.describe 'ChartData', type: :request do
       # Station 3
       create(:broadcast, id: 6, station_id: 3)
 
-      # SELECTIONS
+      # IMPRESSIONS
       # Station1
-      create(:selection, broadcast_id: 1, response: :positive, amount: 1)
-      create(:selection, broadcast_id: 2, response: :positive, amount: 2)
-      create(:selection, broadcast_id: 2, response: :positive, amount: 3)
-      create(:selection, broadcast_id: 3, response: :positive, amount: 4)
-      create(:selection, broadcast_id: 3, response: :positive, amount: 5)
-      create(:selection, broadcast_id: 3, response: :positive, amount: 6)
+      create(:impression, broadcast_id: 1, response: :positive, amount: 1)
+      create(:impression, broadcast_id: 2, response: :positive, amount: 2)
+      create(:impression, broadcast_id: 2, response: :positive, amount: 3)
+      create(:impression, broadcast_id: 3, response: :positive, amount: 4)
+      create(:impression, broadcast_id: 3, response: :positive, amount: 5)
+      create(:impression, broadcast_id: 3, response: :positive, amount: 6)
 
       # Station 2
-      create(:selection, broadcast_id: 4, response: :positive, amount: 1)
-      create(:selection, broadcast_id: 4, response: :positive, amount: 2)
-      create(:selection, broadcast_id: 4, response: :positive, amount: 3)
-      create(:selection, broadcast_id: 4, response: :positive, amount: 4)
-      create(:selection, broadcast_id: 5, response: :positive, amount: 5)
-      create(:selection, broadcast_id: 5, response: :positive, amount: 6)
-      create(:selection, broadcast_id: 5, response: :positive, amount: 7)
-      create(:selection, broadcast_id: 5, response: :positive, amount: 8)
-      create(:selection, broadcast_id: 5, response: :positive, amount: 9)
+      create(:impression, broadcast_id: 4, response: :positive, amount: 1)
+      create(:impression, broadcast_id: 4, response: :positive, amount: 2)
+      create(:impression, broadcast_id: 4, response: :positive, amount: 3)
+      create(:impression, broadcast_id: 4, response: :positive, amount: 4)
+      create(:impression, broadcast_id: 5, response: :positive, amount: 5)
+      create(:impression, broadcast_id: 5, response: :positive, amount: 6)
+      create(:impression, broadcast_id: 5, response: :positive, amount: 7)
+      create(:impression, broadcast_id: 5, response: :positive, amount: 8)
+      create(:impression, broadcast_id: 5, response: :positive, amount: 9)
 
       # Station 3
-      create(:selection, broadcast_id: 6, response: :positive, amount: 1)
-      create(:selection, broadcast_id: 6, response: :positive, amount: 2)
-      create(:selection, broadcast_id: 6, response: :positive, amount: 3)
-      create(:selection, broadcast_id: 6, response: :positive, amount: 4)
-      create(:selection, broadcast_id: 6, response: :positive, amount: 5)
+      create(:impression, broadcast_id: 6, response: :positive, amount: 1)
+      create(:impression, broadcast_id: 6, response: :positive, amount: 2)
+      create(:impression, broadcast_id: 6, response: :positive, amount: 3)
+      create(:impression, broadcast_id: 6, response: :positive, amount: 4)
+      create(:impression, broadcast_id: 6, response: :positive, amount: 5)
     end
 
     after(:all) do
-      Selection.destroy_all
+      Impression.destroy_all
       User.destroy_all
       Broadcast.destroy_all
       Station.destroy_all
@@ -134,9 +134,9 @@ RSpec.describe 'ChartData', type: :request do
                 expect([category, actual_amount, expected_amount, number_of_broadcasts]).to eq(['Station 1', 21.0, 24.3, 3])
               end
 
-              context 'if no broadcast of a station ever received a vote' do
+              context 'if no broadcast of a station ever received an impression' do
                 before do
-                  create(:broadcast, id: 7, station: create(:station, medium: medium, id: 4, name: 'Station 4'), selections: [])
+                  create(:broadcast, id: 7, station: create(:station, medium: medium, id: 4, name: 'Station 4'), impressions: [])
                   get url, params: params, headers: headers
                 end
 
@@ -175,15 +175,15 @@ RSpec.describe 'ChartData', type: :request do
       create(:broadcast, id: 2, station_id: 2)
       create(:broadcast, id: 3, station_id: 3)
 
-      # SELECTIONS
+      # IMPRESSIONS
       # Station1
-      create_list(:selection, 1,  broadcast_id: 1, response: :positive, amount: 13)
-      create_list(:selection, 5,  broadcast_id: 2, response: :positive, amount: 7)
-      create_list(:selection, 10, broadcast_id: 3, response: :positive, amount: 3)
+      create_list(:impression, 1,  broadcast_id: 1, response: :positive, amount: 13)
+      create_list(:impression, 5,  broadcast_id: 2, response: :positive, amount: 7)
+      create_list(:impression, 10, broadcast_id: 3, response: :positive, amount: 3)
     end
 
     after(:all) do
-      Selection.destroy_all
+      Impression.destroy_all
       User.destroy_all
       Broadcast.destroy_all
       Station.destroy_all

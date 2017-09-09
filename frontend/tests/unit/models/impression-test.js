@@ -3,8 +3,8 @@ import { beforeEach, describe, it, context } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
-describe('Unit | Model | selection', function() {
-  setupModelTest('selection', {
+describe('Unit | Model | impression', function() {
+  setupModelTest('impression', {
     needs: ['model:broadcast']
   });
   beforeEach(function() {
@@ -17,34 +17,34 @@ describe('Unit | Model | selection', function() {
   });
 
   describe('needsAmount', function(){
-    let selection;
+    let impression;
 
-    context('neutral selection', function() {
+    context('neutral impression', function() {
       it('returns false', function() {
-        selection = make('selection', {
+        impression = make('impression', {
           response: 'neutral'
         });
-        expect(selection.get('needsAmount')).to.be.false;
+        expect(impression.get('needsAmount')).to.be.false;
       });
     });
 
-    context('positive selection', function() {
+    context('positive impression', function() {
       context('without amount', function() {
         it('returns true', function() {
-          selection = make('selection', {
+          impression = make('impression', {
             response: 'positive',
           });
-          expect(selection.get('needsAmount')).to.be.true;
+          expect(impression.get('needsAmount')).to.be.true;
         });
       });
 
       context('with amount', function() {
         it('returns true', function() {
-          selection = make('selection', {
+          impression = make('impression', {
             response: 'positive',
             amount: 10.5
           });
-          expect(selection.get('needsAmount')).to.be.false;
+          expect(impression.get('needsAmount')).to.be.false;
         });
       });
     });

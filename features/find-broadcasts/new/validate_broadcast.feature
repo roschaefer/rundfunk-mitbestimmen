@@ -34,7 +34,7 @@ Feature: Validate broadcasts
     """
     Then I get an error message
     """
-    Description without links, please. Users should be able to vote [...]
+    Description without links, please. Users should be able to view [...]
     without leaving this website.
     """
     And no broadcast was saved to the database

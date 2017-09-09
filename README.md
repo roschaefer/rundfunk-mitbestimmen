@@ -28,8 +28,8 @@ This repository contains three important folders:
 ### Backend
 
 The backend is responsible to store the data. Who wants to pay for which
-broadcast and how much? Users are related to broadcasts via `selections` in the
-database. The `response` on the selection model can be either `negative`,
+broadcast and how much? Users are related to broadcasts via `impressions` in the
+database. The `response` on the impression model can be either `negative`,
 `neutral` and `positive` and indicates whether a user wants to give money to a
 broadcast. If the `response` is positive, the `amount` further specifies how
 much to pay for a broadcast. So, the sum of all amounts per user must not exceed

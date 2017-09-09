@@ -12,8 +12,8 @@ en:
         broadcast:
           attributes:
             description:
-              no_urls: without links, please. Users should be able to vote on a broadcast without leaving this website.
-        selection:
+              no_urls: without links, please. Users should be able to view a broadcast without leaving this website.
+        impression:
           attributes:
             amount:
               total: Total amount of %{sum} exceeds the available budget of %{budget}

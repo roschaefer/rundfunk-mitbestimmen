@@ -98,7 +98,7 @@ index:
   statistics:
     registered-users: Registered users
     broadcasts: Broadcasts
-    votes: Votes
+    impressions: Impressions
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
@@ -324,12 +324,12 @@ invoice:
       euro: Click to change amount
   link-to:
     find-broadcasts: More suggestions
-    broadcasts: My votes
+    broadcasts: My impressions
     statistics: 'Public statistics'
 broadcasts:
-  header: Your votes so far
+  header: Your impressions so far
   sub-header: >
-    Here are all your reviewed broadcasts
+    Here are all your viewed broadcasts
   table:
     header:
       title: Title
@@ -344,7 +344,7 @@ statistics:
     header: Which formula is used to calculate the results?
     content:
       formula: 'The formula is:'
-      votes: >
+      impressions: >
         How often was the broadcast displayed to users?<br>
         At the moment, we count how many registered users clicked on either
         <strong>Support</strong> or <strong>Next</strong>.
@@ -362,7 +362,7 @@ statistics:
     table:
       header:
         broadcast: Broadcast
-        votes: Number of votes
+        impressions: Impressions
         approval: Approval
         average: On average
         total: Total

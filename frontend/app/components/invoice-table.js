@@ -12,63 +12,63 @@ export default Ember.Component.extend({
     this.setFooterAttributes();
   },
   actions: {
-    removeItem(selection) {
+    removeItem(impression) {
       let invoice = this.get('invoice');
-      selection.set('amount', null);
-      selection.set('response', 'neutral');
-      selection.set('fixed', false);
-      selection.save().then(() => {
-        invoice.remove(selection);
-        let selections = invoice.get('selections');
-        selections.forEach((s) => {
+      impression.set('amount', null);
+      impression.set('response', 'neutral');
+      impression.set('fixed', false);
+      impression.save().then(() => {
+        invoice.remove(impression);
+        let impressions = invoice.get('impressions');
+        impressions.forEach((s) => {
           s.save();
         });
-        this.set('selections', selections);
+        this.set('impressions', impressions);
         this.setFooterAttributes();
       });
     },
-    fixItem(selection){
-      selection.set('fixed', true);
-      selection.save();
+    fixItem(impression){
+      impression.set('fixed', true);
+      impression.save();
     },
-    unfixItem(selection){
-      selection.set('fixed', false);
-      selection.set('amount', 0.0); // free some money
-      selection.save().then(() => {
+    unfixItem(impression){
+      impression.set('fixed', false);
+      impression.set('amount', 0.0); // free some money
+      impression.save().then(() => {
         let invoice = this.get('invoice');
-        let selections = invoice.get('selections');
+        let impressions = invoice.get('impressions');
         invoice.redistribute();
-        selections.forEach((s) => {
+        impressions.forEach((s) => {
           s.save();
         });
-        this.set('selections', selections);
+        this.set('impressions', impressions);
         this.setFooterAttributes();
       });
     },
-    updateItem(selection, amount) {
+    updateItem(impression, amount) {
       let invoice = this.get('invoice');
 
-      let newAmount = invoice.allocate(selection, amount);
-      let selections = invoice.get('selections');
-      if (newAmount > selection.get('amount')) {
-        Ember.RSVP.all(selections.map((s) => {
+      let newAmount = invoice.allocate(impression, amount);
+      let impressions = invoice.get('impressions');
+      if (newAmount > impression.get('amount')) {
+        Ember.RSVP.all(impressions.map((s) => {
           return s.save();
         })).then(() => {
-          selection.set('amount', newAmount);
-          selection.set('fixed', true);
-          selection.save();
-          this.set('selections', selections);
+          impression.set('amount', newAmount);
+          impression.set('fixed', true);
+          impression.save();
+          this.set('impressions', impressions);
           this.setFooterAttributes();
         });
       } else {
-        selection.set('amount', newAmount);
-        selection.set('fixed', true);
-        selection.notifyPropertyChange('amount');
-        selection.save().then(() => {
-          selections.forEach((s) => {
+        impression.set('amount', newAmount);
+        impression.set('fixed', true);
+        impression.notifyPropertyChange('amount');
+        impression.save().then(() => {
+          impressions.forEach((s) => {
             s.save();
           });
-          this.set('selections', selections);
+          this.set('impressions', impressions);
           this.setFooterAttributes();
         });
       }

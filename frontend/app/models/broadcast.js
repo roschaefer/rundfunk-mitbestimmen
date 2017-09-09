@@ -8,33 +8,33 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
   medium: DS.belongsTo('medium'),
   station: DS.belongsTo('station'),
-  selections: DS.hasMany('selection'),
+  impressions: DS.hasMany('impression'),
 
-  response: Ember.computed('selections.firstObject.response', function() {
-    return this.get('selections.firstObject.response');
+  response: Ember.computed('impressions.firstObject.response', function() {
+    return this.get('impressions.firstObject.response');
   }),
 
   setDefaultResponse(response){
-    return this.get('selections.firstObject') || this.respond(response);
+    return this.get('impressions.firstObject') || this.respond(response);
   },
   respond(response){
-    let firstSelection = this.get('selections.firstObject');
+    let firstImpression = this.get('impressions.firstObject');
     if (['positive', 'neutral'].includes(response)){
-      if (firstSelection){
-        firstSelection.set('response', response);
+      if (firstImpression){
+        firstImpression.set('response', response);
         if (response === 'neutral'){
-          firstSelection.set('amount', null);
-          firstSelection.set('fixed', false);
+          firstImpression.set('amount', null);
+          firstImpression.set('fixed', false);
         }
       } else {
-        firstSelection = this.get('store').createRecord('selection', {
+        firstImpression = this.get('store').createRecord('impression', {
           broadcast: this,
           response: response,
         });
-        this.get('selections').addObject(firstSelection);
+        this.get('impressions').addObject(firstImpression);
       }
     }
-    return firstSelection;
+    return firstImpression;
   },
 
   saveAndSetSuccess(){

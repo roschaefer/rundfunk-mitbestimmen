@@ -8,11 +8,11 @@ In order to infer the popularity of my broadcast and how important it is for my 
   Background:
     Given 3 out of 10 users want to pay for a show called "Die Anstalt"
     And the total amount collected for this show is €15.00
-    And 4 users of the app never voted on this show
+    And 4 users of the app never viewed this show
 
-  Scenario: Display number of votes, satisfaction and average amount
+  Scenario: Display number of impressions, satisfaction and average amount
     When I visit the public statistics page
     Then I see this summary:
-      | Broadcast   | Reviews | Satisfaction | Average |
-      | Die Anstalt | 10      | 30%          | €5.00   |
+      | Broadcast   | Impressions | Approval     | Average | Total  |
+      | Die Anstalt | 10          | 30%          | €5.00   | €15.00 |
 

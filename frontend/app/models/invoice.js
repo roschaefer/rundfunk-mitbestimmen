@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   budget: 17.5,
-  selections: DS.hasMany('selection'),
+  impressions: DS.hasMany('impression'),
 
 
   // SOURCE: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
@@ -25,64 +25,64 @@ export default DS.Model.extend({
     return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
   },
 
-  distributeEvenly(selections, share){
-    let count = selections.length;
+  distributeEvenly(impressions, share){
+    let count = impressions.length;
     let newAmount = Math.max(share/count, 0);
     newAmount = this.floor10(newAmount, -2);
-    selections.setEach('amount', newAmount);
+    impressions.setEach('amount', newAmount);
   },
   freeBudget(){
     return this.budget - this.fixedBudget();
   },
-  unfixedSelections(){
-    let selections = this.get('selections');
-    return selections.filter((s) => {
+  unfixedImpressions(){
+    let impressions = this.get('impressions');
+    return impressions.filter((s) => {
       return ! s.get('fixed');
     });
   },
-  fixedSelections(){
-    let selections = this.get('selections');
-    return selections.filter((s) => {
+  fixedImpressions(){
+    let impressions = this.get('impressions');
+    return impressions.filter((s) => {
       return s.get('fixed');
     });
   },
   fixedBudget(){
-    return this.budgetOf(this.fixedSelections());
+    return this.budgetOf(this.fixedImpressions());
   },
   redistribute() {
-    this.distributeEvenly(this.unfixedSelections(), this.freeBudget());
+    this.distributeEvenly(this.unfixedImpressions(), this.freeBudget());
   },
-  budgetOf(selections){
-    return selections.reduce((sum, s) => {
+  budgetOf(impressions){
+    return impressions.reduce((sum, s) => {
       return sum + (s.get('amount') || 0.0);
     }, 0.0);
   },
   total(){
-    return this.budgetOf(this.get('selections'));
+    return this.budgetOf(this.get('impressions'));
   },
   leftOver(){
     return this.budget - this.total();
   },
-  allocate(selection, desiredAmount){
-    let currentAmount = selection.get('amount') || 0;
-    let pool = this.unfixedSelections().filter((s) => {
-      return selection !== s;
+  allocate(impression, desiredAmount){
+    let currentAmount = impression.get('amount') || 0;
+    let pool = this.unfixedImpressions().filter((s) => {
+      return impression !== s;
     });
     let poolBudget = this.budgetOf(pool) + this.leftOver();
     let diff = Math.min(poolBudget, this.floor10(desiredAmount - currentAmount, -2));
     this.distributeEvenly(pool, poolBudget - diff);
     return currentAmount + diff;
   },
-  remove(selection) {
-    let selections = this.get('selections');
-    selections.removeObject(selection);
+  remove(impression) {
+    let impressions = this.get('impressions');
+    impressions.removeObject(impression);
     this.redistribute();
   },
   initializeAmounts(){
     this.redistribute();
   },
-  reduceFirstSelections(){
-    return this.unfixedSelections().filter((s) => {
+  reduceFirstImpressions(){
+    return this.unfixedImpressions().filter((s) => {
       return s.get('amount') !== null;
     });
   },

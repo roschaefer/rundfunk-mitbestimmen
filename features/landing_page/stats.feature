@@ -3,7 +3,7 @@ Feature: Show some stats
   I want to see on the landing page these numbers:
   * registered users
   * broadcasts
-  * selections
+  * impressions
   * global sum of all amounts
   To be impressed and get a feeling how the total amount of monies compares to the broadcasting fees
 
@@ -12,6 +12,6 @@ Feature: Show some stats
     And every user wants to pay 5 broadcasts each with €3.50 each
     When I visit the landing page
     Then I can see these numbers:
-      | Registered users | Reviews | Money assigned |
-      | 12               | 60      | €210           |
+      | Registered users | Reviews | Already assigned |
+      | 12               | 60      | €210             |
     And there is a link that brings me to the statistics page

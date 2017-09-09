@@ -1,10 +1,10 @@
 <td>
-  {{#link-to 'broadcast' selection.broadcast class="ui circular mini icon button broadcast-details" }}
+  {{#link-to 'broadcast' impression.broadcast class="ui circular mini icon button broadcast-details" }}
   <i class="search icon"></i>
   {{/link-to}}
 </td>
 <td>
-  {{selection.broadcast.title}}
+  {{impression.broadcast.title}}
 </td>
 <td>
   <button class="invoice-item-action-remove left floated ui circular icon button" {{action 'remove'}} >
@@ -13,11 +13,11 @@
 </td>
 <td class="right aligned">
   {{#ui-popup content=(t 'invoice.invoice-item.tooltips.change')}}
-    {{invoice-item-amount amount=selection.amount changeAmountAction=(action 'update')}}
+    {{invoice-item-amount amount=impression.amount changeAmountAction=(action 'update')}}
   {{/ui-popup}}
 </td>
 <td>
-  {{#if selection.fixed}}
+  {{#if impression.fixed}}
     {{#ui-popup content=(t 'invoice.invoice-item.tooltips.unfix')}}
       <button class="invoice-item-action-unfix ui circular secondary icon button" {{action 'toggleFixed'}}>
         <i class="icon linkify"></i>

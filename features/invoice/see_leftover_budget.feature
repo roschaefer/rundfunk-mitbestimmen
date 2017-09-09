@@ -8,7 +8,7 @@ Feature: See leftover budget
     Given I am logged in
 
   Scenario: See remaining and total budget
-    Given my votes look like this:
+    Given my broadcasts look like this:
       | Title            | Amount | Fixed |
       | Tagesthemen      | €4.16  | no    |
       | Morgenmagazin    | €4.16  | no    |

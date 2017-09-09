@@ -84,16 +84,16 @@ Then(/^my responses in the database are like this:$/) do |table|
   wait_for_ajax
   table.hashes.each do |row|
     broadcast = Broadcast.find_by(title: row['Title'])
-    selection = broadcast.selections.first
-    expect(selection.user_id).to eq @user.id
-    expect(selection.response).to eq row['Response']
+    impression = broadcast.impressions.first
+    expect(impression.user_id).to eq @user.id
+    expect(impression.response).to eq row['Response']
   end
 end
 
 Given(/^I want to give money to each of these broadcasts:$/) do |table|
   table.hashes.each do |row|
     b = create(:broadcast, title: row['Title'])
-    create(:selection, user: @user, broadcast: b)
+    create(:impression, user: @user, broadcast: b)
   end
 end
 
@@ -115,12 +115,12 @@ Then(/^I can see that my budget of .*€ is distributed equally:$/) do |table|
   check_invoice(table)
 end
 
-Then(/^also in the database all selections have the same amount of "([^"]*)"$/) do |amount|
-  amounts = Selection.pluck(:amount)
+Then(/^also in the database all impressions have the same amount of "([^"]*)"$/) do |amount|
+  amounts = Impression.pluck(:amount)
   expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
 end
 
-Given(/^my votes look like this:$/) do |table|
+Given(/^my broadcasts look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
     amount = sanitize_amount(row['Amount']) if row['Amount']
@@ -131,7 +131,7 @@ Given(/^my votes look like this:$/) do |table|
       response = :positive
     end
     broadcast = Broadcast.find_by(title: title) || create(:broadcast, title: title)
-    create(:selection,
+    create(:impression,
            user: @user,
            broadcast: broadcast,
            response: response,
@@ -154,14 +154,14 @@ When(/^I click on the 'X' next to ([^"]*)$/) do |title|
   end
 end
 
-Then(/^my updated votes look like this:$/) do |table|
+Then(/^my updated broadcasts look like this:$/) do |table|
   wait_for_ajax
   check_invoice(table)
 end
 
 Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |title, response|
-  selection = @user.selections.find {|s| s.broadcast.title == title }
-  expect(selection.response).to eq response
+  impression = @user.impressions.find {|s| s.broadcast.title == title }
+  expect(impression.response).to eq response
 end
 
 
@@ -223,12 +223,12 @@ When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
 end
 
 Given(/^the attribute 'fixed' is "([^"]*)" for my selected broadcast "([^"]*)"$/) do |value, title|
-  selection = @user.selections.find {|s| s.broadcast.title ==  title }
-  selection.reload
+  impression = @user.impressions.find {|s| s.broadcast.title ==  title }
+  impression.reload
   if value == 'true'
-    expect(selection).to be_fixed
+    expect(impression).to be_fixed
   else
-    expect(selection).not_to be_fixed
+    expect(impression).not_to be_fixed
   end
 end
 
@@ -251,7 +251,7 @@ Given(/^these users want to pay money for these broadcasts:$/) do |table|
     unless user
       user = create(:user, email: row['Email'])
     end
-    create(:selection,
+    create(:impression,
            broadcast: broadcast,
            user: user,
            response: :positive,
@@ -267,8 +267,8 @@ Then(/^I see this summary:$/) do |table|
   table.hashes.each do |row|
     item = find('.statistic-item', text: /#{row['Broadcast']}/)
     within(item) do
-      expect(find('.votes')).to have_text(row['Reviews'])
-      expect(find('.approval')).to have_text(row['Satisfaction'])
+      expect(find('.impressions')).to have_text(row['Impressions'])
+      expect(find('.approval')).to have_text(row['Approval'])
       expect(find('.average')).to have_text(row['Average'])
       expect(find('.total')).to have_text(row['Total'])
     end
@@ -286,15 +286,15 @@ end
 
 Given(/^every user wants to pay (\d+) broadcasts each with €(\d+\.?\d*) each$/) do |number, amount|
   User.find_each do |user|
-    number.to_i.times { create(:selection, user: user, amount: amount.to_f) }
+    number.to_i.times { create(:impression, user: user, amount: amount.to_f) }
   end
 end
 
 Then(/^I can see these numbers:$/) do |table|
   row = table.hashes.first
   expect(page).to have_css('.statistics.registered-users', text: row['Registered users'])
-  expect(page).to have_css('.statistics.votes', text: row['Reviews'])
-  expect(page).to have_css('.statistics.money-assigned', text: row['Money assigned'])
+  expect(page).to have_css('.statistics.impressions', text: row['Impressions'])
+  expect(page).to have_css('.statistics.money-assigned', text: row['Already assigned'])
 end
 
 Then(/^there is a link that brings me to the statistics page$/) do
@@ -306,8 +306,8 @@ end
 
 Then(/^I have one positive response in the database$/) do
   wait_for_ajax
-  expect(Selection.count).to be > 1 # more than just once
-  expect(Selection.positive.count).to eq 1
+  expect(Impression.count).to be > 1 # more than just once
+  expect(Impression.positive.count).to eq 1
 end
 
 Given(/^I really like a broadcast called "([^"]*)"$/) do |title|
@@ -315,7 +315,7 @@ Given(/^I really like a broadcast called "([^"]*)"$/) do |title|
 end
 
 Given(/^I have reviewed all broadcasts already$/) do
-  expect(@user.selections.count).to eq Broadcast.count
+  expect(@user.impressions.count).to eq Broadcast.count
 end
 
 Given(/^the form to create a new broadcast is there$/) do
@@ -366,20 +366,20 @@ end
 
 Given(/^(\d+) out of (\d+) users want to pay for a show called "([^"]*)"$/) do |positive, total, title|
   @broadcast = create(:broadcast, title: title)
-  create_list(:selection, positive.to_i, broadcast: @broadcast, response: :positive)
+  create_list(:impression, positive.to_i, broadcast: @broadcast, response: :positive)
   neutral = total.to_i - positive.to_i
-  create_list(:selection, neutral, broadcast: @broadcast, response: :neutral)
+  create_list(:impression, neutral, broadcast: @broadcast, response: :neutral)
 end
 
 Given(/^the total amount collected for this show is €(\d+\.\d+)$/) do |amount|
-  average = (amount.to_f / @broadcast.selections.positive.count.to_f)
-  @broadcast.selections.positive.each do |s|
+  average = (amount.to_f / @broadcast.impressions.positive.count.to_f)
+  @broadcast.impressions.positive.each do |s|
     s.amount = average
     s.save
   end
 end
 
-Given(/^(\d+) users of the app never voted on this show$/) do |number|
+Given(/^(\d+) users of the app never viewed this show$/) do |number|
   create_list(:user, number.to_i)
 end
 
@@ -417,7 +417,7 @@ end
 
 Given(/^yesterday I deselected a broadcast called "([^"]*)"$/) do |title|
   @broadcast = create(:broadcast, title: title)
-  create(:selection, user: @user, broadcast: @broadcast, response: :neutral)
+  create(:impression, user: @user, broadcast: @broadcast, response: :neutral)
 end
 
 Given(/^today I learned that it is actually a broadcast that I really like$/) do
@@ -492,7 +492,7 @@ end
 
 Given(/^I reviewed the broadcast "([^"]*)" with this description:$/) do |title, description|
   @broadcast = create(:broadcast, title: title, description: description)
-  create(:selection, broadcast: @broadcast, user: @user)
+  create(:impression, broadcast: @broadcast, user: @user)
 end
 
 When(/^I click the edit button next to the title "([^"]*)"$/) do |title|
@@ -526,11 +526,11 @@ end
 
 Given(/^the statistics look like this:$/) do |table|
   table.hashes.each do |row|
-    n_selections = row['Reviews'].to_i
+    n_impressions = row['Reviews'].to_i
     approval = row['Approval'].to_f/100.0
-    n_positive = approval*n_selections
+    n_positive = approval*n_impressions
     average_amount = sanitize_amount(row['Total'])/n_positive
-    n_neutral = (1.0 - approval)*n_selections
+    n_neutral = (1.0 - approval)*n_impressions
 
     tv = Medium.find_by(id: 0) || create(:medium, id: 0, name: 'TV')
     station = if row['Station']
@@ -540,11 +540,11 @@ Given(/^the statistics look like this:$/) do |table|
               end
 
     broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, station: station)
-    create_list(:selection, n_positive.to_i,
+    create_list(:impression, n_positive.to_i,
                 broadcast: broadcast,
                 response: :positive,
                 amount: average_amount)
-    create_list(:selection, n_neutral.to_i,
+    create_list(:impression, n_neutral.to_i,
                 broadcast: broadcast,
                 response: :neutral)
   end
@@ -775,8 +775,8 @@ end
 
 When(/^in the database all my responses are 'neutral'$/) do
   wait_for_ajax
-  expect(Selection.count).to be > 0
-  expect(Selection.all.all? {|s| s.neutral? }).to be true
+  expect(Impression.count).to be > 0
+  expect(Impression.all.all? {|s| s.neutral? }).to be true
 end
 
 When(/^support the first broadcast$/) do

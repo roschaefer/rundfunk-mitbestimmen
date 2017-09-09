@@ -65,7 +65,7 @@ describe('Integration | Component | decision card', function() {
 
     context('broadcast is already supported', function() {
       beforeEach(function(){
-        make('selection', {
+        make('impression', {
           broadcast: broadcast,
           response: 'positive'
         });

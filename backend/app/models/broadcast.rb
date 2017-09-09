@@ -4,7 +4,7 @@ class Broadcast < ApplicationRecord
 
   pg_search_scope :search_by_title, against: :title
 
-  has_many :selections, dependent: :destroy
+  has_many :impressions, dependent: :destroy
 
   paginates_per 10
   belongs_to :topic

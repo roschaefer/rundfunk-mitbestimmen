@@ -1,19 +1,19 @@
 require 'rails_helper'
 require 'sidekiq/testing'
 
-RSpec.describe 'Selections', type: :request do
+RSpec.describe 'Impressions', type: :request do
   let(:headers) { {} }
   let(:params)  { {} }
   let(:user)    { create :user }
-  let(:positive_selection) { create(:selection, user: user, response: :positive) }
-  let(:negative_selection) { create(:selection, user: user, response: :negative) }
+  let(:positive_impression) { create(:impression, user: user, response: :positive) }
+  let(:negative_impression) { create(:impression, user: user, response: :negative) }
   let(:json_body) do
     subject
     JSON.parse(response.body)
   end
 
   describe '*' do
-    let(:url) { '/selections' } # as an example
+    let(:url) { '/impressions' } # as an example
     let(:request) { get url, params: params, headers: headers }
     context 'legacy user without auth0_uid or location' do
       before { user }
@@ -47,11 +47,11 @@ RSpec.describe 'Selections', type: :request do
     end
   end
 
-  describe 'GET /selections' do
-    let(:action) { get '/selections', params: params, headers: headers }
-    let(:selections) { [positive_selection, negative_selection] }
+  describe 'GET /impressions' do
+    let(:action) { get '/impressions', params: params, headers: headers }
+    let(:impressions) { [positive_impression, negative_impression] }
     subject do
-      selections
+      impressions
       action
       response
     end
@@ -62,33 +62,33 @@ RSpec.describe 'Selections', type: :request do
       let(:headers) { authenticated_header(user) }
 
       it { is_expected.to have_http_status(:ok) }
-      it 'returns selections of the current user' do
+      it 'returns impressions of the current user' do
         expect(subject.body).to have_json_size(2).at_path('data')
         data = parse_json(subject.body, 'data').sort_by { |key| key['attributes']['response'] }
-        expect(data.first['id']).to eq(negative_selection.id.to_s)
+        expect(data.first['id']).to eq(negative_impression.id.to_s)
         expect(data.first['attributes']).to include('response' => 'negative')
-        expect(data.second['id']).to eq(positive_selection.id.to_s)
+        expect(data.second['id']).to eq(positive_impression.id.to_s)
         expect(data.second['attributes']).to include('response' => 'positive')
       end
 
       describe '?response=positive' do
         let(:params) { { filter: { response: 'positive' } } }
 
-        it 'returns only selections with a positive response' do
+        it 'returns only impressions with a positive response' do
           expect(subject.body).to have_json_size(1).at_path('data')
           expect(parse_json(subject.body, 'data/0/attributes')).to include('response' => 'positive')
-          expect(parse_json(subject.body, 'data/0/id')).to eq positive_selection.id.to_s
+          expect(parse_json(subject.body, 'data/0/id')).to eq positive_impression.id.to_s
         end
       end
     end
   end
 
-  describe 'GET /selections/:id' do
-    let(:action) { get "/selections/#{selection.id}", params: params, headers: headers }
-    let(:selection) { create(:selection, user: user) }
+  describe 'GET /impressions/:id' do
+    let(:action) { get "/impressions/#{impression.id}", params: params, headers: headers }
+    let(:impression) { create(:impression, user: user) }
 
     subject do
-      selection
+      impression
       action
       response
     end
@@ -98,23 +98,23 @@ RSpec.describe 'Selections', type: :request do
     context 'signed in' do
       let(:headers) { authenticated_header(user) }
 
-      context 'access to own selection' do
+      context 'access to own impression' do
         it { is_expected.to have_http_status(:ok) }
 
-        it 'returns selection' do
-          expect(json_body['data']['id']).to eq selection.id.to_s
+        it 'returns impression' do
+          expect(json_body['data']['id']).to eq impression.id.to_s
         end
       end
 
-      context 'access to selection of someone else' do
-        let(:selection) { create(:selection) }
+      context 'access to impression of someone else' do
+        let(:impression) { create(:impression) }
         it { is_expected.to have_http_status(:forbidden) }
       end
     end
   end
 
-  describe 'POST /selections' do
-    let(:action) { post '/selections', params: params, headers: headers }
+  describe 'POST /impressions' do
+    let(:action) { post '/impressions', params: params, headers: headers }
 
     subject do
       action
@@ -132,7 +132,7 @@ RSpec.describe 'Selections', type: :request do
           let(:params) do
             {
               data: {
-                type: 'selections',
+                type: 'impressions',
                 attributes: {
                   response: :positive
                 },
@@ -145,11 +145,11 @@ RSpec.describe 'Selections', type: :request do
             }
           end
 
-          it 'creates a selection' do
-            expect { action }.to change { Selection.count }.from(0).to(1)
+          it 'creates a impression' do
+            expect { action }.to change { Impression.count }.from(0).to(1)
           end
 
-          it 'user creates a selection, thus he wants to pay for the broadcast' do
+          it 'user creates a impression, thus he wants to pay for the broadcast' do
             action
             user.reload
             expect(user.liked_broadcasts).to include(broadcast)
@@ -168,7 +168,7 @@ RSpec.describe 'Selections', type: :request do
               params
             end
 
-            it 'cannot create a selection for another user' do
+            it 'cannot create a impression for another user' do
               action
               user.reload
               other_user.reload

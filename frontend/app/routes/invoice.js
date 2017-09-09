@@ -10,22 +10,22 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScrollPositionMi
     this._super(controller, model);
     // Implement your custom setup after
     let invoice = this.get('store').createRecord('invoice', {
-      selections: model,
+      impressions: model,
     });
-    let reduceFirstSelections = invoice.reduceFirstSelections();
+    let reduceFirstImpressions = invoice.reduceFirstImpressions();
     invoice.initializeAmounts();
-    Ember.RSVP.all(reduceFirstSelections.map((s) => {
+    Ember.RSVP.all(reduceFirstImpressions.map((s) => {
       //free some budget, first
       return s.save();
     })).then(() => {
-      invoice.get('selections').forEach((s) => {
+      invoice.get('impressions').forEach((s) => {
         s.save();
       });
     });
     controller.set('invoice', invoice);
   },
   model() {
-    return this.store.query('selection', {
+    return this.store.query('impression', {
       filter: {
         response: 'positive'
       }
