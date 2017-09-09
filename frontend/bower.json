@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "dependencies": {
-    "ember": "~2.14.0",
+    "ember": "~2.15.0",
     "jquery-mockjax": "2.2.1",
     "semantic-ui": "^2.2.13",
     "auth0-lock": "^10.20.0",

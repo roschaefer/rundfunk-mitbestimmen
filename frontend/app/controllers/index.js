@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   intl: Ember.inject.service(),
+  annualBudget: 8000000000,
   actualChartOptions: {
     chart: {
       plotBackgroundColor: null,
