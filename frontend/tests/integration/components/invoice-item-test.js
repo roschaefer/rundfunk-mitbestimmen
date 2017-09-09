@@ -15,16 +15,16 @@ describe('Integration | Component | invoice item', function() {
   });
 
   it('renders', function() {
-    let selection = Ember.Object.create({
+    let impression = Ember.Object.create({
       amount: 9.99,
       broadcast: {
         title: "Whatever",
       }
     });
-    this.set('selection', selection);
-    this.on('removeItem', function(selection) { return selection; });
+    this.set('impression', impression);
+    this.on('removeItem', function(impression) { return impression; });
 
-    this.render(hbs`{{invoice-item selection=selection removeAction=(action 'removeItem')}}`);
+    this.render(hbs`{{invoice-item impression=impression removeAction=(action 'removeItem')}}`);
     expect(this.$()).to.have.length(1);
 
     let text = this.$().text();

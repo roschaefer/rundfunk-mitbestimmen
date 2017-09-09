@@ -6,17 +6,17 @@ export default Ember.Component.extend({
   classNames: 'invoice-item',
   actions: {
     remove(){
-      this.get('removeAction')(this.get('selection'));
+      this.get('removeAction')(this.get('impression'));
     },
     update(amount){
-      this.get('updateAction')(this.get('selection'), amount);
+      this.get('updateAction')(this.get('impression'), amount);
     },
     toggleFixed(){
-      let selection = this.get('selection');
-      if (selection.get('fixed')) {
-        this.get('unfixAction')(this.get('selection'));
+      let impression = this.get('impression');
+      if (impression.get('fixed')) {
+        this.get('unfixAction')(this.get('impression'));
       } else{
-        this.get('fixAction')(this.get('selection'));
+        this.get('fixAction')(this.get('impression'));
       }
     },
   }

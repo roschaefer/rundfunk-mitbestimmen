@@ -1,6 +1,6 @@
 import FactoryGuy from 'ember-data-factory-guy';
 
-FactoryGuy.define('selection', {
+FactoryGuy.define('impression', {
   default: {
     response: true
   }

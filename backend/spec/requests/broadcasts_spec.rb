@@ -43,14 +43,14 @@ RSpec.describe 'Broadcasts', type: :request do
         end
       end
 
-      describe '#selections' do
-        before  { create(:selection) }
+      describe '#impressions' do
+        before  { create(:impression) }
         subject do
           action
-          js['data'][0]['relationships']['selections']['data']
+          js['data'][0]['relationships']['impressions']['data']
         end
 
-        it 'does not expose foreign selections' do
+        it 'does not expose foreign impressions' do
           is_expected.to be_empty
         end
       end

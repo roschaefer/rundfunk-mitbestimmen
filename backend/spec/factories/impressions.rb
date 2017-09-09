@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :selection do
+  factory :impression do
     response 1
     association(:user)
     association(:broadcast)

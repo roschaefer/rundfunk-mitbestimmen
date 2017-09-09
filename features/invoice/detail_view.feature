@@ -13,7 +13,7 @@ Feature: Click on broadcast title to see details
       | Sendung mit der Maus | TV     | WDR       | 2017-07-27 | 2017-08-01 | Lach und Sachgeschichten mit der Maus und dem Elefanten.       |
 
   Scenario: Click title to see details
-    Given my votes look like this:
+    Given my broadcasts look like this:
       | Title                | Support | Amount |
       | Sportschau           | No      | -      |
       | Medienmagazin        | Yes     | €7.50  |

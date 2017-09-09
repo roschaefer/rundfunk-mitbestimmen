@@ -13,12 +13,12 @@ export default Ember.Controller.extend({
       this.set('page', page);
     },
     unselect(broadcast){
-      let selection = broadcast.respond('neutral');
-      selection.save();
+      let impression = broadcast.respond('neutral');
+      impression.save();
     },
     reselect(broadcast){
-      let selection = broadcast.respond('positive');
-      selection.save();
+      let impression = broadcast.respond('positive');
+      impression.save();
     },
     edit(broadcast){
       this.set('editedBroadcast', broadcast);

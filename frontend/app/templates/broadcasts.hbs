@@ -27,8 +27,8 @@
           <tr class="broadcast">
             <td>{{broadcast.title}}</td>
             <td class="right aligned">
-              {{#each broadcast.selections as |selection|}}
-                {{#if (eq selection.response 'positive')}}
+              {{#each broadcast.impressions as |impression|}}
+                {{#if (eq impression.response 'positive')}}
                   <button class="unselect ui circular positive icon button" {{ action 'unselect' broadcast}}  >
                     <i class="large smile icon"></i>
                   </button>

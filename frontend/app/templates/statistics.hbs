@@ -22,11 +22,11 @@
           <div id="inner-explanation-accordion" class="accordion transition hidden">
             <div class="title accordion-header">
               <i class="dropdown icon"></i>
-              {{t 'statistics.summary.table.header.votes'}}
+              {{t 'statistics.summary.table.header.impressions'}}
             </div>
             <div class="content accordion-text">
               <p>
-              {{t 'statistics.explanations.content.votes' htmlSafe=true}}
+              {{t 'statistics.explanations.content.impressions' htmlSafe=true}}
               </p>
             </div>
             <div class="title accordion-header">
@@ -80,8 +80,8 @@
             {{#sortable-header current-column=column current-direction=direction column='title' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.broadcast'}}
             {{/sortable-header}}
-            {{#sortable-header current-column=column current-direction=direction column='votes' clickAction=(action 'order')}}
-              {{t 'statistics.summary.table.header.votes'}}
+            {{#sortable-header current-column=column current-direction=direction column='impressions' clickAction=(action 'order')}}
+              {{t 'statistics.summary.table.header.impressions'}}
             {{/sortable-header}}
             {{#sortable-header current-column=column current-direction=direction column='approval' clickAction=(action 'order')}}
               {{t 'statistics.summary.table.header.approval'}}
@@ -98,7 +98,7 @@
           {{#each model as |statistic|}}
             <tr class="statistic-item">
               <td>{{statistic.title}}</td>
-              <td class="votes">{{statistic.votes}}</td>
+              <td class="impressions">{{statistic.impressions}}</td>
               <td class="approval">{{format-number statistic.approval style='percent'}}</td>
               <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
               <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>

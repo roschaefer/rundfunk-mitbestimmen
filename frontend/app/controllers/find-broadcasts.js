@@ -13,24 +13,24 @@ export default Ember.Controller.extend({
   perPage: 6,
   totalPages: Ember.computed.alias("content.broadcasts.totalPages"),
 
-  positiveSelectionsWithoutAmount: Ember.computed.filterBy('model.selections','needsAmount', true),
+  positiveImpressionsWithoutAmount: Ember.computed.filterBy('model.impressions','needsAmount', true),
 
   actions: {
     searchAction(query){
       this.send('setQuery', query);
     },
     browse(step){
-      if(this.store.peekAll('selection').isAny('isLoading', true)){
+      if(this.store.peekAll('impression').isAny('isLoading', true)){
         return; // avoid willCommit in root.loading state error
       }
       this.get('model.broadcasts').map((broadcast) => {
-        let selection = broadcast.setDefaultResponse('neutral');
-        selection.save();
+        let impression = broadcast.setDefaultResponse('neutral');
+        impression.save();
       });
       this.set('page', step);
     },
     respond(broadcast){
-      broadcast.get('selections.firstObject').save();
+      broadcast.get('impressions.firstObject').save();
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);

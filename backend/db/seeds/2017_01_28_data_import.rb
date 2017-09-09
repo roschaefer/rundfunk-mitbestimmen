@@ -63,8 +63,8 @@ Station.create!(id: 55, medium_id: 0, name: 'ZDFneo')
 ['Bremen Vier', 'Bremen NEXT'].each do |title|
   b = Broadcast.find_by(title: title)
   next unless b
-  puts "Selections going to be destroyed: #{b.selections.count}"
-  b.selections.destroy_all
+  puts "Impressions going to be destroyed: #{b.impressions.count}"
+  b.impressions.destroy_all
   b.destroy
 end
 

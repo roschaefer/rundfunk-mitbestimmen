@@ -1,4 +1,4 @@
-class SelectionSerializer < ActiveModel::Serializer
+class ImpressionSerializer < ActiveModel::Serializer
   attributes :id, :response, :amount, :fixed
   has_one :user
   has_one :broadcast

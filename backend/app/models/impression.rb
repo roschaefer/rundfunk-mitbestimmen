@@ -1,4 +1,4 @@
-class Selection < ApplicationRecord
+class Impression < ApplicationRecord
   BUDGET = 17.5
   enum response: { negative: -1, neutral: 0, positive: 1 }
   belongs_to :user
@@ -16,8 +16,8 @@ class Selection < ApplicationRecord
 
   def total_amount_does_not_exceed_budget
     return unless amount
-    current_sum = amount + Selection.where(user: user).where.not(id: id).sum(:amount)
+    current_sum = amount + Impression.where(user: user).where.not(id: id).sum(:amount)
     return if current_sum <= BUDGET
-    errors.add(:amount, I18n.t('activerecord.errors.models.selection.attributes.amount.total', sum: ActionController::Base.helpers.number_to_currency(current_sum, unit: '€'), budget: ActionController::Base.helpers.number_to_currency(BUDGET, unit: '€')))
+    errors.add(:amount, I18n.t('activerecord.errors.models.impression.attributes.amount.total', sum: ActionController::Base.helpers.number_to_currency(current_sum, unit: '€'), budget: ActionController::Base.helpers.number_to_currency(BUDGET, unit: '€')))
   end
 end

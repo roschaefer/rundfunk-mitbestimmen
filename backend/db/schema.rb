@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726152244) do
+ActiveRecord::Schema.define(version: 20170909131424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170726152244) do
     t.index ["topic_id"], name: "index_broadcasts_on_topic_id"
   end
 
-  create_table "format_translations", force: :cascade do |t|
+  create_table "format_translations", id: :serial, force: :cascade do |t|
     t.integer "format_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -50,22 +50,7 @@ ActiveRecord::Schema.define(version: 20170726152244) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "media", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "medium_translations", force: :cascade do |t|
-    t.integer "medium_id", null: false
-    t.string "locale", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.index ["locale"], name: "index_medium_translations_on_locale"
-    t.index ["medium_id"], name: "index_medium_translations_on_medium_id"
-  end
-
-  create_table "selections", id: :serial, force: :cascade do |t|
+  create_table "impressions", id: :serial, force: :cascade do |t|
     t.integer "response"
     t.decimal "amount"
     t.integer "user_id"
@@ -73,9 +58,24 @@ ActiveRecord::Schema.define(version: 20170726152244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "fixed"
-    t.index ["broadcast_id"], name: "index_selections_on_broadcast_id"
-    t.index ["user_id", "broadcast_id"], name: "index_selections_on_user_id_and_broadcast_id", unique: true
-    t.index ["user_id"], name: "index_selections_on_user_id"
+    t.index ["broadcast_id"], name: "index_impressions_on_broadcast_id"
+    t.index ["user_id", "broadcast_id"], name: "index_impressions_on_user_id_and_broadcast_id", unique: true
+    t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "media", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "medium_translations", id: :serial, force: :cascade do |t|
+    t.integer "medium_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["locale"], name: "index_medium_translations_on_locale"
+    t.index ["medium_id"], name: "index_medium_translations_on_medium_id"
   end
 
   create_table "stations", id: :serial, force: :cascade do |t|
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170726152244) do
     t.index ["name"], name: "index_stations_on_name", unique: true
   end
 
-  create_table "topic_translations", force: :cascade do |t|
+  create_table "topic_translations", id: :serial, force: :cascade do |t|
     t.integer "topic_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20170726152244) do
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "encrypted_password", default: "", null: false
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer "role", default: 0
     t.string "auth0_uid"
     t.boolean "has_bad_email", default: false
@@ -135,32 +135,32 @@ ActiveRecord::Schema.define(version: 20170726152244) do
   add_foreign_key "broadcasts", "media"
   add_foreign_key "broadcasts", "topics"
   add_foreign_key "broadcasts", "users", column: "creator_id"
-  add_foreign_key "selections", "broadcasts"
-  add_foreign_key "selections", "users"
+  add_foreign_key "impressions", "broadcasts"
+  add_foreign_key "impressions", "users"
   add_foreign_key "stations", "media"
 
   create_view "statistics",  sql_definition: <<-SQL
       SELECT t.id,
       t.title,
-      t.votes,
-      ((t.positives)::double precision / (NULLIF(t.votes, 0))::double precision) AS approval,
+      t.impressions,
+      ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
       COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
       t.total,
-      ((t.votes)::numeric * a.average_amount_per_selection) AS expected_amount
-     FROM (( SELECT selections.broadcast_id AS id,
+      ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount
+     FROM (( SELECT impressions.broadcast_id AS id,
               broadcasts.title,
-              count(*) AS votes,
+              count(*) AS impressions,
               COALESCE(sum(
                   CASE
-                      WHEN (selections.response = 1) THEN 1
+                      WHEN (impressions.response = 1) THEN 1
                       ELSE 0
                   END), (0)::bigint) AS positives,
-              COALESCE(sum(selections.amount), (0)::numeric) AS total
-             FROM (selections
-               JOIN broadcasts ON ((selections.broadcast_id = broadcasts.id)))
-            GROUP BY selections.broadcast_id, broadcasts.title) t
-       LEFT JOIN ( SELECT (sum(selections.amount) / (count(*))::numeric) AS average_amount_per_selection
-             FROM selections) a ON (true));
+              COALESCE(sum(impressions.amount), (0)::numeric) AS total
+             FROM (impressions
+               JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
+            GROUP BY impressions.broadcast_id, broadcasts.title) t
+       LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
+             FROM impressions) a ON (true));
   SQL
 
 end

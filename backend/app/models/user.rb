@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   enum role: { guest: -1, contributor: 0, broadcaster: 1, admin: 2 }
 
-  has_many :selections
-  has_many :liked_broadcasts, -> { where(selections: { response: 1 }) }, source: :broadcast, through: :selections
-  has_many :broadcasts, through: :selections
+  has_many :impressions
+  has_many :liked_broadcasts, -> { where(impressions: { response: 1 }) }, source: :broadcast, through: :impressions
+  has_many :broadcasts, through: :impressions
 
   before_validation do
     # allow bad emails but don't sent out mails

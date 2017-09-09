@@ -94,8 +94,8 @@ RSpec.describe 'Broadcasts', type: :request do
 
     describe 'param filter' do
       let(:unevaluated_broadcast) { create(:broadcast) }
-      let(:selection) { create(:selection, user: user) }
-      let(:evaluated_broadcast) { selection.broadcast }
+      let(:impression) { create(:impression, user: user) }
+      let(:evaluated_broadcast) { impression.broadcast }
       let(:broadcasts) { [unevaluated_broadcast, evaluated_broadcast] }
 
       describe 'filter: {review: "reviewed"}' do
@@ -117,20 +117,20 @@ RSpec.describe 'Broadcasts', type: :request do
           end
 
           describe 'relationships' do
-            context 'other users voted on reviewed broadcast, too' do
-              let(:other_selection) { create(:selection, broadcast: evaluated_broadcast) }
+            context 'other users viewed reviewed broadcast, too' do
+              let(:other_impression) { create(:impression, broadcast: evaluated_broadcast) }
               let(:relationships) { subject['data'][0]['relationships'] }
-              before { other_selection }
+              before { other_impression }
 
-              it 'included selection belongs to current user' do
-                first_returned_selection = relationships['selections']['data'][0]
-                expect(first_returned_selection['id'].to_i).to eq selection.id
+              it 'included impression belongs to current user' do
+                first_returned_impression = relationships['impressions']['data'][0]
+                expect(first_returned_impression['id'].to_i).to eq impression.id
               end
 
-              it 'selections of other users are not exposed' do
-                expect(Selection.count).to eq 2
-                number_of_related_selections = relationships['selections']['data'].length
-                expect(number_of_related_selections).to eq 1
+              it 'impressions of other users are not exposed' do
+                expect(Impression.count).to eq 2
+                number_of_related_impressions = relationships['impressions']['data'].length
+                expect(number_of_related_impressions).to eq 1
               end
             end
           end
@@ -156,15 +156,15 @@ RSpec.describe 'Broadcasts', type: :request do
           end
 
           describe 'relationships' do
-            context 'other users voted on unreviewed broadcast' do
-              let(:other_selection) { create(:selection, broadcast: evaluated_broadcast) }
+            context 'other users viewed unreviewed broadcast' do
+              let(:other_impression) { create(:impression, broadcast: evaluated_broadcast) }
               let(:relationships) { subject['data'][0]['relationships'] }
-              before { other_selection }
+              before { other_impression }
 
-              it 'selections are not exposed at all' do
-                expect(Selection.count).to eq 2
-                number_of_related_selections = relationships['selections']['data'].length
-                expect(number_of_related_selections).to eq 0
+              it 'impressions are not exposed at all' do
+                expect(Impression.count).to eq 2
+                number_of_related_impressions = relationships['impressions']['data'].length
+                expect(number_of_related_impressions).to eq 0
               end
             end
           end

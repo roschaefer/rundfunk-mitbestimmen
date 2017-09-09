@@ -5,8 +5,8 @@ require 'sidekiq/testing'
 RSpec.describe User, type: :model do
   subject { user }
   let(:user) { create :user }
-  let(:liked_broadcast) { create(:selection, response: :positive, user: user).broadcast }
-  let(:disliked_broadcast) { create(:selection, response: :negative, user: user).broadcast }
+  let(:liked_broadcast) { create(:impression, response: :positive, user: user).broadcast }
+  let(:disliked_broadcast) { create(:impression, response: :negative, user: user).broadcast }
 
   describe '#liked_broadcasts' do
     subject { user.liked_broadcasts }

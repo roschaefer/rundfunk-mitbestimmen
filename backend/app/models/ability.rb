@@ -37,7 +37,7 @@ class Ability
         can %i[update create], Broadcast
       end
 
-      can :crud, Selection, user_id: user.id
+      can :crud, Impression, user_id: user.id
       can %i[read update], User, id: user.id
     end
 

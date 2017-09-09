@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe SelectionsController, type: :controller do
+RSpec.describe ImpressionsController, type: :controller do
   describe 'POST index' do
     let(:broadcast) { create :broadcast }
     let(:user) { create :user }
     let(:params) do
       {
-        selection: {
+        impression: {
           user: user,
           broadcast: broadcast,
           response: :positive
@@ -21,25 +21,25 @@ RSpec.describe SelectionsController, type: :controller do
       expect(response).to have_http_status(:unauthorized)
     end
 
-    it 'does not create selections' do
-      expect { request }.not_to(change { Selection.count })
+    it 'does not create impressions' do
+      expect { request }.not_to(change { Impression.count })
     end
   end
 
   describe 'PATCH :id' do
     let(:request) { process :update, method: :patch, params: params }
-    let(:params)  { { id: selection.id, selection: { amount: 13.0 } } }
-    context 'given a selection' do
-      let(:selection) { create :selection }
+    let(:params)  { { id: impression.id, impression: { amount: 13.0 } } }
+    context 'given a impression' do
+      let(:impression) { create :impression }
       describe 'sending [id,amount]' do
         it 'requires authentication' do
           request
           expect(response).to have_http_status(:unauthorized)
         end
 
-        it 'keeps the selection as it is' do
-          selection
-          expect { request }.not_to(change { Selection.first.amount })
+        it 'keeps the impression as it is' do
+          impression
+          expect { request }.not_to(change { Impression.first.amount })
         end
       end
     end
@@ -47,18 +47,18 @@ RSpec.describe SelectionsController, type: :controller do
 
   describe 'DELETE :id' do
     let(:request) { process :destroy, method: :delete, params: params }
-    let(:params)  { { id: selection.id } }
-    context 'given a selection' do
-      let(:selection) { create :selection }
+    let(:params)  { { id: impression.id } }
+    context 'given a impression' do
+      let(:impression) { create :impression }
       describe 'sending [id]' do
         it 'requires authentication' do
           request
           expect(response).to have_http_status(:unauthorized)
         end
 
-        it 'keeps the selection as it is' do
-          selection
-          expect { request }.not_to(change { Selection.count })
+        it 'keeps the impression as it is' do
+          impression
+          expect { request }.not_to(change { Impression.count })
         end
       end
     end

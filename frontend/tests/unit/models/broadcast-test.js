@@ -7,7 +7,7 @@ import { make, manualSetup } from 'ember-data-factory-guy';
 describe('Unit | Model | broadcast', function() {
   setupModelTest('broadcast', {
     // Specify the other units that are required for this it.
-    needs: ['model:selection', 'model:medium', 'model:station']
+    needs: ['model:impression', 'model:medium', 'model:station']
   });
   beforeEach(function() {
     manualSetup(this.container);
@@ -21,15 +21,15 @@ describe('Unit | Model | broadcast', function() {
   });
 
   describe('setDefaultResponse', function() {
-    it('creates a selection with a response', function() {
+    it('creates a impression with a response', function() {
       let broadcast = make('broadcast');
       broadcast.setDefaultResponse('positive');
       expect(broadcast.get('response')).to.eq('positive');
     });
 
-    it('leaves existing selection untouched', function() {
+    it('leaves existing impression untouched', function() {
       let broadcast = make('broadcast');
-      make('selection', {
+      make('impression', {
         broadcast: broadcast,
         response: 'neutral'
       });
@@ -39,14 +39,14 @@ describe('Unit | Model | broadcast', function() {
   });
 
   describe('response', function() {
-    it('undefined if no selections', function() {
+    it('undefined if no impressions', function() {
       let broadcast = make('broadcast');
       expect(broadcast.get('response')).to.be.undefined;
     });
 
-    it('returns the response of the first selection', function() {
+    it('returns the response of the first impression', function() {
       let broadcast = make('broadcast');
-      make('selection', {
+      make('impression', {
         broadcast: broadcast,
         response: 'positive'
       });
@@ -57,86 +57,86 @@ describe('Unit | Model | broadcast', function() {
   describe('respond(response)', function() {
     it('response must be "positive" or "negative"', function() {
       let model = this.subject();
-      let selection = model.respond('foobar');
-      expect(selection).to.be.undefined;
-      expect(model.get('selections').get('length')).to.eq(0);
+      let impression = model.respond('foobar');
+      expect(impression).to.be.undefined;
+      expect(model.get('impressions').get('length')).to.eq(0);
     });
 
-    it('returns a new selection with the response', function() {
+    it('returns a new impression with the response', function() {
       let model = this.subject();
-      let selection = model.respond('positive');
-      expect(selection.get('response')).to.eq('positive');
+      let impression = model.respond('positive');
+      expect(impression.get('response')).to.eq('positive');
     });
 
-    it('adds a new selection to the broadcast', function() {
+    it('adds a new impression to the broadcast', function() {
       let model = this.subject();
       model.respond('positive');
-      expect(model.get('selections').get('length')).to.eq(1);
+      expect(model.get('impressions').get('length')).to.eq(1);
     });
 
-    it('updates the current selection if any', function() {
+    it('updates the current impression if any', function() {
       let model = this.subject();
-      let selection = make('selection', {response: 'neutral'});
+      let impression = make('impression', {response: 'neutral'});
       Ember.run(function() {
-        model.set('selections', [selection]);
+        model.set('impressions', [impression]);
         model.respond('positive');
       });
-      expect(selection.get('response')).to.eq('positive');
+      expect(impression.get('response')).to.eq('positive');
     });
   });
 
-  it('respond updates and does not create more than one selection', function() {
+  it('respond updates and does not create more than one impression', function() {
     let model = this.subject();
-    let selection = make('selection', {response: 'neutral'});
+    let impression = make('impression', {response: 'neutral'});
     Ember.run(function() {
-      model.set('selections', [selection]);
-      expect(model.get('selections').get('length')).to.eq(1);
+      model.set('impressions', [impression]);
+      expect(model.get('impressions').get('length')).to.eq(1);
       model.respond('positive');
     });
-    expect(model.get('selections').get('length')).to.eq(1);
+    expect(model.get('impressions').get('length')).to.eq(1);
   });
 
   it('respond "neutral" clears the amount', function() {
     let model = this.subject();
-    let selection = make('selection', {
+    let impression = make('impression', {
       response: 'neutral',
       amount: 5.0,
     });
     Ember.run(function() {
-      model.set('selections', [selection]);
+      model.set('impressions', [impression]);
       model.respond('neutral');
-      expect(selection.get('response')).to.eq('neutral');
-      expect(selection.get('amount')).to.eq(null);
+      expect(impression.get('response')).to.eq('neutral');
+      expect(impression.get('amount')).to.eq(null);
     });
   });
 
   it('respond "neutral" will also unfix the amount', function() {
     let model = this.subject();
-    let selection = make('selection', {
+    let impression = make('impression', {
       response: 'positive',
       fixed: true,
       amount: 5.0,
     });
     Ember.run(function() {
-      model.set('selections', [selection]);
+      model.set('impressions', [impression]);
       model.respond('neutral');
-      expect(selection.get('response')).to.eq('neutral');
-      expect(selection.get('amount')).to.eq(null);
-      expect(selection.get('fixed')).to.eq(false);
+      expect(impression.get('response')).to.eq('neutral');
+      expect(impression.get('amount')).to.eq(null);
+      expect(impression.get('fixed')).to.eq(false);
     });
   });
 
   it('respond "positive" keeps the amount', function() {
     let model = this.subject();
-    let selection = make('selection', {
+    let impression = make('impression', {
       response: 'positive',
       amount: 5.0,
     });
     Ember.run(function() {
-      model.set('selections', [selection]);
+      model.set('impressions', [impression]);
       model.respond('positive');
-      expect(selection.get('response')).to.eq('positive');
-      expect(selection.get('amount')).to.eq(5.0);
+      expect(impression.get('response')).to.eq('positive');
+      expect(impression.get('amount')).to.eq(5.0);
     });
   });
 });

@@ -1,3 +1,3 @@
 class StatisticSerializer < ActiveModel::Serializer
-  attributes :id, :title, :votes, :approval, :average, :total
+  attributes :id, :title, :impressions, :approval, :average, :total
 end

@@ -37,7 +37,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       station: params.station
     };
     return RSVP.hash({
-      selections: this.get('store').peekAll('selection'),
+      impressions: this.get('store').peekAll('impression'),
       broadcasts: this.findPaged('broadcast', params)
     });
   },

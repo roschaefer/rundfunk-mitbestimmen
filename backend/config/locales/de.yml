@@ -18,7 +18,7 @@ de:
           attributes:
             description:
               no_urls: am besten ohne Links. Man soll eine Sendung ja bewerten können auch ohne diese Website zu verlassen.
-        selection:
+        impression:
           attributes:
             amount:
               total: Die Summe von %{sum} übersteigt das verfügbare Budget von %{budget}

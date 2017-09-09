@@ -8,7 +8,7 @@ Feature: Unselect broadcast
     Given I am logged in
 
   Scenario: Click on the 'X' to remove a broadcast from the invoice
-    Given my votes look like this:
+    Given my broadcasts look like this:
       | Title            | Amount |
       | Tagesthemen      | €3.5   |
       | Morgenmagazin    | €3.5   |
@@ -17,7 +17,7 @@ Feature: Unselect broadcast
       | Blickpunkt Sport | €3.5   |
     When I look at my broadcasts and suddenly I don't like 'Sportschau' anymore
     And I click on the 'X' next to Sportschau
-    Then my updated votes look like this:
+    Then my updated broadcasts look like this:
       | Title            | Amount |
       | Tagesthemen      | €4.37  |
       | Morgenmagazin    | €4.37  |

@@ -5,7 +5,7 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.all.includes(:selections)
+    @broadcasts = Broadcast.all.includes(:impressions)
 
     @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
 
@@ -62,7 +62,7 @@ class BroadcastsController < ApplicationController
   end
 
   def reviewed_broadcasts
-    @broadcasts = current_user.broadcasts.includes(:selections)
+    @broadcasts = current_user.broadcasts.includes(:impressions)
   end
 
   def unreviewed_broadcasts

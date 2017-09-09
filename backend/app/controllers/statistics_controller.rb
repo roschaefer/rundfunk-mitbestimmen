@@ -24,7 +24,7 @@ class StatisticsController < ApplicationController
         attributes: {
           'broadcasts' => Broadcast.count,
           'registered-users' => User.count,
-          'votes' => Selection.count,
+          'impressions' => Impression.count,
           'assigned-money' => Statistic.sum(:total)
         }
       }

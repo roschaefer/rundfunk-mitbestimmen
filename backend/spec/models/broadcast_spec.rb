@@ -93,14 +93,14 @@ RSpec.describe Broadcast, type: :model do
   describe '#destroy' do
     let(:broadcast) { create(:broadcast) }
     before do
-      create(:selection, id: 1, broadcast: broadcast)
-      create(:selection, id: 2, broadcast: broadcast)
-      create(:selection, id: 3)
+      create(:impression, id: 1, broadcast: broadcast)
+      create(:impression, id: 2, broadcast: broadcast)
+      create(:impression, id: 3)
     end
 
-    it 'destroys associated selections only' do
-      expect { broadcast.destroy }.to(change { Selection.count }.from(3).to(1))
-      expect(Selection.first.id).to eq 3
+    it 'destroys associated impressions only' do
+      expect { broadcast.destroy }.to(change { Impression.count }.from(3).to(1))
+      expect(Impression.first.id).to eq 3
     end
   end
 
