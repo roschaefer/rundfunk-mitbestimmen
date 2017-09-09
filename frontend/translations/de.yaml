@@ -276,6 +276,15 @@ index:
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           Mail.</a> Wir beantworten Deine Fragen gerne und
           tragen sie hier nach.
+broadcast:
+  broadcast-details:
+    labels:
+      title: Titel
+      description: Beschreibung
+      medium: Medium
+      station: Sender
+      createdAt: Erstellt am
+      updatedAt: Zuletzt geändert am
 find-broadcasts:
   header: Sendungen auswählen
   help-messages:

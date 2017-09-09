@@ -21,16 +21,18 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     },
     station: {
       refreshModel: true
+    },
+    page: {
+      refreshModel: true
     }
   },
-  perPage: 6,
 
   model(params) {
     params.paramMapping = {
       total_pages: "total-pages"
     };
     params.seed = this.get('seed');
-    params.filter= {
+    params.filter = {
       medium: params.medium,
       station: params.station
     };

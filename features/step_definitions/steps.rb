@@ -1,6 +1,10 @@
 feature_directory = Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
-  amount.gsub('€','').to_f
+  begin
+    Float(amount.gsub('€',''))
+  rescue
+    nil
+  end
 end
 
 def login
@@ -17,6 +21,9 @@ end
 Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
+    attributes[:created_at] = row['Created at'] || Date.today
+    attributes[:updated_at] = row['Updated at'] || Date.today
+    attributes[:description] = row['Description'] if row['Description']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
@@ -113,23 +120,24 @@ Then(/^also in the database all selections have the same amount of "([^"]*)"$/) 
   expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
 end
 
-Given(/^my invoice looks like this:$/) do |table|
+Given(/^my votes look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
     amount = sanitize_amount(row['Amount'])
     fixed = !! (row['Fixed'] =~ /yes/i)
-    broadcast = create(:broadcast, title: title)
+    response = (row['Support'] =~ /yes/i) ? :positive : :neutral
+    broadcast = Broadcast.find_by(title: title) || create(:broadcast, title: title)
     create(:selection,
            user: @user,
            broadcast: broadcast,
-           response: :positive,
-           amount: amount.to_f,
+           response: response,
+           amount: amount,
            fixed: fixed
           )
   end
 end
 
-When(/^I look at my invoice/) do
+When(/^I look at my broadcasts/) do
   visit '/invoice'
 end
 
@@ -865,5 +873,52 @@ Then(/^I see broadcasts ascending in order like this:$/) do |table|
   expect(titles).to eq titles.sort_by(&:downcase)
   table.hashes.each_with_index do |row, i|
     expect(row['Title']).to eq titles[i]
+  end
+end
+
+Then(/^I see only this broadcast and nothing else/) do
+  expect(page).to have_css('.title', count: 1)
+  Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
+    expect(page).not_to have_text(broadcast.title)
+  end
+  expect(page).to have_css('.title.header', text: 'Medienmagazin')
+end
+
+When(/^I ask myself: What was "([^"]*)" about\?$/) do |arg1|
+  # just documentation
+end
+
+Then(/^I can see (?:even more|these) details:$/) do |table|
+  table.transpose.hashes.each do |broadcast_details|
+    broadcast_details.each do |label, value|
+      # change the expecation to match the template of the broadcast page
+      expect(page).to have_css('.detail', text: /#{Regexp.escape(label)}.*#{Regexp.escape(value)}/)
+      # this is just a guess how the html may look like
+    end
+  end
+end
+
+Given(/^there are (\d+) other broadcasts, with a title lexicographically before 'Medienmagazin'$/) do |count|
+  count.to_i.times {|i| create(:broadcast, title: "Broadcast ##{i}") }
+end
+
+Then(/^if I click on the close icon$/) do
+  find('i.remove.icon').click
+end
+
+Then(/^I see the broadcast "([^"]*)" among (\d+) other broadcasts again$/) do |title, count|
+  expect(page).to have_css('.title', count: count.to_i)
+  expect(page).to have_css('.title.header', text: title)
+end
+
+When(/^I click on the magnifier symbol next to "([^"]*)"$/) do |title|
+  if page.has_css?('.decision-card')
+    within('.decision-card', text: title) do
+      find('.broadcast-details').click
+    end
+  else
+    within('.invoice-item', text: title) do
+      find('.broadcast-details').click
+    end
   end
 end

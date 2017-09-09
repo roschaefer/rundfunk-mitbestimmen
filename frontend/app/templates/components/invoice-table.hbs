@@ -1,6 +1,6 @@
 {{#ui-sticky class="segment"}}
   {{#ui-popup html=(
-    html-for-table-reference 
+    html-for-table-reference
     (t "invoice.table-reference.icon.trash")
     (t "invoice.table-reference.icon.lock")
     (t "invoice.table-reference.icon.unlock")
@@ -30,13 +30,13 @@
   </thead>
 </table>
 
-<table class="ui selectable table three">
+<table class="ui selectable table">
   <thead>
     <tr>
+      <th class="one wide"></th>
       <th class="ten wide">{{t 'invoice.invoice-header.label.title'}}</th>
       <th class="two wide"></th>
-      <th class="two wide"></th>
-      <th class="one wide right aligned">{{t 'invoice.invoice-header.label.amount'}}</th>
+      <th class="two wide">{{t 'invoice.invoice-header.label.amount'}}</th>
     </tr>
   </thead>
   <tbody>
