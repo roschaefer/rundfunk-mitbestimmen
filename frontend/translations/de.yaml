@@ -347,12 +347,14 @@ invoice:
     find-broadcasts: Weitere Vorschläge
     statistics: 'Öffentliche Statistiken'
 broadcasts:
-  header: Deine bisherigen Impressionen
+  header: Deine Historie
   sub-header: >
-    Das sind alle Sendungen, die Du schon bewertet hast
+    Das sind alle Sendungen, die Du mal betrachtet hast
   table:
     header:
       title: Titel
+      createdAt: Zuerst betrachtet
+      updatedAt: Zuletzt betrachtet
   link-to:
     invoice: Zurück zu meinen ausgewählten Sendungen
   edit:

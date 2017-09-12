@@ -18,30 +18,37 @@
       <table class="ui selectable basic table two">
         <thead>
           <tr>
-            <th>{{t 'broadcasts.table.header.title'}}</th>
-            <th class="right aligned"></th>
+            <th class="one wide column"></th>
+            <th class="eigth wide column">{{t 'broadcasts.table.header.title'}}</th>
+            <th class="three wide right aligned column">{{t 'broadcasts.table.header.createdAt'}}</th>
+            <th class="three wide right aligned column">{{t 'broadcasts.table.header.updatedAt'}}</th>
+            <th class="one wide right aligned column"></th>
           </tr>
         </thead>
         <tbody>
           {{#each model as |broadcast|}}
           <tr class="broadcast">
-            <td>{{broadcast.title}}</td>
-            <td class="right aligned">
-              {{#each broadcast.impressions as |impression|}}
-                {{#if (eq impression.response 'positive')}}
-                  <button class="unselect ui circular positive icon button" {{ action 'unselect' broadcast}}  >
-                    <i class="large smile icon"></i>
-                  </button>
-                {{else}}
-                  <button class="reselect ui circular icon button" {{ action 'reselect' broadcast}}>
-                    <i class="large meh icon"></i>
-                  </button>
-                {{/if}}
-            {{/each}}
-            <button class="edit ui circular icon button" {{ action 'edit' broadcast}}>
-              <i class="large edit icon"></i>
-            </button>
+            <td>
+              {{#link-to 'broadcast' broadcast class='ui mini circular icon button broadcast-details'}}
+                <i class="large search icon"></i>
+              {{/link-to}}
             </td>
+            <td>{{broadcast.title}}</td>
+            {{#with broadcast.impressions.firstObject as |impression|}}
+              <td class="right aligned">{{format-relative impression.createdAt fallback=''}}</td>
+              <td class="right aligned">{{format-relative impression.updatedAt fallback=''}}</td>
+              <td class="right aligned">
+                  {{#if (eq impression.response 'positive')}}
+                    <button class="unselect ui circular positive icon button" {{ action 'unselect' broadcast}}  >
+                      <i class="large smile icon"></i>
+                    </button>
+                  {{else}}
+                    <button class="reselect ui circular icon button" {{ action 'reselect' broadcast}}>
+                      <i class="large meh icon"></i>
+                    </button>
+                  {{/if}}
+              </td>
+            {{/with }}
           </tr>
           {{/each}}
         </tbody>
@@ -68,8 +75,6 @@
       </table>
     </div>
   </div>
-
-  {{broadcast-form-modal broadcast=editedBroadcast media=media stations=stations}}
 
   <div class="row">
     <div class="ui sixteen wide column">

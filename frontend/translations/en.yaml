@@ -327,12 +327,14 @@ invoice:
     broadcasts: My impressions
     statistics: 'Public statistics'
 broadcasts:
-  header: Your impressions so far
+  header: Your history
   sub-header: >
     Here are all your viewed broadcasts
   table:
     header:
       title: Title
+      createdAt: First viewed
+      updatedAt: Last viewed
   link-to:
     invoice: Back to my broadcasts
   edit:
