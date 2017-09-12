@@ -2,8 +2,9 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Controller | broadcasts', function() {
-  setupTest('controller:broadcasts', {
+describe('Unit | Controller | history', function() {
+  setupTest('controller:history', {
+    // Specify the other units that are required for this test.
     needs: [
       'service:metrics',
       'service:session',

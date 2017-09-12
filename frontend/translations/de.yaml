@@ -343,17 +343,17 @@ invoice:
       unlock: Betrag wird automatisch angepasst
       euro: Klick um Betrag zu ändern
   link-to:
-    broadcasts: Meine Impressionen
+    history: Meine Historie
     find-broadcasts: Weitere Vorschläge
     statistics: 'Öffentliche Statistiken'
-broadcasts:
-  header: Deine Historie
+history:
+  header: Meine Historie
   sub-header: >
     Das sind alle Sendungen, die Du mal betrachtet hast
   table:
     header:
       title: Titel
-      createdAt: Zuerst betrachtet
+      createdAt: Erstmals betrachtet
       updatedAt: Zuletzt betrachtet
   link-to:
     invoice: Zurück zu meinen ausgewählten Sendungen

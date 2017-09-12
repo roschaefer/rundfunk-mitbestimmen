@@ -324,9 +324,9 @@ invoice:
       euro: Click to change amount
   link-to:
     find-broadcasts: More suggestions
-    broadcasts: My impressions
+    history: My history
     statistics: 'Public statistics'
-broadcasts:
+history:
   header: Your history
   sub-header: >
     Here are all your viewed broadcasts

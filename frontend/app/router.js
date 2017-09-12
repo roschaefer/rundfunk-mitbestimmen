@@ -26,7 +26,7 @@ Router.map(function() {
   this.route('invoice');
   this.route('statistics');
   this.route('imprint');
-  this.route('broadcasts');
+  this.route('history');
   this.route('login');
   this.route('data-privacy');
 
