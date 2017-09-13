@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   tagName: 'tr',
-  classNames: 'invoice-item',
+  classNames: 'invoice-item broadcast',
   actions: {
     remove(){
       this.get('removeAction')(this.get('impression'));

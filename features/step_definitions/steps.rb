@@ -424,10 +424,6 @@ Given(/^today I learned that it is actually a broadcast that I really like$/) do
   # just documentation
 end
 
-When(/^I visit the broadcasts page$/) do
-  visit '/broadcasts'
-end
-
 When(/^I click on the unimpressed smiley next to "([^"]*)"$/) do |title|
   expect(page).to have_text(title)
   within('.broadcast', {text: /#{title}/}) do
@@ -920,9 +916,18 @@ When(/^I click on the magnifier symbol next to "([^"]*)"$/) do |title|
     within('.decision-card', text: title) do
       find('.broadcast-details').click
     end
-  else
-    within('.invoice-item', text: title) do
+  else 
+    within('.broadcast', text: title) do
       find('.broadcast-details').click
     end
   end
+end
+
+When(/^I visit my history page$/) do
+  visit '/history'
+  expect(page).to have_css('.history-page')
+end
+
+When(/^I click on the edit button$/) do
+  click_on 'Edit'
 end
