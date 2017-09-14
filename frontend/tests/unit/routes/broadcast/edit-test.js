@@ -2,18 +2,17 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Controller | broadcast', function() {
-  setupTest('controller:broadcast', {
+describe('Unit | Route | broadcast/edit', function() {
+  setupTest('route:broadcast/edit', {
     needs: [
-      'service:intl',
       'service:metrics',
+      'service:session',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });
 
-  // Replace this with your real tests.
   it('exists', function() {
-    let controller = this.subject();
-    expect(controller).to.be.ok;
+    let route = this.subject();
+    expect(route).to.be.ok;
   });
 });

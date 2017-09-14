@@ -6,6 +6,7 @@ describe('Unit | Route | broadcast', function() {
   setupTest('route:broadcast', {
      needs: [
       'service:metrics',
+      'service:session',
       'ember-metrics@metrics-adapter:piwik'
      ]
   });

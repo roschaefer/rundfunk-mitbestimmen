@@ -1,0 +1,11 @@
+{{#broadcast-form
+  broadcast=broadcast
+  media=model.media
+  stations=model.stations
+  errorMessages=errorMessages
+ }}
+  {{#link-to 'broadcast' broadcast class='ui fluid labeled huge icon button'}}
+  <i class="undo icon"></i>
+  {{t 'broadcast.edit.broadcast-form.back'}}
+  {{/link-to}}
+{{/broadcast-form}}

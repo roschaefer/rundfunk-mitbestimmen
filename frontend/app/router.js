@@ -40,7 +40,9 @@ Router.map(function() {
     this.route('time');
   });
   this.route('about-us');
-  this.route('broadcast', { path: '/broadcast/:broadcast_id' } );
+  this.route('broadcast', { path: '/broadcast/:broadcast_id' }, function() {
+    this.route('edit');
+  });
 });
 
 export default Router;

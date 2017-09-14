@@ -258,7 +258,12 @@ index:
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           email.</a> We love to answer your questions and we will add them here.
 broadcast:
+  edit:
+    broadcast-form:
+      back: Back
   broadcast-details:
+    buttons:
+      edit: Edit
     labels:
       title: Title
       description: Description
