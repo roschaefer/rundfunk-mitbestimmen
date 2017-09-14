@@ -612,7 +612,7 @@ When(/^I choose "([^"]*)" from the list of "([^"]*)" stations$/) do |station, me
   filter_by_station(station)
 end
 
-Given(/^there is another broadcast called "([^"]*)"/) do |title|
+Given(/^there is a(?:nother)? broadcast called "([^"]*)"/) do |title|
   broadcast = create(:broadcast, title: title)
 end
 
@@ -903,6 +903,7 @@ Given(/^there are (\d+) other broadcasts, with a title lexicographically before 
 end
 
 Then(/^if I click on the close icon$/) do
+  scroll_to(find('i.remove.icon'))
   find('i.remove.icon').click
 end
 
@@ -913,10 +914,11 @@ end
 
 When(/^I click on the magnifier symbol next to "([^"]*)"$/) do |title|
   if page.has_css?('.decision-card')
+    scroll_to(find('.decision-card', text: title))
     within('.decision-card', text: title) do
       find('.broadcast-details').click
     end
-  else 
+  else
     within('.broadcast', text: title) do
       find('.broadcast-details').click
     end
@@ -929,5 +931,15 @@ When(/^I visit my history page$/) do
 end
 
 When(/^I click on the edit button$/) do
-  click_on 'Edit'
+  find('.button', text: 'Edit').click
+end
+
+When(/^I click on the back button$/) do
+  scroll_to(find('.back.button'))
+  find('.back.button').click
+end
+
+Then(/^I am on the find broadcasts page$/) do
+  expect(page).to have_text('Choose broadcasts')
+  expect(current_path).to eq '/find-broadcasts'
 end
