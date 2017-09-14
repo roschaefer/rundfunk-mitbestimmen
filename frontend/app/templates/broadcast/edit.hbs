@@ -4,8 +4,8 @@
   stations=model.stations
   errorMessages=errorMessages
  }}
-  {{#link-to 'broadcast' broadcast class='ui fluid labeled huge icon back button'}}
-  <i class="undo icon"></i>
-  {{t 'broadcast.edit.broadcast-form.back'}}
-  {{/link-to}}
+  <button class="ui fluid labeled huge icon back button" {{action 'back'}}>
+    <i class="undo icon"></i>
+    {{t 'broadcast.edit.broadcast-form.back'}}
+  </button>
 {{/broadcast/broadcast-form}}

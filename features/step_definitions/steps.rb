@@ -903,7 +903,6 @@ Given(/^there are (\d+) other broadcasts, with a title lexicographically before 
 end
 
 Then(/^if I click on the close icon$/) do
-  scroll_to(find('i.remove.icon'))
   find('i.remove.icon').click
 end
 
@@ -914,7 +913,6 @@ end
 
 When(/^I click on the magnifier symbol next to "([^"]*)"$/) do |title|
   if page.has_css?('.decision-card')
-    scroll_to(find('.decision-card', text: title))
     within('.decision-card', text: title) do
       find('.broadcast-details').click
     end
@@ -935,7 +933,6 @@ When(/^I click on the edit button$/) do
 end
 
 When(/^I click on the back button$/) do
-  scroll_to(find('.back.button'))
   find('.back.button').click
 end
 
