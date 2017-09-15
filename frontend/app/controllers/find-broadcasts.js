@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
   actions: {
     searchAction(query){
       this.send('setQuery', query);
+      this.set('page', 1);
     },
     browse(step){
       if(this.store.peekAll('impression').isAny('isLoading', true)){

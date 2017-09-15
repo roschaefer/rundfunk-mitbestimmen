@@ -16,7 +16,7 @@ describe('Acceptance | update location', function() {
     mockQueryRecord('summarized-statistic');
     userMock = mockQueryRecord('user');
     Ember.$.mockjax({
-      url: `http://localhost:3000/chart_data/geo/geojson`,
+      url: `http://localhost:3001/chart_data/geo/geojson`,
       contentType: 'json',
       responseText: {
         type: 'FeatureCollection',
