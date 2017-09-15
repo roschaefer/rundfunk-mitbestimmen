@@ -6,6 +6,8 @@ export default DS.Model.extend({
   response: DS.attr('string'),
   amount: DS.attr('number'),
   fixed: DS.attr('boolean'),
+  createdAt: DS.attr('date'),
+  updatedAt: DS.attr('date'),
 
 
   needsAmount: Ember.computed('amount', 'response', function() {

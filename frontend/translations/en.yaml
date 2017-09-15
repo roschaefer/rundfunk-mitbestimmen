@@ -258,7 +258,12 @@ index:
           <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
           email.</a> We love to answer your questions and we will add them here.
 broadcast:
+  edit:
+    broadcast-form:
+      back: Back
   broadcast-details:
+    buttons:
+      edit: Edit
     labels:
       title: Title
       description: Description
@@ -324,15 +329,17 @@ invoice:
       euro: Click to change amount
   link-to:
     find-broadcasts: More suggestions
-    broadcasts: My impressions
+    history: My history
     statistics: 'Public statistics'
-broadcasts:
-  header: Your impressions so far
+history:
+  header: Your history
   sub-header: >
     Here are all your viewed broadcasts
   table:
     header:
       title: Title
+      createdAt: First viewed
+      updatedAt: Last viewed
   link-to:
     invoice: Back to my broadcasts
   edit:

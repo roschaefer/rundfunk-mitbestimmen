@@ -1,0 +1,87 @@
+{{outlet}}
+
+<div class="ui middle aligned stackable grid history-page container">
+  <div class="row">
+    <div class="column">
+      <h1 class="ui huge header">
+        {{t 'history.header'}}
+        <div class="sub header">
+          {{t 'history.sub-header'}}
+        </div>
+      </h1>
+    </div>
+  </div>
+
+
+  <div class="row broadcasts">
+    <div class="ui sixteen wide column">
+      <table class="ui selectable basic table two">
+        <thead>
+          <tr>
+            <th class="one wide column"></th>
+            <th class="eigth wide column">{{t 'history.table.header.title'}}</th>
+            <th class="three wide right aligned column">{{t 'history.table.header.createdAt'}}</th>
+            <th class="three wide right aligned column">{{t 'history.table.header.updatedAt'}}</th>
+            <th class="one wide right aligned column"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model as |broadcast|}}
+          <tr class="broadcast">
+            <td>
+              {{#link-to 'broadcast' broadcast class='ui mini circular icon button broadcast-details'}}
+                <i class="large search icon"></i>
+              {{/link-to}}
+            </td>
+            <td>{{broadcast.title}}</td>
+            {{#with broadcast.impressions.firstObject as |impression|}}
+              <td class="right aligned">{{format-relative impression.createdAt fallback=''}}</td>
+              <td class="right aligned">{{format-relative impression.updatedAt fallback=''}}</td>
+              <td class="right aligned">
+                  {{#if (eq impression.response 'positive')}}
+                    <button class="unselect ui circular positive icon button" {{ action 'unselect' broadcast}}  >
+                      <i class="large smile icon"></i>
+                    </button>
+                  {{else}}
+                    <button class="reselect ui circular icon button" {{ action 'reselect' broadcast}}>
+                      <i class="large meh icon"></i>
+                    </button>
+                  {{/if}}
+              </td>
+            {{/with }}
+          </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          {{
+          page-numbers
+          classNames='small-pagination'
+          tagName='tr'
+          content=model
+          showFL=true
+          numPagesToShow=1
+          action=(action 'pageClicked')
+          }}
+          {{
+          page-numbers
+          classNames='large-pagination'
+          tagName='tr'
+          content=model
+          showFL=true
+          numPagesToShow=5
+          action=(action 'pageClicked')
+          }}
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="ui sixteen wide column">
+      {{#link-to 'invoice' class='ui huge labeled fluid primary icon button'}}
+        <i class="left arrow icon"></i>
+        {{t 'history.link-to.invoice'}}
+      {{/link-to}}
+    </div>
+  </div>
+</div>

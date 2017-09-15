@@ -20,9 +20,5 @@ export default Ember.Controller.extend({
       let impression = broadcast.respond('positive');
       impression.save();
     },
-    edit(broadcast){
-      this.set('editedBroadcast', broadcast);
-      Ember.$('.ui.broadcast-form-modal.modal').modal('show');
-    },
   }
 });

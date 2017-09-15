@@ -277,7 +277,12 @@ index:
           Mail.</a> Wir beantworten Deine Fragen gerne und
           tragen sie hier nach.
 broadcast:
+  edit:
+    broadcast-form:
+      back: Zurück
   broadcast-details:
+    buttons:
+      edit: Bearbeiten
     labels:
       title: Titel
       description: Beschreibung
@@ -343,16 +348,18 @@ invoice:
       unlock: Betrag wird automatisch angepasst
       euro: Klick um Betrag zu ändern
   link-to:
-    broadcasts: Meine Impressionen
+    history: Meine Historie
     find-broadcasts: Weitere Vorschläge
     statistics: 'Öffentliche Statistiken'
-broadcasts:
-  header: Deine bisherigen Impressionen
+history:
+  header: Meine Historie
   sub-header: >
-    Das sind alle Sendungen, die Du schon bewertet hast
+    Das sind alle Sendungen, die Du mal betrachtet hast
   table:
     header:
       title: Titel
+      createdAt: Erstmals betrachtet
+      updatedAt: Zuletzt betrachtet
   link-to:
     invoice: Zurück zu meinen ausgewählten Sendungen
   edit:

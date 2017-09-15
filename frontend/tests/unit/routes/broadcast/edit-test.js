@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Route | broadcasts', function() {
-  setupTest('route:broadcasts', { 
+describe('Unit | Route | broadcast/edit', function() {
+  setupTest('route:broadcast/edit', {
     needs: [
-      'service:session',
       'service:metrics',
+      'service:session',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });

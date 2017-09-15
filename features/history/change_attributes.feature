@@ -11,8 +11,9 @@ Feature: Change attributes retrospectively
     """
     Das heute-journal: politische Berichte, schwachsinnige Analysen und rätselhafte Erklärungen.
     """
-    When I visit the broadcasts page
-    And I click the edit button next to the title "heute journal"
+    When I visit my history page
+    And I click on the magnifier symbol next to "heute journal"
+    And I click on the edit button
     And I change the description to:
     """
     Das heute-journal: politische Berichte, scharfsinnige Analysen und verständliche Erklärungen.
