@@ -29,7 +29,7 @@ describe('Acceptance | broadcast/ navigation', function() {
 
 
     it('can navigate to /broadcast/edit', function() {
-      broadcasts = buildList('broadcast', 1)
+      broadcasts = buildList('broadcast', 1).add({ meta: { 'total-pages': 1, 'total-count': 1 } });
       broadcastsMock.returns({json: broadcasts})
       visit('/find-broadcasts/');
       click('.broadcast-details');
