@@ -65,6 +65,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.BACKEND_URL = 'http://localhost:3001'; // don't send requests to rails by accident
   }
 
   if ((environment === 'integration') || (environment === 'fullstack')) {
