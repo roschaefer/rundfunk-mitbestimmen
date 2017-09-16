@@ -4,8 +4,7 @@ class ChartDataController < ApplicationController
 
   def diff
     medium_id = params[:medium_id]
-    base_query = Station.where(medium_id: medium_id).left_joins(broadcasts: :statistic).group('"stations"."name"').order('"stations"."name"')
-    results = base_query.pluck('name', 'SUM(CASE WHEN total IS NOT NULL THEN 1 ELSE 0 END)', 'SUM(total)', 'SUM(expected_amount)').transpose
+    results = Statistic::Station.where(medium_id: medium_id).order(:name).pluck('name', 'broadcasts_count', 'total', 'expected_amount').transpose
     results = [[], [], [], []] if results.empty?
     categories = results[0]
     number_of_broadcasts = results[1].map(&:to_f)

@@ -16,4 +16,9 @@ FROM (
   GROUP BY impressions.broadcast_id, broadcasts.title
 ) t LEFT JOIN (
   SELECT SUM(amount)/COUNT(*) AS average_amount_per_selection FROM impressions
-) a ON true;
+) a ON true
+UNION ALL
+SELECT broadcasts.id AS id, broadcasts.title AS title, 0 AS impressions, NULL AS approval, NULL AS average, 0 AS total, 0 AS expected_amount
+FROM broadcasts
+LEFT JOIN impressions ON broadcasts.id = impressions.broadcast_id
+WHERE impressions.broadcast_id IS NULL;

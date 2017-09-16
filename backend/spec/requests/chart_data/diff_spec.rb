@@ -97,7 +97,7 @@ RSpec.describe 'ChartData', type: :request do
               create(:station, medium: medium, id: 47, name: 'Station 4')
               create(:station, medium: medium, id: 11, name: 'Station 5') # this will disorder the normal enumeration
               create(:broadcast, id: 7, station_ids: [47])
-              create(:broadcast, id: 8, station_ids: [11]) # and add some broadcasts, to have the new stations included
+              create(:broadcast, id: 8, station_ids: [11])
               get url, params: params, headers: headers.merge('locale' => 'en')
               expect(parse_json(response.body, 'data/attributes/categories')).to eq(['Station 1', 'Station 2', 'Station 3', 'Station 4', 'Station 5'])
             end
@@ -115,11 +115,11 @@ RSpec.describe 'ChartData', type: :request do
             end
 
             describe 'data' do
-              it 'contains actual amounts for every station' do
+              it 'contains sharedactual amounts for every station' do
                 expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [21.0, 45.0, 15.0]
               end
 
-              it 'contains expected amounts for every station' do
+              it 'contains divided expected amounts for every station' do
                 expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25]
               end
 
@@ -149,8 +149,8 @@ RSpec.describe 'ChartData', type: :request do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25, 0.0]
                 end
 
-                it 'number of broadcasts is 0' do
-                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3, 2, 1, 0]
+                it 'number of broadcasts is 1' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3.0, 2.0, 1.0, 1.0]
                 end
               end
             end
@@ -285,11 +285,11 @@ RSpec.describe 'ChartData', type: :request do
             let(:medium_id) { 0 }
             describe 'series' do
               describe 'data' do
-                it 'contains actual amounts for every radio station' do
-                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [18.0, 38.0, 42.0]
+                it 'contains shared actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [18.0, 38.0, 50.0]
                 end
 
-                it 'contains expected amounts for every radio station' do
+                it 'contains shared expected amounts for every radio station' do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.125454545454545454e2, 0.439090909090909089e2, 0.480909090909090907e2]
                 end
 
@@ -305,11 +305,11 @@ RSpec.describe 'ChartData', type: :request do
 
             describe 'series' do
               describe 'data' do
-                it 'contains actual amounts for every radio station' do
-                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [32.0, 32.0]
+                it 'contains shared actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [16.0, 16.0]
                 end
 
-                it 'contains expected amounts for every radio station' do
+                it 'contains shared expected amounts for every radio station' do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.167272727272727272e2, 0.167272727272727272e2]
                 end
 
