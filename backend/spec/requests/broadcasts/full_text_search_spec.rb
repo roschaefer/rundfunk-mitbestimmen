@@ -55,14 +55,14 @@ RSpec.describe 'Broadcasts::FullTextSearch', type: :request do
 
         describe 'query is the name of the TV channel' do
           let(:station) { create(:station, name: 'Arte') }
-          let(:needle) { create(:broadcast, title: 'find me!', station: station) }
+          let(:needle) { create(:broadcast, title: 'find me!', stations: [station]) }
           let(:query) { 'Arte' }
 
           pending { expect(parse_json(response.body, 'data/0/attributes/title')).to eq 'find me!' }
 
           describe 'broadcast title vs. name of the TV channel' do
             let(:setup) do
-              create(:broadcast, title: 'Station is matched but title is not', station: station)
+              create(:broadcast, title: 'Station is matched but title is not', stations: [station])
               create(:broadcast, title: 'Arte Journal')
               haystack
             end

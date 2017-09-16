@@ -5,5 +5,5 @@ class BroadcastSerializer < ActiveModel::Serializer
     object.impressions.where(user: scope)
   end
   belongs_to :medium
-  belongs_to :station
+  has_many :stations
 end

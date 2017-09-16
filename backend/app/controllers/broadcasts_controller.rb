@@ -58,7 +58,7 @@ class BroadcastsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def broadcast_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description medium station])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description medium stations])
   end
 
   def reviewed_broadcasts
@@ -89,7 +89,7 @@ class BroadcastsController < ApplicationController
     return unless filter_params
 
     @broadcasts = @broadcasts.where(medium: filter_params[:medium]) if filter_params[:medium].present?
-    @broadcasts = @broadcasts.where(station_id: filter_params[:station]) if filter_params[:station].present?
+    @broadcasts = @broadcasts.joins(:stations).where('stations.id' => [filter_params[:station]]) if filter_params[:station].present?
 
     return unless current_user
     if filter_params[:review] == 'reviewed'

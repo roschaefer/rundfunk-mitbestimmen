@@ -168,11 +168,11 @@ RSpec.describe 'Broadcasts', type: :request do
                 type: 'media'
               }
             },
-            station: {
-              data: {
+            stations: {
+              data: [{
                 id: '47',
                 type: 'stations'
-              }
+              }]
             }
           }
         }
@@ -194,8 +194,8 @@ RSpec.describe 'Broadcasts', type: :request do
         it 'is allowed to add a new station to a broadcasts' do
           expect { action }.to(change do
             broadcast.reload
-            broadcast.station
-          end.from(nil).to(dasErste))
+            broadcast.stations.to_a
+          end.from([]).to([dasErste]))
         end
       end
     end

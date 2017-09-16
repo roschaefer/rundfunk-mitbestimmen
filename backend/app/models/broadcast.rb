@@ -10,7 +10,8 @@ class Broadcast < ApplicationRecord
   belongs_to :topic
   belongs_to :format
   belongs_to :medium
-  belongs_to :station, counter_cache: true
+	has_many :schedules
+  has_many :stations, through: :schedules
   belongs_to :creator, class_name: 'User'
   belongs_to :statistic, foreign_key: :id
   validates :title, presence: true, uniqueness: { case_sensitive: false }
