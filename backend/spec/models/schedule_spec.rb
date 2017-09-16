@@ -5,12 +5,12 @@ RSpec.describe Schedule, type: :model do
   let(:broadcast) { create(:broadcast) }
 
   context 'without station' do
-    subject { build(:schedule, station: nil) } 
+    subject { build(:schedule, station: nil) }
     it { is_expected.not_to be_valid }
   end
 
   context 'without broadcast' do
-    subject { build(:schedule, broadcast: nil) } 
+    subject { build(:schedule, broadcast: nil) }
     it { is_expected.not_to be_valid }
   end
 
@@ -21,7 +21,7 @@ RSpec.describe Schedule, type: :model do
     describe 'database' do
       subject { build(:schedule, broadcast: broadcast, station: station).save(validate: false) }
       it 'raises unique constraint error' do
-        expect{ subject }.to raise_error(ActiveRecord::RecordNotUnique)
+        expect { subject }.to raise_error(ActiveRecord::RecordNotUnique)
       end
     end
   end

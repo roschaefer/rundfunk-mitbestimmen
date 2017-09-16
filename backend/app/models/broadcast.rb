@@ -7,13 +7,13 @@ class Broadcast < ApplicationRecord
   has_many :impressions, dependent: :destroy
 
   paginates_per 10
-  belongs_to :topic
-  belongs_to :format
+  belongs_to :topic, optional: true
+  belongs_to :format, optional: true
   belongs_to :medium
   has_many :schedules
   has_many :stations, through: :schedules
-  belongs_to :creator, class_name: 'User'
-  belongs_to :statistic, foreign_key: :id
+  belongs_to :creator, class_name: 'User', optional: true
+  belongs_to :statistic, foreign_key: :id, optional: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { minimum: 30 }
   validates :medium, presence: true
