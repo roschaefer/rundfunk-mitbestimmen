@@ -10,7 +10,7 @@ class Broadcast < ApplicationRecord
   belongs_to :topic
   belongs_to :format
   belongs_to :medium
-	has_many :schedules
+  has_many :schedules
   has_many :stations, through: :schedules
   belongs_to :creator, class_name: 'User'
   belongs_to :statistic, foreign_key: :id

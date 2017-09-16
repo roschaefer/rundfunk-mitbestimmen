@@ -57,7 +57,7 @@ class GeocodeUserJob < ApplicationJob
   end
 
   def self.get_user_last_ip(user:, domain:, access_token:)
-    url = URI("https://#{domain}/api/v2/users/#{URI.escape(user.auth0_uid)}")
+    url = URI("https://#{domain}/api/v2/users/#{CGI.escape(user.auth0_uid)}")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE

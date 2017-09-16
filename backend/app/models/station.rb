@@ -10,6 +10,7 @@ class Station < ApplicationRecord
   before_update :reset_broadcasts_count
 
   private
+
   def reset_broadcasts_count
     Station.reset_counters(id, :schedules)
   end
