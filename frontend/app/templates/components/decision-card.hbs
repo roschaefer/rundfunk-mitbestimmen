@@ -8,10 +8,10 @@
     {{ broadcast.title }}
   </div>
   <div class="meta">
-    {{ broadcast.medium.name}}
-    {{#if broadcast.station }}
-      &mdash; {{ broadcast.station.name}}
-    {{/if}}
+    <strong>{{ broadcast.medium.name}}</strong>
+    {{#each broadcast.stations as |station|}}
+      &mdash; {{ station.name}}
+    {{/each}}
   </div>
   <div class="description">
     {{ broadcast.description }}

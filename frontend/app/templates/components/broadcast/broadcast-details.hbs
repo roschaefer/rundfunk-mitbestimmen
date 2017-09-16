@@ -13,7 +13,9 @@
 
   <div class="content">
     <span class="category detail">{{t 'broadcast.broadcast-details.labels.medium'}}: {{broadcast.medium.name}}</span>
-    <span class="right floated category detail">{{t 'broadcast.broadcast-details.labels.station'}}: {{broadcast.station.name}}</span>
+    {{#each broadcast.stations as |station|}}
+      <span class="right floated category detail">{{t 'broadcast.broadcast-details.labels.station'}}: {{broadcast.station.name}}</span>
+    {{/each}}
   </div>
 
   <div class="extra content">

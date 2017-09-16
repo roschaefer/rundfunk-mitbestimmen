@@ -1,9 +1,10 @@
 import { expect } from 'chai';
-import { describe, it } from 'mocha';
+import { beforeEach, describe, context, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
+import { make, manualSetup } from 'ember-data-factory-guy';
 
-let intl;
+let broadcast, intl;
 describe('Integration | Component | broadcast/broadcast-form', function() {
   setupComponentTest('broadcast/broadcast-form', {
     integration: true,
@@ -12,17 +13,86 @@ describe('Integration | Component | broadcast/broadcast-form', function() {
       intl.setLocale('en');
     }
   });
+  beforeEach(function(){
+    manualSetup(this.container);
+    broadcast = make('broadcast', {
+      title: 'I am a broadcast'
+    });
+  });
 
   it('renders title and description', function() {
-    this.render(hbs`{{broadcast/broadcast-form}}`);
+    this.set('broadcast', broadcast);
+    this.set('media', []);
+    this.set('stations', []);
+    this.render(hbs`{{broadcast/broadcast-form broadcast=broadcast media=media stations=stations}}`);
     expect(this.$().text()).to.match(/Title/);
     expect(this.$().text()).to.match(/Description/);
 
-    this.render(hbs`
-       {{#broadcast/broadcast-form}}
-         template block text
-       {{/broadcast/broadcast-form}}
-     `);
+    this.render(hbs`{{#broadcast/broadcast-form broadcast=broadcast media=media stations=stations}} template block text {{/broadcast/broadcast-form}} `);
     expect(this.$().text()).to.match(/template block text/);
   });
+
+  describe('dropdowns', function() {
+    context('given the broadcast is connected to a medium and some stations', function() {
+      let stations, media;
+      beforeEach(function(){
+        media = [
+          make('medium', {name: 'TV'}),
+          make('medium', {name: 'Radio'}),
+        ];
+        stations = [
+          make('station', {
+            name: 'TVStation1',
+            medium: media[0],
+          }),
+          make('station', {
+            name: 'TVStation2',
+            medium: media[0],
+          }),
+          make('station', {
+            name: 'RadioStation1',
+            medium: media[1],
+          })
+        ];
+        broadcast.set('stations', stations.slice(0,2));
+        broadcast.set('medium', media[0]);
+      });
+
+      describe('medium', function() {
+        it('displays the medium of the broadcast', function() {
+          this.set('broadcast', broadcast);
+          this.set('media', media);
+          this.set('stations', stations);
+          this.render(hbs`{{broadcast/broadcast-form broadcast=broadcast media=media stations=stations}}`);
+          expect(this.$('.item.active.selected').html().trim()).to.eq('TV');
+        });
+
+        it('change medium clears stations', function() {
+          this.set('broadcast', broadcast);
+          this.set('media', media);
+          this.set('stations', stations);
+          this.render(hbs`{{broadcast/broadcast-form broadcast=broadcast media=media stations=stations}}`);
+          expect(this.$('.ui.label')).to.have.length(2);
+          expect(this.$('.media.dropdown')).to.have.length(1);
+          this.$('.media.dropdown').click();
+          expect(this.$('.media.dropdown div.item[data-value="1"]')).to.have.length(1);
+          this.$('.media.dropdown div.item[data-value="1"]').click();
+          expect(this.$('.ui.label')).to.have.length(0);
+        });
+      });
+
+      describe('station', function() {
+        it('displays all stations of the broadcast', function() {
+          this.set('broadcast', broadcast);
+          this.set('media', media);
+          this.set('stations', stations);
+          this.render(hbs`{{broadcast/broadcast-form broadcast=broadcast media=media stations=stations}}`);
+          expect(this.$('.ui.label')).to.have.length(2);
+          expect(this.$('.ui.label').text()).to.match(/TVStation1/);
+          expect(this.$('.ui.label').text()).to.match(/TVStation2/);
+        });
+      });
+    });
+  });
+
 });
