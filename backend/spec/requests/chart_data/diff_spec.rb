@@ -26,16 +26,16 @@ RSpec.describe 'ChartData', type: :request do
 
       # BROADCASTS
       # Station 1
-      create(:broadcast, id: 1, station_id: 1)
-      create(:broadcast, id: 2, station_id: 1)
-      create(:broadcast, id: 3, station_id: 1)
+      create(:broadcast, id: 1, station_ids: [1])
+      create(:broadcast, id: 2, station_ids: [1])
+      create(:broadcast, id: 3, station_ids: [1])
 
       # Station 2
-      create(:broadcast, id: 4, station_id: 2)
-      create(:broadcast, id: 5, station_id: 2)
+      create(:broadcast, id: 4, station_ids: [2])
+      create(:broadcast, id: 5, station_ids: [2])
 
       # Station 3
-      create(:broadcast, id: 6, station_id: 3)
+      create(:broadcast, id: 6, station_ids: [3])
 
       # IMPRESSIONS
       # Station1
@@ -68,6 +68,7 @@ RSpec.describe 'ChartData', type: :request do
     after(:all) do
       Impression.destroy_all
       User.destroy_all
+      Schedule.destroy_all
       Broadcast.destroy_all
       Station.destroy_all
       Medium.destroy_all
@@ -95,8 +96,8 @@ RSpec.describe 'ChartData', type: :request do
             it 'contains station names ordered alphabetically' do
               create(:station, medium: medium, id: 47, name: 'Station 4')
               create(:station, medium: medium, id: 11, name: 'Station 5') # this will disorder the normal enumeration
-              create(:broadcast, id: 7, station_id: 47)
-              create(:broadcast, id: 8, station_id: 11) # and add some broadcasts, to have the new stations included
+              create(:broadcast, id: 7, station_ids: [47])
+              create(:broadcast, id: 8, station_ids: [11]) # and add some broadcasts, to have the new stations included
               get url, params: params, headers: headers.merge('locale' => 'en')
               expect(parse_json(response.body, 'data/attributes/categories')).to eq(['Station 1', 'Station 2', 'Station 3', 'Station 4', 'Station 5'])
             end
@@ -136,7 +137,7 @@ RSpec.describe 'ChartData', type: :request do
 
               context 'if no broadcast of a station ever received an impression' do
                 before do
-                  create(:broadcast, id: 7, station: create(:station, medium: medium, id: 4, name: 'Station 4'), impressions: [])
+                  create(:broadcast, id: 7, stations: create_list(:station, 1, medium: medium, id: 4, name: 'Station 4'), impressions: [])
                   get url, params: params, headers: headers
                 end
 
@@ -171,9 +172,9 @@ RSpec.describe 'ChartData', type: :request do
 
       # BROADCASTS
       # Station 1
-      create(:broadcast, id: 1, station_id: 1)
-      create(:broadcast, id: 2, station_id: 2)
-      create(:broadcast, id: 3, station_id: 3)
+      create(:broadcast, id: 1, station_ids: [1])
+      create(:broadcast, id: 2, station_ids: [2])
+      create(:broadcast, id: 3, station_ids: [3])
 
       # IMPRESSIONS
       # Station1
@@ -185,6 +186,7 @@ RSpec.describe 'ChartData', type: :request do
     after(:all) do
       Impression.destroy_all
       User.destroy_all
+      Schedule.destroy_all
       Broadcast.destroy_all
       Station.destroy_all
       Medium.destroy_all
