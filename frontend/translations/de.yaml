@@ -287,7 +287,7 @@ broadcast:
       title: Titel
       description: Beschreibung
       medium: Medium
-      station: Sender
+      stations: Sender
       createdAt: Erstellt am
       updatedAt: Zuletzt geändert am
 find-broadcasts:

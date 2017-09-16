@@ -3,24 +3,47 @@
     <button class="ui mini right floated circular icon close button" {{action 'close'}}>
       <i class="remove icon"></i>
     </button>
+    <div class="meta">
+    {{t 'broadcast.broadcast-details.labels.title' }}
+    </div>
     <div class="title header detail">
-      {{t 'broadcast.broadcast-details.labels.title' }}: {{ broadcast.title }}
+      {{ broadcast.title }}
     </div>
     <div class="description detail">
-      {{t 'broadcast.broadcast-details.labels.description' }}: {{ broadcast.description }}
+    <div class="meta">
+      {{t 'broadcast.broadcast-details.labels.description' }}
+    </div>
+      {{ broadcast.description }}
     </div>
   </div>
 
   <div class="content">
-    <span class="category detail">{{t 'broadcast.broadcast-details.labels.medium'}}: {{broadcast.medium.name}}</span>
-    {{#each broadcast.stations as |station|}}
-      <span class="right floated category detail">{{t 'broadcast.broadcast-details.labels.station'}}: {{broadcast.station.name}}</span>
-    {{/each}}
+    <div class="meta">
+    <span class="right floated">
+    {{t 'broadcast.broadcast-details.labels.station'}}
+    </span>
+    </div>
+
+    <div class="meta">
+    <span>
+      {{t 'broadcast.broadcast-details.labels.medium'}}
+    </span>
+    </div>
+
+    <span class="category detail medium">
+      {{broadcast.medium.name}}
+    </span>
+
+    <span class="right floated right aligned category detail station">
+      {{#each broadcast.stations as |station|}}
+        {{station.name}}<br>
+      {{/each}}
+    </span>
   </div>
 
   <div class="extra content">
-    <span class="date detail">{{t 'broadcast.broadcast-details.labels.createdAt'}}: {{format-date broadcast.createdAt}}</span>
-    <span class="right floated date detail">{{t 'broadcast.broadcast-details.labels.updatedAt'}}: {{format-date broadcast.updatedAt}}</span>
+    <span class="date detail createdAt">{{t 'broadcast.broadcast-details.labels.createdAt'}}: {{format-date broadcast.createdAt}}</span>
+    <span class="right floated date detail updatedAt">{{t 'broadcast.broadcast-details.labels.updatedAt'}}: {{format-date broadcast.updatedAt}}</span>
   </div>
 
 

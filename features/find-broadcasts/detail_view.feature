@@ -15,8 +15,8 @@ Feature: Link to broadcast details page on every broadcast card
     And I click on the magnifier symbol next to "Medienmagazin"
     Then I see only this broadcast and nothing else, in order to stay focused
     And I can see even more details:
-      | Created at      | 7/27/2017 |
-      | Last updated at | 8/1/2017  |
+      | createdAt      | 7/27/2017 |
+      | updatedAt | 8/1/2017  |
 
   Scenario: Navigating back and forth brings me back to the last page of "Find broadcasts"
     Given there are 10 other broadcasts, with a title lexicographically before 'Medienmagazin'
