@@ -268,7 +268,7 @@ broadcast:
       title: Title
       description: Description
       medium: Medium
-      station: Stations
+      stations: Stations
       createdAt: Created at
       updatedAt: Last updated at
 find-broadcasts:

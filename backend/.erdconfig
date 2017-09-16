@@ -12,5 +12,5 @@ only:
   - Broadcast
   - Medium
   - Station
-  - Statistic
+  - Statistic::Broadcast
 only_recursion_depth: null

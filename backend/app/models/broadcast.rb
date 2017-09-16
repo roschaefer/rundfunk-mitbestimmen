@@ -13,7 +13,7 @@ class Broadcast < ApplicationRecord
   has_many :schedules
   has_many :stations, through: :schedules
   belongs_to :creator, class_name: 'User', optional: true
-  belongs_to :statistic, foreign_key: :id, optional: true
+  belongs_to :statistic, class_name: 'Statistic::Broadcast', foreign_key: :id, optional: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { minimum: 30 }
   validates :medium, presence: true

@@ -1,4 +1,4 @@
-class StatisticsController < ApplicationController
+class Statistic::BroadcastsController < ApplicationController
   load_and_authorize_resource
   skip_load_resource only: :summarized
 
@@ -7,7 +7,7 @@ class StatisticsController < ApplicationController
     per_page = (statistics_params[:per_page] || 10).to_i
     order_params = {}
     # TODO: is there a better way to do this with strong params?
-    column = Statistic::Broadccast.column_names.include?(statistics_params[:column]) ? statistics_params[:column] : :total
+    column = Statistic::Broadcast.column_names.include?(statistics_params[:column]) ? statistics_params[:column] : :total
     direction = %w[asc desc].include?(statistics_params[:direction]) ? statistics_params[:direction] : :desc
     order_params.store(column, direction)
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Balances', type: :request do
+RSpec.describe 'Statistic::Broadcast', type: :request do
   let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { {} }

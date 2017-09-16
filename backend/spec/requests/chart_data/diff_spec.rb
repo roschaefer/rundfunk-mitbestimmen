@@ -217,7 +217,7 @@ RSpec.describe 'ChartData', type: :request do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.375, 48.75]
                 end
 
-                it 'contains number of broadcasts 0 for every radio station' do
+                it 'contains number of broadcasts for every radio station' do
                   expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 1.0]
                 end
               end
@@ -229,6 +229,93 @@ RSpec.describe 'ChartData', type: :request do
             describe 'categories' do
               it 'contains only names of TV stations' do
                 expect(parse_json(response.body, 'data/attributes/categories')).to eq(['TV 1'])
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  context 'given many stations per broadcast' do
+    before(:all) do
+      # Medium
+      tv    = create(:medium, id: 0, name: :tv)
+      radio = create(:medium, id: 1, name: :radio)
+      # STATIONS
+      create(:station, medium: tv,    id: 1, name: 'TV 1')
+      create(:station, medium: tv,    id: 2, name: 'TV 2')
+      create(:station, medium: tv,    id: 3, name: 'TV 3')
+      create(:station, medium: radio, id: 4, name: 'Radio 1')
+      create(:station, medium: radio, id: 5, name: 'Radio 2')
+
+      # BROADCASTS
+      # Station 1
+      create(:broadcast, id: 1, station_ids: [1,2,3])
+      create(:broadcast, id: 2, station_ids: [2,3])
+      create(:broadcast, id: 3, station_ids: [3])
+      create(:broadcast, id: 4, station_ids: [4,5])
+
+      # IMPRESSIONS
+      create_list(:impression, 9,  broadcast_id: 1, response: :positive, amount: 6)
+      create_list(:impression, 5,  broadcast_id: 2, response: :positive, amount: 8)
+      create_list(:impression, 1,  broadcast_id: 3, response: :positive, amount: 12)
+      create_list(:impression, 8,  broadcast_id: 4, response: :positive, amount: 4)
+
+      # Neutral
+      create_list(:impression, 10,  broadcast_id: 2, response: :neutral)
+    end
+
+    after(:all) do
+      Impression.destroy_all
+      User.destroy_all
+      Schedule.destroy_all
+      Broadcast.destroy_all
+      Station.destroy_all
+      Medium.destroy_all
+    end
+
+    describe 'GET' do
+      describe '/chart_data/diffs/:medium_id' do
+        let(:url) { "/chart_data/diffs/#{medium_id}" }
+        before { get url, params: params, headers: headers }
+
+        describe 'chart data' do
+          describe ':medium_id = 0 (TV)' do
+            let(:medium_id) { 0 }
+            describe 'series' do
+              describe 'data' do
+                it 'contains actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [18.0, 38.0, 42.0]
+                end
+
+                it 'contains expected amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.125454545454545454e2, 0.439090909090909089e2, 0.480909090909090907e2]
+                end
+
+                it 'contains number of broadcasts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 2.0, 3.0]
+                end
+              end
+            end
+          end
+
+          describe ':medium_id = 1 (radio)' do
+            let(:medium_id) { 1 }
+
+            describe 'series' do
+              describe 'data' do
+                it 'contains actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [32.0, 32.0]
+                end
+
+                it 'contains expected amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.167272727272727272e2, 0.167272727272727272e2]
+                end
+
+                it 'contains number of broadcasts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 1.0]
+                end
               end
             end
           end
