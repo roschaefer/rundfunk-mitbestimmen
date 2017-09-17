@@ -14,15 +14,38 @@ RSpec.describe Station, type: :model do
   end
 
   describe '#broadcasts_count' do
-    it 'updates when adding broadcasts' do
+    before do
       station
-      broadcast = create(:broadcast)
-      expect { broadcast.update(station: station) }.to change { station.broadcasts_count }.from(0).to(1)
     end
 
-    it 'updates when removing broadcasts' do
-      broadcast = create(:broadcast, station: station)
-      expect { broadcast.update(station: nil) }.to change { station.broadcasts_count }.from(1).to(0)
+    describe 'on the station side' do
+      it 'updates when adding broadcasts' do
+        broadcast = create(:broadcast)
+        expect { station.update(broadcasts: [broadcast]) }.to change { station.broadcasts_count }.from(0).to(1)
+      end
+
+      it 'updates when removing broadcasts' do
+        create(:broadcast, stations: [station])
+        expect do
+          station.update(broadcasts: [])
+          station.reload
+        end.to change { station.broadcasts_count }.from(1).to(0)
+      end
+    end
+
+    describe 'on the broadcast side' do
+      it 'updates when adding the station' do
+        broadcast = create(:broadcast)
+        expect { broadcast.update(stations: [station]) }.to change { station.broadcasts_count }.from(0).to(1)
+      end
+
+      it 'updates when removing the station' do
+        broadcast = create(:broadcast, stations: [station])
+        expect do
+          broadcast.update(stations: [])
+          station.reload
+        end.to change { station.broadcasts_count }.from(1).to(0)
+      end
     end
   end
 end

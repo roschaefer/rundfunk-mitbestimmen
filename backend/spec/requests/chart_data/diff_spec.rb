@@ -26,16 +26,16 @@ RSpec.describe 'ChartData', type: :request do
 
       # BROADCASTS
       # Station 1
-      create(:broadcast, id: 1, station_id: 1)
-      create(:broadcast, id: 2, station_id: 1)
-      create(:broadcast, id: 3, station_id: 1)
+      create(:broadcast, id: 1, station_ids: [1])
+      create(:broadcast, id: 2, station_ids: [1])
+      create(:broadcast, id: 3, station_ids: [1])
 
       # Station 2
-      create(:broadcast, id: 4, station_id: 2)
-      create(:broadcast, id: 5, station_id: 2)
+      create(:broadcast, id: 4, station_ids: [2])
+      create(:broadcast, id: 5, station_ids: [2])
 
       # Station 3
-      create(:broadcast, id: 6, station_id: 3)
+      create(:broadcast, id: 6, station_ids: [3])
 
       # IMPRESSIONS
       # Station1
@@ -68,6 +68,7 @@ RSpec.describe 'ChartData', type: :request do
     after(:all) do
       Impression.destroy_all
       User.destroy_all
+      Schedule.destroy_all
       Broadcast.destroy_all
       Station.destroy_all
       Medium.destroy_all
@@ -95,8 +96,8 @@ RSpec.describe 'ChartData', type: :request do
             it 'contains station names ordered alphabetically' do
               create(:station, medium: medium, id: 47, name: 'Station 4')
               create(:station, medium: medium, id: 11, name: 'Station 5') # this will disorder the normal enumeration
-              create(:broadcast, id: 7, station_id: 47)
-              create(:broadcast, id: 8, station_id: 11) # and add some broadcasts, to have the new stations included
+              create(:broadcast, id: 7, station_ids: [47])
+              create(:broadcast, id: 8, station_ids: [11])
               get url, params: params, headers: headers.merge('locale' => 'en')
               expect(parse_json(response.body, 'data/attributes/categories')).to eq(['Station 1', 'Station 2', 'Station 3', 'Station 4', 'Station 5'])
             end
@@ -114,11 +115,11 @@ RSpec.describe 'ChartData', type: :request do
             end
 
             describe 'data' do
-              it 'contains actual amounts for every station' do
+              it 'contains divided actual amounts for every station' do
                 expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [21.0, 45.0, 15.0]
               end
 
-              it 'contains expected amounts for every station' do
+              it 'contains divided expected amounts for every station' do
                 expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25]
               end
 
@@ -136,7 +137,7 @@ RSpec.describe 'ChartData', type: :request do
 
               context 'if no broadcast of a station ever received an impression' do
                 before do
-                  create(:broadcast, id: 7, station: create(:station, medium: medium, id: 4, name: 'Station 4'), impressions: [])
+                  create(:broadcast, id: 7, stations: create_list(:station, 1, medium: medium, id: 4, name: 'Station 4'), impressions: [])
                   get url, params: params, headers: headers
                 end
 
@@ -148,8 +149,8 @@ RSpec.describe 'ChartData', type: :request do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.3, 36.45, 20.25, 0.0]
                 end
 
-                it 'number of broadcasts is 0' do
-                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3, 2, 1, 0]
+                it 'number of broadcasts is 1' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [3.0, 2.0, 1.0, 1.0]
                 end
               end
             end
@@ -171,9 +172,9 @@ RSpec.describe 'ChartData', type: :request do
 
       # BROADCASTS
       # Station 1
-      create(:broadcast, id: 1, station_id: 1)
-      create(:broadcast, id: 2, station_id: 2)
-      create(:broadcast, id: 3, station_id: 3)
+      create(:broadcast, id: 1, station_ids: [1])
+      create(:broadcast, id: 2, station_ids: [2])
+      create(:broadcast, id: 3, station_ids: [3])
 
       # IMPRESSIONS
       # Station1
@@ -185,6 +186,7 @@ RSpec.describe 'ChartData', type: :request do
     after(:all) do
       Impression.destroy_all
       User.destroy_all
+      Schedule.destroy_all
       Broadcast.destroy_all
       Station.destroy_all
       Medium.destroy_all
@@ -215,7 +217,7 @@ RSpec.describe 'ChartData', type: :request do
                   expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [24.375, 48.75]
                 end
 
-                it 'contains number of broadcasts 0 for every radio station' do
+                it 'contains number of broadcasts for every radio station' do
                   expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 1.0]
                 end
               end
@@ -227,6 +229,93 @@ RSpec.describe 'ChartData', type: :request do
             describe 'categories' do
               it 'contains only names of TV stations' do
                 expect(parse_json(response.body, 'data/attributes/categories')).to eq(['TV 1'])
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  context 'given many stations per broadcast' do
+    before(:all) do
+      # Medium
+      tv    = create(:medium, id: 0, name: :tv)
+      radio = create(:medium, id: 1, name: :radio)
+      # STATIONS
+      create(:station, medium: tv,    id: 1, name: 'TV 1')
+      create(:station, medium: tv,    id: 2, name: 'TV 2')
+      create(:station, medium: tv,    id: 3, name: 'TV 3')
+      create(:station, medium: radio, id: 4, name: 'Radio 1')
+      create(:station, medium: radio, id: 5, name: 'Radio 2')
+
+      # BROADCASTS
+      # Station 1
+      create(:broadcast, id: 1, station_ids: [1, 2, 3])
+      create(:broadcast, id: 2, station_ids: [2, 3])
+      create(:broadcast, id: 3, station_ids: [3])
+      create(:broadcast, id: 4, station_ids: [4, 5])
+
+      # IMPRESSIONS
+      create_list(:impression, 9,  broadcast_id: 1, response: :positive, amount: 6)
+      create_list(:impression, 5,  broadcast_id: 2, response: :positive, amount: 8)
+      create_list(:impression, 1,  broadcast_id: 3, response: :positive, amount: 12)
+      create_list(:impression, 8,  broadcast_id: 4, response: :positive, amount: 4)
+
+      # Neutral
+      create_list(:impression, 10, broadcast_id: 2, response: :neutral)
+    end
+
+    after(:all) do
+      Impression.destroy_all
+      User.destroy_all
+      Schedule.destroy_all
+      Broadcast.destroy_all
+      Station.destroy_all
+      Medium.destroy_all
+    end
+
+    describe 'GET' do
+      describe '/chart_data/diffs/:medium_id' do
+        let(:url) { "/chart_data/diffs/#{medium_id}" }
+        before { get url, params: params, headers: headers }
+
+        describe 'chart data' do
+          describe ':medium_id = 0 (TV)' do
+            let(:medium_id) { 0 }
+            describe 'series' do
+              describe 'data' do
+                it 'contains shared actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [18.0, 38.0, 50.0]
+                end
+
+                it 'contains shared expected amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.125454545454545454e2, 0.439090909090909089e2, 0.480909090909090907e2]
+                end
+
+                it 'contains number of broadcasts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 2.0, 3.0]
+                end
+              end
+            end
+          end
+
+          describe ':medium_id = 1 (radio)' do
+            let(:medium_id) { 1 }
+
+            describe 'series' do
+              describe 'data' do
+                it 'contains shared actual amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [16.0, 16.0]
+                end
+
+                it 'contains shared expected amounts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/1/data')).to eq [0.167272727272727272e2, 0.167272727272727272e2]
+                end
+
+                it 'contains number of broadcasts for every radio station' do
+                  expect(parse_json(response.body, 'data/attributes/series/2/data')).to eq [1.0, 1.0]
+                end
               end
             end
           end

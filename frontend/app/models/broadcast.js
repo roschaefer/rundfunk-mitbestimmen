@@ -7,7 +7,7 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   medium: DS.belongsTo('medium'),
-  station: DS.belongsTo('station'),
+  stations: DS.hasMany('station'),
   impressions: DS.hasMany('impression'),
 
   response: Ember.computed('impressions.firstObject.response', function() {

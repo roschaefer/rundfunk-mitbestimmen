@@ -12,5 +12,7 @@ only:
   - Broadcast
   - Medium
   - Station
-  - Statistic
+  - Schedule
+  - Statistic::Broadcast
+  - Statistic::Station
 only_recursion_depth: null

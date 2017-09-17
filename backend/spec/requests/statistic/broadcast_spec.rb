@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Balances', type: :request do
+RSpec.describe 'Statistic::Broadcast', type: :request do
   let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { {} }
@@ -16,7 +16,7 @@ RSpec.describe 'Balances', type: :request do
           create(:impression, broadcast: broadcast, amount: amount)
         end
       end
-      let(:url) { '/statistics' }
+      let(:url) { '/statistic/broadcasts' }
       let(:data) do
         impressions
         request
@@ -90,48 +90,6 @@ RSpec.describe 'Balances', type: :request do
           sorted = data.sort { |b1, b2| b1['attributes']['total'] <=> b2['attributes']['total'] }
           expect(data).to eq sorted.reverse
         end
-      end
-    end
-
-    describe '/summarized_statistics/' do
-      let(:url) { '/summarized_statistics' }
-
-      before(:all) do
-        create_list(:user, 42).each do |user|
-          create_list(:impression, 7, amount: 2.5, user: user)
-        end
-      end
-
-      after(:all) do
-        Impression.destroy_all
-        User.destroy_all
-        Broadcast.destroy_all
-        Medium.destroy_all
-        Station.destroy_all
-      end
-
-      before { request }
-
-      let(:data) { JSON.parse(response.body)['data'] }
-
-      it "returns 'summarized-statistics' as type" do
-        expect(data['type']).to eq 'summarized-statistics'
-      end
-
-      it 'returns the given id' do
-        expect(data['id']).to eq(1)
-      end
-
-      it 'returns the number of registered users' do
-        expect(data['attributes']['registered-users']).to eq 42
-      end
-
-      it 'returns the total number of impressions' do
-        expect(data['attributes']['impressions']).to eq 42 * 7
-      end
-
-      it 'returns the total amount of assigned money' do
-        expect(data['attributes']['assigned-money'].to_f).to eq 42 * 7 * 2.5
       end
     end
   end

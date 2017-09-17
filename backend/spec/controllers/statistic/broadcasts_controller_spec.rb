@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StatisticsController, type: :controller do
+RSpec.describe Statistic::BroadcastsController, type: :controller do
   describe 'GET #index' do
     it 'returns http success' do
       get :index

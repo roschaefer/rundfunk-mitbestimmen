@@ -80,14 +80,14 @@ RSpec.describe 'Broadcasts', type: :request do
       describe '?filter[station]=' do
         let(:das_erste) { create(:station, name: 'Das Erste') }
         let(:wdr_fernsehen) { create(:station, name: 'WDR Fernsehen') }
-        let(:wdr_broadcast) { create(:broadcast, station: wdr_fernsehen) }
-        let(:ard_broadcast) { create(:broadcast, station: das_erste) }
+        let(:wdr_broadcast) { create(:broadcast, stations: [wdr_fernsehen]) }
+        let(:ard_broadcast) { create(:broadcast, stations: [das_erste]) }
         let(:broadcasts) { [ard_broadcast, wdr_broadcast] }
         let(:params) { { filter: { station: wdr_fernsehen.id } } }
 
         it 'returns broadcasts of a given station' do
           expect(subject['data'].length).to eq 1
-          expect(subject['data'][0]['relationships']['station']['data']['id']).to eq wdr_fernsehen.id.to_s
+          expect(subject['data'][0]['relationships']['stations']['data'][0]['id']).to eq wdr_fernsehen.id.to_s
         end
       end
     end

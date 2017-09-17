@@ -19,9 +19,39 @@ zdf           = Station.create!(name: 'ZDF', medium: tv)
 einslive      = Station.create!(name: '1Live', medium: radio)
 fritz         = Station.create!(name: 'Fritz', medium: radio)
 
-Broadcast.create!(title: 'Quarks & Co',              station: wdr_fernsehen, medium: tv,    description: 'Bei Quarks & Co soll Wissenschaft unterhalten. Deshalb fährt die Sendung alles auf, was das Fernsehen zu bieten hat: spannende Experimente, abenteuerliche Selbstversuche, überzeugende Grafiken und faszinierende Computeranimationen.')
-Broadcast.create!(title: 'Tagesschau',               station: das_erste,     medium: tv,    description: 'Die Nachrichtensendung im Ersten.')
-Broadcast.create!(title: 'heute journal',            station: zdf,           medium: tv,    description: 'Das heute-journal: politische Berichte, scharfsinnige Analysen und verständliche Erklärungen.')
-Broadcast.create!(title: 'Die Sendung mit der Maus', station: wdr_fernsehen, medium: tv,    description: 'Die Sendung mit der Maus ... und dem Elefanten.')
-Broadcast.create!(title: 'Der beste Tag der Welt',   station: einslive,      medium: radio, description: 'Der coolste Anchorman der Welt, William Cohn, zelebriert tagesaktuelle Themen, historische Ereignisse oder schlichten Mumpitz. Hauptsache gnadenlos, schräg und böse! Denn jeder Tag ist der beste Tag der Welt.')
-Broadcast.create!(title: 'SOUNDGARDEN',              station: fritz,         medium: radio, description: 'Von 20 bis 22 Uhr steht bei uns jeder Abend unter einem anderen musikalischen Motto. Euch erwarten Klassiker und aktuelle Neuerscheinungen aus den verschiedensten Genres - von Elektro bis Rock, von Urban bis Indie.')
+Broadcast.create!(
+  title: 'Quarks & Co',
+  stations: [wdr_fernsehen],
+  medium: tv,
+  description: 'Bei Quarks & Co soll Wissenschaft unterhalten. Deshalb fährt die Sendung alles auf, was das Fernsehen zu bieten hat: spannende Experimente, abenteuerliche Selbstversuche, überzeugende Grafiken und faszinierende Computeranimationen.'
+)
+Broadcast.create!(
+  title: 'Tagesschau',
+  stations: [das_erste],
+  medium: tv,
+  description: 'Die Nachrichtensendung im Ersten.'
+)
+Broadcast.create!(
+  title: 'heute journal',
+  stations: [zdf],
+  medium: tv,
+  description: 'Das heute-journal: politische Berichte, scharfsinnige Analysen und verständliche Erklärungen.'
+)
+Broadcast.create!(
+  title: 'Die Sendung mit der Maus',
+  stations: [wdr_fernsehen],
+  medium: tv,
+  description: 'Die Sendung mit der Maus ... und dem Elefanten.'
+)
+Broadcast.create!(
+  title: 'Der beste Tag der Welt',
+  stations: [einslive],
+  medium: radio,
+  description: 'Der coolste Anchorman der Welt, William Cohn, zelebriert tagesaktuelle Themen, historische Ereignisse oder schlichten Mumpitz. Hauptsache gnadenlos, schräg und böse! Denn jeder Tag ist der beste Tag der Welt.'
+)
+Broadcast.create!(
+  title: 'SOUNDGARDEN',
+  stations: [fritz],
+  medium: radio,
+  description: 'Von 20 bis 22 Uhr steht bei uns jeder Abend unter einem anderen musikalischen Motto. Euch erwarten Klassiker und aktuelle Neuerscheinungen aus den verschiedensten Genres - von Elektro bis Rock, von Urban bis Indie.'
+)

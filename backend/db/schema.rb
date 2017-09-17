@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909131424) do
+ActiveRecord::Schema.define(version: 20170917155355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20170909131424) do
     t.integer "creator_id"
     t.integer "mediathek_identification"
     t.integer "medium_id"
-    t.integer "station_id"
+    t.bigint "schedule_id"
     t.index ["format_id"], name: "index_broadcasts_on_format_id"
     t.index ["mediathek_identification"], name: "index_broadcasts_on_mediathek_identification", unique: true
     t.index ["medium_id"], name: "index_broadcasts_on_medium_id"
-    t.index ["station_id"], name: "index_broadcasts_on_station_id"
+    t.index ["schedule_id"], name: "index_broadcasts_on_schedule_id"
     t.index ["title"], name: "index_broadcasts_on_title", unique: true
     t.index ["topic_id"], name: "index_broadcasts_on_topic_id"
   end
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 20170909131424) do
     t.string "name"
     t.index ["locale"], name: "index_medium_translations_on_locale"
     t.index ["medium_id"], name: "index_medium_translations_on_medium_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "broadcast_id"
+    t.bigint "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["broadcast_id", "station_id"], name: "index_schedules_on_broadcast_id_and_station_id", unique: true
+    t.index ["broadcast_id"], name: "index_schedules_on_broadcast_id"
+    t.index ["station_id"], name: "index_schedules_on_station_id"
   end
 
   create_table "stations", id: :serial, force: :cascade do |t|
@@ -133,6 +143,7 @@ ActiveRecord::Schema.define(version: 20170909131424) do
 
   add_foreign_key "broadcasts", "formats"
   add_foreign_key "broadcasts", "media"
+  add_foreign_key "broadcasts", "schedules"
   add_foreign_key "broadcasts", "topics"
   add_foreign_key "broadcasts", "users", column: "creator_id"
   add_foreign_key "impressions", "broadcasts"
@@ -161,6 +172,70 @@ ActiveRecord::Schema.define(version: 20170909131424) do
             GROUP BY impressions.broadcast_id, broadcasts.title) t
        LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
              FROM impressions) a ON (true));
+  SQL
+
+  create_view "statistic_broadcasts",  sql_definition: <<-SQL
+      SELECT t.id,
+      t.title,
+      t.impressions,
+      ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
+      COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
+      t.total,
+      ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount
+     FROM (( SELECT impressions.broadcast_id AS id,
+              broadcasts.title,
+              count(*) AS impressions,
+              COALESCE(sum(
+                  CASE
+                      WHEN (impressions.response = 1) THEN 1
+                      ELSE 0
+                  END), (0)::bigint) AS positives,
+              COALESCE(sum(impressions.amount), (0)::numeric) AS total
+             FROM (impressions
+               JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
+            GROUP BY impressions.broadcast_id, broadcasts.title) t
+       LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
+             FROM impressions) a ON (true))
+  UNION ALL
+   SELECT broadcasts.id,
+      broadcasts.title,
+      0 AS impressions,
+      NULL::double precision AS approval,
+      NULL::double precision AS average,
+      0 AS total,
+      0 AS expected_amount
+     FROM (broadcasts
+       LEFT JOIN impressions ON ((broadcasts.id = impressions.broadcast_id)))
+    WHERE (impressions.broadcast_id IS NULL);
+  SQL
+
+  create_view "statistic_stations",  sql_definition: <<-SQL
+      SELECT stations.id,
+      stations.name,
+      stations.medium_id,
+      count(*) AS broadcasts_count,
+      sum((t.total / (t.stations_count)::numeric)) AS total,
+      sum((t.expected_amount / (t.stations_count)::numeric)) AS expected_amount
+     FROM ((( SELECT statistic_broadcasts.id AS broadcast_id,
+              statistic_broadcasts.total,
+              statistic_broadcasts.expected_amount,
+              count(*) AS stations_count
+             FROM (statistic_broadcasts
+               JOIN schedules schedules_1 ON ((statistic_broadcasts.id = schedules_1.broadcast_id)))
+            GROUP BY statistic_broadcasts.id, statistic_broadcasts.total, statistic_broadcasts.expected_amount) t
+       JOIN schedules ON ((t.broadcast_id = schedules.broadcast_id)))
+       JOIN stations ON ((schedules.station_id = stations.id)))
+    GROUP BY stations.id, stations.name, stations.medium_id
+  UNION ALL
+   SELECT stations.id,
+      stations.name,
+      stations.medium_id,
+      0 AS broadcasts_count,
+      0 AS total,
+      0 AS expected_amount
+     FROM (stations
+       LEFT JOIN schedules ON ((stations.id = schedules.station_id)))
+    WHERE (schedules.broadcast_id IS NULL);
   SQL
 
 end

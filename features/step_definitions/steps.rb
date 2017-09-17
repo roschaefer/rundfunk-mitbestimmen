@@ -29,8 +29,8 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
       attributes[:medium] = medium
     end
     if row['Station']
-      station = Station.find_by(name: row['Station']) || create(:station, name: row['Station'])
-      attributes[:station] = station
+      stations = [Station.find_by(name: row['Station']) || create(:station, name: row['Station'])]
+      attributes[:stations] = stations
     end
     create(:broadcast, attributes)
   end
@@ -408,6 +408,7 @@ end
 
 Then(/^because I'm lazy, I just submit the broadcast's official website$/) do |string|
   fill_in 'description', with: string
+  scroll_to(find('button[type="submit"]', text: 'Create'))
   click_on 'Create'
 end
 
@@ -529,13 +530,13 @@ Given(/^the statistics look like this:$/) do |table|
     n_neutral = (1.0 - approval)*n_impressions
 
     tv = Medium.find_by(id: 0) || create(:medium, id: 0, name: 'TV')
-    station = if row['Station']
-                Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)
+    stations = if row['Station']
+                [Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)]
               else
-                nil
+                []
               end
 
-    broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, station: station)
+    broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, stations: stations)
     create_list(:impression, n_positive.to_i,
                 broadcast: broadcast,
                 response: :positive,
@@ -600,7 +601,7 @@ When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
   find('.item:not(.blank)', text: medium).click
 end
 
-Given(/^we have these stations in our database:$/) do |table|
+Given(/^we have these stations(?: in our database)?:$/) do |table|
   table.hashes.each do |row|
     medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     create(:station, name: row['Station'], medium: medium)
@@ -648,15 +649,8 @@ Then(/^the created broadcast has got the exact data from above$/) do
   broadcast = Broadcast.last
   expect(broadcast.title).to eq @title
   expect(broadcast.description).to eq @description
-  expect(broadcast.station.name).to eq @station_name
+  expect(broadcast.stations.first.name).to eq @station_name
   expect(broadcast.medium.name).to eq @medium_name
-end
-
-Given(/^we have these stations:$/) do |table|
-  table.hashes.each do |row|
-    medium = create(:medium, name_en: row['Medium'], name_de: row['Medium'])
-    create(:station, medium: medium, name: row['Station'])
-  end
 end
 
 When(/^I click on the stations dropdown menu$/) do
@@ -673,7 +667,7 @@ Given(/^we have some more stations:$/) do |table|
   table.hashes.each do |row|
     medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     station = create(:station, name: row['Station'], medium: medium)
-    create_list(:broadcast, row['#Broadcasts'].to_i, station: station, medium: medium)
+    create_list(:broadcast, row['#Broadcasts'].to_i, stations: [station], medium: medium)
   end
 end
 
@@ -892,7 +886,7 @@ Then(/^I can see (?:even more|these) details:$/) do |table|
   table.transpose.hashes.each do |broadcast_details|
     broadcast_details.each do |label, value|
       # change the expecation to match the template of the broadcast page
-      expect(page).to have_css('.detail', text: /#{Regexp.escape(label)}.*#{Regexp.escape(value)}/)
+      expect(page).to have_css(".detail.#{label}", text: /#{Regexp.escape(value)}/)
       # this is just a guess how the html may look like
     end
   end
@@ -939,4 +933,15 @@ end
 Then(/^I am on the find broadcasts page$/) do
   expect(page).to have_text('Choose broadcasts')
   expect(current_path).to eq '/find-broadcasts'
+end
+
+When(/^I add "([^"]*)" to the list of stations$/) do |station_name|
+  find('.multiple.selection.dropdown').click
+  find('.item', text: station_name).click
+end
+
+Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
+  broadcast = Broadcast.find_by(title: title)
+  station_names = broadcast.stations.map(&:name)
+  expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
 end

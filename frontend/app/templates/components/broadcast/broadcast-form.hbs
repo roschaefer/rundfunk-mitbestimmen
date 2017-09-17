@@ -14,13 +14,20 @@
 
 <div class="field">
   <label>{{t 'broadcast-form.title.label'}}</label>
-  <div class="three fields">
-    <div class="eight wide field">
-      {{input type="text" id="title" value=broadcast.title placeholder=(t 'broadcast-form.title.placeholder')}}
-    </div>
+  <div class="eight wide field">
+    {{input type="text" id="title" value=broadcast.title placeholder=(t 'broadcast-form.title.placeholder')}}
+  </div>
+</div>
 
+<div class="field">
+  <label>{{t 'broadcast-form.description.label'}}</label>
+  {{input type="text" id="description" value=broadcast.description placeholder=(t 'broadcast-form.description.placeholder')}}
+</div>
+
+<div class="field">
+  <div class="two fields">
     <div class="four wide field">
-      {{#ui-dropdown class="fluid selection" selected=broadcast.medium.id onChange=(action 'selectMedium')}}
+      {{#ui-dropdown class="fluid selection media" selected=broadcast.medium.id onChange=(action 'selectMedium')}}
         <div class="default text">{{t 'broadcast-form.medium.placeholder' }}</div>
         <i class="dropdown icon"></i>
         <div class="menu">
@@ -33,9 +40,9 @@
       {{/ui-dropdown}}
     </div>
 
-    <div class="four wide field">
+    <div class="twelve wide field">
       {{#if sortedStations}}
-        {{#ui-dropdown class="fluid selection" selected=broadcast.station.id onChange=(action 'selectStation')}}
+        {{#ui-dropdown class="fluid multiple selection" selected=stationIds onChange=(action 'selectStation')}}
           <div class="default text">{{t 'broadcast-form.station.placeholder' }}</div>
           <i class="dropdown icon"></i>
           <div class="menu">
@@ -49,11 +56,6 @@
       {{/if}}
     </div>
   </div>
-</div>
-
-<div class="field">
-  <label>{{t 'broadcast-form.description.label'}}</label>
-  {{input type="text" id="description" value=broadcast.description placeholder=(t 'broadcast-form.description.placeholder')}}
 </div>
 
 

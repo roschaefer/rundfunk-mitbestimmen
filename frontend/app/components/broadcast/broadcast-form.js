@@ -22,6 +22,10 @@ export default Ember.Component.extend({
   sortedStations: Ember.computed.sort('displayedStations', 'sortDefinition'),
   sortDefinition: [ 'name:asc' ],
 
+  didReceiveAttrs() {
+    this.set('stationIds', this.get('broadcast.stations').mapBy('id'));
+  },
+
   submit(event) {
     event.preventDefault();
     this.get('broadcast').saveAndSetSuccess();
@@ -30,11 +34,14 @@ export default Ember.Component.extend({
     selectMedium(mediumId){
       let medium = this.get('media').findBy("id", mediumId);
       this.get("broadcast").set("medium", medium);
-      this.get("broadcast").set("station", null); //clear station
+      this.get("broadcast.stations").clear();
+      this.set("stationIds", this.get('broadcast.stations').mapBy('id'));
     },
-    selectStation(stationId){
-      let station = this.get('stations').findBy("id", stationId);
-      this.get("broadcast").set("station", station);
+    selectStation(stationIds){
+      let stations = this.get('stations').filter((station) => {
+        return stationIds.includes(station.get('id'));
+      });
+      this.get("broadcast").set('stations', stations);
     },
     newBroadcast(){
       this.sendAction('newBroadcast');

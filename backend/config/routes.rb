@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'statistics/', to: 'statistics#index'
+  get 'statistic/broadcasts/', to: 'statistic/broadcasts#index'
   get 'summarized_statistics/', to: 'statistics#summarized'
 
   resources :media, only: %i[index show]

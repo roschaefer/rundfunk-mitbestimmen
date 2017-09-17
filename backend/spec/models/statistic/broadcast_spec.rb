@@ -1,9 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe Statistic, type: :model do
+RSpec.describe Statistic::Broadcast, type: :model do
   let(:broadcast) { create(:broadcast) }
 
-  subject { Statistic.find(broadcast.id) }
+  subject { described_class.find(broadcast.id) }
+
+  context 'without any impressions' do
+    it 'there is a record for every broadcast' do
+      is_expected.to be_present
+    end
+  end
 
   context 'given only neutral impressions' do
     before { create(:impression, broadcast: broadcast, response: :neutral) }
@@ -73,7 +79,7 @@ RSpec.describe Statistic, type: :model do
       let(:average_amount_per_impression) { (sum_of_all_amounts / number_of_impressions) }
 
       def expected_amount_of_broadcast
-        Statistic.find(broadcast.id).expected_amount
+        described_class.find(broadcast.id).expected_amount
       end
 
       it '= number_of_impressions(broadcast) * ( sum_of_all_amounts / number_of_impressions)' do
