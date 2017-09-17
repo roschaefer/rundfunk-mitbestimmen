@@ -1,6 +1,5 @@
 class Statistic::BroadcastsController < ApplicationController
   load_and_authorize_resource
-  skip_load_resource only: :summarized
 
   def index
     page = (statistics_params[:page] || 1).to_i
@@ -13,22 +12,6 @@ class Statistic::BroadcastsController < ApplicationController
 
     @statistics = Statistic::Broadcast.order(order_params).order(title: :asc).page(page).per(per_page)
     render json: @statistics, meta: { total_pages: @statistics.total_pages }
-  end
-
-  def summarized
-    # fake the model
-    render json: {
-      data: {
-        id: 1,
-        type: 'summarized-statistics',
-        attributes: {
-          'broadcasts' => Broadcast.count,
-          'registered-users' => User.count,
-          'impressions' => Impression.count,
-          'assigned-money' => Statistic::Broadcast.sum(:total)
-        }
-      }
-    }
   end
 
   def statistics_params

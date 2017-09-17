@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
 
-describe('Unit | Model | statistic', function() {
-  setupModelTest('statistic', {
+describe('Unit | Model | statistic/broadcast', function() {
+  setupModelTest('statistic/broadcast', {
     // Specify the other units that are required for this test.
       needs: []
   });
