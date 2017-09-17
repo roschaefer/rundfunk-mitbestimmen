@@ -251,10 +251,10 @@ RSpec.describe 'ChartData', type: :request do
 
       # BROADCASTS
       # Station 1
-      create(:broadcast, id: 1, station_ids: [1,2,3])
-      create(:broadcast, id: 2, station_ids: [2,3])
+      create(:broadcast, id: 1, station_ids: [1, 2, 3])
+      create(:broadcast, id: 2, station_ids: [2, 3])
       create(:broadcast, id: 3, station_ids: [3])
-      create(:broadcast, id: 4, station_ids: [4,5])
+      create(:broadcast, id: 4, station_ids: [4, 5])
 
       # IMPRESSIONS
       create_list(:impression, 9,  broadcast_id: 1, response: :positive, amount: 6)
@@ -263,7 +263,7 @@ RSpec.describe 'ChartData', type: :request do
       create_list(:impression, 8,  broadcast_id: 4, response: :positive, amount: 4)
 
       # Neutral
-      create_list(:impression, 10,  broadcast_id: 2, response: :neutral)
+      create_list(:impression, 10, broadcast_id: 2, response: :neutral)
     end
 
     after(:all) do

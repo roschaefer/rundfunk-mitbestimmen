@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Statistics", type: :request do
+RSpec.describe 'Statistics', type: :request do
   describe 'GET' do
     let(:params) { {} }
     let(:request) { get url, params: params }

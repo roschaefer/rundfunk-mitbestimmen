@@ -3,6 +3,7 @@ class Station < ApplicationRecord
   has_many :schedules
   has_many :broadcasts, through: :schedules
   has_many :impressions, through: :broadcasts
+  has_one :statistic, class_name: 'Statistic::Station', foreign_key: :id
   attribute :name
   validates :medium, presence: true
   validates :name, uniqueness: true

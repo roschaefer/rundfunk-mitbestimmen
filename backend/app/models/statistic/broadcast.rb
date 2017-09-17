@@ -3,7 +3,7 @@ module Statistic
     self.primary_key = :id
     paginates_per 10
 
-    belongs_to :broadcast, foreign_key: :id
+    belongs_to :broadcast, class_name: '::Broadcast', foreign_key: :id
 
     private
 
