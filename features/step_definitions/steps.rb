@@ -601,7 +601,7 @@ When(/^I choose "([^"]*)" from the list of available media$/) do |medium|
   find('.item:not(.blank)', text: medium).click
 end
 
-Given(/^we have these stations in our database:$/) do |table|
+Given(/^we have these stations(?: in our database)?:$/) do |table|
   table.hashes.each do |row|
     medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     create(:station, name: row['Station'], medium: medium)
@@ -651,13 +651,6 @@ Then(/^the created broadcast has got the exact data from above$/) do
   expect(broadcast.description).to eq @description
   expect(broadcast.stations.first.name).to eq @station_name
   expect(broadcast.medium.name).to eq @medium_name
-end
-
-Given(/^we have these stations:$/) do |table|
-  table.hashes.each do |row|
-    medium = create(:medium, name_en: row['Medium'], name_de: row['Medium'])
-    create(:station, medium: medium, name: row['Station'])
-  end
 end
 
 When(/^I click on the stations dropdown menu$/) do
@@ -940,4 +933,15 @@ end
 Then(/^I am on the find broadcasts page$/) do
   expect(page).to have_text('Choose broadcasts')
   expect(current_path).to eq '/find-broadcasts'
+end
+
+When(/^I add "([^"]*)" to the list of stations$/) do |station_name|
+  find('.multiple.selection.dropdown').click
+  find('.item', text: station_name).click
+end
+
+Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
+  broadcast = Broadcast.find_by(title: title)
+  station_names = broadcast.stations.map(&:name)
+  expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
 end
