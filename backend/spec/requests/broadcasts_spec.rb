@@ -198,6 +198,40 @@ RSpec.describe 'Broadcasts', type: :request do
           end.from([]).to([dasErste]))
         end
       end
+
+      describe 'remove stations' do
+        let(:broadcast) { create(:broadcast, stations: [dasErste]) }
+        let(:params) do
+          {
+            data: {
+              type: 'broadcasts',
+              attributes: {
+              }, relationships: {
+                stations: {
+                  data: []
+                }
+              }
+            }
+          }
+        end
+
+        it 'is allowed to remove stations' do
+          expect { action }.to(change do
+            broadcast.reload
+            broadcast.stations.to_a
+          end.from([dasErste]).to([]))
+        end
+
+        it 'removed stations will be tracked' do
+          broadcast # create broadcast and station
+          expect { action }.to(change { PaperTrail::Version.count }.by(1))
+        end
+
+        it 'whodunnit is set' do
+          action
+          PaperTrail::Version.last.whodunnit = user.id
+        end
+      end
     end
   end
 

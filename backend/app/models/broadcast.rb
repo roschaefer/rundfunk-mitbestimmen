@@ -11,7 +11,7 @@ class Broadcast < ApplicationRecord
   belongs_to :format, optional: true
   belongs_to :medium
   has_many :schedules
-  has_many :stations, through: :schedules
+  has_many :stations, through: :schedules, dependent: :destroy # https://stackoverflow.com/a/30629704/2069431
   belongs_to :creator, class_name: 'User', optional: true
   has_one :statistic, class_name: 'Statistic::Broadcast', foreign_key: :id
   validates :title, presence: true, uniqueness: { case_sensitive: false }

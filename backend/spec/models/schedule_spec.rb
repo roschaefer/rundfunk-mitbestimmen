@@ -25,4 +25,31 @@ RSpec.describe Schedule, type: :model do
       end
     end
   end
+
+  describe 'paper_trail' do
+    let(:broadcast) { create(:broadcast, stations: [station]) }
+    describe 'add another station to broadcast' do
+      it 'creates another version' do
+        broadcast
+        new_station = create(:station)
+        expect { broadcast.stations << new_station }.to(change { PaperTrail::Version.count }.by(1))
+      end
+    end
+
+    describe 'remove a station from a broadcast' do
+      before do
+        broadcast
+        station
+      end
+      it 'creates another version' do
+        expect { broadcast.update(stations: []) }.to(change { PaperTrail::Version.count }.by(1))
+      end
+
+      it 'does not remove the station, only the join model' do
+        broadcast.update(stations: [])
+        expect(Broadcast.count).to eq 1
+        expect(Station.count).to eq 1
+      end
+    end
+  end
 end

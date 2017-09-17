@@ -115,7 +115,7 @@ RSpec.describe 'ChartData', type: :request do
             end
 
             describe 'data' do
-              it 'contains sharedactual amounts for every station' do
+              it 'contains divided actual amounts for every station' do
                 expect(parse_json(response.body, 'data/attributes/series/0/data')).to eq [21.0, 45.0, 15.0]
               end
 
