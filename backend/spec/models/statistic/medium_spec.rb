@@ -3,6 +3,16 @@ require 'rails_helper'
 RSpec.describe Statistic::Medium, type: :model do
   let(:medium) { create(:medium) }
   subject { described_class.find(medium.id) }
+
+  describe 'translations' do
+    let(:medium) { create(:medium, name_en: 'Television', name_de: 'Fernsehen') }
+    let(:statistic) { described_class.find(medium.id) }
+    describe '#name' do
+      subject { statistic.name }
+      it { is_expected.to eq 'Fernsehen' }
+    end
+  end
+
   context 'medium without broadcasts' do
     it { is_expected.to be_present }
   end

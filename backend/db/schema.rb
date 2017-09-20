@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920091618) do
+ActiveRecord::Schema.define(version: 20170920143139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,17 @@ ActiveRecord::Schema.define(version: 20170920091618) do
      FROM (media
        LEFT JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
     WHERE (broadcasts.medium_id IS NULL);
+  SQL
+
+  create_view "statistic_medium_translations",  sql_definition: <<-SQL
+      SELECT medium_translations.id,
+      medium_translations.medium_id,
+      medium_translations.locale,
+      medium_translations.created_at,
+      medium_translations.updated_at,
+      medium_translations.name,
+      medium_translations.medium_id AS statistic_medium_id
+     FROM medium_translations;
   SQL
 
 end
