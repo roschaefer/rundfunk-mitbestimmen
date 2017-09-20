@@ -48,6 +48,7 @@ class Ability
     can :read, Medium
     can :read, Station
     can :summarized, Statistic
+    can :read, Statistic::Medium
     can :read, Statistic::Broadcast
   end
 end

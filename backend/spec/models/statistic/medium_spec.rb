@@ -43,13 +43,13 @@ RSpec.describe Statistic::Medium, type: :model do
 
     describe '#total' do
       subject { statistic.total }
-      it { is_expected.to eq (3*3 + 5*2 + 6*1) }
+      it { is_expected.to eq(9 + 10 + 6) }
     end
 
     describe '#expected_amount' do
       subject { statistic.expected_amount }
-      let(:average) { (32.0/25.0) }
-      it { is_expected.to eq(average*18.0) }
+      let(:average) { (32.0 / 25.0) }
+      it { is_expected.to eq(average * 18.0) }
     end
   end
 end
