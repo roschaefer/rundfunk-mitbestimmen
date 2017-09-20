@@ -66,12 +66,7 @@ RSpec.describe 'ChartData', type: :request do
     end
 
     after(:all) do
-      Impression.destroy_all
-      User.destroy_all
-      Schedule.destroy_all
-      Broadcast.destroy_all
-      Station.destroy_all
-      Medium.destroy_all
+      clean_database!
     end
 
     describe 'GET' do
@@ -184,12 +179,7 @@ RSpec.describe 'ChartData', type: :request do
     end
 
     after(:all) do
-      Impression.destroy_all
-      User.destroy_all
-      Schedule.destroy_all
-      Broadcast.destroy_all
-      Station.destroy_all
-      Medium.destroy_all
+      clean_database!
     end
 
     describe 'GET' do
@@ -267,12 +257,7 @@ RSpec.describe 'ChartData', type: :request do
     end
 
     after(:all) do
-      Impression.destroy_all
-      User.destroy_all
-      Schedule.destroy_all
-      Broadcast.destroy_all
-      Station.destroy_all
-      Medium.destroy_all
+      clean_database!
     end
 
     describe 'GET' do

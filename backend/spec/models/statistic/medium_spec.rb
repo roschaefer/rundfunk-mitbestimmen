@@ -25,15 +25,20 @@ RSpec.describe Statistic::Medium, type: :model do
   end
 
   context 'broadcasts with impressions' do
-    before do
+    before(:all) do
+      medium = create(:medium)
+      broadcasts = create_list(:broadcast, 3, medium: medium)
       create_list(:impression, 3, broadcast: broadcasts[0], response: :positive, amount: 3.0)
       create_list(:impression, 4, broadcast: broadcasts[0], response: :neutral)
       create_list(:impression, 5, broadcast: broadcasts[1], response: :positive, amount: 2.0)
       create_list(:impression, 6, broadcast: broadcasts[2], response: :positive, amount: 1.0)
       create_list(:impression, 7, response: :positive, amount: 1.0)
     end
-    let(:broadcasts) { create_list(:broadcast, 3, medium: medium) }
-    let(:medium) { create(:medium) }
+
+    after(:all) do
+      clean_database!
+    end
+
     let(:statistic) { Statistic::Medium.first }
 
     describe '#broadcasts_count' do

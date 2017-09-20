@@ -26,11 +26,7 @@ RSpec.describe 'Statistic::Medium', type: :request do
       end
 
       after(:all) do
-        Impression.destroy_all
-        User.destroy_all
-        Broadcast.destroy_all
-        Medium.destroy_all
-        Station.destroy_all
+        clean_database!
       end
 
       describe '/statistic/media/:id' do
