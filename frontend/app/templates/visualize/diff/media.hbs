@@ -1,33 +1,24 @@
-{{outlet}}
-<div class="ui middle aligned stackable grid container">
-  <div class="row">
-    <div class="column">
-      <h1 class="ui huge header">
-        {{t 'visualize.diff.header'}}
-        <div class="sub header">
-          {{t 'visualize.diff.sub-header' diffType=(t 'visualize.diff.diffType.plural.media')}}
-        </div>
-      </h1>
+{{visualize/diff/chart-explanation
+nominative=(t (concat 'visualize.diff.diffedModel.medium') case=1)
+genetive=(t (concat 'visualize.diff.diffedModel.medium') case=2)
+}}
+
+<div class="row">
+  <div class="column">
+    <h1 class="ui large centered header">
+      {{t 'visualize.diff.charts.media.header'}}
+    </h1>
+    <div id='chart-area'>
+      {{dynamic-high-charts chartOptions=mediaChartOptions content=mediaChartData}}
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="column">
-      <h1 class="ui large centered header">
-        {{t 'visualize.diff.charts.media.header'}}
-      </h1>
-      <div id='chart-area'>
-        {{dynamic-high-charts chartOptions=mediaChartOptions content=mediaChartData}}
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="column">
-      {{#link-to 'visualize.index' class="ui huge primary button"}}
-        <i class="left arrow icon"></i>
-        {{t 'visualize.overview' }}
-      {{/link-to}}
-    </div>
+<div class="row">
+  <div class="column">
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
   </div>
 </div>
