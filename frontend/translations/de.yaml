@@ -407,6 +407,10 @@ visualize:
       graph: Beziehungen zwischen Sendungen
   overview: Visualisierungsübersicht
   diff:
+    index:
+      header:
+        medium: Gruppiert nach Medien
+        station: Gruppiert nach Sendern
     diffedModel:
       medium: "{case, plural, =2 {Mediums} other {Medium}}"
       station: "{case, plural, =2 {Senders} other {Sender}}"

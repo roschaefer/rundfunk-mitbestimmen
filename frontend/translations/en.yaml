@@ -385,6 +385,10 @@ visualize:
       graph: Relationships between broadcasts
   overview: Visualization overview
   diff:
+    index:
+      header:
+        medium: Grouped by media
+        station: Grouped by station
     diffedModel:
       medium: medium
       station: station

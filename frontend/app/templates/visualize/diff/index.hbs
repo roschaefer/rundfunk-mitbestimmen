@@ -1,1 +1,23 @@
 {{outlet}}
+<div class="two column row">
+  <div class="column">
+    <div class="ui huge header">{{t 'visualize.diff.index.header.medium'}}</div>
+    {{#link-to 'visualize.diff.media' id='visualize-diff-media' class="ui image"}}
+      <img src="/assets/images/missing-features/visualize/diff-media.png">
+    {{/link-to}}
+  </div>
+  <div class="column">
+    <div class="ui huge header">{{t 'visualize.diff.index.header.station'}}</div>
+    {{#link-to 'visualize.diff.stations' id='visualize-diff-stations' class="ui image"}}
+      <img src="/assets/images/missing-features/visualize/diff.png">
+    {{/link-to}}
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
+  </div>
+</div>
