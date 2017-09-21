@@ -6,8 +6,8 @@ describe('Unit | Controller | visualize/diff/stations', function() {
   setupTest('controller:visualize/diff/stations', {
     // Specify the other units that are required for this test.
     needs: [
+      'controller:visualize/diff',
       'service:session',
-      'service:intl',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]   // needs: ['controller:foo']

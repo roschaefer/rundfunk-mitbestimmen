@@ -5,7 +5,7 @@ import { setupTest } from 'ember-mocha';
 describe('Unit | Controller | visualize/diff/media', function() {
   setupTest('controller:visualize/diff/media', {
     needs: [
-      'service:intl',
+      'controller:visualize/diff',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
