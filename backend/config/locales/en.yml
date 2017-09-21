@@ -1,11 +1,5 @@
 ---
 en:
-  chart_data:
-    diff:
-      series:
-        number_of_broadcasts: Number of broadcasts
-        actual: Actual amount
-        expected: Expected amount
   activerecord:
     errors:
       models:

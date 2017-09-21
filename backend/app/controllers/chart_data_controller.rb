@@ -1,33 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[diff geojson]
-
-  def diff
-    medium_id = params[:medium_id]
-    results = Statistic::Station.where(medium_id: medium_id).order(:name).pluck('name', 'broadcasts_count', 'total', 'expected_amount').transpose
-    results = [[], [], [], []] if results.empty?
-    categories = results[0]
-    number_of_broadcasts = results[1].map(&:to_f)
-
-    # to_f turns nil into 0.0 and rounds 0.999999999 to 1
-    actual_amounts = results[2].map(&:to_f)
-    expected_amounts = results[3].map(&:to_f)
-
-    series = [
-      {
-        'name' => I18n.t('chart_data.diff.series.actual'),
-        'data' => actual_amounts
-      }, {
-        'name' => I18n.t('chart_data.diff.series.expected'),
-        'data' => expected_amounts
-      }, {
-        'name' => I18n.t('chart_data.diff.series.number_of_broadcasts'),
-        'data' => number_of_broadcasts
-      }
-    ]
-    diff_chart = ChartData::Diff.new(id: medium_id, series: series, categories: categories)
-    render json: diff_chart
-  end
+  skip_authorization_check only: :geojson
 
   def geojson
     template_feature_collection = RGeo::GeoJSON.decode(File.read(File.join(Rails.root, 'public', 'bundeslaender.geojson')), json_parser: :json)
