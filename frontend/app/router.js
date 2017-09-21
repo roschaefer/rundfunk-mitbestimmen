@@ -35,7 +35,9 @@ Router.map(function() {
   });
   this.route('visualize', function() {
     this.route('geo');
-    this.route('diff');
+    this.route('diff', function() {
+      this.route('media');
+    });
     this.route('graph');
     this.route('time');
   });
