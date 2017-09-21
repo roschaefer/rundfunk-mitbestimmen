@@ -4,8 +4,8 @@ RSpec.describe 'Statistic::Station', type: :request do
 
   context 'no stations at all' do
     describe 'GET' do
-      describe '/statistic/media/:medium_id/stations' do
-        let(:url) { '/statistic/media/0/stations' }
+      describe '/statistic/stations' do
+        let(:url) { '/statistic/stations' }
         before { get url, headers: headers }
         subject { response }
         it { is_expected.to have_http_status(:ok) }
@@ -19,8 +19,8 @@ RSpec.describe 'Statistic::Station', type: :request do
 
   context 'broadcast without impressions' do
     describe 'GET' do
-      describe '/statistic/stations/:id' do
-        let(:url) { '/statistic/media/1/stations' }
+      describe '/statistic/stations' do
+        let(:url) { '/statistic/stations' }
         subject { parse_json(response.body, 'data/0/attributes/') }
         before do
           medium = create(:medium, id: 1)
@@ -126,8 +126,8 @@ RSpec.describe 'Statistic::Station', type: :request do
     end
 
     describe 'GET' do
-      describe '/statistic/media/:medium_id/stations' do
-        let(:url) { '/statistic/media/0/stations' }
+      describe '/statistic/stations' do
+        let(:url) { '/statistic/stations' }
         before { get url, headers: headers }
 
         describe 'JSON-API compliance' do
@@ -217,9 +217,10 @@ context 'given one TV or radio station per broadcast and some impressions' do
   end
 
   describe 'GET' do
-    describe '/statistic/media/:medium_id/stations' do
-      let(:url) { "/statistic/media/#{medium_id}/stations" }
-      before { get url, headers: headers }
+    describe '/statistic/stations?filter[medium_id]= ?' do
+      let(:url) { "/statistic/stations" }
+      let(:params) { { filter: { medium_id: medium_id } } }
+      before { get url, params: params, headers: headers }
 
       describe ':medium_id = 1 (radio)' do
         let(:medium_id) { 1 }
@@ -300,9 +301,10 @@ context 'given multiple stations per broadcast and some impressions' do
   end
 
   describe 'GET' do
-    describe '/statistic/media/:medium_id/stations' do
-      let(:url) { "/statistic/media/#{medium_id}/stations" }
-      before { get url, headers: headers }
+    describe '/statistic/stations?filter[medium_id]= ?' do
+      let(:url) { "/statistic/stations" }
+      let(:params) { { filter: { medium_id: medium_id } } }
+      before { get url, params: params, headers: headers }
 
       describe ':medium_id = 0 (TV)' do
         let(:medium_id) { 0 }
