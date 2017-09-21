@@ -11,7 +11,7 @@ RSpec.describe 'Statistic::Station', type: :request do
         it { is_expected.to have_http_status(:ok) }
         describe 'response data' do
           subject { parse_json(response.body, 'data') }
-          it { is_expected.to eq []}
+          it { is_expected.to eq [] }
         end
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe 'Statistic::Station', type: :request do
           get url, headers: headers
         end
 
-        let(:expected) { {"name"=>"Station 4", "broadcasts-count"=>1, "total"=>"0.0", "expected-amount"=>"0.0"} }
+        let(:expected) { { 'name' => 'Station 4', 'broadcasts-count' => 1, 'total' => '0.0', 'expected-amount' => '0.0' } }
         it { is_expected.to eq(expected) }
       end
     end
@@ -95,7 +95,7 @@ RSpec.describe 'Statistic::Station', type: :request do
         before { get url, headers: headers }
         describe 'response /data' do
           describe '#type' do
-            subject { parse_json(response.body, "data/type") }
+            subject { parse_json(response.body, 'data/type') }
             it { is_expected.to eq 'statistic/stations' }
           end
 
@@ -146,7 +146,7 @@ RSpec.describe 'Statistic::Station', type: :request do
 
         describe 'attribute' do
           let(:range) { (0...Station.count) }
-          subject { range.collect {|i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
+          subject { range.collect { |i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
           describe '#name' do
             let(:attribute) { 'name' }
             describe 'order' do
@@ -178,10 +178,9 @@ RSpec.describe 'Statistic::Station', type: :request do
           end
         end
 
-
         describe 'first record' do
           subject { parse_json(response.body, 'data/0/attributes/') }
-          let(:expected) { {"name"=>"Station 1", "broadcasts-count"=>3, "total"=>"21.0", "expected-amount"=>"24.3"} }
+          let(:expected) { { 'name' => 'Station 1', 'broadcasts-count' => 3, 'total' => '21.0', 'expected-amount' => '24.3' } }
           it { is_expected.to eq(expected) }
         end
       end
@@ -218,14 +217,14 @@ context 'given one TV or radio station per broadcast and some impressions' do
 
   describe 'GET' do
     describe '/statistic/stations?filter[medium_id]= ?' do
-      let(:url) { "/statistic/stations" }
+      let(:url) { '/statistic/stations' }
       let(:params) { { filter: { medium_id: medium_id } } }
       before { get url, params: params, headers: headers }
 
       describe ':medium_id = 1 (radio)' do
         let(:medium_id) { 1 }
         describe 'attribute' do
-          subject { [0,1].collect {|i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
+          subject { [0, 1].collect { |i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
 
           describe '#name' do
             let(:attribute) { 'name' }
@@ -302,7 +301,7 @@ context 'given multiple stations per broadcast and some impressions' do
 
   describe 'GET' do
     describe '/statistic/stations?filter[medium_id]= ?' do
-      let(:url) { "/statistic/stations" }
+      let(:url) { '/statistic/stations' }
       let(:params) { { filter: { medium_id: medium_id } } }
       before { get url, params: params, headers: headers }
 
@@ -315,7 +314,7 @@ context 'given multiple stations per broadcast and some impressions' do
         end
 
         describe 'attribute' do
-          subject { [0,1,2].collect {|i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
+          subject { [0, 1, 2].collect { |i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
           describe '#name' do
             let(:attribute) { 'name' }
             it { is_expected.to eq ['TV 1', 'TV 2', 'TV 3'] }
@@ -345,7 +344,7 @@ context 'given multiple stations per broadcast and some impressions' do
           end
 
           describe 'attribute' do
-            subject { [0,1].collect {|i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
+            subject { [0, 1].collect { |i| parse_json(response.body, "data/#{i}/attributes/#{attribute}") } }
             describe '#name' do
               let(:attribute) { 'name' }
               it { is_expected.to eq ['Radio 1', 'Radio 2'] }
@@ -363,7 +362,7 @@ context 'given multiple stations per broadcast and some impressions' do
 
             describe '#expected-amount' do
               let(:attribute) { 'expected-amount' }
-              it {is_expected.to eq %w[16.7272727272727272 16.7272727272727272] }
+              it { is_expected.to eq %w[16.7272727272727272 16.7272727272727272] }
             end
           end
         end
