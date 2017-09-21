@@ -2,17 +2,16 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Controller | visualize/diff', function() {
-  setupTest('controller:visualize/diff', {
-   needs: [
+describe('Unit | Route | visualize/diff/stations', function() {
+  setupTest('route:visualize/diff/stations', {
+    needs: [
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });
 
-  // Replace this with your real tests.
   it('exists', function() {
-    let controller = this.subject();
-    expect(controller).to.be.ok;
+    let route = this.subject();
+    expect(route).to.be.ok;
   });
 });

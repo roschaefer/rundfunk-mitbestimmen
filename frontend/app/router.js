@@ -37,6 +37,7 @@ Router.map(function() {
     this.route('geo');
     this.route('diff', function() {
       this.route('media');
+      this.route('stations');
     });
     this.route('graph');
     this.route('time');
