@@ -1,6 +1,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  namespace :statistic do
+    resources :stations, only: %i[show index]
+    resources :media, only: %i[index show]
+  end
+
   get 'statistic/broadcasts/', to: 'statistic/broadcasts#index'
   get 'summarized_statistics/', to: 'statistics#summarized'
 

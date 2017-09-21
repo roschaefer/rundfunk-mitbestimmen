@@ -725,10 +725,12 @@ When(/^I click the accordion(?: once again)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
 end
 
-When(/^I navigate to the visualization of expected vs. actual values$/) do
+When(/^I navigate to the visualization of expected vs. actual values of TV and radio stations$/) do
   visit '/'
   click_on 'Visualization'
   click_on 'visualize-diff'
+  scroll_to(find('#visualize-diff-stations'))
+  click_on 'visualize-diff-stations'
 end
 
 Then(/^from the diff in the distribution I can see/) do |block|
@@ -736,7 +738,7 @@ Then(/^from the diff in the distribution I can see/) do |block|
 end
 
 When(/^download the chart as SVG$/) do
-  expect(page).to have_css('#chart-area')
+  expect(page).to have_css('.chart-area')
   # export_button
   first('path.highcharts-button-symbol').click
   find('.highcharts-menu-item', text: 'SVG').click

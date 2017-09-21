@@ -407,10 +407,17 @@ visualize:
       graph: Beziehungen zwischen Sendungen
   overview: Visualisierungsübersicht
   diff:
+    index:
+      header:
+        medium: Gruppiert nach Medien
+        station: Gruppiert nach Sendern
+    diffedModel:
+      medium: "{case, plural, =2 {Mediums} other {Medium}}"
+      station: "{case, plural, =2 {Senders} other {Sender}}"
     header: Erwartungswert vs. tatsächlicher Betrag
     sub-header: >
       Vergleich von durchschnittlichen Beträgen mit den auf Abstimmungen
-      basierenden Beträgen, jeweils gruppiert nach Sender.
+      basierenden Beträgen, jeweils gruppiert nach { diffedModel }.
     chart:
       yAxis:
         actual-amount: Tatsächlicher Betrag
@@ -422,18 +429,20 @@ visualize:
         header: Fernsehsender
       radio:
         header: Radiosender
+      media:
+        header: Medien
     explanations:
       header: Wie werden die Ergebnisse berechnet?
       actual-amount:
         header: Tatsächlicher Betrag
-        content: Der Gesamtbetrag aller Sendungen eines Senders.
+        content: Der Gesamtbetrag aller Sendungen eines { diffedModel }.
       expected-amount:
         header: Zu erwartender Betrag
         content: >
-          Die Summe aller zu erwartenden Beträge aller Sendungen eines Senders.
+          Die Summe aller zu erwartenden Beträge aller Sendungen eines { diffedModel }.
       number-of-broadcasts:
         header: Anzahl Sendungen
-        content: Die Anzahl aller Sendungen eines Senders in der Datenbank.
+        content: Die Anzahl aller Sendungen eines { diffedModel } in der Datenbank.
   geo:
     header: Geographische Visualisierung
     sub-header: >

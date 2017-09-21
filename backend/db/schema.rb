@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917155355) do
+ActiveRecord::Schema.define(version: 20170920143139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,36 @@ ActiveRecord::Schema.define(version: 20170917155355) do
      FROM (stations
        LEFT JOIN schedules ON ((stations.id = schedules.station_id)))
     WHERE (schedules.broadcast_id IS NULL);
+  SQL
+
+  create_view "statistic_media",  sql_definition: <<-SQL
+      SELECT media.id,
+      count(*) AS broadcasts_count,
+      sum(statistic_broadcasts.total) AS total,
+      sum(statistic_broadcasts.expected_amount) AS expected_amount
+     FROM ((media
+       JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
+       JOIN statistic_broadcasts ON ((broadcasts.id = statistic_broadcasts.id)))
+    GROUP BY media.id
+  UNION ALL
+   SELECT media.id,
+      0 AS broadcasts_count,
+      0 AS total,
+      0 AS expected_amount
+     FROM (media
+       LEFT JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
+    WHERE (broadcasts.medium_id IS NULL);
+  SQL
+
+  create_view "statistic_medium_translations",  sql_definition: <<-SQL
+      SELECT medium_translations.id,
+      medium_translations.medium_id,
+      medium_translations.locale,
+      medium_translations.created_at,
+      medium_translations.updated_at,
+      medium_translations.name,
+      medium_translations.medium_id AS statistic_medium_id
+     FROM medium_translations;
   SQL
 
 end

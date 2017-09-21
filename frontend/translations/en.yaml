@@ -385,22 +385,29 @@ visualize:
       graph: Relationships between broadcasts
   overview: Visualization overview
   diff:
+    index:
+      header:
+        medium: Grouped by media
+        station: Grouped by station
+    diffedModel:
+      medium: medium
+      station: station
     header: Expected vs. Actual
     sub-header: >
       Comparison of the average, expected amounts with actual amounts based on
-      voting, grouped by station.
+      voting, grouped by { diffedModel }.
     explanations:
       header: Which formula is used to calculate the results?
       actual-amount:
         header: Actual amount
-        content: The total amount of all broadcasts of a station.
+        content: The total amount of all broadcasts of a { diffedModel }.
       expected-amount:
         header: Expected amount
         content: >
-          The sum of all expected amounts of all broadcasts of a station.
+          The sum of all expected amounts of all broadcasts of a { diffedModel }.
       number-of-broadcasts:
         header: Number of broadcasts
-        content: The number of all broadcasts of a station in the database.
+        content: The number of all broadcasts of a { diffedModel } in the database.
     chart:
       yAxis:
         actual-amount: Actual amount
@@ -412,6 +419,8 @@ visualize:
         header: TV stations
       radio:
         header: Radio stations
+      media:
+        header: Media
   geo:
     header: Geographical visualization
     sub-header: >

@@ -1,0 +1,24 @@
+{{visualize/diff/chart-explanation
+nominative=(t (concat 'visualize.diff.diffedModel.medium') case=1)
+genetive=(t (concat 'visualize.diff.diffedModel.medium') case=2)
+}}
+
+<div class="row">
+  <div class="column">
+    <h1 class="ui large centered header">
+      {{t 'visualize.diff.charts.media.header'}}
+    </h1>
+    <div class='chart-area'>
+      {{dynamic-high-charts chartOptions=mediaChartOptions content=mediaChartData}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    {{#link-to 'visualize.diff.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
+  </div>
+</div>

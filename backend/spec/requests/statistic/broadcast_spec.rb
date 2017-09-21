@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Statistic::Broadcast', type: :request do
-  let(:url) { '/statistics' }
   describe 'GET' do
     let(:params) { {} }
     let(:request) { get url, params: params }

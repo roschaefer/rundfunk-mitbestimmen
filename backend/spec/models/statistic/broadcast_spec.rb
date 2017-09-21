@@ -67,9 +67,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
       end
 
       after(:all) do
-        Impression.destroy_all
-        User.destroy_all
-        Broadcast.destroy_all
+        clean_database!
       end
 
       let(:broadcast) { Broadcast.find(4711) }
