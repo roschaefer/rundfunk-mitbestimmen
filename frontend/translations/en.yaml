@@ -385,10 +385,14 @@ visualize:
       graph: Relationships between broadcasts
   overview: Visualization overview
   diff:
+    diffType:
+      plural:
+        media: media
+        stations: stations
     header: Expected vs. Actual
     sub-header: >
       Comparison of the average, expected amounts with actual amounts based on
-      voting, grouped by station.
+      voting, grouped by { diffType }.
     explanations:
       header: Which formula is used to calculate the results?
       actual-amount:
@@ -412,6 +416,8 @@ visualize:
         header: TV stations
       radio:
         header: Radio stations
+      media:
+        header: Media
   geo:
     header: Geographical visualization
     sub-header: >

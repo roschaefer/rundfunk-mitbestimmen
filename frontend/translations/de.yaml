@@ -407,10 +407,14 @@ visualize:
       graph: Beziehungen zwischen Sendungen
   overview: Visualisierungsübersicht
   diff:
+    diffType:
+      plural:
+        media: Medien
+        stations: Sendern
     header: Erwartungswert vs. tatsächlicher Betrag
     sub-header: >
       Vergleich von durchschnittlichen Beträgen mit den auf Abstimmungen
-      basierenden Beträgen, jeweils gruppiert nach Sender.
+      basierenden Beträgen, jeweils gruppiert nach { diffType }.
     chart:
       yAxis:
         actual-amount: Tatsächlicher Betrag
@@ -422,6 +426,8 @@ visualize:
         header: Fernsehsender
       radio:
         header: Radiosender
+      media:
+        header: Medien
     explanations:
       header: Wie werden die Ergebnisse berechnet?
       actual-amount:
