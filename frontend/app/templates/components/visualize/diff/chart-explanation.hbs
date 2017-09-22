@@ -1,5 +1,5 @@
-<div class="one column row">
-  <div class="left aligned column">
+<div class="row">
+  <div class="column">
     <h1 class="ui huge header">
       {{t 'visualize.diff.header'}}
       <div class="sub header">
@@ -9,13 +9,19 @@
   </div>
 </div>
 
-<div class="one column row">
-  <div class="left aligned column">
-  <div class="ui padded basic segment">
+
+<div class="row">
+  <div class="column">
+    <div class="ui basic padded segment"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
       <div class="ui tiny header">
         {{t 'visualize.diff.explanations.header'}}
       </div>
-    {{#ui-accordion class='styled'}}
+      {{#ui-accordion class='fluid styled'}}
         <div class="title accordion-header">
           <i class="dropdown icon"></i>
           {{t 'visualize.diff.explanations.actual-amount.header'}}
@@ -53,6 +59,5 @@
         </div>
       {{/ui-accordion}}
       {{yield}}
-</div>
   </div>
 </div>
