@@ -2788,9 +2788,9 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
-ember-cli-pagination@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-pagination/-/ember-cli-pagination-3.0.2.tgz#9d51f2b6ad80b0b98729f0b18de8a2d02e4fc26b"
+ember-cli-pagination@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-pagination/-/ember-cli-pagination-3.1.0.tgz#5af51e10c8005a57d2aea661b8c2a84c91c77149"
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.1.1"
