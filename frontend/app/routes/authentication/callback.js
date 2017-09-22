@@ -11,7 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.store.queryRecord('summarized-statistic', {reload: true}).then(() => {
       // make a random request to the database, the user will be saved to the
       // datatabase and all subsequent request will be associated to that user
-      const state = this.get('session').get('data.authenticated.state');
+      const state = this.get('session').get('data.authenticated.state') || '/';
       return this.transitionTo(state);
     });
   }
