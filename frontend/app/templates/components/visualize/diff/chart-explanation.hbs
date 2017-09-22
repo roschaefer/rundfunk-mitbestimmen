@@ -1,4 +1,4 @@
-<div class="one column row">
+<div class="row">
   <div class="left aligned column">
     <h1 class="ui huge header">
       {{t 'visualize.diff.header'}}
@@ -9,13 +9,13 @@
   </div>
 </div>
 
-<div class="one column row">
-  <div class="left aligned column">
+<div class="row">
+  <div class="left aligned ten wide column">
   <div class="ui padded basic segment">
       <div class="ui tiny header">
         {{t 'visualize.diff.explanations.header'}}
       </div>
-    {{#ui-accordion class='styled'}}
+      {{#ui-accordion class='fluid styled'}}
         <div class="title accordion-header">
           <i class="dropdown icon"></i>
           {{t 'visualize.diff.explanations.actual-amount.header'}}
@@ -35,9 +35,8 @@
           <br>
           <div class="ui basic compact segment">
             <strong>
-            <span>expected(broadcast) = impressions(broadcast) * average</span>
-            <br>
-            <span>average = total_amount / total_impressions </span>
+              <p>expected(broadcast) = impressions(broadcast) * average</p>
+              <p>average = total_amount / total_impressions</p>
             </strong>
           </div>
           </p>
@@ -53,6 +52,6 @@
         </div>
       {{/ui-accordion}}
       {{yield}}
-</div>
+      </div>
   </div>
 </div>
