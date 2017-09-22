@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Media', type: :request do
-  let(:params) { { } }
-  let(:headers) { { } }
+  let(:params) { {} }
+  let(:headers) { {} }
   describe 'GET' do
     let(:request) { get url, params: params, headers: headers }
     describe '/media' do
@@ -14,7 +14,6 @@ RSpec.describe 'Media', type: :request do
         it { is_expected.to have_http_status(200) }
       end
     end
-
 
     context 'given a medium' do
       before { medium }
