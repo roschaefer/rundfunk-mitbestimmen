@@ -435,14 +435,28 @@ visualize:
       header: Wie werden die Ergebnisse berechnet?
       actual-amount:
         header: Tatsächlicher Betrag
-        content: Der Gesamtbetrag aller Sendungen eines { diffedModel }.
+        content: >
+          Der Gesamtbetrag aller Sendungen eines { diffedModel }. Es ist ein
+          gutes Zeichen wenn dieser Wert höher als der zu erwartende Betrag
+          liegt.
       expected-amount:
         header: Zu erwartender Betrag
         content: >
-          Die Summe aller zu erwartenden Beträge aller Sendungen eines { diffedModel }.
+          Die Summe aller zu erwartenden Beträge aller Sendungen eines
+          { diffedModel }. In die Datenbank werden zu unterschiedlichen Zeiten
+          neue Sendungen eingetragen. Sendungen, die sich schon länger in der
+          Datenbank befinden, haben also einen Vorteil gegenüber neuen
+          Sendungen. Darum messen wir die Anzahl der "Impressionen" - wie
+          oft eine Sendung von Nutzern betrachtet wurde. Basierend auf den
+          Impressionen wird der Erwartungswert nach folgender Formel berechnet:
       number-of-broadcasts:
         header: Anzahl Sendungen
-        content: Die Anzahl aller Sendungen eines { diffedModel } in der Datenbank.
+        content: >
+          Die Anzahl aller Sendungen eines { diffedModel } in der Datenbank.
+          Offensichtlich korrelieren tatsächlicher Betrag und besonders der
+          zu erwartende Betrag mit diesem Wert. Wurden viele neue Sendungen
+          eines { diffedModel } in die Datenbank eingetragen, liegt
+          dieser Wert höher im Vergleich zum erwarteten Betrag.
   geo:
     header: Geographische Visualisierung
     sub-header: >

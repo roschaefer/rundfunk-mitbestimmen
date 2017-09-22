@@ -400,14 +400,27 @@ visualize:
       header: Which formula is used to calculate the results?
       actual-amount:
         header: Actual amount
-        content: The total amount of all broadcasts of a { diffedModel }.
+        content: >
+          The total amount of all broadcasts of a { diffedModel }. It is a good
+          sign if this value is higher than the expected amount.
       expected-amount:
         header: Expected amount
         content: >
-          The sum of all expected amounts of all broadcasts of a { diffedModel }.
+          The sum of all expected amounts of all broadcasts of a
+          { diffedModel }. New broadcasts are added to the database at different
+          times. Those broadcasts that have been in the database for a long
+          time have an advantage over recently added broadcasts. To get around
+          this bias, we calculate the number of "impressions" - how often a
+          broadcast was viewed by our users. Based on the impressions, we
+          calculate the expected value according to the following formula:
       number-of-broadcasts:
         header: Number of broadcasts
-        content: The number of all broadcasts of a { diffedModel } in the database.
+        content: >
+          The number of all broadcasts of a { diffedModel } in the database.
+          Obviously, the actual amount and especially the expected amount
+          correlates with this value. If many new broadcasts of a TV or radio
+          station have been added to the database, this value is higher compared
+          to the expected amount.
     chart:
       yAxis:
         actual-amount: Actual amount
