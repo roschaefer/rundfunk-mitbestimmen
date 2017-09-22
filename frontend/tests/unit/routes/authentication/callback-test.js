@@ -6,6 +6,7 @@ describe('Unit | Route | authentication/callback', function() {
   setupTest('route:authentication/callback', {
     needs: [
       'service:session',
+      'service:intl',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
