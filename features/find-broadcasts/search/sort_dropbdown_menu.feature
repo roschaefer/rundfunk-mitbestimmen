@@ -18,6 +18,7 @@ Feature: Sort stations by name and show their number of broadcasts
       | Quarks & Co         | WDR Fernsehen | TV     |
       | Mitternachtsspitzen | WDR Fernsehen | TV     |
       | Rockpalast          | WDR Fernsehen | TV     |
+    And I am logged in
     And I visit the find broadcasts page
 
   Scenario: Dropdown menu ordered by name and number of broadcasts visible
