@@ -7,6 +7,7 @@ Feature: See station name on decision card
     Given we have these broadcasts in our database:
       | Title               | Station       | Medium |
       | Fernsehgarten       | ZDF           | TV     |
+    And I am logged in
 
   Scenario: See the station's label
     When I visit the find broadcasts page
