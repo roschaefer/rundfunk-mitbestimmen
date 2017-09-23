@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20170922210359) do
     t.string "state_code"
     t.string "postal_code"
     t.string "city"
-    t.string "locale"
+    t.string "locale", default: "de"
     t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

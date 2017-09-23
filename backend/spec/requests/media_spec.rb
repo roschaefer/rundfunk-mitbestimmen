@@ -25,14 +25,13 @@ RSpec.describe 'Media', type: :request do
           let(:medium) { create(:medium, name_de: 'Fernsehen', name_en: 'Television') }
 
           context 'when logged in' do
-            # let(:user) { create(:user) }
             let(:user) { create(:user, locale: 'en') }
             let(:headers) { super().merge(authenticated_header(user)) }
 
             describe 'response is translated according to user setting' do
               before { request }
               subject { parse_json(response.body, 'data/attributes/name') }
-              pending('issue #183, user has no locale column yet') do
+              describe('the text is in english') do
                 it { is_expected.to eq 'Television' }
               end
             end
