@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
         let(:user) { create(:user, locale: 'de') }
         context 'if not logged' do
           describe 'request' do
-            pending('issue #183, user has no locale column yet') do
+            it('does not change the current user locale') do
               expect { action }.not_to(change { user.reload.locale })
             end
           end
@@ -32,16 +32,16 @@ RSpec.describe 'Users', type: :request do
           describe 'response' do
             before { action }
             subject { response }
-            pending('issue #183, user has no locale column yet') do
-              it { is_expected.to have_http_status(:forbidden) }
+            describe('respond with status unauthorized') do
+              it { is_expected.to have_http_status(:unauthorized) }
             end
           end
         end
 
         context 'when logged in' do
-          let(:headers) { super().merge(authenticated_header(user)) }
+          let(:headers) { super().merge(authenticated_header(user))}
 
-          pending('issue #183, user has no locale column yet') do
+          it('changes the value of locale') do
             expect { action }.to(change { user.reload.locale }).from('de').to('en')
           end
         end

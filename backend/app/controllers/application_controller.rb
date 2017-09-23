@@ -7,10 +7,21 @@ class ApplicationController < ActionController::API
   before_action :set_locale
 
   def set_locale
-    I18n.locale = params[:locale] || request.headers['locale'] || I18n.default_locale
+    update_user_locale
+    locale = current_user ? current_user.locale : false
+    I18n.locale = params[:locale] || request.headers['locale'] || locale || I18n.default_locale
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
     head :forbidden
+  end
+
+  private
+
+  def update_user_locale
+    locale = params[:locale]
+    if current_user && locale && %w(en de).include?(locale)
+      current_user.update_attribute(:locale, locale)
+    end
   end
 end
