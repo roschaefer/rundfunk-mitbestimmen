@@ -27,9 +27,6 @@ RSpec.describe TopicsController, type: :request do
         describe 'url parameter ?locale=en' do
           let(:params) { { locale: 'en' } }
           it 'translates to english' do
-            puts "----------"
-            puts user.locale
-            puts "------------"
             expect(subject.first['attributes']['name']).to eq 'Politics'
           end
         end

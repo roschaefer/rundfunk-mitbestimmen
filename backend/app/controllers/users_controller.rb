@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def update
     authorize! :update, current_user # manual authorization
     # Only update geolocation for now
-    if current_user.update_location_data(user_params[:latitude], user_params[:longitude])
+    if permitted_updates?
+      puts current_user.locale
       render json: current_user
     else
       render json: current_user, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
@@ -21,6 +22,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[latitude longitude])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[latitude longitude locale])
+  end
+
+  def permitted_updates?
+    current_user.update_location_data(user_params[:latitude], user_params[:longitude]) ||
+      current_user.update_locale(user_params[:locale])
   end
 end

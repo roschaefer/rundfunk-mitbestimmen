@@ -59,7 +59,9 @@ class User < ActiveRecord::Base
     update_location(geocoder_result)
   end
 
-  def update_locale!(locale)
-    self.update_attribute(:locale, locale)
+  def update_locale(locale)
+    return unless locale
+    self.locale = locale
+    save
   end
 end
