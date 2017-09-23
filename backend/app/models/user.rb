@@ -58,4 +58,8 @@ class User < ActiveRecord::Base
     geocoder_result = Geocoder.search("#{latitude},#{longitude}").first
     update_location(geocoder_result)
   end
+
+  def update_locale!(locale)
+    self.update_attribute(:locale, locale)
+  end
 end
