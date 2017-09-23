@@ -39,7 +39,7 @@ RSpec.describe 'Users', type: :request do
         end
 
         context 'when logged in' do
-          let(:headers) { super().merge(authenticated_header(user))}
+          let(:headers) { super().merge(authenticated_header(user)) }
 
           it('changes the value of locale') do
             expect { action }.to(change { user.reload.locale }).from('de').to('en')

@@ -17,19 +17,13 @@ class ApplicationController < ActionController::API
 
   private
 
-  def update_user_locale
-    locale = request.headers['locale']
-    locale ||= params[:locale]
-    locale ||= params[:data][:attributes][:locale]
-    if current_user && locale && %w(en de).include?(locale)
-      current_user.update_locale!(locale)
-      current_user.locale.reload
-    end
-  rescue
-    #ignore
-  end
-
   def guest_locale
     params[:locale] || request.headers['locale'] || I18n.default_locale
+  end
+
+  def update_user_locale
+    locale = params[:locale]
+    return unless current_user && locale && %w[en de].include?(locale)
+    current_user.update_locale(locale)
   end
 end

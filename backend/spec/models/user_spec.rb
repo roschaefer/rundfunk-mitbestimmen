@@ -58,10 +58,10 @@ RSpec.describe User, type: :model do
     it_behaves_like 'database unique attribute', :user, email: 'email@example.org'
   end
 
-  describe '#update_locale!' do
-    let(:user) { create :user, locale: 'de'}
+  describe '#update_locale' do
+    let(:user) { create :user, locale: 'de' }
     it('changes user locale') do
-      user.update_locale!('en')
+      user.update_locale('en')
       expect(user.locale).to eq 'en'
     end
   end
