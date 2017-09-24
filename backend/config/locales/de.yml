@@ -4,6 +4,7 @@ de:
     attributes:
       broadcast:
         title: Titel
+        description: Beschreibung
       user:
         email: E-Mail
     errors:

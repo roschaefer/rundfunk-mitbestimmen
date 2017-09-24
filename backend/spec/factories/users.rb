@@ -6,7 +6,6 @@ FactoryGirl.define do
     # has a location by default, avoid unnecessary requests in tests
     latitude 21
     longitude 22
-    locale 'de'
 
     trait :without_geolocation do
       latitude nil
