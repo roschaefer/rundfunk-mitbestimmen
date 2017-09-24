@@ -13,7 +13,7 @@ class TopicsController < ApplicationController
     render json: @topic
   end
 
-  private 
+  private
 
   def set_topic
     @topic = Topic.find(params[:id])
