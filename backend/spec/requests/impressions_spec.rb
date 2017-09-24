@@ -24,7 +24,7 @@ RSpec.describe 'Impressions', type: :request do
         user
       end
 
-      context 'logs in the first time with AUTH0' do
+      context 'login the first time with AUTH0' do
         let(:headers) do
           user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
           super().merge(authenticated_header(user))

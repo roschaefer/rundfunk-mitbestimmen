@@ -14,6 +14,8 @@ RSpec.describe 'Users', type: :request do
             id: user.id,
             type: 'users',
             attributes: {
+              latitude: user.latitude,
+              longitude: user.longitude,
               locale: 'en'
             }
           }
@@ -41,8 +43,16 @@ RSpec.describe 'Users', type: :request do
         context 'when logged in' do
           let(:headers) { super().merge(authenticated_header(user)) }
 
-          it('changes the value of locale') do
-            expect { action }.to(change { user.reload.locale }).from('de').to('en')
+          describe 'request' do
+            specify { expect { action }.to(change { user.reload.locale }.from('de').to('en')) }
+          end
+
+          describe 'response' do
+            before { action }
+            describe 'responds the user and her changed locale' do
+              subject { parse_json(response.body, 'data/attributes/locale') }
+              it { is_expected.to eq('en') }
+            end
           end
         end
       end
