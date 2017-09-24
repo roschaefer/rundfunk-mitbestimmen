@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     # ignore
   end
 
-  def update_location(geocoder_result) # This method is used by a geocode_user_job YA ESTABA
+  def set_location_attributes(geocoder_result) # This method is used by a geocode_user_job YA ESTABA
     return unless geocoder_result
     self.latitude = geocoder_result.latitude
     self.longitude = geocoder_result.longitude
@@ -51,17 +51,14 @@ class User < ActiveRecord::Base
     self.state_code = geocoder_result.state_code
     self.postal_code = geocoder_result.postal_code
     self.city = geocoder_result.city
-    save
   end
 
-  def update_location_data(latitude, longitude)
-    geocoder_result = Geocoder.search("#{latitude},#{longitude}").first
-    update_location(geocoder_result)
-  end
-
-  def update_locale(locale)
-    return unless locale
-    self.locale = locale
+  def update_and_reverse_geocode(params)
+    assign_attributes(params)
+    if will_save_change_to_latitude? || will_save_change_to_longitude?
+      geocoder_result = Geocoder.search("#{latitude},#{longitude}").first
+      set_location_attributes(geocoder_result)
+    end
     save
   end
 end
