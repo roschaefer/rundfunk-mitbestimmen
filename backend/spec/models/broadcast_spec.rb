@@ -62,7 +62,8 @@ RSpec.describe Broadcast, type: :model do
   end
 
   describe '#valid?' do
-    subject { build(:broadcast, attributes) }
+    subject { broadcast }
+    let(:broadcast) { build(:broadcast, attributes) }
     describe 'empty description' do
       let(:attributes) { { description: '' } }
       it { is_expected.not_to be_valid }
@@ -71,6 +72,11 @@ RSpec.describe Broadcast, type: :model do
     describe 'no description' do
       let(:attributes) { { description: nil } }
       it { is_expected.not_to be_valid }
+      describe 'error message' do
+        before { broadcast.save }
+        subject { broadcast.errors.full_messages }
+        it { is_expected.to include('Beschreibung muss ausgefüllt werden') }
+      end
     end
 
     describe 'too short description' do

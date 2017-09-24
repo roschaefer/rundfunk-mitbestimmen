@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920143139) do
+ActiveRecord::Schema.define(version: 20170922210359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170920143139) do
     t.index ["topic_id"], name: "index_broadcasts_on_topic_id"
   end
 
-  create_table "format_translations", id: :serial, force: :cascade do |t|
+  create_table "format_translations", force: :cascade do |t|
     t.integer "format_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170920143139) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "medium_translations", id: :serial, force: :cascade do |t|
+  create_table "medium_translations", force: :cascade do |t|
     t.integer "medium_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170920143139) do
     t.index ["name"], name: "index_stations_on_name", unique: true
   end
 
-  create_table "topic_translations", id: :serial, force: :cascade do |t|
+  create_table "topic_translations", force: :cascade do |t|
     t.integer "topic_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(version: 20170920143139) do
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "encrypted_password", default: "", null: false
     t.string "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.string "auth0_uid"
     t.boolean "has_bad_email", default: false
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20170920143139) do
     t.string "state_code"
     t.string "postal_code"
     t.string "city"
+    t.string "locale"
     t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

@@ -7,10 +7,20 @@ class ApplicationController < ActionController::API
   before_action :set_locale
 
   def set_locale
-    I18n.locale = params[:locale] || request.headers['locale'] || I18n.default_locale
+    I18n.locale = user_locale || guest_locale
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
     head :forbidden
+  end
+
+  private
+
+  def guest_locale
+    params[:locale] || request.headers['locale'] || I18n.default_locale
+  end
+
+  def user_locale
+    current_user && current_user.locale
   end
 end

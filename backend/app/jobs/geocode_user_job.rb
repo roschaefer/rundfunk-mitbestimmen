@@ -21,7 +21,8 @@ class GeocodeUserJob < ApplicationJob
     raise('No ip adress returned') unless last_ip
     geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
     geocoder_result = geocoder_lookup.search(last_ip).first
-    user.update_location(geocoder_result)
+    user.assign_location_attributes(geocoder_result)
+    user.save
     raise('User has still no location') unless user.location?
   end
 

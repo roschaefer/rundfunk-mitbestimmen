@@ -21,6 +21,7 @@ Feature: Filter by station
       | Rockpalast          | WDR Fernsehen | TV     |
       | Leonardo            | WDR 5         | Radio  |
       | Frei.Willig.Weg     |               | Online |
+    And I am logged in
     And I visit the find broadcasts page
 
   Scenario: Choosing a medium will narrow down selectable stations

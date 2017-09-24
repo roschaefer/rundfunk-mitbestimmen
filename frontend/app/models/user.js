@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 export default DS.Model.extend({
+  locale: DS.attr('string'),
   email: DS.attr('string'),
   latitude: DS.attr('number'),
   longitude: DS.attr('number'),
