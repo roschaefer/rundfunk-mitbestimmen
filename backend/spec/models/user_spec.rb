@@ -22,14 +22,14 @@ RSpec.describe User, type: :model do
 
       describe 'params same as before' do
         let(:user) { create(:user, params) }
-        let(:params) { { latitude: 49.0047, longitude: 8.3858} }
+        let(:params) { { latitude: 49.0047, longitude: 8.3858 } }
         it 'does not issue a reverse geocode request' do
-          expect { subject }.not_to(change{ user.country_code })
+          expect { subject }.not_to(change { user.country_code })
         end
       end
 
       describe 'changed', vcr: { cassette_name: 'reverse_geocode' } do
-        let(:params) { { latitude: 49.0047, longitude: 8.3858} }
+        let(:params) { { latitude: 49.0047, longitude: 8.3858 } }
         specify { expect { subject }.to change { user.country_code }.from(nil).to('DE') }
         specify { expect { subject }.to change { user.state_code }.from(nil).to('BW') }
         specify { expect { subject }.to change { user.postal_code }.from(nil).to('76135') }
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
     let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
 
-    subject do 
+    subject do
       user.set_location_attributes(geocoder_result)
       user.save
     end

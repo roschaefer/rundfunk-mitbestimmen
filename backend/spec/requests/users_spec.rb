@@ -34,9 +34,7 @@ RSpec.describe 'Users', type: :request do
           describe 'response' do
             before { action }
             subject { response }
-            describe('respond with status unauthorized') do
-              it { is_expected.to have_http_status(:unauthorized) }
-            end
+            it { is_expected.to have_http_status(:unauthorized) }
           end
         end
 
