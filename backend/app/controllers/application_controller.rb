@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   before_action :set_locale
 
   def set_locale
-    I18n.locale = current_user ? user_locale : guest_locale
+    I18n.locale = user_locale || guest_locale
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
@@ -21,7 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def user_locale
-    return guest_locale unless current_user.locale
-    current_user.locale
+    current_user && current_user.locale
   end
 end

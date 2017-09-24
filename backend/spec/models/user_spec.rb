@@ -14,10 +14,10 @@ RSpec.describe User, type: :model do
     describe 'latitude or longitude' do
       describe 'not changed' do
         let(:params) { { email: '1234whatever1234@example.org' } }
-        specify { expect { subject }.not_to change { user.country_code } }
-        specify { expect { subject }.not_to change { user.state_code } }
-        specify { expect { subject }.not_to change { user.postal_code } }
-        specify { expect { subject }.not_to change { user.city } }
+        specify { expect { subject }.not_to(change { user.country_code }) }
+        specify { expect { subject }.not_to(change { user.state_code }) }
+        specify { expect { subject }.not_to(change { user.postal_code }) }
+        specify { expect { subject }.not_to(change { user.city }) }
       end
 
       describe 'params same as before' do
@@ -30,10 +30,10 @@ RSpec.describe User, type: :model do
 
       describe 'changed', vcr: { cassette_name: 'reverse_geocode' } do
         let(:params) { { latitude: 49.0047, longitude: 8.3858 } }
-        specify { expect { subject }.to change { user.country_code }.from(nil).to('DE') }
-        specify { expect { subject }.to change { user.state_code }.from(nil).to('BW') }
-        specify { expect { subject }.to change { user.postal_code }.from(nil).to('76135') }
-        specify { expect { subject }.to change { user.city }.from(nil).to('Karlsruhe') }
+        specify { expect { subject }.to(change { user.country_code }.from(nil).to('DE')) }
+        specify { expect { subject }.to(change { user.state_code }.from(nil).to('BW')) }
+        specify { expect { subject }.to(change { user.postal_code }.from(nil).to('76135')) }
+        specify { expect { subject }.to(change { user.city }.from(nil).to('Karlsruhe')) }
       end
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  describe '#set_location_attributes', vcr: { cassette_name: 'update_location' } do
+  describe '#assign_location_attributes', vcr: { cassette_name: 'update_location' } do
     let(:ip_address) { '141.3.135.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
 
     subject do
-      user.set_location_attributes(geocoder_result)
+      user.assign_location_attributes(geocoder_result)
       user.save
     end
 
