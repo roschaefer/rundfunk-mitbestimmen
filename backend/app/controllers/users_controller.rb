@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     authorize! :update, current_user # manual authorization
     # Only update geolocation for now
     if current_user.update_and_reverse_geocode(user_params)
-      puts current_user.locale
       render json: current_user
     else
       render json: current_user, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer

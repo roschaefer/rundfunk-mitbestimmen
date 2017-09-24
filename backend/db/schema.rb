@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20170922210359) do
     t.string "state_code"
     t.string "postal_code"
     t.string "city"
-    t.string "locale", default: "de"
+    t.string "locale"
     t.index ["auth0_uid"], name: "index_users_on_auth0_uid", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
@@ -152,23 +152,121 @@ ActiveRecord::Schema.define(version: 20170922210359) do
   add_foreign_key "stations", "media"
 
   create_view "statistics",  sql_definition: <<-SQL
-      SELECT t.id, t.title, t.impressions, ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval, COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average, t.total, ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount FROM ((SELECT impressions.broadcast_id AS id, broadcasts.title, count(*) AS impressions, COALESCE(sum(CASE WHEN (impressions.response = 1) THEN 1 ELSE 0 END), (0)::bigint) AS positives, COALESCE(sum(impressions.amount), (0)::numeric) AS total FROM (impressions JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id))) GROUP BY impressions.broadcast_id, broadcasts.title) t LEFT JOIN (SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection FROM impressions) a ON (true));
+      SELECT t.id,
+      t.title,
+      t.impressions,
+      ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
+      COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
+      t.total,
+      ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount
+     FROM (( SELECT impressions.broadcast_id AS id,
+              broadcasts.title,
+              count(*) AS impressions,
+              COALESCE(sum(
+                  CASE
+                      WHEN (impressions.response = 1) THEN 1
+                      ELSE 0
+                  END), (0)::bigint) AS positives,
+              COALESCE(sum(impressions.amount), (0)::numeric) AS total
+             FROM (impressions
+               JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
+            GROUP BY impressions.broadcast_id, broadcasts.title) t
+       LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
+             FROM impressions) a ON (true));
   SQL
 
   create_view "statistic_broadcasts",  sql_definition: <<-SQL
-      SELECT t.id, t.title, t.impressions, ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval, COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average, t.total, ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount FROM ((SELECT impressions.broadcast_id AS id, broadcasts.title, count(*) AS impressions, COALESCE(sum(CASE WHEN (impressions.response = 1) THEN 1 ELSE 0 END), (0)::bigint) AS positives, COALESCE(sum(impressions.amount), (0)::numeric) AS total FROM (impressions JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id))) GROUP BY impressions.broadcast_id, broadcasts.title) t LEFT JOIN (SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection FROM impressions) a ON (true)) UNION ALL SELECT broadcasts.id, broadcasts.title, 0 AS impressions, NULL::double precision AS approval, NULL::double precision AS average, 0 AS total, 0 AS expected_amount FROM (broadcasts LEFT JOIN impressions ON ((broadcasts.id = impressions.broadcast_id))) WHERE (impressions.broadcast_id IS NULL);
+      SELECT t.id,
+      t.title,
+      t.impressions,
+      ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
+      COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
+      t.total,
+      ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount
+     FROM (( SELECT impressions.broadcast_id AS id,
+              broadcasts.title,
+              count(*) AS impressions,
+              COALESCE(sum(
+                  CASE
+                      WHEN (impressions.response = 1) THEN 1
+                      ELSE 0
+                  END), (0)::bigint) AS positives,
+              COALESCE(sum(impressions.amount), (0)::numeric) AS total
+             FROM (impressions
+               JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
+            GROUP BY impressions.broadcast_id, broadcasts.title) t
+       LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
+             FROM impressions) a ON (true))
+  UNION ALL
+   SELECT broadcasts.id,
+      broadcasts.title,
+      0 AS impressions,
+      NULL::double precision AS approval,
+      NULL::double precision AS average,
+      0 AS total,
+      0 AS expected_amount
+     FROM (broadcasts
+       LEFT JOIN impressions ON ((broadcasts.id = impressions.broadcast_id)))
+    WHERE (impressions.broadcast_id IS NULL);
   SQL
 
   create_view "statistic_stations",  sql_definition: <<-SQL
-      SELECT stations.id, stations.name, stations.medium_id, count(*) AS broadcasts_count, sum((t.total / (t.stations_count)::numeric)) AS total, sum((t.expected_amount / (t.stations_count)::numeric)) AS expected_amount FROM (((SELECT statistic_broadcasts.id AS broadcast_id, statistic_broadcasts.total, statistic_broadcasts.expected_amount, count(*) AS stations_count FROM (statistic_broadcasts JOIN schedules ON ((statistic_broadcasts.id = schedules.broadcast_id))) GROUP BY statistic_broadcasts.id, statistic_broadcasts.total, statistic_broadcasts.expected_amount) t JOIN schedules ON ((t.broadcast_id = schedules.broadcast_id))) JOIN stations ON ((schedules.station_id = stations.id))) GROUP BY stations.id, stations.name, stations.medium_id UNION ALL SELECT stations.id, stations.name, stations.medium_id, 0 AS broadcasts_count, 0 AS total, 0 AS expected_amount FROM (stations LEFT JOIN schedules ON ((stations.id = schedules.station_id))) WHERE (schedules.broadcast_id IS NULL);
+      SELECT stations.id,
+      stations.name,
+      stations.medium_id,
+      count(*) AS broadcasts_count,
+      sum((t.total / (t.stations_count)::numeric)) AS total,
+      sum((t.expected_amount / (t.stations_count)::numeric)) AS expected_amount
+     FROM ((( SELECT statistic_broadcasts.id AS broadcast_id,
+              statistic_broadcasts.total,
+              statistic_broadcasts.expected_amount,
+              count(*) AS stations_count
+             FROM (statistic_broadcasts
+               JOIN schedules schedules_1 ON ((statistic_broadcasts.id = schedules_1.broadcast_id)))
+            GROUP BY statistic_broadcasts.id, statistic_broadcasts.total, statistic_broadcasts.expected_amount) t
+       JOIN schedules ON ((t.broadcast_id = schedules.broadcast_id)))
+       JOIN stations ON ((schedules.station_id = stations.id)))
+    GROUP BY stations.id, stations.name, stations.medium_id
+  UNION ALL
+   SELECT stations.id,
+      stations.name,
+      stations.medium_id,
+      0 AS broadcasts_count,
+      0 AS total,
+      0 AS expected_amount
+     FROM (stations
+       LEFT JOIN schedules ON ((stations.id = schedules.station_id)))
+    WHERE (schedules.broadcast_id IS NULL);
   SQL
 
   create_view "statistic_media",  sql_definition: <<-SQL
-      SELECT media.id, count(*) AS broadcasts_count, sum(statistic_broadcasts.total) AS total, sum(statistic_broadcasts.expected_amount) AS expected_amount FROM ((media JOIN broadcasts ON ((media.id = broadcasts.medium_id))) JOIN statistic_broadcasts ON ((broadcasts.id = statistic_broadcasts.id))) GROUP BY media.id UNION ALL SELECT media.id, 0 AS broadcasts_count, 0 AS total, 0 AS expected_amount FROM (media LEFT JOIN broadcasts ON ((media.id = broadcasts.medium_id))) WHERE (broadcasts.medium_id IS NULL);
+      SELECT media.id,
+      count(*) AS broadcasts_count,
+      sum(statistic_broadcasts.total) AS total,
+      sum(statistic_broadcasts.expected_amount) AS expected_amount
+     FROM ((media
+       JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
+       JOIN statistic_broadcasts ON ((broadcasts.id = statistic_broadcasts.id)))
+    GROUP BY media.id
+  UNION ALL
+   SELECT media.id,
+      0 AS broadcasts_count,
+      0 AS total,
+      0 AS expected_amount
+     FROM (media
+       LEFT JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
+    WHERE (broadcasts.medium_id IS NULL);
   SQL
 
   create_view "statistic_medium_translations",  sql_definition: <<-SQL
-      SELECT medium_translations.id, medium_translations.medium_id, medium_translations.locale, medium_translations.created_at, medium_translations.updated_at, medium_translations.name, medium_translations.medium_id AS statistic_medium_id FROM medium_translations;
+      SELECT medium_translations.id,
+      medium_translations.medium_id,
+      medium_translations.locale,
+      medium_translations.created_at,
+      medium_translations.updated_at,
+      medium_translations.name,
+      medium_translations.medium_id AS statistic_medium_id
+     FROM medium_translations;
   SQL
 
 end
