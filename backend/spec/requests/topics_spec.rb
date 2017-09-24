@@ -1,40 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :request do
-  describe 'GET index' do
-    let(:topics) { 3.times.to_a.collect { create :topic } }
-    let(:params) { {} }
-    let(:headers) { authenticated_header(user) }
-    let(:user) { create(:user) }
-    before do
-      topics
-      get '/topics/', params: params, headers: headers
-    end
+  let(:params) { {} }
+  let(:headers) { {} }
 
-    describe 'response status' do
-      subject { response }
-      it { is_expected.to have_http_status(:ok) }
-    end
+  describe 'GET' do
+    let(:request) { get url, params: params, headers: headers }
 
-    describe 'response body' do
-      subject { JSON.parse(response.body)['data'] }
-      it 'contains 3 topis' do
-        expect(subject.size).to eq 3
-      end
+    describe '/topics' do
+      let(:url) { '/topics/' }
 
-      context 'english locale' do
-        let(:topics) { [create(:topic, name_en: 'Politics', name_de: 'Politik')] }
-        describe 'url parameter ?locale=en' do
-          let(:params) { { locale: 'en' } }
-          it 'translates to english' do
-            expect(subject.first['attributes']['name']).to eq 'Politics'
-          end
+      context 'given some topics' do
+        before { create_list(:topic, 3, name_en: 'Politics', name_de: 'Politik') }
+
+        describe 'response status' do
+          before { request }
+          subject { response }
+          it { is_expected.to have_http_status(:ok) }
         end
 
-        describe 'header locale=en' do
-          let(:headers) { super().merge('locale' => 'en') }
-          it 'translates to english' do
-            expect(subject.first['attributes']['name']).to eq 'Politics'
+        describe 'response body' do
+          before { request }
+          subject { response.body }
+          it { is_expected.to have_json_size(3).at_path('data') }
+
+          context 'attributes/name' do
+            subject { parse_json(response.body, 'data/0/attributes/name') }
+
+            describe 'url parameter ?locale=en' do
+              let(:params) { { locale: 'en' } }
+              it { is_expected.to eq 'Politics' }
+            end
+
+            describe 'header locale=en' do
+              let(:headers) { super().merge('locale' => 'en') }
+              it { is_expected.to eq 'Politics' }
+            end
           end
         end
       end

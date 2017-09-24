@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   resources :media, only: %i[index show]
   resources :stations, only: %i[index show]
-  resources :formats
-  resources :topics
+  resources :formats, only: %i[index show]
+  resources :topics, only: %i[index show]
   resources :broadcasts
   resources :impressions
   resources :users, only: :update
