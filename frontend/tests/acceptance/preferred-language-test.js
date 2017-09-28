@@ -43,10 +43,10 @@ describe('Acceptance | preferred language', function() {
         delete navigator.language;
       });
 
-      it('fallback to "de"', function() {
+      it('fallback to "en"', function() {
         visit('/');
         return andThen(() => {
-          expect(find('.start-question').text().trim()).to.have.string(german);
+          expect(find('.start-question').text().trim()).to.have.string(english);
         });
       })
     });
