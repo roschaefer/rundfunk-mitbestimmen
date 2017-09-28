@@ -30,6 +30,28 @@ describe('Acceptance | preferred language', function() {
     destroyApp(application);
   });
 
+  describe('browser default language', function() {
+    context('neither "de" nor "en"', function(){
+      beforeEach(function() {
+        Object.defineProperty(navigator, 'language', {
+          configurable: true,
+          value: 'it'
+        });
+      });
+
+      afterEach(function() {
+        delete navigator.language;
+      });
+
+      it('fallback to "en"', function() {
+        visit('/');
+        return andThen(() => {
+          expect(find('.start-question').text().trim()).to.have.string(english);
+        });
+      })
+    });
+  });
+
   describe('change language', function() {
     it('changes the language', function(){
       visit('/');
