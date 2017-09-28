@@ -72,5 +72,5 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
 function calculateLocale(){
   const locale = navigator.language || navigator.userLanguage || 'en';
   const lang = locale.split('-')[0];
-  return ['de', 'en'].includes(lang) ? lang: 'en';
+  return ['de', 'en'].includes(lang) ? lang : 'en';
 }
