@@ -24,7 +24,9 @@ export default DS.Model.extend({
     value = value.toString().split('e');
     return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
   },
-
+  twoDecimalDifference(desired, current){
+    return (desired - current).toFixed(2);
+  },
   distributeEvenly(impressions, share){
     let count = impressions.length;
     let newAmount = Math.max(share/count, 0);
@@ -69,7 +71,7 @@ export default DS.Model.extend({
       return impression !== s;
     });
     let poolBudget = this.budgetOf(pool) + this.leftOver();
-    let diff = Math.min(poolBudget, this.floor10(desiredAmount - currentAmount, -2));
+    let diff = Math.min(poolBudget, this.floor10(this.twoDecimalDifference(desiredAmount,currentAmount), -2));
     this.distributeEvenly(pool, poolBudget - diff);
     return currentAmount + diff;
   },
