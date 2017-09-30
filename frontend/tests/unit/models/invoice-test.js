@@ -152,4 +152,25 @@ describe('Unit | Model | invoice', function() {
     expect(s3.get('amount')).to.eq(4.06);
     expect(s4.get('amount')).to.eq(4.06);
   });
+
+  describe('rounding', function() {
+    it('#allocate returns the maximum possible amount, floored to two decimals', function() {
+      let invoice = this.subject();
+      // let store = this.store();
+      let s1 = make('impression', {fixed: true, amount: 3.07});
+      let s2 = make('impression', {fixed: true, amount: 2.89});
+      let s3 = make('impression', {fixed: true, amount: 3.00});
+      let s4 = make('impression', {fixed: true, amount: 6.99});
+      let s5 = make('impression', {fixed: false, amount: 0.77});
+      let s6 = make('impression', {fixed: false, amount: 0.77});
+      invoice.get('impressions', [s1, s2, s3, s4, s5, s6]);
+      let allocatedAmountForS4 = invoice.allocate(s4, 7.00);
+      expect(s1.get('amount')).to.eq(3.07);
+      expect(s2.get('amount')).to.eq(2.89);
+      expect(s3.get('amount')).to.eq(3.00);
+      expect(allocatedAmountForS4).to.eq(7.00);
+      expect(s5.get('amount')).to.eq(0.77);
+      expect(s6.get('amount')).to.eq(0.77);
+    });
+  });
 });
