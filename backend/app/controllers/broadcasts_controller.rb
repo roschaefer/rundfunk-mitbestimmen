@@ -7,7 +7,7 @@ class BroadcastsController < ApplicationController
   def index
     @broadcasts = Broadcast.all.includes(:impressions)
 
-    @broadcasts = @broadcasts.search_by_title(params[:q]) if params[:q].present?
+    @broadcasts = @broadcasts.full_search(params[:q]) if params[:q].present?
 
     filter_broadcasts
     order_broadcasts

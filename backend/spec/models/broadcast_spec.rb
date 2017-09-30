@@ -47,17 +47,35 @@ RSpec.describe Broadcast, type: :model do
     end
   end
 
-  describe '#search_by_title' do
+  describe '#full_search' do
     before do
       create_list(:broadcast, 10)
     end
-    let(:searched_broadcast) { create(:broadcast, title: 'It\s me!') }
-    let(:query) { 'Me' }
+    let(:station) { create(:station, name: 'Arte') }
+    let(:searched_broadcast) do
+      create(:broadcast, title: 'It\s me!',
+                         description: 'This is the best broadcast ever',
+                         stations: [station])
+    end
 
-    subject { described_class.search_by_title query }
+    describe 'retrieves broadcasts with a similar title' do
+      subject { described_class.full_search 'Me' }
+      it { is_expected.to include(searched_broadcast) }
+    end
 
-    it 'retrieves broadcasts with a similar title' do
-      is_expected.to include(searched_broadcast)
+    describe 'retrieves broadcasts with a similar descripton' do
+      subject { described_class.full_search 'best' }
+      it { is_expected.to include(searched_broadcast) }
+    end
+
+    describe 'retrieves broadcasts with a similar station name' do
+      subject { described_class.full_search 'Arte' }
+      it { is_expected.to include(searched_broadcast) }
+    end
+
+    describe 'retrieves broadcasts with a similar station name regardless a typo' do
+      subject { described_class.full_search 'Ante' }
+      it { is_expected.to include(searched_broadcast) }
     end
   end
 
