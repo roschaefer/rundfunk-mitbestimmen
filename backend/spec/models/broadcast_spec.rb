@@ -52,7 +52,7 @@ RSpec.describe Broadcast, type: :model do
       create_list(:broadcast, 10)
     end
     let(:station) { create(:station, name: 'Das Erste') }
-
+    
     let(:searched_broadcast) do
       create(:broadcast, title: 'It\s me!',
                          description: 'This is the best broadcast ever',
