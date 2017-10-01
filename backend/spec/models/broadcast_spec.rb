@@ -51,7 +51,7 @@ RSpec.describe Broadcast, type: :model do
     before do
       create_list(:broadcast, 10)
     end
-    let(:station) { create(:station, name: 'Arte') }
+    let(:station) { create(:station, name: 'Das Erste') }
     let(:searched_broadcast) do
       create(:broadcast, title: 'It\s me!',
                          description: 'This is the best broadcast ever',
@@ -69,12 +69,12 @@ RSpec.describe Broadcast, type: :model do
     end
 
     describe 'retrieves broadcasts with a similar station name' do
-      subject { described_class.full_search 'Arte' }
+      subject { described_class.full_search 'Das Erste' }
       it { is_expected.to include(searched_broadcast) }
     end
 
     describe 'retrieves broadcasts with a similar station name regardless a typo' do
-      subject { described_class.full_search 'Ante' }
+      subject { described_class.full_search 'Das Erte' }
       it { is_expected.to include(searched_broadcast) }
     end
   end
