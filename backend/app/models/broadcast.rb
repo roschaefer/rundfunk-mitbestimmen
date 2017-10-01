@@ -2,7 +2,13 @@ class Broadcast < ApplicationRecord
   include PgSearch
   has_paper_trail
 
-  pg_search_scope :search_by_title, against: :title
+  pg_search_scope :full_search,
+                  against: { title: 'A', description: 'C' },
+                  associated_against: { stations: { name: 'B' } },
+                  using: {
+                    tsearch: { any_word: true },
+                    trigram: { threshold: 0.06 }
+                  }
 
   has_many :impressions, dependent: :destroy
 
