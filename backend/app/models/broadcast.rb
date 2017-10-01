@@ -3,13 +3,12 @@ class Broadcast < ApplicationRecord
   has_paper_trail
 
   pg_search_scope :full_search,
-                  against: %i[title description],
-                  associated_against: { stations: :name },
+                  against: { title: 'A', description: 'C' },
+                  associated_against: { stations: { name: 'B' } },
                   using: {
                     tsearch: { any_word: true },
-                    trigram: { threshold: 0.04 }
-                  },
-                  ranked_by: ':trigram'
+                    trigram: { threshold: 0.06 }
+                  }
 
   has_many :impressions, dependent: :destroy
 
