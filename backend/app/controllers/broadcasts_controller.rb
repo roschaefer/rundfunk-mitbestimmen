@@ -89,7 +89,19 @@ class BroadcastsController < ApplicationController
     return unless filter_params
 
     @broadcasts = @broadcasts.where(medium: filter_params[:medium]) if filter_params[:medium].present?
-    @broadcasts = @broadcasts.joins(:stations).where('stations.id' => [filter_params[:station]]) if filter_params[:station].present?
+
+    if filter_params[:station].present?
+      schedule_alias = Schedule.arel_table.alias(:schedule_table_alias) # specify a predictable join table alias
+      # now create the arel INNER JOIN manually
+      schedule_alias_join = schedule_alias.create_on(
+        Broadcast.arel_table[:id].eq(schedule_alias[:broadcast_id])
+      )
+      @broadcasts = @broadcasts.joins(
+        Broadcast.arel_table.create_join(
+          schedule_alias, schedule_alias_join, Arel::Nodes::InnerJoin
+        )
+      ).where('"schedule_table_alias"."station_id" = ?', [filter_params[:station]])
+    end
 
     return unless current_user
     if filter_params[:review] == 'reviewed'
