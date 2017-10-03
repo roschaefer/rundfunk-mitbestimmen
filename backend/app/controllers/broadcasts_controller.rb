@@ -89,7 +89,10 @@ class BroadcastsController < ApplicationController
     return unless filter_params
 
     @broadcasts = @broadcasts.where(medium: filter_params[:medium]) if filter_params[:medium].present?
-    @broadcasts = @broadcasts.joins(:stations).where('stations.id' => [filter_params[:station]]) if filter_params[:station].present?
+
+    if filter_params[:station].present?
+      @broadcasts = @broadcasts.aliased_inner_join(:schedule_table_alias, Schedule).where('"schedule_table_alias"."station_id" = ?', [filter_params[:station]])
+    end
 
     return unless current_user
     if filter_params[:review] == 'reviewed'

@@ -29,6 +29,13 @@ class Broadcast < ApplicationRecord
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
   # TODO: Replace with SQL query, user.broadcasts.pluck(:id) might become large
 
+  scope :aliased_inner_join, (lambda do |the_alias, joined_model|
+    join_table_alias = joined_model.arel_table.alias(the_alias) # specify a predictable join table alias
+    # now create the arel INNER JOIN manually
+    aliased_join = join_table_alias.create_on(Broadcast.arel_table[:id].eq(join_table_alias[:broadcast_id]))
+    Broadcast.joins(Broadcast.arel_table.create_join(join_table_alias, aliased_join, Arel::Nodes::InnerJoin))
+  end)
+
   before_validation do
     if title
       self.title = title.gsub(/\s+/, ' ')

@@ -91,6 +91,25 @@ RSpec.describe 'Broadcasts::FullTextSearch', type: :request do
 
           it { expect(parse_json(response.body, 'data/0/attributes/title')).to eq 'Philosophy' }
         end
+
+        describe 'search and filter at the same time' do
+          let(:medium) { create(:medium) }
+          let(:station) { create(:station, medium: medium) }
+          let(:params) { { q: query, filter: { medium: medium.id, station: station.id } } }
+          let(:query) { 'The broadcast' }
+          let(:setup) do
+            create(:broadcast, title: 'The best broadcast', medium: medium, stations: create_list(:station, 1, medium: medium))
+            create(:broadcast, title: 'The most interesting broadcast', medium: medium, stations: [station])
+            create(:broadcast, title: 'The funniest broadcast', medium: medium, stations: create_list(:station, 1, medium: medium))
+            haystack
+          end
+
+          describe 'narrow down search' do
+            subject { parse_json(response.body, 'data/0/attributes/title') }
+            it { is_expected.to eq 'The most interesting broadcast' }
+            specify { expect(response.body).to have_json_size(1).at_path('data') }
+          end
+        end
       end
     end
   end
