@@ -47,6 +47,33 @@ RSpec.describe Broadcast, type: :model do
     end
   end
 
+  describe '#aliased_inner_join' do
+    let(:the_alias) { :aliased_join_table }
+    let(:relation) { described_class.aliased_inner_join(the_alias, association) }
+    context 'on Schedule' do
+      let(:association) { Schedule }
+      let(:broadcast) { create(:broadcast, title: 'ABCD', stations: create_list(:station, 1, id: 1)) }
+      before { broadcast }
+      describe 'is chainable' do
+        let(:first_chain) { relation.where('"aliased_join_table"."station_id" = 1') }
+        subject { first_chain }
+        it { is_expected.to eq [broadcast] }
+
+        describe 'and can be chained on' do
+          describe '#full_search' do
+            subject { first_chain.full_search('ABCD') }
+            it { is_expected.to eq [broadcast] }
+          end
+          describe '#unevaluated' do
+            let(:user) { create(:user) }
+            subject { first_chain.unevaluated(user) }
+            it { is_expected.to eq [broadcast] }
+          end
+        end
+      end
+    end
+  end
+
   describe '#full_search' do
     before do
       create_list(:broadcast, 10)
