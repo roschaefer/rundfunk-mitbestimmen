@@ -744,16 +744,18 @@ When(/^download the chart as SVG$/) do
   find('.highcharts-menu-item', text: 'SVG').click
 end
 
-def strip_highcharts_svg(content)
-  result = content
-  result = result.gsub(/\(#highcharts-[^)]*\)/, '(#highcharts)')
-  result = result.gsub(/"highcharts-[^"]*"/, '"highcharts"')
-  result
+def normalize_highcharts_svg(content)
+  doc = Nokogiri::HTML(content)
+  doc.css('*').remove_attr('style')
+  doc.css('*').remove_attr('id')
+  doc.css('*').remove_attr('clip-path')
+  doc.css('desc').remove
+  doc.to_s
 end
 
 Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do |path|
-  expected_content = strip_highcharts_svg(File.read(feature_directory.join(path)))
-  actual_content = strip_highcharts_svg(download_content)
+  expected_content = normalize_highcharts_svg(File.read(feature_directory.join(path)))
+  actual_content = normalize_highcharts_svg(download_content)
   expect(expected_content).to eq actual_content
 end
 
