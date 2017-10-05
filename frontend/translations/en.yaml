@@ -1,5 +1,5 @@
 auth0-lock:
-  title: Login
+  title: Passwordless Login
   emailSent:
     resendLabel: Resend
     success: Check your mailbox!
