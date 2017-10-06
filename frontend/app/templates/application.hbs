@@ -1,39 +1,43 @@
-<div id="main-menu" class="ui stackable inverted menu">
-  <div class="ui container">
-    {{#link-to 'index' class='header item logo'}}
-      Rundfunk<br/>MITBESTIMMEN
-    {{/link-to}}
-
-    {{#link-to 'find-broadcasts' (query-params q=null) class='item' }}
-      {{t 'application.menu.item.find-broadcasts'}}
-    {{/link-to}}
-
-    {{#if session.isAuthenticated}}
-      {{#link-to 'invoice' class='item'}}
-        {{t 'application.menu.item.invoice'}}
+<div class="ui inverted segment">
+  <div id="main-menu" class="ui stackable secondary inverted pointing menu">
+    <div class="ui container">
+      {{#link-to 'index' class='header item logo'}}
+      <img class="ui bottom aligned spaced mini image" src="assets/images/logo.svg">
+      Rundfunk <br>
+      MITBESTIMMEN
       {{/link-to}}
-    {{/if}}
 
-    {{#link-to 'statistics' class='item'}}
+      {{#link-to 'find-broadcasts' (query-params q=null) class='item' }}
+      {{t 'application.menu.item.find-broadcasts'}}
+      {{/link-to}}
+
+      {{#if session.isAuthenticated}}
+      {{#link-to 'invoice' class='item'}}
+      {{t 'application.menu.item.invoice'}}
+      {{/link-to}}
+      {{/if}}
+
+      {{#link-to 'statistics' class='item'}}
       {{t 'application.menu.item.statistics'}}
-    {{/link-to}}
+      {{/link-to}}
 
-    {{#link-to 'visualize' class='item'}}
+      {{#link-to 'visualize' class='item'}}
       {{t 'application.menu.item.visualization'}}
-    {{/link-to}}
+      {{/link-to}}
 
-    <div class="inverted ui right stackable menu">
-      {{language-chooser}}
-      <div class="item">
-        {{#if session.isAuthenticated}}
+      <div class="inverted ui right stackable menu">
+        {{language-chooser}}
+        <div class="item">
+          {{#if session.isAuthenticated}}
           <a href='#' class="ui button inverted" {{action 'logout'}}>
             {{t 'application.logout'}}
           </a>
-        {{else}}
+          {{else}}
           <a href='#' class="ui button inverted" {{action 'login'}}>
             {{t 'application.login'}}
           </a>
-        {{/if}}
+          {{/if}}
+        </div>
       </div>
     </div>
   </div>
