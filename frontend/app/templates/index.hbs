@@ -24,7 +24,7 @@
             </div>
           </div>
           {{/link-to}}
-          <div class="step">
+          <div class="disabled step">
             <i class="checkmark box icon"></i>
             <div class="content">
               <div class="title">
@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          <div class="step">
+          <div class="disabled step">
             <i class="euro icon"></i>
             <div class="content">
               <div class="title">
@@ -121,7 +121,7 @@
   </div>
 
   <div class="centered row">
-    <div class="ui relaxed grid">
+    <div class="ui relaxed stackable grid">
       <div class="centered row">
         <h3>
           {{t 'index.visualizations.header'}}
@@ -130,7 +130,7 @@
       <div class="five column row">
         <div class="column">
           {{#link-to 'visualize.diff'}}
-          <img class="ui large image" src="assets/images/visualize/rating.svg">
+          <img class="ui small centered image" src="assets/images/visualize/rating.svg">
           <h5>
             {{t 'index.visualizations.labels.rating'}}
           </h5>
@@ -138,7 +138,7 @@
         </div>
         <div class="column">
           {{#link-to 'visualize.geo'}}
-          <img class="ui large image" src="assets/images/visualize/geography.svg">
+          <img class="ui small centered image" src="assets/images/visualize/geography.svg">
           <h5>
             {{t 'index.visualizations.labels.geography'}}
           </h5>
@@ -146,7 +146,7 @@
         </div>
         <div class="column">
           {{#link-to 'visualize.demography'}}
-          <img class="ui large image" src="assets/images/visualize/demography.svg">
+          <img class="ui small centered image" src="assets/images/visualize/demography.svg">
           <h5>
             {{t 'index.visualizations.labels.demography'}}
           </h5>
@@ -154,7 +154,7 @@
         </div>
         <div class="column">
           {{#link-to 'visualize.time'}}
-          <img class="ui large image" src="assets/images/visualize/trends.svg">
+          <img class="ui small centered image" src="assets/images/visualize/trends.svg">
           <h5>
             {{t 'index.visualizations.labels.trends'}}
           </h5>
@@ -162,7 +162,7 @@
         </div>
         <div class="column">
           {{#link-to 'visualize.graph'}}
-          <img class="ui large image" src="assets/images/visualize/relations.svg">
+          <img class="ui small centered image" src="assets/images/visualize/relations.svg">
           <h5>
             {{t 'index.visualizations.labels.relations'}}
           </h5>
@@ -173,7 +173,7 @@
   </div>
 
   <div class="centered row">
-    <div class="ui grid">
+    <div class="ui stackable grid">
       <div class="centered row">
         <h3>
           {{t 'index.summarized-statistics.header'}}
