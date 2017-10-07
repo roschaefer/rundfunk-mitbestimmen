@@ -7,8 +7,8 @@ import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | preferred language', function() {
   let application, user, userMock;
-  const english = "Don't you want to get a say?";
-  const german  = "Du zahlst jeden Monat";
+  const english = "Spend your broadcasting fees";
+  const german  = "Verteile Deinen Rundfunkbeitrag";
 
   beforeEach(function() {
     application = startApp();
@@ -46,7 +46,7 @@ describe('Acceptance | preferred language', function() {
       it('fallback to "en"', function() {
         visit('/');
         return andThen(() => {
-          expect(find('.start-question').text().trim()).to.have.string(english);
+          expect(find('.masthead .header').text().trim()).to.have.string(english);
         });
       })
     });
@@ -56,10 +56,10 @@ describe('Acceptance | preferred language', function() {
     it('changes the language', function(){
       visit('/');
       return andThen(() => {
-        expect(find('.start-question').text().trim()).to.have.string(english);
+        expect(find('.masthead .header').text().trim()).to.have.string(english);
         click('.language.item i.de.flag')
         return andThen(() => {
-          expect(find('.start-question').text().trim()).to.have.string(german);
+          expect(find('.masthead .header').text().trim()).to.have.string(german);
         });
       });
     });
@@ -76,10 +76,10 @@ describe('Acceptance | preferred language', function() {
         mockUpdate('user');
         visit('/');
         return andThen(() => {
-          expect(find('.start-question').text().trim()).to.have.string(english);
+          expect(find('.masthead .header').text().trim()).to.have.string(english);
           click('.language.item i.de.flag')
           return andThen(() => {
-            expect(find('.start-question').text().trim()).to.have.string(german);
+            expect(find('.masthead .header').text().trim()).to.have.string(german);
           });
         });
       });
@@ -113,7 +113,7 @@ describe('Acceptance | preferred language', function() {
         it('translates the page accordingly', function() {
           visit('authentication/callback');
           return andThen(() => {
-            expect(find('.start-question').text().trim()).to.have.string(german);
+            expect(find('.masthead .header').text().trim()).to.have.string(german);
           });
         });
       });
