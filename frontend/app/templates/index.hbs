@@ -1,8 +1,5 @@
 <div id="index-page" class="ui stackable grid container">
 
-  <div class="row">
-  </div>
-
   <div class="middle aligned masthead row">
     <div class="column">
       <div class="ui stackable grid">
@@ -28,39 +25,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-  </div>
-
-
-  <div id="approval" class="ui two column row">
-    <div class="column">
-      <div class="eight wide column">
-        <img class="ui centered statement medium image" src="assets/images/statement.svg">
-      </div>
-      <div class="eight wide column middle aligned">
-        <h1>
-          {{t 'index.statement.header'}}
-        </h1>
-        <p>
-          {{t 'index.statement.content' htmlSafe=true}}
-        </p>
-      </div>
-    </div>
-    <div class="column">
-      <div class="eight wide column">
-        <img class="ui centered broadcasts medium image" src="assets/images/broadcasters.svg">
-      </div>
-      <div class="eight wide column middle aligned">
-        <h1>
-          {{t 'index.approval.header'}}
-        </h1>
-        <p>
-          {{t 'index.approval.content' htmlSafe=true}}
-        </p>
       </div>
     </div>
   </div>
@@ -94,12 +58,41 @@
     </div>
   </div>
 
+  <div id="approval" class="ui two column row">
+    <div class="column">
+      <div class="eight wide column">
+        <img class="ui centered statement medium image" src="assets/images/statement.svg">
+      </div>
+      <div class="eight wide column middle aligned">
+        <h1>
+          {{t 'index.statement.header'}}
+        </h1>
+        <p>
+          {{t 'index.statement.content' htmlSafe=true}}
+        </p>
+      </div>
+    </div>
+    <div class="column">
+      <div class="eight wide column">
+        <img class="ui centered broadcasts medium image" src="assets/images/broadcasters.svg">
+      </div>
+      <div class="eight wide column middle aligned">
+        <h1>
+          {{t 'index.approval.header'}}
+        </h1>
+        <p>
+          {{t 'index.approval.content' htmlSafe=true}}
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="one column centered row">
     <div class="twelve wide center aligned column">
       <div class="row">
-        <h1>
+        <h3>
           {{t 'index.goal.actual.header'}}
-        </h1>
+        </h3>
       </div>
       <div class="row">
         {{dynamic-high-charts chartOptions=actualChartOptions content=actualChartData}}
@@ -115,23 +108,23 @@
   <div class="ui one column centered row">
     <div class="fourteen wide column">
       <div class="ui basic center aligned segment">
-        <h1>
+        <h3>
           {{t 'index.tv-ratings.header'}}
-        </h1>
+        </h3>
       </div>
       <div class="ui horizontal piled segments">
         <div class="ui segment">
-          <h3>
+          <h4>
             Rundfunk MITBESTIMMEN
-          </h3>
+          </h4>
           <p>
             {{t 'index.tv-ratings.content.left' htmlSafe=true}}
           </p>
         </div>
         <div class="ui segment">
-          <h3>
+          <h4>
             {{t 'index.tv-ratings.name'}}
-          </h3>
+          </h4>
           <p>
             {{t 'index.tv-ratings.content.right' htmlSafe=true}}
           </p>
@@ -140,72 +133,108 @@
     </div>
   </div>
 
-  <div class="five column row">
-    <div class="column">
-        <img class="ui image" src="assets/images/visualize/rating.svg">
+  <div class="centered row">
+    <div class="ui relaxed grid">
+    <div class="centered row">
+      <h3>
+        {{t 'index.visualizations.header'}}
+      </h3>
     </div>
-    <div class="column">
-        <img class="ui image" src="assets/images/visualize/geography.svg">
-    </div>
-    <div class="column">
-        <img class="ui image" src="assets/images/visualize/demography.svg">
-    </div>
-    <div class="column">
-        <img class="ui image" src="assets/images/visualize/trends.svg">
-    </div>
-    <div class="column">
-        <img class="ui image" src="assets/images/visualize/relations.svg">
-    </div>
-  </div>
-
-  <div class="four column row">
-    <div class="four wide center aligned column">
-      <div class="ui statistic">
-        <div class="value statistics registered-users">
-          {{model.registeredUsers}}
-        </div>
-        <div class="label">
-          {{t 'index.statistics.registered-users' }}
-        </div>
+    <div class="five column row">
+      <div class="column">
+        {{#link-to 'visualize.diff'}}
+          <img class="ui large image" src="assets/images/visualize/rating.svg">
+          <h5>
+            {{t 'index.visualizations.labels.rating'}}
+          </h5>
+        {{/link-to}}
+      </div>
+      <div class="column">
+        <img class="ui large image" src="assets/images/visualize/geography.svg">
+          <h5>
+            {{t 'index.visualizations.labels.geography'}}
+          </h5>
+      </div>
+      <div class="column">
+        <img class="ui large image" src="assets/images/visualize/demography.svg">
+          <h5>
+            {{t 'index.visualizations.labels.demography'}}
+          </h5>
+      </div>
+      <div class="column">
+        <img class="ui large image" src="assets/images/visualize/trends.svg">
+          <h5>
+            {{t 'index.visualizations.labels.trends'}}
+          </h5>
+      </div>
+      <div class="column">
+        <img class="ui large image" src="assets/images/visualize/relations.svg">
+          <h5>
+            {{t 'index.visualizations.labels.relations'}}
+          </h5>
       </div>
     </div>
-    <div class="four wide center aligned column">
-      <div class="ui statistic">
-        <div class="value statistics broadcasts">
-          {{model.broadcasts}}
-        </div>
-        <div class="label">
-          {{t 'index.statistics.broadcasts' }}
-        </div>
-      </div>
-    </div>
-    <div class="four wide center aligned column">
-      <div class="ui statistic">
-        <div class="value statistics impressions">
-          {{model.impressions}}
-        </div>
-        <div class="label">
-          {{t 'index.statistics.impressions' }}
-        </div>
-      </div>
-    </div>
-    <div class="four wide center aligned column">
-      <div class="ui statistic">
-        <div class="value statistics money-assigned">
-          {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
-        </div>
-        <div class="label">
-          {{t 'index.statistics.money-assigned' }}
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="centered row">
-    <div class="ui eight wide center aligned column">
-      {{#link-to 'statistics' class='ui primary button' }}
-      {{t 'index.statistics.link-to-statistics'}}
-      {{/link-to}}
+    <div class="ui grid">
+      <div class="centered row">
+        <h3>
+          {{t 'index.summarized-statistics.header'}}
+        </h3>
+      </div>
+      <div class="four column row">
+        <div class="four wide center aligned column">
+          <div class="ui statistic">
+            <div class="value statistics registered-users">
+              {{model.registeredUsers}}
+            </div>
+            <div class="label">
+              {{t 'index.statistics.registered-users' }}
+            </div>
+          </div>
+        </div>
+        <div class="four wide center aligned column">
+          <div class="ui statistic">
+            <div class="value statistics broadcasts">
+              {{model.broadcasts}}
+            </div>
+            <div class="label">
+              {{t 'index.statistics.broadcasts' }}
+            </div>
+          </div>
+        </div>
+        <div class="four wide center aligned column">
+          <div class="ui statistic">
+            <div class="value statistics impressions">
+              {{model.impressions}}
+            </div>
+            <div class="label">
+              {{t 'index.statistics.impressions' }}
+            </div>
+          </div>
+        </div>
+        <div class="four wide center aligned column">
+          <div class="ui statistic">
+            <div class="value statistics money-assigned">
+              {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
+            </div>
+            <div class="label">
+              {{t 'index.statistics.money-assigned' }}
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="centered row">
+          <div class="ui eight wide center aligned column">
+            {{#link-to 'statistics' }}
+            <h5>
+              {{t 'index.statistics.link-to-statistics'}}
+            </h5>
+            {{/link-to}}
+          </div>
+        </div>
     </div>
   </div>
 
@@ -221,41 +250,43 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="ui horizontal divider">
-      FAQ
+  <div class="centered row">
+    <div class="ui grid">
+      <div class="centered row">
+        <h3>
+          FAQ
+        </h3>
+      </div>
+      <div class="three column left aligned row">
+        <div class="ui column">
+          {{#ui-accordion}}
+          {{fa-question key='survey'}}
+          {{fa-question key='quality'}}
+          {{fa-question key='impact'}}
+          {{fa-question key='tv-rankings'}}
+          {{fa-question key='representative'}}
+          {{/ui-accordion}}
+        </div>
+        <div class="ui column">
+          {{#ui-accordion}}
+          {{fa-question key='consumption'}}
+          {{fa-question key='binding'}}
+          {{fa-question key='minorities'}}
+          {{fa-question key='finances'}}
+          {{fa-question key='business-model'}}
+          {{/ui-accordion}}
+        </div>
+        <div class="ui column">
+          {{#ui-accordion}}
+          {{fa-question key='responsible'}}
+          {{fa-question key='data-privacy'}}
+          {{fa-question key='source-code'}}
+          {{fa-question key='help'}}
+          {{fa-question key='missing'}}
+          {{/ui-accordion}}
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="three column row">
-      <div class="ui column">
-        {{#ui-accordion}}
-        {{fa-question key='survey'}}
-        {{fa-question key='quality'}}
-        {{fa-question key='impact'}}
-        {{fa-question key='tv-rankings'}}
-        {{fa-question key='representative'}}
-        {{/ui-accordion}}
-      </div>
-      <div class="ui column">
-        {{#ui-accordion}}
-        {{fa-question key='consumption'}}
-        {{fa-question key='binding'}}
-        {{fa-question key='minorities'}}
-        {{fa-question key='finances'}}
-        {{fa-question key='business-model'}}
-        {{/ui-accordion}}
-      </div>
-
-      <div class="ui column">
-        {{#ui-accordion}}
-        {{fa-question key='responsible'}}
-        {{fa-question key='data-privacy'}}
-        {{fa-question key='source-code'}}
-        {{fa-question key='help'}}
-        {{fa-question key='missing'}}
-        {{/ui-accordion}}
-      </div>
   </div>
 
 </div>
