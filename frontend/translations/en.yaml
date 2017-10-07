@@ -90,7 +90,7 @@ application:
 index:
   header:
     top: Public broadcasting in Germany gets <b>{amount}</b> every year.
-  action: Spend your broadcasting fees 
+  action: Spend your broadcasting fees
   manual: Just decide on your own which broadcasts you want to support.
   start: participate now
   statistics:
@@ -129,20 +129,25 @@ index:
       header: As-is situation
       description: >
         This figure shows the actual expenditure by genre for broadcaster "Das
-        Erste" (source: 20th KEF report)
-      name: Das Erste
+        Erste" and "ZDF" (source: 20th KEF report)
+      name:
+        dasErste: Das Erste
+        zdf: ZDF
       yAxis: Millions of Euros
       series:
-        sport: Sport
-        politics: Politics & Society
-        television-play: Television play
-        entertainment: Entertainment
-        movie: Movie
-        family: Family
-        culture: Culture & Science
-        religion: Religion
-        spot: Spot/Transition
+        events: Current events
+        family: Family, children and youth
+        series: Television Show, Series
+        culture: Culture, History and Science
         music: Music
+        politics: Politics and Society
+        presenation: Presentation
+        quiz: Quiz and format development
+        religion: Religion
+        show: Show and entertainment
+        movie: Movie
+        sport: Sport
+        spot: Spot, Transition
     target:
       header: Desired state
       description: So far, nobody knows how people who pay the fees would decide
@@ -156,7 +161,7 @@ index:
       demography: How does the population pyramid of supporters look like?
       trends: How are broadcasts developing, are there any trends?
       relations: Are there any relations or clusters between broadcasts?
-  summarized-statistics: 
+  summarized-statistics:
     header: Summarized statistics
   faq:
     questions:
