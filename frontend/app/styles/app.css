@@ -112,13 +112,19 @@ p {
   padding: 0.6em 1.2em;
 }
 
-.main {
+.main.container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-#index-page > .row {
+.masthead.row {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+}
+
+#index-page > .row:not(:nth-child(2)) {
   margin-top: 10em;
 }
 .masthead .header {

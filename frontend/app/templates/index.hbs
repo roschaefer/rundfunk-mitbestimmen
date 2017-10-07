@@ -1,57 +1,44 @@
 <div id="index-page" class="ui stackable grid container">
 
-  <div class="middle aligned masthead row">
-    <div class="column">
-      <div class="ui stackable grid">
-        <div class="one column row">
-          <div class="middle aligned center aligned column">
-            <h1 class="header">
-              {{t 'index.action' }}
-            </h1>
-          </div>
-        </div>
-        <div class="ui one column centered row">
-          <div class="twelve wide column">
-            <p class="ui header intro-text center aligned">
-              {{t 'index.manual'}}
-            </p>
-          </div>
-          <div class="row">
-            <div class="center aligned column">
-              {{#link-to 'find-broadcasts'
-              class="ui huge primary button start-button"}}
-              {{t 'index.start' }}
-              {{/link-to}}
+  <div class="masthead one column row">
+    <div class="center aligned stretched column">
+      <div class="ui row">
+        <h1 class="header">
+          {{t 'index.action' }}
+        </h1>
+        <h3 class="ui header intro-text">
+          {{t 'index.manual'}}
+        </h3>
+        {{#link-to 'find-broadcasts'
+        class="ui huge primary button start-button"}}
+        {{t 'index.start' }}
+        {{/link-to}}
+      </div>
+      <div class="row">
+        <div class="ui three steps">
+          {{#link-to 'find-broadcasts' class='active step'}}
+          <i class="unhide icon"></i>
+          <div class="content">
+            <div class="title">
+              {{t 'index.approval.steps.find' }}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="ui large three steps">
-      <div class="step">
-        <i class="unhide icon"></i>
-        <div class="content">
-          <div class="title">
-            {{t 'index.approval.steps.find' }}
+          {{/link-to}}
+          <div class="step">
+            <i class="checkmark box icon"></i>
+            <div class="content">
+              <div class="title">
+                {{t 'index.approval.steps.find-broadcasts' }}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="step">
-        <i class="checkmark box icon"></i>
-        <div class="content">
-          <div class="title">
-            {{t 'index.approval.steps.find-broadcasts' }}
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <i class="euro icon"></i>
-        <div class="content">
-          <div class="title">
-            {{t 'index.approval.steps.distribute' }}
+          <div class="step">
+            <i class="euro icon"></i>
+            <div class="content">
+              <div class="title">
+                {{t 'index.approval.steps.distribute' }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
