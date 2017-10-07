@@ -1,122 +1,104 @@
 <div id="index-page" class="ui stackable grid container">
 
-  <div class="middle aligned row full-height">
+  <div class="row">
+  </div>
+
+  <div class="middle aligned masthead row">
     <div class="column">
       <div class="ui stackable grid">
-        <div class="row">
+        <div class="one column row">
           <div class="middle aligned center aligned column">
-            <p class="ui header intro-text">
-              {{t 'index.header.top'
-              amount=(format-number annualBudget maximumFractionDigits=0
-              minimumFractionDigits=0 style='currency' currency='EUR')
-              htmlSafe=true}}
-            </p>
-            <h1 class="start-question">
-              {{t 'index.action'
-              amount=(format-number 17.5 maximumFractionDigits=2
-              minimumFractionDigits=2 style='currency' currency='EUR')
-              htmlSafe=true }}
+            <h1 class="header">
+              {{t 'index.action' }}
             </h1>
           </div>
         </div>
-        <div class="ui centered row">
+        <div class="ui one column centered row">
           <div class="twelve wide column">
             <p class="ui header intro-text center aligned">
-              {{t 'index.manual' htmlSafe=true }}
+              {{t 'index.manual'}}
             </p>
-            <div class="ui three steps step-border">
-              <div class="step step-style">
-                <i class="grey unhide icon"></i>
-                <div class="content">
-                  <div class="description">
-                    {{t 'index.approval.steps.find' }}
-                  </div>
-                </div>
-              </div>
-              <div class="step step-style">
-                <i class="green checkmark box icon"></i>
-                <div class="content">
-                  <div class="description">
-                    {{t 'index.approval.steps.find-broadcasts' }}
-                  </div>
-                </div>
-              </div>
-              <div class="step step-style">
-                <i class="blue euro icon"></i>
-                <div class="content">
-                  <div class="description">
-                    {{t 'index.approval.steps.distribute' }}
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="row">
+            <div class="center aligned column">
+              {{#link-to 'find-broadcasts'
+              class="ui huge primary button start-button"}}
+              {{t 'index.start' }}
+              {{/link-to}}
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="center aligned column">
-            {{#link-to 'find-broadcasts'
-            class="ui huge primary button start-button"}}
-            {{t 'index.start' }}
-            {{/link-to}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="column">
-            <div class="ui basic padded segment"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="center aligned column">
-            <div class="ui huge image">
-              {{#scroll-to href='#approval' }}
-              <i class="large chevron down icon"></i>
-              {{/scroll-to}}
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <div class="ui divider"></div>
-  <div id="approval" class="ui row">
-    <div class="six wide column">
-      <img class="ui centered broadcasts image" src="assets/images/broadcasters.svg">
+  <div class="row">
+  </div>
+
+
+  <div id="approval" class="ui two column row">
+    <div class="column">
+      <div class="eight wide column">
+        <img class="ui centered statement medium image" src="assets/images/statement.svg">
+      </div>
+      <div class="eight wide column middle aligned">
+        <h1>
+          {{t 'index.statement.header'}}
+        </h1>
+        <p>
+          {{t 'index.statement.content' htmlSafe=true}}
+        </p>
+      </div>
     </div>
-    <div class="eight wide column middle aligned">
-      <h1>
-        {{t 'index.approval.header'}}
-      </h1>
-      <p>
-        {{t 'index.approval.content' htmlSafe=true}}
-      </p>
+    <div class="column">
+      <div class="eight wide column">
+        <img class="ui centered broadcasts medium image" src="assets/images/broadcasters.svg">
+      </div>
+      <div class="eight wide column middle aligned">
+        <h1>
+          {{t 'index.approval.header'}}
+        </h1>
+        <p>
+          {{t 'index.approval.content' htmlSafe=true}}
+        </p>
+      </div>
     </div>
   </div>
 
-  <div class="row"></div>
-  <div class="ui divider"></div>
-  <div class="ui row">
-    <div class="six wide column">
-      <img class="ui centered statement image" src="assets/images/statement.svg">
-    </div>
-    <div class="eight wide column middle aligned">
-      <h1>
-        {{t 'index.statement.header'}}
-      </h1>
-      <p>
-        {{t 'index.statement.content' htmlSafe=true}}
-      </p>
+  <div class="row">
+    <div class="ui huge three steps">
+      <div class="step">
+        <i class="unhide icon"></i>
+        <div class="content">
+          <div class="title">
+            {{t 'index.approval.steps.find' }}
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <i class="checkmark box icon"></i>
+        <div class="content">
+          <div class="title">
+            {{t 'index.approval.steps.find-broadcasts' }}
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <i class="euro icon"></i>
+        <div class="content">
+          <div class="title">
+            {{t 'index.approval.steps.distribute' }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row"></div>
-  <div class="ui divider"></div>
   <div class="ui one column centered row">
     <div class="fourteen wide column">
       <div class="ui basic center aligned segment">
         <h1>
-        {{t 'index.tv-ratings.header'}}
+          {{t 'index.tv-ratings.header'}}
         </h1>
       </div>
       <div class="ui horizontal piled segments">
@@ -125,22 +107,21 @@
             Rundfunk MITBESTIMMEN
           </h3>
           <p>
-          {{t 'index.tv-ratings.content.left' htmlSafe=true}}
+            {{t 'index.tv-ratings.content.left' htmlSafe=true}}
           </p>
         </div>
         <div class="ui segment">
           <h3>
-          {{t 'index.tv-ratings.name'}}
+            {{t 'index.tv-ratings.name'}}
           </h3>
           <p>
-          {{t 'index.tv-ratings.content.right' htmlSafe=true}}
+            {{t 'index.tv-ratings.content.right' htmlSafe=true}}
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ui divider"></div>
   <div class="two column centered row">
     <div class="seven wide center aligned column">
       <div class="row">
@@ -157,7 +138,6 @@
         </h3>
       </div>
     </div>
-
     <div class="seven wide center aligned column">
       <div class="row">
         <h1>
@@ -174,8 +154,6 @@
       </div>
     </div>
   </div>
-
-  <div class="ui divider"></div>
 
   <div class="four column row">
     <div class="four wide center aligned column">
@@ -222,17 +200,9 @@
 
   <div class="centered row">
     <div class="ui eight wide center aligned column">
-      <div class="ui padded basic segment"></div>
       {{#link-to 'statistics' class='ui primary button' }}
       {{t 'index.statistics.link-to-statistics'}}
       {{/link-to}}
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="column">
-      <div class="ui basic padded segment"></div>
     </div>
   </div>
 
@@ -254,25 +224,28 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="ui two column stackable centered grid">
-      <div class="ui seven wide column">
-        {{#ui-accordion class="styled"}}
+  <div class="three column row">
+      <div class="ui column">
+        {{#ui-accordion}}
         {{fa-question key='survey'}}
         {{fa-question key='quality'}}
         {{fa-question key='impact'}}
         {{fa-question key='tv-rankings'}}
         {{fa-question key='representative'}}
+        {{/ui-accordion}}
+      </div>
+      <div class="ui column">
+        {{#ui-accordion}}
         {{fa-question key='consumption'}}
         {{fa-question key='binding'}}
         {{fa-question key='minorities'}}
+        {{fa-question key='finances'}}
+        {{fa-question key='business-model'}}
         {{/ui-accordion}}
       </div>
 
-      <div class="ui seven wide column">
-        {{#ui-accordion class="styled"}}
-        {{fa-question key='finances'}}
-        {{fa-question key='business-model'}}
+      <div class="ui column">
+        {{#ui-accordion}}
         {{fa-question key='responsible'}}
         {{fa-question key='data-privacy'}}
         {{fa-question key='source-code'}}
@@ -280,7 +253,6 @@
         {{fa-question key='missing'}}
         {{/ui-accordion}}
       </div>
-    </div>
   </div>
 
 </div>

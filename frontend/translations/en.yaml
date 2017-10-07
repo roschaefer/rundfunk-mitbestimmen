@@ -90,10 +90,8 @@ application:
 index:
   header:
     top: Public broadcasting in Germany gets <b>{amount}</b> every year.
-  action:
-      You pay <span class="amount-color">{amount}</span> per month</div>.</br>
-      Don't you want to get a say?
-  manual: Distribute your broadcasting fees to broadcasts, which you want to support.
+  action: Spend your broadcasting fees 
+  manual: Just decide on your own which broadcasts you want to support.
   start: participate now
   statistics:
     registered-users: Registered users
@@ -190,9 +188,9 @@ index:
           improvement, however, this is quite sufficient. Few data are better
           than no data at all.
       consumption:
-        title: I do not use public broadcasting, why should I join?
+        title: What if I don't use public broadcasting?
         content: >
-          But you pay the broadcasting fee, don't you? Then you should also have
+          But you pay the broadcasting fees, don't you? Then you should also have
           a right on content and decide how your fees should be used.
       binding:
         title: Are the results binding in any sense?
