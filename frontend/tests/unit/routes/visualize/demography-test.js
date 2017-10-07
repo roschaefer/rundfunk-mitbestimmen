@@ -4,8 +4,10 @@ import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | visualize/demography', function() {
   setupTest('route:visualize/demography', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: [
+      'service:metrics',
+      'ember-metrics@metrics-adapter:piwik', // bundled adapter
+    ]
   });
 
   it('exists', function() {
