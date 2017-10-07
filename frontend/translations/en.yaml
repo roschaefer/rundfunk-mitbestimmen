@@ -148,6 +148,16 @@ index:
       description: So far, nobody knows how people who pay the fees would decide
       series:
         figure-out: That's what we need to figure out
+  visualizations:
+    header: Data visualizations
+    labels:
+      rating: What are the most popular categories?
+      geography: From wich part of Germany do supporters come from?
+      demography: How does the population pyramid of supporters look like?
+      trends: How are broadcasts developing, are there any trends?
+      relations: Are there any relations or clusters between broadcasts?
+  summarized-statistics: 
+    header: Summarized statistics
   faq:
     questions:
       survey:

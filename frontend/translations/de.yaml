@@ -160,6 +160,16 @@ index:
         Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
       series:
         figure-out: Das gilt es herauszufinden
+  visualizations: 
+    header: Datenvisualisierungen
+    labels:
+      rating: Was sind die beliebtesten Kategorien?
+      geography: Woher kommen die Unterstützer einer Sendung?
+      demography: Wie sieht die Alterspyramide der Unterstützer aus?
+      trends: Wie entwickeln sich Sendungen, gibt es Trends?
+      relations: Was gibt es für Beziehungen zwischen Sendungen?
+  summarized-statistics: 
+    header: Zusammgefasste Statistiken
   faq:
     questions:
       survey:
