@@ -397,6 +397,7 @@ visualize:
     headers:
       diff: Expected vs. actual
       geo: Geographical visualization
+      demography: Demographic visualizaion
       time: Changes over time
       graph: Relationships between broadcasts
   overview: Visualization overview
