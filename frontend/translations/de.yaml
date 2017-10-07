@@ -88,12 +88,15 @@ application:
   logout: Ausloggen
   login: Einloggen
 index:
-  link-to: Startseite
-  header:
-    top: Der öffentlich-rechtliche Rundfunk erhält <b>{amount}</b> jedes Jahr.
-  action: Verteile Deinen Rundfunkbeitrag
-  manual: Entscheide selbst, welche Sendungen Du unterstützen möchtest.
-  start: jetzt mitbestimmen
+  link-to: Zurück zur Startseite
+  masthead:
+    header: Verteile Deinen Rundfunkbeitrag
+    sub-header: Entscheide selbst, welche Sendungen Du unterstützen möchtest.
+    call-to-action: jetzt mitbestimmen
+    steps:
+      find: Sendungen finden
+      find-broadcasts: Sendungen auswählen
+      distribute: Budget verteilen
   statistics:
     registered-users: Registrierte Nutzer
     broadcasts: Sendungen
@@ -103,21 +106,13 @@ index:
   approval:
     header: Mehr Daten für Rundfunkmacher
     content: >
-      Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
-      nach Deinen Kriterien bewerten. Fördere Deine Lieblingssendungen
-      und lass sie es wissen, selbstverständlich anonym.
-    steps:
-      find: Sendungen finden
-      find-broadcasts: Sendungen auswählen
-      distribute: Budget verteilen
+      Durch das öffentliche Feedback gewinnen beide Seiten: Die Zuschauer bekommen
+      mehr Einfluss und die Sender können ihr Programm verbessern.
   statement:
     header: Mehr Einfluss für Beitragszahler
     content: >
-      Die Bewertungsergebnisse sind nicht verbindlich, jedoch öffentlich und
-      quantifizierbar. Dadurch erhalten Beitragszahler zum ersten Mal eine
-      aussagekräftige Stimme. Mit deiner Entscheidung können wir die
-      Aufmerksamkeit der Rundfunkräte gewinnen und die Programmdebatten
-      befördern und beleben.
+      Die Bewertungsergebnisse sind öffentlich und quantifizierbar. Dadurch
+      erhalten Beitragszahler zum ersten Mal eine aussagekräftige Stimme.
   tv-ratings:
     name: Einschaltquote
     header: Die wichtigsten Unterschiede zur Einschaltquote
@@ -136,36 +131,31 @@ index:
         Nutzung der Inhalte, einfach <strong>über die Fernbedienung</strong>. Es gibt
         <strong>5000 repräsentative Haushalte</strong> und die Ergebnisse <strong>werden
         hochgerechnet</strong>. Das Ziel dabei ist: <strong> Zielgerichtete Werbung.</strong>
-  goal:
-    actual:
-      header: Tatsächliche Verteilung
-      description: >
-        Ausgaben nach Genre, hier am Beispiel der Sender "Das Erste"
-        und "ZDF" (Quelle: 20. KEF Bericht)
-      yAxis: Millionen Euro
-      name:
-        dasErste: Das Erste
-        zdf: ZDF
-      series:
-        events: Aktuelles
-        family: Familie, Kinder und Jugend
-        series: Fernsehspiel, Fernsehfilm, Serie
-        culture: Kultur, Geschichte und Wissenschaft
-        music: Musik
-        politics: Politik und Gesellschaft
-        presenation: Präsentation
-        quiz: Quiz und Formatentwicklung
-        religion: Religion
-        show: Show, Unterhaltung
-        movie: Spielfilm
-        sport: Sport
-        spot: Spot/Überleitung
-    target:
-      header: Gewünschter Zustand
-      description: >
-        Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
-      series:
-        figure-out: Das gilt es herauszufinden
+  actual:
+    header: Tatsächliche Verteilung
+    description: >
+      Ausgaben nach Genre, hier am Beispiel der Sender "Das Erste"
+      und "ZDF" (Quelle:
+      <a href="https://kef-online.de/fileadmin/KEF/Dateien/Berichte/20._Bericht.pdf"
+      download>20th KEF Bericht</a>)
+    yAxis: Millionen Euro
+    name:
+      dasErste: Das Erste
+      zdf: ZDF
+    series:
+      events: Aktuelles
+      family: Familie, Kinder und Jugend
+      series: Fernsehspiel, Fernsehfilm, Serie
+      culture: Kultur, Geschichte und Wissenschaft
+      music: Musik
+      politics: Politik und Gesellschaft
+      presenation: Präsentation
+      quiz: Quiz und Formatentwicklung
+      religion: Religion
+      show: Show, Unterhaltung
+      movie: Spielfilm
+      sport: Sport
+      spot: Spot/Überleitung
   visualizations:
     header: Datenvisualisierungen
     labels:
