@@ -4,14 +4,14 @@
     <div class="center aligned stretched column">
       <div class="ui row">
         <h1 class="header">
-          {{t 'index.action' }}
+          {{t 'index.masthead.header' }}
         </h1>
         <h3 class="ui header intro-text">
-          {{t 'index.manual'}}
+          {{t 'index.masthead.sub-header'}}
         </h3>
         {{#link-to 'find-broadcasts'
         class="ui huge primary button start-button"}}
-        {{t 'index.start' }}
+        {{t 'index.masthead.call-to-action' }}
         {{/link-to}}
       </div>
       <div class="row">
@@ -20,7 +20,7 @@
           <i class="unhide icon"></i>
           <div class="content">
             <div class="title">
-              {{t 'index.approval.steps.find' }}
+              {{t 'index.masthead.steps.find' }}
             </div>
           </div>
           {{/link-to}}
@@ -28,7 +28,7 @@
             <i class="checkmark box icon"></i>
             <div class="content">
               <div class="title">
-                {{t 'index.approval.steps.find-broadcasts' }}
+                {{t 'index.masthead.steps.find-broadcasts' }}
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <i class="euro icon"></i>
             <div class="content">
               <div class="title">
-                {{t 'index.approval.steps.distribute' }}
+                {{t 'index.masthead.steps.distribute' }}
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@
     <div class="center aligned column">
       <div class="row">
         <h3>
-          {{t 'index.goal.actual.header'}}
+          {{t 'index.actual.header'}}
         </h3>
       </div>
       <div class="row">
@@ -86,7 +86,7 @@
       </div>
       <div class="row">
         <p>
-          {{t 'index.goal.actual.description'}}
+          {{t 'index.actual.description' htmlSafe=true}}
         </p>
       </div>
     </div>

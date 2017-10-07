@@ -89,11 +89,14 @@ application:
   login: Log in
 index:
   link-to: Back to home
-  header:
-    top: Public broadcasting in Germany gets <b>{amount}</b> every year.
-  action: Spend your broadcasting fees
-  manual: Just decide on your own which broadcasts you want to support.
-  start: participate now
+  masthead:
+    header: Spend your broadcasting fees
+    sub-header: Decide on your own which broadcasts you want to support.
+    call-to-action: participate now
+    steps:
+      find: Find broadcasts
+      find-broadcasts: Select broadcasts
+      distribute: Distribute budget
   statistics:
     registered-users: Registered users
     broadcasts: Broadcasts
@@ -101,22 +104,15 @@ index:
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
-    header: Improve the quality of programs
+    header: More data for broadcasters
     content: >
-      With a symbolic amount you can evaluate the quality of public
-      broadcasts according to your own criteria. Support your favourite
-      broadcasts and let them know, of course anonymously.
-    steps:
-      find: Find broadcasts
-      find-broadcasts: Select broadcasts
-      distribute: Distribute budget
+      The public feedback is a win-win-project for both sides: The audience
+      gets more influence and broadcasters can improve their program.
   statement:
-    header: Make a statement for having a say
+    header: More influence for the audience
     content: >
-      The results are not binding in a legal sense, but public and quantifiable.
-      In this way people who pay the fees have got a strong voice which is enough
-      to have an impact. With your decision we can attract attention of the
-      broadcasting councils and increase the public debate on program diversity.
+      The results are public and quantifiable. In this manner, payers of public
+      broadcasting fees get a strong voice for the very first time.
   tv-ratings:
     header: Most important differences compared to TV ratings
     name: TV ratings
@@ -125,35 +121,32 @@ index:
         <strong>Everyone</strong> can participate. The data is collected through a <strong>website</strong> and the results are <strong>published on the web</strong>. The users decide <strong>independently of usage</strong>, simply <strong>according to their conscience</strong>. There are <strong>more and more new users</strong> and the results are <strong>not extrapolated</strong>. The goal is: <strong>More democracy</strong>.
       right: >
         <strong>A preselected group</strong> can participate. The data is collected through a <strong>special TV box</strong> and the results are <strong>subject to charges</strong>. The users decide <strong>depending on usage</strong>, simply <strong>throuh the remote control</strong>. There are <strong>5000 representative homes</strong> and the results are <strong>extrapolated</strong>. The goal is: <strong>Targeted advertising</strong>.
-  goal:
-    actual:
-      header: As-is situation
-      description: >
-        This figure shows the actual expenditure by genre for broadcaster "Das
-        Erste" and "ZDF" (source: 20th KEF report)
-      name:
-        dasErste: Das Erste
-        zdf: ZDF
-      yAxis: Millions of Euros
-      series:
-        events: Current events
-        family: Family, children and youth
-        series: Television Show, Series
-        culture: Culture, History and Science
-        music: Music
-        politics: Politics and Society
-        presenation: Presentation
-        quiz: Quiz and format development
-        religion: Religion
-        show: Show and entertainment
-        movie: Movie
-        sport: Sport
-        spot: Spot, Transition
-    target:
-      header: Desired state
-      description: So far, nobody knows how people who pay the fees would decide
-      series:
-        figure-out: That's what we need to figure out
+  actual:
+    header: As-is situation
+    description: >
+      This figure shows the actual expenditure by genre for broadcaster "Das
+      Erste" and "ZDF" (source:
+      <a href="https://kef-online.de/fileadmin/KEF/Dateien/Berichte/20._Bericht.pdf"
+      download>20th KEF report</a>)
+    source:
+    name:
+      dasErste: Das Erste
+      zdf: ZDF
+    yAxis: Millions of Euros
+    series:
+      events: Current events
+      family: Family, children and youth
+      series: Television Show, Series
+      culture: Culture, History and Science
+      music: Music
+      politics: Politics and Society
+      presenation: Presentation
+      quiz: Quiz and format development
+      religion: Religion
+      show: Show and entertainment
+      movie: Movie
+      sport: Sport
+      spot: Spot, Transition
   visualizations:
     header: Data visualizations
     labels:
