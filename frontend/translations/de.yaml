@@ -90,10 +90,8 @@ application:
 index:
   header:
     top: Der öffentlich-rechtliche Rundfunk erhält <b>{amount}</b> jedes Jahr.
-  action:
-    Du zahlst jeden Monat <span class="amount-color">{amount}</span></br>
-    und möchtest mitbestimmen?
-  manual: Verteile Deinen Rundfunkbeitrag auf Sendungen, die du unterstützen möchtest.
+  action: Verteile Deinen Rundfunkbeitrag
+  manual: Entscheide selbst, welche Sendungen Du unterstützen möchtest.
   start: jetzt mitbestimmen
   statistics:
     registered-users: Registrierte Nutzer
@@ -102,7 +100,7 @@ index:
     money-assigned: bereits zugewiesen
     link-to-statistics: Statistiken pro Sendung
   approval:
-    header: Verbessere die Programmqualität
+    header: Mehr Daten für Rundfunkmacher 
     content: >
       Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
       nach Deinen Kriterien bewerten. Fördere Deine Lieblingssendungen
@@ -112,7 +110,7 @@ index:
       find-broadcasts: Sendungen auswählen
       distribute: Budget verteilen
   statement:
-    header: Setze ein Zeichen für mehr Mitbestimmung
+    header: Mehr Einfluss für Beitragszahler
     content: >
       Die Bewertungsergebnisse sind nicht verbindlich, jedoch öffentlich und
       quantifizierbar. Dadurch erhalten Beitragszahler zum ersten Mal eine
@@ -204,7 +202,7 @@ index:
           Gebühren. Um eine Verbesserung herbeizuführen reicht das aber völlig
           aus. Denn wenige Daten sind beser als gar keine Daten.
       consumption:
-        title: Ich nutze den Rundfunk gar nicht, warum sollte ich mitmachen?
+        title: Was, wenn ich den Rundfunk gar nicht nutze?
         content: >
           Aber Du zahlst doch Rundfunkgebühren, oder? Dann solltest Du auch ein
           Recht auf Inhalte haben und darüber mitentscheiden können, wie Deine
