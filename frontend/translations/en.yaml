@@ -130,6 +130,8 @@ index:
       description: >
         This figure shows the actual expenditure by genre for broadcaster "Das
         Erste" (source: 20th KEF report)
+      name: Das Erste
+      yAxis: Millions of Euros
       series:
         sport: Sport
         politics: Politics & Society
