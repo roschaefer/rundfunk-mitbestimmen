@@ -100,7 +100,7 @@ index:
     money-assigned: bereits zugewiesen
     link-to-statistics: Statistiken pro Sendung
   approval:
-    header: Mehr Daten für Rundfunkmacher 
+    header: Mehr Daten für Rundfunkmacher
     content: >
       Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
       nach Deinen Kriterien bewerten. Fördere Deine Lieblingssendungen
@@ -139,28 +139,33 @@ index:
     actual:
       header: Tatsächliche Verteilung
       description: >
-        Ausgaben nach Genre, hier am Beispiel des Programms "Das Erste" (Quelle:
-        20. KEF Bericht)
+        Ausgaben nach Genre, hier am Beispiel der Sender "Das Erste"
+        und "ZDF" (Quelle: 20. KEF Bericht)
       yAxis: Millionen Euro
-      name: Das Erste
+      name:
+        dasErste: Das Erste
+        zdf: ZDF
       series:
-        sport: Sport
-        politics: Politik & Gesellschaft
-        television-play: Fernsehspiel
-        entertainment: Unterhaltung
-        movie: Spielfilm
-        family: Familie
-        culture: Kultur & Wissenschaft
-        religion: Religion
-        spot: Spot/Überleitung
+        events: Aktuelles
+        family: Familie, Kinder und Jugend
+        series: Fernsehspiel, Fernsehfilm, Serie
+        culture: Kultur, Geschichte und Wissenschaft
         music: Musik
+        politics: Politik und Gesellschaft
+        presenation: Präsentation
+        quiz: Quiz und Formatentwicklung
+        religion: Religion
+        show: Show, Unterhaltung
+        movie: Spielfilm
+        sport: Sport
+        spot: Spot/Überleitung
     target:
       header: Gewünschter Zustand
       description: >
         Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
       series:
         figure-out: Das gilt es herauszufinden
-  visualizations: 
+  visualizations:
     header: Datenvisualisierungen
     labels:
       rating: Was sind die beliebtesten Kategorien?
@@ -168,7 +173,7 @@ index:
       demography: Wie sieht die Alterspyramide der Unterstützer aus?
       trends: Wie entwickeln sich Sendungen, gibt es Trends?
       relations: Was gibt es für Beziehungen zwischen Sendungen?
-  summarized-statistics: 
+  summarized-statistics:
     header: Zusammgefasste Statistiken
   faq:
     questions:
