@@ -122,45 +122,51 @@
 
   <div class="centered row">
     <div class="ui relaxed grid">
-    <div class="centered row">
-      <h3>
-        {{t 'index.visualizations.header'}}
-      </h3>
-    </div>
-    <div class="five column row">
-      <div class="column">
-        {{#link-to 'visualize.diff'}}
+      <div class="centered row">
+        <h3>
+          {{t 'index.visualizations.header'}}
+        </h3>
+      </div>
+      <div class="five column row">
+        <div class="column">
+          {{#link-to 'visualize.diff'}}
           <img class="ui large image" src="assets/images/visualize/rating.svg">
           <h5>
             {{t 'index.visualizations.labels.rating'}}
           </h5>
-        {{/link-to}}
-      </div>
-      <div class="column">
-        <img class="ui large image" src="assets/images/visualize/geography.svg">
+          {{/link-to}}
+        </div>
+        <div class="column">
+          {{#link-to 'visualize.geo'}}
+          <img class="ui large image" src="assets/images/visualize/geography.svg">
           <h5>
             {{t 'index.visualizations.labels.geography'}}
           </h5>
-      </div>
-      <div class="column">
-        <img class="ui large image" src="assets/images/visualize/demography.svg">
+          {{/link-to}}
+        </div>
+        <div class="column">
+          <img class="ui large image" src="assets/images/visualize/demography.svg">
           <h5>
             {{t 'index.visualizations.labels.demography'}}
           </h5>
-      </div>
-      <div class="column">
-        <img class="ui large image" src="assets/images/visualize/trends.svg">
+        </div>
+        <div class="column">
+          {{#link-to 'visualize.time'}}
+          <img class="ui large image" src="assets/images/visualize/trends.svg">
           <h5>
             {{t 'index.visualizations.labels.trends'}}
           </h5>
-      </div>
-      <div class="column">
-        <img class="ui large image" src="assets/images/visualize/relations.svg">
+          {{/link-to}}
+        </div>
+        <div class="column">
+          {{#link-to 'visualize.graph'}}
+          <img class="ui large image" src="assets/images/visualize/relations.svg">
           <h5>
             {{t 'index.visualizations.labels.relations'}}
           </h5>
+          {{/link-to}}
+        </div>
       </div>
-    </div>
     </div>
   </div>
 
