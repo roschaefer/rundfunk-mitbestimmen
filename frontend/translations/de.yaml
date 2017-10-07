@@ -88,6 +88,7 @@ application:
   logout: Ausloggen
   login: Einloggen
 index:
+  link-to: Startseite
   header:
     top: Der öffentlich-rechtliche Rundfunk erhält <b>{amount}</b> jedes Jahr.
   action: Verteile Deinen Rundfunkbeitrag

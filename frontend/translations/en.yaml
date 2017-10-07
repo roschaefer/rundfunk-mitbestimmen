@@ -88,6 +88,7 @@ application:
   logout: Log out
   login: Log in
 index:
+  link-to: Back to home
   header:
     top: Public broadcasting in Germany gets <b>{amount}</b> every year.
   action: Spend your broadcasting fees
