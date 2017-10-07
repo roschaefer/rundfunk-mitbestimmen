@@ -419,6 +419,7 @@ visualize:
     headers:
       diff: Erwartungswert vs. tatsächlicher Betrag
       geo: Geographische Visualisierung
+      demography: Demographische Visualisierung
       time: Veränderungen über die Zeit
       graph: Beziehungen zwischen Sendungen
   overview: Visualisierungsübersicht
@@ -500,6 +501,18 @@ visualize:
       users: Nutzer
       of-the-world: aller Nutzer
       of-germany: aller deutschen Nutzer
+  demography:
+    header: Demographische Visualisierung
+    sub-header: >
+      Wie sieht die Bevölkerungspyramide der Unterstützer einer Sendung aus?
+    paragraph:
+      explanation: >
+        Hier sieht man für eine beliebige Sendung eine Alterspyramide. Benutzer
+        können ihr ungefähres Alter und ihr Geschlecht mit einem Klick auf
+        die richtige Stelle mitteilen.
+      reason: >
+        Sender können so das Program anpassen, damit für jede und jeden etwas
+        dabei ist und für jedes Alter.
   time:
     header: Veränderungen über die Zeit
     sub-header: >

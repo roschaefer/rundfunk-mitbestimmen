@@ -478,6 +478,17 @@ visualize:
       users: User
       of-the-world: of all users
       of-germany: of German users
+  demography:
+    header: Demographic visualization
+    sub-header: >
+      What is the population pyramid of the supporters of a broadcast?
+    paragraph:
+      explanation: >
+        Here you can see a population pyramid for a broadcast. Users can
+        tell their approximate age and gender with a click on the right position.
+      reason: >
+        Broadcasters can thus adapt their program, to have something for everyone
+        and for all ages.
   time:
     header: Changes over time
     sub-header: >
