@@ -66,7 +66,7 @@
   </div>
 
   <div class="row">
-    <div class="ui huge three steps">
+    <div class="ui large three steps">
       <div class="step">
         <i class="unhide icon"></i>
         <div class="content">
@@ -90,6 +90,24 @@
             {{t 'index.approval.steps.distribute' }}
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="one column centered row">
+    <div class="twelve wide center aligned column">
+      <div class="row">
+        <h1>
+          {{t 'index.goal.actual.header'}}
+        </h1>
+      </div>
+      <div class="row">
+        {{dynamic-high-charts chartOptions=actualChartOptions content=actualChartData}}
+      </div>
+      <div class="row">
+        <p>
+          {{t 'index.goal.actual.description'}}
+        </p>
       </div>
     </div>
   </div>
@@ -118,39 +136,6 @@
             {{t 'index.tv-ratings.content.right' htmlSafe=true}}
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="two column centered row">
-    <div class="seven wide center aligned column">
-      <div class="row">
-        <h1>
-          {{t 'index.goal.actual.header'}}
-        </h1>
-      </div>
-      <div class="row">
-        {{high-charts chartOptions=actualChartOptions content=actualChartData}}
-      </div>
-      <div class="row">
-        <h3>
-          {{t 'index.goal.actual.description'}}
-        </h3>
-      </div>
-    </div>
-    <div class="seven wide center aligned column">
-      <div class="row">
-        <h1>
-          {{t 'index.goal.target.header'}}
-        </h1>
-      </div>
-      <div class="row">
-        {{high-charts chartOptions=targetChartOptions content=targetChartData}}
-      </div>
-      <div class="row">
-        <h3>
-          {{t 'index.goal.target.description'}}
-        </h3>
       </div>
     </div>
   </div>

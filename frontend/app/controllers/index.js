@@ -2,38 +2,45 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   intl: Ember.inject.service(),
-  annualBudget: 8000000000,
-  actualChartOptions: {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
-    },
-    title: {
-      text: ''
-    },
-    tooltip: {
-      pointFormat: '<b>{point.y:.3f} Mio. € ({point.percentage:.1f}%</b>)'
-    },
-    legend: {
-      itemDistance: 10
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: false
-        },
-        showInLegend: true,
-      }
-    },
-  },
+  actualChartOptions: Ember.computed('intl.locale', function() {
+    return {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'column'
+      },
+      title: {
+        text: ''
+      },
+      yAxis: {
+        title: {
+          text: this.get('intl').t('index.goal.actual.yAxis'),
+        }
+      },
+      tooltip: {
+        pointFormat: '<b>{point.y:.3f} Mio. €</b>'
+      },
+      legend: {
+        itemDistance: 10
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true,
+        }
+      },
+    }
+  }),
   actualChartData: Ember.computed('intl.locale', function() {
     return [{
       innerSize: '50%',
       colorByPoint: true,
+      name:  this.get('intl').t('index.goal.actual.name'),
       data: [{
         name:  this.get('intl').t('index.goal.actual.series.sport'),
         y: 461.833
@@ -67,48 +74,4 @@ export default Ember.Controller.extend({
       } ]
     }];
   }),
-  targetChartOptions: {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
-    },
-    title: {
-      useHTML: true,
-      text: '<h1>?</h1>',
-      align: 'center',
-      verticalAlign: 'middle',
-      y: -40,
-    },
-    tooltip: {
-      enabled: false,
-    },
-    legend: {
-      margin: 40
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: false
-        },
-        borderWidth: 0.5,
-        borderColor: null,
-        showInLegend: true,
-      },
-    },
-  },
-  targetChartData: Ember.computed('intl.locale', function() {
-    return [{
-      innerSize: '50%',
-      colorByPoint: true,
-      data: [{
-        name: this.get('intl').t('index.goal.target.series.figure-out'),
-        color: '#BBBBBB',
-        y: 1
-      }]
-    }];
-  })
 });

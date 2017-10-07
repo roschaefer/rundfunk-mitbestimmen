@@ -141,6 +141,8 @@ index:
       description: >
         Ausgaben nach Genre, hier am Beispiel des Programms "Das Erste" (Quelle:
         20. KEF Bericht)
+      yAxis: Millionen Euro
+      name: Das Erste
       series:
         sport: Sport
         politics: Politik & Gesellschaft
