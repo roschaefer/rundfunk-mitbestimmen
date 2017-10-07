@@ -73,7 +73,7 @@ application:
   menu:
     item:
       find-broadcasts: Sendungen finden
-      invoice: Meine Sendungen
+      invoice: Meine Auswahl
       statistics: Statistik
       visualization: Visualisierung
   language-chooser:
