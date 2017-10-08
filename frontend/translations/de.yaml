@@ -90,7 +90,7 @@ application:
 index:
   link-to: Zurück zur Startseite
   masthead:
-    header: Verteile Deinen Rundfunkbeitrag
+    header: Verteile Deinen Rundfunk&shy;beitrag
     sub-header: Entscheide selbst, welche Sendungen Du unterstützen möchtest.
     call-to-action: jetzt mitbestimmen
     steps:
