@@ -3,10 +3,10 @@
   <div class="masthead one column row">
     <div class="center aligned stretched column">
       <div class="ui row">
-        <h1 class="header">
-          {{t 'index.masthead.header' }}
+        <h1 class="masthead-header">
+          {{t 'index.masthead.header' htmlSafe=true }}
         </h1>
-        <h3 class="ui header intro-text">
+        <h3 class="masthead-sub-header">
           {{t 'index.masthead.sub-header'}}
         </h3>
         {{#link-to 'find-broadcasts'
