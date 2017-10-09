@@ -71,17 +71,17 @@ class BroadcastsController < ApplicationController
 
   def order_broadcasts
     @broadcasts = if params[:sort] == 'random'
-                    if params[:seed]
-                      clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
-                      query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
-                      Broadcast.connection.execute(query)
-                    end
-                    @broadcasts.order('RANDOM()')
-                  elsif params[:sort] == 'desc'
-                    @broadcasts.order(title: :desc)
-                  else # have at least one order for repeatable pagination
-                    @broadcasts.order(title: :asc)
-                  end
+      if params[:seed]
+        clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
+        query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
+        Broadcast.connection.execute(query)
+      end
+      @broadcasts.order('RANDOM()')
+    elsif params[:sort] == 'desc'
+      @broadcasts.reorder(title: :desc)
+    else # have at least one order for repeatable pagination
+      @broadcasts.reorder(title: :asc)
+    end
   end
 
   def filter_broadcasts
