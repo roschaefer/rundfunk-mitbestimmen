@@ -3046,9 +3046,9 @@ ember-data-factory-guy@2.13.7:
     ember-cli-babel "^6.7.0"
     jquery-mockjax "^2.2.1"
 
-ember-data@^2.16.1:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.16.1.tgz#4f82fd3f2e516a7a358a202e42e6e73c683cab67"
+ember-data@^2.16.2:
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.16.2.tgz#e88c19d2e5f334f57a9300d1d18430f9fb61a234"
   dependencies:
     amd-name-resolver "0.0.7"
     babel-plugin-feature-flags "^0.3.1"
