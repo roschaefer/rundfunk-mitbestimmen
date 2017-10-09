@@ -343,7 +343,7 @@ Then(/^I see a form to enter a title and a description$/) do
   expect(page).to have_field('description')
 end
 
-Given(/^one broadcast with title "([^"]*)"$/) do |title|
+Given(/^(?:I have )?one broadcast with title "([^"]*)"$/) do |title|
   @broadcast = create(:broadcast, title: title)
 end
 
@@ -353,8 +353,16 @@ When(/^I search for "([^"]*)"$/) do |query|
   click_on 'submit-search'
 end
 
+When("I click on alphabetical_order_descending") do
+  click_on 'alphabetical_order_descending'
+end
+
 Then(/^there is exactly one search result$/) do
   expect(page).to have_text("1 result")
+end
+
+Then("there are exactly {int} search results") do |count|
+  expect(page).to have_text("#{count} result")
 end
 
 Then(/^the only displayed broadcast has the title:$/) do |title|
@@ -661,6 +669,10 @@ Then(/^the stations are ordered like this:$/) do |table|
   within('.filter-stations-field') do
     expect(all('.item:not(.blank)').map(&:text)).to eq(table.rows.flatten)
   end
+end
+
+Then(/^the results are ordered like this:$/) do |table|
+  expect(all('.decision-card .title').map(&:text)).to eq(table.rows.flatten)
 end
 
 Given(/^we have some more stations:$/) do |table|

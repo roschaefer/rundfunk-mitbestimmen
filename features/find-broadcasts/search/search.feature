@@ -18,3 +18,18 @@ Feature: Search on find broadcasts page
     """
     Search for: keyword
     """
+
+  Scenario: Sort by title
+    Given I have one broadcast with title "Mickey Mouse Film"
+    And one broadcast with title "Popeye Film"
+    And one broadcast with title "Tom und Jerry Film"
+    And one broadcast with title "I am different"
+    And I visit the find broadcasts page
+    When I search for "Film"
+    And I click on alphabetical_order_descending
+    Then there are exactly 3 search results
+    And the results are ordered like this:
+      | Title               |
+      | Tom und Jerry Film  |
+      | Popeye Film         |
+      | Mickey Mouse Film   |
