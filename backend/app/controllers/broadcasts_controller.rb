@@ -78,9 +78,9 @@ class BroadcastsController < ApplicationController
                     end
                     @broadcasts.order('RANDOM()')
                   elsif params[:sort] == 'desc'
-                    @broadcasts.order(title: :desc)
+                    @broadcasts.reorder(title: :desc)
                   else # have at least one order for repeatable pagination
-                    @broadcasts.order(title: :asc)
+                    @broadcasts.reorder(title: :asc)
                   end
   end
 
