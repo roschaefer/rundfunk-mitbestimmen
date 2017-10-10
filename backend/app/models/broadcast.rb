@@ -37,7 +37,7 @@ class Broadcast < ApplicationRecord
     Broadcast.joins(Broadcast.arel_table.create_join(join_table_alias, aliased_join, Arel::Nodes::InnerJoin))
   end)
 
-  scope :where_station, ( ->(station) { aliased_inner_join(:schedule_table_alias, Schedule).where("schedule_table_alias.station_id" =>  station) } )
+  scope :where_station, (->(station) { aliased_inner_join(:schedule_table_alias, Schedule).where('schedule_table_alias.station_id' => station) })
 
   before_validation do
     if title
@@ -54,33 +54,33 @@ class Broadcast < ApplicationRecord
       results = results.where_station(filter_params[:station]) unless filter_params[:station].blank?
       results = results.review_filter(filter_params[:review], user) unless filter_params[:review].blank?
     end
-    results = results.results_order(sort, seed: seed) if ["asc", "desc", "random"].include?(sort)
+    results = results.results_order(sort, seed: seed) if %w[asc desc random].include?(sort)
 
     results
   end
 
-  private
-
   def self.review_filter(review_status, user)
     if review_status == 'reviewed'
-      self.evaluated(user).includes(:impressions)
+      evaluated(user).includes(:impressions)
     elsif review_status == 'unreviewed'
-      self.unevaluated(user)
+      unevaluated(user)
     end
   end
 
   def self.results_order(sort, seed: nil)
-    if ["asc", "desc"].include?(sort)
-      self.reorder(title: sort) 
-    elsif sort == "random"
+    if %w[asc desc].include?(sort)
+      reorder(title: sort)
+    elsif sort == 'random'
       if seed
         clamp_seed = [seed.to_f, -1, 1].sort[1] # seed is in [-1, 1]
         query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
         Broadcast.connection.execute(query)
       end
-      self.order('RANDOM()')
+      order('RANDOM()')
     end
   end
+
+  private
 
   def description_should_not_contain_urls
     return unless description =~ URI.regexp(%w[http https])
