@@ -72,19 +72,32 @@
 
   <div class="one column centered row">
     <div class="center aligned column">
-      <div class="row">
+      {{#ui-dimmer onElement=".ui.basic.segment" as |execute|}}
+
+      <div class="ui basic segment">
         <h3>
           {{t 'index.actual.header'}}
         </h3>
-      </div>
-      <div class="row">
         {{dynamic-high-charts chartOptions=actualChartOptions content=actualChartData}}
-      </div>
-      <div class="row">
         <p>
           {{t 'index.actual.description' htmlSafe=true}}
         </p>
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <h1 class="ui inverted icon header">
+              <i class="line chart icon"></i>
+              {{t 'index.actual.answer'}}
+            </h1>
+          </div>
+        </div>
       </div>
+      </div>
+
+      <button class="ui primary button" {{action execute 'toggle'}}>
+        {{t 'index.actual.question'}}
+      </button>
+      {{/ui-dimmer}}
     </div>
   </div>
 
