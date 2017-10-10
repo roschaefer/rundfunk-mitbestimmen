@@ -89,7 +89,7 @@ p {
 
 .masthead.row {
   display: flex;
-  min-height: 70vh;
+  min-height: 71vh;
   flex-direction: column;
 }
 
