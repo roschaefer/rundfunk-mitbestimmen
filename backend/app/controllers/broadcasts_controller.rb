@@ -5,11 +5,10 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-
-    @broadcasts = Broadcast.search(query: params[:q], 
-      filter_params: params[:filter], 
-      sort: params[:sort], seed: params[:seed], 
-      user: current_user)
+    @broadcasts = Broadcast.search(query: params[:q],
+                                   filter_params: params[:filter],
+                                   sort: params[:sort], seed: params[:seed],
+                                   user: current_user)
 
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
@@ -59,5 +58,4 @@ class BroadcastsController < ApplicationController
   def broadcast_params
     ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description medium stations])
   end
-  
 end
