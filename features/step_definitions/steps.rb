@@ -957,3 +957,22 @@ Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
   station_names = broadcast.stations.map(&:name)
   expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
 end
+
+Given("Broadcast {string} was updated {int} days ago") do |title, num|
+  broadcast = Broadcast.find_or_create_by(title: title)
+  broadcast.update_column(:updated_at, num.days.ago)
+end
+
+Given("I am on the edit page for Broadcast {string}") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}/edit"
+end
+
+Then("I can see {string} TODAY") do |label|
+  expect(find("span.updatedAt").text).to eq "#{label}: #{Date.today.strftime('%d/%m/%Y')}"
+end
+
+When("I visit the broadcast page for {string}") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}"
+end
