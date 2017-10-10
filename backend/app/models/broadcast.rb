@@ -52,7 +52,7 @@ class Broadcast < ApplicationRecord
     if filter_params
       results = results.where(medium: filter_params[:medium]) unless filter_params[:medium].blank?
       results = results.where_station(filter_params[:station]) unless filter_params[:station].blank?
-      results = results.review_filter(filter_params[:review], user) unless filter_params[:review].blank?
+      results = results.review_filter(filter_params[:review], user) unless filter_params[:review].blank? or user.nil?
     end
     results = results.results_order(sort, seed: seed) if %w[asc desc random].include?(sort)
 
