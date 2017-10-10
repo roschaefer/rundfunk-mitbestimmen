@@ -353,10 +353,6 @@ When(/^I search for "([^"]*)"$/) do |query|
   click_on 'submit-search'
 end
 
-When("I click on alphabetical_order_descending") do
-  click_on 'alphabetical_order_descending'
-end
-
 Then(/^there is exactly one search result$/) do
   expect(page).to have_text("1 result")
 end
