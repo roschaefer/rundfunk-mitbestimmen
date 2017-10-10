@@ -27,6 +27,7 @@ class Broadcast < ApplicationRecord
   validate :description_should_not_contain_urls
 
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
+  scope :evaluated, (->(user) { where(id: user.broadcasts.pluck(:id)) })
   # TODO: Replace with SQL query, user.broadcasts.pluck(:id) might become large
 
   scope :aliased_inner_join, (lambda do |the_alias, joined_model|
@@ -36,10 +37,46 @@ class Broadcast < ApplicationRecord
     Broadcast.joins(Broadcast.arel_table.create_join(join_table_alias, aliased_join, Arel::Nodes::InnerJoin))
   end)
 
+  scope :where_station, (->(station) { aliased_inner_join(:schedule_table_alias, Schedule).where('schedule_table_alias.station_id' => station) })
+
   before_validation do
     if title
       self.title = title.gsub(/\s+/, ' ')
       self.title = title.strip
+    end
+  end
+
+  def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
+    results = Broadcast.all.includes(:impressions)
+    results = results.full_search(query) unless query.blank?
+    if filter_params
+      results = results.where(medium: filter_params[:medium]) unless filter_params[:medium].blank?
+      results = results.where_station(filter_params[:station]) unless filter_params[:station].blank?
+      results = results.review_filter(filter_params[:review], user) unless filter_params[:review].blank? || user.nil?
+    end
+    results = results.results_order(sort, seed: seed) if %w[asc desc random].include?(sort)
+
+    results
+  end
+
+  def self.review_filter(review_status, user)
+    if review_status == 'reviewed'
+      evaluated(user).includes(:impressions)
+    elsif review_status == 'unreviewed'
+      unevaluated(user)
+    end
+  end
+
+  def self.results_order(sort, seed: nil)
+    if %w[asc desc].include?(sort)
+      reorder(title: sort)
+    elsif sort == 'random'
+      if seed
+        clamp_seed = [seed.to_f, -1, 1].sort[1] # seed is in [-1, 1]
+        query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
+        Broadcast.connection.execute(query)
+      end
+      order('RANDOM()')
     end
   end
 

@@ -3,12 +3,15 @@ require 'support/shared_examples/database_unique_attribute'
 
 RSpec.describe Broadcast, type: :model do
   subject { broadcast }
+
   let(:broadcast) { build(:broadcast) }
+
   describe '#title' do
     describe 'title nil' do
       let(:broadcast) { build(:broadcast, title: nil) }
       it { is_expected.not_to be_valid }
     end
+
     describe 'empty title' do
       let(:broadcast) { build(:broadcast, title: '  ') }
       it { is_expected.not_to be_valid }
@@ -49,11 +52,14 @@ RSpec.describe Broadcast, type: :model do
 
   describe '#aliased_inner_join' do
     let(:the_alias) { :aliased_join_table }
+
     let(:relation) { described_class.aliased_inner_join(the_alias, association) }
+
     context 'on Schedule' do
       let(:association) { Schedule }
       let(:broadcast) { create(:broadcast, title: 'ABCD', stations: create_list(:station, 1, id: 1)) }
       before { broadcast }
+
       describe 'is chainable' do
         let(:first_chain) { relation.where('"aliased_join_table"."station_id" = 1') }
         subject { first_chain }
@@ -64,6 +70,7 @@ RSpec.describe Broadcast, type: :model do
             subject { first_chain.full_search('ABCD') }
             it { is_expected.to eq [broadcast] }
           end
+
           describe '#unevaluated' do
             let(:user) { create(:user) }
             subject { first_chain.unevaluated(user) }
@@ -78,7 +85,9 @@ RSpec.describe Broadcast, type: :model do
     before do
       create_list(:broadcast, 10)
     end
+
     let(:station) { create(:station, name: 'Das Erste') }
+
     let(:searched_broadcast) do
       create(:broadcast, title: 'It\s me!',
                          description: 'This is the best broadcast ever',
@@ -103,6 +112,58 @@ RSpec.describe Broadcast, type: :model do
     describe 'retrieves broadcasts with a similar station name regardless a typo' do
       subject { described_class.full_search 'Das Erte' }
       it { is_expected.to include(searched_broadcast) }
+    end
+  end
+
+  describe '#search' do
+    before do
+      create_list(:broadcast, 2)
+    end
+
+    let(:station) { create(:station, name: 'Das Erste') }
+
+    let(:medium) { create(:medium, name: 'WebTV') }
+
+    let!(:searched_broadcast) do
+      create(:broadcast, title: 'A Mickey Mouse Film',
+                         description: 'This is the best broadcast ever',
+                         medium: medium,
+                         stations: [station])
+    end
+
+    context 'default search' do
+      subject { described_class.search.length }
+      it { is_expected.to eq(described_class.count) }
+    end
+
+    context 'search by title' do
+      subject { described_class.search(query: 'Film') }
+      it { is_expected.to include(searched_broadcast) }
+    end
+
+    context 'filter by medium' do
+      subject { described_class.search(filter_params: { medium: medium }) }
+      it { is_expected.to include(searched_broadcast) }
+    end
+
+    context 'filter by station' do
+      subject { described_class.search(filter_params: { station: station }) }
+      it { is_expected.to include(searched_broadcast) }
+    end
+
+    context 'sort by alphabetical order' do
+      before do
+        create(:broadcast, title: 'Popeye Film')
+        create(:broadcast, title: 'Tom und Jerry Film')
+      end
+
+      it 'sorts by title ascending' do
+        expect(described_class.search(query: 'Film', sort: 'asc').first.title).to eq(searched_broadcast.title)
+      end
+
+      it 'sorts by title descending' do
+        expect(described_class.search(query: 'Film', sort: 'desc').last.title).to eq(searched_broadcast.title)
+      end
     end
   end
 
