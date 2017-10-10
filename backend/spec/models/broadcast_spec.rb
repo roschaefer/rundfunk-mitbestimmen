@@ -2,13 +2,11 @@ require 'rails_helper'
 require 'support/shared_examples/database_unique_attribute'
 
 RSpec.describe Broadcast, type: :model do
-
   subject { broadcast }
 
   let(:broadcast) { build(:broadcast) }
 
   describe '#title' do
-
     describe 'title nil' do
       let(:broadcast) { build(:broadcast, title: nil) }
       it { is_expected.not_to be_valid }
@@ -42,7 +40,6 @@ RSpec.describe Broadcast, type: :model do
         end
       end
     end
-
   end
 
   describe '#broadcast_id' do
@@ -54,7 +51,6 @@ RSpec.describe Broadcast, type: :model do
   end
 
   describe '#aliased_inner_join' do
-
     let(:the_alias) { :aliased_join_table }
 
     let(:relation) { described_class.aliased_inner_join(the_alias, association) }
@@ -70,7 +66,6 @@ RSpec.describe Broadcast, type: :model do
         it { is_expected.to eq [broadcast] }
 
         describe 'and can be chained on' do
-
           describe '#full_search' do
             subject { first_chain.full_search('ABCD') }
             it { is_expected.to eq [broadcast] }
@@ -87,7 +82,6 @@ RSpec.describe Broadcast, type: :model do
   end
 
   describe '#full_search' do
-
     before do
       create_list(:broadcast, 10)
     end
@@ -138,22 +132,22 @@ RSpec.describe Broadcast, type: :model do
     end
 
     context 'default search' do
-      subject { described_class.search().length }
-      it {is_expected.to eq(described_class.count) }
+      subject { described_class.search.length }
+      it { is_expected.to eq(described_class.count) }
     end
 
     context 'search by title' do
-      subject { described_class.search(query: "Film") }
+      subject { described_class.search(query: 'Film') }
       it { is_expected.to include(searched_broadcast) }
     end
 
     context 'filter by medium' do
-      subject { described_class.search(filter_params: {medium: medium}) }
+      subject { described_class.search(filter_params: { medium: medium }) }
       it { is_expected.to include(searched_broadcast) }
     end
 
     context 'filter by station' do
-      subject { described_class.search(filter_params: {station: station}) }
+      subject { described_class.search(filter_params: { station: station }) }
       it { is_expected.to include(searched_broadcast) }
     end
 
@@ -164,19 +158,14 @@ RSpec.describe Broadcast, type: :model do
       end
 
       it 'sorts by title ascending' do
-        expect(described_class.search(query: "Film", sort: "asc").first.title).to eq(searched_broadcast.title)
+        expect(described_class.search(query: 'Film', sort: 'asc').first.title).to eq(searched_broadcast.title)
       end
 
       it 'sorts by title descending' do
-        expect(described_class.search(query: "Film", sort: "desc").last.title).to eq(searched_broadcast.title)
+        expect(described_class.search(query: 'Film', sort: 'desc').last.title).to eq(searched_broadcast.title)
       end
     end
 
-    context 'reviewed and not reviewed by user' do
-
-
-
-    end
   end
 
   describe '#valid?' do
