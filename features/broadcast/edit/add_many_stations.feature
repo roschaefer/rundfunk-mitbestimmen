@@ -31,3 +31,11 @@ Feature: Add many stations
       | Das Erste     |
       | WDR Fernsehen |
       | KiKA          |
+
+  Scenario: Fix Displayed updated at should include associations
+    Given Broadcast "Die Sendung mit der Maus" was updated 3 days ago
+    And I am on the edit page for Broadcast "Die Sendung mit der Maus"
+    When I add "WDR Fernsehen" to the list of stations
+    And I click on "Update"
+    And I visit the broadcast page for "Die Sendung mit der Maus"
+    Then I can see "Last updated at" TODAY
