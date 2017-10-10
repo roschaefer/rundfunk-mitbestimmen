@@ -5,12 +5,10 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
-    @broadcasts = Broadcast.all.includes(:impressions)
-
-    @broadcasts = @broadcasts.full_search(params[:q]) if params[:q].present?
-
-    filter_broadcasts
-    order_broadcasts
+    @broadcasts = Broadcast.search(query: params[:q],
+                                   filter_params: params[:filter],
+                                   sort: params[:sort], seed: params[:seed],
+                                   user: current_user)
 
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
@@ -59,43 +57,5 @@ class BroadcastsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def broadcast_params
     ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description medium stations])
-  end
-
-  def reviewed_broadcasts
-    @broadcasts = current_user.broadcasts.includes(:impressions)
-  end
-
-  def unreviewed_broadcasts
-    @broadcasts = @broadcasts.unevaluated(current_user)
-  end
-
-  def order_broadcasts
-    @broadcasts = if params[:sort] == 'random'
-                    if params[:seed]
-                      clamp_seed = [params[:seed].to_f, -1, 1].sort[1] # seed is in [-1, 1]
-                      query = Broadcast.send(:sanitize_sql, ['select setseed( ? )', clamp_seed])
-                      Broadcast.connection.execute(query)
-                    end
-                    @broadcasts.order('RANDOM()')
-                  elsif params[:sort] == 'desc'
-                    @broadcasts.order(title: :desc)
-                  else # have at least one order for repeatable pagination
-                    @broadcasts.order(title: :asc)
-                  end
-  end
-
-  def filter_broadcasts
-    filter_params = params[:filter]
-    return unless filter_params
-
-    @broadcasts = @broadcasts.where(medium: filter_params[:medium]) if filter_params[:medium].present?
-    @broadcasts = @broadcasts.joins(:stations).where('stations.id' => [filter_params[:station]]) if filter_params[:station].present?
-
-    return unless current_user
-    if filter_params[:review] == 'reviewed'
-      reviewed_broadcasts
-    elsif filter_params[:review] == 'unreviewed'
-      unreviewed_broadcasts
-    end
   end
 end

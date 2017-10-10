@@ -343,7 +343,7 @@ Then(/^I see a form to enter a title and a description$/) do
   expect(page).to have_field('description')
 end
 
-Given(/^one broadcast with title "([^"]*)"$/) do |title|
+Given(/^(?:I have )?one broadcast with title "([^"]*)"$/) do |title|
   @broadcast = create(:broadcast, title: title)
 end
 
@@ -355,6 +355,10 @@ end
 
 Then(/^there is exactly one search result$/) do
   expect(page).to have_text("1 result")
+end
+
+Then("there are exactly {int} search results") do |count|
+  expect(page).to have_text("#{count} result")
 end
 
 Then(/^the only displayed broadcast has the title:$/) do |title|
@@ -663,6 +667,10 @@ Then(/^the stations are ordered like this:$/) do |table|
   end
 end
 
+Then(/^the results are ordered like this:$/) do |table|
+  expect(all('.decision-card .title').map(&:text)).to eq(table.rows.flatten)
+end
+
 Given(/^we have some more stations:$/) do |table|
   table.hashes.each do |row|
     medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
@@ -744,16 +752,18 @@ When(/^download the chart as SVG$/) do
   find('.highcharts-menu-item', text: 'SVG').click
 end
 
-def strip_highcharts_svg(content)
-  result = content
-  result = result.gsub(/\(#highcharts-[^)]*\)/, '(#highcharts)')
-  result = result.gsub(/"highcharts-[^"]*"/, '"highcharts"')
-  result
+def normalize_highcharts_svg(content)
+  doc = Nokogiri::HTML(content)
+  doc.css('*').remove_attr('style')
+  doc.css('*').remove_attr('id')
+  doc.css('*').remove_attr('clip-path')
+  doc.css('desc').remove
+  doc.to_s
 end
 
 Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do |path|
-  expected_content = strip_highcharts_svg(File.read(feature_directory.join(path)))
-  actual_content = strip_highcharts_svg(download_content)
+  expected_content = normalize_highcharts_svg(File.read(feature_directory.join(path)))
+  actual_content = normalize_highcharts_svg(download_content)
   expect(expected_content).to eq actual_content
 end
 
