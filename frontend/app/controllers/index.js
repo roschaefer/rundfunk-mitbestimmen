@@ -15,19 +15,19 @@ export default Ember.Controller.extend({
       },
       xAxis:{
         categories: [
-          this.get('intl').t('index.actual.series.events'),
-          this.get('intl').t('index.actual.series.family'),
-          this.get('intl').t('index.actual.series.series'),
-          this.get('intl').t('index.actual.series.culture'),
-          this.get('intl').t('index.actual.series.music'),
-          this.get('intl').t('index.actual.series.politics'),
-          this.get('intl').t('index.actual.series.presenation'),
           this.get('intl').t('index.actual.series.quiz'),
-          this.get('intl').t('index.actual.series.religion'),
-          this.get('intl').t('index.actual.series.show'),
-          this.get('intl').t('index.actual.series.movie'),
-          this.get('intl').t('index.actual.series.sport'),
           this.get('intl').t('index.actual.series.spot'),
+          this.get('intl').t('index.actual.series.music'),
+          this.get('intl').t('index.actual.series.religion'),
+          this.get('intl').t('index.actual.series.presenation'),
+          this.get('intl').t('index.actual.series.culture'),
+          this.get('intl').t('index.actual.series.family'),
+          this.get('intl').t('index.actual.series.events'),
+          this.get('intl').t('index.actual.series.movie'),
+          this.get('intl').t('index.actual.series.show'),
+          this.get('intl').t('index.actual.series.politics'),
+          this.get('intl').t('index.actual.series.series'),
+          this.get('intl').t('index.actual.series.sport'),
         ],
       },
       yAxis: {
@@ -44,11 +44,11 @@ export default Ember.Controller.extend({
     return [{
       name:  this.get('intl').t('index.actual.name.dasErste'),
       color: '#1e5b9a',
-      data: [ 0, 114.9923, 262.7471, 50.9954, 1.6636, 309.7525, 0, 0, 10.0774, 225.5548, 213.7767, 461.8339, 3.6481]
+      data: [ 0, 3.6481, 1.6636, 10.0774, 0, 50.9954, 114.9923, 0, 213.7767, 225.5548, 309.7525, 262.7471, 461.8339 ]
     },{
       name:  this.get('intl').t('index.actual.name.zdf'),
       color: '#fa7d19',
-      data: [171.697, 36.490, 422.425, 86.055, 6.201, 172.130, 32.672, 32, 0, 160.639, 73.300, 368.039, 0]
+      data: [ 0.03, 0, 6.20, 0, 32.67, 86.06, 36.49, 171.70, 73.30, 160.64, 172.13, 422.425, 368.04 ]
     }];
   }),
 });
