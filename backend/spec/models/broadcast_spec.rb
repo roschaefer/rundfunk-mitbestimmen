@@ -165,7 +165,6 @@ RSpec.describe Broadcast, type: :model do
         expect(described_class.search(query: 'Film', sort: 'desc').last.title).to eq(searched_broadcast.title)
       end
     end
-
   end
 
   describe '#valid?' do
