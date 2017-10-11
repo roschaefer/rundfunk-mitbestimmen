@@ -22,7 +22,7 @@
     "broccoli-asset-rev": "^2.6.0",
     "broccoli-webpack": "^1.0.0",
     "ember-chroma-shim": "^1.0.2",
-    "ember-cli": "^2.15.1",
+    "ember-cli": "^2.16.1",
     "ember-cli-app-version": "^3.1.0",
     "ember-cli-babel": "^6.8.2",
     "ember-cli-chai": "^0.4.3",
