@@ -33,9 +33,13 @@ Feature: Add many stations
       | KiKA          |
 
   Scenario: Fix Displayed updated at should include associations
-    Given Broadcast "Die Sendung mit der Maus" was updated 3 days ago
-    And I am on the edit page for Broadcast "Die Sendung mit der Maus"
+    Given the current date is "2017-02-02"
+    And we have these broadcasts in our database:
+      | Title                    | Station   | Medium | Created at       | Updated at       |
+      | Tom und Jerry            | Das Erste | TV     | 2017-02-02 15:00 | 2017-02-02 15:00 |
+    And I am on the edit page for Broadcast "Tom und Jerry"
     When I add "WDR Fernsehen" to the list of stations
+    And the current date is now
     And I click on "Update"
-    And I visit the broadcast page for "Die Sendung mit der Maus"
-    Then I can see "Last updated at" TODAY
+    And I am on the broadcast page for "Tom und Jerry"
+    Then I can see Last updated at is not "02/02/2017"
