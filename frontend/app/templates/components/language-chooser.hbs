@@ -1,8 +1,11 @@
-<a href='#' class="language item" {{action 'choose' 'de'}}>
-  <i class="de flag"></i>
-  {{t 'application.language-chooser.german'}}
-</a >
-<a href='#' class="language item" {{action 'choose' 'en'}}>
-  <i class="gb flag"></i>
-  {{t 'application.language-chooser.english'}}
-</a>
+{{#if (eq intl.locale.firstObject 'de')}}
+  <a href='#' class="language item" {{action 'choose' 'en'}}>
+    <i class="gb flag"></i>
+    {{t 'application.language-chooser.english'}}
+  </a>
+{{else}}
+  <a href='#' class="language item" {{action 'choose' 'de'}}>
+    <i class="de flag"></i>
+    {{t 'application.language-chooser.german'}}
+  </a >
+{{/if}}

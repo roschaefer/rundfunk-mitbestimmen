@@ -1,39 +1,46 @@
-<div id="main-menu" class="ui stackable inverted menu">
+<div class="ui top attached inverted segment">
   <div class="ui container">
-    {{#link-to 'index' class='header item logo'}}
-      Rundfunk<br/>MITBESTIMMEN
-    {{/link-to}}
+    <div id="main-menu" class="ui stackable secondary inverted pointing menu">
+      <div class="ui left small inverted menu">
+        {{#link-to 'index' class='header item'}}
+        <img class="ui bottom aligned mini image" src="assets/images/logo.svg">
+        Rundfunk<br>
+        MITBESTIMMEN
+        {{/link-to}}
 
-    {{#link-to 'find-broadcasts' (query-params q=null) class='item' }}
-      {{t 'application.menu.item.find-broadcasts'}}
-    {{/link-to}}
+        {{#link-to 'find-broadcasts' (query-params q=null) class='item' }}
+        {{t 'application.menu.item.find-broadcasts'}}
+        {{/link-to}}
 
-    {{#if session.isAuthenticated}}
-      {{#link-to 'invoice' class='item'}}
-        {{t 'application.menu.item.invoice'}}
-      {{/link-to}}
-    {{/if}}
-
-    {{#link-to 'statistics' class='item'}}
-      {{t 'application.menu.item.statistics'}}
-    {{/link-to}}
-
-    {{#link-to 'visualize' class='item'}}
-      {{t 'application.menu.item.visualization'}}
-    {{/link-to}}
-
-    <div class="inverted ui right stackable menu">
-      {{language-chooser}}
-      <div class="item">
         {{#if session.isAuthenticated}}
-          <a href='#' class="ui button inverted" {{action 'logout'}}>
+        {{#link-to 'invoice' class='ui item'}}
+        {{t 'application.menu.item.invoice'}}
+        {{/link-to}}
+        {{/if}}
+
+        {{#link-to 'statistics' class='ui item'}}
+        {{t 'application.menu.item.statistics'}}
+        {{/link-to}}
+
+        {{#link-to 'visualize' class='ui item'}}
+        {{t 'application.menu.item.visualization'}}
+        {{/link-to}}
+      </div>
+
+      <div class="ui inverted small right menu">
+        {{language-chooser}}
+
+        <div class="item">
+          {{#if session.isAuthenticated}}
+          <a href='#' class="ui inverted tiny button" {{action 'logout'}}>
             {{t 'application.logout'}}
           </a>
-        {{else}}
-          <a href='#' class="ui button inverted" {{action 'login'}}>
+          {{else}}
+          <a href='#' class="ui inverted tiny button" {{action 'login'}}>
             {{t 'application.login'}}
           </a>
-        {{/if}}
+          {{/if}}
+        </div>
       </div>
     </div>
   </div>
