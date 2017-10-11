@@ -6,6 +6,7 @@ Feature: Click on broadcast title to see details
 
   Background:
     Given I am logged in
+    And the current date is "2017-08-01"
     And we have these broadcasts in our database:
       | Title                | Medium | Station   | Created at | Updated at | Description                                                    |
       | Sportschau           | TV     | Das Erste | 2017-07-27 | 2017-08-01 | Fußball-Bundesliga und vieles mehr.                            |
