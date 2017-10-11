@@ -22,7 +22,6 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
     attributes[:created_at] = row['Created at'] || Date.today
-    attributes[:updated_at] = row['Updated at'] || Date.today
     attributes[:description] = row['Description'] if row['Description']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
@@ -32,7 +31,10 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
       stations = [Station.find_by(name: row['Station']) || create(:station, name: row['Station'])]
       attributes[:stations] = stations
     end
-    create(:broadcast, attributes)
+    broadcast = create(:broadcast, attributes)
+
+    # pretend it was updated that date
+    broadcast.update_column(:updated_at, row['Updated at']) if row['Updated at']
   end
 end
 
@@ -956,4 +958,21 @@ Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
   broadcast = Broadcast.find_by(title: title)
   station_names = broadcast.stations.map(&:name)
   expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
+end
+
+Given("I am on the edit page for Broadcast {string}") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}/edit"
+end
+
+Then("on the broadcast page for {string}, I can see it was updated today") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}"
+  expected_date_string = "Last updated at: #{Time.now.strftime("%m/%d/%Y")}"
+  expect(find('.detail.updatedAt')).to have_text(expected_date_string)
+end
+
+When("I am on the broadcast page for {string}") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}"
 end
