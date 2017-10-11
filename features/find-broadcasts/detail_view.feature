@@ -1,4 +1,4 @@
-@121 @time-travel
+@121
 Feature: Link to broadcast details page on every broadcast card
   As a user who is currently choosing which broadcsts to support
   I would like to see a detailed view when I click on a certain button on the card
@@ -6,7 +6,6 @@ Feature: Link to broadcast details page on every broadcast card
 
   Background:
     Given I am logged in
-    And the current date is "2017-08-01"
     And we have these broadcasts in our database:
       | Title                | Medium | Station   | Created at | Updated at | Description                                                    |
       | Medienmagazin        | Radio  | radioeins | 2017-07-27 | 2017-08-01 | Welche Zukunft hat die ARD? Antworten gibt's im Medienmagazin. |

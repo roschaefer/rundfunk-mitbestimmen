@@ -22,7 +22,6 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
     attributes[:created_at] = row['Created at'] || Date.today
-    attributes[:updated_at] = row['Updated at'] || Date.today
     attributes[:description] = row['Description'] if row['Description']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
@@ -32,7 +31,10 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
       stations = [Station.find_by(name: row['Station']) || create(:station, name: row['Station'])]
       attributes[:stations] = stations
     end
-    create(:broadcast, attributes)
+    broadcast = create(:broadcast, attributes)
+
+    # pretend it was updated that date
+    broadcast.update_column(:updated_at, row['Updated at']) if row['Updated at']
   end
 end
 
@@ -757,12 +759,6 @@ def normalize_highcharts_svg(content)
   doc.css('*').remove_attr('style')
   doc.css('*').remove_attr('id')
   doc.css('*').remove_attr('clip-path')
-  doc.css('*').remove_attr('width')
-  doc.css('*').remove_attr('height')
-  doc.css('*').remove_attr('x')
-  doc.css('*').remove_attr('y')
-  doc.css('*').remove_attr('d')
-  doc.css('*').remove_attr('transform')  
   doc.css('desc').remove
   doc.to_s
 end
@@ -964,30 +960,19 @@ Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
   expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
 end
 
-Then("the last updated date of broadcast {string} is not {string}") do |title, date_string|
-  broadcast = Broadcast.find_by(title: title)
-  expect(broadcast.updated_at.strftime("%d/%m/%Y")).not_to eq date_string
-end
-
 Given("I am on the edit page for Broadcast {string}") do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}/edit"
 end
 
-Then("I can see Last updated at is not {string}") do |date_string|
-  last_updated_at_text = find("span.updatedAt").text
-  expect(last_updated_at_text).not_to eq "Last updated at: #{date_string}"
+Then("on the broadcast page for {string}, I can see it was updated today") do |title|
+  broadcast = Broadcast.find_by(title: title)
+  visit "/broadcast/#{broadcast.id}"
+  expected_date_string = "Last updated at: #{Time.now.strftime("%m/%d/%Y")}"
+  expect(find('.detail.updatedAt')).to have_text(expected_date_string)
 end
 
 When("I am on the broadcast page for {string}") do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
-end
-
-Given("the current date is {string}") do |date_string|
-  Timecop.travel(Time.parse(date_string + " 15:00 UTC +00:00"))
-end
-
-When("the current date is now") do
-  Timecop.return
 end
