@@ -1,4 +1,3 @@
-@time-travel
 Feature: Add many stations
   As a broadcaster
   I want to add many stations to a broadcasts
@@ -12,8 +11,8 @@ Feature: Add many stations
       | WDR Fernsehen | TV     |
       | KiKA          | TV     |
     And we have these broadcasts in our database:
-      | Title                    | Station   | Medium |
-      | Die Sendung mit der Maus | Das Erste | TV     |
+      | Title                    | Station   | Medium | Created at       | Updated at       |
+      | Die Sendung mit der Maus | Das Erste | TV     | 2017-02-02 15:00 | 2017-02-02 15:00 |
  
 
   Scenario: Fix typo in description
@@ -34,13 +33,7 @@ Feature: Add many stations
       | KiKA          |
 
   Scenario: Fix Displayed updated at should include associations
-    Given the current date is "2017-02-02"
-    And we have these broadcasts in our database:
-      | Title                    | Station   | Medium | Created at       | Updated at       |
-      | Tom und Jerry            | Das Erste | TV     | 2017-02-02 15:00 | 2017-02-02 15:00 |
-    And I am on the edit page for Broadcast "Tom und Jerry"
+    Given I am on the edit page for Broadcast "Die Sendung mit der Maus"
     When I add "WDR Fernsehen" to the list of stations
-    And the current date is now
     And I click on "Update"
-    And I am on the broadcast page for "Tom und Jerry"
-    Then I can see Last updated at is not "02/02/2017"
+    Then on the broadcast page for "Die Sendung mit der Maus", I can see it was updated today
