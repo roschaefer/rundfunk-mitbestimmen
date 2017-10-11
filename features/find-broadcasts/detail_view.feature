@@ -1,4 +1,4 @@
-@121
+@121 @time-travel
 Feature: Link to broadcast details page on every broadcast card
   As a user who is currently choosing which broadcsts to support
   I would like to see a detailed view when I click on a certain button on the card

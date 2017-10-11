@@ -1,4 +1,4 @@
-@121
+@121 @time-travel
 Feature: Click on broadcast title to see details
   As a user
   I would like to see a detailed view when I click on the title of a broadcast
