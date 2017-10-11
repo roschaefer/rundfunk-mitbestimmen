@@ -757,6 +757,12 @@ def normalize_highcharts_svg(content)
   doc.css('*').remove_attr('style')
   doc.css('*').remove_attr('id')
   doc.css('*').remove_attr('clip-path')
+  doc.css('*').remove_attr('width')
+  doc.css('*').remove_attr('height')
+  doc.css('*').remove_attr('x')
+  doc.css('*').remove_attr('y')
+  doc.css('*').remove_attr('d')
+  doc.css('*').remove_attr('transform')  
   doc.css('desc').remove
   doc.to_s
 end
@@ -958,9 +964,9 @@ Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
   expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
 end
 
-Given("Broadcast {string} was updated {int} days ago") do |title, num|
-  broadcast = Broadcast.find_or_create_by(title: title)
-  broadcast.update_column(:updated_at, num.days.ago)
+Then("the last updated date of broadcast {string} is not {string}") do |title, date_string|
+  broadcast = Broadcast.find_by(title: title)
+  expect(broadcast.updated_at.strftime("%d/%m/%Y")).not_to eq date_string
 end
 
 Given("I am on the edit page for Broadcast {string}") do |title|
@@ -968,11 +974,20 @@ Given("I am on the edit page for Broadcast {string}") do |title|
   visit "/broadcast/#{broadcast.id}/edit"
 end
 
-Then("I can see {string} TODAY") do |label|
-  expect(find("span.updatedAt").text).to eq "#{label}: #{Date.today.strftime('%d/%m/%Y')}"
+Then("I can see Last updated at is not {string}") do |date_string|
+  last_updated_at_text = find("span.updatedAt").text
+  expect(last_updated_at_text).not_to eq "Last updated at: #{date_string}"
 end
 
-When("I visit the broadcast page for {string}") do |title|
+When("I am on the broadcast page for {string}") do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
+end
+
+Given("the current date is {string}") do |date_string|
+  Timecop.travel(Time.parse(date_string + " 15:00 UTC +00:00"))
+end
+
+When("the current date is now") do
+  Timecop.return
 end
