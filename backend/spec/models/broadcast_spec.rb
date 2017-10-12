@@ -224,4 +224,26 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.not_to be_valid }
     end
   end
+
+  describe '#picture_url' do
+    describe 'picture_url nil' do
+      let(:broadcast) { build(:broadcast, picture_url: nil) }
+      it { is_expected.to be_valid }
+    end
+
+    describe 'empty picture_url' do
+      let(:broadcast) { build(:broadcast, picture_url: ' ') }
+      it { is_expected.to_not be_valid }
+    end
+
+    describe 'valid picture_url' do
+      let(:broadcast) { build(:broadcast, picture_url: 'https://www.zdf.de/assets/teamfoto-102~768x432') }
+      it { is_expected.to be_valid }
+    end
+
+    describe 'has valid url' do
+      let(:broadcast) { build(:broadcast, picture_url: 'htps:/www.zdf.de/assets/teamfoto-102~768x432') }
+      it { is_expected.to_not be_valid }
+    end
+  end
 end

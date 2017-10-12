@@ -25,6 +25,7 @@ class Broadcast < ApplicationRecord
   validates :medium, presence: true
   validates :mediathek_identification, uniqueness: { allow_nil: true }
   validate :description_should_not_contain_urls
+  validate :picture_url_should_contain_url
 
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
   scope :evaluated, (->(user) { where(id: user.broadcasts.pluck(:id)) })
@@ -85,5 +86,11 @@ class Broadcast < ApplicationRecord
   def description_should_not_contain_urls
     return unless description =~ URI.regexp(%w[http https])
     errors.add(:description, :no_urls)
+  end
+
+  def picture_url_should_contain_url
+    return unless picture_url
+    return if picture_url =~ URI.regexp(%w[http https])
+    errors.add(:picture_url, :invalid_url)
   end
 end

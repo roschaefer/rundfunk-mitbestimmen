@@ -1,5 +1,5 @@
 class BroadcastSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :created_at, :updated_at
+  attributes :id, :title, :description, :picture_url, :created_at, :updated_at
 
   has_many :impressions do
     object.impressions.where(user: scope)
