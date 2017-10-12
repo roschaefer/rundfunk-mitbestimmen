@@ -152,7 +152,7 @@ index:
     header: Data visualizations
     labels:
       rating: What are the most popular categories?
-      geography: From wich part of Germany do supporters come from?
+      geography: From which part of Germany do supporters come from?
       demography: How does the population pyramid of supporters look like?
       trends: How are broadcasts developing, are there any trends?
       relations: Are there any relations or clusters between broadcasts?
