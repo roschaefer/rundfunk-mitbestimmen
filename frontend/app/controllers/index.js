@@ -2,113 +2,53 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   intl: Ember.inject.service(),
-  annualBudget: 8000000000,
-  actualChartOptions: {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
-    },
-    title: {
-      text: ''
-    },
-    tooltip: {
-      pointFormat: '<b>{point.y:.3f} Mio. € ({point.percentage:.1f}%</b>)'
-    },
-    legend: {
-      itemDistance: 10
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: false
-        },
-        showInLegend: true,
-      }
-    },
-  },
+  actualChartOptions: Ember.computed('intl.locale', function() {
+    return {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'column'
+      },
+      title: {
+        text: ''
+      },
+      xAxis:{
+        categories: [
+          this.get('intl').t('index.actual.series.quiz'),
+          this.get('intl').t('index.actual.series.spot'),
+          this.get('intl').t('index.actual.series.music'),
+          this.get('intl').t('index.actual.series.religion'),
+          this.get('intl').t('index.actual.series.presenation'),
+          this.get('intl').t('index.actual.series.culture'),
+          this.get('intl').t('index.actual.series.family'),
+          this.get('intl').t('index.actual.series.events'),
+          this.get('intl').t('index.actual.series.movie'),
+          this.get('intl').t('index.actual.series.show'),
+          this.get('intl').t('index.actual.series.politics'),
+          this.get('intl').t('index.actual.series.series'),
+          this.get('intl').t('index.actual.series.sport'),
+        ],
+      },
+      yAxis: {
+        title: {
+          text: this.get('intl').t('index.actual.yAxis'),
+        }
+      },
+      tooltip: {
+        pointFormat: '<b>{point.y:.3f} Mio. €</b>'
+      },
+    }
+  }),
   actualChartData: Ember.computed('intl.locale', function() {
     return [{
-      innerSize: '50%',
-      colorByPoint: true,
-      data: [{
-        name:  this.get('intl').t('index.goal.actual.series.sport'),
-        y: 461.833
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.politics'),
-        y: 309.752,
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.television-play'),
-        y: 262.747
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.entertainment'),
-        y: 225.554
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.movie'),
-        y: 213.776
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.family'),
-        y: 114.992
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.culture'),
-        y: 50.995
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.religion'),
-        y: 10.074
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.spot'),
-        y: 3.648
-      }, {
-        name:  this.get('intl').t('index.goal.actual.series.music'),
-        y: 1.663
-      } ]
+      name:  this.get('intl').t('index.actual.name.dasErste'),
+      color: '#1e5b9a',
+      data: [ 0, 3.6481, 1.6636, 10.0774, 0, 50.9954, 114.9923, 0, 213.7767, 225.5548, 309.7525, 262.7471, 461.8339 ]
+    },{
+      name:  this.get('intl').t('index.actual.name.zdf'),
+      color: '#fa7d19',
+      data: [ 0.03, 0, 6.20, 0, 32.67, 86.06, 36.49, 171.70, 73.30, 160.64, 172.13, 422.425, 368.04 ]
     }];
   }),
-  targetChartOptions: {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
-    },
-    title: {
-      useHTML: true,
-      text: '<h1>?</h1>',
-      align: 'center',
-      verticalAlign: 'middle',
-      y: -40,
-    },
-    tooltip: {
-      enabled: false,
-    },
-    legend: {
-      margin: 40
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: false
-        },
-        borderWidth: 0.5,
-        borderColor: null,
-        showInLegend: true,
-      },
-    },
-  },
-  targetChartData: Ember.computed('intl.locale', function() {
-    return [{
-      innerSize: '50%',
-      colorByPoint: true,
-      data: [{
-        name: this.get('intl').t('index.goal.target.series.figure-out'),
-        color: '#BBBBBB',
-        y: 1
-      }]
-    }];
-  })
 });

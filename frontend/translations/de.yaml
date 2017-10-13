@@ -76,7 +76,7 @@ application:
   menu:
     item:
       find-broadcasts: Sendungen finden
-      invoice: Meine Sendungen
+      invoice: Meine Auswahl
       statistics: Statistik
       visualization: Visualisierung
   language-chooser:
@@ -91,13 +91,15 @@ application:
   logout: Ausloggen
   login: Einloggen
 index:
-  header:
-    top: Der öffentlich-rechtliche Rundfunk erhält <b>{amount}</b> jedes Jahr.
-  action:
-    Du zahlst jeden Monat <span class="amount-color">{amount}</span></br>
-    und möchtest mitbestimmen?
-  manual: Verteile Deinen Rundfunkbeitrag auf Sendungen, die du unterstützen möchtest.
-  start: jetzt mitbestimmen
+  link-to: Zurück zur Startseite
+  masthead:
+    header: Verteile Deinen Rundfunk&shy;beitrag
+    sub-header: Entscheide selbst, welche Sendungen Du unterstützen möchtest.
+    call-to-action: jetzt mitbestimmen
+    steps:
+      find: Sendungen finden
+      find-broadcasts: Sendungen auswählen
+      distribute: Budget verteilen
   statistics:
     registered-users: Registrierte Nutzer
     broadcasts: Sendungen
@@ -105,23 +107,15 @@ index:
     money-assigned: bereits zugewiesen
     link-to-statistics: Statistiken pro Sendung
   approval:
-    header: Verbessere die Programmqualität
+    header: Mehr Daten für Rundfunkmacher
     content: >
-      Mit einem symbolischen Betrag kannst Du die Qualität der Sendungen
-      nach Deinen Kriterien bewerten. Fördere Deine Lieblingssendungen
-      und lass sie es wissen, selbstverständlich anonym.
-    steps:
-      find: Sendungen finden
-      find-broadcasts: Sendungen auswählen
-      distribute: Budget verteilen
+      Durch das öffentliche Feedback gewinnen beide Seiten: Die Zuschauer bekommen
+      mehr Einfluss und die Sender können ihr Programm verbessern.
   statement:
-    header: Setze ein Zeichen für mehr Mitbestimmung
+    header: Mehr Einfluss für Beitragszahler
     content: >
-      Die Bewertungsergebnisse sind nicht verbindlich, jedoch öffentlich und
-      quantifizierbar. Dadurch erhalten Beitragszahler zum ersten Mal eine
-      aussagekräftige Stimme. Mit deiner Entscheidung können wir die
-      Aufmerksamkeit der Rundfunkräte gewinnen und die Programmdebatten
-      befördern und beleben.
+      Die Bewertungsergebnisse sind öffentlich und quantifizierbar. Dadurch
+      erhalten Beitragszahler zum ersten Mal eine aussagekräftige Stimme.
   tv-ratings:
     name: Einschaltquote
     header: Die wichtigsten Unterschiede zur Einschaltquote
@@ -140,29 +134,43 @@ index:
         Nutzung der Inhalte, einfach <strong>über die Fernbedienung</strong>. Es gibt
         <strong>5000 repräsentative Haushalte</strong> und die Ergebnisse <strong>werden
         hochgerechnet</strong>. Das Ziel dabei ist: <strong> Zielgerichtete Werbung.</strong>
-  goal:
-    actual:
-      header: Tatsächliche Verteilung
-      description: >
-        Ausgaben nach Genre, hier am Beispiel des Programms "Das Erste" (Quelle:
-        20. KEF Bericht)
-      series:
-        sport: Sport
-        politics: Politik & Gesellschaft
-        television-play: Fernsehspiel
-        entertainment: Unterhaltung
-        movie: Spielfilm
-        family: Familie
-        culture: Kultur & Wissenschaft
-        religion: Religion
-        spot: Spot/Überleitung
-        music: Musik
-    target:
-      header: Gewünschter Zustand
-      description: >
-        Es ist noch unbekannt, wie die Gebührenzahler entscheiden würden
-      series:
-        figure-out: Das gilt es herauszufinden
+  actual:
+    header: Tatsächliche Verteilung
+    description: >
+      Ausgaben nach Genre, hier am Beispiel der Sender "Das Erste"
+      und "ZDF" (Quelle:
+      <a href="https://kef-online.de/fileadmin/KEF/Dateien/Berichte/20._Bericht.pdf"
+      download>20th KEF Bericht</a>)
+    question: Wie würden Beitragszahler entscheiden?
+    answer: Genau das gilt es herauszufinden!
+    yAxis: Millionen Euro
+    name:
+      dasErste: Das Erste
+      zdf: ZDF
+    series:
+      events: Aktuelles
+      family: Familie, Kinder und Jugend
+      series: Fernsehspiel, Fernsehfilm, Serie
+      culture: Kultur, Geschichte und Wissenschaft
+      music: Musik
+      politics: Politik und Gesellschaft
+      presenation: Präsentation
+      quiz: Quiz und Formatentwicklung
+      religion: Religion
+      show: Show, Unterhaltung
+      movie: Spielfilm
+      sport: Sport
+      spot: Spot/Überleitung
+  visualizations:
+    header: Datenvisualisierungen
+    labels:
+      rating: Was sind die beliebtesten Kategorien?
+      geography: Woher kommen die Unterstützer einer Sendung?
+      demography: Wie sieht die Alterspyramide der Unterstützer aus?
+      trends: Wie entwickeln sich Sendungen, gibt es Trends?
+      relations: Was gibt es für Beziehungen zwischen Sendungen?
+  summarized-statistics:
+    header: Zusammgefasste Statistiken
   faq:
     questions:
       survey:
@@ -207,7 +215,7 @@ index:
           Gebühren. Um eine Verbesserung herbeizuführen reicht das aber völlig
           aus. Denn wenige Daten sind beser als gar keine Daten.
       consumption:
-        title: Ich nutze den Rundfunk gar nicht, warum sollte ich mitmachen?
+        title: Was, wenn ich den Rundfunk gar nicht nutze?
         content: >
           Aber Du zahlst doch Rundfunkgebühren, oder? Dann solltest Du auch ein
           Recht auf Inhalte haben und darüber mitentscheiden können, wie Deine
@@ -406,6 +414,7 @@ visualize:
     headers:
       diff: Erwartungswert vs. tatsächlicher Betrag
       geo: Geographische Visualisierung
+      demography: Demographische Visualisierung
       time: Veränderungen über die Zeit
       graph: Beziehungen zwischen Sendungen
   overview: Visualisierungsübersicht
@@ -487,6 +496,18 @@ visualize:
       users: Nutzer
       of-the-world: aller Nutzer
       of-germany: aller deutschen Nutzer
+  demography:
+    header: Demographische Visualisierung
+    sub-header: >
+      Wie sieht die Bevölkerungspyramide der Unterstützer einer Sendung aus?
+    paragraph:
+      explanation: >
+        Hier sieht man für eine beliebige Sendung eine Alterspyramide. Benutzer
+        können ihr ungefähres Alter und ihr Geschlecht mit einem Klick auf
+        die richtige Stelle mitteilen.
+      reason: >
+        Sender können so das Program anpassen, damit für jede und jeden etwas
+        dabei ist und für jedes Alter.
   time:
     header: Veränderungen über die Zeit
     sub-header: >

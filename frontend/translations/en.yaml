@@ -91,13 +91,15 @@ application:
   logout: Log out
   login: Log in
 index:
-  header:
-    top: Public broadcasting in Germany gets <b>{amount}</b> every year.
-  action:
-      You pay <span class="amount-color">{amount}</span> per month</div>.</br>
-      Don't you want to get a say?
-  manual: Distribute your broadcasting fees to broadcasts, which you want to support.
-  start: participate now
+  link-to: Back to home
+  masthead:
+    header: Spend your broadcasting fees
+    sub-header: Decide on your own which broadcasts you want to support.
+    call-to-action: participate now
+    steps:
+      find: Find broadcasts
+      find-broadcasts: Select broadcasts
+      distribute: Distribute budget
   statistics:
     registered-users: Registered users
     broadcasts: Broadcasts
@@ -105,22 +107,15 @@ index:
     money-assigned: Already assigned
     link-to-statistics: Statistics per broadcast
   approval:
-    header: Improve the quality of programs
+    header: More data for broadcasters
     content: >
-      With a symbolic amount you can evaluate the quality of public
-      broadcasts according to your own criteria. Support your favourite
-      broadcasts and let them know, of course anonymously.
-    steps:
-      find: Find broadcasts
-      find-broadcasts: Select broadcasts
-      distribute: Distribute budget
+      The public feedback is a win-win-project for both sides: The audience
+      gets more influence and broadcasters can improve their program.
   statement:
-    header: Make a statement for having a say
+    header: More influence for the audience
     content: >
-      The results are not binding in a legal sense, but public and quantifiable.
-      In this way people who pay the fees have got a strong voice which is enough
-      to have an impact. With your decision we can attract attention of the
-      broadcasting councils and increase the public debate on program diversity.
+      The results are public and quantifiable. In this manner, payers of public
+      broadcasting fees get a strong voice for the very first time.
   tv-ratings:
     header: Most important differences compared to TV ratings
     name: TV ratings
@@ -129,28 +124,43 @@ index:
         <strong>Everyone</strong> can participate. The data is collected through a <strong>website</strong> and the results are <strong>published on the web</strong>. The users decide <strong>independently of usage</strong>, simply <strong>according to their conscience</strong>. There are <strong>more and more new users</strong> and the results are <strong>not extrapolated</strong>. The goal is: <strong>More democracy</strong>.
       right: >
         <strong>A preselected group</strong> can participate. The data is collected through a <strong>special TV box</strong> and the results are <strong>subject to charges</strong>. The users decide <strong>depending on usage</strong>, simply <strong>throuh the remote control</strong>. There are <strong>5000 representative homes</strong> and the results are <strong>extrapolated</strong>. The goal is: <strong>Targeted advertising</strong>.
-  goal:
-    actual:
-      header: As-is situation
-      description: >
-        This figure shows the actual expenditure by genre for broadcaster "Das
-        Erste" (source: 20th KEF report)
-      series:
-        sport: Sport
-        politics: Politics & Society
-        television-play: Television play
-        entertainment: Entertainment
-        movie: Movie
-        family: Family
-        culture: Culture & Science
-        religion: Religion
-        spot: Spot/Transition
-        music: Music
-    target:
-      header: Desired state
-      description: So far, nobody knows how people who pay the fees would decide
-      series:
-        figure-out: That's what we need to figure out
+  actual:
+    header: As-is situation
+    description: >
+      This figure shows the actual expenditure by genre for broadcaster "Das
+      Erste" and "ZDF" (source:
+      <a href="https://kef-online.de/fileadmin/KEF/Dateien/Berichte/20._Bericht.pdf"
+      download>20th KEF report</a>)
+    question: How would fee payers decide?
+    answer: This is exactly what we have to figure out!
+    name:
+      dasErste: Das Erste
+      zdf: ZDF
+    yAxis: Millions of Euros
+    series:
+      events: Current events
+      family: Family, children and youth
+      series: Television Show, Series
+      culture: Culture, History and Science
+      music: Music
+      politics: Politics and Society
+      presenation: Presentation
+      quiz: Quiz and format development
+      religion: Religion
+      show: Show and entertainment
+      movie: Movie
+      sport: Sport
+      spot: Spot, Transition
+  visualizations:
+    header: Data visualizations
+    labels:
+      rating: What are the most popular categories?
+      geography: From which part of Germany do supporters come from?
+      demography: How does the population pyramid of supporters look like?
+      trends: How are broadcasts developing, are there any trends?
+      relations: Are there any relations or clusters between broadcasts?
+  summarized-statistics:
+    header: Summarized statistics
   faq:
     questions:
       survey:
@@ -193,9 +203,9 @@ index:
           improvement, however, this is quite sufficient. Few data are better
           than no data at all.
       consumption:
-        title: I do not use public broadcasting, why should I join?
+        title: What if I don't use public broadcasting?
         content: >
-          But you pay the broadcasting fee, don't you? Then you should also have
+          But you pay the broadcasting fees, don't you? Then you should also have
           a right on content and decide how your fees should be used.
       binding:
         title: Are the results binding in any sense?
@@ -384,6 +394,7 @@ visualize:
     headers:
       diff: Expected vs. actual
       geo: Geographical visualization
+      demography: Demographic visualizaion
       time: Changes over time
       graph: Relationships between broadcasts
   overview: Visualization overview
@@ -464,6 +475,17 @@ visualize:
       users: User
       of-the-world: of all users
       of-germany: of German users
+  demography:
+    header: Demographic visualization
+    sub-header: >
+      What is the population pyramid of the supporters of a broadcast?
+    paragraph:
+      explanation: >
+        Here you can see a population pyramid for a broadcast. Users can
+        tell their approximate age and gender with a click on the right position.
+      reason: >
+        Broadcasters can thus adapt their program, to have something for everyone
+        and for all ages.
   time:
     header: Changes over time
     sub-header: >

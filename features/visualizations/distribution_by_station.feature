@@ -7,7 +7,7 @@ Feature:
     Given the statistics look like this:
       | Broadcast            | Station       | Reviews | Approval | Total  |
       | extra3               | NDR Fernsehen | 1       | 100%     | 8.00€  |
-      | Löwenzahn            | ZDF           | 1       | 100%     | 7.00 € |
+      | Löwenzahn            | ZDF           | 1       | 100%     | 7.00€  |
       | Heute Show           | ZDF           | 1       | 100%     | 6.00€  |
       | Quarks & Co          | WDR Fernsehen | 1       | 100%     | 5.00€  |
       | Zapp                 | NDR Fernsehen | 1       | 100%     | 4.00€  |
