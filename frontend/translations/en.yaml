@@ -35,6 +35,9 @@ broadcast-form:
     label: Description
     placeholder: >
       ..for people who do not know this broadcast. Short and to the point!
+  pictureUrl:
+    label: Image Url
+    placeholder: http://broadcast
   medium:
     label: Medium
     placeholder: Select medium

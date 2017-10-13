@@ -13,6 +13,8 @@ de:
           attributes:
             description:
               no_urls: am besten ohne Links. Man soll eine Sendung ja bewerten können auch ohne diese Website zu verlassen.
+            picture_url:
+              invalid_url: Die hinzugefügte URL ist keine gültige URL!
         impression:
           attributes:
             amount:

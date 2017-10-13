@@ -13,6 +13,11 @@
       &mdash; {{ station.name}}
     {{/each}}
   </div>
+  {{#if broadcast.urlPresent }}
+    <div class="bradcast-image-container">
+      <img src="{{ broadcast.pictureUrl }}" alt="{{ broadcast.title }}" class="bradcast-image" />
+    </div>
+  {{/if}}
   <div class="description">
     {{ broadcast.description }}
   </div>

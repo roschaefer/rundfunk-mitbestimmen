@@ -57,6 +57,6 @@ class BroadcastsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def broadcast_params
     ActiveModelSerializers::Deserialization.jsonapi_parse(params,
-                                                          only: %i[title description picture_url medium stations])
+                                                          only: %i[title description picture-url medium stations])
   end
 end
