@@ -886,6 +886,7 @@ end
 
 Then(/^I see only this broadcast and nothing else/) do
   expect(page).to have_css('.title', count: 1)
+  expect(page).to have_css('.bradcast-image-container', count: 1)
   Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
     expect(page).not_to have_text(broadcast.title)
   end
