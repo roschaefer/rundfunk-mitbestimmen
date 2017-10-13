@@ -4,6 +4,7 @@ import Ember from 'ember';
 export default DS.Model.extend({
   title: DS.attr('string'),
   description: DS.attr('string'),
+  pictureUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   medium: DS.belongsTo('medium'),
@@ -12,6 +13,10 @@ export default DS.Model.extend({
 
   response: Ember.computed('impressions.firstObject.response', function() {
     return this.get('impressions.firstObject.response');
+  }),
+
+  urlPresent: Ember.computed('pictureUrl', function() {
+    return String(this.get('pictureUrl')).length > 0;
   }),
 
   setDefaultResponse(response){

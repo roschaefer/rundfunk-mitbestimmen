@@ -35,6 +35,9 @@ broadcast-form:
     label: Beschreibung
     placeholder: >
       ..für die Beitragszahler, die die Sendung nicht kennen. Kurz und knackig!
+  pictureUrl:
+    label: Bild URL
+    placeholder: http://beschreibung_bild.com
   medium:
     label: Medium
     placeholder: Medium auswählen

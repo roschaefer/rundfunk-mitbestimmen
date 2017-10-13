@@ -25,6 +25,11 @@
 </div>
 
 <div class="field">
+  <label>{{t 'broadcast-form.pictureUrl.label'}}</label>
+  {{input type="text" id="pictureUrl" value=broadcast.pictureUrl placeholder=(t 'broadcast-form.pictureUrl.placeholder')}}
+</div>
+
+<div class="field">
   <div class="two fields">
     <div class="four wide field">
       {{#ui-dropdown class="fluid selection media" selected=broadcast.medium.id onChange=(action 'selectMedium')}}
