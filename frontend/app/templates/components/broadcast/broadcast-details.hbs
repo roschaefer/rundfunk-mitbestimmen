@@ -9,6 +9,11 @@
     <div class="title header detail">
       {{ broadcast.title }}
     </div>
+    {{#if broadcast.urlPresent }}
+      <div class="bradcast-image-container">
+        <img src="{{ broadcast.pictureUrl }}" alt="{{ broadcast.title }}" class="bradcast-image" />
+      </div>
+    {{/if}}
     <div class="description detail">
       <div class="meta">
         {{t 'broadcast.broadcast-details.labels.description' }}
