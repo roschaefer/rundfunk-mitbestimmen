@@ -13,15 +13,22 @@
       &mdash; {{ station.name}}
     {{/each}}
   </div>
-  {{#if broadcast.urlPresent }}
-    <div class="bradcast-image-container">
-      <img src="{{ broadcast.pictureUrl }}" alt="{{ broadcast.title }}" class="bradcast-image" />
-    </div>
-  {{/if}}
+  {{#unless broadcast.pictureUrl}}
+  <div class="description">
+    {{ broadcast.description }}
+  </div>
+  {{/unless}}
+</div>
+{{#if broadcast.pictureUrl}}
+<div class="image">
+    <img src="{{ broadcast.pictureUrl }}" alt="{{ broadcast.title }}"/>
+</div>
+<div class="content">
   <div class="description">
     {{ broadcast.description }}
   </div>
 </div>
+{{/if}}
 {{#if (eq broadcast.response 'positive')}}
   <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'neutral'}}>
     <i class="red heart icon"></i>
