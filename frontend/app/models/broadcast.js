@@ -15,10 +15,6 @@ export default DS.Model.extend({
     return this.get('impressions.firstObject.response');
   }),
 
-  urlPresent: Ember.computed('pictureUrl', function() {
-    return String(this.get('pictureUrl')).length > 0;
-  }),
-
   setDefaultResponse(response){
     return this.get('impressions.firstObject') || this.respond(response);
   },
