@@ -14,8 +14,7 @@ Feature:
       | Sendung mit der Maus | WDR Fernsehen | 1       | 100%     | 3.00€  |
       | Lokalzeit            | WDR Fernsehen | 1       | 100%     | 2.00€  |
     When I navigate to the visualization of expected vs. actual values of TV and radio stations
-    And download the chart as SVG
-    Then the downloaded chart is exactly the same like the one in "data/expected/distribution_by_station.svg"
+    Then the chart looks pretty much the same like the one in "data/expected/distribution_by_station.svg"
     And from the diff in the distribution I can see that ZDF is doing well and WDR is not:
       | Station       | Total amount | Random expectation |
       | ZDF           | 13.00€       | 10.00€             |

@@ -747,15 +747,8 @@ Then(/^from the diff in the distribution I can see/) do |block|
   # just documentation
 end
 
-When(/^download the chart as SVG$/) do
-  expect(page).to have_css('.chart-area')
-  # export_button
-  first('path.highcharts-button-symbol').click
-  find('.highcharts-menu-item', text: 'SVG').click
-end
-
 def normalize_highcharts_svg(content)
-  doc = Nokogiri::HTML(content)
+  doc = Nokogiri::XML(content)
   doc.css('*').remove_attr('style')
   doc.css('*').remove_attr('id')
   doc.css('*').remove_attr('clip-path')
@@ -763,10 +756,14 @@ def normalize_highcharts_svg(content)
   doc.to_s
 end
 
-Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do |path|
-  expected_content = normalize_highcharts_svg(File.read(feature_directory.join(path)))
-  actual_content = normalize_highcharts_svg(download_content)
-  expect(expected_content).to eq actual_content
+Then(/^the chart looks pretty much the same like the one in "([^"]*)"$/) do |path|
+  expect(page).to have_css('.highcharts-container')
+  sleep 2 # it takes about 2 seconds for the animation to finish
+  expected_svg = File.read(feature_directory.join(path))
+  actual_svg = first('.highcharts-container')['innerHTML']
+  # if necessary, update the expected file
+  # File.write('distribution_by_station.svg', actual_svg)
+  expect(normalize_highcharts_svg(expected_svg)).to eq(normalize_highcharts_svg(actual_svg))
 end
 
 Given(/^I have (\d+) broadcasts in my database:$/) do |number|
