@@ -747,28 +747,6 @@ Then(/^from the diff in the distribution I can see/) do |block|
   # just documentation
 end
 
-When(/^download the chart as SVG$/) do
-  expect(page).to have_css('.chart-area')
-  # export_button
-  first('path.highcharts-button-symbol').click
-  find('.highcharts-menu-item', text: 'SVG').click
-end
-
-def normalize_highcharts_svg(content)
-  doc = Nokogiri::HTML(content)
-  doc.css('*').remove_attr('style')
-  doc.css('*').remove_attr('id')
-  doc.css('*').remove_attr('clip-path')
-  doc.css('desc').remove
-  doc.to_s
-end
-
-Then(/^the downloaded chart is exactly the same like the one in "([^"]*)"$/) do |path|
-  expected_content = normalize_highcharts_svg(File.read(feature_directory.join(path)))
-  actual_content = normalize_highcharts_svg(download_content)
-  expect(expected_content).to eq actual_content
-end
-
 Given(/^I have (\d+) broadcasts in my database:$/) do |number|
   create_list(:broadcast, number.to_i)
 end

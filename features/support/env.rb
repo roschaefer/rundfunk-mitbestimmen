@@ -35,17 +35,11 @@ Capybara.configure do |config|
   config.default_driver = (ENV['BROWSER'] || :headless_chrome).to_sym
 end
 
-Before do
-  clear_downloads
-end
-
 After do
   Capybara.reset_sessions!
   page.execute_script("window.stubbedJwt = undefined")
   visit '/'
   page.execute_script("localStorage.clear()")
-
-  clear_downloads
 end
 
 # Shorthand FactoryGirl
