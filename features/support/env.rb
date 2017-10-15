@@ -2,6 +2,7 @@ require 'factory_girl'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
+require 'selenium/webdriver'
 
 ENV['RAILS_ENV'] ||= 'fullstack'
 puts Dir.pwd
@@ -15,22 +16,23 @@ require File.expand_path("#{rails_root}/config/environment")
 DatabaseCleaner.strategy = :truncation
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app,
-    browser: :chrome,
-    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-      'chromeOptions' => {
-        'prefs' => {
-          'download.default_directory' => DownloadHelpers::PATH.to_s,
-          'download.prompt_for_download' => false,
-        }
-      }
-    )
-  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: {
+      args: %w[headless disable-gpu window-size=1024,768],
+    }
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+end
+
+Capybara.javascript_driver = :headless_chrome
 
 Capybara.configure do |config|
   config.app_host = 'http://localhost:4200'
-  config.default_driver = (ENV['BROWSER'] || :chrome).to_sym
+  config.default_driver = (ENV['BROWSER'] || :headless_chrome).to_sym
 end
 
 Before do
