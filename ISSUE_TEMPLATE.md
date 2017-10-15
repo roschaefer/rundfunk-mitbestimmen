@@ -1,8 +1,8 @@
 
 * **I'm submitting a ... **
-  - [] bug report
-  - [] user interface improvement
-  - [] feature request
+  - [ ] bug report
+  - [ ] user interface improvement
+  - [ ] feature request
 
 
 * **What is the current behavior?**
