@@ -136,9 +136,9 @@
           {{t 'index.visualizations.header'}}
         </h3>
       </div>
-      <div class="five column row">
+      <div class="five column stretched row">
         <div class="column">
-          {{#link-to 'visualize.diff'}}
+          {{#link-to 'visualize.diff' class='ui basic button'}}
           <img class="ui tiny centered image" src="assets/images/visualize/rating.svg">
           <h5>
             {{t 'index.visualizations.labels.rating'}}
@@ -146,7 +146,7 @@
           {{/link-to}}
         </div>
         <div class="column">
-          {{#link-to 'visualize.geo'}}
+          {{#link-to 'visualize.geo' class='ui basic button'}}
           <img class="ui tiny centered image" src="assets/images/visualize/geography.svg">
           <h5>
             {{t 'index.visualizations.labels.geography'}}
@@ -154,7 +154,7 @@
           {{/link-to}}
         </div>
         <div class="column">
-          {{#link-to 'visualize.demography'}}
+          {{#link-to 'visualize.demography' class='ui basic button'}}
           <img class="ui tiny centered image" src="assets/images/visualize/demography.svg">
           <h5>
             {{t 'index.visualizations.labels.demography'}}
@@ -162,7 +162,7 @@
           {{/link-to}}
         </div>
         <div class="column">
-          {{#link-to 'visualize.time'}}
+          {{#link-to 'visualize.time' class='ui basic button'}}
           <img class="ui tiny centered image" src="assets/images/visualize/trends.svg">
           <h5>
             {{t 'index.visualizations.labels.trends'}}
@@ -170,7 +170,7 @@
           {{/link-to}}
         </div>
         <div class="column">
-          {{#link-to 'visualize.graph'}}
+          {{#link-to 'visualize.graph' class='ui basic button'}}
           <img class="ui tiny centered image" src="assets/images/visualize/relations.svg">
           <h5>
             {{t 'index.visualizations.labels.relations'}}
@@ -188,8 +188,8 @@
           {{t 'index.summarized-statistics.header'}}
         </h3>
       </div>
-      <div class="four column row">
-        <div class="four wide center aligned column">
+      <div class="four column bottom aligned stretched row">
+        <div class="column">
           <div class="ui statistic">
             <div class="value statistics registered-users">
               {{model.registeredUsers}}
@@ -199,7 +199,7 @@
             </div>
           </div>
         </div>
-        <div class="four wide center aligned column">
+        <div class="column">
           <div class="ui statistic">
             <div class="value statistics broadcasts">
               {{model.broadcasts}}
@@ -209,7 +209,7 @@
             </div>
           </div>
         </div>
-        <div class="four wide center aligned column">
+        <div class="column">
           <div class="ui statistic">
             <div class="value statistics impressions">
               {{model.impressions}}
@@ -219,7 +219,7 @@
             </div>
           </div>
         </div>
-        <div class="four wide center aligned column">
+        <div class="column">
           <div class="ui statistic">
             <div class="value statistics money-assigned">
               {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
@@ -230,15 +230,12 @@
           </div>
         </div>
       </div>
-        <div class="centered row">
-          <div class="ui eight wide center aligned column">
-            {{#link-to 'statistics' }}
-            <h5>
-              {{t 'index.statistics.link-to-statistics'}}
-            </h5>
-            {{/link-to}}
-          </div>
-        </div>
+      <div class="centered row">
+        {{#link-to 'statistics' class='ui primary button'}}
+        <i class="zoom icon"></i>
+        {{t 'index.statistics.link-to-statistics'}}
+        {{/link-to}}
+      </div>
     </div>
   </div>
 
