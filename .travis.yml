@@ -73,7 +73,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember build --environment=production && scp -r dist/* rschafer@rundfunk-mitbestimmen.de:html
+  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
   on:
     branch: master
 
