@@ -7,8 +7,8 @@ Feature: Link to broadcast details page on every broadcast card
   Background:
     Given I am logged in
     And we have these broadcasts in our database:
-      | Title                | Medium | Station   | Created at | Updated at | Description                                                    | Picture url                                    |
-      | Medienmagazin        | Radio  | radioeins | 2017-07-27 | 2017-08-01 | Welche Zukunft hat die ARD? Antworten gibt's im Medienmagazin. | https://www.zdf.de/assets/teamfoto-102~768x432 |
+      | Title                | Medium | Station   | Created at | Updated at | Description                                                    | Image url                                              |
+      | Medienmagazin        | Radio  | radioeins | 2017-07-27 | 2017-08-01 | Welche Zukunft hat die ARD? Antworten gibt's im Medienmagazin. | http://localhost:3000/assets/teamfoto-102-768x432.jpeg |
 
   Scenario: Click on details button to get to broadcast details page
     Given I visit the find broadcasts page
