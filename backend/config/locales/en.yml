@@ -8,7 +8,7 @@ en:
             description:
               no_urls: without links, please. Users should be able to view a broadcast without leaving this website.
             picture_url:
-              invalid_url: added URL is not a valid URL!
+              image_url: added URL is not a valid URL!
         impression:
           attributes:
             amount:

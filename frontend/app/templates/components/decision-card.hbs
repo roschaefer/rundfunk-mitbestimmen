@@ -13,15 +13,15 @@
       &mdash; {{ station.name}}
     {{/each}}
   </div>
-  {{#unless broadcast.pictureUrl}}
+  {{#unless broadcast.imageUrl}}
   <div class="description">
     {{ broadcast.description }}
   </div>
   {{/unless}}
 </div>
-{{#if broadcast.pictureUrl}}
+{{#if broadcast.imageUrl}}
 <div class="image">
-    <img src="{{ broadcast.pictureUrl }}" alt="{{ broadcast.title }}"/>
+    <img src="{{ broadcast.imageUrl }}" alt="{{ broadcast.title }}"/>
 </div>
 <div class="content">
   <div class="description">

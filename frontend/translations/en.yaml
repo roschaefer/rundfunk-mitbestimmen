@@ -35,9 +35,9 @@ broadcast-form:
     label: Description
     placeholder: >
       ..for people who do not know this broadcast. Short and to the point!
-  pictureUrl:
+  imageUrl:
     label: Image Url
-    placeholder: http://broadcast
+    placeholder: http://www.german-mediathek.de/url/of/an/image/
   medium:
     label: Medium
     placeholder: Select medium

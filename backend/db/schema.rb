@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20171012180512) do
     t.integer "mediathek_identification"
     t.integer "medium_id"
     t.bigint "schedule_id"
-    t.string "picture_url"
+    t.string "image_url"
     t.index ["format_id"], name: "index_broadcasts_on_format_id"
     t.index ["mediathek_identification"], name: "index_broadcasts_on_mediathek_identification", unique: true
     t.index ["medium_id"], name: "index_broadcasts_on_medium_id"

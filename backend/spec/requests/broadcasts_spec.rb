@@ -85,7 +85,7 @@ RSpec.describe 'Broadcasts', type: :request do
           attributes: {
             title: 'Nice broadcast',
             description: 'A nice broadcast, everybody will love it',
-            picture_url: 'https://www.zdf.de/assets/teamfoto-102~768x432'
+            image_url: 'https://www.zdf.de/assets/teamfoto-102~768x432'
           }, relationships: {
             medium: {
               data: {

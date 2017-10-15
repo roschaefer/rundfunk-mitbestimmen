@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default DS.Model.extend({
   title: DS.attr('string'),
   description: DS.attr('string'),
-  pictureUrl: DS.attr('string'),
+  imageUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   medium: DS.belongsTo('medium'),
