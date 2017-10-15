@@ -36,7 +36,6 @@ install:
   - cd frontend
   - yarn install --pure-lockfile
   - bower install
-  - ember build
   - cd ..
   - gem install foreman
 
