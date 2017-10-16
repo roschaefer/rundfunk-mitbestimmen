@@ -19,7 +19,7 @@ module.exports = function(deployTarget) {
     ENV['scp'] = {
         username: 'rschafer',
         host: 'rundfunk-mitbestimmen.de',
-        path: 'html'
+        path: '/home/rschafer/html'
     }
   }
 

@@ -11,13 +11,8 @@ before_install:
   - nvm install stable
   - nvm use stable
 
-    #http://blog.500tech.com/setting-up-travis-ci-to-run-tests-on-latest-google-chrome-version/
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - export CHROME_BIN=chromium-browser
-
     #http://stackoverflow.com/questions/42210295/travis-unable-to-find-chromedriver
-  - wget http://chromedriver.storage.googleapis.com/2.27/chromedriver_linux64.zip
+  - wget http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
   - sudo apt-get install libnss3
   - sudo apt-get --only-upgrade install google-chrome-stable
@@ -41,7 +36,6 @@ install:
   - cd frontend
   - yarn install --pure-lockfile
   - bower install
-  - ember build
   - cd ..
   - gem install foreman
 
@@ -79,7 +73,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember build --environment=production && scp -r dist/* rschafer@rundfunk-mitbestimmen.de:html
+  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
   on:
     branch: master
 

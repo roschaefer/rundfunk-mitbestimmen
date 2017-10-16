@@ -85,7 +85,7 @@ RSpec.describe Broadcast, type: :model do
     before do
       create_list(:broadcast, 10)
     end
-    
+
     let(:station) { create(:station, name: 'Das Erste') }
 
     let(:searched_broadcast) do
