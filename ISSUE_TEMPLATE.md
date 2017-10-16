@@ -1,8 +1,8 @@
 
-* **I'm submitting a ... **
-  - [ ] bug report
-  - [ ] user interface improvement
-  - [ ] feature request
+* **I'm submitting a ...**
+  * bug report
+  * user interface improvement
+  * feature request
 
 
 * **What is the current behavior?**
@@ -15,8 +15,9 @@
   * A screenshot
   * Stacktraces, related issues, suggestions how to fix
  
-* **If you want to submit a feature request, please provide a user story (otherwise delete):**
+* **If you want to request a whole new feature, please provide a user story (otherwise delete):**
   * As a `<type of user>`
   * I want `<some goal or objective>`
   * So that `<benefit, value>`
- 
+
+* **What could be a possible solution? (not obligatory)**
