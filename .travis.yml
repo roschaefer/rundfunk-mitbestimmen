@@ -11,14 +11,6 @@ before_install:
   - nvm install stable
   - nvm use stable
 
-    #http://stackoverflow.com/questions/42210295/travis-unable-to-find-chromedriver
-  - wget http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip
-  - sudo apt-get install libnss3
-  - sudo apt-get --only-upgrade install google-chrome-stable
-  - sudo cp chromedriver /usr/local/bin/.
-  - sudo chmod +x /usr/local/bin/chromedriver
-
   - cd frontend
   - npm install -g yarn
   - npm install -g bower
@@ -28,7 +20,6 @@ before_install:
   - npm --version
   - yarn --version
   - node --version
-  - chromedriver --version
   - cd ..
 
 install:
