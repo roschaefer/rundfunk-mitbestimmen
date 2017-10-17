@@ -1,12 +1,14 @@
 default: &default
-  adapter: postgresql
+  adapter: chronomodel
+  #adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 20
   username: <%= ENV["POSTGRES_USERNAME"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
-
+  host: localhost
+  
 development:
   <<: *default
   database: rundfunk-backend-development

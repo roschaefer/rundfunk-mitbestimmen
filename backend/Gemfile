@@ -14,6 +14,8 @@ gem 'rgeo-geojson'
 gem 'scenic'
 gem 'sidekiq'
 gem 'valid_email2'
+gem 'chrono_model'
+
 
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -44,6 +46,7 @@ group :development, :test, :fullstack do
   gem 'rspec-rails'
   gem 'vcr'
   gem 'webmock'
+  gem 'dotenv-rails'
 end
 
 group :development do

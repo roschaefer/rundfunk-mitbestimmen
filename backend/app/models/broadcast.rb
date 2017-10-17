@@ -1,4 +1,5 @@
 class Broadcast < ApplicationRecord
+  include ChronoModel::TimeMachine
   include PgSearch
   has_paper_trail
 
@@ -78,6 +79,10 @@ class Broadcast < ApplicationRecord
       end
       order('RANDOM()')
     end
+  end
+
+  def set_approval_from_statistic
+    self.update(:approval => self.statistic.approval)
   end
 
   private

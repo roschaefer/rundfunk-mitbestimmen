@@ -6,6 +6,14 @@ RSpec.describe Broadcast, type: :model do
 
   let(:broadcast) { build(:broadcast) }
 
+  before(:all) do
+    clean_database!
+  end
+
+  after(:all) do
+    clean_database!
+  end
+
   describe '#title' do
     describe 'title nil' do
       let(:broadcast) { build(:broadcast, title: nil) }
@@ -222,6 +230,54 @@ RSpec.describe Broadcast, type: :model do
     context 'missing' do
       let(:medium) { nil }
       it { is_expected.not_to be_valid }
+    end
+  end
+
+  describe '#as_of to return kpi values at a given point in time' do
+    self.use_transactional_tests = false
+
+    let(:broadcast) { create(:broadcast) }
+    before do
+      @t1 = Time.now
+      broadcast.update(approval: 10)
+      @t2 = Time.now
+      broadcast.update(approval: 12)
+      @t3 = Time.now
+      broadcast.update(approval: 15)
+      @t4 = Time.now
+    end
+
+    it 'should have 4 history entries' do
+      expect(broadcast.history.size).to eq(4)
+    end
+
+    it 'should return the broadcast state for a given time in the past', :testing_transactions => false do
+      expect(broadcast.as_of(@t1)).to be_nil
+      expect(broadcast.as_of(@t2).approval).to eq(10)
+      expect(broadcast.as_of(@t3).approval).to eq(12)
+      expect(broadcast.as_of(@t4).approval).to eq(15)
+    end
+
+    it 'should update broadcast state attributes when a new impression is added' do
+      old_approval = broadcast.approval
+      create(:impression, id:4, broadcast: broadcast, amount: 10)
+      expect(broadcast.approval).not_to eq(old_approval)
+      expect(broadcast.approval).to eq(broadcast.statistic.approval)
+    end
+
+    it 'should set the approval view equal to the view value' do
+      allow(broadcast.statistic).to receive(:approval).and_return(99)
+      broadcast.set_approval_from_statistic
+      expect(broadcast.approval).to eq(99)
+    end
+
+    it 'should add a history item only if approval changes' do
+      history_count = broadcast.history.count
+      broadcast.update(title: "other title")
+      expect(broadcast.history.count).to eq(history_count)
+
+      broadcast.update(approval: 30)
+      expect(broadcast.history.count).to eq(history_count+1)
     end
   end
 end

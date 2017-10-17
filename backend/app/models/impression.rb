@@ -12,7 +12,13 @@ class Impression < ApplicationRecord
   validates :amount, absence: true, unless: proc { |s| s.positive? }
   validate :total_amount_does_not_exceed_budget
 
+  after_save :sync_broadcast_approval
+
   private
+
+  def sync_broadcast_approval
+    self.broadcast.set_approval_from_statistic
+  end
 
   def total_amount_does_not_exceed_budget
     return unless amount

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170930144629) do
   enable_extension "plpgsql"
   enable_extension "citext"
   enable_extension "pg_trgm"
+  enable_extension "btree_gist"
 
   create_table "broadcasts", id: :serial, force: :cascade do |t|
     t.citext "title"
