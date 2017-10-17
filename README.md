@@ -109,6 +109,7 @@ git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 
 Install dependencies and run migrations:
 ```sh
+cd rundfunk-mitbestimmen
 bundle
 
 cd frontend
