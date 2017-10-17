@@ -167,10 +167,14 @@ These environments serve the purpose to
 2. Use a separate test database in the backend, which will be cleaned after each
    test run.
 
-If you want to run firefox instead of chrome, you can set an environment
-variable:
+If you want to run chrome or firefox instead of headless chrome, you can set an
+environment variable:
 ```sh
-BROWSER=selenium bundle exec cucumber
+bundle exec cucumber DRIVER=chrome
+```
+or
+```sh
+bundle exec cucumber DRIVER=firefox
 ```
 
 ### Frontend tests
