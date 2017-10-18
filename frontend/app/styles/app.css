@@ -109,14 +109,9 @@ p {
   border-radius: 0px !important;
 }
 
-.decision-card > .content:first-child {
-  min-height: 12em !important;
-}
-
 .invisible {
   visibility: hidden;
 }
-
 
 @media only screen and (max-width: 320px) {
   .pagination.dots {

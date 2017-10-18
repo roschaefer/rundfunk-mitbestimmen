@@ -10,12 +10,18 @@
       {{ broadcast.title }}
     </div>
     <div class="description detail">
-    <div class="meta">
-      {{t 'broadcast.broadcast-details.labels.description' }}
-    </div>
-      {{ broadcast.description }}
+      <div class="meta">
+        {{t 'broadcast.broadcast-details.labels.description' }}
+      </div>
+        {{ broadcast.description }}
     </div>
   </div>
+
+    {{#if broadcast.imageUrl }}
+      <div class="image">
+        <img src="{{ broadcast.imageUrl }}" alt="{{ broadcast.title }}"/>
+      </div>
+    {{/if}}
 
   <div class="content">
     <div class="meta">
