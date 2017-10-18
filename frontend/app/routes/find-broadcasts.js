@@ -41,18 +41,6 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
       broadcasts: this.findPaged('broadcast', params)
     });
   },
-  afterModel(_, transition) {
-    if (this.get('session').get('isAuthenticated') === false){
-      const customDict = {
-        networkOrEmail: {
-          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
-          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
-          separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-        },
-      };
-      transition.send('login', customDict, 'find-broadcasts');
-    }
-  },
   setupController: function(controller, model) {
     // Call _super for default behavior
     this._super(controller, model);
