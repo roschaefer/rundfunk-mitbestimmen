@@ -52,7 +52,6 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
         icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
         primaryColor: '#2185D0',
         dict: dict,
-        closable: false,
         authParams: {
           state: toRoute,
           scope: 'openid email',
