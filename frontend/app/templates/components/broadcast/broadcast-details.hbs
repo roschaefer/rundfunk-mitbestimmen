@@ -17,6 +17,12 @@
     </div>
   </div>
 
+  {{#if broadcast.imageUrl }}
+    <div class="image">
+      <img src="{{ broadcast.imageUrl }}" alt="{{ broadcast.title }}"/>
+    </div>
+  {{/if}}
+
   <div class="content">
     <div class="meta">
     <span class="right floated">
