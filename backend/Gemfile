@@ -14,7 +14,7 @@ gem 'rgeo-geojson'
 gem 'scenic'
 gem 'sidekiq'
 gem 'valid_email2'
-
+gem 'chrono_model'
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', github: 'rails/rails'

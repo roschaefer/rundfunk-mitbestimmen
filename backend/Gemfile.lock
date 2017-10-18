@@ -81,6 +81,10 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
+    chrono_model (0.11.1)
+      activerecord (>= 4.2.0, < 5.2.0)
+      multi_json
+      pg
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     concurrent-ruby (1.0.5-java)
@@ -328,6 +332,7 @@ DEPENDENCIES
   capistrano
   capistrano-db-tasks
   capistrano-rails
+  chrono_model
   factory_girl_rails
   geocoder
   globalize!
