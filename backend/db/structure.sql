@@ -536,6 +536,45 @@ UNION ALL
 
 
 
+CREATE VIEW statistic_kpis AS
+ SELECT t.id,
+    t.title,
+    t.impressions,
+    ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
+    COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
+    t.total,
+    ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount,
+    t.validity
+   FROM (( SELECT history_impressions.broadcast_id AS id,
+            broadcasts.title,
+            count(*) AS impressions,
+            COALESCE(sum(
+                CASE
+                    WHEN (history_impressions.response = 1) THEN 1
+                    ELSE 0
+                END), (0)::bigint) AS positives,
+            COALESCE(sum(history_impressions.amount), (0)::numeric) AS total,
+            history_impressions.validity
+           FROM (history.impressions history_impressions
+             JOIN broadcasts ON ((history_impressions.broadcast_id = broadcasts.id)))
+          GROUP BY history_impressions.broadcast_id, broadcasts.title, history_impressions.validity) t
+     LEFT JOIN ( SELECT (sum(history_impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
+           FROM history.impressions history_impressions) a ON (true))
+UNION ALL
+ SELECT broadcasts.id,
+    broadcasts.title,
+    0 AS impressions,
+    NULL::double precision AS approval,
+    NULL::double precision AS average,
+    0 AS total,
+    0 AS expected_amount,
+    NULL::tsrange AS validity
+   FROM (broadcasts
+     LEFT JOIN history.impressions history_impressions ON ((broadcasts.id = history_impressions.broadcast_id)))
+  WHERE (history_impressions.broadcast_id IS NULL);
+
+
+
 CREATE VIEW statistic_media AS
  SELECT media.id,
     count(*) AS broadcasts_count,
@@ -1225,5 +1264,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170930144629'),
 ('20171015210454'),
 ('20171015210622'),
-('20171018195356');
+('20171018195356'),
+('20171019072918');
 

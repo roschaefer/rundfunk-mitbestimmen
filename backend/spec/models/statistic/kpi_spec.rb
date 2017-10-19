@@ -1,0 +1,157 @@
+require 'rails_helper'
+
+RSpec.describe Statistic::Kpi, type: :model do
+  let(:broadcast) { create(:broadcast) }
+
+  subject { described_class.find(broadcast.id) }
+
+  context 'without any impressions' do
+    it 'there is a record for every broadcast' do
+      is_expected.to be_present
+    end
+  end
+
+  context 'given only neutral impressions' do
+    before { create(:impression, broadcast: broadcast, response: :neutral) }
+
+    describe '#average' do
+      it 'returns zero' do
+        expect(subject.average).to eq 0.0
+      end
+    end
+  end
+
+  context 'given some impressions' do
+    before do
+      create(:impression, broadcast: broadcast, response: :positive, amount: 2.3)
+      create(:impression, broadcast: broadcast, response: :positive, amount: 1.5)
+      create(:impression, broadcast: broadcast, response: :positive, amount: 7.1)
+      create(:impression, broadcast: broadcast, response: :positive, amount: 4.8)
+      3.times { create(:impression, broadcast: broadcast, response: :neutral) }
+      2.times { create(:impression, broadcast: broadcast, response: :negative) }
+      create(:user) # one for a missing user
+    end
+
+    describe '#impressions' do
+      it 'number of impressions per broadcast' do
+        expect(subject.impressions).to eq 9
+      end
+    end
+
+    describe '#approval' do
+      it 'yields positive/total' do
+        expect(subject.approval).to eq 0.444444444444444
+      end
+    end
+
+    describe '#average' do
+      it 'how much money per broadcast per capita' do
+        expect(subject.average).to eq(15.7 / 4.0)
+      end
+    end
+
+    describe '#total' do
+      it 'how much money per broadcast in total' do
+        expect(subject.total).to eq 15.7
+      end
+    end
+  end
+
+  describe '#expected_amount', issue: 221 do
+    describe 'given broadcasts with varying number of impressions', issue: 221 do
+      before(:all) do
+        # create the records in the database
+        create_list(:impression, 2,  response: :positive, amount: 15.0, broadcast: create(:broadcast, id: 4711)) # <= that's our broadcast for now
+        create_list(:impression, 3,  response: :positive, amount: 10.0, broadcast: create(:broadcast))
+        create_list(:impression, 5, response: :positive, amount: 5.0, broadcast: create(:broadcast))
+      end
+
+      after(:all) do
+        clean_database!
+      end
+
+      let(:broadcast) { Broadcast.find(4711) }
+
+      let(:sum_of_all_amounts) { 2 * 15.0 + 3 * 10.0 + 5 * 5.0 }
+      let(:number_of_impressions) { 2 + 3 + 5 }
+      let(:average_amount_per_impression) { (sum_of_all_amounts / number_of_impressions) }
+
+      def expected_amount_of_broadcast
+        described_class.find(broadcast.id).expected_amount
+      end
+
+      it '= number_of_impressions(broadcast) * ( sum_of_all_amounts / number_of_impressions)' do
+        expect(expected_amount_of_broadcast).to eq(2 * (sum_of_all_amounts / number_of_impressions)) # 17
+      end
+
+      it 'is based on the number of impressions of the broadcast' do
+        expect { create(:impression, broadcast: broadcast, response: :positive, amount: 3.0) }.to(change { expected_amount_of_broadcast })
+      end
+
+      it 'is based on the number of impressions in total' do
+        expect { Impression.first.destroy }.to(change { expected_amount_of_broadcast })
+      end
+
+      it 'is based on the sum of all amounts' do
+        expect { Impression.last.update_attributes(amount: 15.0) }.to(change { expected_amount_of_broadcast })
+      end
+
+      it 'will decrease for every neutral impression (amount = 0)' do
+        expect { create_list(:impression, 6, response: :neutral) }.to(change { expected_amount_of_broadcast }.from(17).to(10.625))
+      end
+
+      it 'will increase for every positive impression with amount > average_of_all_amounts' do
+        # old: 2 * 7.5
+        # new: 2 * 9
+        expect { create(:impression, response: :positive, amount: 14.0) }.to(change { expected_amount_of_broadcast }.from(17).to(18))
+      end
+
+      it 'will increase for every impression of the specific broadcast' do
+        # old: 2 * 7.5
+        # new: 4 * 85.0/16.0
+        expect { create_list(:impression, 6, response: :neutral, broadcast: broadcast) }.to(change { expected_amount_of_broadcast }.from(17).to(8 * (85.0 / 16.0)))
+      end
+
+      it 'will increase even more for every positive impression of the specific broadcast' do
+        # old: 2 * 7.5
+        # new: 3 * 9
+        expect { create(:impression, response: :positive, amount: 14.0, broadcast: broadcast) }.to(change { expected_amount_of_broadcast }.from(17).to(27))
+      end
+    end
+  end
+
+  describe '.as_of returns values at a given point in time' do
+      subject { Statistic::Kpi }
+
+      before do
+        # create the records in the database
+        create_list(:impression, 5, response: :positive, amount: 5.0, broadcast: broadcast)
+      end
+
+      after(:all) do
+        clean_database!
+      end
+
+      context "without history" do
+        it 'returns the current value if as_of is not specified' do
+          expect(subject.find(broadcast.id).total).to eq(subject.find(broadcast.id).total)
+        end
+      end
+
+      context "with history" do
+        it 'returns the correct total value in time' do
+          binding.pry
+          t1_total = Statistic::Kpi.find(broadcast.id).total
+          t1 = Time.now
+
+          expect(subject.as_of(t1).find(broadcast.id).total).to eq(t1_total)
+
+          create(:impression, amount: 5, broadcast: broadcast)
+          t2 = Time.now
+
+          expect(subject.as_of(t2).find(broadcast.id).total).to eq(t1_total + 5)
+        end
+
+      end
+  end
+end

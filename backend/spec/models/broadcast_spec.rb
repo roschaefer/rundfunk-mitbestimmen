@@ -224,4 +224,41 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.not_to be_valid }
     end
   end
+
+  describe "know KPI values of the past" do
+    before do
+      @impression = create(:impression, broadcast: broadcast, amount: 5.0, response: :positive)
+    end
+
+    describe "#as_of(date).approval" do
+      it 'returns the current value for Time.now' do
+        expect(subject.from(Time.now).approval).to eq(subject.approval)
+      end
+
+      it 'tracks updates to impressions' do
+        approval_before_change = subject.approval
+        time_before_change = Time.now
+        @impression.update(response: :negative)
+        approval_after_change = subject.approval
+        time_after_change = Time.now
+
+        expect(subject.from(time_before_change).approval).to eq(approval_before_change)
+        expect(subject.from(time_after_change).approval).to eq(approval_after_change)
+      end
+
+      it 'tracks deletions of impressions' do
+        
+      end
+
+      it 'tracks creation of impressions' do
+        
+      end
+    end
+
+    describe "#from(date).amount" do
+      it 'returns the amount value at the given date' do
+        
+      end
+    end
+  end
 end
