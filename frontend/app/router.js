@@ -47,6 +47,7 @@ Router.map(function() {
   this.route('broadcast', { path: '/broadcast/:broadcast_id' }, function() {
     this.route('edit');
   });
+  this.route('404', { path: '*' });
 });
 
 export default Router;

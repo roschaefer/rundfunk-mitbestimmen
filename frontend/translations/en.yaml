@@ -540,3 +540,7 @@ about-us:
         and scrum master at
         <a href="https://www.agileventures.org/">AgileVentures</a>. At the
         moment he is an independent consultant.
+
+404:
+  header: Oops..
+  sub-header: We could not find that page.

@@ -568,3 +568,7 @@ about-us:
         <a href="https://www.agileventures.org/">AgileVentures</a> engagiert er
         sich für soziale Projekte. Zurzeit arbeitet er als selbständiger
         Berater.
+
+404:
+  header: Ups..
+  sub-header: Wir konnten die Seite nicht finden.
