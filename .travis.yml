@@ -27,6 +27,7 @@ install:
   - cd frontend
   - yarn install --pure-lockfile
   - bower install
+  - ember build # unnecessary, but it makes our build slightly more stable, otherwise we run into non-deterministic errors 'unexpected end of file.. zLib'
   - cd ..
   - gem install foreman
 
