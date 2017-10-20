@@ -48,7 +48,7 @@ class Broadcast < ApplicationRecord
   end
 
   def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
-    results = Broadcast.all.includes(:impressions)
+    results = Broadcast.all
     results = results.full_search(query) unless query.blank?
     if filter_params
       results = results.where(medium: filter_params[:medium]) unless filter_params[:medium].blank?
@@ -62,7 +62,7 @@ class Broadcast < ApplicationRecord
 
   def self.review_filter(review_status, user)
     if review_status == 'reviewed'
-      evaluated(user).includes(:impressions)
+      evaluated(user)
     elsif review_status == 'unreviewed'
       unevaluated(user)
     end

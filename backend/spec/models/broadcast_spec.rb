@@ -151,6 +151,36 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.to include(searched_broadcast) }
     end
 
+    describe 'filter by station' do
+      let(:relation) { described_class.search(filter_params: { station: station }) }
+      describe 'along with random order' do
+        let(:relation) { super().results_order('random', seed: 0.123456789) }
+        context 'the result set includes one broadcast with a lot of stations and many impressions' do
+          before do
+            # that's the trouble maker
+            lot_of_stations = create_list(:station, 3) + [station]
+            troublemaker = create(:broadcast, medium: medium, stations: lot_of_stations)
+            create_list(:impression, 23, broadcast: troublemaker)
+
+            # now create some more broadcasts matching the query
+            create_list(:broadcast, 8, stations: [station])
+            # now we have the searched_broadcast + troublemaker + noise
+            # totalling 10 broadcasts
+          end
+
+          describe 'size of entire result set' do
+            subject { relation.count }
+            it { is_expected.to eq(10) }
+          end
+
+          describe 'size of paginated result set' do
+            subject { relation.page(1).per(6).count }
+            it { is_expected.to eq(6) }
+          end
+        end
+      end
+    end
+
     context 'sort by alphabetical order' do
       before do
         create(:broadcast, title: 'Popeye Film')
@@ -163,6 +193,60 @@ RSpec.describe Broadcast, type: :model do
 
       it 'sorts by title descending' do
         expect(described_class.search(query: 'Film', sort: 'desc').last.title).to eq(searched_broadcast.title)
+      end
+    end
+  end
+
+  describe '#results_order' do
+    let(:broadcasts) { create_list(:broadcast, 13) }
+    before { broadcasts }
+
+    describe 'random' do
+      let(:relation) { described_class.results_order('random', seed: seed) }
+      context 'different seeds' do
+        let(:seed) { '123412341234' }
+      end
+
+      describe 'paginates' do
+        let(:seed) { 0.12341234 }
+
+        describe 'for two seeds' do
+          subject { relation.page(1).per(6).map(&:id) }
+          let(:compared_with) { described_class.results_order('random', seed: other_seed).page(1).per(6).map(&:id) } # same relation again
+
+          context 'which are the same' do
+            let(:other_seed) { seed }
+            it { is_expected.to eq(compared_with) }
+          end
+
+          context 'which are different' do
+            let(:other_seed) { 0.987654321 }
+            it { is_expected.not_to eq(compared_with) }
+          end
+        end
+
+        context 'for same seed' do
+          describe 'repeated pagination' do
+            let(:result_set) do
+              result_set = []
+              result_set += described_class.results_order('random', seed: seed).page(1).per(6)
+              result_set += described_class.results_order('random', seed: seed).page(2).per(6)
+              result_set += described_class.results_order('random', seed: seed).page(3).per(6)
+              result_set
+            end
+
+            describe 'result set' do
+              subject { result_set.map(&:id) }
+              it 'includes all broadcasts' do
+                is_expected.to match_array(broadcasts.map(&:id).uniq)
+              end
+
+              it 'contains no duplicates' do
+                is_expected.to eq(subject.uniq)
+              end
+            end
+          end
+        end
       end
     end
   end
