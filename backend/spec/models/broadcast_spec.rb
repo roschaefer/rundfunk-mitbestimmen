@@ -197,6 +197,60 @@ RSpec.describe Broadcast, type: :model do
     end
   end
 
+  describe '#results_order' do
+    let(:broadcasts) { create_list(:broadcast, 13) }
+    before { broadcasts }
+
+    describe 'random' do
+      let(:relation) { described_class.results_order('random', seed: seed) }
+      context 'different seeds' do
+        let(:seed) { '123412341234' }
+      end
+
+      describe 'paginates' do
+        let(:seed) { 0.12341234 }
+
+        describe 'for two seeds' do
+          subject { relation.page(1).per(6).map(&:id) }
+          let(:compared_with) { described_class.results_order('random', seed: other_seed).page(1).per(6).map(&:id) } # same relation again
+
+          context 'which are the same' do
+            let(:other_seed) { seed }
+            it { is_expected.to eq(compared_with) }
+          end
+
+          context 'which are different' do
+            let(:other_seed) { 0.987654321 }
+            it { is_expected.not_to eq(compared_with) }
+          end
+        end
+
+        context 'for same seed' do
+          describe 'repeated pagination' do
+            let(:result_set) do
+              result_set = []
+              result_set += described_class.results_order('random', seed: seed).page(1).per(6)
+              result_set += described_class.results_order('random', seed: seed).page(2).per(6)
+              result_set += described_class.results_order('random', seed: seed).page(3).per(6)
+              result_set
+            end
+
+            describe 'result set' do
+              subject { result_set.map(&:id) }
+              it 'includes all broadcasts' do
+                is_expected.to match_array(broadcasts.map(&:id).uniq)
+              end
+
+              it 'contains no duplicates' do
+                is_expected.to eq(subject.uniq)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe '#valid?' do
     subject { broadcast }
     let(:broadcast) { build(:broadcast, attributes) }
