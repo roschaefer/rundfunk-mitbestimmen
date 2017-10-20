@@ -62,7 +62,7 @@ class Broadcast < ApplicationRecord
 
   def self.review_filter(review_status, user)
     if review_status == 'reviewed'
-      evaluated(user).includes(:impressions)
+      evaluated(user)
     elsif review_status == 'unreviewed'
       unevaluated(user)
     end
