@@ -48,7 +48,7 @@ class Broadcast < ApplicationRecord
   end
 
   def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
-    results = Broadcast.all.includes(:impressions)
+    results = Broadcast.all
     results = results.full_search(query) unless query.blank?
     if filter_params
       results = results.where(medium: filter_params[:medium]) unless filter_params[:medium].blank?
