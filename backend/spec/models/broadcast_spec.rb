@@ -151,6 +151,36 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.to include(searched_broadcast) }
     end
 
+    describe 'filter by station' do
+      let(:relation) { described_class.search(filter_params: { station: station }) }
+      describe 'along with random order' do
+        let(:relation) { super().results_order('random', seed: 0.123456789) }
+        context 'the result set includes one broadcast with a lot of stations and many impressions' do
+          before do
+            # that's the trouble maker
+            lot_of_stations = create_list(:station, 3) + [station]
+            troublemaker = create(:broadcast, medium: medium, stations: lot_of_stations)
+            create_list(:impression, 23, broadcast: troublemaker)
+
+            # now create some more broadcasts matching the query
+            create_list(:broadcast, 8, stations: [station])
+            # now we have the searched_broadcast + troublemaker + noise
+            # totalling 10 broadcasts
+          end
+
+          describe 'size of entire result set' do
+            subject { relation.count }
+            it { is_expected.to eq(10) }
+          end
+
+          describe 'size of paginated result set' do
+            subject { relation.page(1).per(6).count }
+            it { is_expected.to eq(6) }
+          end
+        end
+      end
+    end
+
     context 'sort by alphabetical order' do
       before do
         create(:broadcast, title: 'Popeye Film')
