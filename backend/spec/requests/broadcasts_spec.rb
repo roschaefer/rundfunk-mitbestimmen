@@ -11,7 +11,12 @@ RSpec.describe 'Broadcasts', type: :request do
   let(:other) { Medium.create(id: 2, name: 'other') }
 
   let(:tv_broadcast)    { create(:broadcast, id: 0, medium: tv) }
-  let(:radio_broadcast) { create(:broadcast, id: 1, medium: radio) }
+  let(:radio_broadcast) do
+    create(:broadcast,
+           id: 1,
+           medium: radio,
+           broadcast_url: 'https://www.zdf.de/assets/teamfoto-102~768x43')
+  end
   let(:other_broadcast) { create(:broadcast, id: 2, medium: other) }
 
   let(:dasErste) { create(:station, id: 47, name: 'Das Erste') }
@@ -73,6 +78,21 @@ RSpec.describe 'Broadcasts', type: :request do
         end
       end
     end
+  end
+
+  describe 'GET /broadcast/:id' do
+    let(:action) { get "/broadcasts/#{radio_broadcast.id}", headers: headers }
+
+    context 'logged in' do
+      let(:headers) { super().merge(authenticated_header(user)) }
+
+      it "returns a valid object" do
+        action
+        expect(response.status).to eq 200
+        expect(response).to match_response_schema('broadcast')
+      end
+    end
+
   end
 
   describe 'POST /broadcasts' do
