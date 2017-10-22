@@ -1,3 +1,4 @@
+# coding: utf-8
 feature_directory = Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
   begin
@@ -978,6 +979,9 @@ When("I am on the broadcast page for {string}") do |title|
 end
 
 Then("I should have a broadcast link {string}") do |url|
-  expect(page).to have_xpath("//a[@href='#{url}']")
+  expect(page).to have_css("a[href='#{url}']")
 end
 
+Then("I should have an image {string}") do |url|
+  expect(page).to have_css("img[src='#{url}']")
+end
