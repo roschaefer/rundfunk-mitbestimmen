@@ -5,11 +5,17 @@ module Statistic
 
     belongs_to :broadcast, class_name: '::Broadcast', foreign_key: :id
 
+    def self.find_broadcast_as_of(broadcast, time)
+      # TODO: fix
+      broadcasts = Arel::Table.new(:broadcasts)
+      view_definition.where(broadcasts[:id].eq(broadcast.id))
+    end
+
     # Single Source of Truth
     # Use this view definition to generate the stored SQL
     def self.view_definition
       broadcasts = Arel::Table.new(:broadcasts)
-      impressions = Arel::Table.new(:impressions)
+      impressions = Arel::Table.new('"public"."impressions"')
       broadcasts.project(
         broadcasts[:id].as('id'),
         broadcasts[:title].as('title'),
@@ -41,18 +47,16 @@ module Statistic
     end
 
     def self.global_average_per_impression
-      impressions = Arel::Table.new(:impressions)
-      Arel::Table.new(:impressions).project(
+      Arel::Table.new('"public"."impressions"').project(
         Arel::Nodes::NamedFunction.new(
           'avg',
           [Arel::Nodes::NamedFunction.new(
             'coalesce',
-            [impressions[:amount], 0]
+            [Arel::Table.new('"public"."impressions"')[:amount], 0]
           )]
         )
       )
     end
-
     private
 
     # this isn't strictly necessary, but it will prevent

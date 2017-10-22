@@ -31,5 +31,7 @@ module Backend
     config.api_only = true
     config.active_job.queue_adapter = :sidekiq
     config.filter_parameters << :password
+
+    config.active_record.schema_format = :sql
   end
 end
