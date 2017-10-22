@@ -104,7 +104,7 @@ RSpec.describe 'Broadcasts', type: :request do
 
       describe '#broadcast_url' do
         subject { parse_json(response.body, 'data/attributes/broadcast-url') }
-        it { is_expected.to eq 'https://www.zdf.de/assets/teamfoto-102~768x43'  }
+        it { is_expected.to eq 'https://www.zdf.de/assets/teamfoto-102~768x43' }
       end
     end
   end
