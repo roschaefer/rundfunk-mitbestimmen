@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Impression, type: :model do
+  before(:all) do
+    clean_database!
+  end
+
   { response: nil, user: nil, broadcast: nil }.to_a.each do |pair|
     describe "#{pair.first} nil" do
       subject { build(:impression, Hash[*pair]) }
@@ -66,6 +70,27 @@ RSpec.describe Impression, type: :model do
         it 'database constraint' do
           second_impression = build(:impression, user: user, broadcast: broadcast)
           expect { second_impression.save(validate: false) }.to raise_error(ActiveRecord::RecordNotUnique)
+        end
+      end
+    end
+  end
+
+  describe 'historical data' do
+    describe '#as_of' do
+      without_transactional_fixtures do
+     
+        subject(:impression) { create(:impression) }
+
+        it 'returns the amount assigned at a given point in time' do
+          impression.update(response: :positive, amount: 5)
+          t0 = Time.now.utc
+          sleep 1
+            
+          impression.update(amount: 10)
+          t1 = Time.now.utc
+
+          expect(impression.as_of(t0).amount).to eq(5)
+          expect(impression.as_of(t1).amount).to eq(10)
         end
       end
     end

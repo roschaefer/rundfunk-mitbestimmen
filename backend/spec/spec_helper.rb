@@ -19,10 +19,12 @@
 
 require_relative 'support/knock_helper'
 require_relative 'support/custom_database_cleaner'
+require_relative 'support/database_cleaning_strategy'
 
 RSpec.configure do |config|
   config.include KnockHelper, type: :request
   config.include CustomDatabaseCleaner
+  config.extend DatabaseCleaningStrategy
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
