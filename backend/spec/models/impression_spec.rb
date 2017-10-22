@@ -65,4 +65,33 @@ RSpec.describe Impression, type: :model do
       end
     end
   end
+
+  describe '#as_of' do
+    before(:all) do
+      @impression = create(:impression, response: :positive, amount: 5)
+      @t0 = Time.now
+      @impression.update(amount: 10)
+      @t1 = Time.now
+    end
+
+    after(:all) do
+      clean_database!
+    end
+
+    let(:impression) { @impression }
+
+    describe '#amount' do
+      subject { impression.as_of(time).amount }
+      describe 't0' do
+        let(:time) { @t0 }
+        it { is_expected.to eq(5) }
+      end
+
+      describe 't1' do
+        let(:time) { @t1 }
+        it { is_expected.to eq(10) }
+      end
+    end
+  end
 end
+

@@ -1,4 +1,6 @@
 class Impression < ApplicationRecord
+  include ChronoModel::TimeMachine
+
   BUDGET = 17.5
   enum response: { neutral: 0, positive: 1 }
   belongs_to :user

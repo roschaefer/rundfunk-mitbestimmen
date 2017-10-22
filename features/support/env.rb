@@ -48,6 +48,9 @@ After do
   page.execute_script("window.stubbedJwt = undefined")
   visit '/'
   page.execute_script("localStorage.clear()")
+
+  # clean temporal tables
+  Impression::History.delete_all
 end
 
 # Shorthand FactoryBot

@@ -8,7 +8,6 @@ RSpec.describe Broadcast, type: :model do
   subject { broadcast }
 
   let(:broadcast) { build(:broadcast) }
-
   describe '#title' do
     describe 'title nil' do
       let(:broadcast) { build(:broadcast, title: nil) }
