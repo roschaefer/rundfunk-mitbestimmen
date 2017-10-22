@@ -2,7 +2,7 @@ dist: trusty
 language: ruby
 sudo: required
 rvm:
-  - 2.3.1
+  - 2.4.1
 addons:
   ssh_known_hosts: rundfunk-mitbestimmen.de
 
