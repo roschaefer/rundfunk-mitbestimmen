@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Broadcasts', type: :request do
@@ -44,7 +46,8 @@ RSpec.describe 'Broadcasts', type: :request do
       describe '#medium' do
         let(:broadcasts) { [tv_broadcast] }
         it 'exposes the medium' do
-          expect(subject['data'][0]['relationships']['medium']['data']['id']).to eq(tv.id.to_s)
+          expect(subject['data'][0]['relationships']['medium']['data']['id'])
+            .to eq(tv.id.to_s)
         end
       end
 
@@ -85,14 +88,25 @@ RSpec.describe 'Broadcasts', type: :request do
 
     context 'logged in' do
       let(:headers) { super().merge(authenticated_header(user)) }
-
-      it "returns a valid object" do
+      before do
         action
-        expect(response.status).to eq 200
-        expect(response).to match_response_schema('broadcast')
+      end
+
+      describe 'http status' do
+        subject { response }
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      describe 'response schema' do
+        subject { response }
+        it { is_expected.to match_response_schema('broadcast') }
+      end
+
+      describe '#broadcast_url' do
+        subject { parse_json(response.body, 'data/attributes/broadcast-url') }
+        it { is_expected.to eq 'https://www.zdf.de/assets/teamfoto-102~768x43'  }
       end
     end
-
   end
 
   describe 'POST /broadcasts' do
