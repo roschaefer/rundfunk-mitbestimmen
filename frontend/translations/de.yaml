@@ -304,7 +304,7 @@ broadcast:
       stations: Sender
       createdAt: Erstellt am
       updatedAt: Zuletzt geändert am
-      visit-broadcast: Sendung besuchen
+      visit-broadcast: Zur Website der Sendung
 find-broadcasts:
   header: Sendungen auswählen
   help-messages:

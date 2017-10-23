@@ -24,9 +24,10 @@
   {{/if}}
 
   {{#if broadcast.broadcastUrl }}
-    <div class="ui one button">
-      <a target="_blank" href="{{broadcast.broadcastUrl}}">{{t 'broadcast.broadcast-details.labels.visit-broadcast' }}</a>
-    </div>
+    <a class="ui primary button" target="_blank" href="{{broadcast.broadcastUrl}}">
+      {{t 'broadcast.broadcast-details.labels.visit-broadcast' }}
+      <i class="right arrow icon"></i>
+    </a>
   {{/if}}
 
   <div class="content">
