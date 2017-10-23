@@ -738,36 +738,6 @@ When(/^I click the accordion(?: once again)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
 end
 
-When(/^I navigate to the visualization of expected vs. actual values of TV and radio stations$/) do
-  visit '/'
-  click_on 'Visualization'
-  click_on 'visualize-diff'
-  scroll_to(find('#visualize-diff-stations'))
-  click_on 'visualize-diff-stations'
-end
-
-Then(/^from the diff in the distribution I can see/) do |block|
-  # just documentation
-end
-
-def normalize_highcharts_svg(content)
-  doc = Nokogiri::XML(content)
-  doc.css('*').remove_attr('style')
-  doc.css('*').remove_attr('id')
-  doc.css('*').remove_attr('clip-path')
-  doc.css('desc').remove
-  doc.to_s
-end
-
-Then(/^the chart looks pretty much the same like the one in "([^"]*)"$/) do |path|
-  expect(page).to have_css('.highcharts-container')
-  sleep 2 # it takes about 2 seconds for the animation to finish
-  expected_svg = File.read(feature_directory.join(path))
-  actual_svg = first('.highcharts-container')['innerHTML']
-  # if necessary, update the expected file
-  # File.write('distribution_by_station.svg', actual_svg)
-  expect(normalize_highcharts_svg(expected_svg)).to eq(normalize_highcharts_svg(actual_svg))
-end
 
 Given(/^I have (\d+) broadcasts in my database:$/) do |number|
   create_list(:broadcast, number.to_i)
