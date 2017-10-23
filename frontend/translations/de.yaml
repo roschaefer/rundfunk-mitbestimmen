@@ -38,6 +38,9 @@ broadcast-form:
   imageUrl:
     label: Bild URL
     placeholder: http://www.eine-mediathek.de/url/von/einem/Bild
+  broadcastUrl:
+    label: Mediathek URL
+    placeholder: http://www.eine-mediathek.de/url/
   medium:
     label: Medium
     placeholder: Medium auswählen
@@ -301,6 +304,7 @@ broadcast:
       stations: Sender
       createdAt: Erstellt am
       updatedAt: Zuletzt geändert am
+      visit-broadcast: Zur Website der Sendung
 find-broadcasts:
   header: Sendungen auswählen
   help-messages:

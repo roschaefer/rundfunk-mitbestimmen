@@ -1,3 +1,6 @@
+
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'support/shared_examples/database_unique_attribute'
 
@@ -310,7 +313,7 @@ RSpec.describe Broadcast, type: :model do
   end
 
   describe '#image_url' do
-    describe 'image_url nil' do
+    describe 'image_url can be nil' do
       let(:broadcast) { build(:broadcast, image_url: nil) }
       it { is_expected.to be_valid }
     end
@@ -320,13 +323,35 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.to_not be_valid }
     end
 
-    describe 'valid image_url' do
+    describe 'image_url' do
       let(:broadcast) { build(:broadcast, image_url: 'https://www.zdf.de/assets/teamfoto-102~768x432') }
       it { is_expected.to be_valid }
     end
 
-    describe 'has valid url' do
+    describe 'invalid image url' do
       let(:broadcast) { build(:broadcast, image_url: 'htps:/www.zdf.de/assets/teamfoto-102~768x432') }
+      it { is_expected.to_not be_valid }
+    end
+  end
+
+  describe '#broadcast_url' do
+    describe 'nil broadcast_url' do
+      let(:broadcast) { build(:broadcast, broadcast_url: nil) }
+      it { is_expected.to be_valid }
+    end
+
+    describe 'empty broadcast_url' do
+      let(:broadcast) { build(:broadcast, broadcast_url: ' ') }
+      it { is_expected.to_not be_valid }
+    end
+
+    describe 'broadcast_url' do
+      let(:broadcast) { build(:broadcast, broadcast_url: 'https://www.zdf.de/filme/ein-starkes-team/wespennest-118.html') }
+      it { is_expected.to be_valid }
+    end
+
+    describe 'invalid broadcast_url' do
+      let(:broadcast) { build(:broadcast, broadcast_url: 'htps:/www.zdf.de/filme/ein-starkes-team/wespennest-118.html') }
       it { is_expected.to_not be_valid }
     end
   end

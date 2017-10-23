@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Broadcast < ApplicationRecord
   include PgSearch
   has_paper_trail
@@ -26,6 +28,7 @@ class Broadcast < ApplicationRecord
   validates :mediathek_identification, uniqueness: { allow_nil: true }
   validate :description_should_not_contain_urls
   validate :image_url_should_contain_url
+  validate :broadcast_url_should_contain_url
 
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
   scope :evaluated, (->(user) { where(id: user.broadcasts.pluck(:id)) })
@@ -84,13 +87,20 @@ class Broadcast < ApplicationRecord
   private
 
   def description_should_not_contain_urls
-    return unless description =~ URI.regexp(%w[http https])
+    return unless description
+    return unless description.match?(URI.regexp(%w[http https]))
     errors.add(:description, :no_urls)
   end
 
   def image_url_should_contain_url
     return unless image_url
-    return if image_url =~ URI.regexp(%w[http https])
+    return if image_url.match?(URI.regexp(%w[http https]))
     errors.add(:image_url, :invalid_url)
+  end
+
+  def broadcast_url_should_contain_url
+    return unless broadcast_url
+    return if broadcast_url.match?(URI.regexp(%w[http https]))
+    errors.add(:broadcast_url, :invalid_url)
   end
 end

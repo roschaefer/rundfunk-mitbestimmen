@@ -38,6 +38,9 @@ broadcast-form:
   imageUrl:
     label: Image Url
     placeholder: http://www.german-mediathek.de/url/of/an/image/
+  broadcastUrl:
+    label: Broadcast Url
+    placeholder: http://www.german-mediathek.de/url/
   medium:
     label: Medium
     placeholder: Select medium
@@ -284,6 +287,7 @@ broadcast:
       stations: Stations
       createdAt: Created at
       updatedAt: Last updated at
+      visit-broadcast: Visit broadcast website
 find-broadcasts:
   header: Choose broadcasts
   help-messages:

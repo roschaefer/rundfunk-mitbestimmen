@@ -23,6 +23,13 @@
     </div>
   {{/if}}
 
+  {{#if broadcast.broadcastUrl }}
+    <a class="ui primary button" target="_blank" href="{{broadcast.broadcastUrl}}">
+      {{t 'broadcast.broadcast-details.labels.visit-broadcast' }}
+      <i class="right arrow icon"></i>
+    </a>
+  {{/if}}
+
   <div class="content">
     <div class="meta">
     <span class="right floated">

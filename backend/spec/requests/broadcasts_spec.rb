@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Broadcasts', type: :request do
@@ -11,7 +13,12 @@ RSpec.describe 'Broadcasts', type: :request do
   let(:other) { Medium.create(id: 2, name: 'other') }
 
   let(:tv_broadcast)    { create(:broadcast, id: 0, medium: tv) }
-  let(:radio_broadcast) { create(:broadcast, id: 1, medium: radio) }
+  let(:radio_broadcast) do
+    create(:broadcast,
+           id: 1,
+           medium: radio,
+           broadcast_url: 'https://www.zdf.de/assets/teamfoto-102~768x43')
+  end
   let(:other_broadcast) { create(:broadcast, id: 2, medium: other) }
 
   let(:dasErste) { create(:station, id: 47, name: 'Das Erste') }
@@ -39,7 +46,8 @@ RSpec.describe 'Broadcasts', type: :request do
       describe '#medium' do
         let(:broadcasts) { [tv_broadcast] }
         it 'exposes the medium' do
-          expect(subject['data'][0]['relationships']['medium']['data']['id']).to eq(tv.id.to_s)
+          expect(subject['data'][0]['relationships']['medium']['data']['id'])
+            .to eq(tv.id.to_s)
         end
       end
 
@@ -71,6 +79,32 @@ RSpec.describe 'Broadcasts', type: :request do
           expect(Broadcast.count).to eq 33
           expect(subject['data'].length).to eq 3
         end
+      end
+    end
+  end
+
+  describe 'GET /broadcast/:id' do
+    let(:action) { get "/broadcasts/#{radio_broadcast.id}", headers: headers }
+
+    context 'logged in' do
+      let(:headers) { super().merge(authenticated_header(user)) }
+      before do
+        action
+      end
+
+      describe 'http status' do
+        subject { response }
+        it { is_expected.to have_http_status(:ok) }
+      end
+
+      describe 'response schema' do
+        subject { response }
+        it { is_expected.to match_response_schema('broadcast') }
+      end
+
+      describe '#broadcast_url' do
+        subject { parse_json(response.body, 'data/attributes/broadcast-url') }
+        it { is_expected.to eq 'https://www.zdf.de/assets/teamfoto-102~768x43' }
       end
     end
   end

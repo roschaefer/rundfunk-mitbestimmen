@@ -1,3 +1,4 @@
+# coding: utf-8
 feature_directory = Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
   begin
@@ -23,6 +24,8 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
     attributes = { title: row['Title'] }
     attributes[:created_at] = row['Created at'] || Date.today
     attributes[:description] = row['Description'] if row['Description']
+    attributes[:image_url] = row['Image url']
+    attributes[:broadcast_url] = row['Broadcast url']
     if row['Medium']
       medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
@@ -883,7 +886,7 @@ end
 
 Then(/^I see only this broadcast and nothing else/) do
   expect(page).to have_css('.title', count: 1)
-  expect(page).to have_css('.image', count: 1)
+  expect(page).to have_css('.image', count: 2)
   Broadcast.where.not(title: 'Medienmagazin').find_each do |broadcast|
     expect(page).not_to have_text(broadcast.title)
   end
@@ -973,4 +976,12 @@ end
 When("I am on the broadcast page for {string}") do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
+end
+
+Then("I should have a broadcast link {string}") do |url|
+  expect(page).to have_css("a[href='#{url}']")
+end
+
+Then("I should have an image {string}") do |url|
+  expect(page).to have_css("img[src='#{url}']")
 end

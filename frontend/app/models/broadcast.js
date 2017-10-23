@@ -5,6 +5,7 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   description: DS.attr('string'),
   imageUrl: DS.attr('string'),
+  broadcastUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   medium: DS.belongsTo('medium'),
