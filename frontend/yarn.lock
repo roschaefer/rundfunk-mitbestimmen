@@ -2688,11 +2688,11 @@ ember-cli-get-dependency-depth@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-dependency-depth/-/ember-cli-get-dependency-depth-1.0.0.tgz#e0afecf82a2d52f00f28ab468295281aec368d11"
 
-ember-cli-google-fonts@^2.14.1:
-  version "2.14.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-google-fonts/-/ember-cli-google-fonts-2.14.1.tgz#63d2325e8d93def483cebccb8adecf63d60e9a46"
+ember-cli-google-fonts@^2.16.2:
+  version "2.16.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-google-fonts/-/ember-cli-google-fonts-2.16.2.tgz#6cdb5a908e763dac38f066616adf98922c622dc2"
   dependencies:
-    ember-cli-babel "^6.3.0"
+    ember-cli-babel "^6.6.0"
 
 ember-cli-htmlbars-inline-precompile@^1.0.2:
   version "1.0.2"
