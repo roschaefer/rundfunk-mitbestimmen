@@ -5,7 +5,7 @@ rvm:
   - 2.4.1
 addons:
   ssh_known_hosts: rundfunk-mitbestimmen.de
-  postgresql: "9.2"
+  postgresql: "9.6"
 
 before_install:
   - . $HOME/.nvm/nvm.sh
