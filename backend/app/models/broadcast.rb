@@ -50,6 +50,10 @@ class Broadcast < ApplicationRecord
     end
   end
 
+  after_commit do
+    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: false, cascade: false)
+  end
+
   def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
     results = Broadcast.all
     results = results.full_search(query) unless query.blank?

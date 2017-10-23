@@ -12,6 +12,10 @@ class Impression < ApplicationRecord
   validates :amount, absence: true, unless: proc { |s| s.positive? }
   validate :total_amount_does_not_exceed_budget
 
+  after_commit do
+    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: false, cascade: false)
+  end
+
   private
 
   def total_amount_does_not_exceed_budget
