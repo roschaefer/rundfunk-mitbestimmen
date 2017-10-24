@@ -102,27 +102,41 @@ $ ruby --version
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 ```
 
-Clone the repository:
+### Clone the repository:
 ```sh
 git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
-Install dependencies and run migrations:
+### Install dependencies and run migrations:
+1. Install `graphviz` that will be used to generate ER diagrams
+
+```sh
+OSX: brew install graphviz
+Ubuntu/Debian: sudo apt install graphviz
+
+```
+2. Install dependencies for full stack testing
 ```sh
 cd rundfunk-mitbestimmen
 bundle
+```
 
+3. Install frontend dependencies
+```sh
 cd frontend
 yarn install
 bower install
+```
 
+4. Install backend dependencies and setup the database
+```sh
 cd ../backend
 bundle
 bin/rails db:create db:migrate
 cd ..
 ```
 
-If you want, you can create some seed data
+5. If you want, you can create some seed data
 ```
 cd backend
 bin/rails db:seed
@@ -146,22 +160,23 @@ App is running on [localhost:4200](http://localhost:4200/)
 
 ## Full stack testing
 
-Run:
+Run the frontend server:
 ```sh
 cd frontend && ember server --environment=fullstack
 ```
 
-Open another terminal and run:
+Open another terminal and run the backend server:
 ```sh
 cd backend && bin/rails server --environment=fullstack
 ```
 
-Open yet another terminal and run:
+Open yet another terminal and run the tests:
 ```sh
 bundle exec cucumber
 ```
 
 These environments serve the purpose to
+
 1. Stub out external services in the frontend, e.g. authentication
    via Auth0.
 2. Use a separate test database in the backend, which will be cleaned after each
