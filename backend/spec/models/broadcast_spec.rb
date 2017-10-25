@@ -2,6 +2,10 @@ require 'rails_helper'
 require 'support/shared_examples/database_unique_attribute'
 
 RSpec.describe Broadcast, type: :model do
+  after(:all) do
+    clean_database!
+  end
+
   subject { broadcast }
 
   let(:broadcast) { build(:broadcast) }

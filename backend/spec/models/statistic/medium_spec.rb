@@ -26,6 +26,7 @@ RSpec.describe Statistic::Medium, type: :model do
 
   context 'broadcasts with impressions' do
     before(:all) do
+      clean_database!
       medium = create(:medium)
       broadcasts = create_list(:broadcast, 3, medium: medium)
       create_list(:impression, 3, broadcast: broadcasts[0], response: :positive, amount: 3.0)
