@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :broadcast do
     sequence :title do |n|
       "Super broadcast ##{n}"

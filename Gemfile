@@ -8,6 +8,5 @@ gem 'selenium-webdriver'
 gem 'childprocess'        # For managing the running Rails and Ember Apps
 gem "activesupport"       # For Autoloading model classes like Rails
 gem "activerecord"        # Database Access
-gem "factory_girl"        # For Creating Fixture Data
 gem 'database_cleaner'    # Clean the Database between runs
 gem 'rspec-expectations'  # Expectations Library
