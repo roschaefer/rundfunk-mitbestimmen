@@ -1,4 +1,4 @@
-require 'factory_girl'
+require 'factory_bot'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 require 'capybara/cucumber'
@@ -50,5 +50,5 @@ After do
   page.execute_script("localStorage.clear()")
 end
 
-# Shorthand FactoryGirl
-include FactoryGirl::Syntax::Methods
+# Shorthand FactoryBot
+include FactoryBot::Syntax::Methods

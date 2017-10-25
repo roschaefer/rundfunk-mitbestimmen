@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :station do
     sequence(:name) { |i| "MyStation #{i}" }
     medium
