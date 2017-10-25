@@ -1,10 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe Impression, type: :model do
-  { response: nil, user: nil, broadcast: nil }.to_a.each do |pair|
-    describe "#{pair.first} nil" do
-      subject { build(:impression, Hash[*pair]) }
+  let(:user) { create :user }
+  let(:broadcast) { create :broadcast }
+
+  { user: nil, broadcast: nil }.to_a.each do |pair|
+    describe "##{pair.first}" do
+      describe "is nil" do
+        subject { build(:impression, Hash[*pair]) }
+        it { is_expected.not_to be_valid }
+      end
+    end
+  end
+
+  describe 'one impression per broadcast per user' do
+    before { create(:impression, user: user, broadcast: broadcast) }
+
+    specify { expect(user.broadcasts).to include(broadcast) }
+
+    describe 'duplicate impression' do
+      subject { build(:impression, user: user, broadcast: broadcast) }
+
       it { is_expected.not_to be_valid }
+      specify { expect { subject.save(validate: false) }.to raise_error(ActiveRecord::RecordNotUnique) }
+    end
+  end
+
+  describe '#response' do
+    describe 'is nil' do
+      subject{ build(:impression, response: nil) }
+      it { is_expected.to be_valid }
+
+      context 'without factory bot' do
+        subject { Impression.new(user: user, broadcast: broadcast) }
+        specify { expect(subject.response).to eq('neutral') }
+
+        context 'saved' do
+          before { subject.save }
+          specify { expect(subject.response).to eq('neutral') }
+        end
+      end
+    end
+
+    describe '== foobar' do
+      specify { expect{ build(:impression, response: :foobar) }.to raise_error(ArgumentError) }
     end
   end
 
@@ -15,7 +54,6 @@ RSpec.describe Impression, type: :model do
     end
 
     context 'given a user has spent his BUDGET already' do
-      let(:user) { create :user }
       let(:existing_impression) { create(:impression, user: user, amount: Impression::BUDGET) }
       before { existing_impression }
       describe 'create a impression' do
@@ -42,25 +80,6 @@ RSpec.describe Impression, type: :model do
         describe 'valid if sum does not exceed BUDGET' do
           before { subject.amount = Impression::BUDGET - 0.5 }
           it { is_expected.to be_valid }
-        end
-      end
-    end
-  end
-
-  describe '#user' do
-    describe '#broadcast' do
-      let(:user) { create :user }
-      let(:broadcast) { create :broadcast }
-      describe 'user can view only once' do
-        before { create(:impression, user: user, broadcast: broadcast) }
-        it 'impression is invalid' do
-          second_impression = build(:impression, user: user, broadcast: broadcast)
-          expect(second_impression).not_to be_valid
-        end
-
-        it 'database constraint' do
-          second_impression = build(:impression, user: user, broadcast: broadcast)
-          expect { second_impression.save(validate: false) }.to raise_error(ActiveRecord::RecordNotUnique)
         end
       end
     end

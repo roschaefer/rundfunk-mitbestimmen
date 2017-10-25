@@ -4,7 +4,6 @@ class Impression < ApplicationRecord
   belongs_to :user
   belongs_to :broadcast
 
-  validates :response, presence: true
   validates :user, presence: true
   validates :broadcast, presence: true
   validates :broadcast_id, uniqueness: { scope: :user_id }
