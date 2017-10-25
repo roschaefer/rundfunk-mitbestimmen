@@ -14,10 +14,7 @@ RSpec.describe 'Broadcasts', type: :request do
   describe 'GET' do
     let(:action) { get url, params: params, headers: headers }
 
-    before do
-      setup
-      action
-    end
+    before { setup }
 
     describe '/broadcasts' do
       let(:url) { '/broadcasts' }
@@ -28,6 +25,8 @@ RSpec.describe 'Broadcasts', type: :request do
         let(:setup) { broadcasts }
 
         describe 'relationships' do
+          before { action }
+
           describe '#medium' do
             let(:setup) { create(:broadcast, id: 0, medium: tv) }
             subject { parse_json(response.body, 'data/0/relationships/medium/data/id') }
@@ -44,6 +43,8 @@ RSpec.describe 'Broadcasts', type: :request do
         end
 
         describe 'pagination' do
+          before { action }
+
           it { is_expected.to have_json_size(10).at_path('data') }
           it { expect(parse_json(subject, 'meta/total-count')).to eq(23) }
 
@@ -55,6 +56,36 @@ RSpec.describe 'Broadcasts', type: :request do
           context '?per_page=' do
             let(:params) { { per_page: 23 } }
             it { is_expected.to have_json_size(23).at_path('data') }
+          end
+        end
+
+        describe '?mark_as_seen=true' do
+          let(:params) { { per_page: 6, mark_as_seen: true } }
+
+          context 'unauthenticated' do
+            before { action }
+
+            specify { expect(Impression.count).to eq(0) }
+            specify { expect{ action }.not_to(change{ Impression.count }) }
+          end
+
+          context 'authenticated' do
+            let(:headers) { super().merge(authenticated_header(user)) }
+
+            describe 'creates impressions for every visible broadcast' do
+              specify { expect{ action }.to(change{ Impression.count }.from(0).to(6)) }
+
+              describe 'but if mark_as_seen is not given' do
+                let(:params) { super().except(:mark_as_seen) }
+                specify { expect{ action }.not_to(change{ Impression.count }) }
+              end
+
+              describe 'after request' do
+                before { action }
+                specify { expect(Impression.neutral.count).to eq(6) }
+                specify { expect(user.impressions).to match_array(Impression.all) }
+              end
+            end
           end
         end
       end
@@ -88,7 +119,7 @@ RSpec.describe 'Broadcasts', type: :request do
         }
       end
 
-      context 'logged in' do
+      context 'authenticated' do
         let(:headers) { super().merge(authenticated_header(user)) }
 
         describe 'creates a broadcast' do
@@ -140,7 +171,7 @@ RSpec.describe 'Broadcasts', type: :request do
     describe '/broadcasts' do
       let(:url) { "/broadcasts/#{broadcast.id}" }
 
-      context 'logged in' do
+      context 'authenticated' do
         let(:headers) { super().merge(authenticated_header(user)) }
         let(:user) { create(:user) }
 
@@ -246,7 +277,7 @@ RSpec.describe 'Broadcasts', type: :request do
         let(:setup) { broadcast }
         let(:broadcast) { create(:broadcast) }
 
-        context 'logged in' do
+        context 'authenticated' do
           let(:headers) { super().merge(authenticated_header(user)) }
 
           context 'as contributor' do
