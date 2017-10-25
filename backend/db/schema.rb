@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20171111141249) do
   end
 
   create_table "impressions", id: :serial, force: :cascade do |t|
-    t.integer "response"
+    t.integer "response", default: 0
     t.decimal "amount"
     t.integer "user_id"
     t.integer "broadcast_id"

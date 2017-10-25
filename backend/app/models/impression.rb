@@ -6,8 +6,6 @@ class Impression < ApplicationRecord
   belongs_to :user
   belongs_to :broadcast
 
-  validates :user, presence: true
-  validates :broadcast, presence: true
   validates :broadcast_id, uniqueness: { scope: :user_id }
   validates :amount, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :amount, absence: true, unless: proc { |s| s.positive? }
