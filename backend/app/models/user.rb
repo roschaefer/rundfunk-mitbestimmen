@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: { guest: -1, contributor: 0, broadcaster: 1, admin: 2 }
+  enum role: { contributor: 0, broadcaster: 1, admin: 2 }
 
   has_many :impressions
   has_many :liked_broadcasts, -> { where(impressions: { response: 1 }) }, source: :broadcast, through: :impressions
