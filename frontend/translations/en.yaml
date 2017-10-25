@@ -544,6 +544,18 @@ about-us:
         and scrum master at
         <a href="https://www.agileventures.org/">AgileVentures</a>. At the
         moment he is an independent consultant.
+    sigu:
+      position: Software developer
+      description: >
+        Sigu is an open source enthusiast, developer and mentor at
+        <a href="https://www.agileventures.org/">AgileVentures</a>. He loves to
+        program with <a href="https://www.ruby-lang.org/en/">Ruby</a> and to
+        develop mobile application with the
+        <a href="https://ionicframework.com/">Ionic Framework</a>. Currently he
+        is interested in the programming languages
+        <a href="https://elixir-lang.org/">Elixir</a> and
+        <a href="http://elm-lang.org/">elm</a> and the framework
+        <a href="http://phoenixframework.org/">Phoenix</a>.
 
 404:
   header: Oops..

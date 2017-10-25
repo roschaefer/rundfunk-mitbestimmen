@@ -565,13 +565,24 @@ about-us:
         Journalisten beim Entwickeln von Prototypen für innovative Formate.
         Zurzeit schreibt er seine Master-Arbeit am Hasso-Plattner-Institut.
     matt:
-      position: Software developer
+      position: Software-Entwickler
       description: >
         Matt ist ein Full-Stack Web- und Datenbank-Entickler aus Boston, USA.
         Durch seine Arbeit als Scrum und Projektmanager bei
         <a href="https://www.agileventures.org/">AgileVentures</a> engagiert er
         sich für soziale Projekte. Zurzeit arbeitet er als selbständiger
         Berater.
+    sigu:
+      position: Software-Entwickler
+      description: >
+        Sigu ist ein Open-Source-Enthusiast, Entwickler und Mentor bei
+        <a href="https://www.agileventures.org/">AgileVentures</a>. Er liebt es
+        mit <a href="https://www.ruby-lang.org/en/">Ruby</a> zu programmieren
+        und mobile Anwendung mit dem <a href="https://ionicframework.com/">Ionic
+        Framework</a> zu entwickeln. Zurzeit interessiert er sich für die
+        Programmiersprachen <a href="https://elixir-lang.org/">Elixir</a> und
+        <a href="http://elm-lang.org/">elm</a> und dem Framework
+        <a href="http://phoenixframework.org/">Phoenix</a>.
 
 404:
   header: Ups..
