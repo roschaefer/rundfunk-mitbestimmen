@@ -9,6 +9,7 @@ RSpec.describe Impression, type: :model do
       describe "is nil" do
         subject { build(:impression, Hash[*pair]) }
         it { is_expected.not_to be_valid }
+        specify { expect { subject.save(validate: false) }.to raise_error(ActiveRecord::NotNullViolation) }
       end
     end
   end
