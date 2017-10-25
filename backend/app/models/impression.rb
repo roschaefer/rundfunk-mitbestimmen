@@ -14,6 +14,16 @@ class Impression < ApplicationRecord
   validates :amount, absence: true, unless: proc { |s| s.positive? }
   validate :total_amount_does_not_exceed_budget
 
+  # total / impression (for all broadcasts) at a given time
+  def self.average_amount_per_selection(date)
+    impressions = as_of(date).pluck(:amount)
+    if impressions.compact.empty?
+      nil
+    else
+      impressions.compact.sum / impressions.length
+    end
+  end
+
   private
 
   def total_amount_does_not_exceed_budget

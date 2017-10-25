@@ -5,6 +5,10 @@ RSpec.describe Impression, type: :model do
     clean_database!
   end
 
+  after(:all) do
+    clean_database!
+  end
+
   { response: nil, user: nil, broadcast: nil }.to_a.each do |pair|
     describe "#{pair.first} nil" do
       subject { build(:impression, Hash[*pair]) }
@@ -76,21 +80,49 @@ RSpec.describe Impression, type: :model do
   end
 
   describe 'historical data' do
-    describe '#as_of' do
-      without_transactional_fixtures do
-     
+    without_transactional_fixtures do
+      describe '#as_of' do
         subject(:impression) { create(:impression) }
 
         it 'returns the amount assigned at a given point in time' do
           impression.update(response: :positive, amount: 5)
           t0 = Time.now.utc
           sleep 1
-            
+
           impression.update(amount: 10)
           t1 = Time.now.utc
 
           expect(impression.as_of(t0).amount).to eq(5)
           expect(impression.as_of(t1).amount).to eq(10)
+        end
+      end
+
+      describe 'average_amount_per_selection(date)' do
+        it 'returns the average amount assigned per impression for all broadcasts at a given time' do
+          changing_impression = create(:impression, response: :positive, amount: 3)
+          deleting_impression = create(:impression, response: :positive, amount: 5)
+          create(:impression, response: :positive, amount: 7)
+          create(:impression, response: :negative)
+
+          impression_count = Impression.count
+          impression_amount = Impression.sum(:amount)
+
+          expected_average_before = (impression_amount / impression_count).round(4) # 4 impressions
+          t0 = Time.now.utc
+
+          sleep 1
+
+          changing_impression.update(amount: 10)
+          deleting_impression.destroy
+
+          impression_count = Impression.count
+          impression_amount = Impression.sum(:amount)
+
+          expected_average_after = (impression_amount / impression_count).round(4) # 3 impressions
+          t1 = Time.now.utc
+
+          expect(Impression.average_amount_per_selection(t0).round(4)).to eq(expected_average_before)
+          expect(Impression.average_amount_per_selection(t1).round(4)).to eq(expected_average_after)
         end
       end
     end
