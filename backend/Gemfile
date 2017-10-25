@@ -38,15 +38,15 @@ gem 'puma'
 
 group :development, :test, :fullstack do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'json_spec'
   gem 'pry'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'timecop'
   gem 'vcr'
   gem 'webmock'
-  gem 'timecop'
-  gem 'database_cleaner'
 end
 
 group :development do
