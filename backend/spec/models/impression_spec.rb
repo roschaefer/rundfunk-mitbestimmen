@@ -97,7 +97,7 @@ RSpec.describe Impression, type: :model do
         end
       end
 
-      describe 'average_amount_per_selection(date)' do
+      describe '.average_amount_per_selection(date)' do
         it 'returns the average amount assigned per impression for all broadcasts at a given time' do
           changing_impression = create(:impression, response: :positive, amount: 3)
           deleting_impression = create(:impression, response: :positive, amount: 5)
