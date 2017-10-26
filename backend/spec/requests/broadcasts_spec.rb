@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Broadcasts', type: :request do
   let(:headers) { {} }
   let(:params)  { {} }
-  let(:setup) {}
   let(:user) { create :user }
 
   let(:tv)    { Medium.create(id: 0, name: 'tv') }
