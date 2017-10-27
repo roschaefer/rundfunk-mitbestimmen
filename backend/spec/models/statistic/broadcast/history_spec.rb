@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Statistic::Broadcast, type: :model do
-
   describe '::view_definition' do
     subject { described_class.view_definition }
     it { is_expected.to be_a(String) }

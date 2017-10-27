@@ -94,4 +94,3 @@ RSpec.describe Impression, type: :model do
     end
   end
 end
-
