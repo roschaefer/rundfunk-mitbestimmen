@@ -117,6 +117,11 @@ p {
   visibility: hidden;
 }
 
+i.frown {
+  font-size: 7em;
+  padding-top: 0.5em;
+}
+
 
 @media only screen and (max-width: 320px) {
   .pagination.dots {
