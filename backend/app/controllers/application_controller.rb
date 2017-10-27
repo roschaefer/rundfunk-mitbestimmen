@@ -22,7 +22,7 @@ class ApplicationController < ActionController::API
   end
 
   def user_locale
-    current_user && current_user.locale
+    current_user&.locale
   end
 
   def set_raven_context
