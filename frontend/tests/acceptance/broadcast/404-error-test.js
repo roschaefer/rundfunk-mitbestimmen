@@ -1,4 +1,4 @@
-import { context, describe, xit, it, beforeEach, afterEach } from 'mocha';
+import { context, describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
@@ -12,9 +12,6 @@ describe('Acceptance | broadcast/ 404 error', function() {
     application = startApp();
     mockSetup();
     broadcastMock = mockFindRecord('broadcast');
-    broadcast = make('broadcast', {
-      title: 'This is the title'
-    })
   });
 
   afterEach(function() {
@@ -30,12 +27,15 @@ describe('Acceptance | broadcast/ 404 error', function() {
 
     context('backend route /broadcast/:broadcast_id', function() {
       beforeEach(function() {
+        broadcast = make('broadcast', {
+          title: 'This is the title'
+        })
         broadcastMock.returns({model: broadcast});
       });
 
 
       it('shows the broadcast page', function() {
-        visit('/broadcast/' + broadcast.get('id'));
+        visit('/broadcast/' + broadcastMock.get('id'));
 
         return andThen(() => {
           expect(find('.title.header').text()).to.have.string('This is the title');
@@ -45,11 +45,11 @@ describe('Acceptance | broadcast/ 404 error', function() {
 
     describe('HTTP 404 from backend', function() {
       beforeEach(function() {
-        broadcastMock.fails({status: 404, response: {errors: {status: '404', name: ["broadcast not found"]}}});
+        broadcastMock.fails({status: 404});
       });
 
-      xit('shows a 404 error page', function() {
-        visit('/broadcast/' + broadcast.get('id'));
+      it('shows a 404 error page', function() {
+        visit('/broadcast/' + broadcastMock.get('id'));
 
         return andThen(() => {
           expect(find('p').text()).to.have.string('We could not find that page');
