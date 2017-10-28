@@ -1,4 +1,4 @@
-import { context, describe, it, beforeEach, afterEach } from 'mocha';
+import { context, describe, xit, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
@@ -48,7 +48,7 @@ describe('Acceptance | broadcast/ 404 error', function() {
         broadcastMock.fails({status: 404, response: {errors: {status: '404', name: ["broadcast not found"]}}});
       });
 
-      it('shows a 404 error page', function() {
+      xit('shows a 404 error page', function() {
         visit('/broadcast/' + broadcast.get('id'));
 
         return andThen(() => {
