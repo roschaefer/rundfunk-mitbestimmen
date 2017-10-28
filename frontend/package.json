@@ -47,6 +47,7 @@
     "ember-data": "^2.16.3",
     "ember-data-factory-guy": "2.13.11",
     "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^3.4.3",
     "ember-highcharts": "0.5.4",
     "ember-inline-edit": "1.0.0-beta.2",
     "ember-intl": "2.31.1",

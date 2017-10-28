@@ -1,3 +1,4 @@
+import fetch from 'fetch';
 import Ember from 'ember';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 import RSVP from 'rsvp';
@@ -7,7 +8,9 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
   model() {
     const host = this.store.adapterFor('summarized-statistic').get('host');
     let model = {
-      geojson: Ember.$.get(`${host}/chart_data/geo/geojson`),
+      geojson: fetch(`${host}/chart_data/geo/geojson`).then(function(response) {
+        return response.json();
+      }),
       summarizedStatistic: this.store.queryRecord('summarized-statistic', {})
     };
     if (this.get('session.isAuthenticated')) {
