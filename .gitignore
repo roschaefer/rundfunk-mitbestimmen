@@ -4,3 +4,4 @@ screenshots/
 notes.txt
 foreman.out
 .DS_Store
+*.tern-port
