@@ -13,7 +13,7 @@ class Impression < ApplicationRecord
   validate :total_amount_does_not_exceed_budget
 
   after_commit do
-    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: false, cascade: false)
+    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: true, cascade: false)
   end
 
   private

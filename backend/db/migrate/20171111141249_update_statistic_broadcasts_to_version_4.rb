@@ -9,5 +9,6 @@ class UpdateStatisticBroadcastsToVersion4 < ActiveRecord::Migration[5.0]
     create_view :statistic_stations
     create_view :statistic_media
     create_view :statistic_medium_translations
+    add_index :statistic_broadcasts, :id, unique: true
   end
 end
