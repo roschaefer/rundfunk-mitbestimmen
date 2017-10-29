@@ -51,7 +51,7 @@ class Broadcast < ApplicationRecord
   end
 
   after_commit do
-    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: false, cascade: false)
+    Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: true, cascade: false)
   end
 
   def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
