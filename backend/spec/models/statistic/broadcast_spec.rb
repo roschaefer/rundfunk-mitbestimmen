@@ -15,8 +15,8 @@ RSpec.describe Statistic::Broadcast, type: :model do
     before { create(:impression, broadcast: broadcast, response: :neutral) }
 
     describe '#average' do
-      it 'returns zero' do
-        expect(subject.average).to eq 0.0
+      it 'is nil' do
+        expect(subject.average).to eq nil
       end
     end
   end

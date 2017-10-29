@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021173446) do
+ActiveRecord::Schema.define(version: 20171029000924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,38 +179,17 @@ ActiveRecord::Schema.define(version: 20171021173446) do
   SQL
 
   create_view "statistic_broadcasts",  sql_definition: <<-SQL
-      SELECT t.id,
-      t.title,
-      t.impressions,
-      ((t.positives)::double precision / (NULLIF(t.impressions, 0))::double precision) AS approval,
-      COALESCE(((t.total)::double precision / (NULLIF(t.positives, 0))::double precision), (0)::double precision) AS average,
-      t.total,
-      ((t.impressions)::numeric * a.average_amount_per_selection) AS expected_amount
-     FROM (( SELECT impressions.broadcast_id AS id,
-              broadcasts.title,
-              count(*) AS impressions,
-              COALESCE(sum(
-                  CASE
-                      WHEN (impressions.response = 1) THEN 1
-                      ELSE 0
-                  END), (0)::bigint) AS positives,
-              COALESCE(sum(impressions.amount), (0)::numeric) AS total
-             FROM (impressions
-               JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
-            GROUP BY impressions.broadcast_id, broadcasts.title) t
-       LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
-             FROM impressions) a ON (true))
-  UNION ALL
-   SELECT broadcasts.id,
+      SELECT broadcasts.id,
       broadcasts.title,
-      0 AS impressions,
-      NULL::double precision AS approval,
-      NULL::double precision AS average,
-      0 AS total,
-      0 AS expected_amount
+      count(impressions.id) AS impressions,
+      avg(impressions.response) AS approval,
+      avg(impressions.amount) AS average,
+      COALESCE(sum(impressions.amount), (0)::numeric) AS total,
+      COALESCE(((count(impressions.id))::numeric * ( SELECT avg(COALESCE(impressions_1.amount, (0)::numeric)) AS avg
+             FROM impressions impressions_1)), (0)::numeric) AS expected_amount
      FROM (broadcasts
-       LEFT JOIN impressions ON ((broadcasts.id = impressions.broadcast_id)))
-    WHERE (impressions.broadcast_id IS NULL);
+       LEFT JOIN impressions ON ((impressions.broadcast_id = broadcasts.id)))
+    GROUP BY broadcasts.id, broadcasts.title;
   SQL
 
   create_view "statistic_stations",  sql_definition: <<-SQL
