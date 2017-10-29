@@ -1,0 +1,30 @@
+<div class="ui basic segment mobile only grid">
+  <div class="ui four item massive secondary stackable menu">
+    <div class="item">
+      {{#if canStepBackward}}
+        <button class="ui left labeled icon button find-broadcasts-navigation-back" {{action 'back'}}>
+          <i class="left arrow icon"></i>
+          {{t 'find-broadcasts.navigation.buttons.back'}}
+        </button>
+      {{else}}
+        <button class="ui left labeled icon button disabled find-broadcasts-navigation-back">
+          <i class="left arrow icon"></i>
+          {{t 'find-broadcasts.navigation.buttons.back'}}
+        </button>
+      {{/if}}
+    </div>
+    <div class="item">
+      {{#if canStepForward}}
+        <button class="ui right labeled icon button find-broadcasts-navigation-next" {{action 'next'}}>
+          {{t 'find-broadcasts.navigation.buttons.next'}}
+          <i class="right arrow icon"></i>
+        </button>
+      {{else}}
+        <button class="ui right labeled icon disabled button find-broadcasts-navigation-next">
+          {{t 'find-broadcasts.navigation.buttons.next'}}
+          <i class="right arrow icon"></i>
+        </button>
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -67,6 +67,17 @@ loading=loading}}
 </div>
 {{/unless}}
 
+<div class="row">
+  <div class="column">
+    {{find-broadcasts/footer-navigation
+      step=page
+      totalSteps=totalPages
+      recentPositives=positiveImpressionsWithoutAmount.length
+      browse=(action 'browse')
+    }}
+  </div>
+</div>
+
 {{outlet}}
 
 
