@@ -14,11 +14,6 @@ RSpec.describe Impression, type: :model do
       it { is_expected.not_to be_valid }
     end
 
-    context 'with a negative response but not-nil amount' do
-      subject { build(:impression, response: :negative, amount: 1) }
-      it { is_expected.not_to be_valid }
-    end
-
     context 'given a user has spent his BUDGET already' do
       let(:user) { create :user }
       let(:existing_impression) { create(:impression, user: user, amount: Impression::BUDGET) }

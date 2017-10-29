@@ -6,7 +6,7 @@ RSpec.describe 'Impressions', type: :request do
   let(:params)  { {} }
   let(:user)    { create :user }
   let(:positive_impression) { create(:impression, user: user, response: :positive) }
-  let(:negative_impression) { create(:impression, user: user, response: :negative) }
+  let(:neutral_impression) { create(:impression, user: user, response: :neutral) }
   let(:json_body) do
     subject
     JSON.parse(response.body)
@@ -49,7 +49,7 @@ RSpec.describe 'Impressions', type: :request do
 
   describe 'GET /impressions' do
     let(:action) { get '/impressions', params: params, headers: headers }
-    let(:impressions) { [positive_impression, negative_impression] }
+    let(:impressions) { [positive_impression, neutral_impression] }
     subject do
       impressions
       action
@@ -65,8 +65,8 @@ RSpec.describe 'Impressions', type: :request do
       it 'returns impressions of the current user' do
         expect(subject.body).to have_json_size(2).at_path('data')
         data = parse_json(subject.body, 'data').sort_by { |key| key['attributes']['response'] }
-        expect(data.first['id']).to eq(negative_impression.id.to_s)
-        expect(data.first['attributes']).to include('response' => 'negative')
+        expect(data.first['id']).to eq(neutral_impression.id.to_s)
+        expect(data.first['attributes']).to include('response' => 'neutral')
         expect(data.second['id']).to eq(positive_impression.id.to_s)
         expect(data.second['attributes']).to include('response' => 'positive')
       end
