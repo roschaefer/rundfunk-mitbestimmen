@@ -18,6 +18,7 @@ gem 'scenic'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'valid_email2'
+gem 'arel'
 
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
