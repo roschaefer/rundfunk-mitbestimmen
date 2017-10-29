@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem 'arel'
 gem 'cancancan'
 gem 'chrono_model', git: 'https://github.com/ifad/chronomodel.git', branch: 'feature/command-line-tests'
 gem 'geocoder'
@@ -18,7 +19,6 @@ gem 'scenic'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'valid_email2'
-gem 'arel'
 
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
