@@ -1,6 +1,6 @@
 class Impression < ApplicationRecord
   BUDGET = 17.5
-  enum response: { negative: -1, neutral: 0, positive: 1 }
+  enum response: { neutral: 0, positive: 1 }
   belongs_to :user
   belongs_to :broadcast
 

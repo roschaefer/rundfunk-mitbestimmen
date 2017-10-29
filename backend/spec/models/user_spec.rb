@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   subject { user }
   let(:user) { create :user }
   let(:liked_broadcast) { create(:impression, response: :positive, user: user).broadcast }
-  let(:disliked_broadcast) { create(:impression, response: :negative, user: user).broadcast }
+  let(:unsupported_broadcast) { create(:impression, response: :neutral, user: user).broadcast }
 
   describe 'update_and_reverse_geocode' do
     subject { user.update_and_reverse_geocode(params) }
@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
   describe '#liked_broadcasts' do
     subject { user.liked_broadcasts }
     it { is_expected.to include(liked_broadcast) }
-    it { is_expected.not_to include(disliked_broadcast) }
+    it { is_expected.not_to include(unsupported_broadcast) }
   end
 
   describe 'geocode_last_ip' do
