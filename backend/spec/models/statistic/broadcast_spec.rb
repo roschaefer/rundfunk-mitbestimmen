@@ -27,20 +27,19 @@ RSpec.describe Statistic::Broadcast, type: :model do
       create(:impression, broadcast: broadcast, response: :positive, amount: 1.5)
       create(:impression, broadcast: broadcast, response: :positive, amount: 7.1)
       create(:impression, broadcast: broadcast, response: :positive, amount: 4.8)
-      3.times { create(:impression, broadcast: broadcast, response: :neutral) }
-      2.times { create(:impression, broadcast: broadcast, response: :negative) }
+      6.times { create(:impression, broadcast: broadcast, response: :neutral) }
       create(:user) # one for a missing user
     end
 
     describe '#impressions' do
       it 'number of impressions per broadcast' do
-        expect(subject.impressions).to eq 9
+        expect(subject.impressions).to eq 10
       end
     end
 
     describe '#approval' do
-      it 'yields positive/total' do
-        expect(subject.approval).to eq 0.444444444444444
+      it 'yields positive/(positive + neutral)' do
+        expect(subject.approval).to eq(0.4)
       end
     end
 
