@@ -16,17 +16,17 @@ module Statistic
         impressions[:id].count.as('impressions'),
         impressions[:response].average.as('approval'),
         impressions[:amount].average.as('average'),
-        self.total_amount(impressions).as('total'),
-        self.expected_amount(impressions).as('expected_amount')
+        total_amount(impressions).as('total'),
+        expected_amount(impressions).as('expected_amount')
       ).join(impressions, Arel::Nodes::OuterJoin)
-        .on(impressions[:broadcast_id].eq(broadcasts[:id]))
-        .group(broadcasts[:id], broadcasts[:title])
+                .on(impressions[:broadcast_id].eq(broadcasts[:id]))
+                .group(broadcasts[:id], broadcasts[:title])
     end
 
     def self.total_amount(impressions_table)
       Arel::Nodes::NamedFunction.new(
         'coalesce',
-        [impressions_table[:amount].sum,0]
+        [impressions_table[:amount].sum, 0]
       )
     end
 
@@ -35,7 +35,7 @@ module Statistic
         'coalesce',
         [Arel::Nodes::Multiplication.new(
           impressions_table[:id].count,
-          self.global_average_per_impression
+          global_average_per_impression
         ), 0]
       )
     end
@@ -52,8 +52,6 @@ module Statistic
         )
       )
     end
-
-
 
     private
 
