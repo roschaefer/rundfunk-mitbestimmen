@@ -560,3 +560,7 @@ about-us:
 404:
   header: Oops..
   sub-header: We could not find that page.
+
+error:
+  header: Oops..
+  sub-header: Hm, something went wrong

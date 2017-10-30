@@ -587,3 +587,7 @@ about-us:
 404:
   header: Ups..
   sub-header: Wir konnten die Seite nicht finden.
+
+error:
+  header: Ups..
+  sub-header: Hm, etwas ist schief gelaufen
