@@ -10,7 +10,7 @@ set :repo_tree, 'backend/'
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
-set :deploy_to, '/home/rschafer/rundfunk-backend/'
+set :deploy_to, '/home/rfmb/rundfunk-backend/'
 
 # Default value for :scm is :git
 # set :scm, :git

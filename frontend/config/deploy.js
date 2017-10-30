@@ -18,9 +18,9 @@ module.exports = function(deployTarget) {
     ENV.build.environment = 'production';
     ENV['scp'] = {
       nodes: [{
-        username: 'rschafer',
+        username: 'rfmb',
         host: 'rundfunk-mitbestimmen.de',
-        path: '/home/rschafer/html'
+        path: '/home/rfmb/html'
       }]
     }
   }
