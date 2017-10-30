@@ -66,7 +66,15 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
+  script:
+    - cd backend
+    - rvm $TRAVIS_RUBY_VERSION do cap staging deploy
+    - cd ../frontend
+    - ember deploy staging
+    - cd ../backend
+    - rvm $TRAVIS_RUBY_VERSION do cap production deploy
+    - cd ../frontend
+    - ember deploy production
   on:
     branch: master
 

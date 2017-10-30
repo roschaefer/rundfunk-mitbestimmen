@@ -72,6 +72,10 @@ module.exports = function(environment) {
     ENV.APP.authenticator = 'authenticator:stub-authenticator';
   }
 
+  if (environment === 'staging') {
+    ENV.APP.BACKEND_URL = 'https://rundfunk-backend.roschaefer.de/';
+  }
+
   if (environment === 'production') {
     ENV.APP.BACKEND_URL = 'https://api.rundfunk-mitbestimmen.de/';
     ENV['ember-simple-auth']['auth0'] = {

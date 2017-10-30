@@ -10,7 +10,14 @@ module.exports = function(deployTarget) {
   }
 
   if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
+    ENV.build.environment = 'staging';
+    ENV['scp'] = {
+      nodes: [{
+        username: 'rschafer',
+        host: 'roschaefer.de',
+        path: '/var/www/virtual/rschafer/rundfunk-frontend.roschaefer.de/'
+      }]
+    }
     // configure other plugins for staging deploy target here
   }
 
@@ -20,7 +27,7 @@ module.exports = function(deployTarget) {
       nodes: [{
         username: 'rfmb',
         host: 'rundfunk-mitbestimmen.de',
-        path: '/home/rfmb/html'
+        path: '/home/rfmb/html/'
       }]
     }
   }
