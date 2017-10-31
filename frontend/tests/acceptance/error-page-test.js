@@ -2,11 +2,7 @@ import { context, describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
-import {
-  mockSetup,
-  mockTeardown,
-  mockFindRecord
-} from 'ember-data-factory-guy';
+import { mockSetup, mockTeardown, mockFindAll } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | Errors', function() {
@@ -14,7 +10,7 @@ describe('Acceptance | Errors', function() {
   beforeEach(function() {
     application = startApp();
     mockSetup();
-    broadcastMock = mockFindRecord('broadcast');
+    broadcastMock = mockFindAll('broadcast');
   });
   afterEach(function() {
     mockTeardown();
@@ -33,7 +29,7 @@ describe('Acceptance | Errors', function() {
       });
 
       it('shows an error page', function() {
-        visit('/invoice');
+        visit('/find-broadcasts');
         return andThen(() => {
           expect(find('p').text()).to.have.string('Hm, something went wrong');
         });
