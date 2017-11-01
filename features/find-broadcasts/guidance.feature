@@ -15,10 +15,7 @@ Feature: Lead the user through the suggestions
 
   Scenario: Tell the user to issue the invoice
     When I support 3 broadcasts out of 6
-    Then the indicator of recently supported broadcasts says:
-    """
-    3 <3 recently supported broadcasts
-    """
+    Then the indicator shows 3 recently supported broadcasts
     And the button to distribute the budget has turned into a primary button
 
 
