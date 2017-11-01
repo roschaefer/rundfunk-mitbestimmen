@@ -808,10 +808,8 @@ Then(/^the button to distribute the budget has turned into a primary button$/) d
   expect(page).to have_css('.find-broadcasts-navigation-distribute-button.primary.button')
 end
 
-Then(/^the indicator of recently supported broadcasts says:$/) do |string|
-  string.split('<3').each do |part|
-    expect(find('.find-broadcasts-navigation')).to have_text(part)
-  end
+Then("the indicator shows {int} recently supported broadcasts") do |count|
+  expect(find('.find-broadcasts-navigation')).to have_text(count.to_s)
 end
 
 When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
