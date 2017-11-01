@@ -1,20 +1,5 @@
 <div class="basic segment ui grid">
-  <div class="two column doubling mobile only row">
-    <div class="center aligned column">
-      <strong> {{recentPositives}} </strong>
-      <i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
-      <div class="ui left pointing basic label">
-        {{t 'find-broadcasts.navigation.description' positives=recentPositives}}
-      </div>
-    </div>
-
-    <div class="center aligned column">
-      {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'labeled icon button find-broadcasts-navigation-distribute-button')}}
-      <i class="euro icon"></i>
-      {{t 'find-broadcasts.navigation.buttons.distribute'}}
-      {{/link-to}}
-    </div>
-  </div>
+  {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives cssClasses='mobile only'}}
 
   <div class="middle aligned row">
     <div class="three wide computer four wide tablet eight wide mobile column">
@@ -26,22 +11,7 @@
 
     <div class="ten wide computer eight wide tablet computer only column">
       <div class="ui middle aligned centered grid">
-        <div class="two column doubling row">
-          <div class="center aligned column">
-            <strong> {{recentPositives}} </strong>
-            <i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
-            <div class="ui left pointing basic label">
-              {{t 'find-broadcasts.navigation.description' positives=recentPositives}}
-            </div>
-          </div>
-
-          <div class="center aligned column">
-            {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'labeled icon button find-broadcasts-navigation-distribute-button')}}
-            <i class="euro icon"></i>
-            {{t 'find-broadcasts.navigation.buttons.distribute'}}
-            {{/link-to}}
-          </div>
-        </div>
+        {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
       </div>
     </div>
 
