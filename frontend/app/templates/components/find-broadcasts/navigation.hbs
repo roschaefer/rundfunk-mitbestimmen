@@ -1,54 +1,57 @@
-<div class="ui basic segment">
-  <div class="ui four item massive secondary stackable menu">
-    <div class="item">
-      {{#if canStepBackward}}
-        <button class="ui left labeled icon button find-broadcasts-navigation-back" {{action 'back'}}>
-          <i class="left arrow icon"></i>
-          {{t 'find-broadcasts.navigation.buttons.back'}}
-        </button>
-      {{else}}
-        <button class="ui left labeled icon button disabled find-broadcasts-navigation-back">
-          <i class="left arrow icon"></i>
-          {{t 'find-broadcasts.navigation.buttons.back'}}
-        </button>
-      {{/if}}
-    </div>
-
-    <div class="item">
-      <strong>
-        {{recentPositives}}
-        {{#if (gt recentPositives 0)}}
-          <i class="red heart icon"></i>
-        {{else}}
-          <i class="grey heart icon"></i>
-        {{/if}}
-      </strong>
-      <small>
+<div class="basic segment ui grid">
+  <div class="two column doubling mobile only row">
+    <div class="center aligned column">
+      <strong> {{recentPositives}} </strong>
+      <i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
+      <div class="ui left pointing basic label">
         {{t 'find-broadcasts.navigation.description' positives=recentPositives}}
-      </small>
+      </div>
     </div>
 
-    <div class="item">
-      {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'button find-broadcasts-navigation-distribute-button')}}
-        <i class="euro icon"></i>
-        {{t 'find-broadcasts.navigation.buttons.distribute'}}
+    <div class="center aligned column">
+      {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'labeled icon button find-broadcasts-navigation-distribute-button')}}
+      <i class="euro icon"></i>
+      {{t 'find-broadcasts.navigation.buttons.distribute'}}
       {{/link-to}}
+    </div>
+  </div>
+
+  <div class="middle aligned row">
+    <div class="three wide computer four wide tablet eight wide mobile column">
+      <button class="ui left labeled icon {{unless canStepBackward 'disabled'}} button find-broadcasts-navigation-back" {{action 'back'}}>
+        <i class="left arrow icon"></i>
+        {{t 'find-broadcasts.navigation.buttons.back'}}
+      </button>
+    </div>
+
+    <div class="ten wide computer eight wide tablet computer only column">
+      <div class="ui middle aligned centered grid">
+        <div class="two column doubling row">
+          <div class="center aligned column">
+            <strong> {{recentPositives}} </strong>
+            <i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
+            <div class="ui left pointing basic label">
+              {{t 'find-broadcasts.navigation.description' positives=recentPositives}}
+            </div>
+          </div>
+
+          <div class="center aligned column">
+            {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'labeled icon button find-broadcasts-navigation-distribute-button')}}
+            <i class="euro icon"></i>
+            {{t 'find-broadcasts.navigation.buttons.distribute'}}
+            {{/link-to}}
+          </div>
+        </div>
+      </div>
     </div>
 
     {{yield}}
 
-    <div class="item">
-      {{#if canStepForward}}
-        <button class="ui right labeled icon button find-broadcasts-navigation-next" {{action 'next'}}>
-          {{t 'find-broadcasts.navigation.buttons.next'}}
-          <i class="right arrow icon"></i>
-        </button>
-      {{else}}
-        <button class="ui right labeled icon disabled button find-broadcasts-navigation-next">
-          {{t 'find-broadcasts.navigation.buttons.next'}}
-          <i class="right arrow icon"></i>
-        </button>
-      {{/if}}
+    <div class="three wide computer four wide tablet eight wide mobile right aligned column">
+      <button class="ui right labeled icon {{unless canStepForward 'disabled'}} button find-broadcasts-navigation-next" {{action 'next'}}>
+        {{t 'find-broadcasts.navigation.buttons.next'}}
+        <i class="right arrow icon"></i>
+      </button>
     </div>
   </div>
 </div>
