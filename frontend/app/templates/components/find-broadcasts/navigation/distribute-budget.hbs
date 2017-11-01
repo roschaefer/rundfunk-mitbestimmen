@@ -1,17 +1,14 @@
-<div class="two column doubling {{cssClasses}} row">
-	<div class="center aligned column">
-		<strong> {{recentPositives}} </strong>
-		<i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
-		<div class="ui left pointing basic label">
-			{{t 'find-broadcasts.navigation.description' positives=recentPositives}}
-		</div>
-	</div>
-
-	<div class="center aligned column">
-		{{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'labeled icon button find-broadcasts-navigation-distribute-button')}}
-			<i class="euro icon"></i>
-			{{t 'find-broadcasts.navigation.buttons.distribute'}}
-		{{/link-to}}
-	</div>
+<div class="ui centered grid">
+  <div class="row">
+    <div class="center aligned column">
+      <div class="ui basic right pointing label">
+        {{recentPositives}}
+        <i class="{{if (gt recentPositives 0) 'red' 'grey'}} heart icon"></i>
+      </div>
+      {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'button find-broadcasts-navigation-distribute-button')}}
+        {{t 'find-broadcasts.navigation.buttons.distribute'}}
+      {{/link-to}}
+    </div>
+  </div>
 </div>
 {{yield}}

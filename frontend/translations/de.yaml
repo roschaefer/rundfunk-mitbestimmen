@@ -331,9 +331,6 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
-    description: >
-      {positives, plural, =0 {neu unterstützte Sendungen} =1 {neu
-      unterstützte Sendung} other {neue unterstützte Sendungen}}
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
