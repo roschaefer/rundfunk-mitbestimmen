@@ -314,9 +314,6 @@ find-broadcasts:
       next: Next
       back: Back
       distribute: Distribute budget
-    description: >
-      {positives, plural, =0 {recently supported broadcasts} =1 {recently supported
-      broadcast} other {recently supported broadcasts}}
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
