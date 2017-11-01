@@ -939,7 +939,7 @@ end
 Then("on the broadcast page for {string}, I can see it was updated today") do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
-  expected_date_string = "Last updated at: #{Time.now.strftime("%m/%d/%Y")}"
+  expected_date_string = "Last updated at: #{Time.now.strftime("%m/%-d/%Y")}"
   expect(find('.detail.updatedAt')).to have_text(expected_date_string)
 end
 
