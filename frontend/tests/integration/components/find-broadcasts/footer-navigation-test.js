@@ -3,7 +3,7 @@ import { context, beforeEach, describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
-let step, recentPositives, intl;
+let step, intl;
 
 describe('Integration | Component | find broadcasts/footer-navigation', function() {
   setupComponentTest('find-broadcasts/footer-navigation', {
