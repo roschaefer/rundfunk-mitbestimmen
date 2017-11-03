@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Statistic::Broadcast, type: :model do
+  let(:current_statistic) { described_class.find(broadcast.id) }
+  let(:historical_statistic) { described_class.find_broadcast_as_of(broadcast, time) }
+
   describe '#average' do
-    subject { described_class.find_broadcast_as_of(broadcast, time).average }
+    subject { historical_statistic.average }
 
     before(:all) do
       @broadcast = create(:broadcast)
@@ -61,6 +64,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
     describe 't7' do
       let(:time) { @t7 }
       it { is_expected.to eq(3.0) }
+      it { is_expected.to eq(current_statistic.average) }
     end
   end
 
@@ -102,10 +106,11 @@ RSpec.describe Statistic::Broadcast, type: :model do
     describe 't4' do
       let(:time) { @t4 }
       it { is_expected.to eq(2) }
+      it { is_expected.to eq(current_statistic.impressions) }
     end
   end
 
-  describe '#total_amount' do
+  describe '#total' do
     subject { described_class.find_broadcast_as_of(broadcast, time).total }
 
     describe 'constant increase' do
@@ -144,6 +149,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
       describe 't4' do
         let(:time) { @t4 }
         it { is_expected.to eq(15.0) }
+        it { is_expected.to eq(current_statistic.total) }
       end
     end
 
@@ -200,6 +206,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
       describe 't6' do
         let(:time) { @t6 }
         it { is_expected.to eq(2.0) }
+        it { is_expected.to eq(current_statistic.total) }
       end
     end
   end
@@ -248,6 +255,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
     describe 't5' do
       let(:time) { @t5 }
       it { is_expected.to eq(0.25) }
+      it { is_expected.to eq(current_statistic.approval) }
     end
   end
 
@@ -309,6 +317,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
     describe 't7' do
       let(:time) { @t7 }
       it { is_expected.to eq(9.0) }
+      it { is_expected.to eq(current_statistic.expected_amount) }
     end
   end
 end
