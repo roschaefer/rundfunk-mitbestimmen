@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/globalize/globalize
-  revision: 09a343a5ef3e44117bbc9fecc295fc78d4a52e43
+  revision: b228455065888d91fd2aca6340dd7ef3d8d5c92e
   specs:
     globalize (5.1.0.beta2)
       activemodel (>= 4.2, < 5.2)
@@ -106,7 +106,7 @@ GEM
       globalize (~> 5.0, >= 5.0.0)
     hashdiff (0.3.7)
     highline (1.7.8)
-    i18n (0.9.0)
+    i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     json-schema (2.8.0)
       addressable (>= 2.4)
