@@ -809,7 +809,7 @@ Then(/^the button to distribute the budget has turned into a primary button$/) d
 end
 
 Then("the indicator shows {int} recently supported broadcasts") do |count|
-  expect(find('.find-broadcasts-navigation')).to have_text(count.to_s)
+  expect(find('.find-broadcasts-navigation', match: :first)).to have_text(count.to_s)
 end
 
 When(/^(?:again, )?I see (\d+) broadcasts to choose from$/) do |number|
