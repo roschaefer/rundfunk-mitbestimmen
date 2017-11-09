@@ -1,7 +1,9 @@
-<div class="basic segment ui grid">
-  <div class="mobile only centered row">
-    {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
-  </div>
+<div class="basic segment ui {{if mobileOnly 'mobile only'}} grid">
+  {{#unless mobileOnly}}
+    <div class="mobile only centered row">
+      {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
+    </div>
+  {{/unless}}
 
   <div class="middle aligned row">
     <div class="three wide computer four wide tablet eight wide mobile column">
@@ -14,14 +16,6 @@
     <div class="ten wide computer eight wide tablet computer only column">
       {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
     </div>
-
-      <div class="item">
-        {{#link-to 'invoice' class=(concat 'ui' distibuteButtonCss 'button find-broadcasts-navigation-distribute-button')}}
-          <i class="euro icon"></i>
-          {{t 'find-broadcasts.navigation.buttons.distribute'}}
-        {{/link-to}}
-      </div>
-    {{/unless}}
 
     {{yield}}
 
