@@ -45,7 +45,7 @@
     "ember-cli-twitter-feed": "^0.1.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "^2.16.3",
-    "ember-data-factory-guy": "2.13.13",
+    "ember-data-factory-guy": "2.13.14",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^3.4.3",
     "ember-highcharts": "0.5.4",

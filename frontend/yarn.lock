@@ -2999,9 +2999,9 @@ ember-cookies@^0.0.13:
     ember-cli-babel "^5.1.7"
     ember-getowner-polyfill "^1.2.2"
 
-ember-data-factory-guy@2.13.13:
-  version "2.13.13"
-  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.13.tgz#1fb6d8db863428cfedf99ab2a4de4377dd0b900c"
+ember-data-factory-guy@2.13.14:
+  version "2.13.14"
+  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.14.tgz#40ae0f55b64e6279a32e2942e51212facaad0a2c"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
