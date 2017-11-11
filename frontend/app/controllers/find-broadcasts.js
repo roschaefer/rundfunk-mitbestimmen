@@ -3,11 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   intl: Ember.inject.service(),
-  queryParams: ['page', 'perPage', 'sort', 'q', 'medium', 'station'],
+  queryParams: ['mark_as_seen', 'page', 'perPage', 'sort', 'q', 'medium', 'station'],
   sort: 'random',
   q: null,
   medium: null,
   station: null,
+  mark_as_seen: true,
 
   page: 1,
   perPage: 6,
