@@ -26,7 +26,7 @@ describe('Integration | Component | decision card', function() {
     });
   });
 
-  context('authenticated', function() {
+  context('unauthenticated', function() {
     describe('click on support button', function() {
       it('calls the login action', function(done) {
         this.set('broadcast', broadcast);
@@ -39,7 +39,8 @@ describe('Integration | Component | decision card', function() {
 
       it('keeps the response to the broadcast unchanged', function() {
         this.set('broadcast', broadcast);
-        this.render(hbs`{{decision-card broadcast=broadcast}}`);
+        this.set('loginAction', function() {});
+        this.render(hbs`{{decision-card broadcast=broadcast login=loginAction}}`);
         this.$('.decision-card-support-button').click();
         expect(broadcast.get('response')).to.be.undefined;
       });
