@@ -13,7 +13,7 @@ export default Ember.Component.extend({
         }
         this.rerender();
       } else {
-        this.get('login')();
+        this.get('loginAction')();
       }
 
     }
