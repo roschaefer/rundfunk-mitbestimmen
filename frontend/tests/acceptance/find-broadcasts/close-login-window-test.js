@@ -2,7 +2,7 @@ import { describe, it, context, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
-import { mockSetup, mockTeardown, mockFindAll, mockQuery, mockCreate, buildList } from 'ember-data-factory-guy';
+import { mockSetup, mockTeardown, mock, mockFindAll, mockQuery, mockCreate, buildList } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | find broadcasts/close login window', function() {
@@ -32,6 +32,10 @@ describe('Acceptance | find broadcasts/close login window', function() {
     });
 
     context('unauthenticated user', function() {
+      beforeEach(function() {
+        mock({type: 'GET', url: 'https://rundfunk-testing.eu.auth0.com/user/geoloc/country', responseText: {}});
+      });
+
       describe('visit /find-broadcasts', function(){
         it('does not show the login dialog', function() {
           visit('/find-broadcasts/');
@@ -71,9 +75,7 @@ describe('Acceptance | find broadcasts/close login window', function() {
 
       describe('visit /find-broadcast', function(){
         it('sends a parameter ?mark_as_seen=true', function() {
-          broadcastsMock = mockQuery('broadcast', {
-            mark_as_seen: true
-          });
+          broadcastsMock = mockQuery('broadcast');
           visit('/find-broadcasts/');
           return andThen(() => {
             expect(broadcastsMock.timesCalled).to.equal(1);

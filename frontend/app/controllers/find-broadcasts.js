@@ -26,8 +26,8 @@ export default Ember.Controller.extend({
     respond(broadcast){
       broadcast.get('impressions.firstObject').save();
     },
-    login(){
-      console.log("I am here!")
+    loginAction(){
+      this.send('login');
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);
