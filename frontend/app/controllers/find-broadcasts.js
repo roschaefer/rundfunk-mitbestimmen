@@ -21,17 +21,13 @@ export default Ember.Controller.extend({
       this.set('page', 1);
     },
     browse(step){
-      if(this.store.peekAll('impression').isAny('isLoading', true)){
-        return; // avoid willCommit in root.loading state error
-      }
-      this.get('model.broadcasts').map((broadcast) => {
-        let impression = broadcast.setDefaultResponse('neutral');
-        impression.save();
-      });
       this.set('page', step);
     },
     respond(broadcast){
       broadcast.get('impressions.firstObject').save();
+    },
+    login(){
+      console.log("I am here!")
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);

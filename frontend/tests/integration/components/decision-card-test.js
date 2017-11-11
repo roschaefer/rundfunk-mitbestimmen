@@ -33,14 +33,14 @@ describe('Integration | Component | decision card', function() {
         this.set('loginAction', function() {
           done();
         });
-        this.render(hbs`{{decision-card broadcast=broadcast login=loginAction}}`);
+        this.render(hbs`{{decision-card broadcast=broadcast loginAction=loginAction}}`);
         this.$('.decision-card-support-button').click();
       });
 
       it('keeps the response to the broadcast unchanged', function() {
         this.set('broadcast', broadcast);
         this.set('loginAction', function() {});
-        this.render(hbs`{{decision-card broadcast=broadcast login=loginAction}}`);
+        this.render(hbs`{{decision-card broadcast=broadcast loginAction=loginAction}}`);
         this.$('.decision-card-support-button').click();
         expect(broadcast.get('response')).to.be.undefined;
       });
