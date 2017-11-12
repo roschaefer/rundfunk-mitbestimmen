@@ -80,6 +80,11 @@ RSpec.describe 'Broadcasts', type: :request do
                 specify { expect{ action }.not_to(change{ Impression.count }) }
               end
 
+              describe 'but if impression already exists for a broadcast' do
+                before { Broadcast.find_each {|b| create(:impression, response: :neutral, broadcast: b, user: user) } }
+                specify { expect{ action }.not_to(change{ Impression.count }) }
+              end
+
               describe 'after request' do
                 before { action }
                 specify { expect(Impression.neutral.count).to eq(6) }
