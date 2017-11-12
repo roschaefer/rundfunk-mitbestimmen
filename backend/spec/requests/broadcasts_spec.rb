@@ -66,23 +66,23 @@ RSpec.describe 'Broadcasts', type: :request do
             before { action }
 
             specify { expect(Impression.count).to eq(0) }
-            specify { expect{ action }.not_to(change{ Impression.count }) }
+            specify { expect { action }.not_to(change { Impression.count }) }
           end
 
           context 'authenticated' do
             let(:headers) { super().merge(authenticated_header(user)) }
 
             describe 'creates impressions for every visible broadcast' do
-              specify { expect{ action }.to(change{ Impression.count }.from(0).to(6)) }
+              specify { expect { action }.to(change { Impression.count }.from(0).to(6)) }
 
               describe 'but if mark_as_seen is not given' do
                 let(:params) { super().except(:mark_as_seen) }
-                specify { expect{ action }.not_to(change{ Impression.count }) }
+                specify { expect { action }.not_to(change { Impression.count }) }
               end
 
               describe 'but if impression already exists for a broadcast' do
-                before { Broadcast.find_each {|b| create(:impression, response: :neutral, broadcast: b, user: user) } }
-                specify { expect{ action }.not_to(change{ Impression.count }) }
+                before { Broadcast.find_each { |b| create(:impression, response: :neutral, broadcast: b, user: user) } }
+                specify { expect { action }.not_to(change { Impression.count }) }
               end
 
               describe 'after request' do

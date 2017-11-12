@@ -61,9 +61,8 @@ class BroadcastsController < ApplicationController
   end
 
   def mark_broadcasts_as_seen
-    if params[:mark_as_seen] && current_user
-      new_broadcasts = @broadcasts - current_user.broadcasts
-      current_user.broadcasts << new_broadcasts
-    end
+    return unless params[:mark_as_seen] && current_user
+    new_broadcasts = @broadcasts - current_user.broadcasts
+    current_user.broadcasts << new_broadcasts
   end
 end
