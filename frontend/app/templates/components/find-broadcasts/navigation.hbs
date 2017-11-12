@@ -1,9 +1,7 @@
 <div class="basic segment ui {{if mobileOnly 'mobile only'}} grid">
-  {{#unless mobileOnly}}
-    <div class="mobile only centered row">
-      {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
-    </div>
-  {{/unless}}
+  <div class="mobile only centered row">
+    {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
+  </div>
 
   <div class="middle aligned row">
     <div class="three wide computer four wide tablet eight wide mobile column">
