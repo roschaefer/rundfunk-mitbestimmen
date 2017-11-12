@@ -28,7 +28,14 @@ export default Ember.Controller.extend({
       broadcast.get('impressions.firstObject').save();
     },
     loginAction(){
-      this.send('login');
+      const customDict = {
+        networkOrEmail: {
+          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
+          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
+          separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
+        },
+      };
+      this.send('login', customDict, 'find-broadcasts');
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);

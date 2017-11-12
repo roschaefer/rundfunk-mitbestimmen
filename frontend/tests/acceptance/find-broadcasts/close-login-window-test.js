@@ -2,7 +2,8 @@ import { describe, it, context, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
-import { mockSetup, mockTeardown, mock, mockFindAll, mockQuery, mockCreate, buildList } from 'ember-data-factory-guy';
+import { mockSetup, mockTeardown, mock, mockFindAll, mockQuery, mockCreate,
+  mockUpdate, buildList } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | find broadcasts/close login window', function() {
@@ -26,13 +27,16 @@ describe('Acceptance | find broadcasts/close login window', function() {
 
   context('given 12 broadcasts', function() {
     beforeEach(function() {
-      broadcasts = buildList('broadcast', 12).add({ meta: { 'total-pages': 2, 'total-count': 12} });
+      broadcasts = buildList('broadcast', 12).add({
+        meta: {
+          'total-pages': 2,
+          'total-count': 12}
+      });
       broadcastsMock.returns({json: broadcasts});
     });
 
     context('unauthenticated user', function() {
       beforeEach(function() {
-        mock({type: 'GET', url: 'https://rundfunk-testing.eu.auth0.com/user/geoloc/country', responseText: {}});
       });
 
       describe('visit /find-broadcasts', function(){
