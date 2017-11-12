@@ -35,7 +35,6 @@ describe('Integration | Component | geo/update location', function() {
     it('asks the user to click on the map', function(){
       this.render(hbs`{{geo/update-location isUpdatingLocation=true}}`);
       return wait().then(() => {
-        expect(intl.t('auth0-lock.title')).to.eq('Login');
         expect(this.$().text()).to.include('Click on the map');
       });
     })
