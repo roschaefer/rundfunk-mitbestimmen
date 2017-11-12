@@ -84,7 +84,11 @@ docker-compose run backend bin/rails db:seed
 
 ## Local Installation (best option for developers)
 
-Make sure that you have a recent version of [node](https://nodejs.org/en/), [yarn](https://yarnpkg.com/en/), [bower](https://bower.io/), [EmberJS](https://www.emberjs.com/) and [ruby](https://www.ruby-lang.org/en/) installed before you proceed. E.g. we have the following versions:
+Make sure that you have a recent version of [node](https://nodejs.org/en/),
+[yarn](https://yarnpkg.com/en/), [bower](https://bower.io/),
+[EmberJS](https://www.emberjs.com/), [ruby](https://www.ruby-lang.org/en/)
+and [postgresql](https://www.postgresql.org/) installed before you proceed. E.g.
+we have the following versions:
 
 ```sh
 $ node --version
@@ -100,6 +104,8 @@ os: linux x64
 
 $ ruby --version
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+$ psql --version
+psql (PostgreSQL) 9.6.5
 ```
 
 ### Clone the repository:
