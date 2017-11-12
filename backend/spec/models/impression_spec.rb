@@ -6,7 +6,7 @@ RSpec.describe Impression, type: :model do
 
   { user: nil, broadcast: nil }.to_a.each do |pair|
     describe "##{pair.first}" do
-      describe "is nil" do
+      describe 'is nil' do
         subject { build(:impression, Hash[*pair]) }
         it { is_expected.not_to be_valid }
         specify { expect { subject.save(validate: false) }.to raise_error(ActiveRecord::NotNullViolation) }
@@ -29,7 +29,7 @@ RSpec.describe Impression, type: :model do
 
   describe '#response' do
     describe 'is nil' do
-      subject{ build(:impression, response: nil) }
+      subject { build(:impression, response: nil) }
       it { is_expected.to be_valid }
 
       context 'without factory bot' do
@@ -44,7 +44,7 @@ RSpec.describe Impression, type: :model do
     end
 
     describe '== foobar' do
-      specify { expect{ build(:impression, response: :foobar) }.to raise_error(ArgumentError) }
+      specify { expect { build(:impression, response: :foobar) }.to raise_error(ArgumentError) }
     end
   end
 
