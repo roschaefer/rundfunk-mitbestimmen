@@ -1,5 +1,5 @@
 auth0-lock:
-  title: Passwortloser Anmelden
+  title: Passwortlose Anmeldung
   emailSent:
     resendLabel: Erneut senden
     success: Öffne Dein Postfach!
