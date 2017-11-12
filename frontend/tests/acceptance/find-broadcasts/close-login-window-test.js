@@ -2,8 +2,8 @@ import { describe, it, context, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
-import { mockSetup, mockTeardown, mock, mockFindAll, mockQuery, mockCreate,
-  mockUpdate, buildList } from 'ember-data-factory-guy';
+import { mockSetup, mockTeardown, mockFindAll, mockQuery, mockCreate,
+  buildList } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | find broadcasts/close login window', function() {
@@ -12,8 +12,6 @@ describe('Acceptance | find broadcasts/close login window', function() {
   beforeEach(function() {
     application = startApp();
     mockSetup();
-    broadcastsMock = mockQuery('broadcast');
-    impressionUpdateMock = mockCreate('impression');
     mockFindAll('station');
     mockFindAll('medium');
   });
@@ -32,11 +30,13 @@ describe('Acceptance | find broadcasts/close login window', function() {
           'total-pages': 2,
           'total-count': 12}
       });
-      broadcastsMock.returns({json: broadcasts});
     });
 
     context('unauthenticated user', function() {
       beforeEach(function() {
+        broadcastsMock = mockQuery('broadcast');
+        broadcastsMock.returns({json: broadcasts});
+        impressionUpdateMock = mockCreate('impression');
       });
 
       describe('visit /find-broadcasts', function(){
@@ -68,6 +68,9 @@ describe('Acceptance | find broadcasts/close login window', function() {
       describe('visit /find-broadcast', function(){
         it('sends a parameter ?mark_as_seen=true', function() {
           broadcastsMock = mockQuery('broadcast');
+          broadcastsMock.withSomeParams({
+            mark_as_seen: true,
+          });
           visit('/find-broadcasts/');
           return andThen(() => {
             expect(broadcastsMock.timesCalled).to.equal(1);
@@ -77,6 +80,8 @@ describe('Acceptance | find broadcasts/close login window', function() {
 
       describe('click on support button', function(){
         it('creates a positive impression', function() {
+          broadcastsMock = mockQuery('broadcast');
+          broadcastsMock.returns({json: broadcasts});
           visit('/find-broadcasts/');
           impressionUpdateMock = mockCreate('impression').match({
             response: 'positive'
