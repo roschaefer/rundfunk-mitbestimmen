@@ -7,7 +7,6 @@ import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | find broadcasts/close login window', function() {
   let application, broadcasts, broadcastsMock, impressionUpdateMock;
-  let message = 'To keep access to your data';
 
   beforeEach(function() {
     application = startApp();
@@ -42,17 +41,6 @@ describe('Acceptance | find broadcasts/close login window', function() {
           return andThen(() => {
             expect(find('.auth0-lock')).to.have.length(0);
           });
-        })
-
-        describe('click on support button', function(){
-          it('opens the login dialog', function() {
-            visit('/find-broadcasts/');
-            click('.decision-card-support-button');
-            return andThen(() => {
-              expect(find('.auth0-lock-widget-container').text().trim()).to.have.string(message);
-              expect(impressionUpdateMock.timesCalled).to.equal(0);
-            });
-          })
         })
 
         describe('click on the next button', function(){
