@@ -54,10 +54,6 @@ When(/^(?:then |when )?I click on "([^"]*)"/) do |string|
   click_on string
 end
 
-When(/^(?:then |when )?I click the "([^"]*)" button/) do |string|
-  first('button', text: string).click
-end
-
 Then(/^a new user was created in the database$/) do
   expect(User.count).to eq 1
 end
@@ -86,7 +82,7 @@ When(/^I support ([^"]*) and ([^"]*) but not ([^"]*)$/) do |title1, title2, titl
       click_on 'Support'
     end
   end
-  first('button', text: 'Next').click
+  click_on 'Next'
 end
 
 Then(/^my responses in the database are like this:$/) do |table|
@@ -779,7 +775,7 @@ When(/^I support all broadcasts$/) do
       click_on 'Support'
     end
   end
-  first('button', text: 'Next').click
+  click_on 'Next'
 end
 
 Then(/^there are no broadcasts left$/) do

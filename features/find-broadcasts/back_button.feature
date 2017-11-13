@@ -11,9 +11,9 @@ Feature: Go back one decision card
   Scenario: Revise on decision
     Given I have 20 broadcasts in my database:
     When I visit the find broadcasts page
-    And I click the "Next" button, but missed a broadcast which I like
+    And I click on "Next", but missed a broadcast which I like
     And in the database all my responses are 'neutral'
-    But then I click the "Back" button
+    But then I click on "Back"
     And support the first broadcast
     Then the first broadcast turns green
     And I have one positive response in the database

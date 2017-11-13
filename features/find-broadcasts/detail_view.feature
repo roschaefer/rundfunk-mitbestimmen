@@ -25,7 +25,7 @@ Feature: Link to broadcast details page on every broadcast card
     Given there are 10 other broadcasts, with a title lexicographically before 'Medienmagazin'
     And I visit the find broadcasts page
     And I click on the button to order broadcasts in ascending order
-    When I click the "Next" button
+    When I click on "Next"
     And I click on the magnifier symbol next to "Medienmagazin"
     Then I see only this broadcast and nothing else, in order to stay focused
     But if I click on the close icon
