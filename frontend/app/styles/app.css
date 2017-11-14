@@ -9,6 +9,11 @@ p {
 .masthead-header {
   font-size: 3.5em;
 }
+
+.media-row .column {
+  height: 10em;
+}
+
 .masthead-sub-header {
   font-family: 'Assistant', sans-serif;
   font-weight: normal;
