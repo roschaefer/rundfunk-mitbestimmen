@@ -18,7 +18,8 @@ module.exports = function(environment) {
       },
     },
     sentry: {
-      dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938'
+      dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938',
+      development: true
     },
     EmberENV: {
       FEATURES: {
@@ -86,6 +87,7 @@ module.exports = function(environment) {
       clientID: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
       domain: 'rundfunk-mitbestimmen.eu.auth0.com'
     };
+    ENV['sentry']['development'] = false;
   }
 
   return ENV;

@@ -69,7 +69,9 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
     },
 
     error(error){
-      this.get('raven').captureException(error)
+      if(!ENV['sentry']['development']) {
+        this.get('raven').captureException(error)
+      }
       return true; // Let the route above this handle the error.
     }
   }
