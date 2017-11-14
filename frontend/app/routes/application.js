@@ -5,6 +5,7 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 
 export default Ember.Route.extend(ApplicationRouteMixin , {
   intl: Ember.inject.service(),
+  raven: Ember.inject.service(),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale
@@ -65,6 +66,11 @@ export default Ember.Route.extend(ApplicationRouteMixin , {
 
     logout () {
       this.get('session').invalidate();
+    },
+
+    error(error){
+      this.get('raven').captureException(error)
+      return true; // Let the route above this handle the error.
     }
   }
 });
