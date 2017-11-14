@@ -7,14 +7,18 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
         'font-src': "'self' data: https://cdn.auth0.com fonts.gstatic.com",
         'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-        'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com",
-        'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com"
+        'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com cdn.ravenjs.com",
+        'img-src': "data: sentry.io",
+        'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com sentry.io"
     },
     'ember-simple-auth': {
       auth0: {
         clientID: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
         domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
       },
+    },
+    sentry: {
+      dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938'
     },
     EmberENV: {
       FEATURES: {
