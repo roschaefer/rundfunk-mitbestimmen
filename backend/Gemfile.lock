@@ -64,7 +64,7 @@ GEM
     bcrypt (3.1.11-x86-mingw32)
     brakeman (4.0.1)
     builder (3.2.3)
-    cancancan (2.0.0)
+    cancancan (2.1.1)
     capistrano (3.10.0)
       airbrussh (>= 1.0.0)
       i18n
