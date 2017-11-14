@@ -164,6 +164,8 @@ index:
       relations: Are there any relations or clusters between broadcasts?
   summarized-statistics:
     header: Summarized statistics
+  media:
+    header: Known from
   faq:
     questions:
       survey:
