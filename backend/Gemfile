@@ -14,6 +14,7 @@ gem 'pg_search'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rgeo-geojson'
 gem 'scenic'
+gem 'sentry-raven'
 gem 'sidekiq'
 gem 'valid_email2'
 
