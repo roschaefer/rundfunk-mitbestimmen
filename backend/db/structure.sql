@@ -287,7 +287,7 @@ ALTER SEQUENCE broadcasts_id_seq OWNED BY broadcasts.id;
 --
 
 CREATE TABLE format_translations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     format_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -403,7 +403,7 @@ ALTER SEQUENCE media_id_seq OWNED BY media.id;
 --
 
 CREATE TABLE medium_translations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     medium_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -628,7 +628,7 @@ CREATE VIEW statistics AS
 --
 
 CREATE TABLE topic_translations (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     topic_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -694,8 +694,8 @@ CREATE TABLE users (
     id integer NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     email character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     role integer DEFAULT 0,
     auth0_uid character varying,
     has_bad_email boolean DEFAULT false,
