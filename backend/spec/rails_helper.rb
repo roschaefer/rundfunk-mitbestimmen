@@ -73,6 +73,5 @@ RSpec.configure do |config|
     # `PG::FeatureNotSupported: ERROR:  CONCURRENTLY cannot be used when the
     # materialized view is not populated`
     Scenic.database.refresh_materialized_view(:statistic_broadcasts)
-
   end
 end
