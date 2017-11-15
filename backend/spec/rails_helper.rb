@@ -66,4 +66,13 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.before(:suite) do
+    # refresh it once to populate the view after db:schema:load
+    #
+    # otherwise we get this error:
+    # `PG::FeatureNotSupported: ERROR:  CONCURRENTLY cannot be used when the
+    # materialized view is not populated`
+    Scenic.database.refresh_materialized_view(:statistic_broadcasts)
+
+  end
 end
