@@ -182,14 +182,14 @@
   </div>
 
   <div class="centered row">
-    <div class="ui stackable grid">
+    <div class="ui grid">
       <div class="centered row">
         <h3>
           {{t 'index.summarized-statistics.header'}}
         </h3>
       </div>
-      <div class="four column bottom aligned stretched row">
-        <div class="column">
+      <div class="row">
+        <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics registered-users">
               {{model.registeredUsers}}
@@ -199,7 +199,7 @@
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics broadcasts">
               {{model.broadcasts}}
@@ -209,7 +209,7 @@
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics impressions">
               {{model.impressions}}
@@ -219,7 +219,7 @@
             </div>
           </div>
         </div>
-        <div class="column">
+        <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics money-assigned">
               {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
