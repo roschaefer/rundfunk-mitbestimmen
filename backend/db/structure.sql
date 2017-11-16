@@ -365,7 +365,7 @@ CREATE VIEW impressions AS
 -- Name: VIEW impressions; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.11.1"}';
+COMMENT ON VIEW impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.0"}';
 
 
 --
