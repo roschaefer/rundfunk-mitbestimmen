@@ -185,7 +185,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
       spoon (~> 0.0)
-    public_suffix (3.0.0)
+    public_suffix (3.0.1)
     puma (3.10.0)
     puma (3.10.0-java)
     rack (2.0.3)
@@ -313,7 +313,7 @@ GEM
       activemodel (>= 3.2)
       mail (~> 2.5)
     vcr (3.0.3)
-    webmock (3.1.0)
+    webmock (3.1.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
