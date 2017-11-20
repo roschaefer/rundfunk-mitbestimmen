@@ -7,6 +7,15 @@ GIT
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
 
+GIT
+  remote: https://github.com/ifad/chronomodel.git
+  revision: 7b827cd6acc0b4714718eed24cbe5bf67bb9ed5a
+  specs:
+    chrono_model (0.12.0)
+      activerecord (>= 4.2.0, < 5.2.0)
+      multi_json
+      pg
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,10 +90,6 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
-    chrono_model (0.12.0)
-      activerecord (>= 4.2.0, < 5.2.0)
-      multi_json
-      pg
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     concurrent-ruby (1.0.5-java)
@@ -342,7 +347,7 @@ DEPENDENCIES
   capistrano
   capistrano-db-tasks
   capistrano-rails
-  chrono_model
+  chrono_model!
   factory_bot_rails
   geocoder
   globalize!
