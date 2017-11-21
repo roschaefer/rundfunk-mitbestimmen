@@ -185,10 +185,10 @@ SET default_with_oids = false;
 
 CREATE TABLE impressions (
     id integer NOT NULL,
-    response integer,
+    response integer DEFAULT 0,
     amount numeric,
-    user_id integer,
-    broadcast_id integer,
+    user_id integer NOT NULL,
+    broadcast_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     fixed boolean
@@ -365,7 +365,7 @@ CREATE VIEW impressions AS
 -- Name: VIEW impressions; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.0"}';
+COMMENT ON VIEW impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.1"}';
 
 
 --
@@ -793,6 +793,13 @@ ALTER TABLE ONLY impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impre
 
 
 --
+-- Name: impressions response; Type: DEFAULT; Schema: history; Owner: -
+--
+
+ALTER TABLE ONLY impressions ALTER COLUMN response SET DEFAULT 0;
+
+
+--
 -- Name: impressions hid; Type: DEFAULT; Schema: history; Owner: -
 --
 
@@ -820,6 +827,13 @@ ALTER TABLE ONLY format_translations ALTER COLUMN id SET DEFAULT nextval('format
 --
 
 ALTER TABLE ONLY formats ALTER COLUMN id SET DEFAULT nextval('formats_id_seq'::regclass);
+
+
+--
+-- Name: impressions response; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY impressions ALTER COLUMN response SET DEFAULT 0;
 
 
 --
@@ -1332,6 +1346,14 @@ ALTER TABLE ONLY broadcasts
 SET search_path = temporal, pg_catalog;
 
 --
+-- Name: impressions fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+--
+
+ALTER TABLE ONLY impressions
+    ADD CONSTRAINT fk_rails_4fd47aaffd FOREIGN KEY (broadcast_id) REFERENCES public.broadcasts(id);
+
+
+--
 -- Name: impressions fk_rails_a56f328f61; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
@@ -1345,6 +1367,14 @@ ALTER TABLE ONLY impressions
 
 ALTER TABLE ONLY impressions
     ADD CONSTRAINT fk_rails_da7bcadf25 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: impressions fk_rails_f0d87991a2; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+--
+
+ALTER TABLE ONLY impressions
+    ADD CONSTRAINT fk_rails_f0d87991a2 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -1406,9 +1436,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170930144629'),
 ('20171018181816'),
 ('20171021173446'),
+('20171025214229'),
 ('20171029000924'),
 ('20171111141249'),
 ('20171115195229'),
-('20171115205013');
+('20171115205013'),
+('20171121223456');
 
 
