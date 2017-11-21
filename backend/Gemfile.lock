@@ -9,9 +9,9 @@ GIT
 
 GIT
   remote: https://github.com/ifad/chronomodel.git
-  revision: 7b827cd6acc0b4714718eed24cbe5bf67bb9ed5a
+  revision: d386ad73600619e03adb6de0d2ac9d382de0a5aa
   specs:
-    chrono_model (0.12.0)
+    chrono_model (0.12.1)
       activerecord (>= 4.2.0, < 5.2.0)
       multi_json
       pg
