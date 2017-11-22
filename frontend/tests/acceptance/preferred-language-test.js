@@ -2,7 +2,7 @@ import { describe, context, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
-import { mockSetup, mockTeardown, mockQueryRecord, mockUpdate, build } from 'ember-data-factory-guy';
+import { mockQueryRecord, mockUpdate, build } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | preferred language', function() {
@@ -12,7 +12,6 @@ describe('Acceptance | preferred language', function() {
 
   beforeEach(function() {
     application = startApp();
-    mockSetup();
     user = build('user');
     userMock = mockQueryRecord('user').returns({json: user});
 
@@ -26,7 +25,6 @@ describe('Acceptance | preferred language', function() {
   });
 
   afterEach(function() {
-    mockTeardown();
     destroyApp(application);
   });
 

@@ -2,18 +2,16 @@ import { context, describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
-import { mockSetup, mockTeardown, mockFindAll } from 'ember-data-factory-guy';
+import { mockFindAll } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | Errors', function() {
   let application, broadcastMock;
   beforeEach(function() {
     application = startApp();
-    mockSetup();
     broadcastMock = mockFindAll('broadcast');
   });
   afterEach(function() {
-    mockTeardown();
     destroyApp(application);
   });
 

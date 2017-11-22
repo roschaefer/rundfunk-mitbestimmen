@@ -2,7 +2,7 @@ import { describe, context, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../../helpers/start-app';
 import destroyApp from '../../../helpers/destroy-app';
-import { mock, mockSetup, mockUpdate, mockTeardown, mockQueryRecord, make } from 'ember-data-factory-guy';
+import { mock, mockUpdate, mockQueryRecord, make } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | visualize/geo update location', function() {
@@ -11,7 +11,6 @@ describe('Acceptance | visualize/geo update location', function() {
 
   beforeEach(function() {
     application = startApp();
-    mockSetup();
     mockQueryRecord('summarized-statistic');
     userMock = mockQueryRecord('user');
     const payload = {
@@ -33,7 +32,6 @@ describe('Acceptance | visualize/geo update location', function() {
   });
 
   afterEach(function() {
-    mockTeardown();
     destroyApp(application);
   });
 

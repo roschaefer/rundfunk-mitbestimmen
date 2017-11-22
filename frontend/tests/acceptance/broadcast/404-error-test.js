@@ -2,7 +2,7 @@ import { context, describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
-import { make, mockSetup, mockTeardown, mockFindRecord } from 'ember-data-factory-guy';
+import { make, mockFindRecord } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | broadcast/ 404 error', function() {
@@ -10,12 +10,10 @@ describe('Acceptance | broadcast/ 404 error', function() {
 
   beforeEach(function() {
     application = startApp();
-    mockSetup();
     broadcastMock = mockFindRecord('broadcast');
   });
 
   afterEach(function() {
-    mockTeardown();
     destroyApp(application);
   });
 
