@@ -9,6 +9,7 @@ describe('Unit | Controller | broadcast/index', function() {
     needs: [
       'service:metrics',
       'service:session',
+      'service:intl',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });
