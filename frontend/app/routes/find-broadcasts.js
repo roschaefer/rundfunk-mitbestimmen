@@ -31,6 +31,7 @@ export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
     params.paramMapping = {
       total_pages: "total-pages"
     };
+    params.include = ['impressions', 'stations', 'medium'];
     params.seed = this.get('seed');
     params.filter = {
       medium: params.medium,

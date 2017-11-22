@@ -1,7 +1,6 @@
 class BroadcastsController < ApplicationController
   before_action :set_broadcast, only: %i[show update destroy]
   before_action :authenticate_user, except: %i[index show]
-  after_action :mark_broadcasts_as_seen, only: :index
   load_and_authorize_resource
 
   # GET /broadcasts
@@ -14,7 +13,8 @@ class BroadcastsController < ApplicationController
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
-    render json: @broadcasts, scope: current_user, meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
+    mark_broadcasts_as_seen
+    render json: @broadcasts, scope: current_user, include: params[:include], meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
   # GET /broadcasts/1
