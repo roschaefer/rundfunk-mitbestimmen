@@ -43,6 +43,16 @@ RSpec.describe Impression, type: :model do
       end
     end
 
+    describe 'user.broadcasts << some_broadcasts' do
+      let(:some_broadcasts) { create_list(:broadcast, 2) }
+      let(:action) { user.broadcasts << some_broadcasts }
+      specify { expect { action }.to(change { Impression.count }.from(0).to(2)) }
+      describe 'saves neutral responses' do
+        before { action }
+        specify { expect(Impression.pluck(:response)).to eq(%w[neutral neutral]) }
+      end
+    end
+
     describe '== foobar' do
       specify { expect { build(:impression, response: :foobar) }.to raise_error(ArgumentError) }
     end

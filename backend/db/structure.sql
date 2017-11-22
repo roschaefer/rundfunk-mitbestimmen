@@ -185,7 +185,7 @@ SET default_with_oids = false;
 
 CREATE TABLE impressions (
     id integer NOT NULL,
-    response integer DEFAULT 0,
+    response integer DEFAULT 0 NOT NULL,
     amount numeric,
     user_id integer NOT NULL,
     broadcast_id integer NOT NULL,
