@@ -13,7 +13,7 @@ RSpec.describe 'Impressions', type: :request do
   end
 
   describe '*' do
-    let(:url) { '/impressions' } # as an example
+    let(:url) { '/votes' } # as an example
     let(:request) { get url, params: params, headers: headers }
     context 'legacy user without auth0_uid or location' do
       before { user }
@@ -47,8 +47,8 @@ RSpec.describe 'Impressions', type: :request do
     end
   end
 
-  describe 'GET /impressions' do
-    let(:action) { get '/impressions', params: params, headers: headers }
+  describe 'GET /votes' do
+    let(:action) { get '/votes', params: params, headers: headers }
     let(:impressions) { [positive_impression, neutral_impression] }
     subject do
       impressions
@@ -83,8 +83,8 @@ RSpec.describe 'Impressions', type: :request do
     end
   end
 
-  describe 'GET /impressions/:id' do
-    let(:action) { get "/impressions/#{impression.id}", params: params, headers: headers }
+  describe 'GET /votes/:id' do
+    let(:action) { get "/votes/#{impression.id}", params: params, headers: headers }
     let(:impression) { create(:impression, user: user) }
 
     subject do
@@ -113,8 +113,8 @@ RSpec.describe 'Impressions', type: :request do
     end
   end
 
-  describe 'POST /impressions' do
-    let(:action) { post '/impressions', params: params, headers: headers }
+  describe 'POST /votes' do
+    let(:action) { post '/votes', params: params, headers: headers }
 
     subject do
       action

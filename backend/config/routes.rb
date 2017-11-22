@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   resources :formats, only: %i[index show]
   resources :topics, only: %i[index show]
   resources :broadcasts
-  resources :impressions
+
+  # see https://github.com/roschaefer/rundfunk-mitbestimmen/issues/419
+  resources :votes, controller: :impressions
+
   resources :users, only: :update
   resource  :users, only: :show
 
