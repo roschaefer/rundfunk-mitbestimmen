@@ -1,6 +1,6 @@
 class BroadcastsController < ApplicationController
   before_action :set_broadcast, only: %i[show update destroy]
-  before_action :authenticate_user, except: [:index, :show]
+  before_action :authenticate_user, except: %i[index show]
   after_action :mark_broadcasts_as_seen, only: :index
   load_and_authorize_resource
 
