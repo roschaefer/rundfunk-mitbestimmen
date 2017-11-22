@@ -2,8 +2,7 @@ import { describe, it, context, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import startApp from '../../helpers/start-app';
 import destroyApp from '../../helpers/destroy-app';
-import { mockSetup, mockTeardown, mockFindAll, mockQuery, mockCreate,
-  buildList } from 'ember-data-factory-guy';
+import { mockFindAll, mockQuery, mockCreate, buildList } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
 describe('Acceptance | find broadcasts/close login window', function() {
@@ -11,14 +10,12 @@ describe('Acceptance | find broadcasts/close login window', function() {
 
   beforeEach(function() {
     application = startApp();
-    mockSetup();
     mockFindAll('station');
     mockFindAll('medium');
   });
 
 
   afterEach(function() {
-    mockTeardown();
     destroyApp(application);
   });
 
