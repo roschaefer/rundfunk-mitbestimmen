@@ -62,19 +62,6 @@ describe('Acceptance | find broadcasts/close login window', function() {
         authenticateSession(application, sessionData);
       });
 
-      describe('visit /find-broadcast', function(){
-        it('sends a parameter ?mark_as_seen=true', function() {
-          broadcastsMock = mockQuery('broadcast');
-          broadcastsMock.withSomeParams({
-            mark_as_seen: true,
-          });
-          visit('/find-broadcasts/');
-          return andThen(() => {
-            expect(broadcastsMock.timesCalled).to.equal(1);
-          });
-        });
-      });
-
       describe('click on support button', function(){
         it('creates a positive impression', function() {
           broadcastsMock = mockQuery('broadcast');

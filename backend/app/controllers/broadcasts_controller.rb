@@ -13,12 +13,13 @@ class BroadcastsController < ApplicationController
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 10).to_i
     @broadcasts = @broadcasts.page(page).per(per_page)
-    mark_broadcasts_as_seen
+    mark_broadcasts_as_seen(@broadcasts)
     render json: @broadcasts, scope: current_user, include: params[:include], meta: { total_count: @broadcasts.total_count, total_pages: @broadcasts.total_pages }
   end
 
   # GET /broadcasts/1
   def show
+    mark_broadcasts_as_seen([@broadcast])
     render json: @broadcast
   end
 
@@ -60,9 +61,9 @@ class BroadcastsController < ApplicationController
     ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[title description image-url broadcast-url medium stations])
   end
 
-  def mark_broadcasts_as_seen
-    return unless params[:mark_as_seen] && current_user
-    new_broadcasts = @broadcasts - current_user.broadcasts
+  def mark_broadcasts_as_seen(broadcasts)
+    return unless current_user
+    new_broadcasts = broadcasts - current_user.broadcasts
     current_user.broadcasts << new_broadcasts
   end
 end
