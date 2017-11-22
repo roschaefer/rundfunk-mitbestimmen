@@ -22,6 +22,7 @@ end
 Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) do |table|
   table.hashes.each do |row|
     attributes = { title: row['Title'] }
+    attributes[:id] = row['ID'] if row['ID']
     attributes[:created_at] = row['Created at'] || Date.today
     attributes[:description] = row['Description'] if row['Description']
     attributes[:image_url] = row['Image url']
@@ -952,4 +953,12 @@ end
 
 Then("I should have an image {string}") do |url|
   expect(page).to have_css("img[src='#{url}']")
+end
+
+When("I visit {string}") do |url|
+  visit url
+end
+
+When("do nothing") do
+  # do nothing
 end
