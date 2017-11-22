@@ -16,6 +16,41 @@ RSpec.describe 'Broadcasts', type: :request do
 
     before { setup }
 
+    describe '/broadcasts/:id' do
+      let(:url) { "/broadcasts/#{broadcast.id}" }
+      let(:broadcast) { create(:broadcast) }
+      let(:setup) { broadcast }
+      subject { response.body }
+
+      describe '#mark_broadcasts_as_seen' do
+        context 'unauthenticated' do
+          before { action }
+
+          specify { expect(Impression.count).to eq(0) }
+          specify { expect { action }.not_to(change { Impression.count }) }
+        end
+
+        context 'authenticated' do
+          let(:headers) { super().merge(authenticated_header(user)) }
+
+          describe 'creates impressions for every visible broadcast' do
+            specify { expect { action }.to(change { Impression.count }.from(0).to(1)) }
+
+            describe 'but if impression already exists for a broadcast' do
+              before { Broadcast.find_each { |b| create(:impression, response: :neutral, broadcast: b, user: user) } }
+              specify { expect { action }.not_to(change { Impression.count }) }
+            end
+
+            describe 'after request' do
+              before { action }
+              specify { expect(Impression.neutral.count).to eq(1) }
+              specify { expect(user.impressions).to match_array(Impression.all) }
+            end
+          end
+        end
+      end
+    end
+
     describe '/broadcasts' do
       let(:url) { '/broadcasts' }
       subject { response.body }
@@ -59,8 +94,8 @@ RSpec.describe 'Broadcasts', type: :request do
           end
         end
 
-        describe '?mark_as_seen=true' do
-          let(:params) { { per_page: 6, mark_as_seen: true } }
+        describe '#mark_broadcasts_as_seen' do
+          let(:params) { { per_page: 6 } }
 
           context 'unauthenticated' do
             before { action }
@@ -74,11 +109,6 @@ RSpec.describe 'Broadcasts', type: :request do
 
             describe 'creates impressions for every visible broadcast' do
               specify { expect { action }.to(change { Impression.count }.from(0).to(6)) }
-
-              describe 'but if mark_as_seen is not given' do
-                let(:params) { super().except(:mark_as_seen) }
-                specify { expect { action }.not_to(change { Impression.count }) }
-              end
 
               describe 'but if impression already exists for a broadcast' do
                 before { Broadcast.find_each { |b| create(:impression, response: :neutral, broadcast: b, user: user) } }

@@ -157,14 +157,18 @@ RSpec.describe 'Broadcasts', type: :request do
 
           describe 'relationships' do
             context 'other users viewed unreviewed broadcast' do
-              let(:other_impression) { create(:impression, broadcast: evaluated_broadcast) }
-              let(:relationships) { subject['data'][0]['relationships'] }
-              before { other_impression }
+              let(:other_impression) { create(:impression, broadcast: unevaluated_broadcast) }
+              let(:setup) { other_impression }
+              before do
+                setup
+                action
+              end
 
-              it 'impressions are not exposed at all' do
-                expect(Impression.count).to eq 2
-                number_of_related_impressions = relationships['impressions']['data'].length
-                expect(number_of_related_impressions).to eq 0
+              it 'impressions of other users are not exposed' do
+                expect(Impression.count).to eq 3 # other user's impression
+                expect(response.body).to have_json_size(1).at_path('data/0/relationships/impressions/data')
+                expect(user.impressions.neutral.count).to eq 1 # the impression that was created just now
+                expect(user.impressions.neutral.first.id.to_s).to eq parse_json(response.body, 'data/0/relationships/impressions/data/0/id')
               end
             end
           end
