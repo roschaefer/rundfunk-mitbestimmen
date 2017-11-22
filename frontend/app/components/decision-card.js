@@ -5,17 +5,15 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
   actions: {
+    login(){
+      this.get('loginAction')();
+    },
     respond(response){
-      if (this.get('session.isAuthenticated')) {
-        this.get('broadcast').respond(response);
-        if (this.get('respondAction')) {
-          this.get('respondAction')(this.get('broadcast'));
-        }
-        this.rerender();
-      } else {
-        this.get('loginAction')();
+      this.get('broadcast').respond(response);
+      if (this.get('respondAction')) {
+        this.get('respondAction')(this.get('broadcast'));
       }
-
+      this.rerender();
     }
   }
 });
