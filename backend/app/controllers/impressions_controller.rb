@@ -22,7 +22,7 @@ class ImpressionsController < ApplicationController
     @impression.user = current_user # you can only create your own
 
     if @impression.save
-      render json: @impression, status: :created, location: @impression
+      render json: @impression, status: :created, location: vote_url(@impression)
     else
       render json: @impression.errors, status: :unprocessable_entity
     end
