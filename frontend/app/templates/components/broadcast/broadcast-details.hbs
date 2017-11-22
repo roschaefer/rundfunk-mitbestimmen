@@ -62,19 +62,19 @@
 
   <div class="ui two buttons">
   {{#if (eq broadcast.response 'positive')}}
-    <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'neutral'}}>
+    <button class="ui bottom attached button decision-card-support-button" {{action (if session.isAuthenticated 'respond' 'login') 'neutral'}}>
       <i class="red heart icon"></i>
       {{ t 'find-broadcasts.decision-card.actions.response.positive' }}
     </button>
   {{else}}
-    <button class="ui bottom attached button decision-card-support-button" {{action 'respond' 'positive'}}>
+    <button class="ui bottom attached button decision-card-support-button" {{action (if session.isAuthenticated 'respond' 'login') 'positive'}}>
       <i class="empty heart icon"></i>
       {{ t 'find-broadcasts.decision-card.actions.response.positive' }}
     </button>
   {{/if}}
-    {{#link-to 'broadcast.edit' broadcast class="ui bottom attached edit button"}}
-      <i class="edit icon"></i>
-      {{t 'broadcast.broadcast-details.buttons.edit'}}
-    {{/link-to}}
+  <button class='broadcast.edit' broadcast class="ui bottom attached edit button" {{action (if session.isAuthenticated 'edit' 'login')}}>
+    <i class="edit icon"></i>
+    {{t 'broadcast.broadcast-details.buttons.edit'}}
+  </button>
   </div>
 </div>
