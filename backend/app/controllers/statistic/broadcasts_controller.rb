@@ -5,13 +5,16 @@ module Statistic
     def index
       page = (statistics_params[:page] || 1).to_i
       per_page = (statistics_params[:per_page] || 10).to_i
-      order_params = {}
       # TODO: is there a better way to do this with strong params?
       column = Statistic::Broadcast.column_names.include?(statistics_params[:column]) ? statistics_params[:column] : :total
-      direction = %w[asc desc].include?(statistics_params[:direction]) ? statistics_params[:direction] : :desc
-      order_params.store(column, direction)
+      order_mapping = {
+        'asc' => 'ASC NULLS LAST',
+        'desc' => 'DESC NULLS LAST'
+      }
+      direction = order_mapping[statistics_params[:direction]] || 'DESC NULLS LAST'
+      order_by_clause = [column, direction].join(' ')
 
-      @statistics = Statistic::Broadcast.order(order_params).order(title: :asc).page(page).per(per_page)
+      @statistics = Statistic::Broadcast.order(order_by_clause).order(title: :asc).page(page).per(per_page)
       render json: @statistics, meta: { total_pages: @statistics.total_pages }
     end
 
