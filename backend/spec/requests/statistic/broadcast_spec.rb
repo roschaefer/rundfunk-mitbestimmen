@@ -28,15 +28,36 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
       end
 
       context 'given :order params' do
-        let(:params) {  { column: 'average', direction: 'asc' } }
 
-        it 'orders by average and ascending' do
-          sorted = data.sort { |b1, b2| b1['attributes']['average'] <=> b2['attributes']['average'] }
-          expect(data).to eq sorted
+        describe 'average ascending' do
+          let(:params) {  { column: 'average', direction: 'asc' } }
+          it 'orders by average and ascending' do
+            sorted = data.sort { |b1, b2| b1['attributes']['average'] <=> b2['attributes']['average'] }
+            expect(data).to eq sorted
+          end
+        end
+
+        describe 'average descending' do
+          let(:params) {  { column: 'average', direction: 'desc' } }
+          describe '#average == nil' do
+
+            before do
+              impressions
+              null_broadcast = create(:broadcast, id: 12345)
+              create(:impression, broadcast: null_broadcast, amount: nil)
+              request
+            end
+
+            it 'sorted at the end' do
+              expect(response.body).to have_json_size(4).at_path('data')
+              # broadcst with #average is sorted at the end of the table
+              expect(parse_json(response.body, 'data/3/id')).to eq '12345'
+            end
+          end
         end
       end
 
-      context 'given :order params average and ascending' do
+      context 'given :order params impressions and ascending' do
         let(:params) { { column: 'impressions', direction: 'asc' } }
         let(:impressions) do
           impressions = [3, 2, 4]
