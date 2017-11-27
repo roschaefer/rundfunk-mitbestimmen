@@ -28,7 +28,6 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
       end
 
       context 'given :order params' do
-
         describe 'average ascending' do
           let(:params) {  { column: 'average', direction: 'asc' } }
           it 'orders by average and ascending' do
@@ -40,10 +39,9 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
         describe 'average descending' do
           let(:params) {  { column: 'average', direction: 'desc' } }
           describe '#average == nil' do
-
             before do
               impressions
-              null_broadcast = create(:broadcast, id: 12345)
+              null_broadcast = create(:broadcast, id: 12_345)
               create(:impression, broadcast: null_broadcast, amount: nil)
               request
             end
