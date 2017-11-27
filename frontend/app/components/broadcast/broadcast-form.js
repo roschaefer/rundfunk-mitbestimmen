@@ -28,7 +28,11 @@ export default Ember.Component.extend({
 
   submit(event) {
     event.preventDefault();
-    this.get('broadcast').saveAndSetSuccess();
+    if (this.get('session.isAuthenticated')){
+      this.get('broadcast').saveAndSetSuccess();
+    } else {
+      this.get('loginAction')();
+    }
   },
   actions: {
     selectMedium(mediumId){
