@@ -97,7 +97,11 @@
         <tbody>
           {{#each model as |statistic|}}
             <tr class="statistic-item">
-              <td>{{statistic.title}}</td>
+              <td>
+                {{#link-to 'broadcast' statistic.id}}
+                  {{statistic.title}}
+                {{/link-to}}
+              </td>
               <td class="impressions">{{statistic.impressions}}</td>
               <td class="approval">{{format-number statistic.approval style='percent'}}</td>
               <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
