@@ -104,7 +104,7 @@
               </td>
               <td class="impressions">{{statistic.impressions}}</td>
               <td class="approval">{{format-number statistic.approval style='percent'}}</td>
-              <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
+              <td class="average">{{format-number statistic.average style='currency' currency='EUR' fallback='-'}}</td>
               <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
             </tr>
           {{/each}}
