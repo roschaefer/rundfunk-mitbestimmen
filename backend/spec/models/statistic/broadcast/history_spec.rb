@@ -13,7 +13,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
       create(:impression, broadcast: @broadcast, response: :positive, amount: 2.0)
       @t2 = Time.now
       create(:impression, broadcast: @broadcast, response: :positive)
-      # ^^^ amount is nil, so this does not not descrease #average
+      # ^^^ amount is nil, so this does not not decrease #average
       @t3 = Time.now
       create(:impression, broadcast: @broadcast, response: :positive, amount: 7.0)
       @t4 = Time.now
