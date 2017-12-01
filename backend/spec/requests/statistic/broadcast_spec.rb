@@ -2,8 +2,84 @@ require 'rails_helper'
 
 RSpec.describe 'Statistic::Broadcast', type: :request do
   describe 'GET' do
+    let(:headers) { {} }
     let(:params) { {} }
-    let(:request) { get url, params: params }
+    let(:request) { get url, params: params, headers: headers }
+
+    describe '/broadcasts/:id' do
+      let(:url) { '/statistic/broadcasts/4711' }
+      describe '?as_of', helpers: :time do
+        let(:params) { { as_of: time } }
+
+
+        before(:all) do
+          @t1 = 7.days.ago
+          @t2 = 6.days.ago
+          @t3 = 5.days.ago
+          @t4 = 4.days.ago
+          @t5 = 3.days.ago
+          @t6 = 2.days.ago
+          @t7 = 1.days.ago
+          travel_to(@t1) { @broadcast = create(:broadcast, title: 'b', id: 4711) }
+          travel_to(@t2) { create(:impression, broadcast: @broadcast, response: :positive, amount: 2.0) }
+          travel_to(@t3) { create(:impression, broadcast: @broadcast, response: :positive) }
+          travel_to(@t4) { create(:impression, broadcast: @broadcast, response: :positive, amount: 7.0) }
+          travel_to(@t5) { create(:impression, response: :positive, amount: 8.0) }
+          travel_to(@t6) { create(:impression, broadcast: @broadcast, response: :neutral) }
+          travel_to(@t7) { create(:impression, broadcast: @broadcast, response: :positive, amount: 0.0) }
+        end
+
+        after(:all) do
+          clean_database!
+        end
+
+        describe 'response' do
+          before { request }
+          subject { parse_json(response.body, 'data/attributes') }
+
+
+          describe 't1' do
+            let(:time) { @t1 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 0, 'approval' => nil, 'average' => nil, 'total' => '0.0'}) }
+          end
+
+          describe 't2' do
+            let(:time) { @t2 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 1, 'approval' => 1, 'average' => '2.0', 'total' => '2.0'}) }
+          end
+
+          describe 't3' do
+            let(:time) { @t3 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 2, 'approval' => 1, 'average' => '2.0', 'total' => '2.0'}) }
+          end
+
+          describe 't4' do
+            let(:time) { @t4 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => 1, 'average' => '4.5', 'total' => '9.0'}) }
+          end
+
+          describe 't5' do
+            let(:time) { @t5 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => 1, 'average' => '4.5', 'total' => '9.0'}) }
+          end
+
+          describe 't6' do
+            let(:time) { @t6 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0'}) }
+          end
+
+          describe 't7' do
+            let(:time) { @t7 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '3.0', 'total' => '9.0'}) }
+          end
+
+          describe 'now' do
+            let(:time) { Time.now }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '3.0', 'total' => '9.0'}) }
+          end
+        end
+      end
+    end
 
     describe '/broadcasts' do
       let(:impressions) do

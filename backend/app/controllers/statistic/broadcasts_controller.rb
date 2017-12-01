@@ -1,6 +1,14 @@
 module Statistic
   class BroadcastsController < ApplicationController
     load_and_authorize_resource
+    before_action :set_statistic_broadcast, only: %i[show]
+
+    def show
+      if params[:as_of]
+        @statistic_broadcast = Statistic::Broadcast.find_broadcast_as_of(@broadcast, Time.zone.parse(params[:as_of]))
+      end
+      render json: @statistic_broadcast
+    end
 
     def index
       page = (statistics_params[:page] || 1).to_i
@@ -20,6 +28,11 @@ module Statistic
 
     def statistics_params
       params.permit(:column, :direction, :page, :per_page)
+    end
+
+    private
+    def set_statistic_broadcast
+      @statistic_broadcast = Statistic::Broadcast.find(params[:id])
     end
   end
 end
