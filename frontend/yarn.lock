@@ -3055,9 +3055,9 @@ ember-cookies@^0.0.13:
     ember-cli-babel "^5.1.7"
     ember-getowner-polyfill "^1.2.2"
 
-ember-data-factory-guy@2.13.18:
-  version "2.13.18"
-  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.18.tgz#ab1282571fd2cb6a9247a310b934256bc7f80090"
+ember-data-factory-guy@2.13.19:
+  version "2.13.19"
+  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.19.tgz#10df9c9ed7f9b7bc3e1d23cfec58fdbcffd29750"
   dependencies:
     babel-plugin-transform-object-rest-spread "^6.26.0"
     broccoli-funnel "^1.0.1"
