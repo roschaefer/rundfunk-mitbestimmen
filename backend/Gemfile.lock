@@ -172,7 +172,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.1-x86-mingw32)
       mini_portile2 (~> 2.3.0)
-    paper_trail (8.1.0)
+    paper_trail (8.1.1)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
     parallel (1.12.0)
