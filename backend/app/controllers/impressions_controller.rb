@@ -5,9 +5,7 @@ class ImpressionsController < ApplicationController
 
   def index
     @impressions = current_user.impressions
-    if params[:filter] && params[:filter][:response] == 'positive'
-      @impressions = @impressions.positive
-    end
+    @impressions = @impressions.positive if params[:filter] && params[:filter][:response] == 'positive'
     render json: @impressions, include: :broadcast
   end
 
