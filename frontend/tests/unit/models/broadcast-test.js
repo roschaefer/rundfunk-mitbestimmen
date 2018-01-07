@@ -57,20 +57,28 @@ describe('Unit | Model | broadcast', function() {
   describe('respond(response)', function() {
     it('response must be "positive" or "negative"', function() {
       let model = this.subject();
-      let impression = model.respond('foobar');
+      let impression;
+      Ember.run(() => {
+        impression = model.respond('foobar');
+      });
       expect(impression).to.be.undefined;
       expect(model.get('impressions').get('length')).to.eq(0);
     });
 
     it('returns a new impression with the response', function() {
       let model = this.subject();
-      let impression = model.respond('positive');
+      let impression;
+      Ember.run(() => {
+        impression = model.respond('positive');
+      });
       expect(impression.get('response')).to.eq('positive');
     });
 
     it('adds a new impression to the broadcast', function() {
       let model = this.subject();
-      model.respond('positive');
+      Ember.run(() => {
+         model.respond('positive');
+      });
       expect(model.get('impressions').get('length')).to.eq(1);
     });
 
