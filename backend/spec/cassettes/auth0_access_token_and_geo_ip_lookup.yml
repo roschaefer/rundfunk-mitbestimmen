@@ -108,7 +108,7 @@ http_interactions:
   recorded_at: Fri, 23 Jun 2017 13:03:25 GMT
 - request:
     method: get
-    uri: https://freegeoip.io/json/141.89.217.218
+    uri: https://freegeoip.net/json/141.89.217.218
     body:
       encoding: US-ASCII
       string: ''

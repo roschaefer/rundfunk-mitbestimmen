@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://freegeoip.io/json/141.3.135.0
+    uri: https://freegeoip.net/json/141.3.135.0
     body:
       encoding: US-ASCII
       string: ''
