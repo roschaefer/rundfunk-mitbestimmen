@@ -12,12 +12,14 @@ tv    = Medium.create!(id: 0, name_de: 'TV', name_en: 'TV')
 radio = Medium.create!(id: 1, name_de: 'Radio', name_en: 'Radio')
 Medium.create!(id: 2, name_de: 'Sonstige', name_en: 'Other')
 Medium.create!(id: 3, name_de: 'Online', name_en: 'Online')
+freeradio = Medium.create!(id: 4, name_de: 'Freies Radio', name_en: 'Free radio')
 
 das_erste     = Station.create!(name: 'Das Erste', medium: tv)
 wdr_fernsehen = Station.create!(name: 'WDR Fernsehen', medium: tv)
 zdf           = Station.create!(name: 'ZDF', medium: tv)
 einslive      = Station.create!(name: '1Live', medium: radio)
 fritz         = Station.create!(name: 'Fritz', medium: radio)
+wueste_welle  = Station.create!(name: 'Wüste Welle', medium: freeradio)
 
 Broadcast.create!(
   title: 'Quarks & Co',
@@ -54,4 +56,10 @@ Broadcast.create!(
   stations: [fritz],
   medium: radio,
   description: 'Von 20 bis 22 Uhr steht bei uns jeder Abend unter einem anderen musikalischen Motto. Euch erwarten Klassiker und aktuelle Neuerscheinungen aus den verschiedensten Genres - von Elektro bis Rock, von Urban bis Indie.'
+)
+Broadcast.create!(
+  title: 'Info-Magazin',
+  stations: [wueste_welle],
+  medium: freeradio,
+  description: 'Aktuell und hintergründig-lokal und global – mit Eigenbeiträgen und den besten Politik-Beiträgen der Freien Radios sowie tagesaktuellen Veranstaltungshinweisen.'
 )
