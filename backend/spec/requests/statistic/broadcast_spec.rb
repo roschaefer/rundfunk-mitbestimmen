@@ -20,13 +20,26 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           @t5 = 3.days.ago
           @t6 = 2.days.ago
           @t7 = 1.days.ago
+          @t8 = 0.days.ago
+          data = [
+            {response: :positive, amount: 2.0, from: (@t2 - 1.second), to: nil},
+            {response: :positive, amount: nil, from: (@t3 - 1.second), to: nil},
+            {response: :positive, amount: 7.0, from: (@t4 - 1.second), to: nil},
+            {response: :neutral,  amount: nil, from: (@t5 - 1.second), to: nil},
+            {response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil},
+            {response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second)}
+          ]
           travel_to(@t1) { @broadcast = create(:broadcast, title: 'b', id: 4711) }
-          travel_to(@t2) { create(:impression, broadcast: @broadcast, response: :positive, amount: 2.0) }
-          travel_to(@t3) { create(:impression, broadcast: @broadcast, response: :positive) }
-          travel_to(@t4) { create(:impression, broadcast: @broadcast, response: :positive, amount: 7.0) }
-          travel_to(@t5) { create(:impression, response: :positive, amount: 8.0) }
-          travel_to(@t6) { create(:impression, broadcast: @broadcast, response: :neutral) }
-          travel_to(@t7) { create(:impression, broadcast: @broadcast, response: :positive, amount: 0.0) }
+          data.each do |d|
+            impression = create(:impression, broadcast: @broadcast, response: d[:response], amount: d[:amount])
+            h = impression.history.first
+            h.class.amend_period!(h.hid, d[:from], d[:to])
+          end
+          last_impression = Impression.last
+          last_impression.amount = 10.0
+          last_impression.save!
+          h = last_impression.history.last
+          h.class.amend_period!(h.hid, @t8 - 1.second, nil)
         end
 
         after(:all) do
@@ -45,37 +58,37 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
 
           describe 't2' do
             let(:time) { @t2 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 1, 'approval' => 1, 'average' => '2.0', 'total' => '2.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 1, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0'}) }
           end
 
           describe 't3' do
             let(:time) { @t3 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 2, 'approval' => 1, 'average' => '2.0', 'total' => '2.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 2, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0'}) }
           end
 
           describe 't4' do
             let(:time) { @t4 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => 1, 'average' => '4.5', 'total' => '9.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => '1.0', 'average' => '4.5', 'total' => '9.0'}) }
           end
 
           describe 't5' do
             let(:time) { @t5 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => 1, 'average' => '4.5', 'total' => '9.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0'}) }
           end
 
           describe 't6' do
             let(:time) { @t6 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '5.0', 'total' => '15.0'}) }
           end
 
           describe 't7' do
             let(:time) { @t7 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '3.0', 'total' => '9.0'}) }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '3.75', 'total' => '15.0'}) }
           end
 
           describe 'now' do
-            let(:time) { Time.now }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '3.0', 'total' => '9.0'}) }
+            let(:time) { @t8 }
+            it { is_expected.to eq({'title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '6.25', 'total' => '25.0'}) }
           end
         end
       end
