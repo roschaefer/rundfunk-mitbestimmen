@@ -11,7 +11,6 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
       describe '?as_of', helpers: :time do
         let(:params) { { as_of: time } }
 
-
         before(:all) do
           @t1 = 7.days.ago
           @t2 = 6.days.ago
@@ -22,12 +21,12 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           @t7 = 1.days.ago
           @t8 = 0.days.ago
           data = [
-            {response: :positive, amount: 2.0, from: (@t2 - 1.second), to: nil},
-            {response: :positive, amount: nil, from: (@t3 - 1.second), to: nil},
-            {response: :positive, amount: 7.0, from: (@t4 - 1.second), to: nil},
-            {response: :neutral,  amount: nil, from: (@t5 - 1.second), to: nil},
-            {response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil},
-            {response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second)}
+            { response: :positive, amount: 2.0, from: (@t2 - 1.second), to: nil },
+            { response: :positive, amount: nil, from: (@t3 - 1.second), to: nil },
+            { response: :positive, amount: 7.0, from: (@t4 - 1.second), to: nil },
+            { response: :neutral,  amount: nil, from: (@t5 - 1.second), to: nil },
+            { response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil },
+            { response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second) }
           ]
           travel_to(@t1) { @broadcast = create(:broadcast, title: 'b', id: 4711) }
           data.each do |d|
@@ -50,45 +49,44 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           before { request }
           subject { parse_json(response.body, 'data/attributes') }
 
-
           describe 't1' do
             let(:time) { @t1 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 0, 'approval' => nil, 'average' => nil, 'total' => '0.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 0, 'approval' => nil, 'average' => nil, 'total' => '0.0') }
           end
 
           describe 't2' do
             let(:time) { @t2 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 1, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 1, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0') }
           end
 
           describe 't3' do
             let(:time) { @t3 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 2, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 2, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0') }
           end
 
           describe 't4' do
             let(:time) { @t4 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 3, 'approval' => '1.0', 'average' => '4.5', 'total' => '9.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 3, 'approval' => '1.0', 'average' => '4.5', 'total' => '9.0') }
           end
 
           describe 't5' do
             let(:time) { @t5 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0') }
           end
 
           describe 't6' do
             let(:time) { @t6 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '5.0', 'total' => '15.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '5.0', 'total' => '15.0') }
           end
 
           describe 't7' do
             let(:time) { @t7 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '3.75', 'total' => '15.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '3.75', 'total' => '15.0') }
           end
 
           describe 'now' do
             let(:time) { @t8 }
-            it { is_expected.to eq({'title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '6.25', 'total' => '25.0'}) }
+            it { is_expected.to eq('title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '6.25', 'total' => '25.0') }
           end
         end
       end
