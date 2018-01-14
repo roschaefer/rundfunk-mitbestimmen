@@ -4,9 +4,7 @@ module Statistic
     before_action :set_statistic_broadcast, only: %i[show]
 
     def show
-      if params[:as_of]
-        @statistic_broadcast = Statistic::Broadcast.find_broadcast_as_of(@broadcast, Time.zone.parse(params[:as_of]))
-      end
+      @statistic_broadcast = Statistic::Broadcast.find_broadcast_as_of(@broadcast, Time.zone.parse(params[:as_of])) if params[:as_of]
       render json: @statistic_broadcast
     end
 
@@ -31,6 +29,7 @@ module Statistic
     end
 
     private
+
     def set_statistic_broadcast
       @statistic_broadcast = Statistic::Broadcast.find(params[:id])
     end
