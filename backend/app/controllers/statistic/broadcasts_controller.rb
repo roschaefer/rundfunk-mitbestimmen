@@ -1,11 +1,37 @@
 module Statistic
   class BroadcastsController < ApplicationController
     load_and_authorize_resource
-    before_action :set_statistic_broadcast, only: %i[show]
+    before_action :set_statistic_broadcast, only: %i[show temporal]
 
     def show
       @statistic_broadcast = Statistic::Broadcast.find_broadcast_as_of(@broadcast, Time.zone.parse(params[:as_of])) if params[:as_of]
       render json: @statistic_broadcast
+    end
+
+    def temporal
+      from = if params[:from]
+               Time.zone.parse(params[:from])
+             else
+               10.months.ago
+             end
+      to = if params[:to]
+             Time.zone.parse(params[:to])
+           else
+             Time.zone.now
+           end
+      nth_day = params[:day] || 7
+      nth_day = nth_day.to_i
+
+      range = [from]
+      new_date = from + nth_day.days
+      while new_date < to
+        range << new_date
+        new_date += nth_day.days
+      end
+      range << to
+
+      range = range.map { |t| [t, Statistic::Broadcast.find_broadcast_as_of(@broadcast, t)] }
+      render json: range.map { |t, statistic| [t, statistic.total] }
     end
 
     def index

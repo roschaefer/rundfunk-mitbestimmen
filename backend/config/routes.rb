@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   end
 
   namespace :statistic do
-    resources :broadcasts, only: %i[index show]
+    resources :broadcasts, only: %i[index show] do
+      member do
+        get 'temporal'
+      end
+    end
   end
 
   get 'summarized_statistics/', to: 'statistics#summarized'
