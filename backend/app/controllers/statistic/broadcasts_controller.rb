@@ -12,7 +12,7 @@ module Statistic
       from = if params[:from]
                Time.zone.parse(params[:from])
              else
-               10.months.ago
+               3.months.ago
              end
       to = if params[:to]
              Time.zone.parse(params[:to])

@@ -97,26 +97,47 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
 
       describe '/broadcasts/:id/temporal' do
         let(:url) { '/statistic/broadcasts/4711/temporal' }
+        subject { JSON.parse(response.body) }
 
         describe 'response' do
           before { request }
 
-          describe '?from=&to=&chunks=' do
-            let(:params) { { from: @t0.to_json, to: @t8.to_json, day: 1 } }
-            subject { JSON.parse(response.body) }
+          describe '?from=@t0&to=@t8&day=1' do
+            let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0), day: 1 } }
 
             it 'returns history of #total_amount by default' do
               is_expected.to match_array [
-                [@t0.as_json,  '0.0'],
-                [@t1.as_json,  '0.0'],
-                [@t2.as_json,  '2.0'],
-                [@t3.as_json,  '2.0'],
-                [@t4.as_json,  '9.0'],
-                [@t5.as_json,  '9.0'],
-                [@t6.as_json, '15.0'],
-                [@t7.as_json, '15.0'],
-                [@t8.as_json, '25.0']
+                [@t0.change(usec: 0),  '0.0'],
+                [@t1.change(usec: 0),  '0.0'],
+                [@t2.change(usec: 0),  '2.0'],
+                [@t3.change(usec: 0),  '2.0'],
+                [@t4.change(usec: 0),  '9.0'],
+                [@t5.change(usec: 0),  '9.0'],
+                [@t6.change(usec: 0), '15.0'],
+                [@t7.change(usec: 0), '15.0'],
+                [@t8.change(usec: 0), '25.0']
               ]
+            end
+          end
+
+          describe '?from=@t0&to=@t8' do
+            let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0) } }
+            it 'every 7th day by default' do
+              is_expected.to match_array [
+                [@t0.change(usec: 0), '0.0'],
+                [@t7.change(usec: 0), '15.0'],
+                [@t8.change(usec: 0), '25.0']
+              ]
+            end
+          end
+
+          describe '?to=(2 months ago)' do
+            let(:params) { { to: 2.months.ago } }
+            describe 'from 3 months ago with every 7th day by default' do
+              it { expect(subject.size).to eq(6)}
+              it { expect(Time.zone.parse(subject[0][0]).change(usec: 0)).to eq(3.months.ago.change(usec: 0))}
+              it { expect(Time.zone.parse(subject[4][0]).change(usec: 0)).to eq ((3.months.ago + 28.days).change(usec: 0))}
+              it { expect(Time.zone.parse(subject[5][0]).change(usec: 0)).to eq(2.months.ago.change(usec: 0))}
             end
           end
         end
