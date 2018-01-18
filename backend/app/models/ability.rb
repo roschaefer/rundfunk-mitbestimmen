@@ -50,6 +50,6 @@ class Ability
     can :summarized, Statistic
     can :read, Statistic::Medium
     can :read, Statistic::Station
-    can :read, Statistic::Broadcast
+    can %i[read temporal], Statistic::Broadcast
   end
 end
