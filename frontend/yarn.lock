@@ -2574,12 +2574,12 @@ electron-to-chromium@^1.3.18:
   version "1.3.21"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.21.tgz#a967ebdcfe8ed0083fc244d1894022a8e8113ea2"
 
-ember-assign-polyfill@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.0.2.tgz#95e37513beaabc4356d56a844c742509b0b7e7f1"
+ember-assign-polyfill@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.2.0.tgz#7953836e5ccd4da05b2493423d3efc00df80ca74"
   dependencies:
-    ember-cli-babel "^6.6.0"
-    ember-cli-version-checker "^1.2.0"
+    ember-cli-babel "^6.8.2"
+    ember-cli-version-checker "^2.0.0"
 
 ember-chroma-shim@^1.0.2:
   version "1.0.2"
@@ -3201,14 +3201,14 @@ ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.2.2:
     ember-cli-version-checker "^1.2.0"
     ember-factory-for-polyfill "^1.1.0"
 
-"ember-getowner-polyfill@^1.1.0 || ^2.0.0":
+"ember-getowner-polyfill@^1.1.0 || ^2.0.0", ember-getowner-polyfill@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.2.0.tgz#38e7dccbcac69d5ec694000329ec0b2be651d2b2"
   dependencies:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
 
-ember-getowner-polyfill@^2.0.0, ember-getowner-polyfill@^2.0.1:
+ember-getowner-polyfill@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.0.1.tgz#9bfe2b4d527ed174e76fef2c8f30937d77cb66fb"
   dependencies:
@@ -3277,9 +3277,9 @@ ember-intl-relativeformat@^3.3.0:
     ember-intl-messageformat "^3.2.0"
     intl-relativeformat "^2.0.0"
 
-ember-intl@2.31.1:
-  version "2.31.1"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.31.1.tgz#575a4ba090d89bdbd4c6a2e277604b600e88050c"
+ember-intl@2.32.1:
+  version "2.32.1"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.32.1.tgz#06d554e2c7a01138076473feeab8249c7294059e"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-cldr-data "^1.1.0"
@@ -3289,10 +3289,10 @@ ember-intl@2.31.1:
     broccoli-stew "^1.5.0"
     chalk "^1.1.3"
     cldr-core "28.0.0"
-    ember-assign-polyfill "^2.0.2"
-    ember-cli-babel "^6.7.1"
+    ember-assign-polyfill "^2.2.0"
+    ember-cli-babel "^6.11.0"
     ember-cli-import-polyfill "^0.2.0"
-    ember-getowner-polyfill "^2.0.1"
+    ember-getowner-polyfill "^2.2.0"
     ember-intl-format-cache "^2.6.0"
     ember-intl-messageformat "^3.2.0"
     ember-intl-relativeformat "^3.3.0"
@@ -3303,7 +3303,7 @@ ember-intl@2.31.1:
     intl-messageformat-parser "^1.3.0"
     js-yaml "^3.9.0"
     json-stable-stringify "^1.0.1"
-    locale-emoji "^0.2.0"
+    locale-emoji "^0.3.0"
     mkdirp "^0.5.1"
     silent-error "^1.1.0"
     walk-sync "^0.3.2"
@@ -5410,9 +5410,9 @@ loader.js@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/loader.js/-/loader.js-4.6.0.tgz#b965663ddbe2d80da482454cb865efe496e93e22"
 
-locale-emoji@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/locale-emoji/-/locale-emoji-0.2.0.tgz#bc9847a688ad01639fc7afd895774fccaa7859b2"
+locale-emoji@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/locale-emoji/-/locale-emoji-0.3.0.tgz#7f38262f7c877bd27659725570335b263f88742a"
 
 locate-path@^2.0.0:
   version "2.0.0"
