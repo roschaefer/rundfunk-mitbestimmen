@@ -196,7 +196,7 @@ GEM
     public_suffix (3.0.1)
     puma (3.11.2)
     puma (3.11.2-java)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-cors (1.0.2)
     rack-protection (2.0.0)
       rack
@@ -287,7 +287,7 @@ GEM
       railties (>= 4.0.0)
     sentry-raven (2.7.1)
       faraday (>= 0.7.6, < 1.0)
-    sidekiq (5.0.5)
+    sidekiq (5.1.0)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
