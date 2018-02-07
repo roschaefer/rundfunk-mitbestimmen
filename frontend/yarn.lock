@@ -2845,17 +2845,6 @@ ember-cli-mocha@^0.15.0:
   dependencies:
     ember-mocha "^0.13.0"
 
-ember-cli-node-assets@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
-  dependencies:
-    broccoli-funnel "^1.0.1"
-    broccoli-merge-trees "^1.1.1"
-    broccoli-source "^1.1.0"
-    debug "^2.2.0"
-    lodash "^4.5.1"
-    resolve "^1.1.7"
-
 ember-cli-normalize-entity-name@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-normalize-entity-name/-/ember-cli-normalize-entity-name-1.0.0.tgz#0b14f7bcbc599aa117b5fddc81e4fd03c4bad5b7"
@@ -2903,13 +2892,15 @@ ember-cli-release@^1.0.0-beta.2:
     semver "^4.3.1"
     silent-error "^1.0.0"
 
-ember-cli-sentry@^3.0.0-beta.2:
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-sentry/-/ember-cli-sentry-3.0.0-beta.2.tgz#5832ec436e36f2e0b4387ecceadf4db01d937522"
+ember-cli-sentry@^3.0.0-beta.3:
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-sentry/-/ember-cli-sentry-3.0.0-beta.3.tgz#17bccf2da68f54820c44aa800b9a7411035a9c13"
   dependencies:
-    ember-cli-babel "^6.1.0"
-    ember-cli-node-assets "^0.2.2"
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    ember-cli-babel "^6.6.0"
     raven-js "^3.15.0"
+    resolve "^1.5.0"
 
 ember-cli-shims@^1.2.0:
   version "1.2.0"
@@ -5907,7 +5898,7 @@ lodash@^3.10.0, lodash@^3.10.1, lodash@^3.2.0, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.10.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.10.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
