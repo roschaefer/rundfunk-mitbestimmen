@@ -45,7 +45,7 @@
     "ember-cli-test-loader": "^2.2.0",
     "ember-cli-twitter-feed": "^0.1.0",
     "ember-cli-uglify": "^2.0.0",
-    "ember-data": "^3.0.0",
+    "ember-data": "^3.0.1",
     "ember-data-factory-guy": "2.13.23",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^3.4.4",
