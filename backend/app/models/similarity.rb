@@ -1,15 +1,13 @@
 class Similarity < ApplicationRecord
-  belongs_to :broadcast1, foreign_key: "broadcast1_id", class_name: "Broadcast"
-  belongs_to :broadcast2, foreign_key: "broadcast2_id", class_name: "Broadcast"
+  belongs_to :broadcast1, foreign_key: 'broadcast1_id', class_name: 'Broadcast'
+  belongs_to :broadcast2, foreign_key: 'broadcast2_id', class_name: 'Broadcast'
 
   def self.compute_all
     Similarity.destroy_all
     Broadcast.all.each do |broadcast1|
-      Broadcast.where("id > ?", broadcast1.id).each do |broadcast2|
-        similarity = self.compute(broadcast1, broadcast2)
-        if similarity.value > 0
-          similarity.save
-        end
+      Broadcast.where('id > ?', broadcast1.id).each do |broadcast2|
+        similarity = compute(broadcast1, broadcast2)
+        similarity.save if similarity.value.positive?
       end
     end
   end
@@ -24,8 +22,8 @@ class Similarity < ApplicationRecord
     supporters1 = broadcast1.impressions.where(response: 1).pluck(:user_id)
     supporters2 = broadcast2.impressions.where(response: 1).pluck(:user_id)
 
-    union_size = (supporters1+supporters2).uniq.size
-    if union_size == 0
+    union_size = (supporters1 + supporters2).uniq.size
+    if union_size.zero?
       self.value = 0
     else
       intersection_size = (supporters1 & supporters2).uniq.size
