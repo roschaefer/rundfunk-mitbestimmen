@@ -473,6 +473,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: similarities; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE similarities (
+    id bigint NOT NULL,
+    broadcast1_id integer,
+    broadcast2_id integer,
+    value numeric,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: similarities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE similarities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: similarities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE similarities_id_seq OWNED BY similarities.id;
+
+
+--
 -- Name: stations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -858,6 +891,13 @@ ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq
 
 
 --
+-- Name: similarities id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY similarities ALTER COLUMN id SET DEFAULT nextval('similarities_id_seq'::regclass);
+
+
+--
 -- Name: stations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -983,6 +1023,14 @@ ALTER TABLE ONLY schedules
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: similarities similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY similarities
+    ADD CONSTRAINT similarities_pkey PRIMARY KEY (id);
 
 
 --
@@ -1442,7 +1490,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171115195229'),
 ('20171115205013'),
 ('20171121223456'),
-('20171122234351'),
-('20171123003201');
+('20171123003201'),
+('20180215143737');
 
 
