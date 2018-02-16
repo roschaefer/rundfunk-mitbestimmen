@@ -22,11 +22,11 @@ class Similarity < ApplicationRecord
     supporters1 = broadcast1.impressions.where(response: 1).pluck(:user_id)
     supporters2 = broadcast2.impressions.where(response: 1).pluck(:user_id)
 
-    union_size = (supporters1 + supporters2).uniq.size
+    union_size = (supporters1 | supporters2).size
     if union_size.zero?
       self.value = 0
     else
-      intersection_size = (supporters1 & supporters2).uniq.size
+      intersection_size = (supporters1 & supporters2).size
       self.value = (intersection_size / union_size.to_f)
     end
   end
