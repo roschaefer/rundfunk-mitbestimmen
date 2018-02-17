@@ -4,7 +4,7 @@ class Similarity < ApplicationRecord
 
   def self.compute_all
     Similarity.destroy_all
-    Broadcast.all.each do |broadcast1|
+    Broadcast.find_each do |broadcast1|
       Broadcast.where('id > ?', broadcast1.id).each do |broadcast2|
         similarity = compute(broadcast1, broadcast2)
         similarity.save if similarity.value.positive?
@@ -19,8 +19,8 @@ class Similarity < ApplicationRecord
   end
 
   def compute_jaccard
-    supporters1 = broadcast1.impressions.where(response: 1).pluck(:user_id)
-    supporters2 = broadcast2.impressions.where(response: 1).pluck(:user_id)
+    supporters1 = broadcast1.impressions.positive.pluck(:user_id)
+    supporters2 = broadcast2.impressions.positive.pluck(:user_id)
 
     union_size = (supporters1 | supporters2).size
     if union_size.zero?
