@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "e1093c3fee01b5a0a66a817d883b8901bd21b4214f7c79585e887e5c5a1ae329",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/similarity.rb",
+      "line": 29,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"INSERT INTO similarities (broadcast1_id, broadcast2_id, value, created_at, updated_at) VALUES #{[\"(#{id1}, #{id2}, #{jaccard_index(supporters_per_broadcast[id1], supporters_per_broadcast[id2])}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')\"].join(\", \")}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Similarity",
+        "method": "Similarity.compute_all"
+      },
+      "user_input": "[\"(#{id1}, #{id2}, #{jaccard_index(supporters_per_broadcast[id1], supporters_per_broadcast[id2])}, '#{Time.now.to_s(:db)}', '#{Time.now.to_s(:db)}')\"].join(\", \")",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2018-02-18 14:54:44 +0100",
+  "brakeman_version": "4.1.1"
+}
