@@ -2,13 +2,14 @@ class Similarity < ApplicationRecord
   belongs_to :broadcast1, foreign_key: 'broadcast1_id', class_name: 'Broadcast'
   belongs_to :broadcast2, foreign_key: 'broadcast2_id', class_name: 'Broadcast'
 
-  def self.compute_all(threshold = 0)
+  def self.compute_all(threshold: 0, minimum_supporters: 0)
     Similarity.transaction do
       Similarity.delete_all
 
       supporters_per_broadcast = {}
       Broadcast.find_each do |broadcast|
-        supporters_per_broadcast[broadcast.id] = broadcast.impressions.positive.pluck(:user_id)
+        supporters = broadcast.impressions.positive.pluck(:user_id)
+        supporters_per_broadcast[broadcast.id] = supporters if supporters.size >= minimum_supporters
       end
 
       similarities = []
