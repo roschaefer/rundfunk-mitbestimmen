@@ -25,11 +25,11 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
-    },
-    EXTEND_PROTOTYPES: {
-      // Prevent Ember Data from overriding Date.parse.
-      Date: false
     },
 
     APP: {
@@ -71,6 +71,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.BACKEND_URL = 'http://localhost:3001'; // don't send requests to rails by accident
+    ENV.APP.autoboot = false;
   }
 
   if ((environment === 'integration') || (environment === 'fullstack')) {
