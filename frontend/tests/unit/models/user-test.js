@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { expect } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
@@ -33,7 +33,7 @@ describe('Unit | Model | user', function() {
   describe('coordinates', function(){
     it('updates latitude/longitude', function() {
       let user = make('user');
-      Ember.run(function() {
+      run(function() {
         user.set('coordinates', [23, 24]);
       });
       expect(user.get('latitude')).to.eq(23);

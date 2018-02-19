@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  session: Ember.inject.service('session'),
-  intl: Ember.inject.service(),
+export default Route.extend(AuthenticatedRouteMixin, {
+  session: service(),
+  intl: service(),
   model() {
     if (window._paq){
       window._paq.push(['trackGoal', 4]);

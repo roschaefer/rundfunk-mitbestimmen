@@ -1,19 +1,20 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'th',
   classNameBindings: [
     'sorted',
     'asc:ascending',
     'desc:descending',
   ],
-  sorted: Ember.computed('current-column', function() {
+  sorted: computed('current-column', function() {
     return this.get('current-column') === this.get('column');
   }),
-  asc: Ember.computed('current-direction', function() {
+  asc: computed('current-direction', function() {
     return this.get('current-direction') === 'asc';
   }),
-  desc: Ember.computed('current-direction', function() {
+  desc: computed('current-direction', function() {
     return this.get('current-direction') === 'desc';
   }),
   click(){

@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 import chroma from 'chroma';
 
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   lat: 51.3,
   lng: 10,
   zoom: 6,
@@ -10,12 +11,12 @@ export default Ember.Controller.extend({
   scale: chroma.scale('OrRd').classes([0, 0.005, 0.01, 0.02, 0.03, 0.05, 0.10, 0.15, 0.2, 0.3, 0.5, 0.7]),
   count: null,
   state: null,
-  totalGermanUsers: Ember.computed('model.geojson', function() {
+  totalGermanUsers: computed('model.geojson', function() {
     return this.get('model.geojson.features').reduce((sum, feature) =>{
       return sum + feature.properties.user_count_total;
     }, 0);
   }),
-  totalUsers: Ember.computed('feature', function() {
+  totalUsers: computed('feature', function() {
     return this.get('model.summarizedStatistic.registeredUsers');
   }),
   isUpdatingLocation: false,

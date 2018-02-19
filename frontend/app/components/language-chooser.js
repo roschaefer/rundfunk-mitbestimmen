@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
-  intl: Ember.inject.service(),
-  store: Ember.inject.service(),
-  session: Ember.inject.service(),
+  intl: service(),
+  store: service(),
+  session: service(),
   actions: {
     choose(lang){
       let intl = this.get('intl');

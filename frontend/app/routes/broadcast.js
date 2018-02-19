@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 
-export default Ember.Route.extend(ResetScrollPositionMixin, {
+export default Route.extend(ResetScrollPositionMixin, {
   model(params) {
     return this.get('store').findRecord('broadcast', params.broadcast_id, {
       include: 'impressions'

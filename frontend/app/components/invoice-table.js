@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { all } from 'rsvp';
 
-export default Ember.Component.extend({
-  session: Ember.inject.service('session'),
+export default Component.extend({
+  session: service('session'),
   setFooterAttributes(){
     let invoice= this.get('invoice');
     this.set('totalExpenses', invoice.total());
@@ -51,7 +53,7 @@ export default Ember.Component.extend({
       let newAmount = invoice.allocate(impression, amount);
       let impressions = invoice.get('impressions');
       if (newAmount > impression.get('amount')) {
-        Ember.RSVP.all(impressions.map((s) => {
+        all(impressions.map((s) => {
           return s.save();
         })).then(() => {
           impression.set('amount', newAmount);

@@ -1,12 +1,12 @@
-import Ember from 'ember';
+import { resolve, Promise } from 'rsvp';
 import Base from 'ember-simple-auth/authenticators/base';
 
 export default Base.extend({
   restore(data) {
-    return Ember.RSVP.resolve(data);
+    return resolve(data);
   },
   authenticate(_, options) {
-    return new Ember.RSVP.Promise((resolve) => {
+    return new Promise((resolve) => {
       const idToken = window.stubbedJwt;
       const state = options.authParams.state;
       const sessionData =  {

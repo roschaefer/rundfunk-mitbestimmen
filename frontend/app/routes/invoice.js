@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { all } from 'rsvp';
+import Route from '@ember/routing/route';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScrollPositionMixin, {
-  session: Ember.inject.service('session'),
+export default Route.extend(AuthenticatedRouteMixin, ResetScrollPositionMixin, {
+  session: service(),
   setupController(controller, model) {
     // Call _super for default behavior
     this._super(controller, model);
@@ -14,7 +16,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ResetScrollPositionMi
     });
     let reduceFirstImpressions = invoice.reduceFirstImpressions();
     invoice.initializeAmounts();
-    Ember.RSVP.all(reduceFirstImpressions.map((s) => {
+    all(reduceFirstImpressions.map((s) => {
       //free some budget, first
       return s.save();
     })).then(() => {

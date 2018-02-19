@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function broadcastSortButtonCss([button, sort]) {
   if (button === sort) {
@@ -8,4 +8,4 @@ export function broadcastSortButtonCss([button, sort]) {
   }
 }
 
-export default Ember.Helper.helper(broadcastSortButtonCss);
+export default helper(broadcastSortButtonCss);

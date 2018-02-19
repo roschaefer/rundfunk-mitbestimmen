@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { expect } from 'chai';
 import { beforeEach, describe, it } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
@@ -58,7 +58,7 @@ describe('Unit | Model | broadcast', function() {
     it('response must be "positive" or "negative"', function() {
       let model = this.subject();
       let impression;
-      Ember.run(() => {
+      run(() => {
         impression = model.respond('foobar');
       });
       expect(impression).to.be.undefined;
@@ -68,7 +68,7 @@ describe('Unit | Model | broadcast', function() {
     it('returns a new impression with the response', function() {
       let model = this.subject();
       let impression;
-      Ember.run(() => {
+      run(() => {
         impression = model.respond('positive');
       });
       expect(impression.get('response')).to.eq('positive');
@@ -76,7 +76,7 @@ describe('Unit | Model | broadcast', function() {
 
     it('adds a new impression to the broadcast', function() {
       let model = this.subject();
-      Ember.run(() => {
+      run(() => {
          model.respond('positive');
       });
       expect(model.get('impressions').get('length')).to.eq(1);
@@ -85,7 +85,7 @@ describe('Unit | Model | broadcast', function() {
     it('updates the current impression if any', function() {
       let model = this.subject();
       let impression = make('impression', {response: 'neutral'});
-      Ember.run(function() {
+      run(function() {
         model.set('impressions', [impression]);
         model.respond('positive');
       });
@@ -96,7 +96,7 @@ describe('Unit | Model | broadcast', function() {
   it('respond updates and does not create more than one impression', function() {
     let model = this.subject();
     let impression = make('impression', {response: 'neutral'});
-    Ember.run(function() {
+    run(function() {
       model.set('impressions', [impression]);
       expect(model.get('impressions').get('length')).to.eq(1);
       model.respond('positive');
@@ -110,7 +110,7 @@ describe('Unit | Model | broadcast', function() {
       response: 'neutral',
       amount: 5.0,
     });
-    Ember.run(function() {
+    run(function() {
       model.set('impressions', [impression]);
       model.respond('neutral');
       expect(impression.get('response')).to.eq('neutral');
@@ -125,7 +125,7 @@ describe('Unit | Model | broadcast', function() {
       fixed: true,
       amount: 5.0,
     });
-    Ember.run(function() {
+    run(function() {
       model.set('impressions', [impression]);
       model.respond('neutral');
       expect(impression.get('response')).to.eq('neutral');
@@ -140,7 +140,7 @@ describe('Unit | Model | broadcast', function() {
       response: 'positive',
       amount: 5.0,
     });
-    Ember.run(function() {
+    run(function() {
       model.set('impressions', [impression]);
       model.respond('positive');
       expect(impression.get('response')).to.eq('positive');

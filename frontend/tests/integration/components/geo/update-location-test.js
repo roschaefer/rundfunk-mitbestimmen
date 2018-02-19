@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { run } from '@ember/runloop';
 import wait from 'ember-test-helpers/wait';
 import { expect, assert } from 'chai';
 import { describe, it, context, beforeEach } from 'mocha';
@@ -7,7 +8,7 @@ import { build, make, manualSetup } from 'ember-data-factory-guy';
 import hbs from 'htmlbars-inline-precompile';
 
 let user;
-const sessionStub = Ember.Service.extend({
+const sessionStub = Service.extend({
   isAuthenticated: true,
 });
 let intl;
@@ -57,7 +58,7 @@ describe('Integration | Component | geo/update location', function() {
         startUpdateLocationAction=startUpdateLocation
         loginAction=loginAction
         }}`);
-        Ember.run(() => document.querySelector('button').click());
+        run(() => document.querySelector('button').click());
       });
     });
 
@@ -77,7 +78,7 @@ describe('Integration | Component | geo/update location', function() {
         startUpdateLocationAction=startUpdateLocation
         loginAction=loginAction
         }}`);
-        Ember.run(() => document.querySelector('button').click());
+        run(() => document.querySelector('button').click());
       });
 
       it('asks to add a location', function() {

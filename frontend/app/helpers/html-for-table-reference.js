@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function htmlForTableReference(params) {
   let [trash, unlock, lock, euro] = params;
@@ -14,4 +14,4 @@ export function htmlForTableReference(params) {
   return html;
 }
 
-export default Ember.Helper.helper(htmlForTableReference);
+export default helper(htmlForTableReference);

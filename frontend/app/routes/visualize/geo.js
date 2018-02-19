@@ -1,10 +1,11 @@
 import fetch from 'fetch';
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 import RSVP from 'rsvp';
 
-export default Ember.Route.extend(ResetScrollPositionMixin, {
-  session: Ember.inject.service('session'),
+export default Route.extend(ResetScrollPositionMixin, {
+  session: service(),
   model() {
     const host = this.store.adapterFor('summarized-statistic').get('host');
     let model = {

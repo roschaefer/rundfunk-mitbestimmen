@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import { expect } from 'chai';
 import { context, beforeEach, describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
@@ -6,7 +6,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
 let broadcast, intl;
-const sessionStub = Ember.Service.extend({
+const sessionStub = Service.extend({
   isAuthenticated: true,
 });
 
