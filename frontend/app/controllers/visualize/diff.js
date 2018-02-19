@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
-export default Ember.Controller.extend({
-  intl: Ember.inject.service(),
-  defaultChartOptions: Ember.computed('intl.locale', function() {
+export default Controller.extend({
+  intl: service(),
+  defaultChartOptions: computed('intl.locale', function() {
     return {
       chart: {
         type: 'bar'
@@ -45,7 +47,7 @@ export default Ember.Controller.extend({
     };
   }),
 
-  defaultChartData: Ember.computed('intl.locale', function() {
+  defaultChartData: computed('intl.locale', function() {
     return [{
         name: this.get('intl').t('visualize.diff.chart.yAxis.actual-amount'),
         tooltip: { valueSuffix: '€', valueDecimals: 2 },

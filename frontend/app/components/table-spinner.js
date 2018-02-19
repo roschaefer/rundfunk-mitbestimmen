@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: 'ui inline loader',
   classNameBindings: ['pagedContent.isFulfilled::active'],
   pagedContent: null,

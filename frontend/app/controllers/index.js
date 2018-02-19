@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
-export default Ember.Controller.extend({
-  intl: Ember.inject.service(),
-  actualChartOptions: Ember.computed('intl.locale', function() {
+export default Controller.extend({
+  intl: service(),
+  actualChartOptions: computed('intl.locale', function() {
     return {
       chart: {
         plotBackgroundColor: null,
@@ -40,7 +42,7 @@ export default Ember.Controller.extend({
       },
     }
   }),
-  actualChartData: Ember.computed('intl.locale', function() {
+  actualChartData: computed('intl.locale', function() {
     return [{
       name:  this.get('intl').t('index.actual.name.dasErste'),
       color: '#1e5b9a',

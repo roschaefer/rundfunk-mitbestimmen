@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { expect } from 'chai';
 import { beforeEach, describe, it } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
@@ -24,7 +24,7 @@ describe('Unit | Model | invoice', function() {
     let model = this.subject();
     let s1 = make('impression', {amount: 10.0});
     let s2 = make('impression', {amount: 7.5});
-    Ember.run(function() {
+    run(function() {
       model.distributeEvenly([s1,s2], 10);
     });
     expect(s1.get('amount')).to.eq(5.0);
@@ -103,7 +103,7 @@ describe('Unit | Model | invoice', function() {
     let s1 = make('impression', {amount: null, fixed: false});
     let s2 = make('impression', {amount: 3.5, fixed: false});
     let s3 = make('impression', {amount: 2.5, fixed: true});
-    Ember.run(function() {
+    run(function() {
       model.set('impressions', [s1,s2,s3]);
       let reduceFirstImpressions = model.reduceFirstImpressions();
       expect(reduceFirstImpressions.get('length')).to.eq(1);

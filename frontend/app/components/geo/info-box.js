@@ -1,25 +1,27 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
 
-export default Ember.Component.extend({
-  displayedState: Ember.computed('state', function() {
+export default Component.extend({
+  displayedState: computed('state', function() {
     return this.get('state') || 'Germany';
   }),
-  displayedNumber: Ember.computed('count', function() {
-    if (Ember.isNone(this.get('count'))) {
+  displayedNumber: computed('count', function() {
+    if (isNone(this.get('count'))) {
       return this.get('totalGermanUsers');
     } else {
       return this.get('count');
     }
   }),
-  displayedPercentage: Ember.computed('count', function() {
-    if (Ember.isNone(this.get('count'))) {
+  displayedPercentage: computed('count', function() {
+    if (isNone(this.get('count'))) {
       return `${((this.get('totalGermanUsers')/this.get('totalUsers')) * 100).toFixed(2)}`;
     } else {
       return `${((this.get('count')/this.get('totalGermanUsers')) * 100).toFixed(2)}`;
     }
   }),
-  displayedPercentageTranslation: Ember.computed('count', function() {
-    if (Ember.isNone(this.get('count'))){
+  displayedPercentageTranslation: computed('count', function() {
+    if (isNone(this.get('count'))){
         return 'visualize.geo.info-box.of-the-world';
     } else {
         return 'visualize.geo.info-box.of-germany';

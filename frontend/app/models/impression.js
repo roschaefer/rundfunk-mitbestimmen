@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -10,7 +10,7 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
 
 
-  needsAmount: Ember.computed('amount', 'response', function() {
+  needsAmount: computed('amount', 'response', function() {
     return ((this.get('response') === 'positive') && (!this.get('amount')));
   }),
 

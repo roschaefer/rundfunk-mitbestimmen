@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 
-export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
+export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
   queryParams: {
     column: {
       refreshModel: true

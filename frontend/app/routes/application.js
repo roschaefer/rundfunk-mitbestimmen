@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service'; 
+import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
 // app/routes/application.js
 import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin , {
-  intl: Ember.inject.service(),
-  raven: Ember.inject.service(),
+export default Route.extend(ApplicationRouteMixin , {
+  intl: service(),
+  raven: service(),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale

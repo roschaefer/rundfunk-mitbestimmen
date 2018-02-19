@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
   locale: DS.attr('string'),
@@ -10,7 +10,7 @@ export default DS.Model.extend({
   stateCode: DS.attr('string'),
   city: DS.attr('string'),
   postalCode: DS.attr('string'),
-  coordinates: Ember.computed('latitude', 'longitude', {
+  coordinates: computed('latitude', 'longitude', {
     get(){
       return [this.get('latitude'), this.get('longitude')];
     },
@@ -20,7 +20,7 @@ export default DS.Model.extend({
       return coordinates;
     }
   }),
-  hasLocation: Ember.computed('latitude', 'longitude', function() {
+  hasLocation: computed('latitude', 'longitude', function() {
     return (this.get('latitude') && this.get('longitude') && true);
   }),
 });

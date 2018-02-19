@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 import RSVP from 'rsvp';
 
 
-export default Ember.Route.extend(RouteMixin, ResetScrollPositionMixin, {
-  intl: Ember.inject.service(),
-  session: Ember.inject.service('session'),
+export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
+  intl: service(),
+  session: service(),
   seed: Math.random(),
 
   queryParams: {

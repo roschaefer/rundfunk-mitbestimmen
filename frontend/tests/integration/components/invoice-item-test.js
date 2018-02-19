@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Object from '@ember/object';
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
@@ -15,7 +15,7 @@ describe('Integration | Component | invoice item', function() {
   });
 
   it('renders', function() {
-    let impression = Ember.Object.create({
+    let impression = Object.create({
       amount: 9.99,
       broadcast: {
         title: "Whatever",

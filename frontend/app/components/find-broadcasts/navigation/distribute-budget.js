@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: '',
 
-  buttonCss: Ember.computed('recentPositives', function() {
+  buttonCss: computed('recentPositives', function() {
     switch(this.get('recentPositives')) {
       case 0: return 'disabled';
       case 1: return 'large';

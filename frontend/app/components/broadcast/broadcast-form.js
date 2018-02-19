@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { sort } from '@ember/object/computed';
 
-export default Ember.Component.extend({
-  session: Ember.inject.service('session'),
+export default Component.extend({
+  session: service(),
   classNames: 'ui form broadcast-form',
   elementId: 'broadcast-form',
   classNameBindings: [
@@ -10,7 +13,7 @@ export default Ember.Component.extend({
     'broadcast.success:success',
   ],
   tagName: 'form',
-  displayedStations: Ember.computed('broadcast.medium', function() {
+  displayedStations: computed('broadcast.medium', function() {
     let filteredStations = this.get('stations');
     if (this.get('broadcast')){
       filteredStations = filteredStations.filter((s) => {
@@ -19,8 +22,8 @@ export default Ember.Component.extend({
     }
     return filteredStations;
   }),
-  sortedStations: Ember.computed.sort('displayedStations', 'sortDefinition'),
-  sortDefinition: [ 'name:asc' ],
+  sortedStations: sort('displayedStations', 'sortDefinition'),
+  sortDefinition: ['name:asc'],
 
   didReceiveAttrs() {
     this.set('stationIds', this.get('broadcast.stations').mapBy('id'));

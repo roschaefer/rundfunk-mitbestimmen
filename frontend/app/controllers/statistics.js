@@ -1,12 +1,14 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service} from '@ember/service';
+import { alias } from '@ember/object/computed';
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service('session'),
+export default Controller.extend({
+  session: service(),
   queryParams: ["page", "perPage", "column", "direction"],
   column: 'total',
   direction: 'desc',
 
-  totalPages: Ember.computed.alias("content.totalPages"),
+  totalPages: alias("content.totalPages"),
   page: 1,
   perPage: 10,
   actions: {
