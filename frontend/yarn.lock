@@ -3040,9 +3040,9 @@ ember-cookies@^0.0.13:
     ember-cli-babel "^6.8.2"
     ember-getowner-polyfill "^1.1.0 || ^2.0.0"
 
-ember-data-factory-guy@2.13.25:
-  version "2.13.25"
-  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.25.tgz#80979c82c81605fd35c7c2ba8c945c2bb9f8cacc"
+ember-data-factory-guy@2.13.26:
+  version "2.13.26"
+  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-2.13.26.tgz#eb171b539fa6b63a53ab3bb93ebb18f63164f94f"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
@@ -3222,9 +3222,9 @@ ember-intl-relativeformat@^3.3.0:
     ember-intl-messageformat "^3.2.0"
     intl-relativeformat "^2.0.0"
 
-ember-intl@2.32.1:
-  version "2.32.1"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.32.1.tgz#06d554e2c7a01138076473feeab8249c7294059e"
+ember-intl@2.33.0:
+  version "2.33.0"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-2.33.0.tgz#03e00f64b2958ebdf260d853cce18bcde8390a73"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-cldr-data "^1.1.0"
@@ -3360,9 +3360,9 @@ ember-scroll-to@0.6.4:
     ember-simple-auth "^1.3.0"
     rsvp "^3.3.3"
 
-ember-simple-auth@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.5.0.tgz#9492f5af0ea5de09dcf3c967f7ad93bf15ef79a0"
+ember-simple-auth@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.5.1.tgz#aa28fda5af5148b4a0ee823302e600598ccff4d8"
   dependencies:
     base-64 "^0.1.0"
     broccoli-file-creator "^1.1.1"
