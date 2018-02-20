@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { sort } from '@ember/object/computed';
 
 export default Component.extend({
   session: service(),
@@ -22,8 +21,9 @@ export default Component.extend({
     }
     return filteredStations;
   }),
-  sortedStations: sort('displayedStations', 'sortDefinition'),
-  sortDefinition: ['name:asc'],
+  sortedStations: computed('displayedStations', function() {
+    return this.get('displayedStations').sortBy('name');
+  }),
 
   didReceiveAttrs() {
     this.set('stationIds', this.get('broadcast.stations').mapBy('id'));
@@ -50,8 +50,8 @@ export default Component.extend({
       });
       this.get("broadcast").set('stations', stations);
     },
-    newBroadcast(){
-      this.sendAction('newBroadcast');
+    clearBroadcastForm(){
+      this.get('clearBroadcast')();
     },
   }
 });

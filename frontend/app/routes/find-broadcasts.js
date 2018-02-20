@@ -81,9 +81,5 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
       this.get('controller').set( 'medium', filterParams.medium);
       this.get('controller').set('station', filterParams.station);
     },
-    newBroadcast(){
-      this.get('controller').set('newBroadcast', this.store.createRecord('broadcast', {
-      }));
-    }
   }
 });

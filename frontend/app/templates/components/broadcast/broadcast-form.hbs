@@ -94,7 +94,7 @@
     <div class="column">
       {{#if newBroadcast}}
         {{#unless broadcast.isNew}}
-          <button class='ui fluid labeled huge icon button' {{action 'newBroadcast'}}>
+          <button class='ui fluid labeled huge icon button' {{action 'clearBroadcastForm'}}>
             <i class="plus square outline icon"></i>
             {{t 'broadcast-form.another-one' }}
           </button>
