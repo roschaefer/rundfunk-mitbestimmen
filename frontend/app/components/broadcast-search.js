@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { sort } from '@ember/object/computed';
 
 export default Component.extend({
   intl: service(),
@@ -14,8 +13,9 @@ export default Component.extend({
       return s.get('medium').get('id') === this.get('filterParams').medium;
     });
   }),
-  sortedStations: sort('displayedStations', 'sortDefinition'),
-  sortDefinition: ['name:asc'],
+  sortedStations: computed('displayedStations', function() {
+    return this.get('displayedStations').sortBy('name');
+  }),
   actions: {
     search(){
       let searchAction = this.get('searchAction');
