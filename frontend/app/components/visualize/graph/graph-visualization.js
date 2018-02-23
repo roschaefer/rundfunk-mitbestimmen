@@ -2,13 +2,14 @@ import Component from '@ember/component';
 import d3 from 'd3';
 
 export default Component.extend({
-  classNames: ['graph-visualization'],
+  classNames: ['graph-visualization row'],
   didInsertElement() {
     this._super(...arguments);
 
-    let svg = d3.select("svg"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height");
+    let svg = d3.select("svg");
+    let element = d3.select('svg').node();
+    let width = element.getBoundingClientRect().width;
+    let height = element.getBoundingClientRect().height;
 
 
     let color = d3.scaleOrdinal(d3.schemeCategory20);

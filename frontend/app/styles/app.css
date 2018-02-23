@@ -141,7 +141,11 @@ p {
 }
 
 .graph-visualization text {
-    pointer-events: none;
+  pointer-events: none;
+}
+
+.graph-visualization .column {
+  padding: 0px !important;
 }
 
 .graph-visualization .links line {
