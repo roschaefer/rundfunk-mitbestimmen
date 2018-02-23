@@ -80,10 +80,10 @@ export default Component.extend({
       }));
 
     node.append("text").text(function(d) {
-      return d.id;
+      return d.title;
     }).attr('x', 6).attr('y', 3);
 
-    node.append("title").text(function(d) { return d.id; });
+    node.append("title").text(function(d) { return d.title; });
 
     simulation.nodes(graph.nodes).on("tick", ()=> {
       link.attr("x1", function(d) { return d.source.x; })
