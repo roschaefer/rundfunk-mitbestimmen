@@ -1,7 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: [:geojson, :similarities]
-
+  skip_authorization_check only: %i[geojson similarities]
 
   def similarities
     broadcasts = []
@@ -9,10 +8,10 @@ class ChartDataController < ApplicationController
     Similarity.order(value: :desc).includes(:broadcast1, :broadcast2).first(500).each do |s|
       broadcasts << s.broadcast1
       broadcasts << s.broadcast2
-      edges << {source: s.broadcast1.id, target: s.broadcast2.id, value: s.value}
+      edges << { source: s.broadcast1.id, target: s.broadcast2.id, value: s.value }
     end
-    nodes = broadcasts.uniq.map {|broadcast| {id: broadcast.id, title: broadcast.title, group: broadcast.medium_id}}
-    render json: {nodes: nodes, links: edges}
+    nodes = broadcasts.uniq.map { |broadcast| { id: broadcast.id, title: broadcast.title, group: broadcast.medium_id } }
+    render json: { nodes: nodes, links: edges }
   end
 
   def geojson
