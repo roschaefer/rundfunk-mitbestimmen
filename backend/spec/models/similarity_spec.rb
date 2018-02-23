@@ -1,6 +1,16 @@
 require 'rails_helper'
+require 'support/shared_examples/database_unique_attribute'
 
 RSpec.describe Similarity, type: :model do
+  describe 'broadcast1_id & broadcast2_id' do
+    before do
+      create(:broadcast, id: 47)
+      create(:broadcast, id: 11)
+    end
+
+    it_behaves_like 'database unique attribute', :similarity, broadcast1_id: 47, broadcast2_id: 11
+  end
+
   describe '::compute_all' do
     subject { setup && Similarity.compute_all(threshold: threshold, minimum_supporters: minimum_supporters) }
     let(:minimum_supporters) { 0 }
