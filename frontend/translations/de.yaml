@@ -528,7 +528,11 @@ visualize:
   graph:
     header: Beziehungen zwischen Sendungen
     sub-header: >
-      Finde Bündelungen von Sendungen
+      Die hier abgebildeten Sendungen werden verbunden, wenn ihre Unterstützergruppen Schnittmengen haben.
+      Das zugrundeliegende Ähnlichkeitsmaß nennt man auch
+      <a target="_blank" href="https://de.wikipedia.org/wiki/Jaccard-Koeffizient">Jaccard-Koeffizient</a>.
+      Die verschiedenen Farben codieren unterschiedliche Typen von Medien, z.B.
+      TV, Radio oder Online Formate.
     paragraph:
       explanation: >
         Sendungen sind als Kreise dargestellt, die Größe der Kreise basierend

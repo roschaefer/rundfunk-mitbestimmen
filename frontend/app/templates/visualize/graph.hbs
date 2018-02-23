@@ -1,4 +1,15 @@
 <div class="ui grid">
+<div class="row">
+  <div class="left aligned column">
+    <h1 class="ui huge header">
+      {{t 'visualize.graph.header'}}
+      <div class="sub header">
+        {{t 'visualize.graph.sub-header' htmlSafe=true}}
+      </div>
+    </h1>
+  </div>
+</div>
+
   <div class="centered row">
     <div class="fourteen wide mobile sixteen wide column ">
       {{visualize/graph/graph-visualization graph=model}}
