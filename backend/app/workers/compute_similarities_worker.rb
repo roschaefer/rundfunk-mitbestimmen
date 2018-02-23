@@ -3,9 +3,12 @@ class ComputeSimilaritiesWorker
   sidekiq_options unique: :until_executed, lock_expiration: (2 * 60) # 2 minutes
 
   def perform
-    impressions_per_broadcast = Impression.group(:broadcast_id).count.values
-    average = impressions_per_broadcast.inject{ |sum, el| sum + el }.to_f / impressions_per_broadcast.size
-    minimum_supporters = (average * 0.05).ceil
-    Similarity.compute_all(threshold: 0.1, minimum_supporters: minimum_supporters)
+    Similarity.compute_all(threshold: 0.1, minimum_supporters: ComputeSimilaritiesWorker::minimum_supporters)
+  end
+
+  def self.minimum_supporters
+    return 0 if Broadcast.count == 0
+    average_impressions_per_broadcast = Impression.count.to_f / Broadcast.count.to_f
+    return (average_impressions_per_broadcast * 0.05).floor
   end
 end
