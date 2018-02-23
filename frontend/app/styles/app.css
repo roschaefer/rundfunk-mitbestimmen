@@ -140,13 +140,16 @@ p {
   }
 }
 
+.graph-visualization text {
+    pointer-events: none;
+}
 
-.links line {
+.graph-visualization .links line {
   stroke: #999;
   stroke-opacity: 1;
 }
 
-.nodes circle {
+.graph-visualization .nodes circle {
   stroke: #fff;
   stroke-width: 0.5px;
 }

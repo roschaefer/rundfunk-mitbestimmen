@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import d3 from 'd3';
 
 export default Component.extend({
+  classNames: ['graph-visualization'],
   didInsertElement() {
     this._super(...arguments);
 
@@ -40,20 +41,42 @@ export default Component.extend({
       .enter()
       .append("g");
 
+    let linkedByIndex = {};
+    graph.links.forEach((d) => {
+      linkedByIndex[`${d.source},${d.target}`] = true;
+    });
+
+    const isConnected = function(a, b) {
+      return linkedByIndex[`${a.id},${b.id}`] || linkedByIndex[`${b.id},${a.id}`] || a.id === b.id;
+    }
+
+    const mouseOverFunction = function (d) {
+      node.transition(500).style('opacity', o => (isConnected(o, d) ? 1.0 : 0.2));
+      link.transition(500).style('stroke-opacity', o => (o.source === d || o.target === d ? 1 : 0.2));
+    };
+
+    const mouseOutFunction = function () {
+      node.transition(2000).style('opacity', 1.0);
+      link.transition(2000).style('stroke-opacity', 1.0);
+    };
+
     node.append("circle").attr("r", 5).attr("fill", function(d) {
       return color(d.group);
-    }).call(d3.drag().on("start", (d) => {
-      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-      d.fx = d.x;
-      d.fy = d.y;
-    }).on("drag", (d) => {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
-    }).on("end", (d) => {
-      if (!d3.event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
-    }));
+    })
+      .on('mouseover', mouseOverFunction)
+      .on('mouseout', mouseOutFunction)
+      .call(d3.drag().on("start", (d) => {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }).on("drag", (d) => {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }).on("end", (d) => {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }));
 
     node.append("text").text(function(d) {
       return d.id;
@@ -76,7 +99,7 @@ export default Component.extend({
 
     //add zoom capabilities
     let zoom_handler = d3.zoom().on("zoom", () => {
-       container.attr("transform", d3.event.transform)
+      container.attr("transform", d3.event.transform)
     });
 
     zoom_handler(svg);
