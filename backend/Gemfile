@@ -18,6 +18,7 @@ gem 'rgeo-geojson'
 gem 'scenic'
 gem 'sentry-raven'
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'valid_email2'
 
 gem 'rails'
