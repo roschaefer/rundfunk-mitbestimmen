@@ -502,7 +502,10 @@ visualize:
   graph:
     header: Relationships between broadcasts
     sub-header: >
-      Find clusters of broadcasts
+      The broadcasts shown here are connected if their supporter groups intersect.
+      The underlying similarity measure is also called the
+      <a target="_blank" href="https://en.wikipedia.org/wiki/Jaccard_index">Jaccard index</a>.
+      The different colors encode different types of media, e.g. TV, radio or online formats.
     paragraph:
       explanation: >
         Broadcasts are displayed as nodes, their sizes based on the respective total amount.
