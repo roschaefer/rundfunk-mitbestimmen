@@ -1242,6 +1242,13 @@ CREATE INDEX index_schedules_on_station_id ON schedules USING btree (station_id)
 
 
 --
+-- Name: index_similarities_on_broadcast1_id_and_broadcast2_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_similarities_on_broadcast1_id_and_broadcast2_id ON similarities USING btree (broadcast1_id, broadcast2_id);
+
+
+--
 -- Name: index_stations_on_medium_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1491,6 +1498,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171115205013'),
 ('20171121223456'),
 ('20171123003201'),
-('20180215143737');
+('20180215143737'),
+('20180223201113');
 
 

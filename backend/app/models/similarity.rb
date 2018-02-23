@@ -1,6 +1,7 @@
 class Similarity < ApplicationRecord
   belongs_to :broadcast1, foreign_key: 'broadcast1_id', class_name: 'Broadcast'
   belongs_to :broadcast2, foreign_key: 'broadcast2_id', class_name: 'Broadcast'
+  validates  :broadcast1, uniqueness: { scope: :broadcast2 }
 
   def self.compute_all(threshold: 0, minimum_supporters: 0)
     Similarity.transaction do
