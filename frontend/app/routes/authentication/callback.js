@@ -15,7 +15,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       if (locale) {
         this.get('intl').setLocale(locale);
       }
-      const state = this.get('session').get('data.authenticated.state') || '/';
+      const state = this.get('session').get('data.afterLoginRoute') || '/';
       return this.transitionTo(state);
     });
   }

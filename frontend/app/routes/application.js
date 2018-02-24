@@ -29,7 +29,7 @@ export default Route.extend(ApplicationRouteMixin , {
   },
   actions: {
     login (givenDict, afterLoginRoute) {
-      const toRoute = afterLoginRoute || this.get('router.url');
+      this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
 
       const dict = Object.assign({
           emailSent: {
@@ -54,7 +54,6 @@ export default Route.extend(ApplicationRouteMixin , {
         primaryColor: '#2185D0',
         dict: dict,
         authParams: {
-          state: toRoute,
           scope: 'openid email',
         },
         socialBigButtons: false,
