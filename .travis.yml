@@ -3,6 +3,8 @@ language: ruby
 sudo: required
 rvm:
   - 2.4.1
+services:
+  - redis-server
 addons:
   ssh_known_hosts: rundfunk-mitbestimmen.de
   postgresql: "9.6"
