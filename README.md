@@ -152,9 +152,12 @@ cd ..
 
 ## Usage
 
-Start the backend:
+Start the backend and sidekiq:
 ```sh
 cd backend && bin/rails s
+```
+```sh
+cd backend && bundle exec sidekiq
 ```
 
 Open another terminal and start the frontend:
@@ -171,9 +174,12 @@ Run the frontend server:
 cd frontend && ember server --environment=fullstack
 ```
 
-Open another terminal and run the backend server:
+Open two more terminals and run the backend server and sidekiq:
 ```sh
 cd backend && bin/rails server --environment=fullstack
+```
+```sh
+cd backend && bundle exec sidekiq
 ```
 
 Open yet another terminal and run the tests:
