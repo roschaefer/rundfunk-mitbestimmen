@@ -1,7 +1,0 @@
-{
-  "name": "frontend",
-  "dependencies": {
-    "semantic-ui": "^2.2.14",
-    "d3": "^4.13.0"
-  }
-}
