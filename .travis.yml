@@ -16,10 +16,8 @@ before_install:
 
   - cd frontend
   - npm install -g yarn
-  - npm install -g bower
   - npm install -g ember-cli
   - ember --version
-  - bower --version
   - npm --version
   - yarn --version
   - node --version
@@ -29,8 +27,6 @@ install:
   - bundle
   - cd frontend
   - yarn install --pure-lockfile
-  - bower install
-  - ember build # unnecessary, but it makes our build slightly more stable, otherwise we run into non-deterministic errors 'unexpected end of file.. zLib'
   - cd ..
   - gem install foreman
 
