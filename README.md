@@ -85,7 +85,7 @@ docker-compose run backend bin/rails db:seed
 ## Local Installation (best option for developers)
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
-[yarn](https://yarnpkg.com/en/), [bower](https://bower.io/),
+[yarn](https://yarnpkg.com/en/),
 [EmberJS](https://www.emberjs.com/), [ruby](https://www.ruby-lang.org/en/)
 and [postgresql](https://www.postgresql.org/) installed before you proceed. E.g.
 we have the following versions:
@@ -95,8 +95,6 @@ $ node --version
 v6.11.2
 $ yarn --version
 1.1.0
-$ bower --version
-1.8.2
 $ ember --version
 ember-cli: 2.14.2
 node: 6.11.2
@@ -131,7 +129,6 @@ bundle
 ```sh
 cd frontend
 yarn install
-bower install
 ```
 
 4. Install backend dependencies and setup the database

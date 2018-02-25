@@ -8,7 +8,6 @@ services:
       - '49153:49153'
     volumes:
       - ./frontend/package.json:/frontend/package.json
-      - ./frontend/bower.json:/frontend/bower.json
       - ./frontend/app:/frontend/app
       - ./frontend/config:/frontend/config
       - ./frontend/public:/frontend/public
