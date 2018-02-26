@@ -49,7 +49,7 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-d3": "^0.4.2",
     "ember-data": "^3.0.1",
-    "ember-data-factory-guy": "2.13.26",
+    "ember-data-factory-guy": "2.13.27",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^3.4.4",
     "ember-highcharts": "0.5.4",
