@@ -43,7 +43,9 @@ Router.map(function() {
       this.route('stations');
     });
     this.route('graph');
-    this.route('time');
+    this.route('time', function() {
+      this.route('progress', { path: '/progress/:broadcast_id' });
+    });
     this.route('demography');
   });
   this.route('about-us');
