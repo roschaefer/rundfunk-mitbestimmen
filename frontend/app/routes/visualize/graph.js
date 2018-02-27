@@ -1,3 +1,4 @@
+import fetch from 'fetch';
 import Route from '@ember/routing/route';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 
