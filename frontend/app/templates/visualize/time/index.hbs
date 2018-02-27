@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="column">
+    <h1 class="ui huge header">
+      {{t 'visualize.time.header'}}
+      <div class="sub header">
+        {{t 'visualize.time.sub-header' htmlSafe=true}}
+      </div>
+    </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+    {{visualize/bubble-chart chartData=chartData onClick=(action 'onClick')}}
+  </div>
+</div>
+
+{{outlet}}
+
+<div class="row">
+  {{outlet}}
+  {{#link-to 'visualize.index' class="ui huge primary button"}}
+    <i class="left arrow icon"></i>
+    {{t 'visualize.overview' }}
+  {{/link-to}}
+</div>

@@ -1,29 +1,3 @@
 <div class="ui grid">
-  <div class="row">
-    {{#missing-feature feature='time' as |missing|}}
-    {{missing.preview imageUrl="/assets/images/missing-features/visualize/time.png"}}
-    {{#missing.explanation imageUrl="/assets/images/missing-features/visualize/time.png"}}
-        <h1 class="ui huge header">
-          {{t 'visualize.time.header'}}
-          <div class="sub header">
-            {{t 'visualize.time.sub-header'}}
-          </div>
-        </h1>
-        <p>
-          {{t 'visualize.time.paragraph.explanation'}}
-        </p>
-        <p>
-          {{t 'visualize.time.paragraph.reason'}}
-        </p>
-      {{/missing.explanation}}
-    {{/missing-feature}}
-  </div>
-
-  <div class="row">
-    {{outlet}}
-    {{#link-to 'visualize.index' class="ui huge primary button"}}
-      <i class="left arrow icon"></i>
-      {{t 'visualize.overview' }}
-    {{/link-to}}
-  </div>
+  {{outlet}}
 </div>

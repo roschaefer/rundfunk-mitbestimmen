@@ -182,7 +182,7 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
         clean_database!
       end
 
-      let(:url) { '/statistic/broadcasts/history/' }
+      let(:url) { '/statistic/broadcast_histories' }
       subject { JSON.parse(response.body) }
 
       describe 'response' do
