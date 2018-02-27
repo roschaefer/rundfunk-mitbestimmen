@@ -9,18 +9,7 @@ module Statistic
     end
 
     def temporal
-      from = if params[:from]
-               Time.zone.parse(params[:from])
-             else
-               3.months.ago
-             end
-      to = if params[:to]
-             Time.zone.parse(params[:to])
-           else
-             Time.zone.now
-           end
-      nth_day = params[:day] || 7
-      nth_day = nth_day.to_i
+      from, to, nth_day = range_params(params)
 
       range = [from]
       new_date = from + nth_day.days
@@ -32,6 +21,23 @@ module Statistic
 
       range = range.map { |t| [t, Statistic::Broadcast.find_broadcast_as_of(@broadcast, t)] }
       render json: range.map { |t, statistic| [t, statistic.total] }
+    end
+
+    def history
+      from, to, = range_params(params)
+      timestamps = [from, to]
+      early_statistics = Statistic::Broadcast.all_as_of(timestamps.first).group_by(&:id)
+      late_statistics = Statistic::Broadcast.all_as_of(timestamps.last).group_by(&:id)
+
+      ids = early_statistics.keys & late_statistics.keys
+      histories = ids.map do |id|
+        Statistic::BroadcastHistory.new(
+          timestamps: timestamps,
+          statistics: [early_statistics[id].first, late_statistics[id].first]
+        )
+      end
+      histories = histories.sort_by(&:id)
+      render json: histories
     end
 
     def index
@@ -58,6 +64,23 @@ module Statistic
 
     def set_statistic_broadcast
       @statistic_broadcast = Statistic::Broadcast.find(params[:id])
+    end
+
+    def range_params(params)
+      from = if params[:from]
+               Time.zone.parse(params[:from])
+             else
+               3.months.ago
+             end
+      to = if params[:to]
+             Time.zone.parse(params[:to])
+           else
+             Time.zone.now
+           end
+      nth_day = params[:day] || 7
+      nth_day = nth_day.to_i
+
+      [from, to, nth_day]
     end
   end
 end

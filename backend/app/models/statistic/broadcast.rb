@@ -9,6 +9,10 @@ module Statistic
       find_by_sql(broadcast_as_of(broadcast, time).to_sql).first
     end
 
+    def self.all_as_of(time)
+      find_by_sql(as_of(time).to_sql)
+    end
+
     def self.broadcast_as_of(broadcast, time)
       broadcasts ||= Arel::Table.new(:broadcasts)
       as_of(time).where(broadcasts[:id].eq(broadcast.id))
