@@ -134,10 +134,10 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           describe '?to=(2 months ago)' do
             let(:params) { { to: 2.months.ago } }
             describe 'from 3 months ago with every 7th day by default' do
-              it { expect(subject.size).to eq(6)}
-              it { expect(Time.zone.parse(subject[0][0]).change(usec: 0)).to eq(3.months.ago.change(usec: 0))}
-              it { expect(Time.zone.parse(subject[4][0]).change(usec: 0)).to eq ((3.months.ago + 28.days).change(usec: 0))}
-              it { expect(Time.zone.parse(subject[5][0]).change(usec: 0)).to eq(2.months.ago.change(usec: 0))}
+              it { expect(subject.size).to eq(6) }
+              it { expect(Time.zone.parse(subject[0][0]).change(usec: 0)).to eq(3.months.ago.change(usec: 0)) }
+              it { expect(Time.zone.parse(subject[4][0]).change(usec: 0)).to eq((3.months.ago + 28.days).change(usec: 0)) }
+              it { expect(Time.zone.parse(subject[5][0]).change(usec: 0)).to eq(2.months.ago.change(usec: 0)) }
             end
           end
         end
