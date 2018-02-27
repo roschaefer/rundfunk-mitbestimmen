@@ -144,10 +144,11 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
       end
     end
 
-    describe '/broadcasts/temporal/main_changes', helpers: :time do
+    describe '/statistic/broadcasts/history/', helpers: :time do
       before(:all) do
-        @t0 = 3.months.ago
-        @t1 = 1.months.ago
+        @t0 = Time.parse('2017-12-01').getutc
+        @t1 = Time.parse('2018-02-01').getutc
+        @t2 = Time.parse('2018-03-01').getutc
         travel_to(@t0) do
           @b1 = create(:broadcast, title: 'b1', id: 1)
           @b2 = create(:broadcast, title: 'b2', id: 2)
@@ -181,22 +182,58 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
         clean_database!
       end
 
-      let(:url) { '/statistic/broadcasts/temporal/delta' }
+      let(:url) { '/statistic/broadcasts/history/' }
       subject { JSON.parse(response.body) }
 
       describe 'response' do
         before { request }
 
-        describe '?from=@t0&to=@t8' do
-          let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0), day: 1 } }
-        end
+        describe '?from=@t0&to=@t2' do
+          let(:params) { { from: @t0, to: @t2 } }
 
-        it 'returns deltas of KPIs for all broadcasts' do
-          is_expected.to eq([
-            { 'id' => 1, 'title' => 'b1', 'impressions' => [1, 3], 'approval' => [0.0, 0.75], 'average' => [nil, 1.5], 'total' => [0.0, 6.0]},
-            { 'id' => 2, 'title' => 'b2', 'impressions' => [1, 2], 'approval' => [1.0,  1.0], 'average' => [0.0, 8.5], 'total' => [0.0, 17.0]},
-            { 'id' => 3, 'title' => 'b3', 'impressions' => [0, 4], 'approval' => [1.0,  1.0], 'average' => [nil, 4.5], 'total' => [0.0, 18.0]},
-          ])
+          describe 'returns deltas of KPIs' do
+            describe 'for broadcast #1' do
+              subject { parse_json(response.body, 'data/0/attributes') }
+              specify do
+                is_expected.to eq(
+                  'title' => 'b1',
+                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'impressions' => [1, 4],
+                  'approval' => ['0.0', '0.75'],
+                  'average' => [nil, '2.0'],
+                  'total' => ['0.0', '6.0']
+                )
+              end
+            end
+
+            describe 'for broadcast #2' do
+              subject { parse_json(response.body, 'data/1/attributes') }
+              specify do
+                is_expected.to eq(
+                  'title' => 'b2',
+                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'impressions' => [1, 2],
+                  'approval' => ['1.0', '1.0'],
+                  'average' => ['0.0', '8.5'],
+                  'total' => ['0.0', '17.0']
+                )
+              end
+            end
+
+            describe 'for broadcast #3' do
+              subject { parse_json(response.body, 'data/2/attributes') }
+              specify do
+                is_expected.to eq(
+                  'title' => 'b3',
+                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'impressions' => [0, 4],
+                  'approval' => [nil, '1.0'],
+                  'average' => [nil, '4.5'],
+                  'total' => ['0.0', '18.0']
+                )
+              end
+            end
+          end
         end
       end
     end
@@ -212,6 +249,7 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
         end
       end
       let(:url) { '/statistic/broadcasts' }
+
       let(:data) do
         impressions
         request

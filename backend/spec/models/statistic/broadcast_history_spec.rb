@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Statistic::BroadcastHistory, type: :model do
   describe '#initialize' do
-
     let(:broadcast_history) { described_class.new(timestamps: timestamps, statistics: statistics) }
 
     context 'given some statistics' do
@@ -12,7 +11,7 @@ RSpec.describe Statistic::BroadcastHistory, type: :model do
           instance_double('Statistic::Broadcast', id: 1, title: 'Some Broadcast', impressions: 3, approval: 0.0,  average: nil, total: 0.0),
           instance_double('Statistic::Broadcast', id: 1, title: 'Some Broadcast', impressions: 4, approval: 0.25, average: 4.0, total: 4.0),
           instance_double('Statistic::Broadcast', id: 1, title: 'Some Broadcast', impressions: 5, approval: 0.4,  average: 2.0, total: 5.0),
-          instance_double('Statistic::Broadcast', id: 1, title: 'Some Broadcast', impressions: 6, approval: 0.5,  average: 3.0, total: 9.0),
+          instance_double('Statistic::Broadcast', id: 1, title: 'Some Broadcast', impressions: 6, approval: 0.5,  average: 3.0, total: 9.0)
         ]
       end
 
@@ -28,7 +27,7 @@ RSpec.describe Statistic::BroadcastHistory, type: :model do
 
       describe '#impressions' do
         subject { broadcast_history.impressions }
-        it { is_expected.to eq([3,4,5,6]) }
+        it { is_expected.to eq([3, 4, 5, 6]) }
       end
 
       describe '#approval' do
@@ -48,4 +47,3 @@ RSpec.describe Statistic::BroadcastHistory, type: :model do
     end
   end
 end
-

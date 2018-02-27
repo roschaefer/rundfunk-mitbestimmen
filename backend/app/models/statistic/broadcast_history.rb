@@ -12,7 +12,7 @@ module Statistic
 
     %i[impressions approval average total].each do |attribute|
       define_method attribute do
-        self.statistics.map {|stat| stat.send(attribute) }
+        statistics.map { |stat| stat.send(attribute) }
       end
     end
   end

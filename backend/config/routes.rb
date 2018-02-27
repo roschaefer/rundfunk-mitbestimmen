@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   namespace :statistic do
     resources :broadcasts, only: %i[index show] do
+      collection do
+        get 'history'
+      end
+
       member do
         get 'temporal'
       end
