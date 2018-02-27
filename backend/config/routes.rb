@@ -7,11 +7,8 @@ Rails.application.routes.draw do
   end
 
   namespace :statistic do
+    get 'broadcast_histories', to: 'broadcasts#history'
     resources :broadcasts, only: %i[index show] do
-      collection do
-        get 'history'
-      end
-
       member do
         get 'temporal'
       end
