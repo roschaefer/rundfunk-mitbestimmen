@@ -144,6 +144,63 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
       end
     end
 
+    describe '/broadcasts/temporal/main_changes', helpers: :time do
+      before(:all) do
+        @t0 = 3.months.ago
+        @t1 = 1.months.ago
+        travel_to(@t0) do
+          @b1 = create(:broadcast, title: 'b1', id: 1)
+          @b2 = create(:broadcast, title: 'b2', id: 2)
+          @b3 = create(:broadcast, title: 'b3', id: 3)
+        end
+        data = [
+          # highest increase #approval
+          { broadcast: @b1, at: @t0, response: :neutral,  amount: nil },
+          { broadcast: @b1, at: @t1, response: :positive, amount: 2.0 },
+          { broadcast: @b1, at: @t1, response: :positive, amount: 2.0 },
+          { broadcast: @b1, at: @t1, response: :positive, amount: 2.0 },
+
+          # highest increase #average
+          { broadcast: @b2, at: @t0, response: :positive, amount: 0.0 },
+          { broadcast: @b2, at: @t1, response: :positive, amount: 17.0 },
+
+          # highest increase #impressions, #total
+          { broadcast: @b3, at: @t1, response: :positive, amount: 3.0 },
+          { broadcast: @b3, at: @t1, response: :positive, amount: 4.0 },
+          { broadcast: @b3, at: @t1, response: :positive, amount: 5.0 },
+          { broadcast: @b3, at: @t1, response: :positive, amount: 6.0 }
+        ]
+        data.each do |d|
+          impression = create(:impression, broadcast: d[:broadcast], response: d[:response], amount: d[:amount])
+          h = impression.history.first
+          h.class.amend_period!(h.hid, d[:at], nil)
+        end
+      end
+
+      after(:all) do
+        clean_database!
+      end
+
+      let(:url) { '/statistic/broadcasts/temporal/delta' }
+      subject { JSON.parse(response.body) }
+
+      describe 'response' do
+        before { request }
+
+        describe '?from=@t0&to=@t8' do
+          let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0), day: 1 } }
+        end
+
+        it 'returns deltas of KPIs for all broadcasts' do
+          is_expected.to eq([
+            { 'id' => 1, 'title' => 'b1', 'impressions' => [1, 3], 'approval' => [0.0, 0.75], 'average' => [nil, 1.5], 'total' => [0.0, 6.0]},
+            { 'id' => 2, 'title' => 'b2', 'impressions' => [1, 2], 'approval' => [1.0,  1.0], 'average' => [0.0, 8.5], 'total' => [0.0, 17.0]},
+            { 'id' => 3, 'title' => 'b3', 'impressions' => [0, 4], 'approval' => [1.0,  1.0], 'average' => [nil, 4.5], 'total' => [0.0, 18.0]},
+          ])
+        end
+      end
+    end
+
     describe '/broadcasts' do
       let(:impressions) do
         amount = 3
