@@ -124,15 +124,20 @@ cd frontend
 yarn install
 ```
 
-3. Install backend dependencies and setup the database
+3. Install backend dependencies
 ```sh
 cd ../backend
 bundle
+```
+4. Setup the database
+Check under `backend/config` you will get a file called `database.template.yml`,
+rename this file to `database.yml`. This file is on the `.gitignore` file so it will
+not be checked in, if you have a protected database with username and password you can safely use them
+```sh
 bin/rails db:create db:migrate
-cd ..
 ```
 
-4. If you want, you can create some seed data
+5. If you want, you can create some seed data
 ```
 cd backend
 bin/rails db:seed
