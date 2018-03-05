@@ -520,11 +520,18 @@ visualize:
       Werte. Die Veränderungen der Werte <em>Zustimmung </em> und <em>Im
       Schnitt</em> sind relativ, d.h. sie schlagen stärker aus, wenn die Sendung
       noch nicht viele Impressionen erhalten hat.
-    sort:
-      impressions: Neue Impressionen
-      approval: Veränderung Zustimmung(%)
-      average: Veränderung Durchschnitt(€)
-      total: Zuwachs Gesamtbetrag
+    overview: Veränderungsübersicht
+    progress:
+      paragraph:
+        explanation: >
+          Hier sieht man die Veränderung der Unterstützung für mehrere Sendungen
+          während eines bestimmten Zeitraums. Man kann die Werte für die Y-Achse
+          nach mehreren Attributen wechseln, z.b. Zustimmung, durchschnittlicher
+          und absoluter Betrag.
+        reason: >
+          Das ist interessant wenn man wissen will, wann eine Sendung besonders
+          viel Zuspruch erhalten hat oder wann viele Unterstützer ihre Meinung
+          geändert haben.
   graph:
     header: Beziehungen zwischen Sendungen
     sub-header: >

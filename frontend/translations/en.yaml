@@ -497,11 +497,16 @@ visualize:
       absolute values. The values <em>approval</em> and <em>average</em> are
       relative values, i.e. they change if the broadcast has not received many
       impressions yet.
-    sort:
-      impressions: New impressions
-      approval: Change of approval(%)
-      average: Change of average amount(€)
-      total: Growth of total amount(€)
+    overview: Overview of changes
+    progress:
+      paragraph:
+        explanation: >
+          Here you can see the change of support for many broadcasts during a
+          certain time. You can switch between different values like approval,
+          average and total amount.
+        reason: >
+          This is interesting if you want to know when a particular broadcast
+          received a lot of support or when many people changed their mind.
   graph:
     header: Relationships between broadcasts
     sub-header: >
