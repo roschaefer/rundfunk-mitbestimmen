@@ -112,26 +112,19 @@ git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
 ### Install dependencies and run migrations:
-1. Install `graphviz` that will be used to generate ER diagrams
-
-```sh
-OSX: brew install graphviz
-Ubuntu/Debian: sudo apt install graphviz
-
-```
-2. Install dependencies for full stack testing
+1. Install dependencies for full stack testing
 ```sh
 cd rundfunk-mitbestimmen
 bundle
 ```
 
-3. Install frontend dependencies
+2. Install frontend dependencies
 ```sh
 cd frontend
 yarn install
 ```
 
-4. Install backend dependencies and setup the database
+3. Install backend dependencies and setup the database
 ```sh
 cd ../backend
 bundle
@@ -139,7 +132,7 @@ bin/rails db:create db:migrate
 cd ..
 ```
 
-5. If you want, you can create some seed data
+4. If you want, you can create some seed data
 ```
 cd backend
 bin/rails db:seed

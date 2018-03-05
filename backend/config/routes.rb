@@ -6,7 +6,14 @@ Rails.application.routes.draw do
     resources :media, only: %i[index show]
   end
 
-  get 'statistic/broadcasts/', to: 'statistic/broadcasts#index'
+  namespace :statistic do
+    resources :broadcasts, only: %i[index show] do
+      member do
+        get 'temporal'
+      end
+    end
+  end
+
   get 'summarized_statistics/', to: 'statistics#summarized'
 
   resources :media, only: %i[index show]

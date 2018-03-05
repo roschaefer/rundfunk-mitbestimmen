@@ -2,8 +2,147 @@ require 'rails_helper'
 
 RSpec.describe 'Statistic::Broadcast', type: :request do
   describe 'GET' do
+    let(:headers) { {} }
     let(:params) { {} }
-    let(:request) { get url, params: params }
+    let(:request) { get url, params: params, headers: headers }
+
+    context 'historical data', helpers: :time do
+      before(:all) do
+        @t0 = 8.days.ago
+        @t1 = 7.days.ago
+        @t2 = 6.days.ago
+        @t3 = 5.days.ago
+        @t4 = 4.days.ago
+        @t5 = 3.days.ago
+        @t6 = 2.days.ago
+        @t7 = 1.days.ago
+        @t8 = 0.days.ago
+        data = [
+          { response: :positive, amount: 2.0, from: (@t2 - 1.second), to: nil },
+          { response: :positive, amount: nil, from: (@t3 - 1.second), to: nil },
+          { response: :positive, amount: 7.0, from: (@t4 - 1.second), to: nil },
+          { response: :neutral,  amount: nil, from: (@t5 - 1.second), to: nil },
+          { response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil },
+          { response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second) }
+        ]
+        travel_to(@t1) { @broadcast = create(:broadcast, title: 'b', id: 4711) }
+        data.each do |d|
+          impression = create(:impression, broadcast: @broadcast, response: d[:response], amount: d[:amount])
+          h = impression.history.first
+          h.class.amend_period!(h.hid, d[:from], d[:to])
+        end
+        last_impression = Impression.last
+        last_impression.amount = 10.0
+        last_impression.save!
+        h = last_impression.history.last
+        h.class.amend_period!(h.hid, @t8 - 1.second, nil)
+      end
+
+      after(:all) do
+        clean_database!
+      end
+
+      describe '/broadcasts/:id' do
+        let(:url) { '/statistic/broadcasts/4711' }
+
+        describe '?as_of' do
+          let(:params) { { as_of: time } }
+
+          describe 'response' do
+            before { request }
+            subject { parse_json(response.body, 'data/attributes') }
+
+            describe 't1' do
+              let(:time) { @t1 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 0, 'approval' => nil, 'average' => nil, 'total' => '0.0') }
+            end
+
+            describe 't2' do
+              let(:time) { @t2 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 1, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0') }
+            end
+
+            describe 't3' do
+              let(:time) { @t3 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 2, 'approval' => '1.0', 'average' => '2.0', 'total' => '2.0') }
+            end
+
+            describe 't4' do
+              let(:time) { @t4 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 3, 'approval' => '1.0', 'average' => '4.5', 'total' => '9.0') }
+            end
+
+            describe 't5' do
+              let(:time) { @t5 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 4, 'approval' => '0.75', 'average' => '4.5', 'total' => '9.0') }
+            end
+
+            describe 't6' do
+              let(:time) { @t6 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 5, 'approval' => '0.8', 'average' => '5.0', 'total' => '15.0') }
+            end
+
+            describe 't7' do
+              let(:time) { @t7 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '3.75', 'total' => '15.0') }
+            end
+
+            describe 'now' do
+              let(:time) { @t8 }
+              it { is_expected.to eq('title' => 'b', 'impressions' => 6, 'approval' => '0.83333333333333333333', 'average' => '6.25', 'total' => '25.0') }
+            end
+          end
+        end
+      end
+
+      describe '/broadcasts/:id/temporal' do
+        let(:url) { '/statistic/broadcasts/4711/temporal' }
+        subject { JSON.parse(response.body) }
+
+        describe 'response' do
+          before { request }
+
+          describe '?from=@t0&to=@t8&day=1' do
+            let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0), day: 1 } }
+
+            it 'returns history of #total_amount by default' do
+              is_expected.to match_array [
+                [@t0.change(usec: 0),  '0.0'],
+                [@t1.change(usec: 0),  '0.0'],
+                [@t2.change(usec: 0),  '2.0'],
+                [@t3.change(usec: 0),  '2.0'],
+                [@t4.change(usec: 0),  '9.0'],
+                [@t5.change(usec: 0),  '9.0'],
+                [@t6.change(usec: 0), '15.0'],
+                [@t7.change(usec: 0), '15.0'],
+                [@t8.change(usec: 0), '25.0']
+              ]
+            end
+          end
+
+          describe '?from=@t0&to=@t8' do
+            let(:params) { { from: @t0.change(usec: 0), to: @t8.change(usec: 0) } }
+            it 'every 7th day by default' do
+              is_expected.to match_array [
+                [@t0.change(usec: 0), '0.0'],
+                [@t7.change(usec: 0), '15.0'],
+                [@t8.change(usec: 0), '25.0']
+              ]
+            end
+          end
+
+          describe '?to=(2 months ago)' do
+            let(:params) { { to: 2.months.ago } }
+            describe 'from 3 months ago with every 7th day by default' do
+              it { expect(subject.size).to eq(6) }
+              it { expect(Time.zone.parse(subject[0][0]).change(usec: 0)).to eq(3.months.ago.change(usec: 0)) }
+              it { expect(Time.zone.parse(subject[4][0]).change(usec: 0)).to eq((3.months.ago + 28.days).change(usec: 0)) }
+              it { expect(Time.zone.parse(subject[5][0]).change(usec: 0)).to eq(2.months.ago.change(usec: 0)) }
+            end
+          end
+        end
+      end
+    end
 
     describe '/broadcasts' do
       let(:impressions) do
