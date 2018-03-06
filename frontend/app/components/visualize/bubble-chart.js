@@ -50,5 +50,11 @@ export default Component.extend({
 
 
     d3.select(self.frameElement).style("height", diameter + "px");
+  },
+  willUpdate(){
+    console.log('willUpdate');
+    this._super(...arguments);
+    d3.select('div.chart-area svg').remove();
   }
+
 });

@@ -498,6 +498,10 @@ visualize:
       relative values, i.e. they change if the broadcast has not received many
       impressions yet.
     overview: Overview of changes
+    tooltip: |
+        Broadcast title: {title}
+        Change of approval: {approvalBefore} => {approvalAfter}
+        New impressions: {impressionsBefore} => {impressionsAfter}
     progress:
       paragraph:
         explanation: >
