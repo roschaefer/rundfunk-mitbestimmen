@@ -2,31 +2,42 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import EmberObject, { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
-import d3 from 'd3';
+import chroma from 'chroma';
 
 export default Controller.extend({
+  intl: service(),
+  approvalDeltas: computed('model.@each', function () {
+    return this.get('model').map((record) => {
+      return record.get('approvalDelta');
+    });
+  }),
+  maxApproval: computed.max('approvalDeltas'),
+  minApproval: computed.min('approvalDeltas'),
+
   createTooltip(record){
-    let a1 = record.get('approval')[0];
-    let a2 = record.get('approval')[1];
+    const options = {
+      style: 'percent',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }
+    let approvals = [];
+    record.get('approval').forEach((a,i) => {
+      approvals[i] = a ? this.get('intl').formatNumber(a, options) : '?';
+    });
     return [
-      `title: ${record.get('title')}`,
-      `approval: ${a1} => ${a2}`,
-      `impressions: ${record.get('impressions')[0]} => ${record.get('impressions')[1]}`
+      `${this.get('intl').t('statistics.summary.table.header.broadcast')}: ${record.get('title')}`,
+      `${this.get('intl').t('statistics.summary.table.header.approval')}: ${approvals[0]} => ${approvals[1]}`,
+      `${this.get('intl').t('statistics.summary.table.header.impressions')}: ${record.get('impressions')[0]} => ${record.get('impressions')[1]}`
     ].join('\n');
   },
 
-  chartData: computed('model', function() {
-    let approvalDeltas = this.get('model').map((record) => {
-      return record.get('approvalDelta');
-    });
-    let min = d3.min(approvalDeltas);
-    let max = d3.max(approvalDeltas);
-    let colorScale = d3.scaleLinear()
-      .domain([min, 0, max])
-      .range(["deeppink", "lightskyblue", "limegreen"]);
+  chartData: computed('model', 'intl.locale', function() {
+    let colorScale = chroma
+      .scale(["deeppink", "lightblue", "limegreen"])
+      .domain([this.get('minApproval'), 0, this.get('maxApproval')]);
     let colorFunction = (value) => {
       if (isNone(value)){
-        return d3.color('tan');
+        return chroma('tan');
       }
       return colorScale(value);
     };
