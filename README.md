@@ -131,8 +131,15 @@ bundle
 ```
 4. Setup the database
 Check under `backend/config` you will get a file called `database.template.yml`,
-rename this file to `database.yml`. This file is on the `.gitignore` file so it will
-not be checked in, if you have a protected database with username and password you can safely use them
+rename this file to `database.yml`.
+```sh
+cp backend/config/database.template.yml backend/config/database.yml
+```
+This file is on the `.gitignore` file so it will not be checked in
+
+**(OPTIONAL):**  customize the new file to match the local database configuration
+
+Now create the databases and run the migrations:
 ```sh
 bin/rails db:create db:migrate
 ```
