@@ -521,6 +521,10 @@ visualize:
       Schnitt</em> sind relativ, d.h. sie schlagen stärker aus, wenn die Sendung
       noch nicht viele Impressionen erhalten hat.
     overview: Veränderungsübersicht
+    tooltip: |
+        Sendungstitel: {title}
+        Zustimmungsänderung: {approvalBefore} => {approvalAfter}
+        Neue Impressionen: {impressionsBefore} => {impressionsAfter}
     progress:
       paragraph:
         explanation: >

@@ -24,11 +24,13 @@ export default Controller.extend({
     record.get('approval').forEach((a,i) => {
       approvals[i] = a ? this.get('intl').formatNumber(a, options) : '?';
     });
-    return [
-      `${this.get('intl').t('statistics.summary.table.header.broadcast')}: ${record.get('title')}`,
-      `${this.get('intl').t('statistics.summary.table.header.approval')}: ${approvals[0]} => ${approvals[1]}`,
-      `${this.get('intl').t('statistics.summary.table.header.impressions')}: ${record.get('impressions')[0]} => ${record.get('impressions')[1]}`
-    ].join('\n');
+    return this.get('intl').t('visualize.time.tooltip', {
+      title: record.get('title'),
+      approvalBefore: approvals[0],
+      approvalAfter: approvals[1],
+      impressionsBefore: record.get('impressions')[0],
+      impressionsAfter: record.get('impressions')[1]
+    });
   },
 
   chartData: computed('model', 'intl.locale', function() {
