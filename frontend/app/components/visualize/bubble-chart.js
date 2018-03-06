@@ -27,7 +27,9 @@ export default Component.extend({
     bubble(root);
     let node = svg.selectAll(".node")
       .data(root.children)
-      .enter().append("g")
+      .enter()
+      .append("g")
+      .style("cursor", "pointer")
       .attr("class", "node")
       .on('click', function(d) { clickCallback(d.data.id) })
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
