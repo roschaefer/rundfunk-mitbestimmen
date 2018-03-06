@@ -521,6 +521,8 @@ visualize:
       Schnitt</em> sind relativ, d.h. sie schlagen stärker aus, wenn die Sendung
       noch nicht viele Impressionen erhalten hat.
     overview: Veränderungsübersicht
+    bubble-chart-legend:
+      missing-data: keine Daten
     tooltip: |
         Sendungstitel: {title}
         Zustimmungsänderung: {approvalBefore} => {approvalAfter}
