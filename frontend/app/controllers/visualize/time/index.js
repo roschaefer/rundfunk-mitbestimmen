@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import EmberObject, { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { computed } from '@ember/object';
 import chroma from 'chroma';
 
 export default Controller.extend({
@@ -11,8 +11,11 @@ export default Controller.extend({
       return record.get('approvalDelta');
     });
   }),
-  maxApproval: computed.max('approvalDeltas'),
-  minApproval: computed.min('approvalDeltas'),
+  maxApprovalDelta: computed.max('approvalDeltas'),
+  minApprovalDelta: computed.min('approvalDeltas'),
+  missingDataLabel: computed('intl.locale', function() {
+    return this.get('intl').t('visualize.time.bubble-chart-legend.missing-data');
+  }),
 
   createTooltip(record){
     const options = {
@@ -33,15 +36,18 @@ export default Controller.extend({
     });
   },
 
-  chartData: computed('model', 'intl.locale', function() {
-    let colorScale = chroma
+  colorScale: computed('model', function() {
+    return chroma
       .scale(["deeppink", "lightblue", "limegreen"])
-      .domain([this.get('minApproval'), 0, this.get('maxApproval')]);
+      .domain([this.get('minApprovalDelta'), 0, this.get('maxApprovalDelta')]);
+  }),
+  nullColor: chroma('tan'),
+  chartData: computed('model', 'intl.locale', function() {
     let colorFunction = (value) => {
       if (isNone(value)){
-        return chroma('tan');
+        return this.get('nullColor');
       }
-      return colorScale(value);
+      return this.get('colorScale')(value);
     };
     return this.get('model').map((record) => {
       return Object.create({

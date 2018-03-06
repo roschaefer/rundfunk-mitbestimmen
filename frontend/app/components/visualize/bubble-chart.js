@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
 import d3 from 'd3';
 
 export default Component.extend({
@@ -8,8 +7,7 @@ export default Component.extend({
     let chartData = {children: this.get('chartData')};
     let clickCallback = this.get('onClick');
 
-    let diameter = 1024,
-      format = d3.format(".2%");
+    let diameter = 1024;
 
     let bubble = d3.pack()
       .size([diameter, diameter])
@@ -54,7 +52,6 @@ export default Component.extend({
     d3.select(self.frameElement).style("height", diameter + "px");
   },
   willUpdate(){
-    console.log('willUpdate');
     this._super(...arguments);
     d3.select('div.chart-area svg').remove();
   }
