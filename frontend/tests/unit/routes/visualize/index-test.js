@@ -6,6 +6,7 @@ describe('Unit | Route | visualize/index', function() {
   setupTest('route:visualize/index', {
     needs: [
       'service:metrics',
+      'service:intl',
       'ember-metrics@metrics-adapter:piwik'
     ]
   });
