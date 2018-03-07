@@ -146,9 +146,9 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
 
     describe '/statistic/broadcasts/history/', helpers: :time do
       before(:all) do
-        @t0 = Time.parse('2017-12-01').getutc
-        @t1 = Time.parse('2018-02-01').getutc
-        @t2 = Time.parse('2018-03-01').getutc
+        @t0 = ActiveSupport::TimeZone.new('UTC').parse('2017-12-01 UTC').getutc
+        @t1 = ActiveSupport::TimeZone.new('UTC').parse('2018-02-01 UTC').getutc
+        @t2 = ActiveSupport::TimeZone.new('UTC').parse('2018-03-01 UTC').getutc
         travel_to(@t0) do
           @b1 = create(:broadcast, title: 'b1', id: 1)
           @b2 = create(:broadcast, title: 'b2', id: 2)
@@ -197,7 +197,7 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
               specify do
                 is_expected.to eq(
                   'title' => 'b1',
-                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'timestamps' => ['2017-12-01T00:00:00.000Z', '2018-03-01T00:00:00.000Z'],
                   'impressions' => [1, 4],
                   'approval' => ['0.0', '0.75'],
                   'average' => [nil, '2.0'],
@@ -211,7 +211,7 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
               specify do
                 is_expected.to eq(
                   'title' => 'b2',
-                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'timestamps' => ['2017-12-01T00:00:00.000Z', '2018-03-01T00:00:00.000Z'],
                   'impressions' => [1, 2],
                   'approval' => ['1.0', '1.0'],
                   'average' => ['0.0', '8.5'],
@@ -225,7 +225,7 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
               specify do
                 is_expected.to eq(
                   'title' => 'b3',
-                  'timestamps' => ['2017-11-30T23:00:00.000Z', '2018-02-28T23:00:00.000Z'],
+                  'timestamps' => ['2017-12-01T00:00:00.000Z', '2018-03-01T00:00:00.000Z'],
                   'impressions' => [0, 4],
                   'approval' => [nil, '1.0'],
                   'average' => [nil, '4.5'],
