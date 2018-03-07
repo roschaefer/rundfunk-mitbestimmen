@@ -512,21 +512,29 @@ visualize:
         Sender können so das Program anpassen, damit für jede und jeden etwas
         dabei ist und für jedes Alter.
   time:
-    header: Veränderungen über die Zeit
-    sub-header: >
-      Hier abgebildet sind die Veränderungen von Sendungen im Vergleich zum
-      Stand von vor drei Monaten. Nur die Verändeungen der Werte
-      <em>Impressionen</em> und <em>Ingesamt</em> sind Veränderungen absoluter
-      Werte. Die Veränderungen der Werte <em>Zustimmung </em> und <em>Im
-      Schnitt</em> sind relativ, d.h. sie schlagen stärker aus, wenn die Sendung
-      noch nicht viele Impressionen erhalten hat.
-    overview: Veränderungsübersicht
+    overview:
+      header: Veränderungsübersicht
+      sub-header: >
+        Entwicklung der Zustimmungswerte aller Sendungen der letzten drei
+        Monaten
+      legend:
+        colors: >
+          Die Veränderung der Zustimmungswerte in Prozent wird in die Farbe
+          der Blasen kodiert. Je größer die Blasen sind, umso mehr Daten hat
+          die Sendung in den letzten drei Monaten erhalten und desto sicherer
+          kann von einem Trend ausgegangen werden.
+        null-value: >
+          Wenn es eine Sendung vor drei Monaten noch nicht in unserer
+          Datenbank gab, so liegen noch keine Daten an diesem Zeitpunkt vor.
+          Eine Veränderung der Zustimmungswerte kann noch nicht berechnet
+          werden. Die Blase der Sendung wird dann braun eingefärbt.
     bubble-chart-legend:
       missing-data: keine Daten
     tooltip: |
         Sendungstitel: {title}
         Zustimmungsänderung: {approvalBefore} => {approvalAfter}
         Neue Impressionen: {impressionsBefore} => {impressionsAfter}
+    header: Veränderungen über die Zeit
     progress:
       paragraph:
         explanation: >

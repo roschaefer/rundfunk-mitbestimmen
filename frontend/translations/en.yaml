@@ -490,20 +490,29 @@ visualize:
         Broadcasters can thus adapt their program, to have something for everyone
         and for all ages.
   time:
-    header: Changes over time
-    sub-header: >
-      Shown here are the changes of broadcasts compared to three months ago.
-      Only the metrics <em>impressions</em> and <em>total</em> are changes of
-      absolute values. The values <em>approval</em> and <em>average</em> are
-      relative values, i.e. they change if the broadcast has not received many
-      impressions yet.
-    overview: Overview of changes
+    overview:
+      header: Overview of changes
+      sub-header: >
+        Development of the approval values of all shipments of the last three
+        months
+      legend:
+        colors: >
+          The change in approval in percent is coded into the color of the
+          bubbles. The bigger the bubbles, the more data the broadcast has
+          received in the last three months. A large bubble indicates a higher
+          confidence of a trend.
+        null-value: >
+          If the broadcast did not exist in our database three months ago, then
+          there is no data available at that time. A change in approval can not
+          yet be calculated. The bubble of the broadcast is then colored in
+          brown.
     bubble-chart-legend:
       missing-data: no data
     tooltip: |
         Broadcast title: {title}
         Change of approval: {approvalBefore} => {approvalAfter}
         New impressions: {impressionsBefore} => {impressionsAfter}
+    header: Changes over time
     progress:
       paragraph:
         explanation: >

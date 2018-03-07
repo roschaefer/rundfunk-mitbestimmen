@@ -7,13 +7,14 @@ export default Component.extend({
     let chartData = {children: this.get('chartData')};
     let clickCallback = this.get('onClick');
 
-    let diameter = 1024;
+    let element = d3.select('div.chart-area');
+    let diameter = element.node().getBoundingClientRect().width;
 
     let bubble = d3.pack()
       .size([diameter, diameter])
       .padding(1.5);
 
-    let svg = d3.select("div.chart-area").append("svg")
+    let svg = element.append("svg")
       .attr("width", diameter)
       .attr("height", diameter)
       .attr("class", "bubble");

@@ -1,14 +1,14 @@
 <div class="row">
   <div class="column">
     <h1 class="ui huge header">
-      {{t 'visualize.time.header'}}
+      {{t 'visualize.time.overview.header'}}
       <div class="sub header">
-        {{t 'visualize.time.sub-header' htmlSafe=true}}
+        {{t 'visualize.time.overview.sub-header'}}
       </div>
     </h1>
-    {{visualize/bubble-chart-legend colorScale=colorScale staticColor=nullColor staticLabel=missingDataLabel}}
   </div>
 </div>
+{{visualize/bubble-chart-legend colorScale=colorScale staticColor=nullColor staticLabel=missingDataLabel}}
 
 <div class="row">
   <div class="column">
