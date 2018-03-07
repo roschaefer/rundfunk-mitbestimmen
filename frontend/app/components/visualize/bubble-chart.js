@@ -1,10 +1,15 @@
 import Component from '@ember/component';
 import d3 from 'd3';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   didRender() {
     this._super(...arguments);
+    // avoid enter() is not a function error
+    if (isBlank(this.get('chartData'))) return;
     let chartData = {children: this.get('chartData')};
+
+
     let clickCallback = this.get('onClick');
 
     let element = d3.select('div.chart-area');

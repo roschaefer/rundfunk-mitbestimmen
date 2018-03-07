@@ -24,8 +24,8 @@ describe('Unit | Model | statistic/broadcast history', function() {
     let model;
     beforeEach(function() {
       model = make('statistic/broadcast-history', {
-        approval: [null, 0.8],
         average: [null, 2.0],
+        approval: [null, 0.8],
         impressions: [null, 5],
         total: [null, 8.0]
       });
@@ -33,26 +33,22 @@ describe('Unit | Model | statistic/broadcast history', function() {
 
     it('#approvalDelta == null', function() {
       this.subject();
-      // var store = this.store();
       expect(model.get('approvalDelta')).to.eq(null);
-    });
-
-    it('#averageDelta == null', function() {
-      this.subject();
-      // var store = this.store();
-      expect(model.get('averageDelta ')).to.eq(null);
     });
 
     it('#impressionsDelta == 5', function() {
       this.subject();
-      // var store = this.store();
       expect(model.get('impressionsDelta')).to.eq(5);
     });
 
     it('#totalDelta == 8.0', function() {
       this.subject();
-      // var store = this.store();
-      expect(model.get('impressionsDelta')).to.eq(8.0);
+      expect(model.get('totalDelta')).to.eq(8.0);
+    });
+
+    it('#averageDelta == null', function() {
+      this.subject();
+      expect(model.get('averageDelta')).to.eq(null);
     });
   });
 });

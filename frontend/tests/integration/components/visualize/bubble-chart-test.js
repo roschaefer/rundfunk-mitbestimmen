@@ -8,17 +8,29 @@ describe('Integration | Component | visualize/bubble chart', function() {
     integration: true
   });
 
-  it('renders', function() {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-    // Template block usage:
-    // this.render(hbs`
-    //   {{#visualize/bubble-chart}}
-    //     template content
-    //   {{/visualize/bubble-chart}}
-    // `);
+  it('renders chartData', function() {
+    this.set('chartData', []);
+    this.on('clickCallback', function() {
+    });
 
-    this.render(hbs`{{visualize/bubble-chart}}`);
+    this.render(hbs`{{visualize/bubble-chart chartData=chartData onClick=clickCallback}}`);
+    expect(this.$()).to.have.length(1);
+  });
+
+  it('renders chartData', function() {
+    this.set('chartData', [
+      Object.create({
+        id: 1,
+        color: 'tan',
+        label: 'title',
+        tooltip: 'tooltip',
+        size: 3,
+      })
+    ]);
+    this.on('clickCallback', function() {
+    });
+
+    this.render(hbs`{{visualize/bubble-chart chartData=chartData onClick=clickCallback}}`);
     expect(this.$()).to.have.length(1);
   });
 });
