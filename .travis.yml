@@ -25,6 +25,7 @@ before_install:
 
 install:
   - bundle
+  - chromedriver-update 2.33
   - cd frontend
   - yarn install --pure-lockfile
   - cd ..
