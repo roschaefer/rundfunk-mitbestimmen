@@ -1,5 +1,19 @@
-<div class="legend-area">
-  <div class="continuous"></div>
-  <div class="static"></div>
-  {{yield}}
+<div class="ui stackable grid">
+  <div class="row legend-area">
+    <div class="four wide column">
+      <p>
+      {{t 'visualize.time.overview.legend.colors'}}
+      </p>
+    </div>
+    <div class="four wide column continuous">
+    </div>
+    <div class="four wide column">
+      <p>
+      {{t 'visualize.time.overview.legend.null-value'}}
+      </p>
+    </div>
+    <div class="four wide column static">
+    </div>
+    {{yield}}
+  </div>
 </div>
