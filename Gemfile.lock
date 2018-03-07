@@ -1,19 +1,11 @@
 GIT
   remote: https://github.com/globalize/globalize
-  revision: e946e63983d42c9ff49b39b13ffcc3ad45626dd3
+  revision: 477f2f2f900e88f9180bfbb3c4da24fa96746b08
   specs:
     globalize (5.1.0)
       activemodel (>= 4.2, < 5.2)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.0)
-
-GIT
-  remote: https://github.com/roschaefer/capistrano-db-tasks.git
-  revision: 5d1a5f1eeb141cb3c7bb5ea32b771f21fa939852
-  branch: patch-1
-  specs:
-    capistrano-db-tasks (0.6)
-      capistrano (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -81,6 +73,8 @@ GEM
     capistrano-bundler (1.3.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-db-tasks (0.6)
+      capistrano (>= 3.0.0)
     capistrano-rails (1.3.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -127,7 +121,7 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.6.2)
     diff-lcs (1.3)
-    erubi (1.7.0)
+    erubi (1.7.1)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
     factory_bot_rails (4.8.2)
@@ -135,8 +129,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.22)
-    geocoder (1.4.5)
+    ffi (1.9.23)
+    geocoder (1.4.6)
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -198,7 +192,7 @@ GEM
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
     parallel (1.12.1)
-    parser (2.5.0.2)
+    parser (2.5.0.3)
       ast (~> 2.4.0)
     pg (1.0.0)
     pg_search (2.1.2)
@@ -210,12 +204,12 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
-    puma (3.11.2)
+    puma (3.11.3)
     rack (2.0.4)
     rack-cors (1.0.2)
     rack-protection (2.0.1)
       rack
-    rack-test (0.8.2)
+    rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
@@ -256,7 +250,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (3.0.0)
     rake (12.3.0)
-    rb-fsevent (0.10.2)
+    rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
@@ -286,9 +280,9 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.52.1)
+    rubocop (0.53.0)
       parallel (~> 1.10)
-      parser (>= 2.4.0.2, < 3.0)
+      parser (>= 2.5)
       powerpack (~> 0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
@@ -301,7 +295,7 @@ GEM
     scenic (1.4.1)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
-    selenium-webdriver (3.9.0)
+    selenium-webdriver (3.10.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     sentry-raven (2.7.2)
@@ -359,7 +353,7 @@ DEPENDENCIES
   brakeman
   cancancan
   capistrano
-  capistrano-db-tasks!
+  capistrano-db-tasks
   capistrano-rails
   capybara
   childprocess
