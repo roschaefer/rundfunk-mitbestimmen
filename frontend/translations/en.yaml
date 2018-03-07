@@ -493,35 +493,35 @@ visualize:
     overview:
       header: Overview of changes
       sub-header: >
-        Development of the approval values of all shipments of the last three
-        months
+        Development of the approval of all broadcast in the last three months
       legend:
         colors: >
           The change in approval in percent is coded into the color of the
           bubbles. The bigger the bubbles, the more data the broadcast has
           received in the last three months. A large bubble indicates a higher
-          confidence of a trend.
+          confidence of a trend. Check the tooltip to see the absolute values.
         null-value: >
           If the broadcast did not exist in our database three months ago, then
           there is no data available at that time. A change in approval can not
           yet be calculated. The bubble of the broadcast is then colored in
-          brown.
+          brown. Check the tooltip to see the present data available.
     bubble-chart-legend:
       missing-data: no data
     tooltip: |
         Broadcast title: {title}
         Change of approval: {approvalBefore} => {approvalAfter}
         New impressions: {impressionsBefore} => {impressionsAfter}
-    header: Changes over time
     progress:
+      sub-header: Changes over time
       paragraph:
         explanation: >
-          Here you can see the change of support for many broadcasts during a
+          Here you can see the change of support for "{title}" during a
           certain time. You can switch between different values like approval,
           average and total amount.
         reason: >
-          This is interesting if you want to know when a particular broadcast
-          received a lot of support or when many people changed their mind.
+          This is interesting if you want to know when exactly a particular
+          broadcast received a lot of support or when many people changed their
+          mind.
   graph:
     header: Relationships between broadcasts
     sub-header: >

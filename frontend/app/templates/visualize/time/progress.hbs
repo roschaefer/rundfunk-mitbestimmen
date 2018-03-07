@@ -4,10 +4,13 @@
     {{missing.preview imageUrl="/assets/images/missing-features/visualize/time.png"}}
     {{#missing.explanation imageUrl="/assets/images/missing-features/visualize/time.png"}}
         <h1 class="ui huge header">
-          {{t 'visualize.time.header'}}
+          {{model.title}}
+          <div class="sub header">
+          {{t 'visualize.time.progress.sub-header'}}
+          </div>
         </h1>
         <p>
-          {{t 'visualize.time.progress.paragraph.explanation'}}
+          {{t 'visualize.time.progress.paragraph.explanation' title=model.title}}
         </p>
         <p>
           {{t 'visualize.time.progress.paragraph.reason'}}

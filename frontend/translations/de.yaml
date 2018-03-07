@@ -522,30 +522,32 @@ visualize:
           Die Veränderung der Zustimmungswerte in Prozent wird in die Farbe
           der Blasen kodiert. Je größer die Blasen sind, umso mehr Daten hat
           die Sendung in den letzten drei Monaten erhalten und desto sicherer
-          kann von einem Trend ausgegangen werden.
+          kann von einem Trend ausgegangen werden. Bewege die Maus über eine
+          Blase um die absoluten Werte anzuzeigen.
         null-value: >
           Wenn es eine Sendung vor drei Monaten noch nicht in unserer
           Datenbank gab, so liegen noch keine Daten an diesem Zeitpunkt vor.
           Eine Veränderung der Zustimmungswerte kann noch nicht berechnet
-          werden. Die Blase der Sendung wird dann braun eingefärbt.
+          werden. Die Blase der Sendung wird dann braun eingefärbt. Die Tooltips
+          zeigen jeweils die bisherigen absoluten Werte an.
     bubble-chart-legend:
       missing-data: keine Daten
     tooltip: |
         Sendungstitel: {title}
         Zustimmungsänderung: {approvalBefore} => {approvalAfter}
         Neue Impressionen: {impressionsBefore} => {impressionsAfter}
-    header: Veränderungen über die Zeit
     progress:
+      sub-header: Veränderungen über die Zeit
       paragraph:
         explanation: >
-          Hier sieht man die Veränderung der Unterstützung für mehrere Sendungen
+          Hier sieht man die Veränderung der Zustimmungswerte für "{title}"
           während eines bestimmten Zeitraums. Man kann die Werte für die Y-Achse
           nach mehreren Attributen wechseln, z.b. Zustimmung, durchschnittlicher
           und absoluter Betrag.
         reason: >
-          Das ist interessant wenn man wissen will, wann eine Sendung besonders
-          viel Zuspruch erhalten hat oder wann viele Unterstützer ihre Meinung
-          geändert haben.
+          Das ist interessant wenn man den Zeitpunkt herausfinden will, wann
+          eine Sendung besonders viel Zuspruch erhalten hat oder wann viele
+          Unterstützer ihre Meinung geändert haben.
   graph:
     header: Beziehungen zwischen Sendungen
     sub-header: >
