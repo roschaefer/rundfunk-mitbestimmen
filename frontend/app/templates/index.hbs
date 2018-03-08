@@ -188,11 +188,29 @@
           {{t 'index.summarized-statistics.header'}}
         </h3>
       </div>
+      {{#if model.statisticTaskInstance.isRunning}}
+      <div class="row">
+        <div class="column">
+          <div class="ui very padded basic segment">
+            <div class="ui active inverted dimmer">
+              <div class="ui massive text loader">
+                {{t 'loading.message'}}
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      {{else if model.statisticTaskInstance.error}}
+      An error occurred: {{model.statisticTaskInstance.error}}
+      {{else if model.statisticTaskInstance.value}}
       <div class="row">
         <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics registered-users">
-              {{model.registeredUsers}}
+              {{model.statisticTaskInstance.value.registeredUsers}}
             </div>
             <div class="label">
               {{t 'index.statistics.registered-users' }}
@@ -202,7 +220,7 @@
         <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics broadcasts">
-              {{model.broadcasts}}
+              {{model.statisticTaskInstance.value.broadcasts}}
             </div>
             <div class="label">
               {{t 'index.statistics.broadcasts' }}
@@ -212,7 +230,7 @@
         <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics impressions">
-              {{model.impressions}}
+              {{model.statisticTaskInstance.value.impressions}}
             </div>
             <div class="label">
               {{t 'index.statistics.impressions' }}
@@ -222,7 +240,7 @@
         <div class="four wide computer sixteen wide tablet and mobile column">
           <div class="ui statistic">
             <div class="value statistics money-assigned">
-              {{format-number model.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
+              {{format-number model.statisticTaskInstance.value.assignedMoney maximumFractionDigits=0 minimumFractionDigits=0 style='currency' currency='EUR' }}
             </div>
             <div class="label">
               {{t 'index.statistics.money-assigned' }}
@@ -230,6 +248,7 @@
           </div>
         </div>
       </div>
+      {{/if}}
       <div class="centered row">
         {{#link-to 'statistics' class='ui primary button'}}
         <i class="zoom icon"></i>
