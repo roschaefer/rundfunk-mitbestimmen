@@ -189,22 +189,9 @@
         </h3>
       </div>
       {{#if model.statisticTaskInstance.isRunning}}
-      <div class="row">
-        <div class="column">
-          <div class="ui very padded basic segment">
-            <div class="ui active inverted dimmer">
-              <div class="ui massive text loader">
-                {{t 'loading.message'}}
-              </div>
-            </div>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-      </div>
+      {{loading-spinner}}
       {{else if model.statisticTaskInstance.error}}
-      An error occurred: {{model.statisticTaskInstance.error}}
+      {{error-frown}}
       {{else if model.statisticTaskInstance.value}}
       <div class="row">
         <div class="four wide computer sixteen wide tablet and mobile column">
