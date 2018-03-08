@@ -1,16 +1,12 @@
 <div class="ui middle aligned stackable grid container">
   <div class="row">
     <div class="column">
-      <div class="ui very padded basic segment">
-        <div class="ui active inverted dimmer">
-          <div class="ui massive text loader">
-            {{t 'loading.message'}}
-          </div>
-        </div>
-        <p></p>
-        <p></p>
-        <p></p>
-      </div>
+      {{#loading-spinner}}
+      {{outline}}
+      {{/loading-spinner}}
+      <p></p>
+      <p></p>
+      <p></p>
     </div>
   </div>
 </div>
