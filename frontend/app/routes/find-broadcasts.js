@@ -70,9 +70,9 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
   actions: {
     loading(transition) {
       let controller = this.controllerFor('find-broadcasts');
-      controller.set('loading', 'loading');
+      controller.set('loading', true);
       transition.promise.finally(function() {
-        controller.set('loading', '');
+        controller.set('loading', false);
       });
     },
     setQuery(filterParams){
