@@ -48,7 +48,7 @@ export default Controller.extend({
     },
     loginAction(){
       this.send('login');
-    },
+    }
   }
 });
 
