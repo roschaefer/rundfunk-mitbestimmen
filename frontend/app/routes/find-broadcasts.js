@@ -52,12 +52,6 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
     }));
     controller.set('media', this.store.findAll('medium'));
     controller.set('stations', this.store.findAll('station'));
-    controller.set('filterParams', {
-      query: controller.get('q'),
-      medium: controller.get('medium'),
-      station: controller.get('station'),
-      sort: controller.get('sort')
-    });
   },
   resetController(controller, isExiting) {
     if (isExiting) {

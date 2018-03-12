@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { alias, filterBy } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   session: service(),
@@ -10,6 +11,14 @@ export default Controller.extend({
   q: null,
   medium: null,
   station: null,
+  filterParams: computed('q', 'medium', 'station', 'sort', function() {
+    return {
+      q: this.get('q'),
+      sort: this.get('sort'),
+      medium: this.get('medium'),
+      station: this.get('station')
+    }
+  }),
 
   page: 1,
   perPage: 6,
@@ -40,7 +49,6 @@ export default Controller.extend({
     },
     sortBroadcasts(direction) {
       this.set('sort', direction);
-      this.get('filterParams').sort = direction;
     },
     clearBroadcast(){
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));

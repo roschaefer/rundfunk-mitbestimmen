@@ -4,7 +4,7 @@
       <div class="two fields">
         <div class="field">
           <div class="ui action fluid input">
-            {{input id="search" value=filterParams.query class="prompt" type="text" placeholder=(t 'broadcast-search.query.placeholder') }}
+            {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t 'broadcast-search.query.placeholder') }}
             <button type="submit" id='submit-search' class="ui primary icon button {{if loading 'loading'}}">
               <i class="search icon"></i>
             </button>
