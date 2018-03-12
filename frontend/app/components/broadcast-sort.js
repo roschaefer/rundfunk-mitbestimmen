@@ -5,7 +5,7 @@ export default Component.extend({
   actions: {
     submitSort(direction) {
       this.set('sort', direction);
-      this.get('sortBroadcasts')(direction);
+      this.get('sortAction')(direction);
     }
   }
 });

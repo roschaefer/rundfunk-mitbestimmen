@@ -27,18 +27,18 @@ describe('Integration | Component | broadcast sort', function() {
   });
 
   describe('click on sort buttons', function() {
-    it('calls the sortBroadcasts action', function(done) {
-      this.set('sortBroadcasts', (order) => {
+    it('calls the sortAction action', function(done) {
+      this.set('sortAction', (order) => {
         expect(order).to.eq('desc');
         done();
       });
-      this.render(hbs`{{broadcast-sort sort='random' sortBroadcasts=sortBroadcasts}}`);
+      this.render(hbs`{{broadcast-sort sort='random' sortAction=sortAction}}`);
       this.$('#alphabetical_order_descending').click();
     });
 
     it('switches the active button', function() {
-      this.set('sortBroadcasts', () => {return null});
-      this.render(hbs`{{broadcast-sort sort='random' sortBroadcasts=sortBroadcasts}}`);
+      this.set('sortAction', () => {return null});
+      this.render(hbs`{{broadcast-sort sort='random' sortAction=sortAction}}`);
       this.$('#alphabetical_order_descending').click();
       expect(this.$('#alphabetical_order_descending').hasClass('active')).to.be.true;
       expect(this.$('#random_order').hasClass('active')).to.be.false;
