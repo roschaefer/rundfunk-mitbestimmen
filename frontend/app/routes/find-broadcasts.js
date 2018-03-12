@@ -69,11 +69,5 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
         controller.set('loading', false);
       });
     },
-    setQuery(filterParams){
-      this.get('controller').set('sort', filterParams.sort);
-      this.get('controller').set( 'q', filterParams.query);
-      this.get('controller').set( 'medium', filterParams.medium);
-      this.get('controller').set('station', filterParams.station);
-    },
   }
 });

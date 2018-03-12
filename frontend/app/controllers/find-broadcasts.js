@@ -27,8 +27,11 @@ export default Controller.extend({
   positiveImpressionsWithoutAmount: filterBy('model.impressions','needsAmount', true),
 
   actions: {
-    searchAction(query){
-      this.send('setQuery', query);
+    searchAction(filterParams){
+      this.set('sort', filterParams.sort);
+      this.set('q', filterParams.q);
+      this.set('medium', filterParams.medium);
+      this.set('station', filterParams.station);
       this.set('page', 1);
     },
     browse(step){
@@ -52,7 +55,7 @@ export default Controller.extend({
     },
     clearBroadcast(){
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));
-    }
+    },
   }
 });
 
