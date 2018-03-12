@@ -40,6 +40,9 @@ export default Controller.extend({
     respond(broadcast){
       broadcast.get('impressions.firstObject').save();
     },
+    sortBroadcasts(direction) {
+      this.set('sort', direction);
+    },
     clearBroadcast(){
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));
     },
