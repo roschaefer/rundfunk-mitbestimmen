@@ -22,13 +22,18 @@ export default Component.extend({
       searchAction(this.get('filterParams'));
     },
     filterMedium(mediumId){
-      this.get('filterParams').medium = mediumId;
-      this.get('filterParams').station = null; //clear station
+      this.set('filterParams.medium', mediumId);
+      this.set('filterParams.station', null); //clear station
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
     },
     filterStation(stationId){
-      this.get('filterParams').station = stationId;
+      this.set('filterParams.station', stationId);
+      let searchAction = this.get('searchAction');
+      searchAction(this.get('filterParams'));
+    },
+    sortAction(direction){
+      this.set('filterParams.sort', direction);
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
     }

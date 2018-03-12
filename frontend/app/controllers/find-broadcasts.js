@@ -50,9 +50,6 @@ export default Controller.extend({
       };
       this.send('login', customDict, 'find-broadcasts');
     },
-    sortBroadcasts(direction) {
-      this.set('sort', direction);
-    },
     clearBroadcast(){
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));
     },
