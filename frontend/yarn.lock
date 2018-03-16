@@ -8196,9 +8196,9 @@ semantic-ui-css@^2.2.14:
   dependencies:
     jquery x.*
 
-semantic-ui-ember@^3.0.0-beta4:
-  version "3.0.0-beta4"
-  resolved "https://registry.yarnpkg.com/semantic-ui-ember/-/semantic-ui-ember-3.0.0-beta4.tgz#6a534a77a6a755d30f66f6c54c1296c79c84f456"
+semantic-ui-ember@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/semantic-ui-ember/-/semantic-ui-ember-3.0.0.tgz#1c0cd1da83a0630dcce47e14e0ab25fcd9e454d9"
   dependencies:
     ember-cli-babel "^6.11.0"
     ember-promise-utils "^0.1.1"
