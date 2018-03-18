@@ -19,6 +19,11 @@ export default Controller.extend({
       station: this.get('station')
     }
   }),
+  newBroadcast: computed('q', function () {
+    return this.store.createRecord('broadcast', {
+      title: this.get('q')
+    });
+  }),
 
   page: 1,
   perPage: 6,
@@ -40,6 +45,9 @@ export default Controller.extend({
     respond(broadcast){
       broadcast.get('impressions.firstObject').save();
     },
+    clearBroadcast(){
+      this.set('q', null);
+    },
     loginAction(){
       const customDict = {
         networkOrEmail: {
@@ -49,9 +57,6 @@ export default Controller.extend({
         },
       };
       this.send('login', customDict, 'find-broadcasts');
-    },
-    clearBroadcast(){
-      this.set('newBroadcast', this.store.createRecord('broadcast', {}));
     },
   }
 });
