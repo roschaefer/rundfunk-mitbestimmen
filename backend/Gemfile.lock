@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/globalize/globalize
-  revision: 477f2f2f900e88f9180bfbb3c4da24fa96746b08
+  revision: 31703e58e637a333aa721d7a8fe9332b43405647
   specs:
     globalize (5.1.0)
       activemodel (>= 4.2, < 5.2)
@@ -239,7 +239,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
-    request_store (1.4.0)
+    request_store (1.4.1)
       rack (>= 1.4)
     rgeo (1.0.0)
     rgeo-geojson (2.0.0)
