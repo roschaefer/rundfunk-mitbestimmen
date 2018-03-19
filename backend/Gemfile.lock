@@ -105,7 +105,7 @@ GEM
     ffi (1.9.23-java)
     ffi (1.9.23-x64-mingw32)
     ffi (1.9.23-x86-mingw32)
-    geocoder (1.4.6)
+    geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     globalize-accessors (0.2.1)
