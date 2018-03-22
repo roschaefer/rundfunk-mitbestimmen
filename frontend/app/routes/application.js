@@ -28,39 +28,27 @@ export default Route.extend(ApplicationRouteMixin , {
     // return this.get('intl').setLocale(['en-ca', 'en-us']);
   },
   actions: {
-    login (givenDict, afterLoginRoute) {
+    login (afterLoginRoute) {
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
 
-      const dict = Object.assign({
-          emailSent: {
-            sentLabel: this.get('intl').t('auth0-lock.emailSent.sentLabel'),
-            resendLabel: this.get('intl').t('auth0-lock.emailSent.resendLabel'),
-            success: this.get('intl').t('auth0-lock.emailSent.success'),
-          },
-          networkOrEmail: {
-            footerText: "",
-            headerText: "",
-            smallSocialButtonsHeader: this.get('intl').t('auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
-            separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-          },
-        title: this.get('intl').t('auth0-lock.title'),
-      }, givenDict);
-
-      // Check out the docs for all the options:
-      // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
-        connections: ["facebook", "google-oauth2", "twitter"],
-        icon:  '/assets/images/logo.png',
-        primaryColor: '#2185D0',
-        dict: dict,
-        authParams: {
-          scope: 'openid email',
+        allowedConnections: ['email', 'facebook', 'google-oauth2', 'twitter'],
+        passwordlessMethod: 'link',
+        theme:{
+          logo:  '/assets/images/logo.png',
+          primaryColor: '#2185D0',
         },
-        socialBigButtons: false,
-        responseType: 'token',
-        callbackURL: window.location.origin + '/authentication/callback'
+        socialButtonStyle: 'small',
+        language: this.get('intl.locale.firstObject'),
+        auth: {
+          params: {
+            scope: 'openid email',
+          },
+          responseType: 'token',
+          redirectUrl: window.location.origin + '/authentication/callback'
+        }
       };
-      this.get('session').authenticate(ENV.APP.authenticator, 'socialOrMagiclink', lockOptions);
+      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
     },
 
     logout () {

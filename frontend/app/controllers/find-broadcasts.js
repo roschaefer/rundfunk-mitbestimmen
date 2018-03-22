@@ -40,18 +40,11 @@ export default Controller.extend({
     respond(broadcast){
       broadcast.get('impressions.firstObject').save();
     },
-    loginAction(){
-      const customDict = {
-        networkOrEmail: {
-          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
-          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
-          separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-        },
-      };
-      this.send('login', customDict, 'find-broadcasts');
-    },
     clearBroadcast(){
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));
+    },
+    loginAction(){
+      this.send('login');
     },
   }
 });
