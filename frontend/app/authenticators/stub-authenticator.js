@@ -5,18 +5,16 @@ export default Base.extend({
   restore(data) {
     return resolve(data);
   },
-  authenticate(_, options) {
-    return new Promise((resolve) => {
+  authenticate() {
+    return new Promise((res) => {
       const idToken = window.stubbedJwt;
-      const state = options.authParams.state;
       const sessionData =  {
         idToken,
         idTokenPayload: {
           "exp": 42, // the authorizer just wants a number
-        },
-        state
+        }
       };
-      resolve(sessionData);
+      res(sessionData);
     });
   },
 });
