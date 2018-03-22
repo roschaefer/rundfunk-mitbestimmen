@@ -30,6 +30,15 @@ export default Route.extend(ApplicationRouteMixin , {
   actions: {
     login (afterLoginRoute) {
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
+      const dict = {
+        title: this.get('intl').t('auth0-lock.title'),
+        success: {
+          magicLink: this.get('intl').t('auth0-lock.success.magicLink'),
+        },
+        socialLoginInstructions: this.get('intl').t('auth0-lock.socialLoginInstructions'),
+        passwordlessEmailAlternativeInstructions: this.get('intl').t('auth0-lock.passwordlessEmailAlternativeInstructions'),
+        lastLoginInstructions: this.get('intl').t('auth0-lock.lastLoginInstructions'),
+      };
 
       const lockOptions = {
         allowedConnections: ['email', 'facebook', 'google-oauth2', 'twitter'],
@@ -40,6 +49,7 @@ export default Route.extend(ApplicationRouteMixin , {
         },
         socialButtonStyle: 'small',
         language: this.get('intl.locale.firstObject'),
+        languageDictionary: dict,
         auth: {
           params: {
             scope: 'openid email',

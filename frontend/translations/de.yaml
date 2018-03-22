@@ -1,14 +1,11 @@
 auth0-lock:
   title: Passwortlose Anmeldung
-  emailSent:
-    resendLabel: Erneut senden
-    success: Öffne Dein Postfach!
-    sentLabel: Wir haben Dir einen Link per Mail geschickt
-  networkOrEmail:
-    smallSocialButtonsHeader: >
-      Anmelden mit
-    separatorText: >
-      oder gib eine E-Mail Adresse an:
+  success:
+    magicLink: Wir haben Dir einen Login-Link geschickt
+  socialLoginInstructions: via
+  passwordlessEmailAlternativeInstructions: >
+    Oder gib eine E-Mail Adresse ein,<br>um Dich anzumelden oder zu registrieren.
+  lastLoginInstructions: Das letzte Mal warst Du angemeldet als
 authentication:
   loading:
     message: Anmelden...
@@ -322,12 +319,6 @@ find-broadcasts:
       back: Zurück
       response:
         positive: Unterstützen
-  auth0-lock:
-    networkOrEmail:
-      headerText: >
-        <p><strong>Um Deine Daten wiederzufinden<br>
-        und auch später noch ändern zu können</strong></p>
-      smallSocialButtonsHeader: verknüpfe ein Konto
   navigation:
     buttons:
       next: Weiter
