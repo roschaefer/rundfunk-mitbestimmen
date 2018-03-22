@@ -1,14 +1,11 @@
 auth0-lock:
   title: Passwordless Login
-  emailSent:
-    resendLabel: Resend
-    success: Check your mailbox!
-    sentLabel: We sent you a link to sign in
-  networkOrEmail:
-    smallSocialButtonsHeader: >
-      Log in with
-    separatorText: >
-      or enter an email address:
+  success:
+    magicLink: We sent you a link to sign in
+  socialLoginInstructions: via
+  passwordlessEmailAlternativeInstructions: >
+    Otherwise, enter your email address<br>to sign in or to create an account.
+  lastLoginInstructions: Last time you logged in with
 authentication:
   loading:
     message: Logging in...
@@ -305,12 +302,6 @@ find-broadcasts:
       back: Back
       response:
         positive: Support
-  auth0-lock:
-    networkOrEmail:
-      headerText: >
-        <p><strong>To keep access to your data<br>and be able to change it
-        </strong></p>
-      smallSocialButtonsHeader: connect an account
   navigation:
     buttons:
       next: Next
