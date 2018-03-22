@@ -5,10 +5,10 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
-        'font-src': "'self' data: https://cdn.auth0.com fonts.gstatic.com",
+        'font-src': "'self' data: https://*.auth0.com fonts.gstatic.com",
         'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
         'script-src': "'self' 'unsafe-eval' 'unsafe-inline' https://cdn.auth0.com cdn.ravenjs.com",
-        'img-src': "data: sentry.io",
+        'img-src': "*.gravatar.com *.wp.com sentry.io data:",
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com sentry.io"
     },
     'ember-simple-auth': {
