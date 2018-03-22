@@ -243,6 +243,40 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
+-- Name: artists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE artists (
+    id bigint NOT NULL,
+    name character varying,
+    alternative_names character varying,
+    label character varying,
+    sublabel character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: artists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE artists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: artists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE artists_id_seq OWNED BY artists.id;
+
+
+--
 -- Name: broadcasts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -287,7 +321,7 @@ ALTER SEQUENCE broadcasts_id_seq OWNED BY broadcasts.id;
 --
 
 CREATE TABLE format_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     format_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -403,7 +437,7 @@ ALTER SEQUENCE media_id_seq OWNED BY media.id;
 --
 
 CREATE TABLE medium_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     medium_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -503,6 +537,40 @@ CREATE SEQUENCE similarities_id_seq
 --
 
 ALTER SEQUENCE similarities_id_seq OWNED BY similarities.id;
+
+
+--
+-- Name: songs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE songs (
+    id bigint NOT NULL,
+    title character varying,
+    artist_id bigint,
+    aired timestamp without time zone,
+    station character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: songs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE songs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: songs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE songs_id_seq OWNED BY songs.id;
 
 
 --
@@ -661,7 +729,7 @@ CREATE VIEW statistics AS
 --
 
 CREATE TABLE topic_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     topic_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -727,8 +795,8 @@ CREATE TABLE users (
     id integer NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     email character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     role integer DEFAULT 0,
     auth0_uid character varying,
     has_bad_email boolean DEFAULT false,
@@ -842,6 +910,13 @@ ALTER TABLE ONLY impressions ALTER COLUMN hid SET DEFAULT nextval('impressions_h
 SET search_path = public, pg_catalog;
 
 --
+-- Name: artists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY artists ALTER COLUMN id SET DEFAULT nextval('artists_id_seq'::regclass);
+
+
+--
 -- Name: broadcasts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -895,6 +970,13 @@ ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq
 --
 
 ALTER TABLE ONLY similarities ALTER COLUMN id SET DEFAULT nextval('similarities_id_seq'::regclass);
+
+
+--
+-- Name: songs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY songs ALTER COLUMN id SET DEFAULT nextval('songs_id_seq'::regclass);
 
 
 --
@@ -970,6 +1052,14 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
+-- Name: artists artists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY artists
+    ADD CONSTRAINT artists_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: broadcasts broadcasts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1031,6 +1121,14 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY similarities
     ADD CONSTRAINT similarities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: songs songs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY songs
+    ADD CONSTRAINT songs_pkey PRIMARY KEY (id);
 
 
 --
@@ -1246,6 +1344,13 @@ CREATE INDEX index_schedules_on_station_id ON schedules USING btree (station_id)
 --
 
 CREATE UNIQUE INDEX index_similarities_on_broadcast1_id_and_broadcast2_id ON similarities USING btree (broadcast1_id, broadcast2_id);
+
+
+--
+-- Name: index_songs_on_artist_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_songs_on_artist_id ON songs USING btree (artist_id);
 
 
 --
@@ -1499,6 +1604,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171121223456'),
 ('20171123003201'),
 ('20180215143737'),
-('20180223201113');
+('20180223201113'),
+('20180319001443'),
+('20180319001719');
 
 
