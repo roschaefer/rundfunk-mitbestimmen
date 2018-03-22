@@ -50,7 +50,7 @@ export default Route.extend(ApplicationRouteMixin , {
       // https://auth0.com/docs/libraries/lock/customization
       const lockOptions = {
         connections: ["facebook", "google-oauth2", "twitter"],
-        icon:  'https://rundfunk-mitbestimmen.de/assets/images/logo.png',
+        icon:  '/assets/images/logo.png',
         primaryColor: '#2185D0',
         dict: dict,
         authParams: {
