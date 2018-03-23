@@ -4,9 +4,14 @@ import { setupComponentTest } from 'ember-mocha';
 import chroma from 'chroma';
 import hbs from 'htmlbars-inline-precompile';
 
+let intl;
 describe('Integration | Component | visualize/bubble chart legend', function() {
   setupComponentTest('visualize/bubble-chart-legend', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
 
   it('renders', function() {

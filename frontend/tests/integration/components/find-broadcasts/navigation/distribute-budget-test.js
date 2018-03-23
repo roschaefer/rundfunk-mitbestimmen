@@ -3,9 +3,14 @@ import { describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 
+let intl;
 describe('Integration | Component | find broadcasts/navigation/distribute budget', function() {
   setupComponentTest('find-broadcasts/navigation/distribute-budget', {
-    integration: true
+    integration: true,
+    setup() {
+      intl = this.container.lookup('service:intl');
+      intl.setLocale('en');
+    }
   });
 
   it('renders', function() {
