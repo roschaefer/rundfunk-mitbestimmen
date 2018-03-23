@@ -26,7 +26,7 @@ RSpec.describe 'Broadcasts', type: :request do
 
       describe 'no sort param' do
         let(:params) { { sort: nil } }
-        it 'it has a default order to allow repeatable pagination' do
+        it 'default order is ascending by title' do
           titles = subject['data'].map { |item| item['attributes']['title'] }
           expect(titles).to eq %w[1234 aaa BBB cCc XXY]
         end

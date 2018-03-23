@@ -5,9 +5,10 @@ class BroadcastsController < ApplicationController
 
   # GET /broadcasts
   def index
+    sort = params[:sort] || 'asc'
     @broadcasts = Broadcast.search(query: params[:q],
                                    filter_params: params[:filter],
-                                   sort: params[:sort], seed: params[:seed],
+                                   sort: sort, seed: params[:seed],
                                    user: current_user)
 
     page = (params[:page] || 1).to_i
