@@ -22,7 +22,7 @@ export default Controller.extend({
 
   page: 1,
   perPage: 6,
-  totalPages: alias("content.broadcasts.totalPages"),
+  totalPages: alias("model.broadcasts.totalPages"),
 
   positiveImpressionsWithoutAmount: filterBy('model.impressions','needsAmount', true),
 

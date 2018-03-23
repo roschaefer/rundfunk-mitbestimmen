@@ -8,7 +8,7 @@ export default Controller.extend({
   column: 'total',
   direction: 'desc',
 
-  totalPages: alias("content.totalPages"),
+  totalPages: alias("model.totalPages"),
   page: 1,
   perPage: 10,
   actions: {

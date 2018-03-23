@@ -6,7 +6,7 @@ export default Controller.extend({
   session: service('session'),
   queryParams: ["page", "perPage"],
 
-  totalPagesBinding: alias("content.totalPages"),
+  totalPagesBinding: alias("model.totalPages"),
 
   page: 1,
   perPage: 10,
