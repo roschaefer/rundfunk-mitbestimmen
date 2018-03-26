@@ -3742,9 +3742,9 @@ ember-promise-utils@^0.1.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-resolver@^4.5.4:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-4.5.4.tgz#39c06599b6859d6b476fb24ab31d850f2d1a74af"
+ember-resolver@^4.5.5:
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-4.5.5.tgz#6fef0597a42724e4960f37588df8a208ffd3365a"
   dependencies:
     "@glimmer/resolver" "^0.4.1"
     babel-plugin-debug-macros "^0.1.10"
