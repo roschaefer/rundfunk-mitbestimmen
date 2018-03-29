@@ -50,7 +50,6 @@ export default Route.extend(ApplicationRouteMixin , {
         socialButtonStyle: 'small',
         language: this.get('intl.locale.firstObject'),
         languageDictionary: dict,
-        rememberLastLogin: false,
         auth: {
           params: {
             scope: 'openid email',
