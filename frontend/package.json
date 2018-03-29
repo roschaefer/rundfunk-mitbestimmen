@@ -63,7 +63,7 @@
     "ember-resolver": "^4.5.5",
     "ember-scroll-to": "0.6.4",
     "ember-simple-auth": "^1.5.1",
-    "ember-simple-auth-auth0": "git+https://github.com/auth0-community/ember-simple-auth-auth0.git",
+    "ember-simple-auth-auth0": "^4.0.0-beta",
     "ember-source": "^2.18.2",
     "ember-truth-helpers": "2.0.0",
     "ember-welcome-page": "^3.1.1",
