@@ -12,7 +12,7 @@ export default Component.extend({
     let height = element.getBoundingClientRect().height;
 
 
-    let color = d3.scaleOrdinal(d3.schemeCategory20);
+    let color = d3.scaleOrdinal(d3.schemeCategory10);
 
     let simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id(function(d) { return d.id; }))
