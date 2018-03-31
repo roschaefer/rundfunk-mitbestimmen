@@ -317,6 +317,33 @@ ALTER SEQUENCE broadcasts_id_seq OWNED BY broadcasts.id;
 
 
 --
+-- Name: songs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE songs (
+    id bigint NOT NULL,
+    title character varying,
+    artist_id bigint,
+    aired timestamp without time zone,
+    station character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: calendars; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW calendars AS
+ SELECT count(*) AS aired_count,
+    (songs.aired)::date AS date,
+    songs.artist_id
+   FROM songs
+  GROUP BY ((songs.aired)::date), songs.artist_id;
+
+
+--
 -- Name: format_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -537,21 +564,6 @@ CREATE SEQUENCE similarities_id_seq
 --
 
 ALTER SEQUENCE similarities_id_seq OWNED BY similarities.id;
-
-
---
--- Name: songs; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE songs (
-    id bigint NOT NULL,
-    title character varying,
-    artist_id bigint,
-    aired timestamp without time zone,
-    station character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
 
 
 --
@@ -1606,6 +1618,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180215143737'),
 ('20180223201113'),
 ('20180319001443'),
-('20180319001719');
+('20180319001719'),
+('20180331174344');
 
 
