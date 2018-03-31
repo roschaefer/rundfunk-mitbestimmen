@@ -32,7 +32,7 @@ export default Component.extend({
       format = d3.timeFormat("%Y-%m-%d");
 
     let color = d3.scaleSequential()
-      .domain([0, 20])
+      .domain([100, 500])
       .interpolator(d3.interpolateReds);
 
     let svg = d3.select("#calendar-chart").selectAll("svg")
@@ -91,7 +91,7 @@ export default Component.extend({
 
     let data = d3.nest()
       .key(function(d) { return d.date; })
-      .rollup(function(d) { return d[0].aired_count; })
+      .rollup(function(d) { return d[0].distinct_artists; })
       .map(this.get('calendarItems'));
 
     let dataFunction = (d) => { return data.has(d) ? data.get(d) : 0; }
