@@ -1,6 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[geojson similarities]
+  skip_authorization_check only: %i[geojson similarities calendar]
 
   def similarities
     broadcasts = []
@@ -26,5 +26,10 @@ class ChartDataController < ApplicationController
       RGeo::GeoJSON::Feature.new(feature.geometry, feature.feature_id, properties)
     end
     render json: RGeo::GeoJSON.encode(RGeo::GeoJSON::FeatureCollection.new(feature_array))
+  end
+
+  def calendar
+    calendar_items = Calendar.where(artist_id: params[:artist_id])
+    render json: calendar_items.map{|ci| ci.attributes.slice('aired_count', 'date')}
   end
 end

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get 'chart_data/geo/geojson/', to: 'chart_data#geojson'
   get 'chart_data/similarities', to: 'chart_data#similarities'
+  get 'chart_data/calendar',     to: 'chart_data#calendar'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   if Rails.env.production?
