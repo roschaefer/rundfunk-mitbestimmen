@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { isBlank } from '@ember/utils';
 import d3 from 'd3';
 
 export default Component.extend({
@@ -9,8 +10,13 @@ export default Component.extend({
     return t0.toString().split(" ")[3];
   },
   didRender(){
-    let width = 960,
-      height = 750,
+    this._super(...arguments);
+    // avoid enter() is not a function error
+    if (isBlank(this.get('calendarItems'))) return;
+
+    let element_rect = d3.select('#calendar-chart').node().getBoundingClientRect();
+    let width = element_rect.width,
+      height = 720000/width,
       cellSize = 25; // cell size
 
     let no_months_in_a_row = Math.floor(width / (cellSize * 7 + 50));
@@ -29,7 +35,7 @@ export default Component.extend({
       .domain([0, 20])
       .interpolator(d3.interpolateReds);
 
-    let svg = d3.select("#chart").selectAll("svg")
+    let svg = d3.select("#calendar-chart").selectAll("svg")
       .data(d3.range(2013, 2019))
       .enter().append("svg")
       .attr("width", width)
