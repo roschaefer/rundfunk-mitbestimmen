@@ -1,3 +1,3 @@
-SELECT count(*) as aired_count, aired::date as date, artist_id
+SELECT count(*) as aired_count, aired::date as date, station, artist_id
 FROM songs
-Group by aired::date, artist_id
+Group by aired::date, station, artist_id

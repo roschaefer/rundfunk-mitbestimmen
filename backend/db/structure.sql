@@ -338,9 +338,10 @@ CREATE TABLE songs (
 CREATE VIEW calendars AS
  SELECT count(*) AS aired_count,
     (songs.aired)::date AS date,
+    songs.station,
     songs.artist_id
    FROM songs
-  GROUP BY ((songs.aired)::date), songs.artist_id;
+  GROUP BY ((songs.aired)::date), songs.station, songs.artist_id;
 
 
 --

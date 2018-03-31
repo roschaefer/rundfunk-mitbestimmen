@@ -29,7 +29,7 @@ class ChartDataController < ApplicationController
   end
 
   def calendar
-    calendar_items = Calendar.where(artist_id: params[:artist_id])
+    calendar_items = Calendar.where(artist_id: 4505).where(station: 'hr3')
     render json: calendar_items.map{|ci| ci.attributes.slice('aired_count', 'date')}
   end
 end
