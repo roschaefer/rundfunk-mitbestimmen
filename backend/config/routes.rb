@@ -29,8 +29,6 @@ Rails.application.routes.draw do
   resources :users, only: :update
   resource  :users, only: :show
 
-  get 'chart_data/diffs/:medium_id', to: 'chart_data#diff'
-  get 'chart_data/geo/locations/', to: 'chart_data#location'
   get 'chart_data/geo/geojson/', to: 'chart_data#geojson'
   get 'chart_data/similarities', to: 'chart_data#similarities'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
