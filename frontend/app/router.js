@@ -47,6 +47,7 @@ Router.map(function() {
       this.route('progress', { path: '/progress/:broadcast_id' });
     });
     this.route('demography');
+    this.route('calendar');
   });
   this.route('about-us');
   this.route('broadcast', { path: '/broadcast/:broadcast_id' }, function() {
