@@ -48,6 +48,7 @@ Router.map(function() {
     });
     this.route('demography');
     this.route('calendar');
+    this.route('diversity');
   });
   this.route('about-us');
   this.route('broadcast', { path: '/broadcast/:broadcast_id' }, function() {

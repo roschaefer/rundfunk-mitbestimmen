@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="column">
+    <h1 class="ui large centered header">
+      Diversity
+    </h1>
+    <div class='chart-area'>
+      {{dynamic-high-charts chartOptions=chartOptions content=chartData}}
+    </div>
+  </div>
+</div>
+
+{{outlet}}
+
+<div class="row">
+  <div class="column">
+    {{#link-to 'visualize.diff.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
+  </div>
+</div>
