@@ -1,6 +1,6 @@
 require 'rgeo/geo_json'
 class ChartDataController < ApplicationController
-  skip_authorization_check only: %i[geojson similarities calendar]
+  skip_authorization_check only: %i[geojson similarities calendar diversity]
 
   def similarities
     broadcasts = []
@@ -31,5 +31,10 @@ class ChartDataController < ApplicationController
   def calendar
     calendar_items = Calendar.where(station: 'hr1')
     render json: calendar_items.map{|ci| ci.attributes.slice('distinct_artists', 'date')}
+  end
+
+  def diversity
+    diversities = Diversity.all.group_by {|d| d.station}
+    render json: diversities
   end
 end

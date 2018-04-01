@@ -336,11 +336,26 @@ CREATE TABLE songs (
 --
 
 CREATE VIEW calendars AS
- SELECT count(DISTINCT songs.artist_id) AS distinct_artists,
+ SELECT count(*) AS aired_count,
     (songs.aired)::date AS date,
-    songs.station
+    songs.station,
+    songs.artist_id
    FROM songs
-  GROUP BY ((songs.aired)::date), songs.station;
+  GROUP BY ((songs.aired)::date), songs.station, songs.artist_id;
+
+
+--
+-- Name: diversities; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW diversities AS
+ SELECT count(*) AS airplays,
+    songs.station,
+    songs.artist_id
+   FROM songs
+  WHERE ((songs.aired >= '2017-01-01 00:00:00'::timestamp without time zone) AND (songs.aired < '2018-01-01 00:00:00'::timestamp without time zone))
+  GROUP BY songs.station, songs.artist_id
+  ORDER BY (count(*)) DESC;
 
 
 --
@@ -1619,6 +1634,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180223201113'),
 ('20180319001443'),
 ('20180319001719'),
-('20180331174344');
+('20180331174344'),
+('20180401172749');
 
 
