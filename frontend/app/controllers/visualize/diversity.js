@@ -25,7 +25,7 @@ export default Controller.extend({
       let series = this.get('model')[key];
       return {
         name:  key,
-        data: series.map((d) => d['airplays'])
+        data: series
       };
     });
   })

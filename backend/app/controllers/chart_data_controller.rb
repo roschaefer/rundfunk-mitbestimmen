@@ -35,6 +35,11 @@ class ChartDataController < ApplicationController
 
   def diversity
     diversities = Diversity.all.group_by {|d| d.station}
+    diversities = diversities.map do |station, entries|
+      sum = entries.map(&:airplays).sum.to_f
+      item = 0
+      [station, entries.take(1800).map {|entry| item += entry.airplays / sum }]
+    end.to_h
     render json: diversities
   end
 end
