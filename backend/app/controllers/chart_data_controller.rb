@@ -29,7 +29,7 @@ class ChartDataController < ApplicationController
   end
 
   def calendar
-    calendar_items = Calendar.where(station: 'hr1')
+    calendar_items = Calendar.where(station: 'yfm')
     render json: calendar_items.map{|ci| ci.attributes.slice('distinct_artists', 'date')}
   end
 
@@ -38,7 +38,7 @@ class ChartDataController < ApplicationController
     diversities = diversities.map do |station, entries|
       sum = entries.map(&:airplays).sum.to_f
       item = 0
-      [station, entries.take(1800).map {|entry| item += entry.airplays / sum }]
+      [station, entries.take(1800).map {|entry| item += (entry.airplays / sum) * 100 }]
     end.to_h
     render json: diversities
   end

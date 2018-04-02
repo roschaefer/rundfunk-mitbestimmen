@@ -36,7 +36,7 @@ export default Component.extend({
       .interpolator(d3.interpolateReds);
 
     let svg = d3.select("#calendar-chart").selectAll("svg")
-      .data(d3.range(2013, 2019))
+      .data(d3.range(2016, 2018))
       .enter().append("svg")
       .attr("width", width)
       .attr("height", height)

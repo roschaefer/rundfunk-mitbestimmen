@@ -9,10 +9,25 @@ export default Controller.extend({
     title: {
       text: ''
     },
-    yAxis: {
+    xAxis: {
       title: {
-        text: 'yAxis',
+        text: 'Anzahl Künstler'
       }
+    },
+    yAxis: {
+      min: 0,
+      max: 100,
+      title: {
+        text: 'Anteil Airplays',
+      },
+      labels: {
+        formatter: function() {
+          return this.value+"%";
+        }
+      }
+    },
+    tooltip: {
+      pointFormat: '<b>{point.y:.1f}% aller Airplays</b>'
     },
     plotOptions: {
       series: {
