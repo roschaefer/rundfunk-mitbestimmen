@@ -26,17 +26,35 @@ services:
       - ./backend/app:/backend/app
       - ./backend/config:/backend/config
       - ./backend/config.ru:/backend/config.ru
-      - ./backend/db:/backend/db
+      - ./backend/db/migrate:/backend/db/migrate
+      - ./backend/db/views:/backend/db/views
+      - ./backend/db/schema.rb:/backend/db/schema.rb
+      - ./backend/db/seeds.rb:/backend/db/seeds.rb
       - ./backend/lib:/backend/lib
       - ./backend/public:/backend/public
       - ./backend/spec:/backend/spec
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
+      - REDIS_URL=redis://redis:6379
     links:
       - db
+      - redis
     command: bin/rails s -b 0.0.0.0
+  sidekiq:
+    build:
+      context: ./backend
+    links:
+      - redis
+      - db
+    command: bundle exec sidekiq
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USERNAME=postgres
+      - REDIS_URL=redis://redis:6379
   db:
     image: postgres:9.6
     environment:
       - POSTGRES_DB=rundfunk-backend-development
+  redis:
+    image: redis:3.2.0

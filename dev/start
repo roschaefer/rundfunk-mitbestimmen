@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker-compose up --force-recreate backend frontend
+docker-compose up --force-recreate backend frontend sidekiq
