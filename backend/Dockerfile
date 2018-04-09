@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum -y install openssl-devel
+RUN yum -y install openssl-devel readline-devel ncurses ncurses-devel
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
 RUN yum -y install postgresql96-libs postgresql96-devel
