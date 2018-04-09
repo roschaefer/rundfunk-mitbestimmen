@@ -54,7 +54,5 @@ services:
       - REDIS_URL=redis://redis:6379
   db:
     image: postgres:9.6
-    environment:
-      - POSTGRES_DB=rundfunk-backend-development
   redis:
     image: redis:3.2.0
