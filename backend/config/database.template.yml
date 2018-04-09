@@ -5,7 +5,7 @@ default: &default
   username: <%= ENV["POSTGRES_USERNAME"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
   host: localhost
-  
+
 development:
   <<: *default
   database: rundfunk-backend-development

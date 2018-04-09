@@ -31,7 +31,7 @@ services:
       - ./backend/public:/backend/public
       - ./backend/spec:/backend/spec
     environment:
-      - DATABASE_URL=postgresql://db
+      - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
     links:
       - db
