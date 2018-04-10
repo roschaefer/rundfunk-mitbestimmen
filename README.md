@@ -56,30 +56,50 @@ features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
 
-## Installation and Usage with Docker (quick but without software tests)
+## Installation and Usage with Docker
+
+Make sure you have `docker` and `docker-compose` installed:
+```sh
+$ docker --version
+Docker version 18.03.0-ce, build 0520e24302
+$ docker-compose --version
+docker-compose version 1.20.1, build unknown
+```
 
 Clone the repository:
 ```sh
 git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
-If you have `docker-compose` installed, you can install `frontend`,
-`backend` and `db` with a single command:
+You can setup all services with a single command:
 
 ```sh
-dev/reset
+docker-compose up -d
 ```
 
-After the installation, you can start the entire stack with:
+Create the database and run migrations with:
 ```sh
-dev/start
+docker-compose run --rm backend bin/rails db:create db:migrate
 ```
+
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
+```sh
+docker-compose run --rm backend bin/rails db:seed
 ```
-docker-compose run backend bin/rails db:seed
+
+Start frontend test server:
+```sh
+docker-compose run --rm frontend yarn test:server
 ```
+And visit [localhost:7357](http://localhost:7357/) to run the tests.
+
+Run backend tests:
+```sh
+docker-compose run --rm backend bin/rspec
+```
+
 
 
 ## Local Installation (best option for developers)
