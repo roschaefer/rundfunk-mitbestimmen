@@ -4,21 +4,24 @@ services:
     build:
       context: ./frontend
     ports:
-      - '4200:4200'
-      - '49153:49153'
+      - 4200:4200 # server
+      - 49153:49153 # live reload
+      - 7357:7357 # test server
     volumes:
-      - ./frontend/package.json:/frontend/package.json
       - ./frontend/app:/frontend/app
       - ./frontend/config:/frontend/config
       - ./frontend/public:/frontend/public
       - ./frontend/tests:/frontend/tests
       - ./frontend/translations:/frontend/translations
+      - ./frontend/package.json:/frontend/package.json
+      - ./frontend/ember-cli-build.js:/frontend/ember-cli-build.js
+      - ./frontend/testem.js:/frontend/testem.js
     command: npm start
   backend:
     build:
       context: ./backend
     ports:
-      - '3000:3000'
+      - 3000:3000
     volumes:
       - ./backend/Gemfile:/backend/Gemfile
       - ./backend/Gemfile.lock:/backend/Gemfile.lock
