@@ -257,7 +257,6 @@ CREATE TABLE broadcasts (
     creator_id integer,
     mediathek_identification integer,
     medium_id integer,
-    schedule_id bigint,
     image_url character varying,
     broadcast_url character varying
 );
@@ -1172,13 +1171,6 @@ CREATE INDEX index_broadcasts_on_medium_id ON broadcasts USING btree (medium_id)
 
 
 --
--- Name: index_broadcasts_on_schedule_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_broadcasts_on_schedule_id ON broadcasts USING btree (schedule_id);
-
-
---
 -- Name: index_broadcasts_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1367,14 +1359,6 @@ ALTER TABLE ONLY stations
 
 
 --
--- Name: broadcasts fk_rails_9eec935c8b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY broadcasts
-    ADD CONSTRAINT fk_rails_9eec935c8b FOREIGN KEY (schedule_id) REFERENCES schedules(id);
-
-
---
 -- Name: broadcasts fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1499,6 +1483,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171121223456'),
 ('20171123003201'),
 ('20180215143737'),
-('20180223201113');
+('20180223201113'),
+('20180411234936');
 
 
