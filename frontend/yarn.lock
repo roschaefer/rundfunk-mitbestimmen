@@ -5013,9 +5013,9 @@ heimdalljs@^0.3.0:
   dependencies:
     rsvp "~3.2.1"
 
-highcharts@6.0.7:
-  version "6.0.7"
-  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-6.0.7.tgz#fd5c4f24fdc61a04ae155a5b70830a96c8f70919"
+highcharts@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-6.1.0.tgz#115a6ee10ad36a53d9913f1030c6d46da16c7cb5"
 
 hoek@2.x.x:
   version "2.16.3"
