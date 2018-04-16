@@ -1,6 +1,14 @@
 version: '3'
 services:
+  features:
+    image: rundfunk-mitbestimmen-features
+    build:
+      context: ./
+    depends_on:
+      - backend
+      - frontend
   frontend:
+    image: rundfunk-mitbestimmen-frontend
     build:
       context: ./frontend
     ports:
@@ -18,6 +26,7 @@ services:
       - ./frontend/testem.js:/frontend/testem.js
     command: npm start
   backend:
+    image: rundfunk-mitbestimmen-backend
     build:
       context: ./backend
     ports:
@@ -45,6 +54,7 @@ services:
       - redis
     command: bin/rails s -b 0.0.0.0
   sidekiq:
+    image: rundfunk-mitbestimmen-sidekiq
     build:
       context: ./backend
     links:
