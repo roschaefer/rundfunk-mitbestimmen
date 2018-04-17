@@ -7,6 +7,7 @@ WORKDIR /frontend
 ADD package.json /frontend/package.json
 ADD yarn.lock /frontend/yarn.lock
 RUN yarn install
+RUN yarn global add ember-cli
 
 ADD . /frontend
 

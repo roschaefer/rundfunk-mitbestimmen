@@ -1,8 +1,12 @@
 FROM rundfunk-mitbestimmen-backend
 
-WORKDIR /features
+RUN yum install -y libX11
+RUN yum install -y epel-release
+RUN yum install -y chromium
 
-RUN gem install bundler
+WORKDIR /features
+RUN mv /backend /features/backend
+
 ADD Gemfile /features/Gemfile
 ADD Gemfile.lock /features/Gemfile.lock
 RUN bundle install
