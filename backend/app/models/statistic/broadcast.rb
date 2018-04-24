@@ -81,6 +81,18 @@ module Statistic
       )
     end
 
+    def approval_by(group_key)
+      results = {}
+      User.all.distinct.pluck(:state_code).each do |state_code|
+        results[state_code] = approval_by_state(state_code)
+      end
+      results
+    end
+
+    def approval_by_state(state_code)
+      broadcast.impressions.joins(:user).where("users.state_code" => state_code).average(:response)||0
+    end
+
     # this isn't strictly necessary, but it will prevent
     # rails from calling save, which would fail anyway.
     def readonly?
