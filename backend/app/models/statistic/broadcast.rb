@@ -81,16 +81,19 @@ module Statistic
       )
     end
 
-    def approval_by_state_codes
-      user_state_codes = User.all.distinct.pluck(:state_code)
-      results = Hash[user_state_codes.map{|state_code| [state_code, 0]}]
+    def approval_by(user_attribute)
+      return {} unless %i[state_code postal_code city].include?(user_attribute)
+
+      user_attribute_values = User.all.distinct.pluck(user_attribute)
+      results = Hash[user_attribute_values.map { |state_code| [state_code, 0] }]
 
       approvals = broadcast.impressions.joins(:user)
-      approvals = approvals.group('users.state_code')
-      approvals = approvals.select("users.state_code as user_state_code, AVG(impressions.response) as avg_response")
-      approvals.each do |approvals|
-        results[approvals.user_state_code] = approvals.avg_response
+      approvals = approvals.group("users.#{user_attribute}")
+      approvals = approvals.select("users.#{user_attribute} as user_attribute, AVG(impressions.response) as avg_response")
+      approvals.each do |approval|
+        results[approval.user_attribute] = approval.avg_response
       end
+
       results
     end
 
