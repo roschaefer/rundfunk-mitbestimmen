@@ -119,17 +119,18 @@ RSpec.describe Statistic::Broadcast, type: :model do
     end
   end
 
-  describe '#approval_by_state_codes' do
-    subject { Statistic::Broadcast.find(broadcast.id) }
+  describe '#approval_by(user_attribute)' do
+    let(:user_attribute) {}
+    subject { Statistic::Broadcast.find(broadcast.id).approval_by(user_attribute) }
 
     before do
-      user1 = create(:user, state_code: '1')
-      user2 = create(:user, state_code: '1')
-      user3 = create(:user, state_code: '1')
-      user4 = create(:user, state_code: '1')
-      user5 = create(:user, state_code: '2')
-      user6 = create(:user, state_code: '2')
-      user7 = create(:user, state_code: '3')
+      user1 = create(:user, state_code: '1', postal_code: '12345', city: 'Berlin')
+      user2 = create(:user, state_code: '1', postal_code: '12345', city: 'Berlin')
+      user3 = create(:user, state_code: '1', postal_code: '12345', city: 'Berlin')
+      user4 = create(:user, state_code: '1', postal_code: '12345', city: 'Berlin')
+      user5 = create(:user, state_code: '2', postal_code: '12346', city: 'Frankfurt')
+      user6 = create(:user, state_code: '2', postal_code: '12346', city: 'Frankfurt')
+      create(:user, state_code: '3', postal_code: '12347', city: 'Munich')
       create(:impression, broadcast: broadcast, response: :positive, user: user1)
       create(:impression, broadcast: broadcast, response: :positive, user: user2)
       create(:impression, broadcast: broadcast, response: :positive, user: user3)
@@ -138,14 +139,53 @@ RSpec.describe Statistic::Broadcast, type: :model do
       create(:impression, broadcast: broadcast, response: :positive, user: user6)
     end
 
-    it 'returns one entry for each user state_code' do
-      expect(subject.approval_by_state_codes.keys.sort).to eq(%w[1 2 3])
+    it 'returns an empty hash if the user attribute is not state_code, postal_code or city' do
+      expect(subject).to eq({})
     end
 
-    it 'assigns to each entry the state_code specific approval value' do
-      expect(subject.approval_by_state_codes['1']).to eq(3.0 / 4.0)
-      expect(subject.approval_by_state_codes['2']).to eq(1.0 / 2.0)
-      expect(subject.approval_by_state_codes['3']).to eq(0)
+    context 'group by state_code' do
+      let(:expected_keys) { %w[1 2 3] }
+      let(:user_attribute) { :state_code }
+
+      it 'returns one entry for each user state_code' do
+        expect(subject.keys.sort).to eq(expected_keys)
+      end
+
+      it 'assigns to each entry the state_code specific approval value' do
+        expect(subject['1']).to eq(3.0 / 4.0)
+        expect(subject['2']).to eq(1.0 / 2.0)
+        expect(subject['3']).to eq(0)
+      end
+    end
+
+    context 'group by postal_code' do
+      let(:expected_keys) { %w[12345 12346 12347] }
+      let(:user_attribute) { :postal_code }
+
+      it 'returns one entry for each user postal_code' do
+        expect(subject.keys.sort).to eq(expected_keys)
+      end
+
+      it 'assigns to each entry the postal_code specific approval value' do
+        expect(subject['12345']).to eq(3.0 / 4.0)
+        expect(subject['12346']).to eq(1.0 / 2.0)
+        expect(subject['12347']).to eq(0)
+      end
+    end
+
+    context 'group by city' do
+      let(:expected_keys) { %w[Berlin Frankfurt Munich] }
+      let(:user_attribute) { :city }
+
+      it 'returns one entry for each user city' do
+        expect(subject.keys.sort).to eq(expected_keys)
+      end
+
+      it 'assigns to each entry the city specific approval value' do
+        expect(subject['Berlin']).to eq(3.0 / 4.0)
+        expect(subject['Frankfurt']).to eq(1.0 / 2.0)
+        expect(subject['Munich']).to eq(0)
+      end
     end
   end
 
