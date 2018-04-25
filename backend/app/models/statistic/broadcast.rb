@@ -82,10 +82,10 @@ module Statistic
     end
 
     def approval_by_state_codes
-      results = {}
       user_state_codes = User.all.distinct.pluck(:state_code)
+      results = Hash[user_state_codes.map{|state_code| [state_code, 0]}]
+
       approvals = broadcast.impressions.joins(:user)
-      approvals = approvals.where('users.state_code' => user_state_codes)
       approvals = approvals.group('users.state_code')
       approvals = approvals.select("users.state_code as user_state_code, AVG(impressions.response) as avg_response")
       approvals.each do |approvals|

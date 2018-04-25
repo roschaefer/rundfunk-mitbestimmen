@@ -129,6 +129,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
       user4 = create(:user, state_code: '1')
       user5 = create(:user, state_code: '2')
       user6 = create(:user, state_code: '2')
+      user7 = create(:user, state_code: '3')
       create(:impression, broadcast: broadcast, response: :positive, user: user1)
       create(:impression, broadcast: broadcast, response: :positive, user: user2)
       create(:impression, broadcast: broadcast, response: :positive, user: user3)
@@ -138,12 +139,13 @@ RSpec.describe Statistic::Broadcast, type: :model do
     end
 
     it 'returns one entry for each user state_code' do
-      expect(subject.approval_by_state_codes.keys.sort).to eq(%w[1 2])
+      expect(subject.approval_by_state_codes.keys.sort).to eq(%w[1 2 3])
     end
 
     it 'assigns to each entry the state_code specific approval value' do
       expect(subject.approval_by_state_codes['1']).to eq(3.0 / 4.0)
       expect(subject.approval_by_state_codes['2']).to eq(1.0 / 2.0)
+      expect(subject.approval_by_state_codes['3']).to eq(0)
     end
   end
 
