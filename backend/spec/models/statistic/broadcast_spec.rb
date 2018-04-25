@@ -188,5 +188,4 @@ RSpec.describe Statistic::Broadcast, type: :model do
       end
     end
   end
-
 end
