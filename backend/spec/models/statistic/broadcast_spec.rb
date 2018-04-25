@@ -123,9 +123,18 @@ RSpec.describe Statistic::Broadcast, type: :model do
     subject { Statistic::Broadcast.find(broadcast.id) }
 
     before do
-      create(:user, state_code: '1')
-      create(:user, state_code: '2')
-      create(:user, state_code: '2')
+      user1 = create(:user, state_code: '1')
+      user2 = create(:user, state_code: '1')
+      user3 = create(:user, state_code: '1')
+      user4 = create(:user, state_code: '1')
+      user5 = create(:user, state_code: '2')
+      user6 = create(:user, state_code: '2')
+      create(:impression, broadcast: broadcast, response: :positive, user: user1)
+      create(:impression, broadcast: broadcast, response: :positive, user: user2)
+      create(:impression, broadcast: broadcast, response: :positive, user: user3)
+      create(:impression, broadcast: broadcast, response: :neutral, user: user4)
+      create(:impression, broadcast: broadcast, response: :neutral, user: user5)
+      create(:impression, broadcast: broadcast, response: :positive, user: user6)
     end
 
     it 'returns one entry for each user state_code' do
@@ -133,43 +142,9 @@ RSpec.describe Statistic::Broadcast, type: :model do
     end
 
     it 'assigns to each entry the state_code specific approval value' do
-      allow(subject).to receive(:approval_by_state).with('1').and_return(0.5)
-      allow(subject).to receive(:approval_by_state).with('2').and_return(0.3)
-      expect(subject.approval_by_state_codes['1']).to eq(0.5)
-      expect(subject.approval_by_state_codes['2']).to eq(0.3)
+      expect(subject.approval_by_state_codes['1']).to eq(3.0 / 4.0)
+      expect(subject.approval_by_state_codes['2']).to eq(1.0 / 2.0)
     end
   end
 
-  describe '#approval_by_state(state)' do
-    subject { Statistic::Broadcast.find(broadcast.id) }
-
-    context 'the broadcast has impressions for a state_code' do
-      before do
-        user1 = create(:user, state_code: '1')
-        user2 = create(:user, state_code: '1')
-        user3 = create(:user, state_code: '1')
-        user4 = create(:user, state_code: '1')
-        user5 = create(:user, state_code: '2')
-        user6 = create(:user, state_code: '2')
-        create(:impression, broadcast: broadcast, response: :positive, user: user1)
-        create(:impression, broadcast: broadcast, response: :positive, user: user2)
-        create(:impression, broadcast: broadcast, response: :positive, user: user3)
-        create(:impression, broadcast: broadcast, response: :neutral, user: user4)
-        create(:impression, broadcast: broadcast, response: :neutral, user: user5)
-        create(:impression, broadcast: broadcast, response: :positive, user: user6)
-      end
-
-      # approval is the positive impression rate
-      it 'returns approval based on users of a given state' do
-        expect(subject.approval_by_state('1')).to eq(3.0 / 4.0)
-        expect(subject.approval_by_state('2')).to eq(1.0 / 2.0)
-      end
-    end
-
-    context 'the broadcast has no impressions for the state_code' do
-      it 'returns 0' do
-        expect(subject.approval_by_state('NON-EXISTING')).to eq(0)
-      end
-    end
-  end
 end

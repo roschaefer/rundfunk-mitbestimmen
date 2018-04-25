@@ -83,14 +83,15 @@ module Statistic
 
     def approval_by_state_codes
       results = {}
-      User.all.distinct.pluck(:state_code).each do |state_code|
-        results[state_code] = approval_by_state(state_code)
+      user_state_codes = User.all.distinct.pluck(:state_code)
+      approvals = broadcast.impressions.joins(:user)
+      approvals = approvals.where('users.state_code' => user_state_codes)
+      approvals = approvals.group('users.state_code')
+      approvals = approvals.select("users.state_code as user_state_code, AVG(impressions.response) as avg_response")
+      approvals.each do |approvals|
+        results[approvals.user_state_code] = approvals.avg_response
       end
       results
-    end
-
-    def approval_by_state(state_code)
-      broadcast.impressions.joins(:user).where('users.state_code' => state_code).average(:response) || 0
     end
 
     # this isn't strictly necessary, but it will prevent
