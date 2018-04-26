@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/globalize/globalize
-  revision: 55c9c7a6d94f5707c3ff72a318498c8c125287b1
+  revision: 8a193c1272c3640e516ef36ac78e5d634152d3a5
   specs:
     globalize (5.1.0)
-      activemodel (>= 4.2, < 5.2)
-      activerecord (>= 4.2, < 5.2)
+      activemodel (>= 4.2, < 5.3)
+      activerecord (>= 4.2, < 5.3)
       request_store (~> 1.0)
 
 GEM
@@ -190,7 +190,7 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     puma (3.11.4-java)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-cors (1.0.2)
     rack-protection (2.0.1)
       rack
