@@ -1,8 +1,8 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
@@ -77,13 +77,11 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
 COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
 
 
-SET search_path = public, pg_catalog;
-
 --
 -- Name: chronomodel_impressions_delete(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION chronomodel_impressions_delete() RETURNS trigger
+CREATE FUNCTION public.chronomodel_impressions_delete() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
             DECLARE _now timestamp;
@@ -108,7 +106,7 @@ CREATE FUNCTION chronomodel_impressions_delete() RETURNS trigger
 -- Name: chronomodel_impressions_insert(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION chronomodel_impressions_insert() RETURNS trigger
+CREATE FUNCTION public.chronomodel_impressions_insert() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
             BEGIN
@@ -131,7 +129,7 @@ CREATE FUNCTION chronomodel_impressions_insert() RETURNS trigger
 -- Name: chronomodel_impressions_update(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION chronomodel_impressions_update() RETURNS trigger
+CREATE FUNCTION public.chronomodel_impressions_update() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
             DECLARE _now timestamp;
@@ -173,8 +171,6 @@ CREATE FUNCTION chronomodel_impressions_update() RETURNS trigger
           $$;
 
 
-SET search_path = temporal, pg_catalog;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -183,7 +179,7 @@ SET default_with_oids = false;
 -- Name: impressions; Type: TABLE; Schema: temporal; Owner: -
 --
 
-CREATE TABLE impressions (
+CREATE TABLE temporal.impressions (
     id integer NOT NULL,
     response integer DEFAULT 0 NOT NULL,
     amount numeric,
@@ -195,13 +191,11 @@ CREATE TABLE impressions (
 );
 
 
-SET search_path = history, pg_catalog;
-
 --
 -- Name: impressions; Type: TABLE; Schema: history; Owner: -
 --
 
-CREATE TABLE impressions (
+CREATE TABLE history.impressions (
     hid integer NOT NULL,
     validity tsrange NOT NULL,
     recorded_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
@@ -213,7 +207,7 @@ INHERITS (temporal.impressions);
 -- Name: impressions_hid_seq; Type: SEQUENCE; Schema: history; Owner: -
 --
 
-CREATE SEQUENCE impressions_hid_seq
+CREATE SEQUENCE history.impressions_hid_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -225,16 +219,14 @@ CREATE SEQUENCE impressions_hid_seq
 -- Name: impressions_hid_seq; Type: SEQUENCE OWNED BY; Schema: history; Owner: -
 --
 
-ALTER SEQUENCE impressions_hid_seq OWNED BY impressions.hid;
+ALTER SEQUENCE history.impressions_hid_seq OWNED BY history.impressions.hid;
 
-
-SET search_path = public, pg_catalog;
 
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE ar_internal_metadata (
+CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
     created_at timestamp without time zone NOT NULL,
@@ -246,9 +238,9 @@ CREATE TABLE ar_internal_metadata (
 -- Name: broadcasts; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE broadcasts (
+CREATE TABLE public.broadcasts (
     id integer NOT NULL,
-    title citext,
+    title public.citext,
     description character varying,
     topic_id integer,
     format_id integer,
@@ -266,7 +258,7 @@ CREATE TABLE broadcasts (
 -- Name: broadcasts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE broadcasts_id_seq
+CREATE SEQUENCE public.broadcasts_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -278,14 +270,14 @@ CREATE SEQUENCE broadcasts_id_seq
 -- Name: broadcasts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE broadcasts_id_seq OWNED BY broadcasts.id;
+ALTER SEQUENCE public.broadcasts_id_seq OWNED BY public.broadcasts.id;
 
 
 --
 -- Name: format_translations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE format_translations (
+CREATE TABLE public.format_translations (
     id bigint NOT NULL,
     format_id integer NOT NULL,
     locale character varying NOT NULL,
@@ -299,7 +291,7 @@ CREATE TABLE format_translations (
 -- Name: format_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE format_translations_id_seq
+CREATE SEQUENCE public.format_translations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -311,14 +303,14 @@ CREATE SEQUENCE format_translations_id_seq
 -- Name: format_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE format_translations_id_seq OWNED BY format_translations.id;
+ALTER SEQUENCE public.format_translations_id_seq OWNED BY public.format_translations.id;
 
 
 --
 -- Name: formats; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE formats (
+CREATE TABLE public.formats (
     id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -329,7 +321,7 @@ CREATE TABLE formats (
 -- Name: formats_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE formats_id_seq
+CREATE SEQUENCE public.formats_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -341,14 +333,14 @@ CREATE SEQUENCE formats_id_seq
 -- Name: formats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE formats_id_seq OWNED BY formats.id;
+ALTER SEQUENCE public.formats_id_seq OWNED BY public.formats.id;
 
 
 --
 -- Name: impressions; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW impressions AS
+CREATE VIEW public.impressions AS
  SELECT impressions.id,
     impressions.response,
     impressions.amount,
@@ -364,14 +356,14 @@ CREATE VIEW impressions AS
 -- Name: VIEW impressions; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.1"}';
+COMMENT ON VIEW public.impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.1"}';
 
 
 --
 -- Name: media; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE media (
+CREATE TABLE public.media (
     id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -382,7 +374,7 @@ CREATE TABLE media (
 -- Name: media_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE media_id_seq
+CREATE SEQUENCE public.media_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -394,14 +386,14 @@ CREATE SEQUENCE media_id_seq
 -- Name: media_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE media_id_seq OWNED BY media.id;
+ALTER SEQUENCE public.media_id_seq OWNED BY public.media.id;
 
 
 --
 -- Name: medium_translations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE medium_translations (
+CREATE TABLE public.medium_translations (
     id bigint NOT NULL,
     medium_id integer NOT NULL,
     locale character varying NOT NULL,
@@ -415,7 +407,7 @@ CREATE TABLE medium_translations (
 -- Name: medium_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE medium_translations_id_seq
+CREATE SEQUENCE public.medium_translations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -427,14 +419,14 @@ CREATE SEQUENCE medium_translations_id_seq
 -- Name: medium_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE medium_translations_id_seq OWNED BY medium_translations.id;
+ALTER SEQUENCE public.medium_translations_id_seq OWNED BY public.medium_translations.id;
 
 
 --
 -- Name: schedules; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE schedules (
+CREATE TABLE public.schedules (
     id bigint NOT NULL,
     broadcast_id bigint,
     station_id bigint,
@@ -447,7 +439,7 @@ CREATE TABLE schedules (
 -- Name: schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE schedules_id_seq
+CREATE SEQUENCE public.schedules_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -459,14 +451,14 @@ CREATE SEQUENCE schedules_id_seq
 -- Name: schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE schedules_id_seq OWNED BY schedules.id;
+ALTER SEQUENCE public.schedules_id_seq OWNED BY public.schedules.id;
 
 
 --
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE schema_migrations (
+CREATE TABLE public.schema_migrations (
     version character varying NOT NULL
 );
 
@@ -475,7 +467,7 @@ CREATE TABLE schema_migrations (
 -- Name: similarities; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE similarities (
+CREATE TABLE public.similarities (
     id bigint NOT NULL,
     broadcast1_id integer,
     broadcast2_id integer,
@@ -489,7 +481,7 @@ CREATE TABLE similarities (
 -- Name: similarities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE similarities_id_seq
+CREATE SEQUENCE public.similarities_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -501,14 +493,14 @@ CREATE SEQUENCE similarities_id_seq
 -- Name: similarities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE similarities_id_seq OWNED BY similarities.id;
+ALTER SEQUENCE public.similarities_id_seq OWNED BY public.similarities.id;
 
 
 --
 -- Name: stations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE stations (
+CREATE TABLE public.stations (
     id integer NOT NULL,
     name character varying,
     medium_id integer,
@@ -522,7 +514,7 @@ CREATE TABLE stations (
 -- Name: stations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE stations_id_seq
+CREATE SEQUENCE public.stations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -534,14 +526,14 @@ CREATE SEQUENCE stations_id_seq
 -- Name: stations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE stations_id_seq OWNED BY stations.id;
+ALTER SEQUENCE public.stations_id_seq OWNED BY public.stations.id;
 
 
 --
 -- Name: statistic_broadcasts; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
-CREATE MATERIALIZED VIEW statistic_broadcasts AS
+CREATE MATERIALIZED VIEW public.statistic_broadcasts AS
  SELECT broadcasts.id,
     broadcasts.title,
     count(impressions.id) AS impressions,
@@ -549,9 +541,9 @@ CREATE MATERIALIZED VIEW statistic_broadcasts AS
     avg(impressions.amount) AS average,
     COALESCE(sum(impressions.amount), (0)::numeric) AS total,
     COALESCE(((count(impressions.id))::numeric * ( SELECT avg(COALESCE(impressions_1.amount, (0)::numeric)) AS avg
-           FROM impressions impressions_1)), (0)::numeric) AS expected_amount
-   FROM (broadcasts
-     LEFT JOIN impressions ON ((impressions.broadcast_id = broadcasts.id)))
+           FROM public.impressions impressions_1)), (0)::numeric) AS expected_amount
+   FROM (public.broadcasts
+     LEFT JOIN public.impressions ON ((impressions.broadcast_id = broadcasts.id)))
   GROUP BY broadcasts.id, broadcasts.title
   WITH NO DATA;
 
@@ -560,22 +552,22 @@ CREATE MATERIALIZED VIEW statistic_broadcasts AS
 -- Name: statistic_media; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW statistic_media AS
+CREATE VIEW public.statistic_media AS
  SELECT media.id,
     count(*) AS broadcasts_count,
     sum(statistic_broadcasts.total) AS total,
     sum(statistic_broadcasts.expected_amount) AS expected_amount
-   FROM ((media
-     JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
-     JOIN statistic_broadcasts ON ((broadcasts.id = statistic_broadcasts.id)))
+   FROM ((public.media
+     JOIN public.broadcasts ON ((media.id = broadcasts.medium_id)))
+     JOIN public.statistic_broadcasts ON ((broadcasts.id = statistic_broadcasts.id)))
   GROUP BY media.id
 UNION ALL
  SELECT media.id,
     0 AS broadcasts_count,
     0 AS total,
     0 AS expected_amount
-   FROM (media
-     LEFT JOIN broadcasts ON ((media.id = broadcasts.medium_id)))
+   FROM (public.media
+     LEFT JOIN public.broadcasts ON ((media.id = broadcasts.medium_id)))
   WHERE (broadcasts.medium_id IS NULL);
 
 
@@ -583,7 +575,7 @@ UNION ALL
 -- Name: statistic_medium_translations; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW statistic_medium_translations AS
+CREATE VIEW public.statistic_medium_translations AS
  SELECT medium_translations.id,
     medium_translations.medium_id,
     medium_translations.locale,
@@ -591,14 +583,14 @@ CREATE VIEW statistic_medium_translations AS
     medium_translations.updated_at,
     medium_translations.name,
     medium_translations.medium_id AS statistic_medium_id
-   FROM medium_translations;
+   FROM public.medium_translations;
 
 
 --
 -- Name: statistic_stations; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW statistic_stations AS
+CREATE VIEW public.statistic_stations AS
  SELECT stations.id,
     stations.name,
     stations.medium_id,
@@ -609,11 +601,11 @@ CREATE VIEW statistic_stations AS
             statistic_broadcasts.total,
             statistic_broadcasts.expected_amount,
             count(*) AS stations_count
-           FROM (statistic_broadcasts
-             JOIN schedules schedules_1 ON ((statistic_broadcasts.id = schedules_1.broadcast_id)))
+           FROM (public.statistic_broadcasts
+             JOIN public.schedules schedules_1 ON ((statistic_broadcasts.id = schedules_1.broadcast_id)))
           GROUP BY statistic_broadcasts.id, statistic_broadcasts.total, statistic_broadcasts.expected_amount) t
-     JOIN schedules ON ((t.broadcast_id = schedules.broadcast_id)))
-     JOIN stations ON ((schedules.station_id = stations.id)))
+     JOIN public.schedules ON ((t.broadcast_id = schedules.broadcast_id)))
+     JOIN public.stations ON ((schedules.station_id = stations.id)))
   GROUP BY stations.id, stations.name, stations.medium_id
 UNION ALL
  SELECT stations.id,
@@ -622,8 +614,8 @@ UNION ALL
     0 AS broadcasts_count,
     0 AS total,
     0 AS expected_amount
-   FROM (stations
-     LEFT JOIN schedules ON ((stations.id = schedules.station_id)))
+   FROM (public.stations
+     LEFT JOIN public.schedules ON ((stations.id = schedules.station_id)))
   WHERE (schedules.broadcast_id IS NULL);
 
 
@@ -631,7 +623,7 @@ UNION ALL
 -- Name: statistics; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW statistics AS
+CREATE VIEW public.statistics AS
  SELECT t.id,
     t.title,
     t.impressions,
@@ -649,7 +641,7 @@ CREATE VIEW statistics AS
                 END), (0)::bigint) AS positives,
             COALESCE(sum(impressions.amount), (0)::numeric) AS total
            FROM (temporal.impressions
-             JOIN broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
+             JOIN public.broadcasts ON ((impressions.broadcast_id = broadcasts.id)))
           GROUP BY impressions.broadcast_id, broadcasts.title) t
      LEFT JOIN ( SELECT (sum(impressions.amount) / (count(*))::numeric) AS average_amount_per_selection
            FROM temporal.impressions) a ON (true));
@@ -659,7 +651,7 @@ CREATE VIEW statistics AS
 -- Name: topic_translations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE topic_translations (
+CREATE TABLE public.topic_translations (
     id bigint NOT NULL,
     topic_id integer NOT NULL,
     locale character varying NOT NULL,
@@ -673,7 +665,7 @@ CREATE TABLE topic_translations (
 -- Name: topic_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE topic_translations_id_seq
+CREATE SEQUENCE public.topic_translations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -685,14 +677,14 @@ CREATE SEQUENCE topic_translations_id_seq
 -- Name: topic_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE topic_translations_id_seq OWNED BY topic_translations.id;
+ALTER SEQUENCE public.topic_translations_id_seq OWNED BY public.topic_translations.id;
 
 
 --
 -- Name: topics; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE topics (
+CREATE TABLE public.topics (
     id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -703,7 +695,7 @@ CREATE TABLE topics (
 -- Name: topics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE topics_id_seq
+CREATE SEQUENCE public.topics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -715,14 +707,14 @@ CREATE SEQUENCE topics_id_seq
 -- Name: topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE topics_id_seq OWNED BY topics.id;
+ALTER SEQUENCE public.topics_id_seq OWNED BY public.topics.id;
 
 
 --
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE users (
+CREATE TABLE public.users (
     id integer NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     email character varying,
@@ -745,7 +737,7 @@ CREATE TABLE users (
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE users_id_seq
+CREATE SEQUENCE public.users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -757,14 +749,14 @@ CREATE SEQUENCE users_id_seq
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
 -- Name: versions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE versions (
+CREATE TABLE public.versions (
     id bigint NOT NULL,
     item_type character varying NOT NULL,
     item_id integer NOT NULL,
@@ -779,7 +771,7 @@ CREATE TABLE versions (
 -- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE versions_id_seq
+CREATE SEQUENCE public.versions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -791,16 +783,14 @@ CREATE SEQUENCE versions_id_seq
 -- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
+ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 
-
-SET search_path = temporal, pg_catalog;
 
 --
 -- Name: impressions_id_seq; Type: SEQUENCE; Schema: temporal; Owner: -
 --
 
-CREATE SEQUENCE impressions_id_seq
+CREATE SEQUENCE temporal.impressions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -812,607 +802,585 @@ CREATE SEQUENCE impressions_id_seq
 -- Name: impressions_id_seq; Type: SEQUENCE OWNED BY; Schema: temporal; Owner: -
 --
 
-ALTER SEQUENCE impressions_id_seq OWNED BY impressions.id;
-
-
-SET search_path = history, pg_catalog;
-
---
--- Name: impressions id; Type: DEFAULT; Schema: history; Owner: -
---
-
-ALTER TABLE ONLY impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impressions_id_seq'::regclass);
+ALTER SEQUENCE temporal.impressions_id_seq OWNED BY temporal.impressions.id;
 
 
 --
--- Name: impressions response; Type: DEFAULT; Schema: history; Owner: -
+-- Name: id; Type: DEFAULT; Schema: history; Owner: -
 --
 
-ALTER TABLE ONLY impressions ALTER COLUMN response SET DEFAULT 0;
-
-
---
--- Name: impressions hid; Type: DEFAULT; Schema: history; Owner: -
---
-
-ALTER TABLE ONLY impressions ALTER COLUMN hid SET DEFAULT nextval('impressions_hid_seq'::regclass);
-
-
-SET search_path = public, pg_catalog;
-
---
--- Name: broadcasts id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY broadcasts ALTER COLUMN id SET DEFAULT nextval('broadcasts_id_seq'::regclass);
+ALTER TABLE ONLY history.impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impressions_id_seq'::regclass);
 
 
 --
--- Name: format_translations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: response; Type: DEFAULT; Schema: history; Owner: -
 --
 
-ALTER TABLE ONLY format_translations ALTER COLUMN id SET DEFAULT nextval('format_translations_id_seq'::regclass);
-
-
---
--- Name: formats id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY formats ALTER COLUMN id SET DEFAULT nextval('formats_id_seq'::regclass);
+ALTER TABLE ONLY history.impressions ALTER COLUMN response SET DEFAULT 0;
 
 
 --
--- Name: impressions response; Type: DEFAULT; Schema: public; Owner: -
+-- Name: hid; Type: DEFAULT; Schema: history; Owner: -
 --
 
-ALTER TABLE ONLY impressions ALTER COLUMN response SET DEFAULT 0;
-
-
---
--- Name: media id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY media ALTER COLUMN id SET DEFAULT nextval('media_id_seq'::regclass);
+ALTER TABLE ONLY history.impressions ALTER COLUMN hid SET DEFAULT nextval('history.impressions_hid_seq'::regclass);
 
 
 --
--- Name: medium_translations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY medium_translations ALTER COLUMN id SET DEFAULT nextval('medium_translations_id_seq'::regclass);
-
-
---
--- Name: schedules id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY schedules ALTER COLUMN id SET DEFAULT nextval('schedules_id_seq'::regclass);
+ALTER TABLE ONLY public.broadcasts ALTER COLUMN id SET DEFAULT nextval('public.broadcasts_id_seq'::regclass);
 
 
 --
--- Name: similarities id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY similarities ALTER COLUMN id SET DEFAULT nextval('similarities_id_seq'::regclass);
-
-
---
--- Name: stations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY stations ALTER COLUMN id SET DEFAULT nextval('stations_id_seq'::regclass);
+ALTER TABLE ONLY public.format_translations ALTER COLUMN id SET DEFAULT nextval('public.format_translations_id_seq'::regclass);
 
 
 --
--- Name: topic_translations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY topic_translations ALTER COLUMN id SET DEFAULT nextval('topic_translations_id_seq'::regclass);
-
-
---
--- Name: topics id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY topics ALTER COLUMN id SET DEFAULT nextval('topics_id_seq'::regclass);
+ALTER TABLE ONLY public.formats ALTER COLUMN id SET DEFAULT nextval('public.formats_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: response; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE ONLY public.impressions ALTER COLUMN response SET DEFAULT 0;
 
 
 --
--- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
+ALTER TABLE ONLY public.media ALTER COLUMN id SET DEFAULT nextval('public.media_id_seq'::regclass);
 
-
-SET search_path = temporal, pg_catalog;
 
 --
--- Name: impressions id; Type: DEFAULT; Schema: temporal; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY impressions ALTER COLUMN id SET DEFAULT nextval('impressions_id_seq'::regclass);
+ALTER TABLE ONLY public.medium_translations ALTER COLUMN id SET DEFAULT nextval('public.medium_translations_id_seq'::regclass);
 
-
-SET search_path = history, pg_catalog;
 
 --
--- Name: impressions impressions_pkey; Type: CONSTRAINT; Schema: history; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY public.schedules ALTER COLUMN id SET DEFAULT nextval('public.schedules_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.similarities ALTER COLUMN id SET DEFAULT nextval('public.similarities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.stations ALTER COLUMN id SET DEFAULT nextval('public.stations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.topic_translations ALTER COLUMN id SET DEFAULT nextval('public.topic_translations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.topics ALTER COLUMN id SET DEFAULT nextval('public.topics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: temporal; Owner: -
+--
+
+ALTER TABLE ONLY temporal.impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impressions_id_seq'::regclass);
+
+
+--
+-- Name: impressions_pkey; Type: CONSTRAINT; Schema: history; Owner: -
+--
+
+ALTER TABLE ONLY history.impressions
     ADD CONSTRAINT impressions_pkey PRIMARY KEY (hid);
 
 
 --
--- Name: impressions impressions_timeline_consistency; Type: CONSTRAINT; Schema: history; Owner: -
+-- Name: impressions_timeline_consistency; Type: CONSTRAINT; Schema: history; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY history.impressions
     ADD CONSTRAINT impressions_timeline_consistency EXCLUDE USING gist (id WITH =, validity WITH &&);
 
 
-SET search_path = public, pg_catalog;
-
 --
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY ar_internal_metadata
+ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
--- Name: broadcasts broadcasts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY broadcasts
+ALTER TABLE ONLY public.broadcasts
     ADD CONSTRAINT broadcasts_pkey PRIMARY KEY (id);
 
 
 --
--- Name: format_translations format_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: format_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY format_translations
+ALTER TABLE ONLY public.format_translations
     ADD CONSTRAINT format_translations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: formats formats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: formats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY formats
+ALTER TABLE ONLY public.formats
     ADD CONSTRAINT formats_pkey PRIMARY KEY (id);
 
 
 --
--- Name: media media_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: media_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY media
+ALTER TABLE ONLY public.media
     ADD CONSTRAINT media_pkey PRIMARY KEY (id);
 
 
 --
--- Name: medium_translations medium_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: medium_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY medium_translations
+ALTER TABLE ONLY public.medium_translations
     ADD CONSTRAINT medium_translations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: schedules schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY schedules
+ALTER TABLE ONLY public.schedules
     ADD CONSTRAINT schedules_pkey PRIMARY KEY (id);
 
 
 --
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY schema_migrations
+ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
--- Name: similarities similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY similarities
+ALTER TABLE ONLY public.similarities
     ADD CONSTRAINT similarities_pkey PRIMARY KEY (id);
 
 
 --
--- Name: stations stations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: stations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY stations
+ALTER TABLE ONLY public.stations
     ADD CONSTRAINT stations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: topic_translations topic_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: topic_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY topic_translations
+ALTER TABLE ONLY public.topic_translations
     ADD CONSTRAINT topic_translations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: topics topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY topics
+ALTER TABLE ONLY public.topics
     ADD CONSTRAINT topics_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users
+ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
--- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY versions
+ALTER TABLE ONLY public.versions
     ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
-SET search_path = temporal, pg_catalog;
-
 --
--- Name: impressions impressions_pkey; Type: CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions_pkey; Type: CONSTRAINT; Schema: temporal; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY temporal.impressions
     ADD CONSTRAINT impressions_pkey PRIMARY KEY (id);
 
-
-SET search_path = history, pg_catalog;
 
 --
 -- Name: impressions_inherit_pkey; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX impressions_inherit_pkey ON impressions USING btree (id);
+CREATE INDEX impressions_inherit_pkey ON history.impressions USING btree (id);
 
 
 --
 -- Name: impressions_instance_history; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX impressions_instance_history ON impressions USING btree (id, recorded_at);
+CREATE INDEX impressions_instance_history ON history.impressions USING btree (id, recorded_at);
 
 
 --
 -- Name: impressions_recorded_at; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX impressions_recorded_at ON impressions USING btree (recorded_at);
+CREATE INDEX impressions_recorded_at ON history.impressions USING btree (recorded_at);
 
 
 --
 -- Name: index_impressions_on_broadcast_id; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_on_broadcast_id ON impressions USING btree (broadcast_id);
+CREATE INDEX index_impressions_on_broadcast_id ON history.impressions USING btree (broadcast_id);
 
 
 --
 -- Name: index_impressions_on_user_id; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_on_user_id ON impressions USING btree (user_id);
+CREATE INDEX index_impressions_on_user_id ON history.impressions USING btree (user_id);
 
 
 --
 -- Name: index_impressions_on_user_id_and_broadcast_id; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_on_user_id_and_broadcast_id ON impressions USING btree (user_id, broadcast_id);
+CREATE INDEX index_impressions_on_user_id_and_broadcast_id ON history.impressions USING btree (user_id, broadcast_id);
 
 
 --
 -- Name: index_impressions_temporal_on_lower_validity; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_temporal_on_lower_validity ON impressions USING btree (lower(validity));
+CREATE INDEX index_impressions_temporal_on_lower_validity ON history.impressions USING btree (lower(validity));
 
 
 --
 -- Name: index_impressions_temporal_on_upper_validity; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_temporal_on_upper_validity ON impressions USING btree (upper(validity));
+CREATE INDEX index_impressions_temporal_on_upper_validity ON history.impressions USING btree (upper(validity));
 
 
 --
 -- Name: index_impressions_temporal_on_validity; Type: INDEX; Schema: history; Owner: -
 --
 
-CREATE INDEX index_impressions_temporal_on_validity ON impressions USING gist (validity);
+CREATE INDEX index_impressions_temporal_on_validity ON history.impressions USING gist (validity);
 
-
-SET search_path = public, pg_catalog;
 
 --
 -- Name: index_broadcasts_on_format_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_broadcasts_on_format_id ON broadcasts USING btree (format_id);
+CREATE INDEX index_broadcasts_on_format_id ON public.broadcasts USING btree (format_id);
 
 
 --
 -- Name: index_broadcasts_on_mediathek_identification; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_broadcasts_on_mediathek_identification ON broadcasts USING btree (mediathek_identification);
+CREATE UNIQUE INDEX index_broadcasts_on_mediathek_identification ON public.broadcasts USING btree (mediathek_identification);
 
 
 --
 -- Name: index_broadcasts_on_medium_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_broadcasts_on_medium_id ON broadcasts USING btree (medium_id);
+CREATE INDEX index_broadcasts_on_medium_id ON public.broadcasts USING btree (medium_id);
 
 
 --
 -- Name: index_broadcasts_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_broadcasts_on_title ON broadcasts USING btree (title);
+CREATE UNIQUE INDEX index_broadcasts_on_title ON public.broadcasts USING btree (title);
 
 
 --
 -- Name: index_broadcasts_on_topic_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_broadcasts_on_topic_id ON broadcasts USING btree (topic_id);
+CREATE INDEX index_broadcasts_on_topic_id ON public.broadcasts USING btree (topic_id);
 
 
 --
 -- Name: index_format_translations_on_format_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_format_translations_on_format_id ON format_translations USING btree (format_id);
+CREATE INDEX index_format_translations_on_format_id ON public.format_translations USING btree (format_id);
 
 
 --
 -- Name: index_format_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_format_translations_on_locale ON format_translations USING btree (locale);
+CREATE INDEX index_format_translations_on_locale ON public.format_translations USING btree (locale);
 
 
 --
 -- Name: index_medium_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_medium_translations_on_locale ON medium_translations USING btree (locale);
+CREATE INDEX index_medium_translations_on_locale ON public.medium_translations USING btree (locale);
 
 
 --
 -- Name: index_medium_translations_on_medium_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_medium_translations_on_medium_id ON medium_translations USING btree (medium_id);
+CREATE INDEX index_medium_translations_on_medium_id ON public.medium_translations USING btree (medium_id);
 
 
 --
 -- Name: index_schedules_on_broadcast_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_schedules_on_broadcast_id ON schedules USING btree (broadcast_id);
+CREATE INDEX index_schedules_on_broadcast_id ON public.schedules USING btree (broadcast_id);
 
 
 --
 -- Name: index_schedules_on_broadcast_id_and_station_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_schedules_on_broadcast_id_and_station_id ON schedules USING btree (broadcast_id, station_id);
+CREATE UNIQUE INDEX index_schedules_on_broadcast_id_and_station_id ON public.schedules USING btree (broadcast_id, station_id);
 
 
 --
 -- Name: index_schedules_on_station_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_schedules_on_station_id ON schedules USING btree (station_id);
+CREATE INDEX index_schedules_on_station_id ON public.schedules USING btree (station_id);
 
 
 --
 -- Name: index_similarities_on_broadcast1_id_and_broadcast2_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_similarities_on_broadcast1_id_and_broadcast2_id ON similarities USING btree (broadcast1_id, broadcast2_id);
+CREATE UNIQUE INDEX index_similarities_on_broadcast1_id_and_broadcast2_id ON public.similarities USING btree (broadcast1_id, broadcast2_id);
 
 
 --
 -- Name: index_stations_on_medium_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_stations_on_medium_id ON stations USING btree (medium_id);
+CREATE INDEX index_stations_on_medium_id ON public.stations USING btree (medium_id);
 
 
 --
 -- Name: index_stations_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_stations_on_name ON stations USING btree (name);
+CREATE UNIQUE INDEX index_stations_on_name ON public.stations USING btree (name);
 
 
 --
 -- Name: index_statistic_broadcasts_on_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_statistic_broadcasts_on_id ON statistic_broadcasts USING btree (id);
+CREATE UNIQUE INDEX index_statistic_broadcasts_on_id ON public.statistic_broadcasts USING btree (id);
 
 
 --
 -- Name: index_topic_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_topic_translations_on_locale ON topic_translations USING btree (locale);
+CREATE INDEX index_topic_translations_on_locale ON public.topic_translations USING btree (locale);
 
 
 --
 -- Name: index_topic_translations_on_topic_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_topic_translations_on_topic_id ON topic_translations USING btree (topic_id);
+CREATE INDEX index_topic_translations_on_topic_id ON public.topic_translations USING btree (topic_id);
 
 
 --
 -- Name: index_users_on_auth0_uid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_auth0_uid ON users USING btree (auth0_uid);
+CREATE UNIQUE INDEX index_users_on_auth0_uid ON public.users USING btree (auth0_uid);
 
 
 --
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
 -- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
+CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
 
-
-SET search_path = temporal, pg_catalog;
 
 --
 -- Name: index_impressions_on_broadcast_id; Type: INDEX; Schema: temporal; Owner: -
 --
 
-CREATE INDEX index_impressions_on_broadcast_id ON impressions USING btree (broadcast_id);
+CREATE INDEX index_impressions_on_broadcast_id ON temporal.impressions USING btree (broadcast_id);
 
 
 --
 -- Name: index_impressions_on_user_id; Type: INDEX; Schema: temporal; Owner: -
 --
 
-CREATE INDEX index_impressions_on_user_id ON impressions USING btree (user_id);
+CREATE INDEX index_impressions_on_user_id ON temporal.impressions USING btree (user_id);
 
 
 --
 -- Name: index_impressions_on_user_id_and_broadcast_id; Type: INDEX; Schema: temporal; Owner: -
 --
 
-CREATE UNIQUE INDEX index_impressions_on_user_id_and_broadcast_id ON impressions USING btree (user_id, broadcast_id);
-
-
-SET search_path = public, pg_catalog;
-
---
--- Name: impressions chronomodel_delete; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER chronomodel_delete INSTEAD OF DELETE ON impressions FOR EACH ROW EXECUTE PROCEDURE chronomodel_impressions_delete();
+CREATE UNIQUE INDEX index_impressions_on_user_id_and_broadcast_id ON temporal.impressions USING btree (user_id, broadcast_id);
 
 
 --
--- Name: impressions chronomodel_insert; Type: TRIGGER; Schema: public; Owner: -
+-- Name: chronomodel_delete; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER chronomodel_insert INSTEAD OF INSERT ON impressions FOR EACH ROW EXECUTE PROCEDURE chronomodel_impressions_insert();
-
-
---
--- Name: impressions chronomodel_update; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER chronomodel_update INSTEAD OF UPDATE ON impressions FOR EACH ROW EXECUTE PROCEDURE chronomodel_impressions_update();
+CREATE TRIGGER chronomodel_delete INSTEAD OF DELETE ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_delete();
 
 
 --
--- Name: broadcasts fk_rails_37250dc78c; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: chronomodel_insert; Type: TRIGGER; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY broadcasts
-    ADD CONSTRAINT fk_rails_37250dc78c FOREIGN KEY (topic_id) REFERENCES topics(id);
-
-
---
--- Name: stations fk_rails_749eb07017; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY stations
-    ADD CONSTRAINT fk_rails_749eb07017 FOREIGN KEY (medium_id) REFERENCES media(id);
+CREATE TRIGGER chronomodel_insert INSTEAD OF INSERT ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_insert();
 
 
 --
--- Name: broadcasts fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: chronomodel_update; Type: TRIGGER; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY broadcasts
-    ADD CONSTRAINT fk_rails_a45e306ec3 FOREIGN KEY (creator_id) REFERENCES users(id);
-
-
---
--- Name: broadcasts fk_rails_c39629e750; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY broadcasts
-    ADD CONSTRAINT fk_rails_c39629e750 FOREIGN KEY (medium_id) REFERENCES media(id);
+CREATE TRIGGER chronomodel_update INSTEAD OF UPDATE ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_update();
 
 
 --
--- Name: broadcasts fk_rails_eee7654a34; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_37250dc78c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY broadcasts
-    ADD CONSTRAINT fk_rails_eee7654a34 FOREIGN KEY (format_id) REFERENCES formats(id);
+ALTER TABLE ONLY public.broadcasts
+    ADD CONSTRAINT fk_rails_37250dc78c FOREIGN KEY (topic_id) REFERENCES public.topics(id);
 
-
-SET search_path = temporal, pg_catalog;
 
 --
--- Name: impressions fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: fk_rails_749eb07017; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY public.stations
+    ADD CONSTRAINT fk_rails_749eb07017 FOREIGN KEY (medium_id) REFERENCES public.media(id);
+
+
+--
+-- Name: fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.broadcasts
+    ADD CONSTRAINT fk_rails_a45e306ec3 FOREIGN KEY (creator_id) REFERENCES public.users(id);
+
+
+--
+-- Name: fk_rails_c39629e750; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.broadcasts
+    ADD CONSTRAINT fk_rails_c39629e750 FOREIGN KEY (medium_id) REFERENCES public.media(id);
+
+
+--
+-- Name: fk_rails_eee7654a34; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.broadcasts
+    ADD CONSTRAINT fk_rails_eee7654a34 FOREIGN KEY (format_id) REFERENCES public.formats(id);
+
+
+--
+-- Name: fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+--
+
+ALTER TABLE ONLY temporal.impressions
     ADD CONSTRAINT fk_rails_4fd47aaffd FOREIGN KEY (broadcast_id) REFERENCES public.broadcasts(id);
 
 
 --
--- Name: impressions fk_rails_a56f328f61; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: fk_rails_a56f328f61; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY temporal.impressions
     ADD CONSTRAINT fk_rails_a56f328f61 FOREIGN KEY (broadcast_id) REFERENCES public.broadcasts(id);
 
 
 --
--- Name: impressions fk_rails_da7bcadf25; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: fk_rails_da7bcadf25; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY temporal.impressions
     ADD CONSTRAINT fk_rails_da7bcadf25 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
--- Name: impressions fk_rails_f0d87991a2; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: fk_rails_f0d87991a2; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
-ALTER TABLE ONLY impressions
+ALTER TABLE ONLY temporal.impressions
     ADD CONSTRAINT fk_rails_f0d87991a2 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
