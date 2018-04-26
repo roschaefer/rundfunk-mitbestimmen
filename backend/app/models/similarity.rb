@@ -42,6 +42,6 @@ class Similarity < ApplicationRecord
   end
 
   def self.specific_to(user)
-    
+    Similarity.where(broadcast1: user.liked_broadcasts) | Similarity.where(broadcast2: user.liked_broadcasts)
   end
 end
