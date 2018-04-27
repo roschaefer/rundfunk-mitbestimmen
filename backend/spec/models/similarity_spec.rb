@@ -134,4 +134,60 @@ RSpec.describe Similarity, type: :model do
       expect(similarity_ids).to match_array([1, 2])
     end
   end
+
+  describe '::graph_data_for(similarities)' do
+    before { setup }
+    subject { Similarity.graph_data_for(similarities) }
+    let(:broadcast1) { build(:broadcast) }
+    let(:broadcast2) { build(:broadcast) }
+    let(:broadcast3) { build(:broadcast) }
+    let(:broadcast4) { build(:broadcast) }
+    let(:broadcast5) { build(:broadcast) }
+    let(:similarity1) { create(:similarity, id: 1, broadcast1: broadcast1, broadcast2: broadcast2, value: 0.5) }
+    let(:similarity2) { create(:similarity, id: 2, broadcast1: broadcast3, broadcast2: broadcast1, value: 0.6) }
+    let(:similarity3) { create(:similarity, id: 3, broadcast1: broadcast3, broadcast2: broadcast4, value: 0.7) }
+    let(:similarities) { [similarity1, similarity2] }
+
+    let(:setup) do
+      similarity1
+      similarity2
+      similarity3
+    end
+
+    it 'returns a hash with nodes and edges' do
+      expect(subject.keys).to match_array(%i[nodes links])
+    end
+
+    it 'includes each broadcast as node' do
+      allow_any_instance_of(Broadcast).to receive(:to_graph_node).and_return({})
+      expect(subject[:nodes]).to match_array(
+        [
+          broadcast1.to_graph_node,
+          broadcast2.to_graph_node,
+          broadcast3.to_graph_node
+        ]
+      )
+    end
+
+    it 'includes each broadcast pair as edge' do
+      allow_any_instance_of(Similarity).to receive(:to_graph_edge).and_return({})
+      expect(subject[:links]).to match_array(
+        [
+          similarity1.to_graph_edge,
+          similarity2.to_graph_edge
+        ]
+      )
+    end
+  end
+
+  describe '#to_graph_edge' do
+    subject { build(:similarity, broadcast1_id: 1, broadcast2_id: 2, value: 0.5) }
+    it 'returns a hash with source id, target id and value' do
+      expect(subject.to_graph_edge).to eq(
+        source: 1,
+        target: 2,
+        value: 0.5
+      )
+    end
+  end
 end
