@@ -54,35 +54,41 @@ RSpec.describe 'ChartData::Similarities', type: :request do
         )
       end
 
-      context 'a specific_to_user parameter is provided' do
+      context 'a specific_to_user is provided' do
         let(:url) { chart_data_similarities_path(specific_to_user: true, headers: headers) }
 
-        let(:headers) do
-          user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
-          super().merge(authenticated_header(user))
+        context('the user is not authenticated') do
+          it { is_expected.to eq('links' => [], 'nodes' => []) }
         end
 
-        let(:user) do
-          User.skip_callback(:save, :after, :geocode_last_ip)
-          user = create(:user, :without_geolocation, auth0_uid: nil)
-          User.set_callback(:save, :after, :geocode_last_ip)
-          user
-        end
+        context('the user is authenticated') do
+          let(:headers) do
+            user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
+            super().merge(authenticated_header(user))
+          end
 
-        before { user }
+          let(:user) do
+            User.skip_callback(:save, :after, :geocode_last_ip)
+            user = create(:user, :without_geolocation, auth0_uid: nil)
+            User.set_callback(:save, :after, :geocode_last_ip)
+            user
+          end
 
-        it 'returns only similarities connected to user supported broadcasts' do
-          is_expected.to eq(
-            'links' => [
-              { 'source' => 21, 'target' => 22, 'value' => '1.0' },
-              { 'source' => 21, 'target' => 23, 'value' => '1.0' }
-            ],
-            'nodes' => [
-              { 'id' => 21, 'title' => 'Broadcast 1', 'group' => 1 },
-              { 'id' => 22, 'title' => 'Broadcast 2', 'group' => 1 },
-              { 'id' => 23, 'title' => 'Broadcast 3', 'group' => 1 }
-            ]
-          )
+          before { user }
+
+          it 'returns only similarities connected to user supported broadcasts' do
+            is_expected.to eq(
+              'links' => [
+                { 'source' => 21, 'target' => 22, 'value' => '1.0' },
+                { 'source' => 21, 'target' => 23, 'value' => '1.0' }
+              ],
+              'nodes' => [
+                { 'id' => 21, 'title' => 'Broadcast 1', 'group' => 1 },
+                { 'id' => 22, 'title' => 'Broadcast 2', 'group' => 1 },
+                { 'id' => 23, 'title' => 'Broadcast 3', 'group' => 1 }
+              ]
+            )
+          end
         end
       end
     end

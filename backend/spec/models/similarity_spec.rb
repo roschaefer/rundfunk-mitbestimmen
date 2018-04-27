@@ -133,6 +133,11 @@ RSpec.describe Similarity, type: :model do
       similarity_ids = subject.map(&:id)
       expect(similarity_ids).to match_array([1, 2])
     end
+
+    context 'user is nil' do
+      subject { Similarity.specific_to(nil) }
+      it { is_expected.to eq([]) }
+    end
   end
 
   describe '::graph_data_for(similarities)' do

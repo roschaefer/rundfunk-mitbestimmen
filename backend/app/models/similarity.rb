@@ -4,11 +4,15 @@ class Similarity < ApplicationRecord
   validates  :broadcast1, uniqueness: { scope: :broadcast2 }
 
   scope :specific_to, lambda { |user|
-    where(
-      'broadcast1_id in (?) or broadcast2_id in (?)',
-      user.liked_broadcast_ids,
-      user.liked_broadcast_ids
-    )
+    if user
+      where(
+        'broadcast1_id in (?) or broadcast2_id in (?)',
+        user.liked_broadcast_ids,
+        user.liked_broadcast_ids
+      )
+    else
+      where('false')
+    end
   }
 
   def self.compute_all(threshold: 0, minimum_supporters: 0)
