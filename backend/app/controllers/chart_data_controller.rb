@@ -3,9 +3,8 @@ class ChartDataController < ApplicationController
   skip_authorization_check only: %i[geojson similarities]
 
   def similarities
-    user = params[:user_id] ? User.find_by(id: params[:user_id]) : nil
     similarities = Similarity.order(value: :desc).includes(:broadcast1, :broadcast2)
-    similarities = similarities.specific_to(user) unless user.nil?
+    similarities = similarities.specific_to(current_user) if params[:specific_to_user] && current_user
     similarity_graph_data = Similarity.graph_data_for(similarities.first(500))
     render json: similarity_graph_data
   end
