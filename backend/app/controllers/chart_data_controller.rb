@@ -4,13 +4,9 @@ class ChartDataController < ApplicationController
 
   def similarities
     user = params[:user_id] ? User.find_by(id: params[:user_id]) : nil
-    similarities = if user.nil?
-                     Similarity.order(value: :desc).includes(:broadcast1, :broadcast2).first(500)
-                   else
-                     Similarity.specific_to(user)
-                   end
-
-    similarity_graph_data = Similarity.graph_data_for(similarities)
+    similarities = Similarity.order(value: :desc).includes(:broadcast1, :broadcast2)
+    similarities = similarities.specific_to(user) unless user.nil?
+    similarity_graph_data = Similarity.graph_data_for(similarities.first(500))
     render json: similarity_graph_data
   end
 

@@ -3,6 +3,14 @@ class Similarity < ApplicationRecord
   belongs_to :broadcast2, foreign_key: 'broadcast2_id', class_name: 'Broadcast'
   validates  :broadcast1, uniqueness: { scope: :broadcast2 }
 
+  scope :specific_to, lambda { |user|
+    where(
+      'broadcast1_id in (?) or broadcast2_id in (?)',
+      user.liked_broadcast_ids,
+      user.liked_broadcast_ids
+    )
+  }
+
   def self.compute_all(threshold: 0, minimum_supporters: 0)
     Similarity.transaction do
       Similarity.delete_all
@@ -39,10 +47,6 @@ class Similarity < ApplicationRecord
 
     intersection_size = (supporters1 & supporters2).size
     intersection_size / union_size.to_f
-  end
-
-  def self.specific_to(user)
-    Similarity.where(broadcast1: user.liked_broadcasts) | Similarity.where(broadcast2: user.liked_broadcasts)
   end
 
   def self.graph_data_for(similarities)
