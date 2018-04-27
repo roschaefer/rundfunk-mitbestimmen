@@ -5,7 +5,7 @@ class ChartDataController < ApplicationController
   def similarities
     similarities = Similarity.order(value: :desc).includes(:broadcast1, :broadcast2)
     similarities = similarities.specific_to(current_user) if params[:specific_to_user]
-    similarity_graph_data = Similarity.graph_data_for(similarities.first(500))
+    similarity_graph_data = graph_data_for(similarities.first(500))
     render json: similarity_graph_data
   end
 
@@ -21,5 +21,14 @@ class ChartDataController < ApplicationController
       RGeo::GeoJSON::Feature.new(feature.geometry, feature.feature_id, properties)
     end
     render json: RGeo::GeoJSON.encode(RGeo::GeoJSON::FeatureCollection.new(feature_array))
+  end
+
+  private
+
+  def graph_data_for(similarities)
+    edges = similarities.map(&:to_graph_edge)
+    broadcasts = similarities.map(&:broadcast1) + similarities.map(&:broadcast2)
+    nodes = broadcasts.uniq.map(&:to_graph_node)
+    { nodes: nodes, links: edges }
   end
 end
