@@ -25,9 +25,9 @@ RSpec.describe 'ChartData::Similarities', type: :request do
     it { is_expected.to eq('links' => [], 'nodes' => []) }
 
     context 'given 3 similarities' do
+      let(:user) { create(:user, id: 1) }
       let(:setup) do
         medium = create(:medium, id: 1)
-        user = create(:user, id: 1)
         broadcast1 = create(:broadcast, id: 21, title: 'Broadcast 1', medium: medium)
         broadcast2 = create(:broadcast, id: 22, title: 'Broadcast 2', medium: medium)
         broadcast3 = create(:broadcast, id: 23, title: 'Broadcast 3', medium: medium)
@@ -54,8 +54,22 @@ RSpec.describe 'ChartData::Similarities', type: :request do
         )
       end
 
-      context 'a user_id is provided' do
-        let(:url) { chart_data_similarities_path(user_id: 1) }
+      context 'a specific_to_user parameter is provided' do
+        let(:url) { chart_data_similarities_path(specific_to_user: true, headers: headers) }
+
+        let(:headers) do
+          user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
+          super().merge(authenticated_header(user))
+        end
+
+        let(:user) do
+          User.skip_callback(:save, :after, :geocode_last_ip)
+          user = create(:user, :without_geolocation, auth0_uid: nil)
+          User.set_callback(:save, :after, :geocode_last_ip)
+          user
+        end
+
+        before { user }
 
         it 'returns only similarities connected to user supported broadcasts' do
           is_expected.to eq(
