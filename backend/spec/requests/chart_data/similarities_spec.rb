@@ -5,7 +5,6 @@ RSpec.describe 'ChartData::Similarities', type: :request do
   let(:params)  { {} }
   let(:full_setup) do
     setup
-    Similarity.compute_all(threshold: 0, minimum_supporters: 0)
   end
   let(:setup)  {}
 
@@ -25,16 +24,18 @@ RSpec.describe 'ChartData::Similarities', type: :request do
 
     it { is_expected.to eq('links' => [], 'nodes' => []) }
 
-    context 'given 3 impressions' do
+    context 'given 3 similarities' do
       let(:setup) do
         medium = create(:medium, id: 1)
+        user = create(:user, id: 1)
         broadcast1 = create(:broadcast, id: 21, title: 'Broadcast 1', medium: medium)
         broadcast2 = create(:broadcast, id: 22, title: 'Broadcast 2', medium: medium)
         broadcast3 = create(:broadcast, id: 23, title: 'Broadcast 3', medium: medium)
-        user = create(:user)
-        create(:impression, user: user, broadcast: broadcast1)
-        create(:impression, user: user, broadcast: broadcast2)
-        create(:impression, user: user, broadcast: broadcast3)
+        create(:similarity, broadcast1: broadcast1, broadcast2: broadcast2, value: 1)
+        create(:similarity, broadcast1: broadcast1, broadcast2: broadcast3, value: 1)
+        create(:similarity, broadcast1: broadcast2, broadcast2: broadcast3, value: 1)
+        create(:impression, user: user, broadcast: broadcast1, response: :positive)
+        create(:impression, user: user, broadcast: broadcast2, response: :neutral)
       end
 
       it 'returns 3 fully connected nodes' do
@@ -43,6 +44,7 @@ RSpec.describe 'ChartData::Similarities', type: :request do
             { 'source' => 21, 'target' => 22, 'value' => '1.0' },
             { 'source' => 21, 'target' => 23, 'value' => '1.0' },
             { 'source' => 22, 'target' => 23, 'value' => '1.0' }
+
           ],
           'nodes' => [
             { 'id' => 21, 'title' => 'Broadcast 1', 'group' => 1 },
@@ -50,6 +52,24 @@ RSpec.describe 'ChartData::Similarities', type: :request do
             { 'id' => 23, 'title' => 'Broadcast 3', 'group' => 1 }
           ]
         )
+      end
+
+      context 'a user_id is provided' do
+        let(:url) { chart_data_similarities_path(user_id: 1) }
+
+        it 'returns only similarities connected to user supported broadcasts' do
+          is_expected.to eq(
+            'links' => [
+              { 'source' => 21, 'target' => 22, 'value' => '1.0' },
+              { 'source' => 21, 'target' => 23, 'value' => '1.0' }
+            ],
+            'nodes' => [
+              { 'id' => 21, 'title' => 'Broadcast 1', 'group' => 1 },
+              { 'id' => 22, 'title' => 'Broadcast 2', 'group' => 1 },
+              { 'id' => 23, 'title' => 'Broadcast 3', 'group' => 1 }
+            ]
+          )
+        end
       end
     end
   end
