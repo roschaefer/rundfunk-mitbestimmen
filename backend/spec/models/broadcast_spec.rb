@@ -354,4 +354,17 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.to_not be_valid }
     end
   end
+
+  describe '#to_graph_node' do
+    let(:medium) { create(:medium, id: 1, name: 'Radio') }
+    let(:broadcast) { build(:broadcast, id: 1, title: 'Broadcast 1', medium: medium) }
+
+    it 'returns a hash with id, title and medium id' do
+      expect(subject.to_graph_node).to eq(
+        id: 1,
+        title: 'Broadcast 1',
+        group: 1
+      )
+    end
+  end
 end
