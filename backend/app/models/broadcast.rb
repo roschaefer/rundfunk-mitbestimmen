@@ -88,6 +88,14 @@ class Broadcast < ApplicationRecord
     end
   end
 
+  def to_graph_node
+    {
+      id: id,
+      title: title,
+      group: medium.id
+    }
+  end
+
   private
 
   def description_should_not_contain_urls
