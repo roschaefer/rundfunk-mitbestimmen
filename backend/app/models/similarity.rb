@@ -44,4 +44,19 @@ class Similarity < ApplicationRecord
   def self.specific_to(user)
     Similarity.where(broadcast1: user.liked_broadcasts) | Similarity.where(broadcast2: user.liked_broadcasts)
   end
+
+  def self.graph_data_for(similarities)
+    edges = similarities.map(&:to_graph_edge)
+    broadcasts = similarities.map(&:broadcast1) + similarities.map(&:broadcast2)
+    nodes = broadcasts.uniq.map(&:to_graph_node)
+    { nodes: nodes, links: edges }
+  end
+
+  def to_graph_edge
+    {
+      source: broadcast1_id,
+      target: broadcast2_id,
+      value: value
+    }
+  end
 end
