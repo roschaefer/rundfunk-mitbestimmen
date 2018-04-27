@@ -110,7 +110,7 @@ RSpec.describe Similarity, type: :model do
     end
   end
 
-  describe "::specific_to(:user)" do
+  describe '::specific_to(:user)' do
     before { setup }
     subject { Similarity.specific_to(user1) }
     let(:broadcast1) { build(:broadcast) }
@@ -129,10 +129,9 @@ RSpec.describe Similarity, type: :model do
       create(:impression, user: user1, response: :neutral, broadcast: broadcast4)
     end
 
-    it "returns similarities of supported broadcasts" do
+    it 'returns similarities of supported broadcasts' do
       similarity_ids = subject.map(&:id)
-      expect(similarity_ids).to match_array([1,2])
+      expect(similarity_ids).to match_array([1, 2])
     end
-
   end
 end
