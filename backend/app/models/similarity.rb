@@ -53,13 +53,6 @@ class Similarity < ApplicationRecord
     intersection_size / union_size.to_f
   end
 
-  def self.graph_data_for(similarities)
-    edges = similarities.map(&:to_graph_edge)
-    broadcasts = similarities.map(&:broadcast1) + similarities.map(&:broadcast2)
-    nodes = broadcasts.uniq.map(&:to_graph_node)
-    { nodes: nodes, links: edges }
-  end
-
   def to_graph_edge
     {
       source: broadcast1_id,
