@@ -139,15 +139,4 @@ RSpec.describe Similarity, type: :model do
       it { is_expected.to eq([]) }
     end
   end
-
-  describe '#to_graph_edge' do
-    subject { build(:similarity, broadcast1_id: 1, broadcast2_id: 2, value: 0.5) }
-    it 'returns a hash with source id, target id and value' do
-      expect(subject.to_graph_edge).to eq(
-        source: 1,
-        target: 2,
-        value: 0.5
-      )
-    end
-  end
 end

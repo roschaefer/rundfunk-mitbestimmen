@@ -6,7 +6,7 @@ class ChartDataController < ApplicationController
     similarities = Similarity.order(value: :desc).includes(:broadcast1, :broadcast2)
     similarities = similarities.specific_to(current_user) if params[:specific_to_user]
     similarity_graph_data = graph_data_for(similarities.first(500))
-    render json: similarity_graph_data
+    render json: similarity_graph_data, adapter: :json, root: 'data'
   end
 
   def geojson
@@ -26,9 +26,7 @@ class ChartDataController < ApplicationController
   private
 
   def graph_data_for(similarities)
-    edges = similarities.map(&:to_graph_edge)
     broadcasts = similarities.map(&:broadcast1) + similarities.map(&:broadcast2)
-    nodes = broadcasts.uniq.map(&:to_graph_node)
-    { nodes: nodes, links: edges }
+    SimilarityGraph::Graph.new nodes: broadcasts.uniq, links: similarities
   end
 end
