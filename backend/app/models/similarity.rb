@@ -49,12 +49,4 @@ class Similarity < ApplicationRecord
     intersection_size = (supporters1 & supporters2).size
     intersection_size / union_size.to_f
   end
-
-  def to_graph_edge
-    {
-      source: broadcast1_id,
-      target: broadcast2_id,
-      value: value
-    }
-  end
 end
