@@ -19,7 +19,7 @@ export default Component.extend({
       .force("charge", d3.forceManyBody())
       .force("center", d3.forceCenter(width / 2, height / 2));
 
-    let graph = this.get('graph');
+    let graph = this.get('graph').data;
 
 
     //add encompassing group for the zoom
