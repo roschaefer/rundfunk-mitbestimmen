@@ -24,10 +24,8 @@ describe('Integration | Component | visualize/graph/graph-visualization', functi
     // `);
 
     this.set('graph', {
-      data: {
         nodes: [],
         links: []
-      }
     });
     this.render(hbs`{{visualize/graph/graph-visualization graph=graph}}`);
     expect(this.$()).to.have.length(1);
