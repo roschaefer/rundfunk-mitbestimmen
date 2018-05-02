@@ -62,16 +62,10 @@ RSpec.describe 'ChartData::Similarities', type: :request do
 
         context('the user is authenticated') do
           let(:headers) do
-            user.auth0_uid = 'email|58d072bf0bdcab0a0ecee8ad'
             super().merge(authenticated_header(user))
           end
 
-          let(:user) do
-            User.skip_callback(:save, :after, :geocode_last_ip)
-            user = create(:user, :without_geolocation, auth0_uid: nil)
-            User.set_callback(:save, :after, :geocode_last_ip)
-            user
-          end
+          let(:user) { create(:user) }
 
           before { user }
 
