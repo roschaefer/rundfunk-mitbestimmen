@@ -134,22 +134,18 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           describe '?to=(2 months ago)' do
             let(:two_months_ago) { 2.months.ago.change(usec: 0) }
             let(:three_months_ago) { 3.months.ago.change(usec: 0) }
+            let(:num_items) { 1 + (two_months_ago.to_date - three_months_ago.to_date).to_i / 7 }
             let(:params) { { to: two_months_ago } }
             describe 'from 3 months ago with every 7th day by default' do
               before { two_months_ago && three_months_ago } # to precalculate dates
-              it { expect(subject.size).to eq(6) }
+              it { expect(subject.size).to eq(num_items) }
 
-              {
-                0 => 0.days,
-                1 => 7.days,
-                2 => 14.days,
-                3 => 21.days,
-                4 => 28.days,
-                5 => 1.month
-              }.each do |i, duration|
-                # a request may take some time, so let's take 3 seconds
-                # as permissible deviation
-                it { expect(Time.zone.parse(subject[i][0]).change(usec: 0)).to eq(three_months_ago + duration) }
+              it 'returns an element for each 7th day' do
+                interval_durations = {}
+                (1..num_items).collect { |i| interval_durations[i - 1] = (7 * (i - 1)).days }
+                interval_durations.each do |i, duration|
+                  expect(Time.zone.parse(subject[i][0]).change(usec: 0)).to eq(three_months_ago + duration)
+                end
               end
             end
           end
