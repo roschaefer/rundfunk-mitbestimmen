@@ -272,7 +272,7 @@ RSpec.describe 'Broadcasts', type: :request do
             end
 
             describe 'papertrail' do
-              specify { expect { action }.to(change { PaperTrail::Version.count }.by(1)) }
+              specify { expect { action }.to(change { PaperTrail::Version.where(item_type: 'Broadcast').count }.by(1)) }
 
               describe 'deleted schedule' do
                 before { action }
