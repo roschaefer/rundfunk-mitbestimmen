@@ -3537,17 +3537,15 @@ ember-getowner-polyfill@1.1.1:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
 
-ember-highcharts@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/ember-highcharts/-/ember-highcharts-0.7.0.tgz#1d8b49201eebc19df01aafd19c690c83e4c5e09a"
+ember-highcharts@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-highcharts/-/ember-highcharts-1.0.0.tgz#d412af4d1f2f55e1cae0174c353852fd98b5bad9"
   dependencies:
     bootstrap "3.3.7"
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^1.2.0"
-    ember-assign-polyfill "^2.2.0"
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
-    ember-getowner-polyfill "^2.2.0"
 
 ember-inflector@^2.0.0:
   version "2.2.0"
