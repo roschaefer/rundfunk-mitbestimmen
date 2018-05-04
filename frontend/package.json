@@ -55,7 +55,7 @@
     "ember-fetch": "^3.4.5",
     "ember-highcharts": "0.7.0",
     "ember-inline-edit": "1.0.0-beta.2",
-    "ember-intl": "2.33.1",
+    "ember-intl": "2.33.2",
     "ember-leaflet": "^3.0.13",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
