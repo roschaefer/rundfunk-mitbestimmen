@@ -32,7 +32,7 @@ RSpec.describe Schedule, type: :model do
       it 'creates another version' do
         broadcast
         new_station = create(:station)
-        expect { broadcast.stations << new_station }.to(change { PaperTrail::Version.count }.by(1))
+        expect { broadcast.stations << new_station }.to(change { PaperTrail::Version.where(item_type: 'Broadcast').count }.by(1))
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe Schedule, type: :model do
         station
       end
       it 'creates another version' do
-        expect { broadcast.update(stations: []) }.to(change { PaperTrail::Version.count }.by(1))
+        expect { broadcast.update(stations: []) }.to(change { PaperTrail::Version.where(item_type: 'Broadcast').count }.by(1))
       end
 
       it 'does not remove the station, only the join model' do
