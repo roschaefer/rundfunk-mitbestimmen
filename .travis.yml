@@ -31,6 +31,9 @@ before_install:
 
 install:
   - bundle
+  - cd backend
+  - bundle
+  - cd ..
   - chromedriver-update 2.37
   - cd frontend
   - yarn install --pure-lockfile
