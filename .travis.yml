@@ -51,7 +51,7 @@ before_script:
 
 script:
   - cd frontend
-  - ember test
+  - BROCCOLI_PERSISTENT_FILTER_CACHE_ROOT=./cache ember test
   - cd -
   - cd backend
   - bundle exec brakeman -z
