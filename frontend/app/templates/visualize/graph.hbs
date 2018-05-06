@@ -1,14 +1,20 @@
 <div class="ui grid">
-<div class="row">
-  <div class="left aligned column">
-    <h1 class="ui huge header">
-      {{t 'visualize.graph.header'}}
-      <div class="sub header">
-        {{t 'visualize.graph.sub-header' htmlSafe=true}}
-      </div>
-    </h1>
+  <div class="row">
+    <div class="left aligned column">
+      <h1 class="ui huge header">
+        {{t 'visualize.graph.header'}}
+        <div class="sub header">
+          {{t 'visualize.graph.sub-header' htmlSafe=true}}
+        </div>
+      </h1>
+    </div>
   </div>
-</div>
+
+  <div class="centered row">
+    <button class="ui button {{if isUserSpecific "active"}}" {{action 'toggleUserSpecific' userspecific}} disabled={{not session.isAuthenticated}}>
+      {{t 'visualize.graph.show-personalized-similarities'}}
+    </button>
+  </div>
 
   <div class="centered row">
     <div class="fourteen wide mobile sixteen wide column ">
@@ -17,7 +23,6 @@
   </div>
 
   <div class="row">
-
     {{outlet}}
 
     {{#link-to 'visualize.index' class="ui huge primary button"}}
