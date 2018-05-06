@@ -32,7 +32,7 @@ class GeocodeUserJob < ApplicationJob
 
     http = Net::HTTP.new(access_token_url.host, access_token_url.port)
     http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
     request = Net::HTTP::Post.new(access_token_url)
     request['content-type'] = 'application/json'
@@ -61,7 +61,7 @@ class GeocodeUserJob < ApplicationJob
     url = URI("https://#{domain}/api/v2/users/#{CGI.escape(user.auth0_uid)}")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
     request = Net::HTTP::Get.new(url)
     request['content-type'] = 'application/json'
