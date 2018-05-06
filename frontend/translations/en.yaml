@@ -526,6 +526,8 @@ visualize:
         If two broadcasts are supported by the same users, their connection becomes thicker.
       reason: >
         This is interesting to find e.g. similar broadcasts.
+    show-personalized-similarities: >
+      Similar to my supported broadcasts
 about-us:
   team:
     you:
