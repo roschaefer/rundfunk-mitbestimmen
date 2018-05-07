@@ -64,7 +64,7 @@
     "ember-scroll-to": "0.6.4",
     "ember-simple-auth": "^1.5.1",
     "ember-simple-auth-auth0": "^4.0.0-beta",
-    "ember-source": "^2.18.2",
+    "ember-source": "^3.1.1",
     "ember-truth-helpers": "2.0.0",
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.1.0",
