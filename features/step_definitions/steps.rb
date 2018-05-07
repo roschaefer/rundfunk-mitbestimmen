@@ -53,6 +53,10 @@ Then(/^I can read:$/) do |string|
   expect(actual).to include(expected)
 end
 
+Then("I see a success message:") do |string|
+  expect(page).to have_css('.success.message', text: string)
+end
+
 When(/^(?:then |when )?I click on "([^"]*)"/) do |string|
   click_on string
 end

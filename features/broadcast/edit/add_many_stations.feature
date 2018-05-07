@@ -22,7 +22,7 @@ Feature: Add many stations
     When I add "WDR Fernsehen" to the list of stations
     And I add "KiKA" to the list of stations
     And I click on "Update"
-    Then I can read:
+    Then I see a success message:
     """
     Saved successfully
     """
