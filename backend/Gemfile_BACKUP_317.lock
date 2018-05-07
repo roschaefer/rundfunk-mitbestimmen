@@ -311,11 +311,7 @@ GEM
     thread_safe (0.3.6-java)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-<<<<<<< HEAD
-    tzinfo-data (1.2018.4)
-=======
     tzinfo-data (1.2018.5)
->>>>>>> master
       tzinfo (>= 1.0.0)
     unicode-display_width (1.3.2)
     valid_email2 (2.2.3)

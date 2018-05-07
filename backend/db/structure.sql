@@ -1493,14 +1493,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171123003201'),
 ('20180215143737'),
 ('20180223201113'),
-<<<<<<< HEAD
 ('20180415203114'),
 ('20180417183715');
-<<<<<<< 0e384f743aa657f74879a784b3ff3d6e62c3d1ab
-=======
-=======
 ('20180411234936');
->>>>>>> 5e11112ac7e1dad896f2caaf809020e87b936a5d
-
-
->>>>>>> Add tests for similarities and statistics, start implementation for user visualize similar broadcasts
