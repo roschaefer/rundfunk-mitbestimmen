@@ -49,4 +49,8 @@ class Similarity < ApplicationRecord
     intersection_size = (supporters1 & supporters2).size
     intersection_size / union_size.to_f
   end
+
+  def self.specific_to(user)
+    
+  end
 end

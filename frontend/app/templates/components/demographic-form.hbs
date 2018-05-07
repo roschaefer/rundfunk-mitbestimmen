@@ -1,0 +1,32 @@
+<div id="log-in">
+  {{#if user.isValid}}
+    <h2 class="">{{t 'visualize.demographic-form.logged-in'}}</h2>
+  {{else}}
+    <h2 class="">{{t 'visualize.demographic-form.logged-out'}}</h2>
+  {{/if}}
+</div>
+
+{{#ui-dropdown  id="gender-dropdown" class="selection" selected=user.gender onChange=(action 'updateGender') as |execute mapper|}}
+  <div class="default text">{{t 'visualize.demographic-form.gender'}}</div>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    {{#each genders as |gender|}}
+      <div data-value="{{map-value mapper gender}}" class="item">
+        {{gender}}
+      </div>
+    {{/each}}
+  </div>
+{{/ui-dropdown}}
+
+{{#ui-dropdown id="ageGroup-dropdown" class="selection" selected=user.ageGroup onChange=(action 'updateAgeGroup') as |execute mapper|}}
+  <div class="default text">{{t 'visualize.demographic-form.age-group'}}</div>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    {{#each ageGroups as |ageGroup|}}
+      <div data-value="{{map-value mapper ageGroup}}" class="item">
+        {{ageGroup}}
+      </div>
+    {{/each}}
+  </div>
+{{/ui-dropdown}}
+{{yield}}

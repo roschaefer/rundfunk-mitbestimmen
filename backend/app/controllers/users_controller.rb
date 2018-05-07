@@ -21,6 +21,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[latitude longitude locale])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %i[latitude longitude locale gender age-group])
   end
 end

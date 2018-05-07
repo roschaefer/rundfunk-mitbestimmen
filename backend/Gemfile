@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'active_model_serializers'
 gem 'arel'
 gem 'cancancan'
-gem 'chrono_model', '<= 0.12.1'
+gem 'chrono_model'
 gem 'geocoder'
 gem 'globalize', git: 'https://github.com/globalize/globalize'
 gem 'globalize-accessors'
@@ -58,7 +58,7 @@ group :development do
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'capistrano'
-  gem 'capistrano-db-tasks', require: false, git: 'https://github.com/sgruhier/capistrano-db-tasks.git'
+  gem 'capistrano-db-tasks', require: false
   gem 'capistrano-rails'
   gem 'highline'
   gem 'rails-erd'

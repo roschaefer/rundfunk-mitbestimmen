@@ -1,22 +1,13 @@
-<div class="row">
-  {{#missing-feature feature='demography' as |missing|}}
-  {{missing.preview imageUrl="/assets/images/missing-features/visualize/demography.png"}}
-  {{#missing.explanation imageUrl="/assets/images/missing-features/visualize/demography.png"}}
-  <h1 class="ui huge header">
-    {{t 'visualize.demography.header'}}
-    <div class="sub header">
-      {{t 'visualize.demography.sub-header'}}
-    </div>
-  </h1>
-  <p>
-    {{t 'visualize.demography.paragraph.explanation'}}
-  </p>
-  <p>
-    {{t 'visualize.demography.paragraph.reason'}}
-  </p>
-  {{/missing.explanation}}
-  {{/missing-feature}}
+<div class="">
+  <h1 class="ui center aligned grid">{{t 'visualize.demography.header'}}</h1><br>
 </div>
+<div class="">
+  <h3 class="ui center aligned grid">{{t 'visualize.demography.sub-header'}}</h3><br>
+</div>
+
+{{dynamic-high-charts chartOptions=chartOptions content=chartData }}
+
+{{demographic-form user=model}}
 
 {{outlet}}
 <div class="row">

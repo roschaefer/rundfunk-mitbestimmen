@@ -4,6 +4,8 @@ import { computed } from '@ember/object';
 export default DS.Model.extend({
   locale: DS.attr('string'),
   email: DS.attr('string'),
+  gender: DS.attr('string'),
+  ageGroup: DS.attr('string'),
   latitude: DS.attr('number'),
   longitude: DS.attr('number'),
   countryCode: DS.attr('string'),

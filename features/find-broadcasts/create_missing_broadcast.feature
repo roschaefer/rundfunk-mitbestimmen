@@ -32,7 +32,7 @@ Feature: Create missing records
     """
     And I choose "TV" from the list of available media
     And I click on "Create"
-    Then I see a success message:
+    Then I can read:
     """
     Saved successfully
     """
@@ -44,7 +44,7 @@ Feature: Create missing records
       | Title      | Medium | Station | Description                                                                    |
       | Metropolis | TV     | Arte    | Metropolis berichtet über das künstlerische und intellektuelle Leben in Europa |
     And I click on "Create"
-    Then I see a success message:
+    Then I can read:
     """
     Saved successfully
     """

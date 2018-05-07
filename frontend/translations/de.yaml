@@ -491,9 +491,9 @@ visualize:
       of-the-world: aller Nutzer
       of-germany: aller deutschen Nutzer
   demography:
-    header: Demographische Visualisierung
+    header: Bevölkerungspyramide für Deutschland, 2015
     sub-header: >
-      Wie sieht die Bevölkerungspyramide der Unterstützer einer Sendung aus?
+      Bevölkerungspyramiden der Welt von 1950 bis 2100
     paragraph:
       explanation: >
         Hier sieht man für eine beliebige Sendung eine Alterspyramide. Benutzer
@@ -502,6 +502,13 @@ visualize:
       reason: >
         Sender können so das Program anpassen, damit für jede und jeden etwas
         dabei ist und für jedes Alter.
+  demographic-form:
+    logged-in: >
+      Aktualisieren Sie Ihr Geschlecht und Ihre Altersgruppe, um bei der Repräsentativität zu helfen
+    logged-out: >
+      Logge dich ein, um deine ungefähre Altersgruppe und dein Geschlecht zu aktualisieren
+    gender: Geschlecht
+    age-group: Altersgruppe
   time:
     overview:
       header: Veränderungsübersicht

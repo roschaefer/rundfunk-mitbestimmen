@@ -6,3 +6,4 @@ foreman.out
 .DS_Store
 *.tern-port
 .idea/
+package-lock.json

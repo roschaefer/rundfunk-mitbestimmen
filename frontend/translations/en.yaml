@@ -470,9 +470,9 @@ visualize:
       of-the-world: of all users
       of-germany: of German users
   demography:
-    header: Demographic visualization
+    header: Population pyramid for Germany, 2015
     sub-header: >
-      What is the population pyramid of the supporters of a broadcast?
+      Population Pyramids of the World from 1950 to 2100
     paragraph:
       explanation: >
         Here you can see a population pyramid for a broadcast. Users can
@@ -480,6 +480,13 @@ visualize:
       reason: >
         Broadcasters can thus adapt their program, to have something for everyone
         and for all ages.
+  demographic-form:
+    logged-in: >
+      Update your gender and age group to help with representativeness
+    logged-out: >
+      Log in to update your approximate age group and gender
+    gender: Gender
+    age-group: Age Group
   time:
     overview:
       header: Overview of changes
