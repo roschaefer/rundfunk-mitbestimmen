@@ -98,7 +98,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    chrono_model (0.12.2)
+    chrono_model (0.12.1)
       activerecord (>= 4.2.0, < 5.2.0)
       multi_json
       pg
@@ -363,7 +363,7 @@ DEPENDENCIES
   capybara
   childprocess
   chromedriver-helper
-  chrono_model
+  chrono_model (<= 0.12.1)
   cucumber
   database_cleaner
   factory_bot_rails
