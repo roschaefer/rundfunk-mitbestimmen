@@ -485,8 +485,10 @@ visualize:
       Update your gender and age group to help with representativeness
     logged-out: >
       Log in to update your approximate age group and gender
-    gender: Gender
-    age-group: Age Group
+    gender:
+      placeholder: Gender
+    age-group:
+      placeholder: Age Group
   time:
     overview:
       header: Overview of changes

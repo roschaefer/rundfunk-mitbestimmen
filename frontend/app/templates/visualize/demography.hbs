@@ -5,9 +5,14 @@
   <h3 class="ui center aligned grid">{{t 'visualize.demography.sub-header'}}</h3><br>
 </div>
 
-{{dynamic-high-charts chartOptions=chartOptions content=chartData}}
-{{demographic-form user=model}}
+<div class="row">
+  {{dynamic-high-charts chartOptions=chartOptions content=chartData}}
 
+  <p>{{t 'visualize.demography.paragraph.explanation'}}</p>
+  <p>{{t 'visualize.demography.paragraph.reason'}}</p>
+</div>
+
+{{demographic-form user=model}}
 {{outlet}}
 <div class="row">
   {{outlet}}

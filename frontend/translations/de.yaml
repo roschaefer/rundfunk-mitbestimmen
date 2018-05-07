@@ -507,8 +507,10 @@ visualize:
       Aktualisieren Sie Ihr Geschlecht und Ihre Altersgruppe, um bei der Repräsentativität zu helfen
     logged-out: >
       Logge dich ein, um deine ungefähre Altersgruppe und dein Geschlecht zu aktualisieren
-    gender: Geschlecht
-    age-group: Altersgruppe
+    gender:
+      placeholder: Geschlecht
+    age-group:
+      placeholder: Altersgruppe
   time:
     overview:
       header: Veränderungsübersicht

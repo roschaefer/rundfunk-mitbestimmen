@@ -356,7 +356,7 @@ CREATE VIEW public.impressions AS
 -- Name: VIEW impressions; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW public.impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.1"}';
+COMMENT ON VIEW public.impressions IS '{"temporal":true,"copy_data":true,"chronomodel":"0.12.2"}';
 
 
 --
@@ -1147,13 +1147,6 @@ CREATE INDEX index_broadcasts_on_medium_id ON public.broadcasts USING btree (med
 
 
 --
--- Name: index_broadcasts_on_schedule_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_broadcasts_on_schedule_id ON public.broadcasts USING btree (schedule_id);
-
-
---
 -- Name: index_broadcasts_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1338,14 +1331,6 @@ ALTER TABLE ONLY public.stations
 
 
 --
--- Name: fk_rails_9eec935c8b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.broadcasts
-    ADD CONSTRAINT fk_rails_9eec935c8b FOREIGN KEY (schedule_id) REFERENCES public.schedules(id);
-
-
---
 -- Name: fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1368,30 +1353,6 @@ ALTER TABLE ONLY public.broadcasts
 ALTER TABLE ONLY public.broadcasts
     ADD CONSTRAINT fk_rails_eee7654a34 FOREIGN KEY (format_id) REFERENCES public.formats(id);
 
-=======
--- Name: fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.broadcasts
-    ADD CONSTRAINT fk_rails_a45e306ec3 FOREIGN KEY (creator_id) REFERENCES public.users(id);
-
-
---
--- Name: fk_rails_c39629e750; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.broadcasts
-    ADD CONSTRAINT fk_rails_c39629e750 FOREIGN KEY (medium_id) REFERENCES public.media(id);
-
-
---
--- Name: fk_rails_eee7654a34; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.broadcasts
-    ADD CONSTRAINT fk_rails_eee7654a34 FOREIGN KEY (format_id) REFERENCES public.formats(id);
-
->>>>>>> Fix specific_to(user) model test
 
 --
 -- Name: fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
@@ -1493,6 +1454,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171123003201'),
 ('20180215143737'),
 ('20180223201113'),
+('20180411234936'),
 ('20180415203114'),
 ('20180417183715');
-('20180411234936');
+
+
