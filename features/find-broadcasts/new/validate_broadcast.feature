@@ -26,7 +26,9 @@ Feature: Validate broadcasts
     When I just hit "Create"
     Then I get an error message
     """
-    Description can't be blank
+    Description
+    [...]
+    can't be blank
     """
     And because I'm lazy, I just submit the broadcast's official website
     """
@@ -34,7 +36,10 @@ Feature: Validate broadcasts
     """
     Then I get an error message
     """
-    Description without links, please. Users should be able to view [...]
+    Description
+    [...]
+    without links, please. Users should be able to view
+    [...]
     without leaving this website.
     """
     And no broadcast was saved to the database

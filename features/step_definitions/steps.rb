@@ -48,7 +48,13 @@ When(/^I visit the landing page$/) do
 end
 
 Then(/^I can read:$/) do |string|
-  expect(page).to have_text string
+  actual = page.text.gsub("\n", ' ')
+  expected = string.gsub("\n", ' ')
+  expect(actual).to include(expected)
+end
+
+Then("I see a success message:") do |string|
+  expect(page).to have_css('.success.message', text: string)
 end
 
 When(/^(?:then |when )?I click on "([^"]*)"/) do |string|
@@ -669,7 +675,8 @@ end
 
 Then(/^the stations are ordered like this:$/) do |table|
   within('.filter-stations-field') do
-    expect(all('.item:not(.blank)').map(&:text)).to eq(table.rows.flatten)
+    items = all('.item:not(.blank)').map{|item| item.text.gsub("\n", ' ')}
+    expect(items).to eq(table.rows.flatten)
   end
 end
 
@@ -834,7 +841,7 @@ end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
   find('.selection', text: 'Filter by station').click
-  labels = all('.dropdown .item:not(.blank)').map(&:text)
+  labels = all('.dropdown .item:not(.blank)').map{|item| item.text.gsub("\n", ' ')}
   table.hashes.each_with_index do |row, i|
     expect(labels[i]).to eq row['Label']
   end
