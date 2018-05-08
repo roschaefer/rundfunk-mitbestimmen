@@ -20,6 +20,6 @@ export default Component.extend({
         user.set(attribute, value);
         user.save();
       }
-    },
+    }
   }
   });
