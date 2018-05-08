@@ -14,18 +14,10 @@ export default Component.extend({
       '95-99', '100 + '])
   },
   actions: {
-    updateGender(gender) {
+    update(attribute, value) {
       let user = this.get('user');
       if (!isNone(user)){
-        user.set('gender', gender);
-        user.save();
-      }
-    },
-
-    updateAgeGroup(ageGroup) {
-      let user = this.get('user');
-      if (!isNone(user)) {
-        user.set('ageGroup', ageGroup);
+        user.set(attribute, value);
         user.save();
       }
     }

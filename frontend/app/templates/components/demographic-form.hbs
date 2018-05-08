@@ -4,39 +4,28 @@
   {{else}}
     <h4 class="ui dividing header">{{t 'visualize.demographic-form.logged-out'}}</h4>
   {{/if}}
+</div>
+{{#ui-dropdown  id="gender-dropdown" class="selection" selected=user.gender onChange=(action 'update' 'gender' gender) as |execute mapper|}}
+  <div class="default text">{{t 'visualize.demographic-form.gender'}}</div>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    {{#each genders as |gender|}}
+      <div data-value="{{map-value mapper gender}}" class="item">
+        {{gender}}
+      </div>
+    {{/each}}
+  </div>
+{{/ui-dropdown}}
 
-  <div class="two fields">
-    <div class="field">
-      <label>
-        {{t 'visualize.demographic-form.gender.label'}}
-      </label>
-      {{#ui-dropdown id="gender-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.gender onChange=(action 'updateGender') as |execute mapper|}}
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          {{#each genders as |gender|}}
-            <div data-value="{{map-value mapper gender}}" class="item">
-              {{t (concat 'visualize.demography.chart.labels.' gender)}}
-            </div>
-          {{/each}}
-        </div>
-      {{/ui-dropdown}}
-    </div>
-
-    <div class="field">
-      <label>
-        {{t 'visualize.demographic-form.age-group.label'}}
-      </label>
-      {{#ui-dropdown id="ageGroup-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.ageGroup onChange=(action 'updateAgeGroup') as |execute mapper|}}
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          {{#each ageGroups as |ageGroup|}}
-            <div data-value="{{map-value mapper ageGroup}}" class="item">
-              {{ageGroup}}
-            </div>
-          {{/each}}
-        </div>
-      {{/ui-dropdown}}
-    </div>
+{{#ui-dropdown id="ageGroup-dropdown" class="selection" selected=user.ageGroup onChange=(action 'update' 'ageGroup' ageGroup) as |execute mapper|}}
+  <div class="default text">{{t 'visualize.demographic-form.age-group'}}</div>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    {{#each ageGroups as |ageGroup|}}
+      <div data-value="{{map-value mapper ageGroup}}" class="item">
+        {{ageGroup}}
+      </div>
+    {{/each}}
   </div>
 
 </div>
