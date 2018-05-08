@@ -6,7 +6,6 @@
   {{/if}}
 </div>
 {{#ui-dropdown  id="gender-dropdown" class="selection" selected=user.gender onChange=(action 'update' 'gender' gender) as |execute mapper|}}
-  <div class="default text">{{t 'visualize.demographic-form.gender'}}</div>
   <i class="dropdown icon"></i>
   <div class="menu">
     {{#each genders as |gender|}}
@@ -18,7 +17,6 @@
 {{/ui-dropdown}}
 
 {{#ui-dropdown id="ageGroup-dropdown" class="selection" selected=user.ageGroup onChange=(action 'update' 'ageGroup' ageGroup) as |execute mapper|}}
-  <div class="default text">{{t 'visualize.demographic-form.age-group'}}</div>
   <i class="dropdown icon"></i>
   <div class="menu">
     {{#each ageGroups as |ageGroup|}}
@@ -27,7 +25,6 @@
       </div>
     {{/each}}
   </div>
-
-</div>
+{{/ui-dropdown}}
 
 {{yield}}
