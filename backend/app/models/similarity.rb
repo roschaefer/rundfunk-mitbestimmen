@@ -3,8 +3,8 @@ class Similarity < ApplicationRecord
   belongs_to :broadcast2, foreign_key: 'broadcast2_id', class_name: 'Broadcast'
   validates  :broadcast1, uniqueness: { scope: :broadcast2 }
 
-  scope :specific_to, -> (user) {
-    return self.none unless user
+  scope :specific_to, lambda { |user|
+    return none unless user
     where(
       'broadcast1_id in (?) or broadcast2_id in (?)',
       user.liked_broadcast_ids,
