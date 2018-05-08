@@ -517,9 +517,9 @@ visualize:
       Logge dich ein, um Deine ungefähre Altersgruppe und dein Geschlecht zu
       ändern.
     gender:
-      placeholder: Geschlecht
+      label: Geschlecht
     age-group:
-      placeholder: Altersgruppe
+      label: Altersgruppe
   time:
     overview:
       header: Veränderungsübersicht

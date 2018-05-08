@@ -8,10 +8,9 @@
   <div class="two fields">
     <div class="field">
       <label>
-        {{t 'visualize.demographic-form.gender.placeholder'}}
+        {{t 'visualize.demographic-form.gender.label'}}
       </label>
       {{#ui-dropdown id="gender-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.gender onChange=(action 'updateGender') as |execute mapper|}}
-        <div class="default text">{{t 'visualize.demographic-form.gender.placeholder'}}</div>
         <i class="dropdown icon"></i>
         <div class="menu">
           {{#each genders as |gender|}}
@@ -25,10 +24,9 @@
 
     <div class="field">
       <label>
-        {{t 'visualize.demographic-form.age-group.placeholder'}}
+        {{t 'visualize.demographic-form.age-group.label'}}
       </label>
       {{#ui-dropdown id="ageGroup-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.ageGroup onChange=(action 'updateAgeGroup') as |execute mapper|}}
-        <div class="default text">{{t 'visualize.demographic-form.age-group.placeholder'}}</div>
         <i class="dropdown icon"></i>
         <div class="menu">
           {{#each ageGroups as |ageGroup|}}

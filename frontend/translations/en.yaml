@@ -478,7 +478,7 @@ visualize:
       header: Demo data
       content: >
         You can see the population pyramid of Germany in 2018
-        (<a href="https://www.populationpyramid.net/germany/2018/
+        (<a href="https://www.populationpyramid.net/germany/2018/"
         target="_blank">Population Pyramids of the World from 1950 to 2100</a>)
         in the chart above. In the future, this will be replaced with a
         population pyramid of all supporters of a broadcast.
@@ -493,9 +493,9 @@ visualize:
     logged-out: >
       Log in to update your approximate age group and gender.
     gender:
-      placeholder: Gender
+      label: Gender
     age-group:
-      placeholder: Age Group
+      label: Age Group
   time:
     overview:
       header: Overview of changes
