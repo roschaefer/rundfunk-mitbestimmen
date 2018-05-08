@@ -30,7 +30,7 @@ describe('Acceptance | visualize/demography', function() {
     visit('/visualize/demography');
 
     return andThen(() => {
-      expect(find('.huge.header').text()).to.have.string('Population pyramid');
+      expect(find('.huge.header').text()).to.have.string('population pyramid');
     });
   });
 
