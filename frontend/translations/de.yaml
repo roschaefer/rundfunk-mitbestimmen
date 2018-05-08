@@ -491,22 +491,31 @@ visualize:
       of-the-world: aller Nutzer
       of-germany: aller deutschen Nutzer
   demography:
-    header: Bevölkerungspyramide für Deutschland, 2015
+    header: Bevölkerungspyramide für eine Sendung
     sub-header: >
-      Bevölkerungspyramiden der Welt von 1950 bis 2100
-    paragraph:
-      explanation: >
-        Hier sieht man für eine beliebige Sendung eine Alterspyramide. Benutzer
-        können ihr ungefähres Alter und ihr Geschlecht mit einem Klick auf
-        die richtige Stelle mitteilen.
-      reason: >
+        Hier sieht man für eine beliebige Sendung eine Alterspyramide.
         Sender können so das Program anpassen, damit für jede und jeden etwas
         dabei ist und für jedes Alter.
+    explanation:
+      header: Demo Daten
+      content: >
+        In der obigen Grafik ist die Bevölkerungspyramide Deutschlands im Jahr
+        2018 zu sehen (<a href="https://www.populationpyramid.net/germany/2018/
+        target="_blank">Population Pyramids of the World from 1950 to 2100</a>).
+        In Zukunft wird dies durch eine Bevölkerungspyramide der Unterstützer
+        einer Sendung ersetzt.
+    chart:
+      labels:
+        male: Männlich
+        female: Weiblich
+        other: Anderes
   demographic-form:
     logged-in: >
-      Aktualisieren Sie Ihr Geschlecht und Ihre Altersgruppe, um bei der Repräsentativität zu helfen
+      Nenne freiwillig Dein Geschlecht und ungefähre Altersgruppe und hilf mit,
+      die Ergebnisse zu verbessern.
     logged-out: >
-      Logge dich ein, um deine ungefähre Altersgruppe und dein Geschlecht zu aktualisieren
+      Logge dich ein, um Deine ungefähre Altersgruppe und dein Geschlecht zu
+      ändern.
     gender:
       placeholder: Geschlecht
     age-group:

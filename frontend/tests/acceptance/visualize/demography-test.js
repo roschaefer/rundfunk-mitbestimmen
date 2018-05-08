@@ -26,11 +26,11 @@ describe('Acceptance | visualize/demography', function() {
     });
   });
 
-  it('has a Population pyramid', function() {
+  it('has a population pyramid', function() {
     visit('/visualize/demography');
 
     return andThen(() => {
-      expect(find('.highcharts-wrapper').text()).to.have.string('Population pyramid');
+      expect(find('.huge.header').text()).to.have.string('Population pyramid');
     });
   });
 
@@ -41,7 +41,7 @@ describe('Acceptance | visualize/demography', function() {
     });
 
     describe('selecting gender from dropdown', function() {
-      it('updates user\'s gender', function() {
+      it("updates user's gender", function() {
         let user = make('user', {gender: 'male'});
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
@@ -50,7 +50,7 @@ describe('Acceptance | visualize/demography', function() {
         visit('/visualize/demography');
         click('#gender-dropdown');
         keyEvent('.menu')
-        click('.item:contains(female)')
+        click('.item:contains(Female)')
 
         return andThen(() => {
           expect(updateUserMock.timesCalled).to.equal(1);

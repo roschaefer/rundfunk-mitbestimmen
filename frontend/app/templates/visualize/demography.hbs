@@ -1,23 +1,49 @@
-<div class="">
-  <h1 class="ui center aligned grid">{{t 'visualize.demography.header'}}</h1><br>
+<div class="row">
+  <div class="column">
+    <h1 class="ui huge header">{{t 'visualize.demography.header'}}
+      <div class="sub header">{{t 'visualize.demography.sub-header'}}</div>
+    </h1>
+  </div>
 </div>
-<div class="">
-  <h3 class="ui center aligned grid">{{t 'visualize.demography.sub-header'}}</h3><br>
-</div>
+
 
 <div class="row">
   {{dynamic-high-charts chartOptions=chartOptions content=chartData}}
-
-  <p>{{t 'visualize.demography.paragraph.explanation'}}</p>
-  <p>{{t 'visualize.demography.paragraph.reason'}}</p>
 </div>
 
-{{demographic-form user=model}}
-{{outlet}}
+
 <div class="row">
-  {{outlet}}
-  {{#link-to 'visualize.index' class="ui huge primary button"}}
-  <i class="left arrow icon"></i>
-  {{t 'visualize.overview' }}
-  {{/link-to}}
+  <div class="ui two column grid">
+    <div class="eight wide column">
+      <div class="ui info message">
+        <i class="close icon"></i>
+        <div class="header">
+          {{t 'visualize.demography.explanation.header'}}
+        </div>
+        <p>
+          {{t 'visualize.demography.explanation.content' htmlSafe=true}}
+        </p>
+      </div>
+    </div>
+
+    <div class="six wide large screen eight wide right floated column">
+      {{demographic-form user=model}}
+    </div>
+  </div>
+</div>
+
+
+{{outlet}}
+
+<div class="row">
+  <div class="ui basic segment">
+  </div>
+</div>
+
+<div class="row">
+    {{outlet}}
+    {{#link-to 'visualize.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }}
+    {{/link-to}}
 </div>

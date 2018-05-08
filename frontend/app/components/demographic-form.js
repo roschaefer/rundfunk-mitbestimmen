@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { isNone } from '@ember/utils';
 
 export default Component.extend({
+  tagName: '',
   init() {
     this._super(...arguments);
     this.set('genders', ['male', 'female', 'other']);
