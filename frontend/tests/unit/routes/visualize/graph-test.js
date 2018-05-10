@@ -5,6 +5,7 @@ import { setupTest } from 'ember-mocha';
 describe('Unit | Route | visualize/graph', function() {
   setupTest('route:visualize/graph', {
     needs: [
+      'service:intl',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik'
     ]
