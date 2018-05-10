@@ -11,7 +11,7 @@
   </div>
 
   <div class="centered row">
-    <button class="ui button {{if isUserSpecific "active"}}" {{action 'toggleUserSpecific' userspecific}} disabled={{not session.isAuthenticated}}>
+    <button class="ui button {{if isUserSpecific 'active'}}" {{action 'toggleSpecificToUser' specific_to_user}} disabled={{not session.isAuthenticated}}>
       {{t 'visualize.graph.show-personalized-similarities'}}
     </button>
   </div>
