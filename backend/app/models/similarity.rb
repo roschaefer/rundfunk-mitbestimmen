@@ -4,7 +4,7 @@ class Similarity < ApplicationRecord
   validates  :broadcast1, uniqueness: { scope: :broadcast2 }
 
   scope :specific_to, lambda { |user|
-    return [] unless user
+    return none unless user
     where(
       'broadcast1_id in (?) or broadcast2_id in (?)',
       user.liked_broadcast_ids,
