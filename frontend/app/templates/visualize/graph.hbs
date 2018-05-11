@@ -11,14 +11,18 @@
   </div>
 
   <div class="centered row">
-    <button class="ui button {{if isUserSpecific 'active'}}" {{action 'toggleSpecificToUser' specific_to_user}} disabled={{not session.isAuthenticated}}>
+    <button class="ui active button {{if session.isAuthenticated '' 'disabled'}}" {{action 'toggleSpecificToUser'}}>
       {{t 'visualize.graph.show-personalized-similarities'}}
     </button>
   </div>
 
   <div class="centered row">
     <div class="fourteen wide mobile sixteen wide column ">
-      {{visualize/graph/graph-visualization graph=model}}
+      <div class="ui celled grid">
+        <div class="column chart-area">
+          {{visualize/graph/graph-visualization graph=model}}
+        </div>
+      </div>
     </div>
   </div>
 

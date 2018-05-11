@@ -4,5 +4,12 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   session: service('session'),
-  intl: service()
+  intl: service(),
+  queryParams: ['specificToUser'],
+  specificToUser: false,
+  actions: {
+    toggleSpecificToUser(){
+      this.toggleProperty('specificToUser');
+    }
+  }
 });

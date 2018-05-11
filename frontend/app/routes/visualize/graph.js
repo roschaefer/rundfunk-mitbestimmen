@@ -6,25 +6,22 @@ import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
 export default Route.extend(ResetScrollPositionMixin, {
     intl: service(),
     session: service(),
+    queryParams: {
+      specificToUser: {
+        refreshModel: true
+      }
+    },
 
     model(params) {
       const host = this.store.adapterFor('summarized-statistic').get('host');
-      let fullUrl = `${host}/chart_data/similarities.json`;
-
-      params.specific_to_user = params.specific_to_user == 'true'
-
-      if(params.specific_to_user){
-        fullUrl += `?specific_to_user=true`;
+      let url = new URL(`${host}/chart_data/similarities.json`);
+      if (params.specificToUser){
+        url.searchParams.append('specific_to_user', params.specificToUser);
       }
 
-      return fetch(fullUrl).then(function(response) {
+      return fetch(url).then(function(response) {
         return response.json();
       });
-    },
-    queryParams: {
-      specific_to_user: {
-        refreshModel: true
-      }
     },
     actions: {
       toggleSpecificToUser(currentValue){
