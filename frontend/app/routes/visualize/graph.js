@@ -24,12 +24,6 @@ export default Route.extend(ResetScrollPositionMixin, {
       return fetch(url, {headers: headers}).then(function(response) {
         return response.json();
       });
-    },
-    actions: {
-      toggleSpecificToUser(currentValue){
-        const switchedValue = currentValue != "true";
-        this.transitionTo({ queryParams: { specific_to_user: switchedValue }});
-      }
     }
   }
 );
