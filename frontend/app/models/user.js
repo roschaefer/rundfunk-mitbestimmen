@@ -5,7 +5,7 @@ export default DS.Model.extend({
   locale: DS.attr('string'),
   email: DS.attr('string'),
   gender: DS.attr('string'),
-  approxBirthYear: DS.attr('number'),
+  birthday: DS.attr('date'),
   latitude: DS.attr('number'),
   longitude: DS.attr('number'),
   countryCode: DS.attr('string'),

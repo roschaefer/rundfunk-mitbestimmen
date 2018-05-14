@@ -4,6 +4,7 @@ import startApp from 'frontend/tests/helpers/start-app';
 import destroyApp from 'frontend/tests/helpers/destroy-app';
 import { mockQueryRecord, mockUpdate, make } from 'ember-data-factory-guy';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+import moment from 'moment';
 
 describe('Acceptance | visualize/demography', function() {
 
@@ -63,7 +64,11 @@ describe('Acceptance | visualize/demography', function() {
         let user = make('user');
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
-        let updateUserMock = mockUpdate('user').match({ageGroup: 1985});
+        let expectedDate = new moment();
+        expectedDate = expectedDate.subtract(32, 'years');
+        expectedDate = expectedDate.subtract(6, 'months');
+        expectedDate = expectedDate.startOf('day');
+        let updateUserMock = mockUpdate('user').match({birthday: expectedDate.toDate()});
 
         visit('/visualize/demography');
         click('#ageGroup-dropdown');
