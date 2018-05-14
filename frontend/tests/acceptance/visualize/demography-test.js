@@ -63,7 +63,7 @@ describe('Acceptance | visualize/demography', function() {
         let user = make('user');
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
-        let updateUserMock = mockUpdate('user').match({ageGroup: '30-34'});
+        let updateUserMock = mockUpdate('user').match({ageGroup: 1985});
 
         visit('/visualize/demography');
         click('#ageGroup-dropdown');
