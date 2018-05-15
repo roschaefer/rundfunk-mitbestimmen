@@ -68,11 +68,11 @@ describe('Unit | Model | user', function() {
       it('updates birthdate', function() {
         let user = make('user');
         let expectedMoment = new moment();
-        expectedMoment = expectedMoment.subtract(2.5, 'years');
+        expectedMoment = expectedMoment.subtract(7.5, 'years');
         expectedMoment = expectedMoment.startOf('day');
         expectedMoment = expectedMoment.toDate();
         run(function() {
-          user.set('ageGroup', '0-5');
+          user.set('ageGroup', '5 - 10');
         });
         expect(user.get('birthday')).to.eql(expectedMoment);
       });

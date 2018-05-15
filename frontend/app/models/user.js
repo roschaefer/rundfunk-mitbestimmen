@@ -34,8 +34,7 @@ export default DS.Model.extend({
     },
     set(key, ageGroup){
       let [from, to] = ageGroup.split('-');
-      let years = parseInt(to) - parseInt(from);
-      years = years/2.0;
+      let years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
       let birthday = moment();
       birthday = birthday.subtract(years, 'years');
       birthday = birthday.startOf('day');
