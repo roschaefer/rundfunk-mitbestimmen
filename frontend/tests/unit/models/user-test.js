@@ -43,30 +43,16 @@ describe('Unit | Model | user', function() {
   })
 
   describe('ageGroup', function(){
-    describe('setter', function(){
-      it('updates birthdate', function() {
-        let user = make('user');
-        let expectedMoment = new moment();
-        expectedMoment = expectedMoment.subtract(2, 'years');
-        expectedMoment = expectedMoment.subtract(6, 'months');
-        expectedMoment = expectedMoment.startOf('day');
-        user.set('ageGroup', '0-5');
-        expect(user.get('birthday')).to.eq(expectedMoment);
-      });
-
-      describe('handles edge cases', function() {
-        it('ageGroup < 0');
-        it('ageGroup > 99');
-        it('ageGroup is not a valid string');
-      });
-    });
 
     describe('getter', function(){
       it('reads from birthdate', function() {
+        let user;
         let twentyEightYearsOld = moment();
         twentyEightYearsOld = twentyEightYearsOld.subtract(28, 'years');
         twentyEightYearsOld = twentyEightYearsOld.startOf('day');
-        let user = make('user', {birthday: twentyEightYearsOld.toDate()});
+        run(function() {
+          user = make('user', {birthday: twentyEightYearsOld.toDate()});
+        });
         expect(user.get('ageGroup')).to.eq('25-29');
       });
 
@@ -75,6 +61,26 @@ describe('Unit | Model | user', function() {
         it('birthday in 1900');
         it('birthday is on the lower edge of an ageGroup, e.g. 29');
         it('birthday is on the upper edge of an ageGroup, e.g. 25');
+      });
+    });
+
+    describe('setter', function(){
+      it('updates birthdate', function() {
+        let user = make('user');
+        let expectedMoment = new moment();
+        expectedMoment = expectedMoment.subtract(2.5, 'years');
+        expectedMoment = expectedMoment.startOf('day');
+        expectedMoment = expectedMoment.toDate();
+        run(function() {
+          user.set('ageGroup', '0-5');
+        });
+        expect(user.get('birthday')).to.eql(expectedMoment);
+      });
+
+      describe('handles edge cases', function() {
+        it('ageGroup < 0');
+        it('ageGroup > 99');
+        it('ageGroup is not a valid string');
       });
     });
 

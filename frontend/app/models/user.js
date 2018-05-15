@@ -1,7 +1,9 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
+import moment from 'moment';
 
 export default DS.Model.extend({
+  ageGroups: null,
   locale: DS.attr('string'),
   email: DS.attr('string'),
   gender: DS.attr('string'),
@@ -22,7 +24,33 @@ export default DS.Model.extend({
       return coordinates;
     }
   }),
+  ageGroup: computed('birthday', {
+    get(){
+      let years = moment().diff(this.get('birthday'), 'years');
+      let ageGroup = this.get('ageGroups').find((ageGroup) => {
+        return ((ageGroup[0] <= years) && (years < ageGroup[1]));
+      });
+      return ageGroup.join('-');
+    },
+    set(key, ageGroup){
+      let [from, to] = ageGroup.split('-');
+      let years = parseInt(to) - parseInt(from);
+      years = years/2.0;
+      let birthday = moment();
+      birthday = birthday.subtract(years, 'years');
+      birthday = birthday.startOf('day');
+      birthday = birthday.toDate();
+      this.setProperties({birthday});
+      return birthday;
+    }
+  }),
   hasLocation: computed('latitude', 'longitude', function() {
     return (this.get('latitude') && this.get('longitude') && true);
   }),
+  init() {
+    this._super(...arguments);
+    this.set('ageGroups', Array.from({length: 20}, (v, i) => {
+        return [i*5, (i*5)+4];
+      }));
+  },
 });

@@ -65,8 +65,7 @@ describe('Acceptance | visualize/demography', function() {
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
         let expectedDate = new moment();
-        expectedDate = expectedDate.subtract(32, 'years');
-        expectedDate = expectedDate.subtract(6, 'months');
+        expectedDate = expectedDate.subtract(32.5, 'years');
         expectedDate = expectedDate.startOf('day');
         let updateUserMock = mockUpdate('user').match({birthday: expectedDate.toDate()});
 
