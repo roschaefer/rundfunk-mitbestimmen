@@ -57,8 +57,28 @@ describe('Unit | Model | user', function() {
       });
 
       describe('handles edge cases', function() {
-        it('birthday in future');
-        it('birthday in 1900');
+        it('birthday in future', function() {
+          let user;
+          let futureBirthday = moment();
+          futureBirthday = futureBirthday.add(2, 'weeks');
+          futureBirthday = futureBirthday.startOf('day');
+          run(function() {
+            user = make('user', {birthday: futureBirthday.toDate()});
+          });
+          expect(user.get('ageGroup')).to.eq('0-4');
+        });
+
+        it('birthday in 1900', function() {
+          let user;
+          let birthday1900 = moment();
+          birthday1900 = birthday1900.subtract(118, 'years');
+          birthday1900 = birthday1900.startOf('day');
+          run(function() {
+            user = make('user', {birthday: birthday1900.toDate()});
+          });
+          expect(user.get('ageGroup')).to.eq('100+');
+        });
+
         it('birthday is on the lower edge of an ageGroup, e.g. 29');
         it('birthday is on the upper edge of an ageGroup, e.g. 25');
       });
@@ -79,10 +99,19 @@ describe('Unit | Model | user', function() {
 
       describe('handles edge cases', function() {
         it('ageGroup < 0');
+          let user = make('user');
+          let expectedMoment = new moment();
+          expectedMoment = expectedMoment.add(2, 'years');
+          expectedMoment = expectedMoment.startOf('day');
+          expectedMoment = expectedMoment.toDate();
+          run(function() {
+            user.set('ageGroup', null);
+          });
+          expect(user.get('birthday')).to.be.a(null);
+        });
         it('ageGroup > 99');
         it('ageGroup is not a valid string');
       });
     });
 
   })
-});

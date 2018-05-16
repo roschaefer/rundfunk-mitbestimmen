@@ -50,21 +50,21 @@ describe('Integration | Component | demographic form', function() {
       manualSetup(this.container);
       currentUser = make('user', {
         gender: 'male',
-        ageGroup: '30-34',
+        birthday: 1986,
       });
     });
 
     it('displays their gender by default', function() {
       this.set('currentUser', currentUser);
       this.render(hbs`{{demographic-form user=currentUser}}`);
-      let text = this.$('#gender-dropdown').text();
-      expect(text).to.have.string('male');
+      let text = this.$('#gender-dropdown .text').text();
+      expect(text).to.have.string('Male');
     });
 
     it('displays their age group by default', function() {
       this.set('currentUser', currentUser);
       this.render(hbs`{{demographic-form user=currentUser}}`);
-      let text = this.$('#ageGroup-dropdown').text();
+      let text = this.$('#ageGroup-dropdown .text').text();
       expect(text).to.have.string('30-34');
     });
   });
