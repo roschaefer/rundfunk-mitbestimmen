@@ -11,7 +11,7 @@
         {{t 'visualize.demographic-form.gender.label'}}
       </label>
       {{#ui-dropdown id="gender-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.gender onChange=(action 'update' 'gender') as |execute mapper|}}
-        <div class="default text">Gender</div>
+        <div class="default text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
           {{#each genders as |gender|}}
@@ -28,7 +28,7 @@
         {{t 'visualize.demographic-form.age-group.label'}}
       </label>
       {{#ui-dropdown id="ageGroup-dropdown" class=(if user.isValid 'selection fluid' 'disabled') selected=user.ageGroup onChange=(action 'update' 'ageGroup') as |execute mapper|}}
-      <div class="default text">Age group</div>
+      <div class="default text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
           {{#each approxBirthYears as |approxBirthYear|}}
