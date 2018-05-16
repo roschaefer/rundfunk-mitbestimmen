@@ -60,7 +60,7 @@ describe('Unit | Model | user', function() {
         it('birthday in future', function() {
           let user;
           let futureBirthday = moment();
-          futureBirthday = futureBirthday.add(2, 'weeks');
+          futureBirthday = futureBirthday.add(9, 'weeks');
           futureBirthday = futureBirthday.startOf('day');
           run(function() {
             user = make('user', {birthday: futureBirthday.toDate()});
@@ -98,7 +98,7 @@ describe('Unit | Model | user', function() {
       });
 
       describe('handles edge cases', function() {
-        it('ageGroup < 0');
+        it('ageGroup === null', function() {
           let user = make('user');
           let expectedMoment = new moment();
           expectedMoment = expectedMoment.add(2, 'years');
@@ -107,11 +107,13 @@ describe('Unit | Model | user', function() {
           run(function() {
             user.set('ageGroup', null);
           });
-          expect(user.get('birthday')).to.be.a(null);
+          expect(user.get('birthday')).to.be.undefined;
         });
+
         it('ageGroup > 99');
         it('ageGroup is not a valid string');
       });
     });
 
   })
+});

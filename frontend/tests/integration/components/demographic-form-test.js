@@ -50,7 +50,7 @@ describe('Integration | Component | demographic form', function() {
       manualSetup(this.container);
       currentUser = make('user', {
         gender: 'male',
-        birthday: 1986,
+        birthday: new Date,
       });
     });
 

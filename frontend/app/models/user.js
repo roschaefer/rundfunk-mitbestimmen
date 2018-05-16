@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import moment from 'moment';
+import { isPresent } from '@ember/utils';
 
 export default DS.Model.extend({
   ageGroups: null,
@@ -33,14 +34,18 @@ export default DS.Model.extend({
       return ageGroup.join('-');
     },
     set(key, ageGroup){
-      let [from, to] = ageGroup.split('-');
-      let years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
-      let birthday = moment();
-      birthday = birthday.subtract(years, 'years');
-      birthday = birthday.startOf('day');
-      birthday = birthday.toDate();
-      this.setProperties({birthday});
-      return birthday;
+      if(isPresent(key) && key.match(/\d+-\d+/)) {
+        let [from, to] = ageGroup.split('-');
+        let years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
+        let birthday = moment();
+        birthday = birthday.subtract(years, 'years');
+        birthday = birthday.startOf('day');
+        birthday = birthday.toDate();
+        this.setProperties({birthday});
+        return birthday;
+      } else {
+        return undefined
+      }
     }
   }),
   hasLocation: computed('latitude', 'longitude', function() {
