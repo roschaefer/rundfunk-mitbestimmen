@@ -573,6 +573,10 @@ visualize:
         Sendungen deutlicher.
       reason: >
         Das ist interessant z.B. um Ähnlichkeiten zwischen Sendungen zu finden.
+    show-personalized-similarities:
+      on: Alle Sendungen, die zu meinen Sendungen ähnlich sind
+      off: Ähnlichkeiten aller Sendungen
+
 about-us:
   team:
     you:
