@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/globalize/globalize
-  revision: 8a193c1272c3640e516ef36ac78e5d634152d3a5
+  revision: 2ae107f750ed3448d9dda70e15676a61820ce53b
   specs:
     globalize (5.1.0)
       activemodel (>= 4.2, < 5.3)
@@ -171,7 +171,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogiri (1.8.2-x86-mingw32)
       mini_portile2 (~> 2.3.0)
-    paper_trail (9.0.2)
+    paper_trail (9.1.0)
       activerecord (>= 4.2, < 5.3)
       request_store (~> 1.1)
     parallel (1.12.1)
