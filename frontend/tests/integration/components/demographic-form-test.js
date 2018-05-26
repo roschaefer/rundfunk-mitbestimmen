@@ -65,7 +65,7 @@ describe('Integration | Component | demographic form', function() {
       this.set('currentUser', currentUser);
       this.render(hbs`{{demographic-form user=currentUser}}`);
       let text = this.$('#ageGroup-dropdown .text').text();
-      expect(text).to.have.string('30-34');
+      expect(text).to.have.string('0-4');
     });
   });
 });

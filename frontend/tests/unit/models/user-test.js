@@ -68,7 +68,7 @@ describe('Unit | Model | user', function() {
           expect(user.get('ageGroup')).to.eq('0-4');
         });
 
-        it('birthday in 1900', function() {
+        it('birthday more than a century ago', function() {
           let user;
           let birthday1900 = moment();
           birthday1900 = birthday1900.subtract(118, 'years');
@@ -92,7 +92,7 @@ describe('Unit | Model | user', function() {
         expectedMoment = expectedMoment.startOf('day');
         expectedMoment = expectedMoment.toDate();
         run(function() {
-          user.set('ageGroup', '5 - 10');
+          user.set('ageGroup', '5-10');
         });
         expect(user.get('birthday')).to.eql(expectedMoment);
       });
@@ -100,10 +100,6 @@ describe('Unit | Model | user', function() {
       describe('handles edge cases', function() {
         it('ageGroup === null', function() {
           let user = make('user');
-          let expectedMoment = new moment();
-          expectedMoment = expectedMoment.add(2, 'years');
-          expectedMoment = expectedMoment.startOf('day');
-          expectedMoment = expectedMoment.toDate();
           run(function() {
             user.set('ageGroup', null);
           });

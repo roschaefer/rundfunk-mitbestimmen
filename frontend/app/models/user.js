@@ -34,8 +34,15 @@ export default DS.Model.extend({
       return ageGroup.join('-');
     },
     set(key, ageGroup){
-      if(isPresent(key) && key.match(/\d+-\d+/)) {
-        let [from, to] = ageGroup.split('-');
+      if(isPresent(ageGroup)) {
+        let from, to;
+        if (ageGroup.match(/\d+-\d+/)) {
+          [from, to] = ageGroup.split('-');
+        } else if (ageGroup === '100+') {
+          from, to = 100, null
+        } else {
+          return undefined;
+        }
         let years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
         let birthday = moment();
         birthday = birthday.subtract(years, 'years');
