@@ -1,15 +1,16 @@
 import Component from '@ember/component';
 import d3 from 'd3';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   classNames: ['graph-visualization row'],
-  didInsertElement() {
+  didRender() {
     this._super(...arguments);
+    if (isBlank(this.get('graph'))) return;
 
-    let svg = d3.select("svg");
-    let element = d3.select('svg').node();
-    let width = element.getBoundingClientRect().width;
-    let height = element.getBoundingClientRect().height;
+    let element = d3.select('div.chart-area');
+    let width = element.node().getBoundingClientRect().width;
+    let height = 960;
 
 
     let color = d3.scaleOrdinal(d3.schemeCategory10);
@@ -22,6 +23,9 @@ export default Component.extend({
     let graph = this.get('graph');
 
 
+    let svg = element.append("svg")
+      .attr("width", width)
+      .attr("height", height);
     //add encompassing group for the zoom
     let container = svg.append("g")
       .attr("class", "everything");
@@ -104,5 +108,9 @@ export default Component.extend({
     });
 
     zoom_handler(svg);
+  },
+  willUpdate(){
+    this._super(...arguments);
+    d3.select('div.chart-area svg').remove();
   }
 });

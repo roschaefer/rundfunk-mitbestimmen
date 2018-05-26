@@ -388,7 +388,7 @@ visualize:
     headers:
       diff: Expected vs. actual
       geo: Geographical visualization
-      demography: Demographic visualizaion
+      demography: Demographic visualization
       time: Changes over time
       graph: Relationships between broadcasts
   overview: Visualization overview
@@ -542,6 +542,9 @@ visualize:
         If two broadcasts are supported by the same users, their connection becomes thicker.
       reason: >
         This is interesting to find e.g. similar broadcasts.
+    show-personalized-similarities:
+      on: Broadcasts that are similar to my supported broadcasts
+      off: Similarities of all broadcasts
 about-us:
   team:
     you:
