@@ -29,8 +29,10 @@ export default DS.Model.extend({
     get(){
       let years = moment().diff(this.get('birthday'), 'years');
       let ageGroup = this.get('ageGroups').find((ageGroup) => {
-        return ((ageGroup[0] <= years) && (years < ageGroup[1]));
+        let [from, to] = ageGroup;
+        return ((from <= years) && ((to === null) || (years < to)));
       });
+      if (ageGroup[1] === null) return '100+';
       return ageGroup.join('-');
     },
     set(key, ageGroup){
@@ -60,8 +62,10 @@ export default DS.Model.extend({
   }),
   init() {
     this._super(...arguments);
-    this.set('ageGroups', Array.from({length: 20}, (v, i) => {
+    let ageGroups = Array.from({length: 20}, (v, i) => {
         return [i*5, (i*5)+4];
-      }));
+      });
+      ageGroups.push([100, null]);
+    this.set('ageGroups', ageGroups);
   },
 });
