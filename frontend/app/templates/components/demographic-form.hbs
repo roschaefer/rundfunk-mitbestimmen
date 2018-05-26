@@ -31,9 +31,9 @@
       <div class="default text"></div>
         <i class="dropdown icon"></i>
         <div class="menu">
-          {{#each approxBirthYears as |approxBirthYear|}}
-            <div data-value="{{map-value mapper approxBirthYear}}" class="item">
-              {{approxBirthYear}}
+          {{#each ageGroups as |ageGroup|}}
+            <div data-value="{{map-value mapper ageGroup}}" class="item">
+              {{ageGroup}}
             </div>
           {{/each}}
         </div>
