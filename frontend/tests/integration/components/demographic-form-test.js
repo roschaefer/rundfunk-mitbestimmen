@@ -50,9 +50,14 @@ describe('Integration | Component | demographic form', function() {
       manualSetup(this.container);
       currentUser = make('user', {
         gender: 'male',
-        birthday: new Date,
+        birthday: new Date(),
       });
     });
+
+    createdYear: Ember.computed('birthday', function(){
+      return this.get('birthday').getYear() - 30
+      this.set('birthday', createdYear);
+    })
 
     it('displays their gender by default', function() {
       this.set('currentUser', currentUser);
