@@ -70,11 +70,11 @@ describe('Unit | Model | user', function() {
 
         it('birthday more than a century ago', function() {
           let user;
-          let birthday1900 = moment();
-          birthday1900 = birthday1900.subtract(118, 'years');
-          birthday1900 = birthday1900.startOf('day');
+          let centuryOrOlder = moment();
+          centuryOrOlder = centuryOrOlder.subtract(118, 'years');
+          centuryOrOlder = centuryOrOlder.startOf('day');
           run(function() {
-            user = make('user', {birthday: birthday1900.toDate()});
+            user = make('user', {birthday: centuryOrOlder.toDate()});
           });
           expect(user.get('ageGroup')).to.eq('100+');
         });

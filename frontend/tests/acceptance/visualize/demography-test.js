@@ -50,8 +50,8 @@ describe('Acceptance | visualize/demography', function() {
 
         visit('/visualize/demography');
         click('#gender-dropdown');
-        keyEvent('.menu')
-        click('.item:contains(Female)')
+        keyEvent('.menu');
+        click('.item:contains(Female)');
 
         return andThen(() => {
           expect(updateUserMock.timesCalled).to.equal(1);
@@ -60,19 +60,21 @@ describe('Acceptance | visualize/demography', function() {
     });
 
     describe('selecting age group from dropdown', function() {
-      it('updates user\'s age group', function() {
+      it('updates user\'s approx birthday', function() {
         let user = make('user');
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
         let expectedDate = new moment();
         expectedDate = expectedDate.subtract(32.5, 'years');
         expectedDate = expectedDate.startOf('day');
-        let updateUserMock = mockUpdate('user').match({birthday: expectedDate.toDate()});
-
+        let updateUserMock = mockUpdate('user').match((userInfo) => {
+          console.log("This is the userinfo", userInfo);
+          return true
+        });
         visit('/visualize/demography');
         click('#ageGroup-dropdown');
-        keyEvent('.menu')
-        click('.item:contains(30-34)')
+        keyEvent('.menu');
+        click('.item:contains(30-34)');
 
         return andThen(() => {
           expect(updateUserMock.timesCalled).to.equal(1);
