@@ -3710,15 +3710,15 @@ ember-intl@2.33.4:
     silent-error "^1.1.0"
     walk-sync "^0.3.2"
 
-ember-invoke-action@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ember-invoke-action/-/ember-invoke-action-1.5.0.tgz#0370f187f39f22d54ddd039cd01aa7e685edbbec"
+ember-invoke-action@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/ember-invoke-action/-/ember-invoke-action-1.5.1.tgz#b6cad51ee729fc227cdbdba83b2b5486f0fa5834"
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-leaflet@^3.0.14:
-  version "3.0.14"
-  resolved "https://registry.yarnpkg.com/ember-leaflet/-/ember-leaflet-3.0.14.tgz#64baac89e3f327625e143956f3a287e38deaf037"
+ember-leaflet@^3.0.15:
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/ember-leaflet/-/ember-leaflet-3.0.15.tgz#65a419788ab05205ab00daa3306d322ad20147f7"
   dependencies:
     broccoli-funnel "^1.2.0"
     broccoli-merge-trees "^1.2.4"
@@ -3727,7 +3727,7 @@ ember-leaflet@^3.0.14:
     ember-cli-version-checker "^2.1.0"
     ember-composability-tools "^0.0.9"
     ember-get-config "^0.2.3"
-    ember-invoke-action "^1.5.0"
+    ember-invoke-action "^1.5.1"
     ember-wormhole "^0.5.2"
     fastboot-transform "^0.1.1"
     resolve "^1.7.0"
