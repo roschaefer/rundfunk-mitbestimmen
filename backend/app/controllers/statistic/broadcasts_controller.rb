@@ -67,16 +67,16 @@ module Statistic
     end
 
     def range_params(params)
-      from = if params[:from]
-               Time.zone.parse(params[:from])
-             else
-               3.months.ago
-             end
       to = if params[:to]
              Time.zone.parse(params[:to])
            else
              Time.zone.now
            end
+      from = if params[:from]
+               Time.zone.parse(params[:from])
+             else
+               to - 3.months
+             end
       nth_day = params[:day] || 7
       nth_day = nth_day.to_i
 
