@@ -3210,14 +3210,14 @@ ember-cli-eslint@^4.2.3:
     rsvp "^4.6.1"
     walk-sync "^0.3.0"
 
-ember-cli-favicon@1.0.0-beta.4:
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/ember-cli-favicon/-/ember-cli-favicon-1.0.0-beta.4.tgz#8c27d47cb4124691939b3f0f7602848a265b0594"
+ember-cli-favicon@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-favicon/-/ember-cli-favicon-1.0.0.tgz#2f6781e939acf33b368841645e076bfd77061c34"
   dependencies:
     broccoli-favicon "1.0.0"
-    broccoli-merge-trees "^1.1.1"
+    broccoli-merge-trees "^2.0.0"
     broccoli-replace "^0.12.0"
-    ember-cli-babel "^5.1.6"
+    ember-cli-babel "^6.8.2"
 
 ember-cli-get-component-path-option@^1.0.0:
   version "1.0.0"
