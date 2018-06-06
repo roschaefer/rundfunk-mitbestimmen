@@ -4,11 +4,11 @@ default: &default
   pool: 20
   username: <%= ENV["POSTGRES_USERNAME"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
-
+  host: localhost
+  
 development:
   <<: *default
   database: rundfunk-backend-development
-  host: localhost
 
 test: &test
   <<: *default
