@@ -969,3 +969,15 @@ end
 When("do nothing") do
   # do nothing
 end
+
+Given("you are a journalist and interested in who is maintaining this app") do
+  # just documentation
+end
+
+When("you click on a link to {string} somewhere on the website") do |url|
+  visit url
+end
+
+Then("you are on a dedicated faq page which has nothing but the explanation:") do |string|
+  expect(page).to have_text(string.gsub("\n",' '))
+end

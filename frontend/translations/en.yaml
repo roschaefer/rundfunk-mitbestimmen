@@ -224,7 +224,7 @@ index:
           particularly strong. Small groups would be heard. Such an information
           would be expressed by e.g. the metric <a href="/statistics">"per
           capita"</a>, ie. how important a program is for the target group.
-      responsible:
+      who-are-you:
         title: Who are you?
         content: >
           "Rundfunk Mitbestimmen" is mainly developed by volunteers of
@@ -590,7 +590,9 @@ about-us:
         <a href="https://elixir-lang.org/">Elixir</a> and
         <a href="http://elm-lang.org/">elm</a> and the framework
         <a href="http://phoenixframework.org/">Phoenix</a>.
-
+faq:
+  title: Frequently Asked Questions
+  link-to-faq: Back
 404:
   header: Oops..
   sub-header: We could not find that page.

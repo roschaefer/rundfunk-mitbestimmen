@@ -1,0 +1,6 @@
+<h1>this is an index page</h1>
+{{#each model as |slug|}}
+  {{#link-to 'faq.show' slug}}
+  {{t (concat 'index.faq.questions.' slug '.title') htmlSafe=true }}
+  {{/link-to}}
+{{/each}}

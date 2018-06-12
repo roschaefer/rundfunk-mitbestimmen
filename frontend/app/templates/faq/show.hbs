@@ -1,0 +1,17 @@
+{{outlet}}
+
+<div class="row">
+  <div class="column message-margin">
+    <div class="ui huge message page grid">
+      <h1 class="ui header">{{t (concat 'index.faq.questions.' model '.title') htmlSafe=true }}</h1>
+      <p>{{t (concat 'index.faq.questions.' model '.content') htmlSafe=true }}</p>
+    </div>
+
+    <div class="row">
+      {{#link-to 'faq.index' class="ui huge primary button"}}
+      <i class="left arrow icon"></i>
+      {{t 'faq.link-to-faq' }}
+      {{/link-to}}
+    </div>
+  </div>
+</div>
