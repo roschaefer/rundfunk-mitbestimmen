@@ -969,3 +969,7 @@ end
 When("do nothing") do
   # do nothing
 end
+
+Then("I am on the FAQ page") do
+  expect(current_path).to eq("/faq")
+end

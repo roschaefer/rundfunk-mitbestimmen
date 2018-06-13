@@ -6,4 +6,4 @@ Feature: FAQ page
   Scenario: Navigate to the FAQ page
     Given I visit the landing page
     When I click on "Why do I have to login?"
-    Then 
+      Then I am on the FAQ page
