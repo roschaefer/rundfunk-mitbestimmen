@@ -60,7 +60,7 @@
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "0.12.1",
-    "ember-resolver": "^4.5.5",
+    "ember-resolver": "^4.5.6",
     "ember-scroll-to": "0.6.4",
     "ember-simple-auth": "^1.5.1",
     "ember-simple-auth-auth0": "^4.0.0-beta",
