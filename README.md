@@ -92,12 +92,12 @@ we have the following versions:
 
 ```sh
 $ node --version
-v6.11.2
+v10.4.1
 $ yarn --version
-1.1.0
+1.7.0
 $ ember --version
-ember-cli: 2.14.2
-node: 6.11.2
+ember-cli: 3.1.4
+node: 10.4.1
 os: linux x64
 
 $ ruby --version
@@ -124,15 +124,27 @@ cd frontend
 yarn install
 ```
 
-3. Install backend dependencies and setup the database
+3. Install backend dependencies
 ```sh
 cd ../backend
 bundle
+```
+4. Setup the database
+Check under `backend/config` you will get a file called `database.template.yml`,
+rename this file to `database.yml`.
+```sh
+cp backend/config/database.template.yml backend/config/database.yml
+```
+This file is on the `.gitignore` file so it will not be checked in
+
+**(OPTIONAL):**  customize the new file to match the local database configuration
+
+Now create the databases and run the migrations:
+```sh
 bin/rails db:create db:migrate
-cd ..
 ```
 
-4. If you want, you can create some seed data
+5. If you want, you can create some seed data
 ```
 cd backend
 bin/rails db:seed

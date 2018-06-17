@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.10.2'
+lock '3.11.0'
 
 set :application, 'rundfunk-backend'
 set :repo_url, 'https://github.com/roschaefer/rundfunk-mitbestimmen.git'
@@ -26,6 +26,7 @@ set :repo_tree, 'backend/'
 
 # Default value for :linked_files is []
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
+append :linked_files, 'config/database.yml'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'

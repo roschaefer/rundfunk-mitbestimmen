@@ -10,10 +10,10 @@ export default Base.extend({
       const idToken = window.stubbedJwt;
       const sessionData =  {
         idToken,
-        expiresIn: 60 * 60, // one hour is more than enough for one fullstack test
         idTokenPayload: {
           // iat is short for "issued at" in seconds
           iat: Math.ceil(Date.now() / 1000),
+          exp: 999999999999999 // do not expire in the near future
         }
       };
       res(sessionData);

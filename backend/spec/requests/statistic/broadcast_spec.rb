@@ -132,21 +132,50 @@ RSpec.describe 'Statistic::Broadcast', type: :request do
           end
 
           describe '?to=(2 months ago)' do
-            let(:two_months_ago) { 2.months.ago.change(usec: 0) }
-            let(:three_months_ago) { 3.months.ago.change(usec: 0) }
-            let(:num_items) { 1 + (two_months_ago.to_date - three_months_ago.to_date).to_i / 7 }
             let(:params) { { to: two_months_ago } }
-            describe 'from 3 months ago with every 7th day by default' do
-              before { two_months_ago && three_months_ago } # to precalculate dates
-              it { expect(subject.size).to eq(num_items) }
 
+            let(:today) { Time.zone.parse('2017-11-15') }
+            let(:two_months_ago) { (today - 2.months).change(usec: 0) }
+            describe 'from 3 months ago with every 7th day by default' do
+              before { two_months_ago } # to precalculate dates
+
+              it { expect(subject.size).to eq(15) }
               it 'returns an element for each 7th day' do
-                interval_durations = {}
-                (1..num_items).collect { |i| interval_durations[i - 1] = (7 * (i - 1)).days }
-                interval_durations.each do |i, duration|
-                  expect(Time.zone.parse(subject[i][0]).change(usec: 0)).to eq(three_months_ago + duration)
-                end
+                expected_dates = [
+                  Time.zone.parse('15 Jun 2017'),
+                  Time.zone.parse('22 Jun 2017'),
+                  Time.zone.parse('29 Jun 2017'),
+                  Time.zone.parse('06 Jul 2017'),
+                  Time.zone.parse('13 Jul 2017'),
+                  Time.zone.parse('20 Jul 2017'),
+                  Time.zone.parse('27 Jul 2017'),
+                  Time.zone.parse('03 Aug 2017'),
+                  Time.zone.parse('10 Aug 2017'),
+                  Time.zone.parse('17 Aug 2017'),
+                  Time.zone.parse('24 Aug 2017'),
+                  Time.zone.parse('31 Aug 2017'),
+                  Time.zone.parse('07 Sep 2017'),
+                  Time.zone.parse('14 Sep 2017'),
+                  Time.zone.parse('15 Sep 2017')
+                ]
+                actual_dates = subject.map { |d| Time.zone.parse(d[0]).change(usec: 0) }
+                expect(actual_dates).to eq(expected_dates)
               end
+            end
+          end
+
+          describe 'param `to` is before `from`' do
+            let(:params) { { to: three_months_ago, from: two_months_ago } }
+
+            let(:today) { Time.zone.parse('2017-11-15') }
+            let(:two_months_ago) { (today - 2.months).change(usec: 0) }
+            let(:three_months_ago) { (today - 3.months).change(usec: 0) }
+            before { two_months_ago && three_months_ago }
+
+            it 'returns just dates for `to` and `from`' do
+              expected_dates = [two_months_ago, three_months_ago]
+              actual_dates = subject.map { |d| Time.zone.parse(d[0]).change(usec: 0) }
+              expect(actual_dates).to eq(expected_dates)
             end
           end
         end

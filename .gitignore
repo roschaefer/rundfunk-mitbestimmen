@@ -7,3 +7,4 @@ foreman.out
 *.tern-port
 .idea/
 package-lock.json
+backend/config/database.yml
