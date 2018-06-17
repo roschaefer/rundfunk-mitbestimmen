@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each model as |broadcast|}}
+          {{#each broadcasts as |broadcast|}}
           <tr class="broadcast">
             <td>
               {{#link-to 'broadcast' broadcast class='ui mini circular icon button broadcast-details'}}
@@ -57,7 +57,7 @@
           page-numbers
           classNames='small-pagination'
           tagName='tr'
-          content=model
+          content=broadcastsPaginator
           showFL=true
           numPagesToShow=1
           action=(action 'pageClicked')
