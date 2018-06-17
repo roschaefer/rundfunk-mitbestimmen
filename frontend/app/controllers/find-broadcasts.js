@@ -26,6 +26,9 @@ export default Controller.extend({
 
   positiveImpressionsWithoutAmount: filterBy('model.impressions','needsAmount', true),
 
+  // https://github.com/mharris717/ember-cli-pagination/issues/240#issuecomment-388406739
+  broadcasts: computed.alias('model.broadcasts.content'),
+
   actions: {
     searchAction(filterParams){
       this.set('sort', filterParams.sort);
