@@ -8,6 +8,7 @@ describe('Unit | Controller | visualize/demography', function() {
       'service:intl',
       'service:metrics',
       'service:session',
+      'service:demography',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });
