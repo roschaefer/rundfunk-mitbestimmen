@@ -27,7 +27,9 @@ export default DS.Model.extend({
   }),
   ageGroup: computed('birthday', {
     get(){
-      let years = moment().diff(this.get('birthday'), 'years');
+      const birthday = this.get('birthday');
+      if (!isPresent(birthday)) return undefined; 
+      let years = moment().diff(birthday, 'years');
       let ageGroup = this.get('ageGroups').find((ageGroup) => {
         let [from, to] = ageGroup;
         return ((from <= years) && ((to === null) || (years < to)));

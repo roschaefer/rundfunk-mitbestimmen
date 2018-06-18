@@ -57,6 +57,11 @@ describe('Unit | Model | user', function() {
       });
 
       describe('handles edge cases', function() {
+        it('birthday === undefined', function() {
+          let user = make('user', {birthday: undefined});
+          expect(user.get('ageGroup')).to.eq(undefined);
+        });
+
         it('birthday in future', function() {
           let user;
           let futureBirthday = moment();
