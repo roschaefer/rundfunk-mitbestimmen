@@ -64,12 +64,15 @@ describe('Acceptance | visualize/demography', function() {
         let user = make('user');
         let userMock = mockQueryRecord('user');
         userMock.returns({model: user});
-        let expectedDate = new moment();
-        expectedDate = expectedDate.subtract(32.5, 'years');
+        let expectedDate = new moment.utc();
+        expectedDate = expectedDate.subtract(32, 'years');
         expectedDate = expectedDate.startOf('day');
-        let updateUserMock = mockUpdate('user').match((userInfo) => {
-          console.log("This is the userinfo", userInfo);
-          return true
+        let updateUserMock = mockUpdate('user').match((userData) => {
+          const actualBirthday = moment.utc(userData.data.attributes.birthday);
+          // by the way, the two dates may actually be different, but the
+          // difference is because of different timezones etc. and not relevant
+          // for this test
+          return expectedDate.diff(actualBirthday, 'days') === 0
         });
         visit('/visualize/demography');
         click('#ageGroup-dropdown');
