@@ -732,7 +732,7 @@ CREATE TABLE public.users (
     city character varying,
     locale character varying,
     gender character varying,
-    age_group timestamp without time zone
+    birthday timestamp without time zone
 );
 
 
@@ -1457,6 +1457,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180223201113'),
 ('20180411234936'),
 ('20180415203114'),
-('20180417183715');
+('20180618160311');
 
 
