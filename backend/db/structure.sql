@@ -731,8 +731,8 @@ CREATE TABLE public.users (
     postal_code character varying,
     city character varying,
     locale character varying,
-    gender character varying,
-    birthday timestamp without time zone
+    birthday timestamp without time zone,
+    gender integer
 );
 
 
@@ -1456,7 +1456,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180215143737'),
 ('20180223201113'),
 ('20180411234936'),
-('20180415203114'),
-('20180618160311');
+('20180618160311'),
+('20180619151223');
 
 
