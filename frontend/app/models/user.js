@@ -38,26 +38,22 @@ export default DS.Model.extend({
       return ageGroup.join('-');
     },
     set(key, ageGroup){
-      if(isPresent(ageGroup)) {
-        let from, to;
-        if (ageGroup.match(/\d+-\d+/)) {
-          [from, to] = ageGroup.split('-');
-        } else if (ageGroup === '100+') {
-          from = 100;
-          to = 110;
-        } else {
-          return undefined;
-        }
-        let years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
-        let birthday = moment();
-        birthday = birthday.subtract(years, 'years');
-        birthday = birthday.startOf('day');
-        birthday = birthday.toDate();
-        this.setProperties({birthday});
-        return birthday;
+      if(!isPresent(ageGroup)) return undefined;
+      let years;
+      if (ageGroup.match(/\d+-\d+/)) {
+        const [from, to] = ageGroup.split('-');
+        years = parseInt(from) + ((parseInt(to) - parseInt(from))/2.0);
+      } else if (ageGroup === '100+') {
+        years = 100
       } else {
         return undefined;
       }
+      let birthday = moment();
+      birthday = birthday.subtract(years, 'years');
+      birthday = birthday.startOf('day');
+      birthday = birthday.toDate();
+      this.setProperties({birthday});
+      return ageGroup;
     }
   }),
   hasLocation: computed('latitude', 'longitude', function() {

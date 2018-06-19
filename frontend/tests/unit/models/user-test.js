@@ -133,7 +133,7 @@ describe('Unit | Model | user', function() {
         it('ageGroup > 99', function() {
           let user = make('user');
           let expectedMoment = new moment;
-          expectedMoment = expectedMoment.subtract(105, 'years');
+          expectedMoment = expectedMoment.subtract(100, 'years');
           expectedMoment = expectedMoment.startOf('day');
           expectedMoment = expectedMoment.toDate();
 
