@@ -1,15 +1,13 @@
 import Component from '@ember/component';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   tagName: '',
   demography: service(),
-  init() {
-    this._super(...arguments);
-    this.set('genders', this.get('demography').get('genders'));
-    this.set('ageGroups', this.get('demography').get('ageGroups'));
-  },
+  genders: alias('demography.genders'),
+  ageGroups: alias('demography.ageGroupLabels'),
 
   actions: {
     update(attribute, value) {

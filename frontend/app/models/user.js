@@ -2,9 +2,10 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 import moment from 'moment';
 import { isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
-  ageGroups: null,
   locale: DS.attr('string'),
   email: DS.attr('string'),
   gender: DS.attr('string'),
@@ -15,6 +16,11 @@ export default DS.Model.extend({
   stateCode: DS.attr('string'),
   city: DS.attr('string'),
   postalCode: DS.attr('string'),
+
+  demography: service(),
+  ageGroups: alias('demography.ageGroups'),
+  ageGroupLabels: alias('demography.ageGroupLabels'),
+
   coordinates: computed('latitude', 'longitude', {
     get(){
       return [this.get('latitude'), this.get('longitude')];
@@ -59,12 +65,4 @@ export default DS.Model.extend({
   hasLocation: computed('latitude', 'longitude', function() {
     return (this.get('latitude') && this.get('longitude') && true);
   }),
-  init() {
-    this._super(...arguments);
-    let ageGroups = Array.from({length: 20}, (v, i) => {
-        return [i*5, (i*5)+4];
-      });
-      ageGroups.push([100, null]);
-    this.set('ageGroups', ageGroups);
-  },
 });

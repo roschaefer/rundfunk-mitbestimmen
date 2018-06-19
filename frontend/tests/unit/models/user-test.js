@@ -8,7 +8,7 @@ import moment from 'moment';
 describe('Unit | Model | user', function() {
   setupModelTest('user', {
     // Specify the other units that are required for this test.
-      needs: []
+    needs: ['service:demography']
   });
   beforeEach(function(){
     manualSetup(this.container);

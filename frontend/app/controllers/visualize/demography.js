@@ -1,18 +1,13 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   session: service(),
   intl: service(),
   demography: service(),
-
-  init() {
-    this._super(...arguments);
-    this.set('categories', this.get('demography').get('ageGroups'));
-  },
-
-  categories: null,
+  categories: alias('demography.ageGroupLabels'),
 
   chartOptions: computed( function() {
     return {
