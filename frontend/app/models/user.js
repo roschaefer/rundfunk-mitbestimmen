@@ -28,7 +28,7 @@ export default DS.Model.extend({
   ageGroup: computed('birthday', {
     get(){
       const birthday = this.get('birthday');
-      if (!isPresent(birthday)) return undefined; 
+      if (!isPresent(birthday)) return undefined;
       let years = moment().diff(birthday, 'years');
       let ageGroup = this.get('ageGroups').find((ageGroup) => {
         let [from, to] = ageGroup;
@@ -43,7 +43,8 @@ export default DS.Model.extend({
         if (ageGroup.match(/\d+-\d+/)) {
           [from, to] = ageGroup.split('-');
         } else if (ageGroup === '100+') {
-          from, to = 100, null
+          from = 100;
+          to = 110;
         } else {
           return undefined;
         }
@@ -55,7 +56,7 @@ export default DS.Model.extend({
         this.setProperties({birthday});
         return birthday;
       } else {
-        return undefined
+        return undefined;
       }
     }
   }),
