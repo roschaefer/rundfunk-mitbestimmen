@@ -32,7 +32,7 @@ export default DS.Model.extend({
       let years = moment().diff(birthday, 'years');
       let ageGroup = this.get('ageGroups').find((ageGroup) => {
         let [from, to] = ageGroup;
-        return ((from <= years) && ((to === null) || (years < to)));
+        return ((from <= years) && ((to === null) || (years <= to)));
       });
       if (ageGroup[1] === null) return '100+';
       return ageGroup.join('-');
