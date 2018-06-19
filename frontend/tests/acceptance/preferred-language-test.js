@@ -87,7 +87,7 @@ describe('Acceptance | preferred language', function() {
         visit('/');
         click('.language.item i.de.flag')
         return andThen(() => {
-          expect(userUpdateMock .timesCalled).to.equal(1);
+          expect(userUpdateMock.timesCalled).to.equal(1);
         });
       });
     });
