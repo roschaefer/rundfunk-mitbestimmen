@@ -12,7 +12,7 @@ export default Service.extend({
         return [i*5, (i*5)+4];
       });
 
-    let ageGroups = groupRange;
+    let ageGroups = groupRange.copy();
     ageGroups.push([100, null]);
     this.set('ageGroups', ageGroups);
 
