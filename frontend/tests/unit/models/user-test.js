@@ -84,8 +84,27 @@ describe('Unit | Model | user', function() {
           expect(user.get('ageGroup')).to.eq('100+');
         });
 
-        it('birthday is on the lower edge of an ageGroup, e.g. 29');
-        it('birthday is on the upper edge of an ageGroup, e.g. 25');
+        it('birthday is on the lower edge of an ageGroup, e.g. 25', function() {
+          let user;
+          let lowerEdge = moment();
+          lowerEdge = lowerEdge.subtract(25, 'years');
+          lowerEdge = lowerEdge.startOf('day');
+          run(function() {
+            user = make('user', {birthday: lowerEdge.toDate()});
+          });
+          expect(user.get('ageGroup')).to.eq('25-29');
+        });
+
+        it('birthday is on the upper edge of an ageGroup, e.g. 29', function() {
+          let user;
+          let upperEdge = moment();
+          upperEdge = upperEdge.subtract(29, 'years');
+          upperEdge = upperEdge.startOf('day');
+          run(function() {
+            user = make('user', {birthday: upperEdge.toDate()});
+          });
+          expect(user.get('ageGroup')).to.eq('25-29');
+        });
       });
     });
 
@@ -111,8 +130,26 @@ describe('Unit | Model | user', function() {
           expect(user.get('birthday')).to.be.undefined;
         });
 
-        it('ageGroup > 99');
-        it('ageGroup is not a valid string');
+        it('ageGroup > 99', function() {
+          let user = make('user');
+          let expectedMoment = new moment;
+          expectedMoment = expectedMoment.subtract(105, 'years');
+          expectedMoment = expectedMoment.startOf('day');
+          expectedMoment = expectedMoment.toDate();
+
+          run(function() {
+            user.set('ageGroup', '100+');
+          });
+          expect(user.get('birthday')).to.eql(expectedMoment);
+        });
+
+        it('ageGroup is not a valid string', function() {
+          let user = make('user');
+          run(function() {
+            user.set('ageGroup', '');
+          });
+          expect(user.get('birthday')).to.be.undefined;
+        });
       });
     });
 
