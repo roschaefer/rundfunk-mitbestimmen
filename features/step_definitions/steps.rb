@@ -970,8 +970,12 @@ When("do nothing") do
   # do nothing
 end
 
-Then("I should see {string}") do |string|
-  expect(page).to have_content(string)
+Then(/I should( not)? see "([^"]*)"/) do |negate, string|
+  if negate
+    expect(page).to_not have_content(string)
+  else
+    expect(page).to have_content(string)
+  end
 end
 
 Then("I am on the FAQ page") do
