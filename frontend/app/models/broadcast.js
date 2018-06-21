@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
