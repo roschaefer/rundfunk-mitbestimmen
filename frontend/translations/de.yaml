@@ -604,7 +604,9 @@ about-us:
         Programmiersprachen <a href="https://elixir-lang.org/">Elixir</a> und
         <a href="http://elm-lang.org/">elm</a> und dem Framework
         <a href="http://phoenixframework.org/">Phoenix</a>.
-
+faq:
+  title: Häufig gestellte Fragen
+  
 404:
   header: Ups..
   sub-header: Wir konnten die Seite nicht finden.

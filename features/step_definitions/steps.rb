@@ -970,14 +970,7 @@ When("do nothing") do
   # do nothing
 end
 
-Then(/I should( not)? see "([^"]*)"/) do |negate, string|
-  if negate
-    expect(page).to_not have_content(string)
-  else
-    expect(page).to have_content(string)
-  end
-end
-
 Then("I am on the FAQ page") do
-  expect(current_path).to eq("/faq")
+  binding.pry
+  expect(page).to have_text("Frequently Asked Questions")
 end
