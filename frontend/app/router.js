@@ -32,7 +32,8 @@ Router.map(function() {
   this.route('history');
   this.route('login');
   this.route('data-privacy');
-
+  this.route('faq');
+  
   this.route('authentication', function() {
     this.route('callback');
   });
