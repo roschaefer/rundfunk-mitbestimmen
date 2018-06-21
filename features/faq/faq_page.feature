@@ -5,5 +5,6 @@ Feature: FAQ page
 
   Scenario: Navigate to the FAQ page
     Given I visit the landing page
-    When I click on "Why do I have to login?"
-      Then I am on the FAQ page
+    When I click on "Who are you?"
+    Then I am on the FAQ page
+    Then I should see "FAQ"

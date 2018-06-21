@@ -970,6 +970,10 @@ When("do nothing") do
   # do nothing
 end
 
+Then("I should see {string}") do |string|
+  expect(page).to have_content(string)
+end
+
 Then("I am on the FAQ page") do
   expect(current_path).to eq("/faq")
 end
