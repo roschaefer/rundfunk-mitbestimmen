@@ -971,6 +971,11 @@ When("do nothing") do
 end
 
 Then("I am on the FAQ page") do
-  binding.pry
   expect(page).to have_text("Frequently Asked Questions")
+end
+
+Then("I see in the URL {string}") do |fragment|
+  uri = ::Addressable::URI.parse(current_url)
+  expect(uri.normalized_path).to eq("/faq")
+  expect(uri.normalized_fragment).to eq(fragment)
 end

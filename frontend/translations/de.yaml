@@ -238,7 +238,7 @@ index:
           So würden auch kleine Gruppen gehört. Eine solche Aussage hat z.B.
           <a href="/statistics">die Metrik "Pro Kopf"</a>, nämlich wie wichtig
           eine Sendung auch für kleine Zielgruppen ist.
-      responsible:
+      who-are-you:
         title: Wer seid ihr?
         content: >
           "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
@@ -606,7 +606,8 @@ about-us:
         <a href="http://phoenixframework.org/">Phoenix</a>.
 faq:
   title: Häufig gestellte Fragen
-  
+  question-header:
+    who-are-you: Wer bist du?
 404:
   header: Ups..
   sub-header: Wir konnten die Seite nicht finden.

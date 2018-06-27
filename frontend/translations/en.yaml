@@ -224,7 +224,7 @@ index:
           particularly strong. Small groups would be heard. Such an information
           would be expressed by e.g. the metric <a href="/statistics">"per
           capita"</a>, ie. how important a program is for the target group.
-      responsible:
+      who-are-you:
         title: Who are you?
         content: >
           "Rundfunk Mitbestimmen" is mainly developed by
@@ -577,7 +577,8 @@ about-us:
         <a href="http://phoenixframework.org/">Phoenix</a>.
 faq:
   title: Frequently Asked Questions
-  
+  question-header:
+    who-are-you: Who are you?
 404:
   header: Oops..
   sub-header: We could not find that page.
