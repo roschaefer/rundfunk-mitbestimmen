@@ -1,5 +1,6 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -729,7 +730,9 @@ CREATE TABLE public.users (
     state_code character varying,
     postal_code character varying,
     city character varying,
-    locale character varying
+    locale character varying,
+    birthday timestamp without time zone,
+    gender integer
 );
 
 
@@ -806,126 +809,126 @@ ALTER SEQUENCE temporal.impressions_id_seq OWNED BY temporal.impressions.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: history; Owner: -
+-- Name: impressions id; Type: DEFAULT; Schema: history; Owner: -
 --
 
 ALTER TABLE ONLY history.impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impressions_id_seq'::regclass);
 
 
 --
--- Name: response; Type: DEFAULT; Schema: history; Owner: -
+-- Name: impressions response; Type: DEFAULT; Schema: history; Owner: -
 --
 
 ALTER TABLE ONLY history.impressions ALTER COLUMN response SET DEFAULT 0;
 
 
 --
--- Name: hid; Type: DEFAULT; Schema: history; Owner: -
+-- Name: impressions hid; Type: DEFAULT; Schema: history; Owner: -
 --
 
 ALTER TABLE ONLY history.impressions ALTER COLUMN hid SET DEFAULT nextval('history.impressions_hid_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: broadcasts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts ALTER COLUMN id SET DEFAULT nextval('public.broadcasts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: format_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.format_translations ALTER COLUMN id SET DEFAULT nextval('public.format_translations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: formats id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.formats ALTER COLUMN id SET DEFAULT nextval('public.formats_id_seq'::regclass);
 
 
 --
--- Name: response; Type: DEFAULT; Schema: public; Owner: -
+-- Name: impressions response; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.impressions ALTER COLUMN response SET DEFAULT 0;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: media id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.media ALTER COLUMN id SET DEFAULT nextval('public.media_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: medium_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.medium_translations ALTER COLUMN id SET DEFAULT nextval('public.medium_translations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: schedules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.schedules ALTER COLUMN id SET DEFAULT nextval('public.schedules_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: similarities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.similarities ALTER COLUMN id SET DEFAULT nextval('public.similarities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: stations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.stations ALTER COLUMN id SET DEFAULT nextval('public.stations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: topic_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.topic_translations ALTER COLUMN id SET DEFAULT nextval('public.topic_translations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: topics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.topics ALTER COLUMN id SET DEFAULT nextval('public.topics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: temporal; Owner: -
+-- Name: impressions id; Type: DEFAULT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions ALTER COLUMN id SET DEFAULT nextval('temporal.impressions_id_seq'::regclass);
 
 
 --
--- Name: impressions_pkey; Type: CONSTRAINT; Schema: history; Owner: -
+-- Name: impressions impressions_pkey; Type: CONSTRAINT; Schema: history; Owner: -
 --
 
 ALTER TABLE ONLY history.impressions
@@ -933,7 +936,7 @@ ALTER TABLE ONLY history.impressions
 
 
 --
--- Name: impressions_timeline_consistency; Type: CONSTRAINT; Schema: history; Owner: -
+-- Name: impressions impressions_timeline_consistency; Type: CONSTRAINT; Schema: history; Owner: -
 --
 
 ALTER TABLE ONLY history.impressions
@@ -941,7 +944,7 @@ ALTER TABLE ONLY history.impressions
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ar_internal_metadata
@@ -949,7 +952,7 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: broadcasts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts broadcasts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts
@@ -957,7 +960,7 @@ ALTER TABLE ONLY public.broadcasts
 
 
 --
--- Name: format_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: format_translations format_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.format_translations
@@ -965,7 +968,7 @@ ALTER TABLE ONLY public.format_translations
 
 
 --
--- Name: formats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: formats formats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.formats
@@ -973,7 +976,7 @@ ALTER TABLE ONLY public.formats
 
 
 --
--- Name: media_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: media media_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.media
@@ -981,7 +984,7 @@ ALTER TABLE ONLY public.media
 
 
 --
--- Name: medium_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: medium_translations medium_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.medium_translations
@@ -989,7 +992,7 @@ ALTER TABLE ONLY public.medium_translations
 
 
 --
--- Name: schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schedules schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.schedules
@@ -997,7 +1000,7 @@ ALTER TABLE ONLY public.schedules
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.schema_migrations
@@ -1005,7 +1008,7 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: similarities similarities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.similarities
@@ -1013,7 +1016,7 @@ ALTER TABLE ONLY public.similarities
 
 
 --
--- Name: stations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: stations stations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.stations
@@ -1021,7 +1024,7 @@ ALTER TABLE ONLY public.stations
 
 
 --
--- Name: topic_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: topic_translations topic_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.topic_translations
@@ -1029,7 +1032,7 @@ ALTER TABLE ONLY public.topic_translations
 
 
 --
--- Name: topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: topics topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.topics
@@ -1037,7 +1040,7 @@ ALTER TABLE ONLY public.topics
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
@@ -1045,7 +1048,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.versions
@@ -1053,7 +1056,7 @@ ALTER TABLE ONLY public.versions
 
 
 --
--- Name: impressions_pkey; Type: CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions impressions_pkey; Type: CONSTRAINT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions
@@ -1292,28 +1295,28 @@ CREATE UNIQUE INDEX index_impressions_on_user_id_and_broadcast_id ON temporal.im
 
 
 --
--- Name: chronomodel_delete; Type: TRIGGER; Schema: public; Owner: -
+-- Name: impressions chronomodel_delete; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE TRIGGER chronomodel_delete INSTEAD OF DELETE ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_delete();
 
 
 --
--- Name: chronomodel_insert; Type: TRIGGER; Schema: public; Owner: -
+-- Name: impressions chronomodel_insert; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE TRIGGER chronomodel_insert INSTEAD OF INSERT ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_insert();
 
 
 --
--- Name: chronomodel_update; Type: TRIGGER; Schema: public; Owner: -
+-- Name: impressions chronomodel_update; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE TRIGGER chronomodel_update INSTEAD OF UPDATE ON public.impressions FOR EACH ROW EXECUTE PROCEDURE public.chronomodel_impressions_update();
 
 
 --
--- Name: fk_rails_37250dc78c; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts fk_rails_37250dc78c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts
@@ -1321,7 +1324,7 @@ ALTER TABLE ONLY public.broadcasts
 
 
 --
--- Name: fk_rails_749eb07017; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: stations fk_rails_749eb07017; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.stations
@@ -1329,7 +1332,7 @@ ALTER TABLE ONLY public.stations
 
 
 --
--- Name: fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts fk_rails_a45e306ec3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts
@@ -1337,7 +1340,7 @@ ALTER TABLE ONLY public.broadcasts
 
 
 --
--- Name: fk_rails_c39629e750; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts fk_rails_c39629e750; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts
@@ -1345,7 +1348,7 @@ ALTER TABLE ONLY public.broadcasts
 
 
 --
--- Name: fk_rails_eee7654a34; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: broadcasts fk_rails_eee7654a34; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.broadcasts
@@ -1353,7 +1356,7 @@ ALTER TABLE ONLY public.broadcasts
 
 
 --
--- Name: fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions fk_rails_4fd47aaffd; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions
@@ -1361,7 +1364,7 @@ ALTER TABLE ONLY temporal.impressions
 
 
 --
--- Name: fk_rails_a56f328f61; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions fk_rails_a56f328f61; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions
@@ -1369,7 +1372,7 @@ ALTER TABLE ONLY temporal.impressions
 
 
 --
--- Name: fk_rails_da7bcadf25; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions fk_rails_da7bcadf25; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions
@@ -1377,7 +1380,7 @@ ALTER TABLE ONLY temporal.impressions
 
 
 --
--- Name: fk_rails_f0d87991a2; Type: FK CONSTRAINT; Schema: temporal; Owner: -
+-- Name: impressions fk_rails_f0d87991a2; Type: FK CONSTRAINT; Schema: temporal; Owner: -
 --
 
 ALTER TABLE ONLY temporal.impressions
@@ -1452,6 +1455,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171123003201'),
 ('20180215143737'),
 ('20180223201113'),
-('20180411234936');
+('20180411234936'),
+('20180618160311'),
+('20180619151223');
 
 
