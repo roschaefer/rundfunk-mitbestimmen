@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
@@ -12,9 +12,7 @@ export default DS.Model.extend({
   stations: DS.hasMany('station'),
   impressions: DS.hasMany('impression'),
 
-  response: computed('impressions.firstObject.response', function() {
-    return this.get('impressions.firstObject.response');
-  }),
+  response: alias('impressions.firstObject.response'),
 
   setDefaultResponse(response){
     return this.get('impressions.firstObject') || this.respond(response);

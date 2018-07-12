@@ -92,12 +92,12 @@ we have the following versions:
 
 ```sh
 $ node --version
-v6.11.2
+v10.4.1
 $ yarn --version
-1.1.0
+1.7.0
 $ ember --version
-ember-cli: 2.14.2
-node: 6.11.2
+ember-cli: 3.1.4
+node: 10.4.1
 os: linux x64
 
 $ ruby --version

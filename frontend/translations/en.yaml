@@ -470,16 +470,32 @@ visualize:
       of-the-world: of all users
       of-germany: of German users
   demography:
-    header: Demographic visualization
+    header: Demographic visualization for a broadcast
     sub-header: >
-      What is the population pyramid of the supporters of a broadcast?
-    paragraph:
-      explanation: >
-        Here you can see a population pyramid for a broadcast. Users can
-        tell their approximate age and gender with a click on the right position.
-      reason: >
-        Broadcasters can thus adapt their program, to have something for everyone
-        and for all ages.
+      Here you can see a population pyramid for a broadcast. Broadcasters can
+      thus adapt their program, to have something for everyone and for all ages.
+    explanation:
+      header: Demo data
+      content: >
+        You can see the population pyramid of Germany in 2018
+        (<a href="https://www.populationpyramid.net/germany/2018/"
+        target="_blank">Population Pyramids of the World from 1950 to 2100</a>)
+        in the chart above. In the future, this will be replaced with a
+        population pyramid of all supporters of a broadcast.
+    chart:
+      labels:
+        male: Male
+        female: Female
+        other: Other
+  demographic-form:
+    logged-in: >
+      Update your gender and age group and help to improve the results.
+    logged-out: >
+      Log in to update your approximate age group and gender.
+    gender:
+      label: Gender
+    age-group:
+      label: Age Group
   time:
     overview:
       header: Overview of changes
