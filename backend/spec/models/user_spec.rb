@@ -12,16 +12,16 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user) }
     subject { user.reasons_for_notifications }
 
-    context 'many new broadcasts since last action' do
+    context 'many new broadcasts since last login' do
       before do
-        create(:impression, user: user, updated_at: 2.months.ago)
+        user.update_columns(last_login: 2.months.ago)
         create_list(:broadcast, 20)
       end
       it { is_expected.to include(:recently_created_broadcasts) }
     end
 
     context 'forgot to distribute money for supported broadcasts' do
-      before { create_list(:impression, 3, user: user, amount: nil) }
+      before { create_list(:impression, 3, user: user, response: :positive, amount: nil) }
       it { is_expected.to include(:no_given_amount_for_supported_broadcasts) }
     end
 
