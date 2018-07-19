@@ -28,7 +28,7 @@ class ApplicationController < ActionController::API
 
   def set_last_login
     if current_user
-      current_user.touch
+      current_user.update_columns(last_login: Time.current)
     end
   end
 
