@@ -8,6 +8,29 @@ RSpec.describe User, type: :model do
   let(:liked_broadcast) { create(:impression, response: :positive, user: user).broadcast }
   let(:unsupported_broadcast) { create(:impression, response: :neutral, user: user).broadcast }
 
+  describe '#reasons_for_notifications' do
+    let(:user) { create(:user) }
+    subject { user.reasons_for_notifications }
+
+    context 'many new broadcasts since last action' do
+      before do
+        create(:impression, user: user, updated_at: 2.months.ago)
+        create_list(:broadcast, 20)
+      end
+      it { is_expected.to include(:recently_created_broadcasts) }
+    end
+
+    context 'forgot to distribute money for supported broadcasts' do
+      before { create_list(:impression, 3, user: user, amount: nil) }
+      it { is_expected.to include(:no_given_amount_for_supported_broadcasts) }
+    end
+
+    context 'quite an unbalanced distribution, was it on purpose?' do
+      before { create(:impression, user: user, response: :positive, amount: 17.5) }
+      it { is_expected.to include(:unbalanced_distribution) }
+    end
+  end
+
   describe 'update_and_reverse_geocode' do
     subject { user.update_and_reverse_geocode(params) }
     let(:user) { create(:user) }

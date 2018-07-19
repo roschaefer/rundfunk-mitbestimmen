@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, if: proc { |u| u.email.present? }
   validates :auth0_uid, uniqueness: true, if: proc { |u| u.auth0_uid.present? }
 
+  def last_time_user_was_active
+    impressions.order(updated_at: 'desc').first&.updated_at || updated_at
+  end
+
   def self.from_token_payload(payload)
     if payload['sub'].blank?
       nil
