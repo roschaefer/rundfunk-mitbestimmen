@@ -9,8 +9,14 @@ RSpec.describe User, type: :model do
   let(:unsupported_broadcast) { create(:impression, response: :neutral, user: user).broadcast }
 
   describe '#reasons_for_notifications' do
-    let(:user) { create(:user) }
     subject { user.reasons_for_notifications }
+
+    context 'by default' do
+      before do
+        user.update_columns(last_login: Time.current)
+      end
+      it { is_expected.to be_empty }
+    end
 
     context 'many new broadcasts since last login' do
       before do

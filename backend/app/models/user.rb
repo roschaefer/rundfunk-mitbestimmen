@@ -63,4 +63,8 @@ class User < ActiveRecord::Base
     end
     save
   end
+
+  def reasons_for_notifications
+    [:recently_created_broadcasts, :no_given_amount_for_supported_broadcasts, :unbalanced_distribution]
+  end
 end
