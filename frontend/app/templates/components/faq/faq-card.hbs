@@ -1,0 +1,15 @@
+{{yield}}
+<div class="column">
+  <div class="ui fluid card">
+    <div class="content">
+      <div class="header">
+        {{t (concat 'index.faq.questions.' key '.title') }}
+      </div>
+      <div class="description">
+        {{t (concat 'index.faq.questions.' key '.content') htmlSafe=true }}
+
+        {{yield}}
+      </div>
+    </div>
+  </div>
+</div>

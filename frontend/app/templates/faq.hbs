@@ -1,3 +1,21 @@
 {{outlet}}
 <h1>{{t 'faq.title'}}</h1><br>
-<h2 id="who-are-you">{{t 'faq.question-header.who-are-you'}}</h2>
+
+
+<div class="three column grid">
+  {{faq/faq-card deeplinkedFaq=faq key='survey'}}
+  {{faq/faq-card deeplinkedFaq=faq key='quality'}}
+  {{faq/faq-card deeplinkedFaq=faq key='impact'}}
+  {{faq/faq-card deeplinkedFaq=faq key='tv-rankings'}}
+  {{faq/faq-card deeplinkedFaq=faq key='representative'}}
+  {{faq/faq-card deeplinkedFaq=faq key='consumption'}}
+  {{faq/faq-card deeplinkedFaq=faq key='binding'}}
+  {{faq/faq-card deeplinkedFaq=faq key='minorities'}}
+  {{faq/faq-card deeplinkedFaq=faq key='finances'}}
+  {{faq/faq-card deeplinkedFaq=faq key='business-model'}}
+  {{faq/faq-card deeplinkedFaq=faq key='who-are-you'}}
+  {{faq/faq-card deeplinkedFaq=faq key='data-privacy'}}
+  {{faq/faq-card deeplinkedFaq=faq key='source-code'}}
+  {{faq/faq-card deeplinkedFaq=faq key='help'}}
+  {{faq/faq-card deeplinkedFaq=faq key='missing'}}
+</div>
