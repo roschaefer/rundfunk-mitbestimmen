@@ -63,4 +63,15 @@ class User < ActiveRecord::Base
     end
     save
   end
+
+  def reasons_for_notifications
+    reasons = []
+    broadcasts_created_since_last_login = Broadcast.where('created_at >= ?', last_login)
+    if broadcasts_created_since_last_login.count >= 5
+      reasons << :recently_created_broadcasts
+    end
+    reasons
+  end
+
+
 end
