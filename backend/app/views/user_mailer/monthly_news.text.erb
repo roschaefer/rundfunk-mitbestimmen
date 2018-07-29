@@ -1,7 +1,28 @@
-Hello <%= @user.name %>
+Hello <%= @user.name %>,
 
 Welcome to another month's happenings with the new stuff this month:
 
-- There are 2 new features
+<% if self.reasons_for_notifications.include? :recently_created_broadcasts  %>
+   Here are the new broadcasts at Rundfunk Mitbestimmen since you last logged in:
+    <% broadcasts_created_since_last_login.each do |b| %>
+      <%= b.title %>
+    <% end %>
+<% end %>
 
-- We have now 3000 users!
+
+<% if self.reasons_for_notifications.include? :no_given_amount_for_supported_broadcasts  %>
+  It looks like you have supported broadcasts without actually distributing your funds for your
+  selected broadcasts. Please log in and distribute funds for your favorite programs!
+<% end %>
+
+<% if self.reasons_for_notifications.include? :unbalanced_distribution  %>
+  It looks like you have distributed all of your funds to one particular broadcast, are you sure
+  that was your intention? If not, then please log in and explore more broadcasts and distribute your funds
+  to those. If that was your intention, then please ignore this message!
+<% end %>
+
+Thank you for being a valued member of Rundfunk Mitbestimmen! We hope you will check back soon to see
+these new updates!
+
+Best Regards,
+The Rundfunk Mitbestimmen team
