@@ -70,13 +70,12 @@ class User < ActiveRecord::Base
     if broadcasts_created_since_last_login.count >= 5
       reasons << :recently_created_broadcasts
     end
-
     #check to see if current_user has impressions first, current_user can't be detected
-    distributed_sum = current_user.impressions.to_a.sum {|i| i[:amount].to_f }
-    if u.impressions.to_a.any? {|r| r[:response] == 'positive'} && distributed_sum == 0
+    distributed_sum = self.impressions.to_a.sum {|i| i[:amount].to_f }
+    if self.impressions.to_a.any? {|r| r[:response] == 'positive'} && distributed_sum == 0
       reasons << :no_given_amount_for_supported_broadcasts
     end
-    if u.impressions.to_a.any? {|r| r[:response] == 'positive'} && distributed_sum == 17.5
+    if self.impressions.to_a.any? {|r| r[:response] == 'positive' && r[:amount] == 17.5}
       reasons << :unbalanced_distribution
     end
     reasons
