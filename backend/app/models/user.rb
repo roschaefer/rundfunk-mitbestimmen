@@ -67,16 +67,10 @@ class User < ActiveRecord::Base
   def reasons_for_notifications
     reasons = []
     broadcasts_created_since_last_login = Broadcast.where('created_at >= ?', last_login)
-    if broadcasts_created_since_last_login.count >= 5
-      reasons << :recently_created_broadcasts
-    end
-    distributed_sum = self.impressions.to_a.sum {|i| i[:amount].to_f }
-    if self.impressions.to_a.any? {|r| r[:response] == 'positive'} && distributed_sum == 0
-      reasons << :no_given_amount_for_supported_broadcasts
-    end
-    if self.impressions.to_a.any? {|r| r[:response] == 'positive' && r[:amount] == 17.5}
-      reasons << :unbalanced_distribution
-    end
+    reasons << :recently_created_broadcasts if broadcasts_created_since_last_login.count >= 5
+    distributed_sum = impressions.to_a.sum { |i| i[:amount].to_f }
+    reasons << :no_given_amount_for_supported_broadcasts if impressions.to_a.any? { |r| r[:response] == 'positive' } && distributed_sum.zero?
+    reasons << :unbalanced_distribution if impressions.to_a.any? { |r| r[:response] == 'positive' && r[:amount] == 17.5 }
     reasons
   end
 end
