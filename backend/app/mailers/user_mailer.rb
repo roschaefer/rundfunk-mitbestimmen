@@ -4,8 +4,8 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Auth0 Migration')
   end
 
-  def monthly_news(user, _reason)
+  def monthly_news(user)
     @user = user
-    mail(to: @user.email, subject: '')
+    mail(to: @user.email, subject: 'New happenings at Rundfunk Mitbestimmen')
   end
 end
