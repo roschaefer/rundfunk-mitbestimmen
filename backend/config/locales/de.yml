@@ -25,6 +25,9 @@ de:
           has_one: Datensatz kann nicht gelöscht werden, da ein abhängiger %{record}-Datensatz
             existiert.
           has_many: Datensatz kann nicht gelöscht werden, da abhängige %{record} existieren.
+  user_mailer:
+    monthly_news:
+      subject: Neue Ereignisse im Rundfunk Mitbestimmen
   date:
     abbr_day_names:
     - So
@@ -234,4 +237,3 @@ de:
       long: "%A, %d. %B %Y, %H:%M Uhr"
       short: "%d. %B, %H:%M Uhr"
     pm: nachmittags
-
