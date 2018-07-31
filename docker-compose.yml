@@ -7,6 +7,26 @@ services:
     depends_on:
       - backend
       - frontend
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USERNAME=postgres
+    volumes:
+      - ./backend/Gemfile:/backend/Gemfile
+      - ./backend/Gemfile.lock:/backend/Gemfile.lock
+      - ./backend/Rakefile:/backend/Rakefile
+      - ./backend/app:/backend/app
+      - ./backend/config:/backend/config
+      - ./backend/config.ru:/backend/config.ru
+      - ./backend/db/migrate:/backend/db/migrate
+      - ./backend/db/views:/backend/db/views
+      - ./backend/db/schema.rb:/backend/db/schema.rb
+      - ./backend/db/seeds.rb:/backend/db/seeds.rb
+      - ./backend/lib:/backend/lib
+      - ./backend/public:/backend/public
+      - ./backend/spec:/backend/spec
+      - ./features:/features
+      - ./Gemfile:/Gemfile
+      - ./Gemfile.lock:/Gemfile.lock
   frontend:
     image: rundfunk-mitbestimmen-frontend
     build:
