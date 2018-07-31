@@ -5,6 +5,7 @@ import { setupTest } from 'ember-mocha';
 describe('Unit | Route | visualize/demography', function() {
   setupTest('route:visualize/demography', {
     needs: [
+      'service:session',
       'service:metrics',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
