@@ -13,3 +13,6 @@ en:
           attributes:
             amount:
               total: Total amount of %{sum} exceeds the available budget of %{budget}
+  user_mailer:
+    monthly_news:
+      subject: New happenings in Rundfunk Mitbestimmen  
