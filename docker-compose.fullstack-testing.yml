@@ -29,6 +29,8 @@ services:
       - ./features:/features
       - ./Gemfile:/Gemfile
       - ./Gemfile.lock:/Gemfile.lock
+    command: bundle exec cucumber
+    tty: true
   frontend:
     environment:
       - "API_HOST=http://backend:3000"
