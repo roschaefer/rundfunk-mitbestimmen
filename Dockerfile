@@ -4,11 +4,13 @@ RUN yum install -y libX11
 RUN yum install -y epel-release
 RUN yum install -y chromium
 
-WORKDIR /features
-RUN mv /backend /features/backend
+WORKDIR /fullstack
 
-ADD Gemfile /features/Gemfile
-ADD Gemfile.lock /features/Gemfile.lock
+RUN mv /backend  /fullstack/backend
+
+ADD Gemfile      /fullstack/Gemfile
+ADD Gemfile.lock /fullstack/Gemfile.lock
+ADD features     /fullstack/features
+
 RUN bundle install
 
-ADD . /features

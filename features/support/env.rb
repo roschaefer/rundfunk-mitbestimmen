@@ -39,7 +39,7 @@ end
 Capybara.javascript_driver = :chrome
 
 Capybara.configure do |config|
-  config.app_host = 'http://localhost:4200'
+  config.app_host = ENV['CAPYBARA_APP_HOST'] || 'http://localhost:4200'
   config.default_driver = (ENV['DRIVER'] || :headless_chrome).to_sym
 end
 

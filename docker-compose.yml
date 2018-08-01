@@ -1,7 +1,7 @@
 version: '3'
 services:
-  features:
-    image: rundfunk-mitbestimmen-features
+  fullstack:
+    image: rundfunk-mitbestimmen-fullstack
     build:
       context: ./
     depends_on:
@@ -10,6 +10,8 @@ services:
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
+      - REDIS_URL=redis://redis:6379
+      - CAPYBARA_APP_HOST=${CAPYBARA_APP_HOST}
     volumes:
       - ./backend/Gemfile:/backend/Gemfile
       - ./backend/Gemfile.lock:/backend/Gemfile.lock
@@ -45,7 +47,7 @@ services:
       - ./frontend/ember-cli-build.js:/frontend/ember-cli-build.js
       - ./frontend/testem.js:/frontend/testem.js
     environment:
-      - "API_HOST=http://localhost:${RAILS_PORT}"
+      - "API_HOST=http://${RAILS_HOST}:${RAILS_PORT}"
     command: "ember server --environment=${ENV}"
   backend:
     image: rundfunk-mitbestimmen-backend
