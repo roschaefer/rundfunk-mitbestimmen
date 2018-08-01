@@ -61,9 +61,9 @@ current behaviour and the reasoning behind it.
 Make sure you have `docker` and `docker-compose` installed:
 ```sh
 $ docker --version
-Docker version 18.03.0-ce, build 0520e24302
+Docker version 18.05.0-ce, build f150324782
 $ docker-compose --version
-docker-compose version 1.20.1, build unknown
+docker-compose version 1.22.0, build unknown
 ```
 
 Clone the repository:
@@ -71,38 +71,45 @@ Clone the repository:
 git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
-You can setup all services with a single command:
+You can setup the development environment with:
 
 ```sh
-docker-compose up -d
+docker-compose up
 ```
-
-Create the database and run migrations with:
+This can take a while...
+As soon as this is finished, create the database and run migrations with:
 ```sh
-docker-compose run --rm backend bin/rails db:create db:migrate
+docker-compose exec backend bin/rails db:create db:migrate
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
 ```sh
-docker-compose run --rm backend bin/rails db:seed
+docker-compose exec backend bin/rails db:seed
 ```
 
 Start frontend test server:
 ```sh
-docker-compose run --rm frontend yarn test:server
+docker-compose run --rm frontend ember test --server
 ```
 And visit [localhost:7357](http://localhost:7357/) to run the tests.
 
 Run backend tests:
 ```sh
-docker-compose run --rm backend bin/rspec
+docker-compose exec backend bin/rspec
 ```
 
+For fullstack testing, use the provided [docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
+```
+When this is finished, run the cucumber features with:
+```sh
+docker-compose exec fullstack bundle exec cucumber
+```
 
-
-## Local Installation (best option for developers)
+## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
 [yarn](https://yarnpkg.com/en/),
