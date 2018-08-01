@@ -1,0 +1,37 @@
+version: '3'
+services:
+  fullstack:
+    image: rundfunk-mitbestimmen-fullstack
+    build:
+      context: ./
+    depends_on:
+      - backend
+      - frontend
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USERNAME=postgres
+      - REDIS_URL=redis://redis:6379
+      - CAPYBARA_APP_HOST=http://frontend:4200
+    volumes:
+      - ./backend/Gemfile:/backend/Gemfile
+      - ./backend/Gemfile.lock:/backend/Gemfile.lock
+      - ./backend/Rakefile:/backend/Rakefile
+      - ./backend/app:/backend/app
+      - ./backend/config:/backend/config
+      - ./backend/config.ru:/backend/config.ru
+      - ./backend/db/migrate:/backend/db/migrate
+      - ./backend/db/views:/backend/db/views
+      - ./backend/db/schema.rb:/backend/db/schema.rb
+      - ./backend/db/seeds.rb:/backend/db/seeds.rb
+      - ./backend/lib:/backend/lib
+      - ./backend/public:/backend/public
+      - ./backend/spec:/backend/spec
+      - ./features:/features
+      - ./Gemfile:/Gemfile
+      - ./Gemfile.lock:/Gemfile.lock
+  frontend:
+    environment:
+      - "API_HOST=http://backend:3000"
+    command: "ember server --environment=fullstack"
+  backend:
+    command: "bin/rails server -b 0.0.0.0 --environment=fullstack"

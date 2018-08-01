@@ -1,34 +1,5 @@
 version: '3'
 services:
-  fullstack:
-    image: rundfunk-mitbestimmen-fullstack
-    build:
-      context: ./
-    depends_on:
-      - backend
-      - frontend
-    environment:
-      - POSTGRES_HOST=db
-      - POSTGRES_USERNAME=postgres
-      - REDIS_URL=redis://redis:6379
-      - CAPYBARA_APP_HOST=${CAPYBARA_APP_HOST}
-    volumes:
-      - ./backend/Gemfile:/backend/Gemfile
-      - ./backend/Gemfile.lock:/backend/Gemfile.lock
-      - ./backend/Rakefile:/backend/Rakefile
-      - ./backend/app:/backend/app
-      - ./backend/config:/backend/config
-      - ./backend/config.ru:/backend/config.ru
-      - ./backend/db/migrate:/backend/db/migrate
-      - ./backend/db/views:/backend/db/views
-      - ./backend/db/schema.rb:/backend/db/schema.rb
-      - ./backend/db/seeds.rb:/backend/db/seeds.rb
-      - ./backend/lib:/backend/lib
-      - ./backend/public:/backend/public
-      - ./backend/spec:/backend/spec
-      - ./features:/features
-      - ./Gemfile:/Gemfile
-      - ./Gemfile.lock:/Gemfile.lock
   frontend:
     image: rundfunk-mitbestimmen-frontend
     build:
@@ -47,8 +18,8 @@ services:
       - ./frontend/ember-cli-build.js:/frontend/ember-cli-build.js
       - ./frontend/testem.js:/frontend/testem.js
     environment:
-      - "API_HOST=http://${RAILS_HOST}:${RAILS_PORT}"
-    command: "ember server --environment=${ENV}"
+      - "API_HOST=http://localhost:3000"
+    command: ember server
   backend:
     image: rundfunk-mitbestimmen-backend
     build:
@@ -76,7 +47,7 @@ services:
     depends_on:
       - db
       - redis
-    command: "bin/rails server -b 0.0.0.0 --environment=${ENV}"
+    command: "bin/rails server -b 0.0.0.0"
   sidekiq:
     image: rundfunk-mitbestimmen-sidekiq
     build:
