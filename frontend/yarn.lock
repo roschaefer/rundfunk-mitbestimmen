@@ -3820,14 +3820,14 @@ ember-d3@^0.4.4:
     d3-selection-multi "^1.0.1"
     ember-cli-babel "^6.6.0"
 
-ember-data-factory-guy@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-3.3.0.tgz#9a617b0a8fb0feb41c891d9ec9cfc9408e0cc7d9"
+ember-data-factory-guy@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-3.3.1.tgz#2bae9db741803e956eb77e784958e5521ce16922"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
     ember-cli-babel "^6.12"
-    pretender "^2.0.0"
+    pretender "~2.0.0"
 
 ember-data@^3.1.1:
   version "3.1.1"
@@ -8152,7 +8152,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-pretender@^2.0.0:
+pretender@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pretender/-/pretender-2.0.0.tgz#5adae189f1d5b25f86113f9225df25bed54f4072"
   dependencies:
