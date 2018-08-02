@@ -104,11 +104,10 @@ For fullstack testing, use the provided [docker-compose override](https://docs.d
 ```sh
 docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
 ```
-When this is finished, run the cucumber features with:
+When all containers are up, run the cucumber tests in the `fullstack` service with:
 ```sh
 docker-compose run --rm fullstack bundle exec cucumber
 ```
-
 ## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),

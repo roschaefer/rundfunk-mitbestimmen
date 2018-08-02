@@ -14,8 +14,6 @@ services:
       - CAPYBARA_APP_HOST=http://frontend:4200
     volumes:
       - ./backend:/backend
-    command: bundle exec cucumber
-    tty: true
   frontend:
     environment:
       - API_HOST=http://backend:3000
