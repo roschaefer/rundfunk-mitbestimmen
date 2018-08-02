@@ -1,0 +1,22 @@
+default: &default
+  adapter: chronomodel
+  encoding: unicode
+  pool: 20
+  username: <%= ENV["POSTGRES_USERNAME"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["POSTGRES_HOST"] || 'localhost' %>
+
+development:
+  <<: *default
+  database: rundfunk-backend-development
+
+test: &test
+  <<: *default
+  database: rundfunk-backend-test
+
+fullstack:
+  <<: *test
+
+production:
+  <<: *default
+  database: rundfunk-backend-production

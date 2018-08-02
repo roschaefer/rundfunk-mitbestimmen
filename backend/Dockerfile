@@ -19,6 +19,5 @@ ADD Gemfile.lock /backend/Gemfile.lock
 RUN bundle install
 
 ADD . /backend
-RUN cp /backend/config/database.template.yml /backend/config/database.yml
 
 EXPOSE 3000
