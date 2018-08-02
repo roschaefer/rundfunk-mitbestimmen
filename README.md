@@ -74,8 +74,10 @@ git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 You can setup the development environment with:
 
 ```sh
+cd rundfunk-mitbestimmen
 docker-compose up
 ```
+
 This can take a while...
 As soon as this is finished, create the database and run migrations with:
 ```sh
