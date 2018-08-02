@@ -1,4 +1,4 @@
-FROM danlynn/ember-cli:3.1.4
+FROM danlynn/ember-cli:3.1.4-node_10.1
 
 WORKDIR /frontend
 
