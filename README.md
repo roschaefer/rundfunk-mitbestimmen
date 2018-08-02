@@ -79,14 +79,14 @@ docker-compose up
 This can take a while...
 As soon as this is finished, create the database and run migrations with:
 ```sh
-docker-compose exec backend bin/rails db:create db:migrate
+docker-compose run --rm backend bin/rails db:create db:migrate
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
 ```sh
-docker-compose exec backend bin/rails db:seed
+docker-compose run --rm backend bin/rails db:seed
 ```
 
 Start frontend test server:
@@ -97,7 +97,7 @@ And visit [localhost:7357](http://localhost:7357/) to run the tests.
 
 Run backend tests:
 ```sh
-docker-compose exec backend bin/rspec
+docker-compose run --rm backend bin/rspec
 ```
 
 For fullstack testing, use the provided [docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
@@ -106,7 +106,7 @@ docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
 ```
 When this is finished, run the cucumber features with:
 ```sh
-docker-compose exec fullstack bundle exec cucumber
+docker-compose run --rm fullstack bundle exec cucumber
 ```
 
 ## Local Installation
