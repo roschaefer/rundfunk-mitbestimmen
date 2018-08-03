@@ -38,6 +38,8 @@ services:
       - db
       - redis
     command: "bin/rails server -b 0.0.0.0"
+    tty: true
+    stdin_open: true
   sidekiq:
     image: rundfunk-mitbestimmen-sidekiq
     build:
