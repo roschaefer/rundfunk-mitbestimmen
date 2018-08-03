@@ -91,11 +91,10 @@ If you want, you can create some seed data
 docker-compose run --rm backend bin/rails db:seed
 ```
 
-Start frontend test server:
+Run frontend tests:
 ```sh
-docker-compose run --rm frontend ember test --server
+docker-compose run --rm frontend ember test
 ```
-And visit [localhost:7357](http://localhost:7357/) to run the tests.
 
 Run backend tests:
 ```sh
