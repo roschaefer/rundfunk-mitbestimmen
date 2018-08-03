@@ -1,0 +1,22 @@
+version: '3'
+services:
+  fullstack:
+    image: rundfunk-mitbestimmen-fullstack
+    build:
+      context: ./
+    depends_on:
+      - backend
+      - frontend
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USERNAME=postgres
+      - REDIS_URL=redis://redis:6379
+      - CAPYBARA_APP_HOST=http://frontend:4200
+    volumes:
+      - ./backend:/backend
+  frontend:
+    environment:
+      - API_HOST=http://backend:3000
+    command: "ember server --environment=fullstack"
+  backend:
+    command: "bin/rails server -b 0.0.0.0 --environment=fullstack"

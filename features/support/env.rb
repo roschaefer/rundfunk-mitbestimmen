@@ -26,7 +26,7 @@ end
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: {
-      args: %w[headless disable-gpu window-size=1024,768]
+      args: %w[headless disable-gpu no-sandbox window-size=1024,768]
     }
   )
   Capybara::Selenium::Driver.new(
@@ -39,7 +39,7 @@ end
 Capybara.javascript_driver = :chrome
 
 Capybara.configure do |config|
-  config.app_host = 'http://localhost:4200'
+  config.app_host = ENV['CAPYBARA_APP_HOST'] || 'http://localhost:4200'
   config.default_driver = (ENV['DRIVER'] || :headless_chrome).to_sym
 end
 

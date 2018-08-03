@@ -56,33 +56,61 @@ features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
 
-## Installation and Usage with Docker (quick but without software tests)
+## Installation and Usage with Docker
+
+Make sure you have `docker` and `docker-compose` installed:
+```sh
+$ docker --version
+Docker version 18.05.0-ce, build f150324782
+$ docker-compose --version
+docker-compose version 1.22.0, build unknown
+```
 
 Clone the repository:
 ```sh
 git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
-If you have `docker-compose` installed, you can install `frontend`,
-`backend` and `db` with a single command:
+You can setup the development environment with:
 
 ```sh
-dev/reset
+cd rundfunk-mitbestimmen
+docker-compose up
 ```
 
-After the installation, you can start the entire stack with:
+This can take a while...
+As soon as this is finished, create the database and run migrations with:
 ```sh
-dev/start
+docker-compose run --rm backend bin/rails db:create db:migrate
 ```
+
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
-```
-docker-compose run backend bin/rails db:seed
+```sh
+docker-compose run --rm backend bin/rails db:seed
 ```
 
+Start frontend test server:
+```sh
+docker-compose run --rm frontend ember test --server
+```
+And visit [localhost:7357](http://localhost:7357/) to run the tests.
 
-## Local Installation (best option for developers)
+Run backend tests:
+```sh
+docker-compose run --rm backend bin/rspec
+```
+
+For fullstack testing, use the provided [docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
+```
+When all containers are up, run the cucumber tests in the `fullstack` service with:
+```sh
+docker-compose run --rm fullstack bundle exec cucumber
+```
+## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
 [yarn](https://yarnpkg.com/en/),
@@ -130,14 +158,8 @@ cd ../backend
 bundle
 ```
 4. Setup the database
-Check under `backend/config` you will get a file called `database.template.yml`,
-rename this file to `database.yml`.
-```sh
-cp backend/config/database.template.yml backend/config/database.yml
-```
-This file is on the `.gitignore` file so it will not be checked in
 
-**(OPTIONAL):**  customize the new file to match the local database configuration
+**(OPTIONAL):** Customize the file `backend/config/database.yml` to match your local database configuration.
 
 Now create the databases and run the migrations:
 ```sh
