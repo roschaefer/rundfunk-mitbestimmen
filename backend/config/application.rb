@@ -33,5 +33,6 @@ module Backend
     config.filter_parameters << :password
 
     config.active_record.schema_format = :sql
+    config.i18n.default_locale = :de
   end
 end

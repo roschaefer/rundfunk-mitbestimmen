@@ -6,6 +6,6 @@ class UserMailer < ApplicationMailer
 
   def monthly_news(user)
     @user = user
-    mail(to: @user.email, subject: t('user_mailer.monthly_news.subject'))
+    mail(to: @user.email, subject: I18n.t('user_mailer.monthly_news.subject'))
   end
 end

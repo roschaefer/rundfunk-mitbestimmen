@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
 <body>
-  <h2>Hello <%= @user.name %>, </h2>
+  <h2><%= I18n.t('user_mailer.monthly_news.header.hello') %> <%= @user.name %>, </h2>
 
-  <p>Welcome to another month's happenings with the new stuff this month: </p>
+  <p><%= I18n.t('user_mailer.monthly_news.header.welcome') %> </p>
 
   <% if self.reasons_for_notifications.include? :recently_created_broadcasts  %>
-    <p> Here are the new broadcasts at Rundfunk Mitbestimmen since you last logged in:
+    <p> <%= I18n.t('user_mailer.monthly_news.body.recently_created_broadcasts') %>
       <% broadcasts_created_since_last_login.each do |b| %>
         <ul><%= b.title %></ul>
       <% end %>
@@ -17,22 +17,15 @@
   <% end %>
 
   <% if self.reasons_for_notifications.include? :no_given_amount_for_supported_broadcasts  %>
-    <p> It looks like you have supported broadcasts without actually distributing your funds for your
-      selected broadcasts. Please log in and distribute funds for your favorite programs!
-    </p>
+    <p> <%= I18n.t('user_mailer.monthly_news.body.no_given_amount_for_supported_broadcasts') %> </p>
   <% end %>
 
   <% if self.reasons_for_notifications.include? :unbalanced_distribution  %>
-    <p> It looks like you have distributed all of your funds to one particular broadcast, are you sure
-      that was your intention? If not, then please log in and explore more broadcasts and distribute your funds
-      to those. If that was your intention, then please ignore this message!
-    </p>
+    <p> <%= I18n.t('user_mailer.monthly_news.body.unbalanced_distribution') %> </p>
   <% end %>
 
-  <p>Thank you for being a valued member of Rundfunk Mitbestimmen! We hope you will check back soon to see
-  these new updates! </p>
+  <p><%= I18n.t('user_mailer.monthly_news.footer.closing') %> </p>
 
-  <p>Best Regards, <br>
-  The Rundfunk Mitbestimmen team </p>
+  <p><%= I18n.t('user_mailer.monthly_news.footer.sign_off') %> </p>
 </body>
 </html>

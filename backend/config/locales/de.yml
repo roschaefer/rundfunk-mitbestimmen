@@ -27,7 +27,22 @@ de:
           has_many: Datensatz kann nicht gelöscht werden, da abhängige %{record} existieren.
   user_mailer:
     monthly_news:
-      subject: Neue Ereignisse im Rundfunk Mitbestimmen
+      subject: Neue Updates von Rundfunk Mitbestimmen
+      header:
+        hello: Hallo
+        welcome: Willkommen zu den Updates dieses Monats:
+      body:
+          recently_created_broadcasts: Hier sind die neuen Sendungen, die seit Ihrer letzten Anmeldung den Rundfunk Mitbeständen hinzugefügt wurden:
+          no_given_amount_for_supported_broadcasts: Offenbar haben Sie Übertragungen unterstützt, ohne Ihre Mittel für die ausgewählten Sendungen tatsächlich zu verteilen.
+            Bitte loggen Sie sich ein und verteilen Sie Gelder für Ihre Lieblingsprogramme!
+          unbalanced_distribution: Es sieht so aus, als ob Sie alle Ihre Gelder an eine bestimmte Sendung verteilt haben, sind Sie sicher,
+            dass das Ihre Absicht war? Wenn nicht, loggen Sie sich bitte ein und erkunden Sie weitere Sendungen, um Ihre Gelder zu verteilen.
+            Wenn das Ihre Absicht war, dann ignorieren Sie bitte diese Nachricht!
+      footer:
+        closing: Danke, dass Sie ein geschätztes Mitglied von Rundfunk Mitbestimmen sind! Wir hoffen, dass Sie bald zurückschauen, um diese neuen Updates zu sehen!
+        sign_off: |
+          Freundliche Grüße,
+          Das Rundfunk Mitbestimmen Team
   date:
     abbr_day_names:
     - So
