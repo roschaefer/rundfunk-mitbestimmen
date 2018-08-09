@@ -56,7 +56,7 @@ RSpec.describe User, type: :model do
     let(:ip_address) { '141.3.135.0' }
     let(:user) { create(:user, :without_geolocation) }
     before { user }
-    let(:geocoder_lookup) { Geocoder::Lookup.get(:freegeoip) }
+    let(:geocoder_lookup) { Geocoder::Lookup.get(:ipinfo_io) }
     let(:geocoder_result) { geocoder_lookup.search(ip_address).first }
 
     subject do

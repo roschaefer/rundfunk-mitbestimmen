@@ -19,7 +19,7 @@ class GeocodeUserJob < ApplicationJob
       access_token: token
     )
     raise('No ip adress returned') unless last_ip
-    geocoder_lookup = Geocoder::Lookup.get(:freegeoip)
+    geocoder_lookup = Geocoder::Lookup.get(:ipinfo_io)
     geocoder_result = geocoder_lookup.search(last_ip).first
     user.assign_location_attributes(geocoder_result)
     user.save
@@ -53,7 +53,7 @@ class GeocodeUserJob < ApplicationJob
     when '200'
       json_body['access_token']
     else
-      raise("Unhandled status code: #{response.code}")
+      raise("Unhandled status code for domain #{domain.inspect}: #{response.code}")
     end
   end
 
@@ -75,7 +75,7 @@ class GeocodeUserJob < ApplicationJob
     when '200'
       json_body['last_ip']
     else
-      raise("Unhandled status code: #{response.code}")
+      raise("Unhandled status code for domain: #{response.code}")
     end
   end
 end

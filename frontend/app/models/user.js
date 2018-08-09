@@ -13,7 +13,7 @@ export default DS.Model.extend({
   latitude: DS.attr('number'),
   longitude: DS.attr('number'),
   countryCode: DS.attr('string'),
-  stateCode: DS.attr('string'),
+  state: DS.attr('string'),
   city: DS.attr('string'),
   postalCode: DS.attr('string'),
 

@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     self.latitude = geocoder_result.latitude
     self.longitude = geocoder_result.longitude
     self.country_code = geocoder_result.country_code
-    self.state_code = geocoder_result.state_code
+    self.state = geocoder_result.state
     self.postal_code = geocoder_result.postal_code
     self.city = geocoder_result.city
   end

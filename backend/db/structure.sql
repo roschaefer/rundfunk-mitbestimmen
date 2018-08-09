@@ -279,7 +279,7 @@ ALTER SEQUENCE public.broadcasts_id_seq OWNED BY public.broadcasts.id;
 --
 
 CREATE TABLE public.format_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     format_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -395,7 +395,7 @@ ALTER SEQUENCE public.media_id_seq OWNED BY public.media.id;
 --
 
 CREATE TABLE public.medium_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     medium_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -653,7 +653,7 @@ CREATE VIEW public.statistics AS
 --
 
 CREATE TABLE public.topic_translations (
-    id bigint NOT NULL,
+    id integer NOT NULL,
     topic_id integer NOT NULL,
     locale character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -719,20 +719,21 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     email character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     role integer DEFAULT 0,
     auth0_uid character varying,
     has_bad_email boolean DEFAULT false,
     latitude double precision,
     longitude double precision,
     country_code character varying,
-    state_code character varying,
+    state character varying,
     postal_code character varying,
     city character varying,
     locale character varying,
     birthday timestamp without time zone,
-    gender integer
+    gender integer,
+    last_login timestamp without time zone
 );
 
 
@@ -1457,6 +1458,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180223201113'),
 ('20180411234936'),
 ('20180618160311'),
-('20180619151223');
+('20180619151223'),
+('20180719134105'),
+('20180809133954');
 
 

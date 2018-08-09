@@ -82,10 +82,10 @@ module Statistic
     end
 
     def approval_by(user_attribute)
-      return {} unless %i[state_code postal_code city].include?(user_attribute)
+      return {} unless %i[state postal_code city].include?(user_attribute)
 
       user_attribute_values = User.all.distinct.pluck(user_attribute)
-      results = Hash[user_attribute_values.map { |state_code| [state_code, 0] }]
+      results = Hash[user_attribute_values.map { |state| [state, 0] }]
 
       approvals = broadcast.impressions.joins(:user)
       approvals = approvals.group("users.#{user_attribute}")

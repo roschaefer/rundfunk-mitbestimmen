@@ -11,13 +11,13 @@ class ChartDataController < ApplicationController
 
   def geojson
     template_feature_collection = RGeo::GeoJSON.decode(File.read(File.join(Rails.root, 'public', 'bundeslaender.geojson')), json_parser: :json)
-    state_codes = template_feature_collection.collect { |feature| feature.properties['state_code'] }
-    users = User.where(country_code: 'DE', state_code: state_codes)
+    states = template_feature_collection.collect { |feature| feature.properties['VARNAME_1'] }
+    users = User.where(country_code: 'de', state: states)
     feature_array = template_feature_collection.collect do |feature|
       properties = feature.properties
-      users_in_state = users.where(state_code: properties['state_code'])
+      users_in_state = users.where(state: properties['VARNAME_1'])
       properties['user_count_total'] = users_in_state.count
-      properties['user_count_normalized'] = (users_in_state.count.to_f / users.count.to_f)
+      properties['user_count_normalized'] = (users_in_state.count.to_f / users.count)
       RGeo::GeoJSON::Feature.new(feature.geometry, feature.feature_id, properties)
     end
     render json: RGeo::GeoJSON.encode(RGeo::GeoJSON::FeatureCollection.new(feature_array))
