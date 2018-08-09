@@ -30,9 +30,9 @@ de:
       subject: Neue Updates von Rundfunk Mitbestimmen
       header:
         hello: Hallo
-        welcome: Willkommen zu den Updates dieses Monats:
+        welcome: 'Willkommen zu den Updates dieses Monats:'
       body:
-          recently_created_broadcasts: Hier sind die neuen Sendungen, die seit Ihrer letzten Anmeldung den Rundfunk Mitbeständen hinzugefügt wurden:
+          recently_created_broadcasts: 'Hier sind die neuen Sendungen, die seit Ihrer letzten Anmeldung den Rundfunk Mitbeständen hinzugefügt wurden:'
           no_given_amount_for_supported_broadcasts: Offenbar haben Sie Übertragungen unterstützt, ohne Ihre Mittel für die ausgewählten Sendungen tatsächlich zu verteilen.
             Bitte loggen Sie sich ein und verteilen Sie Gelder für Ihre Lieblingsprogramme!
           unbalanced_distribution: Es sieht so aus, als ob Sie alle Ihre Gelder an eine bestimmte Sendung verteilt haben, sind Sie sicher,

@@ -18,9 +18,9 @@ en:
       subject: New happenings in Rundfunk Mitbestimmen
       header:
         hello: Hello
-        welcome: Welcome to this month's updates:
+        welcome: "Welcome to this month's updates:"
       body:
-          recently_created_broadcasts: Here are the new broadcasts added to Rundfunk Mitbestimmen since you last logged in:
+          recently_created_broadcasts: 'Here are the new broadcasts added to Rundfunk Mitbestimmen since you last logged in:'
           no_given_amount_for_supported_broadcasts: It looks like you have supported broadcasts without actually distributing your funds for your
             selected broadcasts. Please log in and distribute funds for your favorite programs!
           unbalanced_distribution: It looks like you have distributed all of your funds to one particular broadcast, are you sure
