@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
 
       describe 'changed', vcr: { cassette_name: 'reverse_geocode' } do
         let(:params) { { latitude: 49.0047, longitude: 8.3858 } }
-        specify { expect { subject }.to(change { user.country_code }.from(nil).to('DE')) }
+        specify { expect { subject }.to(change { user.country_code }.from(nil).to('de')) }
         specify { expect { subject }.to(change { user.state }.from(nil).to('Baden-Württemberg')) }
         specify { expect { subject }.to(change { user.postal_code }.from(nil).to('76135')) }
         specify { expect { subject }.to(change { user.city }.from(nil).to('Karlsruhe')) }
@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
 
     specify { expect { subject }.to change { User.first.latitude }.from(nil).to(49.0047) }
     specify { expect { subject }.to change { User.first.longitude }.from(nil).to(8.3858) }
-    specify { expect { subject }.to change { User.first.country_code }.from(nil).to('DE') }
+    specify { expect { subject }.to change { User.first.country_code }.from(nil).to('de') }
     specify { expect { subject }.to change { User.first.state }.from(nil).to('Baden-Württemberg') }
     specify { expect { subject }.to change { User.first.postal_code }.from(nil).to('76139') }
     specify { expect { subject }.to change { User.first.city }.from(nil).to('Karlsruhe') }

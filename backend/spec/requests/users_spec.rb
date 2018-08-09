@@ -97,19 +97,19 @@ RSpec.describe 'Users', type: :request do
           specify { expect { action }.to(change { user.reload.latitude }.to(36.7201516)) }
           specify { expect { action }.to(change { user.reload.longitude }.to(-4.419282)) }
           specify { expect { action }.to(change { user.reload.city }.to('Málaga')) }
-          specify { expect { action }.to(change { user.reload.postal_code }.to('29015')) }
+          specify { expect { action }.to(change { user.reload.postal_code }.to('29005')) }
           specify { expect { action }.to(change { user.reload.state }.to('Andalusia')) }
-          specify { expect { action }.to(change { user.reload.country_code }.to('ES')) }
+          specify { expect { action }.to(change { user.reload.country_code }.to('es')) }
 
           context 'already geocoded user' do
-            let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'DE', state: 'Brandenburg', city: 'Potsdam', postal_code: '14482') }
+            let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'de', state: 'Brandenburg', city: 'Potsdam', postal_code: '14482') }
             describe 'overwrites geo location' do
               specify { expect { action }.to(change { user.reload.latitude }.to(36.7201516)) }
               specify { expect { action }.to(change { user.reload.longitude }.to(-4.419282)) }
               specify { expect { action }.to(change { user.reload.city }.to('Málaga')) }
-              specify { expect { action }.to(change { user.reload.postal_code }.to('29015')) }
+              specify { expect { action }.to(change { user.reload.postal_code }.to('29005')) }
               specify { expect { action }.to(change { user.reload.state }.to('Andalusia')) }
-              specify { expect { action }.to(change { user.reload.country_code }.to('ES')) }
+              specify { expect { action }.to(change { user.reload.country_code }.to('es')) }
             end
           end
         end
@@ -119,7 +119,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET' do
     let(:action) { get url, params: params, headers: headers }
-    let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'DE', state: 'Brandenburg', city: 'Potsdam', postal_code: '14482') }
+    let(:user) { create(:user, latitude: 54.4, longitude: 13.0, country_code: 'de', state: 'Brandenburg', city: 'Potsdam', postal_code: '14482') }
     before { user }
     describe '/users/' do
       let(:url) { '/users/' }
@@ -143,8 +143,8 @@ RSpec.describe 'Users', type: :request do
           expected = {
             'latitude' => 54.4,
             'longitude' => 13.0,
-            'country-code' => 'DE',
-            'state-code' => 'BB',
+            'country-code' => 'de',
+            'state' => 'Brandenburg',
             'city' => 'Potsdam',
             'postal-code' => '14482'
           }

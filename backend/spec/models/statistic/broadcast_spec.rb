@@ -144,7 +144,7 @@ RSpec.describe Statistic::Broadcast, type: :model do
     end
 
     context 'group by state' do
-      let(:expected_keys) { %w[Berlin Hesse Bavaria] }
+      let(:expected_keys) { %w[Bavaria Berlin Hesse] }
       let(:user_attribute) { :state }
 
       it 'returns one entry for each user state' do
