@@ -12,6 +12,10 @@ RSpec.describe User, type: :model do
     subject { user.reasons_for_notifications }
 
     context 'by default' do
+      it { is_expected.to be_empty }
+    end
+
+    context 'given a last_login timestamp' do
       before do
         user.update_columns(last_login: Time.current)
       end
