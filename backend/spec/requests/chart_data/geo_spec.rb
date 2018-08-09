@@ -3,7 +3,7 @@ RSpec.describe 'ChartData', type: :request do
   let(:headers) { {} }
   let(:params)  { {} }
   let(:action) { get url, params: params, headers: headers }
-  let(:state_codes) { %w[BW BY BE BB HB HH HE MV NI NW RP SL ST SN SH TH] }
+  let(:states) {["Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg", "Free and Hanseatic City of Bremen", "Hamburg", "Hesse", "Mecklenburg-Vorpommern", "Lower Saxony", "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland", "Saxony-Anhalt", "Saxony", "Schleswig-Holstein", "Thuringia"] }
 
   describe 'GET' do
     describe 'chart_data/geo/geojson' do
@@ -15,14 +15,14 @@ RSpec.describe 'ChartData', type: :request do
       end
 
       it 'returns state codes for all federal states' do
-        response_state_codes = subject.collect { |feature| feature.properties['state_code'] }
-        expect(response_state_codes).to eq(state_codes)
+        response_states = subject.collect { |feature| feature.properties['VARNAME_1'] }
+        expect(response_states).to eq(states)
       end
 
       context 'given users for all federal states of germany' do
         let(:users) do
-          state_codes.each_with_index do |state_code, i|
-            create_list(:user, i, country_code: 'DE', state_code: state_code)
+          states.each_with_index do |state, i|
+            create_list(:user, i, country_code: 'de', state: state)
           end
         end
         before { users }
