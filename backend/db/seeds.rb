@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(email: 'test@example.org')
+# avoid after_commit error when creating broadcasts
+Scenic.database.refresh_materialized_view(:statistic_broadcasts, cascade: false)
 
 tv    = Medium.create!(id: 0, name_de: 'TV', name_en: 'TV')
 radio = Medium.create!(id: 1, name_de: 'Radio', name_en: 'Radio')
@@ -20,6 +21,7 @@ zdf           = Station.create!(name: 'ZDF', medium: tv)
 einslive      = Station.create!(name: '1Live', medium: radio)
 fritz         = Station.create!(name: 'Fritz', medium: radio)
 wueste_welle  = Station.create!(name: 'Wüste Welle', medium: freeradio)
+
 
 Broadcast.create!(
   title: 'Quarks & Co',
@@ -63,3 +65,27 @@ Broadcast.create!(
   medium: freeradio,
   description: 'Aktuell und hintergründig-lokal und global – mit Eigenbeiträgen und den besten Politik-Beiträgen der Freien Radios sowie tagesaktuellen Veranstaltungshinweisen.'
 )
+
+
+users = (1..5).collect do |i|
+  User.create(
+    # avoid unnecessary geocode user job
+    latitude: rand(-90.000000000...90.000000000),
+    longitude: rand(-180.000000000...180.000000000),
+    email: "test_user#{i}@example.org"
+  )
+end
+
+# create a random set of impressions
+Broadcast.find_each do |broadcast|
+  users.each do |user|
+    amount = nil # default
+    response = [:positive, :neutral].sample
+    if response == :positive
+      remaining_amount = Impression::BUDGET - user.impressions.sum(:amount)
+      amount = rand(0.0..remaining_amount.to_f)
+    end
+    Impression.create(user: user, response: response, amount: amount, broadcast: broadcast)
+  end
+end
+Similarity.compute_all(threshold: 0.1, minimum_supporters: ComputeSimilaritiesWorker.minimum_supporters)

@@ -62,6 +62,7 @@ script:
   - bundle exec rake
   - cd -
   - bundle exec rake
+  - bin/rails db:seed # check if seeds can be executed
 
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_4104854cd040_key -iv $encrypted_4104854cd040_iv
