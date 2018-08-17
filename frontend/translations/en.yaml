@@ -227,11 +227,9 @@ index:
       responsible:
         title: Who are you?
         content: >
-          "Rundfunk Mitbestimmen" is mainly developed by
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, a
-          professional user experience designer from Potsdam and
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, a student
-          at the <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
+          "Rundfunk Mitbestimmen" is mainly developed by volunteers of
+          <a href="https://www.agileventures.org/">Agile Ventures</a>, an online
+          learner community for open-source software developers.
       finances:
         title: Who is financing this?
         content: >
@@ -546,6 +544,14 @@ visualize:
       on: Broadcasts that are similar to my supported broadcasts
       off: Similarities of all broadcasts
 about-us:
+  header: About us
+  sub-header: >
+    This application is 100% developed by volunteers. A complete list of all
+    software programmers can be found online at <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen/graphs/contributors">Github</a>. Most of them have come to know us through
+    <a target="_blank"href="https://www.agileventures.org/">Agile-Ventures</a>,
+    an online learning programming community. The video recordings of our
+    meetings and pairings are available on
+    <a href="https://www.youtube.com/channel/UCyrLYmvmLzWxnPHxt4n5aPw?view_as=subscriber" target="_blank">Youtube</a>.
   team:
     you:
       name: This could be you
@@ -557,13 +563,6 @@ about-us:
         <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Just get in touch :)
         </a>
-    katharina:
-      position: User experience designer
-      description: >
-        Katharina is an user experience designer from Potsdam. She is commited
-        to non-profit software projects to tackle obvious problems using
-        innovative solutions. She makes Rundfunk MITBESTIMMEN as simple and
-        intuitive to use as possible.
     robert:
       position: Software developer
       description: >

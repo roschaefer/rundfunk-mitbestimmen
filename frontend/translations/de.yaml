@@ -241,11 +241,9 @@ index:
       responsible:
         title: Wer seid ihr?
         content: >
-          "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, User
-          Experience Designerin aus Potsdam und
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, Student
-          am <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
+          "Rundfunk mitbestimmmen" wird hauptsächlich von Freiwilligen von
+          <a href="https://www.agileventures.org/">Agile Ventures</a> entwickelt, einer
+          Online-Lerngemeinschaft für Open-Source-Softwareentwickler.
       finances:
         title: Wer finanziert das?
         content: >
@@ -578,6 +576,17 @@ visualize:
       off: Ähnlichkeiten aller Sendungen
 
 about-us:
+  header: Über uns
+  sub-header: >
+    Diese Anwendung wird zu 100% von Freiwilligen entwickelt. Eine vollständige
+    Liste aller Programmierer der Software ist online auf
+    <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen/graphs/contributors">
+    Github zu finden</a>. Die meisten davon haben uns über
+    <a target="_blank"href="https://www.agileventures.org/">Agile-Ventures</a>
+    kennen gelernt, einer Online-Community zum Programmieren Lernen. Die Video
+    Aufzeichnungen unserer Treffen und Pair-Programmings sind auf
+    <a href="https://www.youtube.com/channel/UCyrLYmvmLzWxnPHxt4n5aPw?view_as=subscriber" target="_blank">
+    Youtube</a> zu finden.
   team:
     you:
       name: Hier könntest Du sein
@@ -589,13 +598,6 @@ about-us:
         <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Kontaktiere uns einfach :)
         </a>
-    katharina:
-      position: User Experience Designerin
-      description: >
-        Katharina ist User Experience Designerin aus Potsdam und engagiert sich
-        für gemeinnützige Software Projekte, um offensichtliche Probleme mit
-        innovativen Lösungen anzugehen. Sie macht Rundfunk MITBESTIMMEN so
-        einfach und intuitiv wie möglich.
     robert:
       position: Software-Entwickler
       description: >
