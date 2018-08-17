@@ -4164,9 +4164,9 @@ ember-scroll-to@0.6.4:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
 
-ember-simple-auth-auth0@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ember-simple-auth-auth0/-/ember-simple-auth-auth0-4.1.0.tgz#8b0d11ee81439d3f15c7506be7f345f29bc3f55a"
+ember-simple-auth-auth0@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/ember-simple-auth-auth0/-/ember-simple-auth-auth0-4.1.1.tgz#d0edbeffc1017102d0dde6f95d9634b4eefcf5e9"
   dependencies:
     auth0-js "^9.3.3"
     auth0-lock "^11.4.0"
