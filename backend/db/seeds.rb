@@ -22,7 +22,6 @@ einslive      = Station.create!(name: '1Live', medium: radio)
 fritz         = Station.create!(name: 'Fritz', medium: radio)
 wueste_welle  = Station.create!(name: 'Wüste Welle', medium: freeradio)
 
-
 Broadcast.create!(
   title: 'Quarks & Co',
   stations: [wdr_fernsehen],
@@ -66,7 +65,6 @@ Broadcast.create!(
   description: 'Aktuell und hintergründig-lokal und global – mit Eigenbeiträgen und den besten Politik-Beiträgen der Freien Radios sowie tagesaktuellen Veranstaltungshinweisen.'
 )
 
-
 users = (1..5).collect do |i|
   User.create(
     # avoid unnecessary geocode user job
@@ -80,7 +78,7 @@ end
 Broadcast.find_each do |broadcast|
   users.each do |user|
     amount = nil # default
-    response = [:positive, :neutral].sample
+    response = %i[positive neutral].sample
     if response == :positive
       remaining_amount = Impression::BUDGET - user.impressions.sum(:amount)
       amount = rand(0.0..remaining_amount.to_f)
