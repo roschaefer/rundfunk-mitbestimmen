@@ -10,14 +10,8 @@ services:
       - 7357:7357 # test server
       - 7020:7020
     volumes:
-      - ./frontend/app:/frontend/app
-      - ./frontend/config:/frontend/config
-      - ./frontend/public:/frontend/public
-      - ./frontend/tests:/frontend/tests
-      - ./frontend/translations:/frontend/translations
-      - ./frontend/package.json:/frontend/package.json
-      - ./frontend/ember-cli-build.js:/frontend/ember-cli-build.js
-      - ./frontend/testem.js:/frontend/testem.js
+      - ./frontend/:/frontend/
+      - /frontend/node_modules
     environment:
       - DOCKER=1
       - API_HOST=http://localhost:3000
