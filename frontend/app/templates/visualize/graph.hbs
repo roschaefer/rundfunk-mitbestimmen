@@ -10,6 +10,11 @@
     </div>
   </div>
 
+  <a class="ui green tag label">TV</a>
+  <a class="ui orange tag label">Radio</a>
+  <a class="ui blue tag label">Online</a>
+  <a class="ui red tag label">can't remember</a>
+
   <div class="centered row">
     <div class="fourteen wide mobile sixteen wide column ">
       <div class="ui celled grid">
@@ -23,17 +28,14 @@
   <div class="doubling two column row">
     <div class="column">
       {{#link-to 'visualize.index' class="ui huge primary button"}}
-        <i class="left arrow icon"></i>
-        {{t 'visualize.overview' }}
-      {{/link-to}}
+      <i class="left arrow icon"></i>
+      {{t 'visualize.overview' }} {{/link-to}}
     </div>
 
     <div class="column">
-      <button class="ui huge primary right floated button {{if session.isAuthenticated '' 'disabled'}}" {{action 'toggleSpecificToUser'}}>
-        {{#if specificToUser}}
-          {{t 'visualize.graph.show-personalized-similarities.off'}}
-        {{else}}
-          {{t 'visualize.graph.show-personalized-similarities.on'}}
+      <button class="ui huge primary right floated button {{if session.isAuthenticated '' 'disabled'}}" {{action
+        'toggleSpecificToUser'}}>
+        {{#if specificToUser}} {{t 'visualize.graph.show-personalized-similarities.off'}} {{else}} {{t 'visualize.graph.show-personalized-similarities.on'}}
         {{/if}}
       </button>
     </div>
