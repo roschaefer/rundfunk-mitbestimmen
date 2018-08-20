@@ -27,7 +27,6 @@ export default Component.extend({
 
     let graph = this.get('graph');
 
-
     let svg = element.append("svg")
       .attr("width", width)
       .attr("height", height);
@@ -115,7 +114,7 @@ export default Component.extend({
 
     zoom_handler(svg);
   },
-  willUpdate(){
+  willUpdate() {
     this._super(...arguments);
     select('div.chart-area svg').remove();
   }
