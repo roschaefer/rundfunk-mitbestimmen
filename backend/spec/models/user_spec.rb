@@ -39,6 +39,11 @@ RSpec.describe User, type: :model do
       before { create(:impression, user: user, response: :positive, amount: 17.5) }
       it { is_expected.to include(:unbalanced_distribution) }
     end
+
+    context 'error occurs when user has not logged in before' do
+      before { create(user: user, last_login: nil) }
+      it { is_expected.to raise_error 'NilPointerException' }
+    end
   end
 
   describe 'update_and_reverse_geocode' do
