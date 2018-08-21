@@ -2976,9 +2976,9 @@ d3-zoom@1:
     d3-selection "1"
     d3-transition "1"
 
-d3@^5.0.0, d3@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-5.5.0.tgz#948413b91b988a6597f3e4c3e941d3b530bfee63"
+d3@^5.0.0, d3@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-5.6.0.tgz#af9cd7720f6c09a352bd2d8bfca6dd8ec6cde61d"
   dependencies:
     d3-array "1"
     d3-axis "1"
