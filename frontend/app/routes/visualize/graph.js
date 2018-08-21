@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import fetch from 'fetch';
 import Route from '@ember/routing/route';
 import ResetScrollPositionMixin from 'frontend/mixins/reset-scroll-position';
+import RSVP from 'rsvp';
 
 export default Route.extend(ResetScrollPositionMixin, {
     intl: service(),
@@ -21,9 +22,13 @@ export default Route.extend(ResetScrollPositionMixin, {
         headers['Authorization'] = `Bearer ${this.get('session.data.authenticated.idToken')}`;
       }
 
-      return fetch(url, {headers: headers}).then(function(response) {
-        return response.json();
-      });
+      const model = {
+        graph: fetch(url, {headers: headers}).then(function(response) {
+          return response.json();
+        }),
+        media: this.store.findAll('medium')
+      }
+      return RSVP.hash(model);
     }
   }
 );
