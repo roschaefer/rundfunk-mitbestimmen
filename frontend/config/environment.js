@@ -17,9 +17,6 @@ module.exports = function(environment) {
         domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
       },
     },
-    'ember-d3': {
-      bundle: true
-    },
     sentry: {
       dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938',
       development: true
