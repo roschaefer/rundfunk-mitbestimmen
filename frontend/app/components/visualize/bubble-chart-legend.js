@@ -1,5 +1,10 @@
 import Component from '@ember/component';
-import d3 from 'd3';
+import { select } from "d3-selection";
+import { scaleLinear } from 'd3-scale';
+import { rgb } from 'd3-color';
+import { range } from 'd3-array';
+import { axisRight } from 'd3-axis';
+import { format } from 'd3-format';
 
 export default Component.extend({
   legendheight: 200,
@@ -9,16 +14,16 @@ export default Component.extend({
     let legendheight = this.get('legendheight'),
       legendwidth = this.get('legendwidth'),
       margin = {top: 10, right: 80, bottom: 10, left: 2};
-    let svg = d3.select(selector_id)
+    let svg = select(selector_id)
       .append("svg")
       .attr("height", (legendheight) + "px")
       .attr("width", (legendwidth) + "px")
 
-    let legendscale = d3.scaleLinear()
+    let legendscale = scaleLinear()
       .domain([0, 2])
       .range([1, legendheight - margin.top - margin.bottom]);
 
-    let legendaxis = d3.axisRight()
+    let legendaxis = axisRight()
       .scale(legendscale)
       .tickValues([1])
       .tickFormat(this.get('staticLabel'));
@@ -41,7 +46,7 @@ export default Component.extend({
       legendwidth = this.get('legendwidth'),
       margin = {top: 10, right: 80, bottom: 10, left: 2};
 
-    let canvas = d3.select(selector_id)
+    let canvas = select(selector_id)
       .style("height", legendheight + "px")
       .style("width", legendwidth + "px")
       .style("position", "relative")
@@ -58,14 +63,14 @@ export default Component.extend({
 
     let ctx = canvas.getContext("2d");
 
-    let legendscale = d3.scaleLinear()
+    let legendscale = scaleLinear()
       .range([legendheight - margin.top - margin.bottom, 1])
       .domain(colorscale.domain());
 
     // image data hackery based on http://bl.ocks.org/mbostock/048d21cf747371b11884f75ad896e5a5
     let image = ctx.createImageData(1, legendheight);
-    d3.range(legendheight).forEach(function(i) {
-      let c = d3.rgb(colorscale(legendscale.invert(i)));
+    range(legendheight).forEach(function(i) {
+      let c = rgb(colorscale(legendscale.invert(i)));
       image.data[4*i] = c.r;
       image.data[4*i + 1] = c.g;
       image.data[4*i + 2] = c.b;
@@ -76,18 +81,18 @@ export default Component.extend({
     // A simpler way to do the above, but possibly slower. keep in mind the legend width is stretched because the width attr of the canvas is 1
     // See http://stackoverflow.com/questions/4899799/whats-the-best-way-to-set-a-single-pixel-in-an-html5-canvas
     /*
-  d3.range(legendheight).forEach(function(i) {
+  range(legendheight).forEach(function(i) {
     ctx.fillStyle = colorscale(legendscale.invert(i));
     ctx.fillRect(0,i,1,1);
   });
   */
 
-    let legendaxis = d3.axisRight()
+    let legendaxis = axisRight()
       .scale(legendscale)
       .ticks(10)
-      .tickFormat(d3.format("+.2%"));
+      .tickFormat(format("+.2%"));
 
-    let svg = d3.select(selector_id)
+    let svg = select(selector_id)
       .append("svg")
       .attr("height", (legendheight) + "px")
       .attr("width", (legendwidth) + "px")
@@ -107,7 +112,7 @@ export default Component.extend({
   },
   willUpdate(){
     this._super(...arguments);
-    d3.select('.legend-area .continuous svg').remove();
-    d3.select('.legend-area .static svg').remove();
+    select('.legend-area .continuous svg').remove();
+    select('.legend-area .static svg').remove();
   }
 });
