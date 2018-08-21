@@ -23,12 +23,10 @@ export default Component.extend({
     let width = element.node().getBoundingClientRect().width;
     let height = 960;
 
-
     let simulation = forceSimulation()
       .force("link", forceLink().id(function(d) { return d.id; }))
       .force("charge", forceManyBody())
       .force("center", forceCenter(width / 2, height / 2));
-
 
     let svg = element.append("svg")
       .attr("width", width)
