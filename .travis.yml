@@ -57,7 +57,7 @@ script:
   - BROCCOLI_PERSISTENT_FILTER_CACHE_ROOT=./cache ember test --reporter dot
   - cd -
   - cd backend
-  - bundle exec brakeman -z
+  - bundle exec brakeman -zq
   - bundle exec rubocop
   - bundle exec rake
   - bundle exec rake db:seed # check if seeds can be executed
