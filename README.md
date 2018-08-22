@@ -55,6 +55,10 @@ requirements as user stories in our Github issues and implement them as cucumber
 features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
+Here is our model how to write tests. The cucumber tests are at the top. As they
+test the entire stack, cucumber tests tend to be rather slow in execution but
+in return they deliver some confidence that the system works.
+![Testing pyramid](/documentation/images/testing-pyramid.png)
 
 ## Installation and Usage with Docker
 
