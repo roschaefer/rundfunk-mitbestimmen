@@ -4,24 +4,24 @@ FactoryBot.define do
     sequence(:auth0_uid) { |n| "auth0|#{n}#{('a'..'z').to_a.shuffle.join}" }
 
     # has a location by default, avoid unnecessary requests in tests
-    latitude 21
-    longitude 22
+    latitude { 21 }
+    longitude { 22 }
 
     trait :without_geolocation do
-      latitude nil
-      longitude nil
+      latitude { nil }
+      longitude { nil }
     end
 
     trait :admin do
-      role :admin
+      role { :admin }
     end
 
     trait :contributor do
-      role :contributor
+      role { :contributor }
     end
 
     trait :guest do
-      role :guest
+      role { :guest }
     end
   end
 end
