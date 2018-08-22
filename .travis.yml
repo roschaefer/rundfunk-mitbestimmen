@@ -53,16 +53,13 @@ before_script:
     # - until grep -E 'Listening on' foreman.out && grep -E 'Build successful' foreman.out; do sleep 1; done
 
 script:
-  - cd frontend
-  - BROCCOLI_PERSISTENT_FILTER_CACHE_ROOT=./cache ember test --reporter dot
-  - cd -
-  - cd backend
-  - bundle exec brakeman -zq
+  - cd frontend && BROCCOLI_PERSISTENT_FILTER_CACHE_ROOT=./cache ember test --reporter dot
+  - cd ../backend && bundle exec brakeman -zq
   - bundle exec rubocop
   - bundle exec rake
-  - bundle exec rake db:seed # check if seeds can be executed
-  - cd -
-  - bundle exec rake
+  - cd .. && bundle exec rake
+  - cd backend && bundle exec rake db:seed # check if seeds can be executed
+  - cd .. # back to application folder for deployment
 
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_4104854cd040_key -iv $encrypted_4104854cd040_iv
