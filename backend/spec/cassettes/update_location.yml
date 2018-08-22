@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://freegeoip.net/json/141.3.135.0
+    uri: http://api.ipstack.com/141.3.135.0?access_key=IPSTACK_API_KEY
     body:
       encoding: US-ASCII
       string: ''
@@ -19,25 +19,24 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.11.8
+      - nginx
       Date:
-      - Fri, 23 Jun 2017 14:37:36 GMT
+      - Wed, 22 Aug 2018 22:42:30 GMT
       Content-Type:
-      - application/json
-      Content-Length:
-      - '246'
-      Connection:
-      - keep-alive
-      Vary:
-      - Origin
-      X-Database-Date:
-      - Thu, 22 Jun 2017 20:39:52 GMT
-      Strict-Transport-Security:
-      - max-age=31536000
+      - application/json; Charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      X-Apilayer-Transaction-Id:
+      - 96127370-77ae-4b00-902b-77807813b482
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Request-Time:
+      - '0.021'
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJpcCI6IjE0MS4zLjEzNS4wIiwiY291bnRyeV9jb2RlIjoiREUiLCJjb3VudHJ5X25hbWUiOiJHZXJtYW55IiwicmVnaW9uX2NvZGUiOiJCVyIsInJlZ2lvbl9uYW1lIjoiQmFkZW4tV8O8cnR0ZW1iZXJnIFJlZ2lvbiIsImNpdHkiOiJLYXJsc3J1aGUiLCJ6aXBfY29kZSI6Ijc2MTM5IiwidGltZV96b25lIjoiRXVyb3BlL0JlcmxpbiIsImxhdGl0dWRlIjo0OS4wMDQ3LCJsb25naXR1ZGUiOjguMzg1OCwibWV0cm9fY29kZSI6MH0K
+      encoding: UTF-8
+      string: '{"ip":"141.3.135.0","type":"ipv4","continent_code":"EU","continent_name":"Europe","country_code":"DE","country_name":"Germany","region_code":"BW","region_name":"Baden-W\u00fcrttemberg
+        Region","city":"Karlsruhe","zip":"76133","latitude":49.0083,"longitude":8.3979,"location":{"geoname_id":2892794,"capital":"Berlin","languages":[{"code":"de","name":"German","native":"Deutsch"}],"country_flag":"http:\/\/assets.ipstack.com\/flags\/de.svg","country_flag_emoji":"\ud83c\udde9\ud83c\uddea","country_flag_emoji_unicode":"U+1F1E9
+        U+1F1EA","calling_code":"49","is_eu":true}}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:37:36 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Wed, 22 Aug 2018 22:43:39 GMT
+recorded_with: VCR 4.0.0
