@@ -60,9 +60,9 @@ script:
   - bundle exec brakeman -z
   - bundle exec rubocop
   - bundle exec rake
+  - bundle exec rake db:seed # check if seeds can be executed
   - cd -
   - bundle exec rake
-  - bundle exec rails db:seed # check if seeds can be executed
 
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_4104854cd040_key -iv $encrypted_4104854cd040_iv
