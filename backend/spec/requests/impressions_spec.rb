@@ -40,8 +40,8 @@ RSpec.describe 'Impressions', type: :request do
           end
 
           specify { expect { request }.to change { User.first.location? }.from(false).to(true) }
-          specify { expect { request }.to change { User.first.latitude }.from(nil).to(52.4) }
-          specify { expect { request }.to change { User.first.longitude }.from(nil).to(13.0667) }
+          specify { expect { request }.to change { User.first.latitude }.from(nil).to(52.0903) }
+          specify { expect { request }.to change { User.first.longitude }.from(nil).to(13.1677) }
         end
       end
     end

@@ -34,6 +34,8 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.filter_sensitive_data('GOOGLE_API_KEY') { ENV['GOOGLE_API_KEY'] }
+  c.filter_sensitive_data('IPSTACK_API_KEY') { ENV['IPSTACK_API_KEY'] }
 end
 
 RSpec.configure do |config|
