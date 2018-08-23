@@ -30,15 +30,10 @@ before_install:
   - cd ..
 
 install:
-  - bundle
-  - cd backend
-  - bundle
+  - bundle && gem install foreman
+  - cd backend && bundle
+  - cd ../frontend && yarn install --pure-lockfile
   - cd ..
-  - chromedriver-update 2.37
-  - cd frontend
-  - yarn install --pure-lockfile
-  - cd ..
-  - gem install foreman
 
 
 before_script:
