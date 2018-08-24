@@ -9,7 +9,11 @@
   as |inline|}}
   {{#inline.editable}}
     <button class="ui circular button">
-      {{format-number currentAmount style='currency' currency='EUR' fallback='???'}}
+      {{#if amount}}
+        {{format-number currentAmount style='currency' currency='EUR'}}
+      {{else}}
+        ???
+      {{/if}}
     </button>
   {{/inline.editable}}
 
