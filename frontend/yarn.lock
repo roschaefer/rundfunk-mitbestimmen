@@ -3437,7 +3437,7 @@ ember-cli-babel@6.12.0:
     ember-cli-version-checker "^2.1.0"
     semver "^5.4.1"
 
-ember-cli-babel@^5.1.3, ember-cli-babel@^5.1.6:
+ember-cli-babel@^5.1.3:
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.8.tgz#0356b03cc3fdff5d0f2ecaa46a0e1cfaebffd876"
   dependencies:
@@ -4199,13 +4199,6 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
   dependencies:
     ember-cli-babel "^6.9.0"
     ember-cli-version-checker "^2.1.0"
-
-ember-scroll-to@0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/ember-scroll-to/-/ember-scroll-to-0.6.4.tgz#aabf0e683db1d9eaf2d1b09e33a2e6691fcf77f4"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
 
 ember-simple-auth-auth0@^4.1.1:
   version "4.1.1"

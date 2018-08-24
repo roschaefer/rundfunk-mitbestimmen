@@ -63,7 +63,6 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "0.12.1",
     "ember-resolver": "^5.0.1",
-    "ember-scroll-to": "0.6.4",
     "ember-simple-auth": "^1.5.1",
     "ember-simple-auth-auth0": "^4.1.1",
     "ember-source": "^3.3.2",
