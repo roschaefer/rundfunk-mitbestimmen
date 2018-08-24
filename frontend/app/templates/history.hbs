@@ -35,8 +35,16 @@
             </td>
             <td>{{broadcast.title}}</td>
             {{#with broadcast.impressions.firstObject as |impression|}}
-              <td class="right aligned">{{format-relative impression.createdAt fallback=''}}</td>
-              <td class="right aligned">{{format-relative impression.updatedAt fallback=''}}</td>
+              <td class="right aligned">
+                {{#if impression.createdAt}}
+                {{format-relative impression.createdAt}}
+                {{/if}}
+              </td>
+              <td class="right aligned">
+                {{#if impression.updatedAt}}
+                {{format-relative impression.updatedAt}}
+                {{/if}}
+              </td>
               <td class="right aligned">
                   {{#if (eq impression.response 'positive')}}
                     <button class="unselect ui circular positive icon button" {{ action 'unselect' broadcast}}  >
