@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service'; 
+import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
 // app/routes/application.js
@@ -7,6 +8,13 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 export default Route.extend(ApplicationRouteMixin , {
   intl: service(),
   raven: service(),
+  fastboot: service(),
+  currentLocale: computed('fastboot', function() {
+    if (this.get('fastboot.isFastBoot')) return 'de';
+    const locale = navigator.language || navigator.userLanguage || 'en';
+    const lang = locale.split('-')[0];
+    return ['de', 'en'].includes(lang) ? lang : 'en';
+  }),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale
@@ -17,7 +25,7 @@ export default Route.extend(ApplicationRouteMixin , {
 
     // whatever you do to pick a locale for the user:
     this._super(...arguments);
-    return this.get('intl').setLocale(calculateLocale());
+    return this.get('intl').setLocale(this.get('currentLocale'));
 
     // OR for those that sideload, an array is accepted to handle fallback lookups
 
@@ -74,8 +82,3 @@ export default Route.extend(ApplicationRouteMixin , {
   }
 });
 
-function calculateLocale(){
-  const locale = navigator.language || navigator.userLanguage || 'en';
-  const lang = locale.split('-')[0];
-  return ['de', 'en'].includes(lang) ? lang : 'en';
-}
