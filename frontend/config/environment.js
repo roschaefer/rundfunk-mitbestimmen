@@ -54,6 +54,9 @@ module.exports = function(environment) {
     googleFonts: [
       'Assistant:400,700'
     ],
+    fastboot: {
+      hostWhitelist: ['rundfunk-mitbestimmen.de', 'api.rundfunk-mitbestimmen.de', /^localhost:\d+$/]
+    }
   };
 
   if (environment === 'development') {
