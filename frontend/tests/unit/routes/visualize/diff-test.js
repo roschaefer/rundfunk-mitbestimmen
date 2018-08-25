@@ -6,6 +6,7 @@ describe('Unit | Route | visualize/diff', function() {
   setupTest('route:visualize/diff', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });

@@ -6,6 +6,7 @@ describe('Unit | Route | broadcast/edit', function() {
   setupTest('route:broadcast/edit', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'service:session',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]

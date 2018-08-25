@@ -8,6 +8,7 @@ describe('Unit | Route | imprint', function() {
   setupTest('route:imprint', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });
