@@ -103,16 +103,20 @@
                 {{/link-to}}
               </td>
               <td class="impressions">{{statistic.impressions}}</td>
-              {{#if statistic.approval}}
-                <td class="approval">{{format-number statistic.approval style='percent'}}</td>
-              {{else}}
-                ???
-              {{/if}}
-              {{#if statistic.average}}
-                <td class="average">{{format-number statistic.average style='currency' currency='EUR'}}</td>
-              {{else}}
-                ???
-              {{/if}}
+              <td class="approval">
+                {{#if statistic.approval}}
+                  {{format-number statistic.approval style='percent'}}
+                {{else}}
+                  ???
+                {{/if}}
+              </td>
+              <td class="average">
+                {{#if statistic.average}}
+                  {{format-number statistic.average style='currency' currency='EUR'}}
+                {{else}}
+                  ???
+                {{/if}}
+              </td>
               <td class="total">{{format-number statistic.total style='currency' currency='EUR'}}</td>
             </tr>
           {{/each}}
