@@ -2,13 +2,14 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
-// app/routes/application.js
 import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
+// app/routes/application.js
 
-export default Route.extend(ApplicationRouteMixin , {
+export default Route.extend(ApplicationRouteMixin, {
   intl: service(),
   raven: service(),
   fastboot: service(),
+  session: service(),
   currentLocale: computed('fastboot', function() {
     if (this.get('fastboot.isFastBoot')) return 'de';
     const locale = navigator.language || navigator.userLanguage || 'en';
@@ -37,6 +38,8 @@ export default Route.extend(ApplicationRouteMixin , {
   },
   actions: {
     login (afterLoginRoute) {
+      if (this.get('fastboot.isFastBoot')) return; // do nothing
+
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
       const dict = {
         title: this.get('intl').t('auth0-lock.title'),
