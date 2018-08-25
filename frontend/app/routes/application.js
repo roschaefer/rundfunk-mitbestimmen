@@ -1,4 +1,4 @@
-import { inject as service } from '@ember/service'; 
+import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
