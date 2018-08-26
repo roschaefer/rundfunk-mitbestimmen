@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import ENV from 'frontend/config/environment';
 
 export default Route.extend({
   session: service(),
@@ -7,7 +8,7 @@ export default Route.extend({
   fastboot: service(),
   model() {
     if (!this.get('fastboot.isFastBoot')){
-      return this.get('session').authenticate('authenticator:auth0').then(() => {
+      return this.get('session').authenticate(ENV.APP.authenticator).then(() => {
         if (window._paq){
           window._paq.push(['trackGoal', 4]);
           //goalId 4 is "Signup/Login successful"

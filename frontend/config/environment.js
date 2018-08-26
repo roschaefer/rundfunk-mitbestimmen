@@ -82,7 +82,7 @@ module.exports = function(environment) {
   }
 
   if ((environment === 'integration') || (environment === 'fullstack')) {
-    ENV.APP.authenticator = 'authenticator:stub-authenticator';
+    ENV.APP.authenticator = 'authenticator:stub';
   }
 
   if (environment === 'staging') {

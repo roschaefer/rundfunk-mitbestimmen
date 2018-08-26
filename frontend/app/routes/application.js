@@ -30,11 +30,10 @@ export default Route.extend({
       // save the current route, assuming we're using the same browser and will have access to the old session
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
 
-      if (ENV.APP.authenticator === 'authenticator:auth0') {
-        this.get('auth0.webAuth').authorize({ language: this.get('intl.locale.firstObject') });
-      } else {
-        this.get('session').authenticate(ENV.APP.authenticator);
+      if (ENV.APP.authenticator === 'authenticator:stub') {
+        return this.transitionTo('authentication.callback');
       }
+      this.get('auth0.webAuth').authorize({ language: this.get('intl.locale.firstObject') });
     },
 
     logout () {
