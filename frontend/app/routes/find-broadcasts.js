@@ -8,7 +8,7 @@ import RSVP from 'rsvp';
 export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
   intl: service(),
   session: service(),
-  seed: Math.random(),
+  fastboot: service(),
 
   queryParams: {
     sort: {
@@ -29,11 +29,23 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
   },
 
   model(params) {
+    let shoebox = this.get('fastboot.shoebox');
+    let shoeboxStore = shoebox.retrieve('random-store');
+    let isFastBoot = this.get('fastboot.isFastBoot');
+
+    if (isFastBoot) {
+      if (!shoeboxStore) {
+        shoeboxStore = {};
+        shoebox.put('random-store', shoeboxStore);
+      }
+      shoeboxStore['seed'] = Math.random();
+    }
+
     params.paramMapping = {
       total_pages: "total-pages"
     };
     params.include = ['impressions', 'stations', 'medium'];
-    params.seed = this.get('seed');
+    params.seed = shoeboxStore['seed'];
     params.filter = {
       medium: params.medium,
       station: params.station
