@@ -2,14 +2,13 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
-import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
-// app/routes/application.js
 
-export default Route.extend(ApplicationRouteMixin, {
+export default Route.extend({
   intl: service(),
   raven: service(),
   fastboot: service(),
   session: service(),
+  auth0: service(),
   currentLocale: computed('fastboot', function() {
     if (this.get('fastboot.isFastBoot')) return 'de';
     const locale = navigator.language || navigator.userLanguage || 'en';
@@ -38,38 +37,14 @@ export default Route.extend(ApplicationRouteMixin, {
   },
   actions: {
     login (afterLoginRoute) {
-      if (this.get('fastboot.isFastBoot')) return; // do nothing
-
+      // save the current route, assuming we're using the same browser and will have access to the old session
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
-      const dict = {
-        title: this.get('intl').t('auth0-lock.title'),
-        success: {
-          magicLink: this.get('intl').t('auth0-lock.success.magicLink'),
-        },
-        socialLoginInstructions: this.get('intl').t('auth0-lock.socialLoginInstructions'),
-        passwordlessEmailAlternativeInstructions: this.get('intl').t('auth0-lock.passwordlessEmailAlternativeInstructions'),
-        lastLoginInstructions: this.get('intl').t('auth0-lock.lastLoginInstructions'),
-      };
 
-      const lockOptions = {
-        allowedConnections: ['email', 'facebook', 'google-oauth2', 'twitter'],
-        passwordlessMethod: 'link',
-        theme:{
-          logo:  '/assets/images/logo.png',
-          primaryColor: '#2185D0',
-        },
-        socialButtonStyle: 'small',
-        language: this.get('intl.locale.firstObject'),
-        languageDictionary: dict,
-        auth: {
-          params: {
-            scope: 'openid email',
-          },
-          responseType: 'token',
-          redirectUrl: window.location.origin + '/authentication/callback'
-        }
-      };
-      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
+      if (ENV.APP.authenticator === 'authenticator:auth0') {
+        this.get('auth0.webAuth').authorize({ language: this.get('intl.locale.firstObject') });
+      } else {
+        this.get('session').authenticate(ENV.APP.authenticator);
+      }
     },
 
     logout () {
@@ -77,7 +52,7 @@ export default Route.extend(ApplicationRouteMixin, {
     },
 
     error(error){
-      if(!ENV['sentry']['development']) {
+      if(!ENV.sentry.development) {
         this.get('raven').captureException(error)
       }
       return true; // Let the route above this handle the error.

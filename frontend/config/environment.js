@@ -11,12 +11,6 @@ module.exports = function(environment) {
         'img-src': "*.gravatar.com *.wp.com sentry.io data:",
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com sentry.io"
     },
-    'ember-simple-auth': {
-      auth0: {
-        clientID: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
-        domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
-      },
-    },
     'ember-d3': {
       bundle: true
     },
@@ -39,7 +33,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       BACKEND_URL: (process.env.API_HOST || 'http://localhost:3000'),
-      authenticator: 'authenticator:auth0-lock-passwordless'
+      authenticator: 'authenticator:auth0'
     },
     metricsAdapters: [
       {
@@ -54,6 +48,14 @@ module.exports = function(environment) {
     googleFonts: [
       'Assistant:400,700'
     ],
+    auth0:{
+      clientId: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
+      domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com"),
+      callbacks: {
+        login: 'http://localhost:4200/authentication/callback',
+        logout: 'http://localhost:4200/'
+      }
+    },
     fastboot: {
       hostWhitelist: ['rundfunk-mitbestimmen.de', 'api.rundfunk-mitbestimmen.de', /^localhost:\d+$/]
     }
@@ -89,11 +91,15 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.APP.BACKEND_URL = 'https://api.rundfunk-mitbestimmen.de/';
-    ENV['ember-simple-auth']['auth0'] = {
-      clientID: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
-      domain: 'rundfunk-mitbestimmen.eu.auth0.com'
-    };
-    ENV['sentry']['development'] = false;
+    ENV.auth0 = {
+      clientId: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
+      domain: 'rundfunk-mitbestimmen.eu.auth0.com',
+      callbacks: {
+        login: 'https://rundfunk-mitbestimmen.de/authentication/callback',
+        logout: 'https://rundfunk-mitbestimmen.de'
+      }
+    }
+    ENV.sentry.development = false;
   }
 
   return ENV;
