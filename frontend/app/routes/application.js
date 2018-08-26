@@ -10,30 +10,20 @@ export default Route.extend({
   session: service(),
   auth0: service(),
   currentLocale: computed('fastboot', function() {
-    if (this.get('fastboot.isFastBoot')) return 'de';
-    const locale = navigator.language || navigator.userLanguage || 'en';
-    const lang = locale.split('-')[0];
+    let lang;
+    if (this.get('fastboot.isFastBoot')) {
+      let headers = this.get('fastboot.request.headers');
+      lang = headers.get('Accept-Language');
+    } else {
+      const locale = navigator.language || navigator.userLanguage || 'en';
+      lang = locale.split('-')[0];
+    }
     return ['de', 'en'].includes(lang) ? lang : 'en';
   }),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
-    // define the app's runtime locale
-    // For example, here you would maybe do an API lookup to resolver
-    // which locale the user should be targeted and perhaps lazily
-    // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
-    // method with the results of the XHR request
-
-    // whatever you do to pick a locale for the user:
     this._super(...arguments);
-    return this.get('intl').setLocale(this.get('currentLocale'));
-
-    // OR for those that sideload, an array is accepted to handle fallback lookups
-
-    // en-ca is the primary locale, en-us is the fallback.
-    // this is optional, and likely unnecessary if you define baseLocale (see below)
-    // The primary usecase is if you side load all translations
-    //
-    // return this.get('intl').setLocale(['en-ca', 'en-us']);
+    this.get('intl').setLocale(this.get('currentLocale'));
   },
   actions: {
     login (afterLoginRoute) {
