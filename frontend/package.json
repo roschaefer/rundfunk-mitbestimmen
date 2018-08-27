@@ -68,6 +68,7 @@
     "ember-simple-auth": "^1.5.1",
     "ember-source": "^3.4.0",
     "ember-truth-helpers": "2.1.0",
+    "ember-url": "^0.6.0",
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.2.0",
     "highcharts": "6.1.1",
@@ -75,5 +76,8 @@
     "loader.js": "^4.7.0",
     "moment": "^2.22.2",
     "semantic-ui-ember": "^3.0.3"
-  }
+  },
+  "fastbootDependencies": [
+    "url"
+  ]
 }
