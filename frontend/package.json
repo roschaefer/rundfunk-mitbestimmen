@@ -22,7 +22,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-webpack": "^1.0.0",
-    "d3": "^5.6.0",
+    "d3": "^5.7.0",
     "ember-ajax": "^3.1.0",
     "ember-chroma-shim": "^1.0.2",
     "ember-cli": "^3.3.0",
