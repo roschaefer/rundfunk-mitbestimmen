@@ -9,6 +9,7 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
   intl: service(),
   session: service(),
   fastboot: service(),
+  clientSeed: Math.random,
 
   queryParams: {
     sort: {
@@ -40,12 +41,13 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
       }
       shoeboxStore['seed'] = Math.random();
     }
+    const seed = shoeboxStore && shoeboxStore['seed'] || this.clientSeed;
 
     params.paramMapping = {
       total_pages: "total-pages"
     };
     params.include = ['impressions', 'stations', 'medium'];
-    params.seed = shoeboxStore['seed'];
+    params.seed = seed;
     params.filter = {
       medium: params.medium,
       station: params.station
