@@ -1,6 +1,12 @@
 import Component from '@ember/component';
-import d3 from 'd3';
 import { isBlank } from '@ember/utils';
+import { select } from "d3-selection";
+import { scaleOrdinal, schemeCategory10 } from 'd3-scale';
+import { forceSimulation, forceLink, forceManyBody, forceCenter } from 'd3-force';
+import { drag } from 'd3-drag';
+import { event } from 'd3-selection';
+import { zoom } from 'd3-zoom';
+
 
 export default Component.extend({
   classNames: ['graph-visualization row'],
@@ -8,17 +14,16 @@ export default Component.extend({
     this._super(...arguments);
     if (isBlank(this.get('graph'))) return;
 
-    let element = d3.select('div.chart-area');
+    let element = select('div.chart-area');
     let width = element.node().getBoundingClientRect().width;
     let height = 960;
 
+    let color = scaleOrdinal(schemeCategory10);
 
-    let color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    let simulation = d3.forceSimulation()
-      .force("link", d3.forceLink().id(function(d) { return d.id; }))
-      .force("charge", d3.forceManyBody())
-      .force("center", d3.forceCenter(width / 2, height / 2));
+    let simulation = forceSimulation()
+      .force("link", forceLink().id(function(d) { return d.id; }))
+      .force("charge", forceManyBody())
+      .force("center", forceCenter(width / 2, height / 2));
 
     let graph = this.get('graph');
 
@@ -27,6 +32,7 @@ export default Component.extend({
       .attr("width", width)
       .attr("height", height);
     //add encompassing group for the zoom
+
     let container = svg.append("g")
       .attr("class", "everything");
 
@@ -70,15 +76,15 @@ export default Component.extend({
     })
       .on('mouseover', mouseOverFunction)
       .on('mouseout', mouseOutFunction)
-      .call(d3.drag().on("start", (d) => {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+      .call(drag().on("start", (d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
         d.fy = d.y;
       }).on("drag", (d) => {
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
+        d.fx = event.x;
+        d.fy = event.y;
       }).on("end", (d) => {
-        if (!d3.event.active) simulation.alphaTarget(0);
+        if (!event.active) simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
       }));
@@ -103,14 +109,14 @@ export default Component.extend({
     simulation.force("link").links(graph.links);
 
     //add zoom capabilities
-    let zoom_handler = d3.zoom().on("zoom", () => {
-      container.attr("transform", d3.event.transform)
+    let zoom_handler = zoom().on("zoom", () => {
+      container.attr("transform", event.transform)
     });
 
     zoom_handler(svg);
   },
   willUpdate(){
     this._super(...arguments);
-    d3.select('div.chart-area svg').remove();
+    select('div.chart-area svg').remove();
   }
 });
