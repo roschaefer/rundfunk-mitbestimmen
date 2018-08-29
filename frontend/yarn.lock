@@ -3905,9 +3905,9 @@ ember-d3@^0.4.4:
     d3-selection-multi "^1.0.1"
     ember-cli-babel "^6.6.0"
 
-ember-data-factory-guy@3.3.4:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-3.3.4.tgz#37d7f3f261e58ff5e0a9d910f17bf8c343d83c43"
+ember-data-factory-guy@3.3.6:
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/ember-data-factory-guy/-/ember-data-factory-guy-3.3.6.tgz#716e85c75738574631b3d8e9ee997aba0996c3db"
   dependencies:
     broccoli-funnel "^1.0.1"
     broccoli-merge-trees "^1.1.1"
