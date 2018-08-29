@@ -6,6 +6,7 @@ import { forceSimulation, forceLink, forceManyBody, forceCenter } from 'd3-force
 import { drag } from 'd3-drag';
 import { event } from 'd3-selection';
 import { zoom } from 'd3-zoom';
+import { legendColor } from 'd3-svg-legend';
 
 
 export default Component.extend({
@@ -13,20 +14,19 @@ export default Component.extend({
   didRender() {
     this._super(...arguments);
     if (isBlank(this.get('graph'))) return;
+    if (isBlank(this.get('media'))) return;
+
+    let graph = this.get('graph');
+    let media = this.get('media');
 
     let element = select('div.chart-area');
     let width = element.node().getBoundingClientRect().width;
     let height = 960;
 
-    let color = scaleOrdinal(schemeCategory10);
-
     let simulation = forceSimulation()
       .force("link", forceLink().id(function(d) { return d.id; }))
       .force("charge", forceManyBody())
       .force("center", forceCenter(width / 2, height / 2));
-
-    let graph = this.get('graph');
-
 
     let svg = element.append("svg")
       .attr("width", width)
@@ -35,6 +35,21 @@ export default Component.extend({
 
     let container = svg.append("g")
       .attr("class", "everything");
+
+    svg.append("g")
+      .attr("class", "legendOrdinal")
+      .attr("transform", "translate(20,20)");
+
+    const groups = media.map((medium) => medium.get('id'));
+    const labels = media.map((medium) => medium.get('name'));
+
+    let color = scaleOrdinal(schemeCategory10)
+      .domain(groups);
+    const legendOrdinal = legendColor()
+      .labels(labels)
+      .scale(color);
+    svg.select(".legendOrdinal")
+      .call(legendOrdinal);
 
     let link = container
       .append("g")
@@ -115,7 +130,7 @@ export default Component.extend({
 
     zoom_handler(svg);
   },
-  willUpdate(){
+  willUpdate() {
     this._super(...arguments);
     select('div.chart-area svg').remove();
   }
