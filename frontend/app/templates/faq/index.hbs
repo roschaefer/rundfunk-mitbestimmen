@@ -1,6 +1,7 @@
-<h1>this is an index page</h1>
-{{#each model as |slug|}}
-  {{#link-to 'faq.show' slug}}
-  {{t (concat 'index.faq.questions.' slug '.title') htmlSafe=true }}
+{{faq-list}}
+<div class="row message-margin">
+  {{#link-to 'index' class="ui huge primary button"}}
+  <i class="left arrow icon"></i>
+  {{t 'index.link-to' }}
   {{/link-to}}
-{{/each}}
+</div>

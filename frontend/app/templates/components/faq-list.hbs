@@ -1,0 +1,12 @@
+{{yield}}
+<div class="ui stackable relaxed grid">
+  {{#each slugArray as |array|}}
+  <div class="row">
+    {{#each array as |slug|}}
+    {{#link-to 'faq.show' slug class="ui secondary basic button five wide column"}}
+    {{t (concat 'index.faq.questions.' slug '.title') htmlSafe=true}}
+    {{/link-to}}
+    {{/each}}
+  </div>
+  {{/each}}
+</div>
