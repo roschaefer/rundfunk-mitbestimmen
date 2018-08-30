@@ -62,7 +62,7 @@
     "ember-leaflet": "^3.0.17",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-metrics": "0.12.1",
+    "ember-metrics": "git+https://github.com/poteto/ember-metrics.git",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.5.1",
     "ember-simple-auth-auth0": "^4.1.1",
