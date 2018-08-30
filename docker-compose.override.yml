@@ -1,0 +1,15 @@
+version: '3'
+services:
+  frontend:
+    volumes:
+      - ./frontend/:/frontend/
+      - /frontend/node_modules
+    tty: true
+    stdin_open: true
+    command: ember server
+  backend:
+    volumes:
+      - ./backend:/backend
+    tty: true
+    stdin_open: true
+    command: "bin/rails server -b 0.0.0.0"

@@ -32,20 +32,6 @@ services:
       - db
       - redis
     command: "bin/rails server -b 0.0.0.0"
-    tty: true
-    stdin_open: true
-  sidekiq:
-    image: rundfunk-mitbestimmen-sidekiq
-    build:
-      context: ./backend
-    depends_on:
-      - redis
-      - db
-    command: bundle exec sidekiq
-    environment:
-      - POSTGRES_HOST=db
-      - POSTGRES_USERNAME=postgres
-      - REDIS_URL=redis://redis:6379
   db:
     image: postgres:9.6
   redis:
