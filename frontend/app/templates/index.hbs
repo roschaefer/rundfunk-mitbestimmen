@@ -284,14 +284,12 @@
     </div>
   </div>
 
+  {{#unless showFeed}}
+    <div class="centered row"> <button class="ui primary button" {{action "showTwitterFeed"}}>Show Twitter Feed</button> </div>
+  {{/unless}}
+
   <div class="row">
-    <div class="ui one column grid">
-      <div class="centered row">
-        <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
-          <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB?ref_src=twsrc%5Etfw">Tweets by RundfunkMB</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-      </div>
-    </div>
+    {{#if showFeed}} {{show-twitter-feed}} {{/if}}
   </div>
 
   <div class="centered row">
