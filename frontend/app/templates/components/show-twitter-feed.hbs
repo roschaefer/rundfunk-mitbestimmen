@@ -1,7 +1,5 @@
-<div class="centered row">
-    <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
-        <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB?ref_src=twsrc%5Etfw">Tweets
-            by RundfunkMB</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
-</div>
+{{#if showFeed}}
+    {{yield}}
+{{else}}
+ <div class="centered row"><button class="ui primary button" {{action 'showTwitterFeed'}}>Show Twitter Feeds</button></div>
+{{/if}}

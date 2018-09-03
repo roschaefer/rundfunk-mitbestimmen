@@ -3,12 +3,6 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  showFeed: false,
-  actions: {
-    showTwitterFeed() {
-      this.set('showFeed', true);
-    }
-  },
   intl: service(),
   actualChartOptions: computed('intl.locale', function() {
     return {
