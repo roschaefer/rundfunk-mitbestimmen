@@ -4,6 +4,8 @@ services:
     volumes:
       - ./frontend/:/frontend/
       - /frontend/node_modules
+      - ./frontend/yarn.lock:/frontend/yarn.lock:delegated
+      - ./frontend/package.json:/frontend/package.json:delegated
     tty: true
     stdin_open: true
     command: ember server
