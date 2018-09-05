@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'quite an unbalanced distribution, was it on purpose?' do
-      before { create(:impression, user: user, response: :positive, amount: 17.5) }
+      before { create(:impression, user: user, response: :positive, amount: Impression::BUDGET) }
       it { is_expected.to include(:unbalanced_distribution) }
     end
 

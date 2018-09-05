@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     reasons << :recently_created_broadcasts if broadcasts_created_since_last_login.count >= 5
     distributed_sum = impressions.sum(:amount)
     reasons << :no_given_amount_for_supported_broadcasts if impressions.positive.where(amount: nil).present?
-    reasons << :unbalanced_distribution if impressions.where(amount: 17.5)
+    reasons << :unbalanced_distribution if impressions.where(amount: Impression::BUDGET)
     reasons
   end
 end
