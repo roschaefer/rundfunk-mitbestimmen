@@ -40,8 +40,8 @@ de:
             Wenn das Ihre Absicht war, dann ignorieren Sie bitte diese Nachricht!
       footer:
         closing: Danke, dass Sie ein geschätztes Mitglied von Rundfunk Mitbestimmen sind! Wir hoffen, dass Sie bald zurückschauen, um diese neuen Updates zu sehen!
-        sign_off: |
-          Freundliche Grüße,
+        sign_off_html: |
+          Freundliche Grüße, <br>
           Das Rundfunk Mitbestimmen Team
   date:
     abbr_day_names:

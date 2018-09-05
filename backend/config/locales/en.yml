@@ -29,6 +29,6 @@ en:
       footer:
         closing: Thank you for being a valued member of Rundfunk Mitbestimmen! We hope you will check back soon to see
           these new updates!
-        sign_off: |
-          Best Regards,
+        sign_off_html: |
+          Best Regards, <br> 
           The Rundfunk Mitbestimmen team
