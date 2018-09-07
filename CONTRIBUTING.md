@@ -39,12 +39,6 @@ which will associate the pull request with the issue in GitHub.
 
 See also [more details on submitting pull requests](https://github.com/AgileVentures/WebsiteOne/blob/develop/docs/how_to_submit_a_pull_request_on_github.md).
 
-Zenhub
--------------------
-
-For simple project management we use a browser plugin called [Zenhub](https://www.zenhub.com/).
-Zenhub adds a scrum board and a burndown chart to Github and also adds estimated story points to Github issues.
-In order to see e.g. the estimated story points, you need to install that browser plugin.
 
 Pull Request Review
 -------------------
