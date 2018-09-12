@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Scroll
   # other code that prepares capybara to work with selenium
 

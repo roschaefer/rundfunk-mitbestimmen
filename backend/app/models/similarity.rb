@@ -5,6 +5,7 @@ class Similarity < ApplicationRecord
 
   scope :specific_to, lambda { |user|
     return none unless user
+
     where(
       'broadcast1_id in (?) or broadcast2_id in (?)',
       user.liked_broadcast_ids,
