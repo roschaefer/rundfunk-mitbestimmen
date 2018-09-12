@@ -27,9 +27,8 @@ loading=loading}}
   <div class="column">
     <div class="ui centered three stackable cards">
       {{#each broadcasts as |broadcast|}}
-        {{decision-card broadcast=broadcast respondAction=(action 'respond') }}
+        {{decision-card broadcast=broadcast respondAction=(action 'respond') loginAction=(action 'loginAction')}}
       {{/each}}
-        {{redirect-consent-modal loginAction=(action 'loginAction')}}
     </div>
   </div>
 </div>
