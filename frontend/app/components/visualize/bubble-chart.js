@@ -1,6 +1,7 @@
 import Component from '@ember/component';
-import d3 from 'd3';
 import { isBlank } from '@ember/utils';
+import { select } from "d3-selection";
+import { hierarchy, pack } from 'd3-hierarchy';
 
 export default Component.extend({
   didRender() {
@@ -12,10 +13,10 @@ export default Component.extend({
 
     let clickCallback = this.get('onClick');
 
-    let element = d3.select('div.chart-area');
+    let element = select('div.chart-area');
     let diameter = element.node().getBoundingClientRect().width;
 
-    let bubble = d3.pack()
+    let bubble = pack()
       .size([diameter, diameter])
       .padding(1.5);
 
@@ -24,7 +25,7 @@ export default Component.extend({
       .attr("height", diameter)
       .attr("class", "bubble");
 
-    let root = d3.hierarchy(chartData)
+    let root = hierarchy(chartData)
       .sum(function(d) { return d.size; })
       .sort(function(a, b) { return b.size- a.size; });
 
@@ -55,11 +56,11 @@ export default Component.extend({
       .text(function(d) { return d.data.label.substring(0, d.r / 3); });
 
 
-    d3.select(self.frameElement).style("height", diameter + "px");
+    select(self.frameElement).style("height", diameter + "px");
   },
   willUpdate(){
     this._super(...arguments);
-    d3.select('div.chart-area svg').remove();
+    select('div.chart-area svg').remove();
   }
 
 });

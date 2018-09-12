@@ -305,6 +305,9 @@ find-broadcasts:
       next: Next
       back: Back
       distribute: Distribute budget
+show-twitter-feed:
+  tweets-by: Tweets by RundfunkMB
+  message: Show Twitter Feeds
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!

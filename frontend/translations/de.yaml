@@ -322,6 +322,9 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
+show-twitter-feed:
+  tweets-by: Tweets von RundfunkMB
+  message: Twitter-Feeds anzeigen
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
