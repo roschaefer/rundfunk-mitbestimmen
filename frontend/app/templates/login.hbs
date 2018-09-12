@@ -1,1 +1,35 @@
-{{outlet}}
+<div class="ui grid">
+  <div class="ui centered one column row">
+    <div class="eight wide column">
+      <div class="ui fluid card">
+        <div class="content">
+          <button class="ui mini right floated circular icon close button" {{action 'back'}}>
+            <i class="remove icon"></i>
+          </button>
+
+          <div class="meta">
+            Login
+          </div>
+          <div class="header">
+            Keep access to your data
+          </div>
+        </div>
+        <div class="content">
+          <div class="description detail">
+            <p>
+            Please log in before you create data.
+            </p>
+            <p>
+            That way you can always come back and change it.
+            </p>
+          </div>
+        </div>
+
+        <button class="ui bottom attached primary button" {{action 'login'}}>
+          <i class="sign in icon"></i>
+          Log in
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
