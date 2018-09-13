@@ -1,11 +1,10 @@
-auth0-lock:
-  title: Passwordless Login
-  success:
-    magicLink: We sent you a link to sign in
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Otherwise, enter your email address<br>to sign in or to create an account.
-  lastLoginInstructions: Last time you logged in with
+login:
+  header: Keep access to your data
+  sub-header: with our passwordless sign up by Auth0
+  description: >
+    Please log in before you create data to avoid losing access.
+  button:
+    label: Log in
 authentication:
   loading:
     message: Logging in...

@@ -7,27 +7,24 @@
             <i class="remove icon"></i>
           </button>
 
-          <div class="meta">
-            Login
-          </div>
           <div class="header">
-            Keep access to your data
+            {{t 'login.header'}}
+          </div>
+          <div class="meta">
+            {{t 'login.sub-header'}}
           </div>
         </div>
         <div class="content">
           <div class="description detail">
             <p>
-            Please log in before you create data.
-            </p>
-            <p>
-            That way you can always come back and change it.
+            {{t 'login.description'}}
             </p>
           </div>
         </div>
 
         <button class="ui bottom attached primary button" {{action 'login'}}>
           <i class="sign in icon"></i>
-          Log in
+            {{t 'login.button.label'}}
         </button>
       </div>
     </div>
