@@ -8,14 +8,7 @@ export default Controller.extend({
       history.back();
     },
     loginAction(){
-      const customDict = {
-        networkOrEmail: {
-          headerText: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.headerText'),
-          smallSocialButtonsHeader: this.get('intl').t('find-broadcasts.auth0-lock.networkOrEmail.smallSocialButtonsHeader'),
-          separatorText: this.get('intl').t('auth0-lock.networkOrEmail.separatorText'),
-        },
-      };
-      this.send('login', customDict);
+      this.transitionToRoute('login');
     },
     editAction(broadcast){
       this.transitionToRoute('broadcast.edit', broadcast);
