@@ -17,6 +17,7 @@ module Statistic
     def filter(stations)
       filter_params = params[:filter]
       return stations unless filter_params
+
       stations = stations.where(medium_id: filter_params[:medium_id]) if filter_params[:medium_id]
       stations
     end

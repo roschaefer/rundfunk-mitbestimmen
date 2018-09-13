@@ -93,18 +93,21 @@ class Broadcast < ApplicationRecord
   def description_should_not_contain_urls
     return unless description
     return unless description.match?(URI.regexp(%w[http https]))
+
     errors.add(:description, :no_urls)
   end
 
   def image_url_should_contain_url
     return unless image_url
     return if image_url.match?(URI.regexp(%w[http https]))
+
     errors.add(:image_url, :invalid_url)
   end
 
   def broadcast_url_should_contain_url
     return unless broadcast_url
     return if broadcast_url.match?(URI.regexp(%w[http https]))
+
     errors.add(:broadcast_url, :invalid_url)
   end
 end
