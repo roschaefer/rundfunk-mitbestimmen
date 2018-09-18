@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-feature_directory = Pathname.new(__FILE__).join('../..')
+Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
   Float(amount.delete('€'))
 rescue StandardError
@@ -135,7 +135,7 @@ Given(/^my broadcasts look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
     amount = sanitize_amount(row['Amount']) if row['Amount']
-    fixed = !!(row['Fixed'] =~ /yes/i)
+    fixed = !(row['Fixed'] =~ /yes/i).nil?
     response = if row['Support']
                  /yes/i.match?(row['Support']) ? :positive : :neutral
                else
@@ -544,7 +544,7 @@ Given(/^the statistics look like this:$/) do |table|
                  [Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)]
                else
                  []
-              end
+               end
 
     broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, stations: stations)
     create_list(:impression, n_positive.to_i,
@@ -623,7 +623,7 @@ When(/^I choose "([^"]*)" from the list of "([^"]*)" stations$/) do |station, me
 end
 
 Given(/^there is a(?:nother)? broadcast called "([^"]*)"/) do |title|
-  broadcast = create(:broadcast, title: title)
+  create(:broadcast, title: title)
 end
 
 Then(/^I see "([^"]*)".* but I don't see "([^"]*)"$/) do |see, dontsee|
@@ -749,7 +749,7 @@ end
 
 When(/^in the database all my responses are 'neutral'$/) do
   wait_for_ajax
-  expect(Impression.count).to be > 0
+  expect(Impression.count).to be_positive
   expect(Impression.all.all?(&:neutral?)).to be true
 end
 
