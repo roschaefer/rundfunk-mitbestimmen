@@ -50,9 +50,9 @@ before_script:
 script:
   - cd frontend && BROCCOLI_PERSISTENT_FILTER_CACHE_ROOT=./cache ember test --reporter dot
   - cd ../backend && bundle exec brakeman -zq
-  - cd .. bundle exec rubocop
   - bundle exec rake
-  - cd .. && bundle exec rake
+  - cd .. && bundle exec rubocop
+  - bundle exec rake
   - cd backend && bundle exec rake db:seed # check if seeds can be executed
   - cd .. # back to application folder for deployment
 
