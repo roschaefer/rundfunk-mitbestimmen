@@ -749,7 +749,7 @@ end
 
 When(/^in the database all my responses are 'neutral'$/) do
   wait_for_ajax
-  expect(Impression.count).to be.positive?
+  expect(Impression.count).to be_positive
   expect(Impression.all.all?(&:neutral?)).to be true
 end
 
