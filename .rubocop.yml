@@ -53,4 +53,4 @@ Style/Documentation:
 
 Lint/HandleExceptions:
   Exclude:
-    - 'app/models/user.rb'
+    - 'backend/app/models/user.rb'
