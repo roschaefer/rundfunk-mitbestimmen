@@ -4461,9 +4461,9 @@ ember-inline-edit@1.1.0:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
 
-ember-intl@3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.2.4.tgz#b9beb896cacfede1db4ae15d5cf51df2a00ad458"
+ember-intl@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.2.6.tgz#f07cfd2e78993c21a846bb08c87452be47148f22"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-cldr-data "^1.1.2"
@@ -4490,7 +4490,7 @@ ember-intl@3.2.4:
     lodash.omit "^4.5.0"
     mkdirp "^0.5.1"
     silent-error "^1.1.0"
-    walk-sync "^0.3.2"
+    walk-sync "^0.3.3"
 
 ember-invoke-action@^1.5.1:
   version "1.5.1"
@@ -10713,7 +10713,7 @@ walk-sync@^0.2.5, walk-sync@^0.2.7:
     ensure-posix-path "^1.0.0"
     matcher-collection "^1.0.0"
 
-walk-sync@^0.3.0, walk-sync@^0.3.1, walk-sync@^0.3.2:
+walk-sync@^0.3.0, walk-sync@^0.3.1, walk-sync@^0.3.2, walk-sync@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/walk-sync/-/walk-sync-0.3.3.tgz#1e9f12cd4fe6e0e6d4a0715b5cc7e30711d43cd1"
   dependencies:
