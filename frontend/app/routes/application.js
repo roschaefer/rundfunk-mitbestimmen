@@ -7,6 +7,7 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 export default Route.extend(ApplicationRouteMixin , {
   intl: service(),
   raven: service(),
+  store: service(),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale
@@ -17,6 +18,18 @@ export default Route.extend(ApplicationRouteMixin , {
 
     // whatever you do to pick a locale for the user:
     this._super(...arguments);
+
+    if(this.get('session.isAuthenticated')){
+      return this.get('store').queryRecord('user', {}).then((user) => {
+        return this.get('intl').setLocale(user.get('locale') || calculateLocale())
+      });
+    }
+
+    const lastLocale = this.get('session.data.locale');
+
+    if(lastLocale){
+      return this.get('intl').setLocale(lastLocale);
+    }
     return this.get('intl').setLocale(calculateLocale());
 
     // OR for those that sideload, an array is accepted to handle fallback lookups
