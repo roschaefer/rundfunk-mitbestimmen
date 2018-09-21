@@ -22,7 +22,7 @@ export default Route.extend(ApplicationRouteMixin , {
     if(this.get('session.isAuthenticated')){
       return this.get('intl').setLocale(this.get('session.data.locale'))
     }
-    
+
     const lastLocale = this.get('session.data.locale');
 
     if(lastLocale){

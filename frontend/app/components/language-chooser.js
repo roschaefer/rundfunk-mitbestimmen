@@ -14,8 +14,6 @@ export default Component.extend({
       if(this.get('session.isAuthenticated')){
         this.get('store').queryRecord('user', {}).then((user) => {
           user.set('locale', lang);
-          console.log('lang', lang)
-          window.user = user;
           user.save();
         });
       }
