@@ -8,6 +8,7 @@ export default Route.extend(ApplicationRouteMixin , {
   intl: service(),
   raven: service(),
   store: service(),
+  session: service(),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
     // define the app's runtime locale
@@ -18,13 +19,10 @@ export default Route.extend(ApplicationRouteMixin , {
 
     // whatever you do to pick a locale for the user:
     this._super(...arguments);
-
     if(this.get('session.isAuthenticated')){
-      return this.get('store').queryRecord('user', {}).then((user) => {
-        return this.get('intl').setLocale(user.get('locale') || calculateLocale())
-      });
+      return this.get('intl').setLocale(this.get('session.data.locale'))
     }
-
+    
     const lastLocale = this.get('session.data.locale');
 
     if(lastLocale){
