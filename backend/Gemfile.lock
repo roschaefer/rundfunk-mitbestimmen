@@ -86,7 +86,7 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
-    chrono_model (0.12.1)
+    chrono_model (0.12.3)
       activerecord (>= 4.2.0, < 5.2.0)
       multi_json
       pg
@@ -352,7 +352,7 @@ DEPENDENCIES
   capistrano
   capistrano-db-tasks!
   capistrano-rails
-  chrono_model (<= 0.12.1)
+  chrono_model (<= 0.12.4)
   factory_bot_rails
   geocoder
   globalize!
