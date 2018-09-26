@@ -19,16 +19,18 @@ export default Route.extend(ApplicationRouteMixin , {
 
     // whatever you do to pick a locale for the user:
     this._super(...arguments);
-    if(this.get('session.isAuthenticated')){
-      return this.get('intl').setLocale(this.get('session.data.locale'))
-    }
 
     const lastLocale = this.get('session.data.locale');
 
     if(lastLocale){
       return this.get('intl').setLocale(lastLocale);
     }
-    return this.get('intl').setLocale(calculateLocale());
+    const locale = navigator.language || navigator.userLanguage || 'en';
+    let lang = locale.split('-')[0];
+    if (!['de', 'en'].includes(lang)){
+      lang = 'en'
+    }
+    return this.get('intl').setLocale(lang);
 
     // OR for those that sideload, an array is accepted to handle fallback lookups
 
@@ -84,9 +86,3 @@ export default Route.extend(ApplicationRouteMixin , {
     }
   }
 });
-
-function calculateLocale(){
-  const locale = navigator.language || navigator.userLanguage || 'en';
-  const lang = locale.split('-')[0];
-  return ['de', 'en'].includes(lang) ? lang : 'en';
-}
