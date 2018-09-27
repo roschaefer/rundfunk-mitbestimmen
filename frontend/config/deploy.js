@@ -15,7 +15,7 @@ module.exports = function(deployTarget) {
       nodes: [{
         username: 'rschafer',
         host: 'roschaefer.de',
-        path: '/var/www/virtual/rschafer/rundfunk-frontend.roschaefer.de/'
+        path: '/home/rschafer/rundfunk-frontend'
       }]
     }
     // configure other plugins for staging deploy target here
