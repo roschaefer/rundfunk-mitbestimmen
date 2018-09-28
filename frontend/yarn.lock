@@ -3496,6 +3496,10 @@ date-time@^2.1.0:
   dependencies:
     time-zone "^1.0.0"
 
+debounce@^1.0.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
+
 debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "http://registry.npmjs.org/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
@@ -5194,6 +5198,12 @@ fastboot-express-middleware@^1.1.0, fastboot-express-middleware@^1.1.1:
     chalk "^2.0.1"
     fastboot "^1.2.0"
     request "^2.81.0"
+
+fastboot-fs-notifier@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/fastboot-fs-notifier/-/fastboot-fs-notifier-0.1.1.tgz#ad3336ee04c1275a553fe6fa7cb045952cb4df70"
+  dependencies:
+    debounce "^1.0.0"
 
 fastboot-transform@^0.1.1, fastboot-transform@^0.1.2:
   version "0.1.3"

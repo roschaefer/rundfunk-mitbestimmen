@@ -81,6 +81,7 @@
     "url"
   ],
   "dependencies": {
-    "fastboot-app-server": "^1.1.2-beta.1"
+    "fastboot-app-server": "^1.1.2-beta.1",
+    "fastboot-fs-notifier": "^0.1.1"
   }
 }
