@@ -8,7 +8,7 @@ export default Controller.extend({
       history.back();
     },
     loginAction(){
-      this.transitionToRoute('login');
+      this.send('login');
     },
     editAction(broadcast){
       this.transitionToRoute('broadcast.edit', broadcast);

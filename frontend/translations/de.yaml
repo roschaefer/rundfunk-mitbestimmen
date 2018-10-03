@@ -1,10 +1,4 @@
 login:
-  header: Behalte Zugriff auf Deine Daten
-  sub-header: mit unserer passwortlosen Anmeldung von Auth0
-  description: >
-    Melde Dich an bevor Du Daten erstellst, um nie den Zugriff zu verlieren.
-  button:
-    label: Anmelden
 authentication:
   loading:
     message: Anmelden...

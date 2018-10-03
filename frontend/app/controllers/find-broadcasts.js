@@ -47,7 +47,7 @@ export default Controller.extend({
       this.set('newBroadcast', this.store.createRecord('broadcast', {}));
     },
     loginAction(){
-      this.transitionToRoute('login');
+      this.send('login');
     },
   }
 });

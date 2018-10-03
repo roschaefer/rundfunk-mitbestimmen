@@ -1,10 +1,3 @@
-login:
-  header: Keep access to your data
-  sub-header: with our passwordless sign up by Auth0
-  description: >
-    Please log in before you create data to avoid losing access.
-  button:
-    label: Log in
 authentication:
   loading:
     message: Logging in...
