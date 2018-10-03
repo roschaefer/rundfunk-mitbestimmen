@@ -90,6 +90,8 @@ module.exports = function(environment) {
 
   if (environment === 'staging') {
     ENV.APP.BACKEND_URL = 'https://rundfunk-backend.roschaefer.de/';
+    ENV.auth0.callbacks.login = 'https://rundfunk-frontend.roschaefer.de/authentication/callback'
+    ENV.auth0.callbacks.logout = 'https://rundfunk-frontend.roschaefer.de'
   }
 
   if (environment === 'production') {
