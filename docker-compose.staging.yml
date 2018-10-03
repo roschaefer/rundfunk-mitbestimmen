@@ -12,3 +12,7 @@ services:
       - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
       - REDIS_URL=redis://redis:6379
+  frontend:
+    environment:
+      - PORT=4200
+    command: node production-server.js
