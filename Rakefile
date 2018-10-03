@@ -2,8 +2,8 @@ require 'rubygems'
 require 'cucumber'
 require 'cucumber/rake/task'
 
-task :default => [:features]
+task default: [:features]
 
 Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format progress"
+  t.cucumber_opts = 'features --format progress'
 end

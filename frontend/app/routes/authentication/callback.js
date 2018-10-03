@@ -18,6 +18,7 @@ export default Route.extend({
           const locale = user.get('locale');
           if (locale) {
             this.get('intl').setLocale(locale);
+            this.get('session').set('data.locale', locale)
           }
           const state = this.get('session.data.afterLoginRoute') || '/';
           return this.transitionTo(state);
