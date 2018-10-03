@@ -88,21 +88,26 @@ module.exports = function(environment) {
     ENV.APP.authenticator = 'authenticator:stub';
   }
 
+  if ((environment === 'staging') || (environment === 'production')) {
+    ENV.auth0 = {
+      clientId: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
+      domain: 'rundfunk-mitbestimmen.eu.auth0.com'
+    }
+  }
+
   if (environment === 'staging') {
     ENV.APP.BACKEND_URL = 'https://rundfunk-backend.roschaefer.de/';
-    ENV.auth0.callbacks.login = 'https://rundfunk-frontend.roschaefer.de/authentication/callback'
-    ENV.auth0.callbacks.logout = 'https://rundfunk-frontend.roschaefer.de'
+    ENV.auth0.callbacks = {
+      login: 'https://rundfunk-frontend.roschaefer.de/authentication/callback',
+      logout: 'https://rundfunk-frontend.roschaefer.de'
+    }
   }
 
   if (environment === 'production') {
     ENV.APP.BACKEND_URL = 'https://api.rundfunk-mitbestimmen.de/';
-    ENV.auth0 = {
-      clientId: 'JRtwcxWPTYEFnTGHQBVTGI3kl8dfIH0Q',
-      domain: 'rundfunk-mitbestimmen.eu.auth0.com',
-      callbacks: {
-        login: 'https://rundfunk-mitbestimmen.de/authentication/callback',
-        logout: 'https://rundfunk-mitbestimmen.de'
-      }
+    ENV.auth0.callbacks = {
+      login: 'https://rundfunk-mitbestimmen.de/authentication/callback',
+      logout: 'https://rundfunk-mitbestimmen.de'
     }
     ENV.sentry.development = false;
   }
