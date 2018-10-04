@@ -1,6 +1,5 @@
 # rundfunk-mitbestimmen
 
-[![Join the chat at https://gitter.im/rundfunk-mitbestimmen/Lobby](https://badges.gitter.im/rundfunk-mitbestimmen/Lobby.svg)](https://gitter.im/rundfunk-mitbestimmen/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build
 Status](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen.svg?branch=master)](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen)
 
@@ -16,9 +15,15 @@ say how your €17.50 per month should be spent. It is a proof of concept how
 digital democracy can work for publicly funded media and it is a win-win situation
 for both sides: More influence for the audience. More data for broadcasters.**
 
+## Community
+
+Rundfunk mitbestimmen is maintained by the community. We have regular meetings, run online pair-programmings and tutorials in our [online learner community at Agile Ventures](https://www.agileventures.org/projects/rundfunk-mitbestimmen). You can [join our Slack here](https://www.agileventures.org/users/sign_up) and then find us in our channel [#rundfunk-mitbestimmen](https://agileventures.slack.com/app_redirect?channel=rundfunk-mitbestimmen). Here is the Youtube Playlist of our recent meetings or pair-programmings:
 
 
-## Structure
+[![Community pair-programming/meeting](https://img.youtube.com/vi/D_g6UHMC8NU/sddefault.jpg)](https://www.youtube.com/embed/videoseries?list=PL1CiawkXA01MwjAVBzV0fRjpbl454SCbl)
+
+
+## Directory Layout
 
 This repository contains three important folders:
 
