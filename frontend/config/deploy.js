@@ -27,7 +27,7 @@ module.exports = function(deployTarget) {
       nodes: [{
         username: 'rfmb',
         host: 'rundfunk-mitbestimmen.de',
-        path: '/home/rfmb/html/'
+        path: '/home/rfmb/rundfunk-frontend/dist/'
       }]
     }
   }
