@@ -6,6 +6,7 @@ describe('Unit | Route | 404', function() {
   setupTest('route:404', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik' // bundled adapter
     ]
   });

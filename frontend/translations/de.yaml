@@ -1,11 +1,4 @@
-auth0-lock:
-  title: Passwortlose Anmeldung
-  success:
-    magicLink: Wir haben Dir einen Login-Link geschickt
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Oder gib eine E-Mail Adresse ein,<br>um Dich anzumelden oder zu registrieren.
-  lastLoginInstructions: Das letzte Mal warst Du angemeldet als
+login:
 authentication:
   loading:
     message: Anmelden...

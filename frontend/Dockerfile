@@ -1,5 +1,5 @@
-FROM danlynn/ember-cli:3.1.4-node_10.1
-
+FROM danlynn/ember-cli:3.4.3-node_10.11
+EXPOSE 4200 49152 7357
 WORKDIR /frontend
 
 ADD package.json /frontend/package.json
@@ -8,4 +8,4 @@ RUN yarn install
 
 ADD . /frontend
 
-EXPOSE 4200 49152 7357
+RUN ember build

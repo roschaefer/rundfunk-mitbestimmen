@@ -29,7 +29,6 @@ Router.map(function() {
   this.route('statistics');
   this.route('imprint');
   this.route('history');
-  this.route('login');
   this.route('data-privacy');
 
   this.route('authentication', function() {

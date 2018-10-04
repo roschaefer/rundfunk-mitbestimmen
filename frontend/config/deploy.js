@@ -15,7 +15,7 @@ module.exports = function(deployTarget) {
       nodes: [{
         username: 'rschafer',
         host: 'roschaefer.de',
-        path: '/var/www/virtual/rschafer/rundfunk-frontend.roschaefer.de/'
+        path: '/home/rschafer/rundfunk-frontend/dist'
       }]
     }
     // configure other plugins for staging deploy target here
@@ -27,7 +27,7 @@ module.exports = function(deployTarget) {
       nodes: [{
         username: 'rfmb',
         host: 'rundfunk-mitbestimmen.de',
-        path: '/home/rfmb/html/'
+        path: '/home/rfmb/rundfunk-frontend/dist/'
       }]
     }
   }

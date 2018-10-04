@@ -6,6 +6,7 @@ describe('Unit | Route | visualize', function() {
   setupTest('route:visualize', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });

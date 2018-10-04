@@ -6,6 +6,7 @@ describe('Unit | Route | visualize/time', function() {
   setupTest('route:visualize/time', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik'
     ]
   });

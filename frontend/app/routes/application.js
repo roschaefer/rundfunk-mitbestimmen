@@ -1,32 +1,34 @@
-import { inject as service } from '@ember/service'; 
+import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import ENV from 'frontend/config/environment';
-// app/routes/application.js
-import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
 
-export default Route.extend(ApplicationRouteMixin , {
+export default Route.extend({
   intl: service(),
   raven: service(),
-  store: service(),
+  fastboot: service(),
   session: service(),
+  auth0: service(),
+  store: service(),
   routeAfterAuthentication: 'authentication.callback', // for testing environment
   beforeModel() {
-    // define the app's runtime locale
-    // For example, here you would maybe do an API lookup to resolver
-    // which locale the user should be targeted and perhaps lazily
-    // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
-    // method with the results of the XHR request
-
-    // whatever you do to pick a locale for the user:
     this._super(...arguments);
 
     const lastLocale = this.get('session.data.locale');
-
     if(lastLocale){
       return this.get('intl').setLocale(lastLocale);
     }
-    const locale = navigator.language || navigator.userLanguage || 'en';
-    let lang = locale.split('-')[0];
+
+    let locale
+    let lang
+
+    if (this.get('fastboot.isFastBoot')) {
+      let headers = this.get('fastboot.request.headers');
+      locale = headers.get('Accept-Language');
+    } else {
+      locale = navigator.language || navigator.userLanguage || 'en';
+    }
+    lang = locale.split('-')[0];
+
     if (!['de', 'en'].includes(lang)){
       lang = 'en'
     }
@@ -42,36 +44,13 @@ export default Route.extend(ApplicationRouteMixin , {
   },
   actions: {
     login (afterLoginRoute) {
+      // save the current route, assuming we're using the same browser and will have access to the old session
       this.get('session').set('data.afterLoginRoute', afterLoginRoute || this.get('router.url'));
-      const dict = {
-        title: this.get('intl').t('auth0-lock.title'),
-        success: {
-          magicLink: this.get('intl').t('auth0-lock.success.magicLink'),
-        },
-        socialLoginInstructions: this.get('intl').t('auth0-lock.socialLoginInstructions'),
-        passwordlessEmailAlternativeInstructions: this.get('intl').t('auth0-lock.passwordlessEmailAlternativeInstructions'),
-        lastLoginInstructions: this.get('intl').t('auth0-lock.lastLoginInstructions'),
-      };
 
-      const lockOptions = {
-        allowedConnections: ['email', 'facebook', 'google-oauth2', 'twitter'],
-        passwordlessMethod: 'link',
-        theme:{
-          logo:  '/assets/images/logo.png',
-          primaryColor: '#2185D0',
-        },
-        socialButtonStyle: 'small',
-        language: this.get('intl.locale.firstObject'),
-        languageDictionary: dict,
-        auth: {
-          params: {
-            scope: 'openid email',
-          },
-          responseType: 'token',
-          redirectUrl: window.location.origin + '/authentication/callback'
-        }
-      };
-      this.get('session').authenticate(ENV.APP.authenticator, lockOptions);
+      if (ENV.APP.authenticator === 'authenticator:stub') {
+        return this.transitionTo('authentication.callback');
+      }
+      this.get('auth0.webAuth').authorize({ language: this.get('intl.locale.firstObject') });
     },
 
     logout () {
@@ -79,7 +58,7 @@ export default Route.extend(ApplicationRouteMixin , {
     },
 
     error(error){
-      if(!ENV['sentry']['development']) {
+      if(!ENV.sentry.development) {
         this.get('raven').captureException(error)
       }
       return true; // Let the route above this handle the error.

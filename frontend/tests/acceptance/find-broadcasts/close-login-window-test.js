@@ -37,13 +37,6 @@ describe('Acceptance | find broadcasts/close login window', function() {
       });
 
       describe('visit /find-broadcasts', function(){
-        it('does not show the login dialog', function() {
-          visit('/find-broadcasts/');
-          return andThen(() => {
-            expect(find('.auth0-lock')).to.have.length(0);
-          });
-        })
-
         describe('click on the next button', function(){
           it('sends no requests to the backend', function() {
             visit('/find-broadcasts/');

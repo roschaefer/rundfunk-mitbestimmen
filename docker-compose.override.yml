@@ -3,15 +3,14 @@ services:
   frontend:
     volumes:
       - ./frontend/:/frontend/
-      - /frontend/node_modules
-      - ./frontend/yarn.lock:/frontend/yarn.lock:delegated
-      - ./frontend/package.json:/frontend/package.json:delegated
+      - node_modules:/frontend/node_modules
     tty: true
     stdin_open: true
-    command: ember server
   backend:
     volumes:
       - ./backend:/backend
     tty: true
     stdin_open: true
-    command: "bin/rails server -b 0.0.0.0"
+
+volumes:
+  node_modules:

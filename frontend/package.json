@@ -20,6 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "auth0-js": "^9.7.3",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-webpack": "^1.0.0",
     "d3": "^5.7.0",
@@ -35,6 +36,7 @@
     "ember-cli-deploy-build": "1.1.1",
     "ember-cli-deploy-scp": "1.0.12",
     "ember-cli-eslint": "^4.2.3",
+    "ember-cli-fastboot": "^1.1.4-beta.1",
     "ember-cli-favicon": "1.0.0",
     "ember-cli-google-fonts": "^2.16.2",
     "ember-cli-htmlbars": "^3.0.0",
@@ -64,9 +66,9 @@
     "ember-metrics": "git+https://github.com/poteto/ember-metrics.git",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.5.1",
-    "ember-simple-auth-auth0": "^4.1.1",
     "ember-source": "^3.4.4",
     "ember-truth-helpers": "2.1.0",
+    "ember-url": "^0.6.0",
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.2.0",
     "highcharts": "6.1.4",
@@ -74,5 +76,12 @@
     "loader.js": "^4.7.0",
     "moment": "^2.22.2",
     "semantic-ui-ember": "^3.0.3"
+  },
+  "fastbootDependencies": [
+    "url"
+  ],
+  "dependencies": {
+    "fastboot-app-server": "^1.1.2-beta.1",
+    "fastboot-fs-notifier": "^0.1.1"
   }
 }
