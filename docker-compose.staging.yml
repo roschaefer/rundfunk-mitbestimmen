@@ -12,6 +12,8 @@ services:
       - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
       - REDIS_URL=redis://redis:6379
+      - IPSTACK_API_KEY=${IPSTACK_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
   frontend:
     environment:
       - PORT=4200
