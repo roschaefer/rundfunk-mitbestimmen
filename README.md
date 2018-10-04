@@ -4,17 +4,19 @@
 [![Build
 Status](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen.svg?branch=master)](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen)
 
-Public broadcasting in Germany receives *€8,000,000,000* (eight billion
-euros) annually, yet it is subject to little or no public feedback, ranking, or
-even debate on what constitutes value or quality.
+### Problem
 
-We want to change that: With this app you can make your voice heard and propose
-on which shows your €17.50 per month should be spent.
+**Public broadcasting in Germany receives *€8,000,000,000* (eight billion
+euros) annually, yet it is subject to no public feedback, ranking, or
+even debate on what constitutes value or quality.**
+
+### Solution
+**On [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/) you can
+say how your €17.50 per month should be spent. It is a proof of concept how
+digital democracy can work for publicly funded media and it is a win-win situation
+for both sides: More influence for the audience. More data for broadcasters.**
 
 
-## Live App
-
-Visit [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/)
 
 ## Structure
 
