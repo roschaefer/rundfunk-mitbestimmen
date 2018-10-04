@@ -11,12 +11,6 @@ module.exports = function(environment) {
         'img-src': "*.gravatar.com *.wp.com sentry.io data:",
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com sentry.io"
     },
-    'ember-simple-auth': {
-      auth0: {
-        clientID: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
-        domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com")
-      },
-    },
     sentry: {
       dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938',
       development: true
