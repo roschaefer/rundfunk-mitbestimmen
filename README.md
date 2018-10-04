@@ -245,24 +245,24 @@ cd frontend && ember test --server
 cd backend && bin/rspec
 ```
 
-## Contributing
+## Guidelines
 
-We use this [milestone](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1) as priority queue for issues.
+[See our detailed contribution guidelines :mag:](/CONTRIBUTING.md)
 
-High prioritized issues will go to the top. Issues are tagged with
-`backend` and `frontend` depending on where code needs to be changed.
 
-Because GitHub lacks functionality to display estimation hours, we use [Zenhub's browser plugin](https://www.zenhub.com/).
-Installing this plugin will show you the estimated hours per issue.
+We use this [project board](https://github.com/roschaefer/rundfunk-mitbestimmen/projects/1) as our central issue tracker. Issues are ordered by priority and you can filter for `good first issue` if you are interested in a beginner-friendly task.
+Additionally, issues are tagged with `backend` and `frontend` depending on where code needs to be changed.
 
-Don't be afraid about Auth0. As long as your local installation runs in
-development environment your login will reach the "Testing" database
-of Auth0. This will not pollute the production database of Auth0.
+### Auth0
 
-### Workflow for contributing:
+Don't be afraid of our identity provider [Auth0](https://auth0.com/). In
+development environment your login will reach the "rundfunk-testing" instance
+of Auth0. This will not pollute the Auth0 instance used in production.
+
+### Workflow for Behaviour Driven Development with Cucumber:
 
 1. Fork it :fork_and_knife:
-2. Pick a user story from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1)
+2. Pick an issue from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/projects/1)
 3. Create your feature branch: `git checkout -b [issue number]_my_new_feature_branch`
 4. Create`features/[site of change]/your.feature` and copy+paste the feature description from GitHub
 5. Boot both frontend and backend as described in the [section about testing](https://github.com/roschaefer/rundfunk-mitbestimmen#full-stack-testing)
@@ -275,7 +275,6 @@ of Auth0. This will not pollute the production database of Auth0.
 12. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
 13. Submit a pull request :heart:
 
-[See our detailed contribution guidelines :mag:](/CONTRIBUTING.md)
 
 ## Deployment
 
