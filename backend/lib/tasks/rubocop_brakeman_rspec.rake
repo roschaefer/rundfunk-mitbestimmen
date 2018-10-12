@@ -5,7 +5,7 @@ namespace :test do
   desc 'Run RuboCop'
   RuboCop::RakeTask.new(:rubocop) do |task|
     # Make it easier to disable cops.
-    task.options << "--display-cop-names"
+    task.options << '--display-cop-names'
 
     # Abort on failures (fix your code first)
     task.fail_on_error = false
@@ -13,7 +13,7 @@ namespace :test do
 
   desc 'Run test'
   RSpec::Core::RakeTask.new(:rspec) do |rspec|
-    rspec.rspec_opts = "--color --format documentation"
+    rspec.rspec_opts = '--color --format documentation'
   end
 
   desc 'Runs Brakeman'
@@ -29,7 +29,7 @@ namespace :test do
     # For more options, see source here:
     # https://github.com/presidentbeef/brakeman/blob/master/lib/brakeman.rb#L30
     options = {
-      app_path: ".",
+      app_path: '.',
       exit_on_error: EXIT_ON_FAIL,
       exit_on_warn: EXIT_ON_FAIL,
       output_files: files,
@@ -52,4 +52,3 @@ namespace :test do
 end
 
 Rake::Task[:test].enhance ['test:rubocop', 'test:rspec', 'test:brakeman']
-
