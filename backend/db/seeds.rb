@@ -87,3 +87,37 @@ Broadcast.find_each do |broadcast|
   end
 end
 Similarity.compute_all(threshold: 0.1, minimum_supporters: ComputeSimilaritiesWorker.minimum_supporters)
+
+#Add impression seed data
+Impression.transaction do
+  @t0 = 8.months.ago
+  @t1 = 7.months.ago
+  @t2 = 6.months.ago
+  @t3 = 5.months.ago
+  @t4 = 4.months.ago
+  @t5 = 3.months.ago
+  @t6 = 2.months.ago
+  @t7 = 1.months.ago
+  @t8 = 0.months.ago
+  data = [
+    { response: :positive, amount: 2.0, from: (@t2 - 1.second), to: nil },
+    { response: :positive, amount: nil, from: (@t3 - 1.second), to: nil },
+    { response: :positive, amount: 7.0, from: (@t4 - 1.second), to: nil },
+    { response: :neutral,  amount: nil, from: (@t5 - 1.second), to: nil },
+    { response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil },
+    { response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second) }
+  ]
+
+  @broadcast = FactoryBot.create(:broadcast, title: 'b', id: 4711, created_at: @t1, updated_at: @t1)
+  data.each do |d|
+    impression = FactoryBot.create(:impression, broadcast: @broadcast, response: d[:response], amount: d[:amount])
+    h = impression.history.first
+    h.class.amend_period!(h.hid, d[:from], d[:to])
+    binding.pry
+  end
+  last_impression = Impression.last
+  last_impression.amount = 10.0
+  last_impression.save!
+  h = last_impression.history.last
+  h.class.amend_period!(h.hid, @t8 - 1.second, nil)
+end
