@@ -4379,9 +4379,9 @@ ember-data-factory-guy@3.4.0:
     ember-cli-babel "~7.0.0"
     pretender "~2.0.0"
 
-ember-data@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.4.2.tgz#675cc4f1be8df1f5c0bfe4191afa6986377721c0"
+ember-data@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.5.0.tgz#1cd22312112fd3a961248090eac850d513f844cf"
   dependencies:
     "@ember/ordered-set" "^2.0.0"
     babel-plugin-feature-flags "^0.3.1"
