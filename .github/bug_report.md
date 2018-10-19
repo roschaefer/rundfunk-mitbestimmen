@@ -23,4 +23,4 @@
  - Device (Android/iPhone/PC):
 
 ## Additional context
-<!-- Add any other context about the problem here. -->
+<!-- Add screenshot's any other context about the problem here. -->
