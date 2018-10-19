@@ -1,8 +1,3 @@
----
-name: Pull request
-about: Fix a bug or implement a feature
-
----
 <!--- Provide a general summary of your changes in the Title above -->
 
 #### Description
