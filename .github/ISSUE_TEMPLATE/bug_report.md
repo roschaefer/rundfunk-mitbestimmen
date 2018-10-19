@@ -1,26 +1,35 @@
-<!--- Provide a general summary of the issue in the Title above -->
+---
+name: Bug report
+about: Create a report to help us improve
 
-## Expected Behavior
-<!--- Tell us what should happen -->
+---
 
-## Current Behavior
-<!--- Tell us what happens instead of the expected behavior -->
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-## Possible Solution
-<!--- Not obligatory, but suggest a fix/reason for the bug, -->
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-## Steps to Reproduce
-<!--- Provide a link to a live example, or an unambiguous set of steps to -->
-<!--- reproduce this bug. Include code to reproduce, if relevant -->
-1.
-2.
-3.
-4.
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-## Environment
- - Operating System:
- - Browser & Version:
- - Device (Android/iPhone/PC):
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-## Additional context
-<!-- Add screenshot's any other context about the problem here. -->
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
