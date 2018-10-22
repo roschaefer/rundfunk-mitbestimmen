@@ -4567,9 +4567,9 @@ ember-inline-edit@1.1.0:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
 
-ember-intl@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.3.0.tgz#fd70860290fd465c3a324d96e6e0056f926aa0d5"
+ember-intl@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.4.0.tgz#57c427b93605bd3e840bf7fcdf8a727360c6bd40"
   dependencies:
     "@ember-intl/intl-messageformat" "^2.2.0"
     "@ember-intl/intl-messageformat-parser" "^1.4.0"
