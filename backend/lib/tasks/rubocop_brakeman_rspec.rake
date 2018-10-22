@@ -12,15 +12,15 @@ namespace :test do
   end
 
   desc 'Run test'
-  RSpec::Core::RakeTask.new(:rspec) do |rspec|
-    rspec.rspec_opts = '--color --format documentation'
+  RSpec::Core::RakeTask.new(:rspec) do |task|
+    task.rspec_opts = '--color --format documentation'
   end
 
   desc 'Runs Brakeman'
   # based on https://brakemanscanner.org/docs/rake/
   task :brakeman, :output_files do |_task, args|
     # To abort on failures, set to true.
-    EXIT_ON_FAIL = false
+    EXIT_ON_FAIL = true
 
     require 'brakeman'
 
