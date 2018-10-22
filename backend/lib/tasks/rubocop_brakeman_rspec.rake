@@ -13,7 +13,7 @@ namespace :test do
 
   desc 'Run test'
   RSpec::Core::RakeTask.new(:rspec) do |task|
-    task.rspec_opts = '--color --format documentation'
+    task.rspec_opts = '--format progress'
   end
 
   desc 'Runs Brakeman'
