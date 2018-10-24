@@ -89,6 +89,7 @@ end
 Similarity.compute_all(threshold: 0.1, minimum_supporters: ComputeSimilaritiesWorker.minimum_supporters)
 
 #Add impression seed data
+#Add impression seed data
 Impression.transaction do
   @t0 = 8.months.ago
   @t1 = 7.months.ago
@@ -107,17 +108,27 @@ Impression.transaction do
     { response: :positive, amount: 6.0, from: (@t6 - 1.second), to: nil },
     { response: :positive, amount: 0.0, from: (@t7 - 1.second), to: (@t8 - 1.second) }
   ]
+  broadcast_array = [
+    {title: 'b', id: 4711, created_at: @t1, updated_at: @t1},
+    {title: 'c', id: 4712, created_at: @t2, updated_at: @t2},
+    {title: 'd', id: 4713, created_at: @t3, updated_at: @t3},
+    {title: 'e', id: 4714, created_at: @t4, updated_at: @t4},
+    {title: 'f', id: 4715, created_at: @t5, updated_at: @t5},
+    {title: 'g', id: 4716, created_at: @t6, updated_at: @t6},
+  ]
 
-  @broadcast = FactoryBot.create(:broadcast, title: 'b', id: 4711, created_at: @t1, updated_at: @t1)
-  data.each do |d|
-    impression = FactoryBot.create(:impression, broadcast: @broadcast, response: d[:response], amount: d[:amount])
-    h = impression.history.first
-    h.class.amend_period!(h.hid, d[:from], d[:to])
-    binding.pry
+   broadcast_array.each do |broadcast|
+     new_broadcast = FactoryBot.create(:broadcast, title: broadcast[:title], id: broadcast[:id], medium: tv, created_at: broadcast[:created_at], updated_at:broadcast[:updated_at])
+     data.each do |d|
+       impression = FactoryBot.create(:impression, broadcast: new_broadcast, response: d[:response], amount: d[:amount])
+       h = impression.history.first
+       h.class.amend_period!(h.hid, d[:from], d[:to])
+     end
+
+    last_impression = Impression.last
+    last_impression.amount = 10.0
+    last_impression.save!
+    h = last_impression.history.last
+    h.class.amend_period!(h.hid, @t8 - 1.second, nil)
   end
-  last_impression = Impression.last
-  last_impression.amount = 10.0
-  last_impression.save!
-  h = last_impression.history.last
-  h.class.amend_period!(h.hid, @t8 - 1.second, nil)
-end
+ end
