@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
+
   namespace :statistic do
     resources :stations, only: %i[show index]
     resources :media, only: %i[index show]
