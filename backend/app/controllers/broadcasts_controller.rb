@@ -30,6 +30,8 @@ class BroadcastsController < ApplicationController
     @broadcast.creator = current_user
 
     if @broadcast.save
+      SendEmailOnBroadcastCreationJob.perform_later
+      # UserMailer.notify_broadcast_creators_on_broadcast_creation.deliver
       render json: @broadcast, status: :created, location: @broadcast
     else
       render json: @broadcast, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
