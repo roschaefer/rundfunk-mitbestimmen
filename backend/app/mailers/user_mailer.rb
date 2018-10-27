@@ -10,14 +10,6 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Auth0 Migration')
   end
 
-  def notify_broadcast_creators_on_broadcast_creation
-    broadcast_creators = Broadcast.where.not(creator_id: nil).pluck(:creator_id)
-    broadcast_creators.each do |broadcast_creator|
-      @user = User.find(broadcast_creator)
-      mail(to: @user.email, subject: 'A broadcast has been created')
-    end
-  end
-
   def ask_for_spam_check(broadcast_id, moderator_id)
     @user = User.find(moderator_id)
     @broadcast = Broadcast.find(broadcast_id)
