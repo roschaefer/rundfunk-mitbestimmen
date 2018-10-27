@@ -191,7 +191,7 @@ Start the backend and sidekiq:
 cd backend && bin/rails s
 ```
 ```sh
-cd backend && bundle exec sidekiq
+cd backend && bundle exec sidekiq -q default -q mailers
 ```
 
 Open another terminal and start the frontend:
