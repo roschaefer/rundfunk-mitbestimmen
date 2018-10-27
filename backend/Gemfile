@@ -65,8 +65,6 @@ group :development do
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
-  gem 'letter_opener'
-  gem 'letter_opener_web', github: 'fgrehm/letter_opener_web', ref: 'd6c6455'
 end
 
 group :production do
