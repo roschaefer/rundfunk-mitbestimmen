@@ -199,6 +199,15 @@ RSpec.describe 'Broadcasts', type: :request do
           end
         end
 
+        context 'as contributor' do
+          let(:user) { create(:user, role: :contributor) }
+          describe '#create' do
+            it 'turns the author into a moderator' do
+              expect { action }.to(change{user.role}.from('contributor').to('moderator'))
+            end
+          end
+        end
+
         %i[contributor moderator admin].each do |role|
           context "as #{role}" do
             let(:user) { create(:user, role: role) }
@@ -267,6 +276,15 @@ RSpec.describe 'Broadcasts', type: :request do
 
             it 'is allowed to add a new station to a broadcasts' do
               expect { action }.to(change { Broadcast.find(0).stations.to_a }.from([]).to([dasErste]))
+            end
+
+            context 'as contributor' do
+              let(:user) { create(:user, role: :contributor) }
+              describe '#create' do
+                it 'turns the editor into a moderator' do
+                  expect { action }.to(change{user.role}.from('contributor').to('moderator'))
+                end
+              end
             end
           end
 

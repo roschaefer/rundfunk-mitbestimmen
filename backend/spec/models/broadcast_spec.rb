@@ -353,30 +353,4 @@ RSpec.describe Broadcast, type: :model do
       it { is_expected.to_not be_valid }
     end
   end
-
-  context 'a write action of a non-moderator user' do
-    let(:user) { create(:user, role: :contributor) }
-    describe '#create' do
-      it 'turns the author into a moderator' do
-        expect do
-          PaperTrail.request(whodunnit: user.id) do
-            broadcast = build(:broadcast)
-            broadcast.save
-          end
-        end.to(change{user.role}.from('contributor').to('moderator'))
-      end
-    end
-
-    describe '#update' do
-      it 'turns the editor into a moderator' do
-        broadcast = create(:broadcast)
-        expect do
-          PaperTrail.request(whodunnit: user.id) do
-            broadcast.title = 'I just changed the title'
-            broadcast.save
-          end
-        end.to(change{user.role}.from('contributor').to('moderator'))
-      end
-    end
-  end
 end
