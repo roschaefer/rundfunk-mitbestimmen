@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: { contributor: 0, broadcaster: 1, admin: 2 }
+  enum role: { contributor: 0, moderator: 1, admin: 2 }
   enum gender: %i[male female other]
 
   has_many :impressions

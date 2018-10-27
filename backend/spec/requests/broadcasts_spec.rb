@@ -180,9 +180,28 @@ RSpec.describe 'Broadcasts', type: :request do
           end
         end
 
-        %i[contributor admin].each do |role|
+        describe 'check spam mailer job' do
+          before { Sidekiq::Queues.clear_all }
+
+          it 'notifies no contributor' do
+            create_list(:user, 5, role: :contributor)
+            expect { action }.not_to change{ Sidekiq::Queues['mailer'].size }
+          end
+
+          it 'notifies each moderator' do
+            create_list(:user, 10, role: :moderator)
+            expect { action }.to change{ Sidekiq::Queues['mailer'].size }.from(0).to(10)
+          end
+
+          it 'notifies each admin' do
+            create_list(:user, 2, role: :admin)
+            expect { action }.to change{ Sidekiq::Queues['mailer'].size }.from(0).to(2)
+          end
+        end
+
+        %i[contributor moderator admin].each do |role|
           context "as #{role}" do
-            let(:user) { create(:user, role) }
+            let(:user) { create(:user, role: role) }
             it 'allowed to create new broadcasts' do
               expect { action }.to(change { Broadcast.count })
               expect(response).to have_http_status(:created)
@@ -316,7 +335,7 @@ RSpec.describe 'Broadcasts', type: :request do
           let(:headers) { super().merge(authenticated_header(user)) }
 
           context 'as contributor' do
-            let(:user) { create(:user, :contributor) }
+            let(:user) { create(:user, role: :contributor) }
 
             describe 'not allowed to delete broadcasts' do
               specify { expect { action }.not_to(change { Broadcast.count }) }
@@ -330,7 +349,7 @@ RSpec.describe 'Broadcasts', type: :request do
           end
 
           context 'as admin' do
-            let(:user) { create(:user, :admin) }
+            let(:user) { create(:user, role: :admin) }
             describe 'allowed to delete broadcasts' do
               specify { expect { action }.to(change { Broadcast.count }.from(1).to(0)) }
 

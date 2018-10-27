@@ -30,7 +30,8 @@ class BroadcastsController < ApplicationController
     @broadcast.creator = current_user
 
     if @broadcast.save
-      SendEmailOnBroadcastCreationJob.perform_later
+      # TODO: notify all moderators and admins here
+      UserMailer.ask_for_spam_check(@broadcast.id, User.last.id).deliver_later
       render json: @broadcast, status: :created, location: @broadcast
     else
       render json: @broadcast, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
