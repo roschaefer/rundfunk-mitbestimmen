@@ -120,6 +120,13 @@ When all containers are up, run the cucumber tests in the `fullstack` service wi
 ```sh
 docker-compose run --rm fullstack bundle exec cucumber
 ```
+
+### Mail delivery
+
+We're using [mailhog]() to capture e-mails in development environment.
+On [localhost:8025](http://localhost:8025/) you can inspect delivered emails.
+
+
 ## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
