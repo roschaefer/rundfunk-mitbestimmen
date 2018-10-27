@@ -33,7 +33,7 @@ class Ability
     if user.present?
       if user.admin?
         can :manage, :all
-      elsif user.contributor?
+      elsif ['contributor', 'moderator'].include? user.role
         can %i[update create], Broadcast
       end
 
