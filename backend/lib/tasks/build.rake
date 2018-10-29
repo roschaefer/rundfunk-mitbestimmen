@@ -1,7 +1,7 @@
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 
-namespace :rubocop_brakeman_rspec do
+namespace :build do
   desc 'Run RuboCop'
   RuboCop::RakeTask.new(:rubocop) do |task|
     # Make it easier to disable cops.
