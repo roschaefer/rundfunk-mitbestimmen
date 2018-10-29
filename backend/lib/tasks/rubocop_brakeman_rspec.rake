@@ -1,7 +1,7 @@
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 
-namespace :test do
+namespace :rubocop_brakeman_rspec do
   desc 'Run RuboCop'
   RuboCop::RakeTask.new(:rubocop) do |task|
     # Make it easier to disable cops.
@@ -49,6 +49,7 @@ namespace :test do
       exit Brakeman::Errors_Found_Exit_Code if tracker.errors.any?
     end
   end
-end
 
-Rake::Task[:test].enhance ['test:rubocop', 'test:rspec', 'test:brakeman']
+  desc 'Runs rubocop, rspec and brakeman'
+  task all: %i[rubocop rspec brakeman]
+end
