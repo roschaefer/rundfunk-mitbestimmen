@@ -4648,9 +4648,9 @@ ember-simple-auth@^1.5.1:
     ember-getowner-polyfill "^1.1.0 || ^2.0.0"
     silent-error "^1.0.0"
 
-ember-source@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.5.0.tgz#2322e393125684e1e043d0eedad8fd79c6de78a8"
+ember-source@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.5.1.tgz#fed88dc675f031b499642dd19819f7f4d558d3fd"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
