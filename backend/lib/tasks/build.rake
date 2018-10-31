@@ -51,5 +51,5 @@ namespace :build do
   end
 
   desc 'Runs rubocop, rspec and brakeman'
-  task all: %i[rubocop rspec brakeman]
+  task test_and_analyze: %i[rubocop rspec brakeman]
 end
