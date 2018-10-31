@@ -1,11 +1,12 @@
 require 'rake'
 
 shared_context 'rake' do
-  let(:rake)      { Rake::Application.new }
+  let(:rake)       { Rake::Application.new }
+  let(:task_names) { Rake::Task.tasks.detect { |task| task.name == 'build:test_and_analyze' }.prerequisites }
   # it will use the text we pass to describe to calculate the task we are going to run.
-  let(:task_name) { self.class.top_level_description }
-  let(:task_path) { "lib/tasks/#{task_name.split(':').first}" }
-  subject         { rake[task_name] }
+  let(:task_name)  { self.class.top_level_description }
+  let(:task_path)  { "lib/tasks/#{task_name.split(':').first}" }
+  subject          { rake[task_name] }
 
   def loaded_files_excluding_current_rake_file
     $LOADED_FEATURES.reject { |file| file == Rails.root.join("#{task_path}.rake").to_s }

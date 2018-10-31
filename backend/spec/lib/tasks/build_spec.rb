@@ -1,7 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'rubocop_brakeman_rspec:all' do
-  it { is_expected.to include('rspec') }
-  it { is_expected.to include('rubocop') }
-  it { is_expected.to include('brakeman') }
+RSpec.describe 'build:test_and_analyze' do
+  include_context 'rake'
+
+  it 'includes all the test and analyze tasks' do
+    expect(task_names).to match_array(%w[rubocop rspec brakeman])
+  end
 end
