@@ -3,11 +3,6 @@ require 'rails_helper'
 RSpec.describe UserMailer, type: :mailer do
   context 'given a moderator' do
     let(:moderator) { create(:user, role: :moderator) }
-    before do
-      PaperTrail.request(whodunnit: moderator.id) do
-        create(:broadcast)
-      end
-    end
 
     describe '#ask_for_spam_check' do
       let(:troll) { create(:user, email: 'troll@example.org') }
