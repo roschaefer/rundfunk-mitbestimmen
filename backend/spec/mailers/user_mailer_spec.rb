@@ -25,10 +25,10 @@ RSpec.describe UserMailer, type: :mailer do
 
         context 'user prefers English' do
           before { moderator.update(locale: 'en') }
-        end
 
-        it 'translates' do
-          expect(mail.body.encoded).to match('was recently added to the database')
+          it 'translates' do
+            expect(mail.body.encoded).to match('was recently added to the database')
+          end
         end
       end
 
