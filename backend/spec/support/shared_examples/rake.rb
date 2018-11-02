@@ -1,7 +1,7 @@
 require 'rake'
 
 shared_context 'rake' do
-  let(:rake)       { Rake::Application.new }
+  let(:rake) { Rake::Application.new }
   let(:test_and_analyze_task) { Rake::Task.tasks.detect { |task| task.name == 'build:test_and_analyze' } }
   # it will use the text we pass to describe to calculate the task we are going to run.
   let(:task_name)  { self.class.top_level_description }
