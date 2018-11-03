@@ -13,6 +13,6 @@ class UserMailer < ApplicationMailer
   def ask_for_spam_check(broadcast_id, moderator_id)
     @user = User.find(moderator_id)
     @broadcast = Broadcast.find(broadcast_id)
-    mail(to: @user.email, subject: "A broadcast \"#{@broadcast.title}\" has been created")
+    mail(to: @user.email, subject: "[Rundfunk mitbestimmen] A broadcast \"#{@broadcast.title}\" has been created")
   end
 end
