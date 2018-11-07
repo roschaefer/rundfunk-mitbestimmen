@@ -209,7 +209,6 @@ INHERITS (temporal.impressions);
 --
 
 CREATE SEQUENCE history.impressions_hid_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -261,7 +260,6 @@ CREATE TABLE public.broadcasts (
 --
 
 CREATE SEQUENCE public.broadcasts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -325,7 +323,6 @@ CREATE TABLE public.formats (
 --
 
 CREATE SEQUENCE public.formats_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -379,7 +376,6 @@ CREATE TABLE public.media (
 --
 
 CREATE SEQUENCE public.media_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -520,7 +516,6 @@ CREATE TABLE public.stations (
 --
 
 CREATE SEQUENCE public.stations_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -702,7 +697,6 @@ CREATE TABLE public.topics (
 --
 
 CREATE SEQUENCE public.topics_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -747,7 +741,6 @@ CREATE TABLE public.users (
 --
 
 CREATE SEQUENCE public.users_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -801,7 +794,6 @@ ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 --
 
 CREATE SEQUENCE temporal.impressions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
