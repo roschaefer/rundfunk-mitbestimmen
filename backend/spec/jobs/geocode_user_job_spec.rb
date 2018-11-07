@@ -18,8 +18,13 @@ RSpec.describe GeocodeUserJob, type: :job do
     let(:auth0_uid) { 'whatever' }
     before { create(:user, auth0_uid: auth0_uid) } # now we would run into a request
 
-    context 'missing' do
+    context 'nil' do
       before { allow(Geocoder.config).to receive(:[]).with(:ipstack).and_return(api_key: nil) }
+      it { expect { subject }.not_to raise_error }
+    end
+
+    context 'blank' do
+      before { allow(Geocoder.config).to receive(:[]).with(:ipstack).and_return(api_key: '') }
       it { expect { subject }.not_to raise_error }
     end
   end
