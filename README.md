@@ -92,14 +92,14 @@ docker-compose up
 This can take a while...
 As soon as this is finished, create the database and run migrations with:
 ```sh
-docker-compose run --rm backend bin/rails db:create db:migrate
+docker-compose run --rm backend rails db:create db:migrate
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
 ```sh
-docker-compose run --rm backend bin/rails db:seed
+docker-compose run --rm backend rails db:seed
 ```
 
 Run frontend tests:
@@ -173,13 +173,13 @@ bundle
 
 Now create the databases and run the migrations:
 ```sh
-bin/rails db:create db:migrate
+rails db:create db:migrate
 ```
 
 5. If you want, you can create some seed data
 ```
 cd backend
-bin/rails db:seed
+rails db:seed
 cd ..
 ```
 
@@ -188,7 +188,7 @@ cd ..
 
 Start the backend and sidekiq:
 ```sh
-cd backend && bin/rails s
+cd backend && rails s
 ```
 ```sh
 cd backend && bundle exec sidekiq
@@ -210,7 +210,7 @@ cd frontend && ember server --environment=fullstack
 
 Open two more terminals and run the backend server and sidekiq:
 ```sh
-cd backend && bin/rails server --environment=fullstack
+cd backend && rails server --environment=fullstack
 ```
 ```sh
 cd backend && bundle exec sidekiq
