@@ -3,8 +3,6 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require 'rubocop/rake_task'
 
-task rubocop_and_cucumber: %i[rubocop features]
-
 RuboCop::RakeTask.new(:rubocop) do |task|
   # Make it easier to disable cops.
   task.options << '--display-cop-names'
