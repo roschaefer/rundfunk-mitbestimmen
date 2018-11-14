@@ -49,7 +49,4 @@ namespace :build do
       exit Brakeman::Errors_Found_Exit_Code if tracker.errors.any?
     end
   end
-
-  desc 'Runs rubocop, rspec and brakeman'
-  task test_and_analyze: %i[rubocop rspec brakeman]
 end
