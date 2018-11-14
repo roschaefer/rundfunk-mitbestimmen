@@ -5070,9 +5070,9 @@ ember-inflector@^3.0.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-inline-edit@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-inline-edit/-/ember-inline-edit-1.1.0.tgz#4dc67f3d8d9a864b36835488409ba8f58d3a955a"
+ember-inline-edit@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ember-inline-edit/-/ember-inline-edit-1.1.1.tgz#e14d0552a0bde70e7df108b8d5020388bbb27ef2"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
