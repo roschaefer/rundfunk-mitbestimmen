@@ -75,7 +75,7 @@
     "leaflet": "^1.3.4",
     "loader.js": "^4.7.0",
     "moment": "^2.22.2",
-    "semantic-ui-ember": "^3.0.3"
+    "semantic-ui-ember": "https://github.com/Semantic-Org/Semantic-UI-Ember.git"
   },
   "fastbootDependencies": [
     "url"
