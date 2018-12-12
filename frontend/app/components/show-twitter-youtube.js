@@ -2,11 +2,11 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tag: 'div',
-  classNames: ['ui one column grid'],
+  classNames: ['ui column grid'],
   showFeed: false,
   actions: {
-    showTwitterFeed() {
-      this.set('showFeed', true);
+    showTwitterYouTube() {
+      this.set('showContent', true);
     }
   }
 });

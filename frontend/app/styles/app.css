@@ -159,18 +159,23 @@ p {
 }
 
 /* Youtube embed video */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
+.blur-img {
+  width: 100%;
+  height: 20em;
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
 }
 
-.video-container iframe,
-.video-container object,
-.video-container embed {
+.show-btn {
+  width: 20em;
+  height: 46px;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 11em;
+  background: #00adff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
 }

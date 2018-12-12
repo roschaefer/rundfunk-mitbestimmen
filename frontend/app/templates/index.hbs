@@ -245,22 +245,27 @@
     </div>
   </div>
 
-  <div class="centered row">
-    <div class="ui centered grid">
-      <div class="row">
-        <h3>{{t 'index.community-meetings.header'}} &hearts; </h3>
-      </div>
-      <div class="row">
-        <div class="column video-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL1CiawkXA01MwjAVBzV0fRjpbl454SCbl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+  <div class="row">
+{{#show-twitter-youtube }}
+
+   <div class="centered row">
+        <div class="row">
+            <h3>{{t 'index.community-meetings.header'}} &hearts; </h3>
         </div>
-      </div>
-      <div class="row">
-        <div class="mobile fourteen wide computer ten wide column">
-        <p>{{t 'index.community-meetings.description' htmlSafe=true }}</p>
+        <div class="row">
+            <div class="column video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL1CiawkXA01MwjAVBzV0fRjpbl454SCbl"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+            </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="mobile fourteen wide computer ten wide column">
+                <p>{{t 'index.community-meetings.description' htmlSafe=true }}</p>
+            </div>
+        </div>
     </div>
+
+  {{/show-twitter-youtube}}
   </div>
 
   <div class="centered row">
@@ -303,15 +308,13 @@
   </div>
 
   <div class="row">
-  {{#show-twitter-feed message=(t 'show-twitter-feed.message')}}
-    <div class="ui one column grid">
+  {{#show-twitter-youtube imgUrl="https://image.ibb.co/diUffA/Screen-Shot-2018-11-08-at-11-59-02.png"  message=(t 'show-twitter-feed.message')}}
       <div class="centered row">
         <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
           <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB?ref_src=twsrc%5Etfw">{{t 'show-twitter-feed.tweets-by'}}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
-    </div>
-  {{/show-twitter-feed}}
+  {{/show-twitter-youtube}}
   </div>
 
   <div class="centered row">

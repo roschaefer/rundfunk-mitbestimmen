@@ -1,0 +1,8 @@
+{{#if showContent}}
+    {{yield}}
+  {{else}}
+    <div class="centered row">
+    <img class="blur-img" src={{imgUrl}}>
+    <button class="show-btn" {{action 'showTwitterYouTube'}}>{{message}}</button>
+    </div>
+{{/if}}
