@@ -11,6 +11,9 @@ export default Controller.extend({
       return record.get('approvalDelta');
     });
   }),
+  approvalDeltasLimits: computed('approvalDeltas', function () {
+   return chroma.limits(this.get('approvalDeltas'), 'q', 4);
+  }),
   missingDataLabel: computed('intl.locale', function() {
     return this.get('intl').t('visualize.time.bubble-chart-legend.missing-data');
   }),
@@ -37,7 +40,7 @@ export default Controller.extend({
   colorScale: computed('model', function() {
     return chroma
       .scale(["deeppink", "lightblue", "limegreen"])
-      .domain(chroma.limits(this.get('approvalDeltas'), 'q', 2));
+      .domain(this.get('approvalDeltasLimits'));
   }),
   nullColor: chroma('tan'),
   chartData: computed('model', 'intl.locale', function() {
