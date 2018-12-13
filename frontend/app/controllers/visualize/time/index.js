@@ -11,8 +11,6 @@ export default Controller.extend({
       return record.get('approvalDelta');
     });
   }),
-  maxApprovalDelta: computed.max('approvalDeltas'),
-  minApprovalDelta: computed.min('approvalDeltas'),
   missingDataLabel: computed('intl.locale', function() {
     return this.get('intl').t('visualize.time.bubble-chart-legend.missing-data');
   }),
@@ -39,7 +37,7 @@ export default Controller.extend({
   colorScale: computed('model', function() {
     return chroma
       .scale(["deeppink", "lightblue", "limegreen"])
-      .domain([this.get('minApprovalDelta'), 0, this.get('maxApprovalDelta')]);
+      .domain(chroma.limits(this.get('approvalDeltas'), 'q', 2));
   }),
   nullColor: chroma('tan'),
   chartData: computed('model', 'intl.locale', function() {
