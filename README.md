@@ -42,7 +42,7 @@ broadcast. If the `response` is positive, the `amount` further specifies how
 much to pay for a broadcast. So, the sum of all amounts per user must not exceed
 the monthly fee of 17,50€ per month.
 
-![ER diagram](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/er.png)
+![ER diagram](/documentation/images/er.png)
 
 ### Frontend
 
@@ -53,7 +53,7 @@ actions will send requests to the backend. The frontend should be comfortable to
 use, e.g. by default amounts are evenly distributed with the option to set the
 amount explicitly.
 
-![Process diagram](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/process.png)
+![Process diagram](/documentation/images/process.png)
 
 ### Features
 
@@ -65,7 +65,7 @@ current behaviour and the reasoning behind it.
 Here is our model how to write tests. The cucumber tests are at the top. As they
 test the entire stack, cucumber tests tend to be rather slow in execution but
 in return they deliver some confidence that the system works.
-![Testing pyramid](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/testing-pyramid.png)
+![Testing pyramid](/documentation/images/testing-pyramid.png)
 
 ## Installation and Usage with Docker
 
