@@ -317,8 +317,8 @@ RSpec.describe Broadcast, type: :model do
     end
 
     describe 'empty image_url' do
-      let(:broadcast) { build(:broadcast, image_url: ' ') }
-      it { is_expected.to_not be_valid }
+      let(:broadcast) { create(:broadcast, image_url: ' ') }
+      it { expect(broadcast.image_url).to eq(nil) }
     end
 
     describe 'image_url' do
@@ -339,8 +339,8 @@ RSpec.describe Broadcast, type: :model do
     end
 
     describe 'empty broadcast_url' do
-      let(:broadcast) { build(:broadcast, broadcast_url: ' ') }
-      it { is_expected.to_not be_valid }
+      let(:broadcast) { create(:broadcast, broadcast_url: ' ') }
+      it { expect(broadcast.broadcast_url).to eq(nil) }
     end
 
     describe 'broadcast_url' do
