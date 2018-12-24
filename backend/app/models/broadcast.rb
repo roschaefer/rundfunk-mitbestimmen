@@ -14,7 +14,7 @@ class Broadcast < ApplicationRecord
 
   has_many :impressions, dependent: :destroy
 
-  before_validation :normalize_url, on: [:create, :update]
+  before_validation :normalize_url, on: %i[create update]
 
   paginates_per 10
   belongs_to :topic, optional: true
