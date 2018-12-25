@@ -2,15 +2,13 @@
 en:
   activerecord:
     errors:
+      messages:
+        invalid_url: added URL is not a valid URL!
       models:
         broadcast:
           attributes:
             description:
               no_urls: without links, please. Users should be able to view a broadcast without leaving this website.
-            image_url:
-              invalid_url: added URL is not a valid URL!
-            broadcast_url:
-              invalid_url: added URL is not a valid URL!
         impression:
           attributes:
             amount:
