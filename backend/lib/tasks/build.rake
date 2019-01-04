@@ -6,9 +6,6 @@ namespace :build do
   RuboCop::RakeTask.new(:rubocop) do |task|
     # Make it easier to disable cops.
     task.options << '--display-cop-names'
-
-    # Abort on failures (fix your code first)
-    task.fail_on_error = false
   end
 
   desc 'Run test'
