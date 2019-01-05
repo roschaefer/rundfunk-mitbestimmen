@@ -1,5 +1,4 @@
 namespace :db do
-
   desc 'replace user sensitive data with placeholders'
   task anonymize_user: :environment do
     if ENV['RAILS_ENV'] == 'production'
@@ -21,7 +20,6 @@ namespace :db do
 
   desc 'Dumps the database to db/APP_NAME.dump'
   task dump: :environment do
-    cmd = nil
     app, host, db, user = with_config
     cmd = "pg_dump --host #{host} #{user_present?(user)} --verbose --clean --no-owner --no-acl --format=c #{db} > #{Rails.root}/db/#{app}.dump"
     puts cmd
@@ -30,7 +28,6 @@ namespace :db do
 
   desc 'Restores the database dump at db/APP_NAME.dump.'
   task restore: :environment do
-    cmd = nil
     app, host, db, user = with_config
     cmd = "pg_restore --verbose --host #{host} #{user_present?(user)} --clean --no-owner --no-acl --dbname #{db} #{Rails.root}/db/#{app}.dump"
     Rake::Task['db:drop'].invoke
