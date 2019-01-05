@@ -4992,6 +4992,12 @@ ember-cookies@^0.3.0:
     ember-cli-babel "^6.8.2"
     ember-getowner-polyfill "^1.1.0 || ^2.0.0"
 
+ember-copy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-copy/-/ember-copy-1.0.0.tgz#426554ba6cf65920f31d24d0a3ca2cb1be16e4aa"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-d3@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/ember-d3/-/ember-d3-0.5.0.tgz#505cec040f5858b1ad8bc41b29858d707a3af724"
@@ -5105,9 +5111,9 @@ ember-get-config@^0.2.3:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
 
-ember-highcharts@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ember-highcharts/-/ember-highcharts-1.0.1.tgz#7da946bdf1cf1f32533dbf12cbbc669af27b0111"
+ember-highcharts@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-highcharts/-/ember-highcharts-1.1.0.tgz#4e37d754b7722782f81df64cc25199af82e6c8c6"
   dependencies:
     bootstrap "3.3.7"
     broccoli-funnel "^2.0.1"
@@ -5116,6 +5122,7 @@ ember-highcharts@1.0.1:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
     ember-cli-node-assets "^0.2.2"
+    ember-copy "^1.0.0"
 
 ember-inflector@^3.0.0:
   version "3.0.0"
