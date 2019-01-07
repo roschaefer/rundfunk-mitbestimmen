@@ -11463,7 +11463,8 @@ semantic-ui-css@^2.2.14:
 
 "semantic-ui-ember@https://github.com/Semantic-Org/Semantic-UI-Ember.git":
   version "3.0.3"
-  resolved "https://github.com/Semantic-Org/Semantic-UI-Ember.git#9d5f93c750b5d25329da8ab38e04f74f543c0a32"
+  uid "155f1fcef8ef057bf795bf831a28baa440bde539"
+  resolved "https://github.com/Semantic-Org/Semantic-UI-Ember.git#155f1fcef8ef057bf795bf831a28baa440bde539"
   dependencies:
     ember-cli-babel "^6.11.0"
     ember-cli-htmlbars "^2.0.3"
