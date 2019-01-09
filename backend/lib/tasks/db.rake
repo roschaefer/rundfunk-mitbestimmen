@@ -12,7 +12,7 @@ namespace :db do
         user.longitude = 10 - 0.001 * user.id
         user.city = "city#{user.id}"
 
-        user.email = "user#{user.id}@rundfunk.com"
+        user.email = "user#{user.id}@example.org"
         user.save!
       end
     end
