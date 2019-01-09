@@ -6,7 +6,7 @@ namespace :db do
     else
       puts 'Anonymizing user data'
 
-      User.all.each do |user|
+      User.find_each do |user|
         user.encrypted_password = user.encrypted_password.truncate(8)
         user.latitude = 50 + 0.001 * user.id
         user.longitude = 10 - 0.001 * user.id
