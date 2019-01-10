@@ -1,16 +1,20 @@
-require 'rubocop/rake_task'
-require 'rspec/core/rake_task'
-
 namespace :build do
-  desc 'Run RuboCop'
-  RuboCop::RakeTask.new(:rubocop) do |task|
-    # Make it easier to disable cops.
-    task.options << '--display-cop-names'
+  if Gem.loaded_specs.has_key?("rubocop")
+    require 'rubocop/rake_task'
+
+    desc 'Run RuboCop'
+    RuboCop::RakeTask.new(:rubocop) do |task|
+      # Make it easier to disable cops.
+      task.options << '--display-cop-names'
+    end
   end
 
-  desc 'Run test'
-  RSpec::Core::RakeTask.new(:rspec) do |task|
-    task.rspec_opts = '--format progress'
+  if Gem.loaded_specs.has_key?("rspec")
+    require 'rspec/core/rake_task'
+    desc 'Run test'
+    RSpec::Core::RakeTask.new(:rspec) do |task|
+      task.rspec_opts = '--format progress'
+    end
   end
 
   desc 'Runs Brakeman'
