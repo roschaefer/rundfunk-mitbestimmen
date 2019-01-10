@@ -12,6 +12,7 @@ namespace :db do
       end
       User.find_each do |user|
         new_id = @user_ids.pop
+
         user.encrypted_password = user.encrypted_password.truncate(8)
         user.auth0_uid = user.auth0_uid.truncate(15) + new_id.to_s if user.auth0_uid
         user.latitude = 50 + 0.001 * new_id
@@ -19,7 +20,7 @@ namespace :db do
         user.city = "city#{new_id}"
         user.postal_code = 10000 + new_id
 
-        user.email = "user#{new_id}@example.com"
+        user.email = "user#{user.id}@example.org"
         user.save!
       end
       Rake::Task['db:dump'].invoke
