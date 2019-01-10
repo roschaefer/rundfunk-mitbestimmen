@@ -5,7 +5,6 @@ namespace :db do
       puts 'You do not want to anonymize production data'
     else
       puts 'Anonymizing user data'
-
       @user_ids = User.ids.shuffle
       Broadcast.find_each do |broadcast|
         broadcast.creator_id = @user_ids.sample
@@ -42,9 +41,6 @@ namespace :db do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    #TODO does not work
-    Rails.env = 'development'
-    Rake::Task['db:environment:set'].invoke
     puts cmd
     exec cmd
   end
