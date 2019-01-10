@@ -1,5 +1,5 @@
 namespace :build do
-  if Gem.loaded_specs.has_key?("rubocop")
+  if Gem.loaded_specs.key?('rubocop')
     require 'rubocop/rake_task'
 
     desc 'Run RuboCop'
@@ -9,7 +9,7 @@ namespace :build do
     end
   end
 
-  if Gem.loaded_specs.has_key?("rspec")
+  if Gem.loaded_specs.key?('rspec')
     require 'rspec/core/rake_task'
     desc 'Run test'
     RSpec::Core::RakeTask.new(:rspec) do |task|
