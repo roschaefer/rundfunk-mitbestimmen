@@ -54,6 +54,8 @@ class Broadcast < ApplicationRecord
     Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: true, cascade: false)
   end
 
+  after_create :sends_email_notification
+
   def self.search(query: nil, filter_params: nil, sort: nil, seed: nil, user: nil)
     results = Broadcast.all
     results = results.full_search(query) unless query.blank?
@@ -86,6 +88,14 @@ class Broadcast < ApplicationRecord
       end
       order('RANDOM()')
     end
+  end
+
+  def sends_email_notification
+    admins_and_moderators = User.admin + User.moderator
+    admins_and_moderators.each do |user|
+      UserMailer.ask_for_spam_check(self.id, user.id).deliver_later
+    end
+
   end
 
   private

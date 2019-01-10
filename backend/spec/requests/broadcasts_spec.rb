@@ -182,20 +182,20 @@ RSpec.describe 'Broadcasts', type: :request do
 
         describe 'check spam mailer job' do
           before { Sidekiq::Queues.clear_all }
-
+          let(:size) { User.admin.size + User.moderator.size }
           it 'notifies no contributor' do
             create_list(:user, 5, role: :contributor)
-            expect { action }.not_to change{ Sidekiq::Queues['mailer'].size }
+            expect { action }.not_to change{ Sidekiq::Queues['mailers'].size }
           end
 
           it 'notifies each moderator' do
             create_list(:user, 10, role: :moderator)
-            expect { action }.to change{ Sidekiq::Queues['mailer'].size }.from(0).to(10)
+            expect { action }.to change{ Sidekiq::Queues['mailers'].size }.from(0).to(size)
           end
 
           it 'notifies each admin' do
             create_list(:user, 2, role: :admin)
-            expect { action }.to change{ Sidekiq::Queues['mailer'].size }.from(0).to(2)
+            expect { action }.to change{ Sidekiq::Queues['mailers'].size }.from(0).to(size)
           end
         end
 
