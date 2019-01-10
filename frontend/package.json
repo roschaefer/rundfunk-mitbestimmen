@@ -25,7 +25,7 @@
     "broccoli-webpack": "^1.0.0",
     "d3": "^5.7.0",
     "d3-svg-legend": "^2.25.6",
-    "ember-ajax": "^4.0.1",
+    "ember-ajax": "^4.0.2",
     "ember-chroma-shim": "^1.0.2",
     "ember-cli": "^3.6.0",
     "ember-cli-app-version": "^3.2.0",
