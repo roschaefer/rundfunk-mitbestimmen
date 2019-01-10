@@ -6,15 +6,24 @@ namespace :db do
     else
       puts 'Anonymizing user data'
 
-      User.all.each do |user|
+      @user_ids = User.ids.shuffle
+      Broadcast.find_each do |broadcast|
+        broadcast.creator_id = @user_ids.sample
+        broadcast.save!
+      end
+      User.find_each do |user|
+        new_id = @user_ids.pop
         user.encrypted_password = user.encrypted_password.truncate(8)
-        user.latitude = 50 + 0.001 * user.id
-        user.longitude = 10 - 0.001 * user.id
-        user.city = "city#{user.id}"
+        user.auth0_uid = user.auth0_uid.truncate(15) + new_id.to_s if user.auth0_uid
+        user.latitude = 50 + 0.001 * new_id
+        user.longitude = 10 - 0.001 * new_id
+        user.city = "city#{new_id}"
+        user.postal_code = 10000 + new_id
 
-        user.email = "user#{user.id}@rundfunk.com"
+        user.email = "user#{new_id}@example.com"
         user.save!
       end
+      Rake::Task['db:dump'].invoke
     end
   end
 
@@ -33,6 +42,9 @@ namespace :db do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
+    #TODO does not work
+    Rails.env = 'development'
+    Rake::Task['db:environment:set'].invoke
     puts cmd
     exec cmd
   end
