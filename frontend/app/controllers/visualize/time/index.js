@@ -39,7 +39,9 @@ export default Controller.extend({
 
   colorScale: computed('model', function() {
     return chroma
-      .scale(["deeppink", "lightblue", "limegreen"])
+      .scale(chroma.bezier(["deeppink", "lightblue", "limegreen"])
+    .scale()
+    .colors(5))
       .domain(this.get('approvalDeltasLimits'));
   }),
   nullColor: chroma('tan'),
