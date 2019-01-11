@@ -64,4 +64,8 @@ class User < ActiveRecord::Base
     end
     save
   end
+
+  def to_moderator
+    update(role: :moderator)
+  end
 end

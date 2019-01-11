@@ -182,20 +182,20 @@ RSpec.describe 'Broadcasts', type: :request do
 
         describe 'check spam mailer job' do
           before { Sidekiq::Queues.clear_all }
-          let(:size) { User.admin.size + User.moderator.size }
+          let(:size) { User.admin.size + User.moderator.size + 1 }
           it 'notifies no contributor' do
             create_list(:user, 5, role: :contributor)
-            expect { action }.not_to change{ Sidekiq::Queues['mailers'].size }
+            expect { action }.to change { Sidekiq::Queues['mailers'].size }.from(0).to(1)
           end
 
           it 'notifies each moderator' do
             create_list(:user, 10, role: :moderator)
-            expect { action }.to change{ Sidekiq::Queues['mailers'].size }.from(0).to(size)
+            expect { action }.to change { Sidekiq::Queues['mailers'].size }.from(0).to(size)
           end
 
           it 'notifies each admin' do
             create_list(:user, 2, role: :admin)
-            expect { action }.to change{ Sidekiq::Queues['mailers'].size }.from(0).to(size)
+            expect { action }.to change { Sidekiq::Queues['mailers'].size }.from(0).to(size)
           end
         end
 
@@ -203,7 +203,7 @@ RSpec.describe 'Broadcasts', type: :request do
           let(:user) { create(:user, role: :contributor) }
           describe '#create' do
             it 'turns the author into a moderator' do
-              expect { action }.to(change{user.role}.from('contributor').to('moderator'))
+              expect { action }.to(change { user.reload.role }.from('contributor').to('moderator'))
             end
           end
         end
@@ -244,7 +244,7 @@ RSpec.describe 'Broadcasts', type: :request do
             dasErste # create a station
             broadcast
           end
-          let(:broadcast) { create(:broadcast, id: 0, medium: tv) }
+          let(:broadcast) { create(:broadcast, id: 0, medium: tv, creator: user) }
 
           describe 'change medium and station' do
             let(:params) do
@@ -279,10 +279,9 @@ RSpec.describe 'Broadcasts', type: :request do
             end
 
             context 'as contributor' do
-              let(:user) { create(:user, role: :contributor) }
               describe '#create' do
                 it 'turns the editor into a moderator' do
-                  expect { action }.to(change{user.role}.from('contributor').to('moderator'))
+                  expect { action }.to(change { user.reload.role }.from('contributor').to('moderator'))
                 end
               end
             end
