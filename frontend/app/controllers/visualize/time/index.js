@@ -54,7 +54,7 @@ export default Controller.extend({
       return this.get('colorScale')(value);
     };
     let textColor = (color) => {
-        return chroma(color).get('lab.l') < 70 ? 'white' : 'black';
+        return chroma(color).get('lab.l') < 40 ? 'white' : 'black';
     }
     return this.get('model').map((record) => {
       const color = colorFunction(record.get('approvalDelta'));
