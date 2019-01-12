@@ -10,7 +10,6 @@ export default Component.extend({
     if (isBlank(this.get('chartData'))) return;
     let chartData = {children: this.get('chartData')};
 
-
     let clickCallback = this.get('onClick');
 
     let element = select('div.chart-area');
@@ -52,6 +51,9 @@ export default Component.extend({
 
     node.append("text")
       .attr("dy", ".3em")
+      .style("fill", function(d){
+        return d.data.textColor;
+      })
       .style("text-anchor", "middle")
       .text(function(d) { return d.data.label.substring(0, d.r / 3); });
 

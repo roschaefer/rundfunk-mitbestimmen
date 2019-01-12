@@ -53,10 +53,15 @@ export default Controller.extend({
       }
       return this.get('colorScale')(value);
     };
+    let textColor = (color) => {
+        return chroma(color).get('lab.l') < 70 ? 'white' : 'black';
+    }
     return this.get('model').map((record) => {
+      const color = colorFunction(record.get('approvalDelta'));
       return Object.create({
         id: record.get('id'),
-        color: colorFunction(record.get('approvalDelta')),
+        color,
+        textColor: textColor(color),
         label: record.get('title'),
         tooltip: this.createTooltip(record),
         size: record.get('impressionsDelta'),
