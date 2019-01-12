@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1099"
+   height="960"
+   version="1.1"
+   id="svg2626"
+   sodipodi:docname="graph.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <metadata
+     id="metadata2632">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2630" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     id="namedview2628"
+     showgrid="false"
+     inkscape:zoom="0.17383042"
+     inkscape:cx="118.93937"
+     inkscape:cy="-504.27769"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2626" />
+  <g
+     id="g5831">
+    <line
+       id="line4"
+       style="stroke-width:2.18205905;stroke-opacity:1"
+       y2="567.24768"
+       x2="206.91071"
+       y1="525.77441"
+       x1="304.50421" />
+    <line
+       id="line6"
+       style="stroke-width:2.14126945;stroke-opacity:1"
+       y2="542.34814"
+       x2="723.7674"
+       y1="473.0144"
+       x1="669.35065" />
+    <line
+       id="line8"
+       style="stroke-width:2.10268474;stroke-opacity:1"
+       y2="659.92651"
+       x2="259.31085"
+       y1="567.24768"
+       x1="206.91071" />
+    <line
+       id="line12"
+       style="stroke-width:2.04506588;stroke-opacity:1"
+       y2="659.92651"
+       x2="259.31085"
+       y1="619.66986"
+       x1="340.03741" />
+    <line
+       id="line14"
+       style="stroke-width:1.95470262;stroke-opacity:1"
+       y2="659.92651"
+       x2="259.31085"
+       y1="525.77441"
+       x1="304.50421" />
+    <line
+       id="line20"
+       style="stroke-width:1.9271425;stroke-opacity:1"
+       y2="619.66986"
+       x2="340.03741"
+       y1="525.77441"
+       x1="304.50421" />
+    <line
+       id="line26"
+       style="stroke-width:1.91083348;stroke-opacity:1"
+       y2="373.29251"
+       x2="660.93146"
+       y1="473.0144"
+       x1="669.35065" />
+    <line
+       id="line56"
+       style="stroke-width:1.78164375;stroke-opacity:1"
+       y2="707.00439"
+       x2="577.42047"
+       y1="644.36365"
+       x1="659.25323" />
+    <line
+       id="line58"
+       style="stroke-width:1.78164375;stroke-opacity:1"
+       y2="388.88934"
+       x2="38.924126"
+       y1="452.96729"
+       x1="127.71954" />
+    <line
+       id="line108"
+       style="stroke-width:1.67898667;stroke-opacity:1"
+       y2="382.04428"
+       x2="836.30035"
+       y1="473.0144"
+       x1="669.35065" />
+    <line
+       id="line118"
+       style="stroke-width:1.66623783;stroke-opacity:1"
+       y2="373.29251"
+       x2="660.93146"
+       y1="542.34814"
+       x1="723.7674" />
+    <line
+       id="line162"
+       style="stroke-width:1.62451851;stroke-opacity:1"
+       y2="619.66986"
+       x2="340.03741"
+       y1="567.24768"
+       x1="206.91071" />
+    <line
+       id="line234"
+       style="stroke-width:1.58143222;stroke-opacity:1"
+       y2="452.96729"
+       x2="127.71954"
+       y1="567.24768"
+       x1="206.91071" />
+    <line
+       id="line290"
+       style="stroke-width:1.5514971;stroke-opacity:1"
+       y2="382.04428"
+       x2="836.30035"
+       y1="542.34814"
+       x1="723.7674" />
+    <line
+       id="line308"
+       style="stroke-width:1.54294884;stroke-opacity:1"
+       y2="269.58566"
+       x2="55.673149"
+       y1="275.3035"
+       x1="-74.309273" />
+    <line
+       id="line434"
+       style="stroke-width:1.497558;stroke-opacity:1"
+       y2="273.62466"
+       x2="256.15607"
+       y1="225.7197"
+       x1="146.59918" />
+    <line
+       id="line464"
+       style="stroke-width:1.48682261;stroke-opacity:1"
+       y2="269.58566"
+       x2="55.673149"
+       y1="273.62466"
+       x1="256.15607" />
+    <line
+       id="line602"
+       style="stroke-width:1.45845056;stroke-opacity:1"
+       y2="382.04428"
+       x2="836.30035"
+       y1="517.94775"
+       x1="925.15851" />
+    <line
+       id="line750"
+       style="stroke-width:1.43640709;stroke-opacity:1"
+       y2="424.46399"
+       x2="238.60895"
+       y1="525.77441"
+       x1="304.50421" />
+    <line
+       id="line846"
+       style="stroke-width:1.41304934;stroke-opacity:1"
+       y2="273.62466"
+       x2="256.15607"
+       y1="336.36392"
+       x1="552.50031" />
+    <line
+       id="line926"
+       style="stroke-width:1.4017899;stroke-opacity:1"
+       y2="424.46399"
+       x2="238.60895"
+       y1="452.96729"
+       x1="127.71954" />
+    <g
+       id="g1018"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,304.5043,525.77442)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle1012"
+         r="5" />
+      <text
+         id="text1014"
+         y="3"
+         x="6">Hintergrund</text>
+      <title
+         id="title1016">Hintergrund</title>
+    </g>
+    <g
+       id="g1026"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,669.3505,473.01437)">
+      <circle
+         style="fill:#d62728"
+         cy="0"
+         cx="0"
+         id="circle1020"
+         r="5" />
+      <text
+         id="text1022"
+         y="3"
+         x="6">Gute Arbeit Originals</text>
+      <title
+         id="title1024">Gute Arbeit Originals</title>
+    </g>
+    <g
+       id="g1034"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,206.9106,567.24758)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle1028"
+         r="5" />
+      <text
+         id="text1030"
+         y="3"
+         x="6">Europa heute</text>
+      <title
+         id="title1032">Europa heute</title>
+    </g>
+    <g
+       id="g1050"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,340.0373,619.66981)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle1044"
+         r="5" />
+      <text
+         id="text1046"
+         y="3"
+         x="6">@mediasres</text>
+      <title
+         id="title1048">@mediasres</title>
+    </g>
+    <g
+       id="g1178"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,551.38955,661.62183)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle1172"
+         r="5" />
+      <text
+         id="text1174"
+         y="3"
+         x="6">Der beste Tag der Welt</text>
+      <title
+         id="title1176">Der beste Tag der Welt</title>
+    </g>
+    <g
+       id="g1186"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,127.7195,467.34916)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle1180"
+         r="5" />
+      <text
+         id="text1182"
+         y="3"
+         x="6">Das war der Tag</text>
+      <title
+         id="title1184">Das war der Tag</title>
+    </g>
+    <g
+       id="g1354"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,648.5132,558.61936)">
+      <circle
+         style="fill:#d62728"
+         cy="0"
+         cx="0"
+         id="circle1348"
+         r="5" />
+      <text
+         id="text1350"
+         y="3"
+         x="6">Kliemannsland</text>
+      <title
+         id="title1352">Kliemannsland</title>
+    </g>
+    <g
+       id="g1706"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,40.864965,339.19678)">
+      <circle
+         style="fill:#1f77b4"
+         cy="0"
+         cx="0"
+         id="circle1700"
+         r="5" />
+      <text
+         id="text1702"
+         y="3"
+         x="6">Phoenix-Runde</text>
+      <title
+         id="title1704">Phoenix-Runde</title>
+    </g>
+    <g
+       id="g1842"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,134.3957,168.77058)">
+      <circle
+         style="fill:#1f77b4"
+         cy="0"
+         cx="0"
+         id="circle1836"
+         r="5" />
+      <text
+         id="text1838"
+         y="3"
+         x="6">Morgenmagazin</text>
+      <title
+         id="title1840">Morgenmagazin</title>
+    </g>
+    <g
+       id="g1858"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,211.4102,222.7772)">
+      <circle
+         style="fill:#1f77b4"
+         cy="0"
+         cx="0"
+         id="circle1852"
+         r="5" />
+      <text
+         id="text1854"
+         y="3"
+         x="6">ZDF-Morgenmagazin</text>
+      <title
+         id="title1856">ZDF-Morgenmagazin</title>
+    </g>
+    <g
+       id="g1970"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,833.11477,517.94779)">
+      <circle
+         style="fill:#d62728"
+         cy="0"
+         cx="0"
+         id="circle1964"
+         r="5" />
+      <text
+         id="text1966"
+         y="3"
+         x="6">Y-Kollektiv</text>
+      <title
+         id="title1968">Y-Kollektiv</title>
+    </g>
+    <g
+       id="g2098"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,332.8393,295.68597)">
+      <circle
+         style="fill:#1f77b4"
+         cy="0"
+         cx="0"
+         id="circle2092"
+         r="5" />
+      <text
+         id="text2094"
+         y="3"
+         x="6">ARD Morgenmagazin</text>
+      <title
+         id="title2096">ARD Morgenmagazin</title>
+    </g>
+    <g
+       id="g2226"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,259.3109,659.92643)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle2220"
+         r="5" />
+      <text
+         id="text2222"
+         y="3"
+         x="6">Das Feature</text>
+      <title
+         id="title2224">Das Feature</title>
+    </g>
+    <g
+       id="g2242"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,654.8297,424.14002)">
+      <circle
+         style="fill:#d62728"
+         cy="0"
+         cx="0"
+         id="circle2236"
+         r="5" />
+      <text
+         id="text2238"
+         y="3"
+         x="6">Game Two</text>
+      <title
+         id="title2240">Game Two</title>
+    </g>
+    <g
+       id="g2258"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,577.4204,707.00443)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle2252"
+         r="5" />
+      <text
+         id="text2254"
+         y="3"
+         x="6">Dennis ruft an</text>
+      <title
+         id="title2256">Dennis ruft an</title>
+    </g>
+    <g
+       id="g2266"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,38.9242,388.8893)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle2260"
+         r="5" />
+      <text
+         id="text2262"
+         y="3"
+         x="6">Essay und Diskurs</text>
+      <title
+         id="title2264">Essay und Diskurs</title>
+    </g>
+    <g
+       id="g2298"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,836.3003,382.04435)">
+      <circle
+         style="fill:#d62728"
+         cy="0"
+         cx="0"
+         id="circle2292"
+         r="5" />
+      <text
+         id="text2294"
+         y="3"
+         x="6">Walulis</text>
+      <title
+         id="title2296">Walulis</title>
+    </g>
+    <g
+       id="g2402"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,55.6732,260.95656)">
+      <circle
+         style="fill:#1f77b4"
+         cy="0"
+         cx="0"
+         id="circle2396"
+         r="5" />
+      <text
+         id="text2398"
+         y="3"
+         x="6">phoenix der tag</text>
+      <title
+         id="title2400">phoenix der tag</title>
+    </g>
+    <g
+       id="g2514"
+       style="opacity:1"
+       transform="matrix(3.211904,0,0,3.211904,238.6089,424.46403)">
+      <circle
+         style="fill:#ff7f0e"
+         cy="0"
+         cx="0"
+         id="circle2508"
+         r="5" />
+      <text
+         id="text2510"
+         y="3"
+         x="6">Nachrichten</text>
+      <title
+         id="title2512">Nachrichten</title>
+    </g>
+  </g>
+</svg>
