@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   class="highcharts-root"
+   style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif"
+   width="10cm"
+   height="10cm"
+   viewBox="0 0 377.95274 377.95274"
+   id="svg343"
+   sodipodi:docname="expected_actual_by_media.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <metadata
+     id="metadata347">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     id="namedview345"
+     showgrid="false"
+     inkscape:zoom="1.8101934"
+     inkscape:cx="203.34541"
+     inkscape:cy="278.42709"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg343"
+     units="cm"
+     width="11in" />
+  <desc
+     id="desc2">Created with Highcharts 6.2.0</desc>
+  <defs
+     id="defs7">
+    <clipPath
+       id="highcharts-k63afrz-78">
+      <rect
+         x="0"
+         y="0"
+         width="288"
+         height="1040"
+         id="rect4"
+         style="fill:none" />
+    </clipPath>
+    <clipPath
+       id="highcharts-k63afrz-78-3">
+      <rect
+         style="fill:none"
+         x="0"
+         y="0"
+         width="288"
+         height="1040"
+         id="rect4-6" />
+    </clipPath>
+    <clipPath
+       id="clipPath697">
+      <rect
+         style="fill:none"
+         x="0"
+         y="0"
+         width="288"
+         height="1040"
+         id="rect695" />
+    </clipPath>
+    <clipPath
+       id="clipPath701">
+      <rect
+         style="fill:none"
+         x="0"
+         y="0"
+         width="288"
+         height="1040"
+         id="rect699" />
+    </clipPath>
+  </defs>
+  <g
+     id="g1313"
+     transform="matrix(0.91893501,0,0,1.0040813,6842.1147,427.98619)">
+    <text
+       id="text189"
+       y="24"
+       style="color:#333333;font-size:18px;text-anchor:middle;fill:#333333"
+       data-z-index="4"
+       class="highcharts-title"
+       x="564" />
+    <text
+       id="text191"
+       y="24"
+       style="color:#666666;text-anchor:middle;fill:#666666"
+       data-z-index="4"
+       class="highcharts-subtitle"
+       x="564" />
+    <rect
+       id="rect11"
+       height="288"
+       width="322.02689"
+       y="-382.5"
+       x="-7393.9717"
+       class="highcharts-plot-background"
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;fill:none;stroke-width:0.55645412" />
+    <g
+       transform="matrix(0.30964121,0,0,1,-7417.8142,-437.5)"
+       id="g25"
+       data-z-index="1"
+       class="highcharts-grid highcharts-xaxis-grid "
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <path
+         id="path13"
+         d="M 77,113.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+      <path
+         id="path15"
+         d="M 77,170.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+      <path
+         id="path17"
+         d="M 77,228.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+      <path
+         id="path19"
+         d="M 77,285.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+      <path
+         id="path21"
+         d="M 77,343.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+      <path
+         id="path23"
+         d="M 77,55.5 H 1117"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none" />
+    </g>
+    <g
+       transform="matrix(0.30964121,0,0,1,-7417.8142,-437.5)"
+       id="g61"
+       data-z-index="1"
+       class="highcharts-grid highcharts-yaxis-grid "
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <path
+         id="path27"
+         d="M 76.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path29"
+         d="M 141.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path31"
+         d="M 206.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path33"
+         d="M 271.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path35"
+         d="M 336.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path37"
+         d="M 401.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path39"
+         d="M 466.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path41"
+         d="M 531.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path43"
+         d="M 596.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path45"
+         d="M 661.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path47"
+         d="M 726.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path49"
+         d="M 791.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path51"
+         d="M 856.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path53"
+         d="M 921.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path55"
+         d="M 986.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path57"
+         d="M 1051.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path59"
+         d="M 1117.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+    </g>
+    <g
+       transform="matrix(0.30964121,0,0,1,-7417.8142,-437.5)"
+       id="g97"
+       data-z-index="1"
+       class="highcharts-grid highcharts-yaxis-grid "
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <path
+         id="path63"
+         d="M 76.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path65"
+         d="M 141.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path67"
+         d="M 206.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path69"
+         d="M 271.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path71"
+         d="M 336.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path73"
+         d="M 401.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path75"
+         d="M 466.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path77"
+         d="M 531.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path79"
+         d="M 596.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+      <path
+         id="path81"
+         d="M 661.5,55 V 343"
+         class="highcharts-grid-line"
+         data-z-index="1"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1" />
+    </g>
+    <rect
+       id="rect99"
+       height="288"
+       width="322.02689"
+       y="-382.5"
+       x="-7393.9717"
+       data-z-index="1"
+       class="highcharts-plot-border"
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;fill:none;stroke-width:0.55645412" />
+    <g
+       transform="matrix(0.30964121,0,0,1,-7417.8142,-437.5)"
+       id="g115"
+       data-z-index="2"
+       class="highcharts-axis highcharts-xaxis "
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <path
+         id="path101"
+         d="M 77,113.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path103"
+         d="M 77,170.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path105"
+         d="M 77,228.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path107"
+         d="M 77,285.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path109"
+         d="M 77,343.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path111"
+         d="M 77,54.5 H 67"
+         class="highcharts-tick"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1" />
+      <path
+         id="path113"
+         d="M 76.5,55 V 343"
+         data-z-index="7"
+         class="highcharts-axis-line"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#ccd6eb;stroke-width:1" />
+    </g>
+    <text
+       transform="scale(0.94817345,1.0546594)"
+       x="-7798.6382"
+       data-z-index="7"
+       class="highcharts-axis-title"
+       style="color:#666666;font-weight:bold;font-size:15.17077541px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:start;fill:#666666;stroke-width:0.94817346"
+       y="-50.727276"
+       id="text119">
+      <tspan
+         style="stroke-width:0.94817346"
+         id="tspan117">Euro per month</tspan>
+    </text>
+    <text
+       transform="scale(1.074708,0.9304853)"
+       x="-6875.0352"
+       data-z-index="7"
+       class="highcharts-axis-title"
+       style="color:#666666;font-weight:bold;font-size:17.19532776px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:start;fill:#666666;stroke-width:1.07470798"
+       y="-441.1676"
+       id="text127">
+      <tspan
+         style="stroke-width:1.07470798"
+         id="tspan125">Number of broadcasts</tspan>
+    </text>
+    <path
+       style="font-size:medium;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;fill:none;stroke-width:0.58056706"
+       inkscape:connector-curvature="0"
+       class="highcharts-axis-line"
+       data-z-index="7"
+       d="m -7387.7803,-382.5 h 350.5405"
+       id="path129" />
+    <path
+       id="path133"
+       d="m -7394.5119,-353 h 108.5417"
+       visibility="hidden"
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;visibility:hidden;fill:none;stroke-width:18.60819435"
+       stroke="rgba(204,214,235,0.25)"
+       data-z-index="2"
+       class="highcharts-crosshair highcharts-crosshair-category undefined"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="matrix(0.30964121,0,0,1,-7417.8142,-437.5)"
+       id="g175"
+       data-z-index="3"
+       class="highcharts-series-group"
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <g
+         id="g145"
+         clip-path="url(#highcharts-k63afrz-78-3)"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-series highcharts-series-0 highcharts-column-series highcharts-color-0 highcharts-tracker "
+         data-z-index="0.1">
+        <rect
+           id="rect135"
+           class="highcharts-point highcharts-color-0 "
+           height="2"
+           width="14"
+           y="1038.5"
+           x="260.5"
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect137"
+           class="highcharts-point highcharts-color-0 "
+           height="482"
+           width="14"
+           y="558.5"
+           x="202.5"
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect139"
+           class="highcharts-point highcharts-color-0"
+           height="2"
+           width="14"
+           y="1038.5"
+           x="145.5"
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect141"
+           class="highcharts-point highcharts-color-0"
+           height="88"
+           width="14"
+           y="952.5"
+           x="87.5"
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect143"
+           class="highcharts-point highcharts-color-0"
+           height="718"
+           width="14"
+           y="322.5"
+           x="30.5"
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1" />
+      </g>
+      <g
+         id="g147"
+         clip-path="none"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-markers highcharts-series-0 highcharts-column-series highcharts-color-0 "
+         data-z-index="0.1" />
+      <g
+         id="g159"
+         clip-path="url(#highcharts-k63afrz-78-3)"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-series highcharts-series-1 highcharts-column-series highcharts-color-1 highcharts-tracker"
+         data-z-index="0.1">
+        <rect
+           id="rect149"
+           class="highcharts-point highcharts-color-1 "
+           height="1"
+           width="14"
+           y="1039.5"
+           x="243.5"
+           style="fill:#434348;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect151"
+           class="highcharts-point highcharts-color-1 "
+           height="78"
+           width="14"
+           y="962.5"
+           x="185.5"
+           style="fill:#434348;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect153"
+           class="highcharts-point highcharts-color-1"
+           height="5"
+           width="14"
+           y="1035.5"
+           x="127.5"
+           style="fill:#434348;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect155"
+           class="highcharts-point highcharts-color-1"
+           height="282"
+           width="14"
+           y="758.5"
+           x="70.5"
+           style="fill:#434348;stroke:#ffffff;stroke-width:1" />
+        <rect
+           id="rect157"
+           class="highcharts-point highcharts-color-1"
+           height="927"
+           width="14"
+           y="113.5"
+           x="12.5"
+           style="fill:#434348;stroke:#ffffff;stroke-width:1" />
+      </g>
+      <g
+         id="g161"
+         clip-path="none"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-markers highcharts-series-1 highcharts-column-series highcharts-color-1 "
+         data-z-index="0.1" />
+      <g
+         id="g167"
+         clip-path="url(#highcharts-k63afrz-78-3)"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-series highcharts-series-2 highcharts-spline-series highcharts-color-2 "
+         data-z-index="0.1">
+        <path
+           id="path163"
+           data-z-index="1"
+           class="highcharts-graph"
+           d="m 259.2,1029.6 c 0,0 -34.56,-67.6 -57.6,-67.6 -23.04,0 -34.56,72.8 -57.6,72.8 -23.04,0 -34.56,-191.88 -57.6,-356.2 C 63.36,514.28 28.8,213.2 28.8,213.2"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#90ed7d;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />
+        <path
+           id="path165"
+           class="highcharts-tracker-line"
+           data-z-index="2"
+           visibility="visible"
+           stroke="rgba(192,192,192,0.0001)"
+           d="m 249.2,1029.6 h 10 c 0,0 -34.56,-67.6 -57.6,-67.6 -23.04,0 -34.56,72.8 -57.6,72.8 -23.04,0 -34.56,-191.88 -57.6,-356.2 C 63.36,514.28 28.8,213.2 28.8,213.2 h 10"
+           inkscape:connector-curvature="0"
+           style="visibility:visible;fill:none;stroke-width:22;stroke-linejoin:round" />
+      </g>
+      <g
+         id="g173"
+         transform="matrix(0,-1,-1,0,1117,343)"
+         class="highcharts-markers highcharts-series-2 highcharts-spline-series highcharts-color-2 highcharts-tracker "
+         data-z-index="0.1">
+        <path
+           id="path169"
+           data-z-index="-1"
+           class="highcharts-halo highcharts-color-2"
+           d="M 259,1029.6 Z"
+           visibility="hidden"
+           inkscape:connector-curvature="0"
+           style="visibility:hidden;fill:#90ed7d;fill-opacity:0.25" />
+        <path
+           id="path171"
+           visibility="hidden"
+           d="m 265,1029.6 a 6,6 0 1 1 0,-0.01 z"
+           inkscape:connector-curvature="0"
+           style="visibility:hidden;fill:#90ed7d;stroke:#ffffff;stroke-width:1" />
+      </g>
+    </g>
+    <g
+       transform="matrix(0.93808705,0,0,1,-7456.7407,-437.5)"
+       id="g237"
+       data-z-index="7"
+       class="highcharts-axis-labels highcharts-xaxis-labels "
+       style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif">
+      <text
+         id="text227"
+         y="89"
+         style="color:#666666;font-size:11px;text-anchor:end;opacity:1;fill:#666666"
+         x="62">
+        <tspan
+           id="tspan225">Free radio</tspan>
+      </text>
+      <text
+         id="text229"
+         y="146"
+         style="color:#666666;font-size:11px;text-anchor:end;opacity:1;fill:#666666"
+         x="62">Online</text>
+      <text
+         id="text231"
+         y="204"
+         style="color:#666666;font-size:11px;text-anchor:end;opacity:1;fill:#666666"
+         x="62">Other</text>
+      <text
+         id="text233"
+         y="262"
+         style="color:#666666;font-size:11px;text-anchor:end;opacity:1;fill:#666666"
+         x="62">Radio</text>
+      <text
+         id="text235"
+         y="319"
+         style="color:#666666;font-size:11px;text-anchor:end;opacity:1;fill:#666666"
+         x="62">TV</text>
+    </g>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10510.551"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text239">0</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10464.828"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text241">600</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10419.104"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text243">1200</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10373.381"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text245">1800</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10327.658"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text247">2400</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10281.935"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text249">3000</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10236.21"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text251">3600</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10190.488"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text253">4200</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10144.765"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text255">4800</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10099.042"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text257">5400</text>
+    <text
+       transform="scale(0.70343452,1.4215964)"
+       x="-10053.318"
+       style="color:#666666;font-size:7.73777962px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.70343453"
+       y="-53.109306"
+       id="text259">6000</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10978.916"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text275">0</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10935.143"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text277">25</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10891.368"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text279">50</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10847.598"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text281">75</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10803.824"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text283">100</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10760.05"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text285">125</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10716.276"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text287">150</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10672.502"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text289">175</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10628.729"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text291">200</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10584.958"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text293">225</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10541.184"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text295">250</text>
+    <text
+       transform="scale(0.67343559,1.484923)"
+       x="-10497.41"
+       style="color:#666666;font-size:7.40779114px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;text-anchor:middle;opacity:1;fill:#666666;stroke-width:0.67343557"
+       y="-265.67032"
+       id="text297">275</text>
+  </g>
+</svg>

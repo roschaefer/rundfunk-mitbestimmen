@@ -1,0 +1,1739 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   class="highcharts-root"
+   style="font-size:12px;font-family:'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif"
+   width="1127"
+   height="1127.6312"
+   viewBox="0 0 1127 1127.6313"
+   id="svg545"
+   sodipodi:docname="demographic.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <metadata
+     id="metadata549">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     id="namedview547"
+     showgrid="false"
+     inkscape:zoom="0.19889339"
+     inkscape:cx="-337.84718"
+     inkscape:cy="917.13848"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g545"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <desc
+     id="desc2">Created with Highcharts 6.2.0</desc>
+  <defs
+     id="defs7">
+    <clipPath
+       id="highcharts-q1j6iui-1">
+      <rect
+         x="0"
+         y="0"
+         width="318"
+         height="1019"
+         id="rect4"
+         style="fill:none" />
+    </clipPath>
+  </defs>
+  <g
+     id="g545"
+     transform="translate(-5.0278192,-29.632396)">
+    <g
+       id="g1045"
+       transform="matrix(1,0,0,1.5508055,5.0278192,-1230.012)">
+      <rect
+         class="highcharts-background"
+         x="0"
+         y="800"
+         width="1127"
+         height="739.37781"
+         rx="0"
+         ry="0"
+         id="rect9"
+         style="fill:#ffffff;stroke-width:1.35957515" />
+      <rect
+         class="highcharts-plot-background"
+         x="54"
+         y="818.48444"
+         width="1019"
+         height="587.80536"
+         id="rect11"
+         style="fill:none;stroke-width:1.35957515" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path13"
+         d="M 54,1379.4874 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path15"
+         d="M 54,1351.7607 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path17"
+         d="M 54,1324.034 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path19"
+         d="M 54,1294.4589 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path21"
+         d="M 54,1266.7322 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path23"
+         d="M 54,1239.0056 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path25"
+         d="M 54,1211.2789 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path27"
+         d="M 54,1183.5522 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path29"
+         d="M 54,1155.8256 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path31"
+         d="M 54,1128.0989 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path33"
+         d="M 54,1098.5238 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path35"
+         d="M 54,1070.7971 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path37"
+         d="M 54,1043.0705 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path39"
+         d="M 54,1015.3438 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path41"
+         d="M 54,987.61712 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path43"
+         d="M 54,959.89045 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path45"
+         d="M 54,932.16378 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path47"
+         d="M 54,902.58867 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path49"
+         d="M 54,874.862 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path51"
+         d="M 54,847.13533 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path53"
+         d="M 54,819.40867 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path55"
+         d="M 54,1407.214 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path59"
+         d="M 54,1379.4874 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path61"
+         d="M 54,1351.7607 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path63"
+         d="M 54,1324.034 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path65"
+         d="M 54,1294.4589 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path67"
+         d="M 54,1266.7322 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path69"
+         d="M 54,1239.0056 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path71"
+         d="M 54,1211.2789 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path73"
+         d="M 54,1183.5522 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path75"
+         d="M 54,1155.8256 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path77"
+         d="M 54,1128.0989 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path79"
+         d="M 54,1098.5238 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path81"
+         d="M 54,1070.7971 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path83"
+         d="M 54,1043.0705 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path85"
+         d="M 54,1015.3438 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path87"
+         d="M 54,987.61712 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path89"
+         d="M 54,959.89045 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path91"
+         d="M 54,932.16378 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path93"
+         d="M 54,902.58867 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path95"
+         d="M 54,874.862 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path97"
+         d="M 54,847.13533 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path99"
+         d="M 54,819.40867 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path101"
+         d="M 54,1407.214 H 1073"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path105"
+         d="M 53.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path107"
+         d="M 104.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path109"
+         d="M 155.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path111"
+         d="M 206.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path113"
+         d="M 257.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path115"
+         d="M 308.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path117"
+         d="M 359.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path119"
+         d="M 410.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path121"
+         d="M 461.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path123"
+         d="M 512.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path125"
+         d="M 563.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path127"
+         d="M 613.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path129"
+         d="M 664.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path131"
+         d="M 715.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path133"
+         d="M 766.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path135"
+         d="M 817.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path137"
+         d="M 868.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path139"
+         d="M 919.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path141"
+         d="M 970.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path143"
+         d="M 1021.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <path
+         style="opacity:1;fill:none;stroke:#e6e6e6;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path145"
+         d="M 1073.5,818.48445 V 1406.2898"
+         class="highcharts-grid-line"
+         data-z-index="1" />
+      <rect
+         class="highcharts-plot-border"
+         data-z-index="1"
+         x="54"
+         y="818.48444"
+         width="1019"
+         height="587.80536"
+         id="rect149"
+         style="fill:none;stroke-width:1.35957515" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path151"
+         d="M 54,1379.4874 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path153"
+         d="M 54,1351.7607 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path155"
+         d="M 54,1324.034 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path157"
+         d="M 54,1294.4589 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path159"
+         d="M 54,1266.7322 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path161"
+         d="M 54,1239.0056 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path163"
+         d="M 54,1211.2789 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path165"
+         d="M 54,1183.5522 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path167"
+         d="M 54,1155.8256 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path169"
+         d="M 54,1128.0989 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path171"
+         d="M 54,1098.5238 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path173"
+         d="M 54,1070.7971 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path175"
+         d="M 54,1043.0705 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path177"
+         d="M 54,1015.3438 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path179"
+         d="M 54,987.61712 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path181"
+         d="M 54,959.89045 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path183"
+         d="M 54,932.16378 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path185"
+         d="M 54,902.58867 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path187"
+         d="M 54,874.862 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path189"
+         d="M 54,847.13533 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path191"
+         d="M 54,817.56022 H 44"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path193"
+         d="M 54,1407.214 H 44"
+         class="highcharts-tick" />
+      <path
+         style="fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path195"
+         d="M 53.5,818.48445 V 1406.2898"
+         data-z-index="7"
+         class="highcharts-axis-line" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path199"
+         d="m 1073,1379.4874 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path201"
+         d="m 1073,1351.7607 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path203"
+         d="m 1073,1324.034 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path205"
+         d="m 1073,1294.4589 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path207"
+         d="m 1073,1266.7322 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path209"
+         d="m 1073,1239.0056 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path211"
+         d="m 1073,1211.2789 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path213"
+         d="m 1073,1183.5522 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path215"
+         d="m 1073,1155.8256 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path217"
+         d="m 1073,1128.0989 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path219"
+         d="m 1073,1098.5238 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path221"
+         d="m 1073,1070.7971 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path223"
+         d="m 1073,1043.0705 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path225"
+         d="m 1073,1015.3438 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path227"
+         d="m 1073,987.61712 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path229"
+         d="m 1073,959.89045 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path231"
+         d="m 1073,932.16378 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path233"
+         d="m 1073,902.58867 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path235"
+         d="m 1073,874.862 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path237"
+         d="m 1073,847.13533 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path239"
+         d="m 1073,817.56022 h 10"
+         class="highcharts-tick" />
+      <path
+         style="opacity:1;fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path241"
+         d="m 1073,1407.214 h 10"
+         class="highcharts-tick" />
+      <path
+         style="fill:none;stroke:#ccd6eb;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path243"
+         d="M 1073.5,818.48445 V 1406.2898"
+         data-z-index="7"
+         class="highcharts-axis-line" />
+      <path
+         style="fill:none;stroke-width:1.35957515"
+         inkscape:connector-curvature="0"
+         id="path247"
+         d="M 54,1406.2898 H 1073"
+         data-z-index="7"
+         class="highcharts-axis-line" />
+      <g
+         id="g293"
+         clip-path="url(#highcharts-q1j6iui-1)"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-series highcharts-series-0 highcharts-bar-series highcharts-color-0 highcharts-tracker "
+         data-z-index="0.1">
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect251"
+           class="highcharts-point highcharts-color-0 "
+           height="214"
+           width="8"
+           y="296.5"
+           x="3.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect253"
+           class="highcharts-point highcharts-color-0"
+           height="204"
+           width="8"
+           y="306.5"
+           x="18.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect255"
+           class="highcharts-point highcharts-color-0 "
+           height="214"
+           width="8"
+           y="296.5"
+           x="33.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect257"
+           class="highcharts-point highcharts-color-0 "
+           height="235"
+           width="8"
+           y="275.5"
+           x="48.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect259"
+           class="highcharts-point highcharts-color-0 "
+           height="265"
+           width="8"
+           y="245.5"
+           x="64.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect261"
+           class="highcharts-point highcharts-color-0 "
+           height="296"
+           width="8"
+           y="214.5"
+           x="79.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect263"
+           class="highcharts-point highcharts-color-0 "
+           height="327"
+           width="8"
+           y="183.5"
+           x="94.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect265"
+           class="highcharts-point highcharts-color-0"
+           height="316"
+           width="8"
+           y="194.5"
+           x="109.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect267"
+           class="highcharts-point highcharts-color-0"
+           height="296"
+           width="8"
+           y="214.5"
+           x="124.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect269"
+           class="highcharts-point highcharts-color-0"
+           height="347"
+           width="8"
+           y="163.5"
+           x="139.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect271"
+           class="highcharts-point highcharts-color-0"
+           height="439"
+           width="8"
+           y="71.5"
+           x="154.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect273"
+           class="highcharts-point highcharts-color-0 "
+           height="408"
+           width="8"
+           y="102.5"
+           x="170.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect275"
+           class="highcharts-point highcharts-color-0"
+           height="357"
+           width="8"
+           y="153.5"
+           x="185.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect277"
+           class="highcharts-point highcharts-color-0"
+           height="296"
+           width="8"
+           y="214.5"
+           x="200.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect279"
+           class="highcharts-point highcharts-color-0"
+           height="255"
+           width="8"
+           y="255.5"
+           x="215.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect281"
+           class="highcharts-point highcharts-color-0"
+           height="276"
+           width="8"
+           y="234.5"
+           x="230.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect283"
+           class="highcharts-point highcharts-color-0"
+           height="225"
+           width="8"
+           y="285.5"
+           x="245.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect285"
+           class="highcharts-point highcharts-color-0"
+           height="113"
+           width="8"
+           y="397.5"
+           x="260.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect287"
+           class="highcharts-point highcharts-color-0"
+           height="62"
+           width="8"
+           y="448.5"
+           x="276.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect289"
+           class="highcharts-point highcharts-color-0"
+           height="21"
+           width="8"
+           y="489.5"
+           x="291.5" />
+        <rect
+           style="fill:#7cb5ec;stroke:#ffffff;stroke-width:1"
+           id="rect291"
+           class="highcharts-point highcharts-color-0"
+           height="0"
+           width="8"
+           y="510.5"
+           x="306.5" />
+      </g>
+      <g
+         id="g295"
+         clip-path="none"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-markers highcharts-series-0 highcharts-bar-series highcharts-color-0 "
+         data-z-index="0.1" />
+      <g
+         id="g339"
+         clip-path="url(#highcharts-q1j6iui-1)"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-series highcharts-series-1 highcharts-bar-series highcharts-color-1 highcharts-tracker "
+         data-z-index="0.1">
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect297"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="224"
+           width="8"
+           y="510.5"
+           x="3.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect299"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="213"
+           width="8"
+           y="510.5"
+           x="18.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect301"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="224"
+           width="8"
+           y="510.5"
+           x="33.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect303"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="244"
+           width="8"
+           y="510.5"
+           x="48.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect305"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="275"
+           width="8"
+           y="510.5"
+           x="64.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect307"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="305"
+           width="8"
+           y="510.5"
+           x="79.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect309"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="336"
+           width="8"
+           y="510.5"
+           x="94.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect311"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="326"
+           width="8"
+           y="510.5"
+           x="109.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect313"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="295"
+           width="8"
+           y="510.5"
+           x="124.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect315"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="356"
+           width="8"
+           y="510.5"
+           x="139.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect317"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="448"
+           width="8"
+           y="510.5"
+           x="154.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect319"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="417"
+           width="8"
+           y="510.5"
+           x="170.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect321"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="346"
+           width="8"
+           y="510.5"
+           x="185.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect323"
+           class="highcharts-point highcharts-negative highcharts-color-1 "
+           height="275"
+           width="8"
+           y="510.5"
+           x="200.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect325"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="234"
+           width="8"
+           y="510.5"
+           x="215.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect327"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="224"
+           width="8"
+           y="510.5"
+           x="230.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect329"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="163"
+           width="8"
+           y="510.5"
+           x="245.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect331"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="61"
+           width="8"
+           y="510.5"
+           x="260.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect333"
+           class="highcharts-point highcharts-negative highcharts-color-1"
+           height="30"
+           width="8"
+           y="510.5"
+           x="276.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect335"
+           class="highcharts-point highcharts-color-1"
+           height="0"
+           width="8"
+           y="510.5"
+           x="291.5" />
+        <rect
+           style="fill:#434348;stroke:#ffffff;stroke-width:1"
+           id="rect337"
+           class="highcharts-point highcharts-color-1"
+           height="0"
+           width="8"
+           y="510.5"
+           x="306.5" />
+      </g>
+      <g
+         id="g341"
+         clip-path="none"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-markers highcharts-series-1 highcharts-bar-series highcharts-color-1 "
+         data-z-index="0.1" />
+      <g
+         id="g343"
+         clip-path="url(#highcharts-q1j6iui-1)"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-series highcharts-series-2 highcharts-bar-series highcharts-color-2 highcharts-tracker"
+         data-z-index="0.1" />
+      <g
+         id="g345"
+         clip-path="none"
+         transform="matrix(0,-1.8484445,-1,0,1073,1406.2898)"
+         class="highcharts-markers highcharts-series-2 highcharts-bar-series highcharts-color-2 "
+         data-z-index="0.1" />
+      <g
+         style="stroke-linecap:round"
+         id="g357"
+         transform="matrix(1,0,0,1.8484445,1093,818.48445)"
+         class="highcharts-button highcharts-contextbutton">
+        <title
+           id="title349">Chart context menu</title>
+        <rect
+           style="fill:#ffffff;stroke:none;stroke-width:1"
+           id="rect351"
+           ry="2"
+           rx="2"
+           height="22"
+           width="24"
+           y="0.5"
+           x="0.5"
+           class=" highcharts-button-box" />
+        <path
+           style="fill:#666666;stroke:#666666;stroke-width:3"
+           inkscape:connector-curvature="0"
+           id="path353"
+           data-z-index="1"
+           class="highcharts-button-symbol"
+           d="m 6,6.5 h 14 m -14,5 h 14 m -14,5 h 14" />
+        <text
+           id="text355"
+           y="12"
+           style="color:#333333;font-weight:normal;fill:#333333"
+           data-z-index="1"
+           x="0" />
+      </g>
+      <text
+         x="564"
+         class="highcharts-title"
+         data-z-index="4"
+         style="color:#333333;font-size:18px;text-anchor:middle;fill:#333333"
+         y="824"
+         id="text361" />
+      <text
+         x="564"
+         class="highcharts-subtitle"
+         data-z-index="4"
+         style="color:#666666;text-anchor:middle;fill:#666666"
+         y="824"
+         id="text363" />
+      <rect
+         style="visibility:visible;fill:none;stroke-width:1.35957515"
+         id="rect365"
+         visibility="visible"
+         height="46.211113"
+         width="226"
+         y="1465.4399"
+         x="451"
+         ry="0"
+         rx="0"
+         class="highcharts-legend-box" />
+      <g
+         transform="matrix(1,0,0,1.8484445,451,1465.44)"
+         id="g393"
+         data-z-index="1">
+        <g
+           id="g391">
+          <g
+             id="g373"
+             transform="translate(8,3)"
+             data-z-index="1"
+             class="highcharts-legend-item highcharts-bar-series highcharts-color-0 highcharts-series-0">
+            <text
+               id="text369"
+               y="15"
+               data-z-index="2"
+               style="color:#333333;font-weight:bold;font-size:12px;text-anchor:start;fill:#333333"
+               x="21">
+              <tspan
+                 id="tspan367">Female</tspan>
+            </text>
+            <rect
+               style="fill:#7cb5ec"
+               id="rect371"
+               data-z-index="3"
+               class="highcharts-point"
+               ry="6"
+               rx="6"
+               height="12"
+               width="12"
+               y="4"
+               x="2" />
+          </g>
+          <g
+             id="g381"
+             transform="translate(92.671875,3)"
+             data-z-index="1"
+             class="highcharts-legend-item highcharts-bar-series highcharts-color-1 highcharts-series-1">
+            <text
+               id="text377"
+               data-z-index="2"
+               style="color:#333333;font-weight:bold;font-size:12px;text-anchor:start;fill:#333333"
+               y="15"
+               x="21">
+              <tspan
+                 id="tspan375">Male</tspan>
+            </text>
+            <rect
+               style="fill:#434348"
+               id="rect379"
+               data-z-index="3"
+               class="highcharts-point"
+               ry="6"
+               rx="6"
+               height="12"
+               width="12"
+               y="4"
+               x="2" />
+          </g>
+          <g
+             id="g389"
+             transform="translate(162.67187,3)"
+             data-z-index="1"
+             class="highcharts-legend-item highcharts-bar-series highcharts-color-2 highcharts-series-2">
+            <text
+               id="text385"
+               data-z-index="2"
+               style="color:#333333;font-weight:bold;font-size:12px;text-anchor:start;fill:#333333"
+               y="15"
+               x="21">
+              <tspan
+                 id="tspan383">Other</tspan>
+            </text>
+            <rect
+               style="fill:#90ed7d"
+               id="rect387"
+               data-z-index="3"
+               class="highcharts-point"
+               ry="6"
+               rx="6"
+               height="12"
+               width="12"
+               y="4"
+               x="2" />
+          </g>
+        </g>
+      </g>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text397"
+         y="1030.281"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">0,4</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text399"
+         y="1009.8874"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">5,9</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text401"
+         y="989.49377"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">10,14</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text403"
+         y="969.10016"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">15,19</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text405"
+         y="948.70654"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">20,24</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text407"
+         y="928.31293"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">25,29</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text409"
+         y="907.91925"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">30,34</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text411"
+         y="886.16608"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">35,39</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text413"
+         y="865.77246"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">40,44</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text415"
+         y="845.37885"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">45,49</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text417"
+         y="824.98517"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">50,54</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text419"
+         y="804.59155"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">55,59</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text421"
+         y="784.19794"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">60,64</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text423"
+         y="763.80432"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">65,69</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text425"
+         y="742.05109"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">70,74</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text427"
+         y="721.65747"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">75,79</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text429"
+         y="701.26385"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">80,84</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text431"
+         y="680.87024"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">85,89</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text433"
+         y="660.47662"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">90,94</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text435"
+         y="640.08301"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">95,99</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text437"
+         y="619.68933"
+         style="color:#666666;font-size:14.95532608px;text-anchor:end;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="53.02343">100,</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text441"
+         y="1030.281"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">0,4</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text443"
+         y="1009.8874"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">5,9</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text445"
+         y="989.49377"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">10,14</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text447"
+         y="969.10016"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">15,19</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text449"
+         y="948.70654"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">20,24</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text451"
+         y="928.31293"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">25,29</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text453"
+         y="907.91925"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">30,34</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text455"
+         y="886.16608"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">35,39</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text457"
+         y="865.77246"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">40,44</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text459"
+         y="845.37885"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">45,49</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text461"
+         y="824.98517"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">50,54</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text463"
+         y="804.59155"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">55,59</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text465"
+         y="784.19794"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">60,64</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text467"
+         y="763.80432"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">65,69</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text469"
+         y="742.05109"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">70,74</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text471"
+         y="721.65747"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">75,79</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text473"
+         y="701.26385"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">80,84</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text475"
+         y="680.87024"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">85,89</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text477"
+         y="660.47662"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">90,94</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text479"
+         y="640.08301"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">95,99</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text481"
+         y="619.68933"
+         style="color:#666666;font-size:14.95532608px;text-anchor:start;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1479.2178">100,</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text485"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="73.417053">5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text487"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="142.68741">4.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text489"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="211.95775">4%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text491"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="281.22812">3.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text493"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="350.49844">3%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text495"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="419.76883">2.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text497"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="489.03918">2%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text499"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="558.30951">1.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text501"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="627.5799">1%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text503"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="696.85022">0.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text505"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="766.12061">0%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text507"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="835.39093">0.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text509"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="904.66132">1%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text511"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="973.93158">1.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text513"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1043.202">2%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text515"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1112.4723">2.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text517"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1181.7427">3%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text519"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1251.0131">3.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text521"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1320.2833">4%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text523"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1389.5537">4.5%</text>
+      <text
+         transform="scale(0.73552391,1.3595751)"
+         id="text525"
+         y="1060.1917"
+         style="color:#666666;font-size:14.95532608px;text-anchor:middle;opacity:1;fill:#666666;stroke-width:1.35957515"
+         x="1458.8241">5%</text>
+    </g>
+  </g>
+</svg>
