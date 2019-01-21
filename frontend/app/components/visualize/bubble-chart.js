@@ -42,8 +42,8 @@ export default Component.extend({
       .text(d => d.data.tooltip);
 
     node.append("path")
-      .attr("d", "M0 20 v-20 h20 a10,10 9 0,1 0,20 a10,10 9 0,1 -20,0 z")
-      .attr("transform", d => `scale(${0.05 * d.r}) translate(0, 15) rotate(225)`)
+      .attr("d", "M0 8 l -5-5 c -3-3 1-8 5-5 3-3 8 1 5 5")
+      .attr("transform", d => `scale(${0.17 * d.r})`)
       .style("fill", d => d.data.color) ;
 
     node.append("text")
