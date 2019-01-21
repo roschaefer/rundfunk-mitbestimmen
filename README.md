@@ -42,7 +42,7 @@ broadcast. If the `response` is positive, the `amount` further specifies how
 much to pay for a broadcast. So, the sum of all amounts per user must not exceed
 the monthly fee of 17,50€ per month.
 
-![ER diagram](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/er.png)
+![ER diagram](/documentation/images/er.png)
 
 ### Frontend
 
@@ -53,7 +53,7 @@ actions will send requests to the backend. The frontend should be comfortable to
 use, e.g. by default amounts are evenly distributed with the option to set the
 amount explicitly.
 
-![Process diagram](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/process.png)
+![Process diagram](/documentation/images/process.png)
 
 ### Features
 
@@ -65,7 +65,7 @@ current behaviour and the reasoning behind it.
 Here is our model how to write tests. The cucumber tests are at the top. As they
 test the entire stack, cucumber tests tend to be rather slow in execution but
 in return they deliver some confidence that the system works.
-![Testing pyramid](https://github.com/roschaefer/rundfunk-mitbestimmen/blob/master/documentation/images/testing-pyramid.png)
+![Testing pyramid](/documentation/images/testing-pyramid.png)
 
 ## Installation and Usage with Docker
 
@@ -123,8 +123,8 @@ docker-compose run --rm fullstack bundle exec cucumber
 ## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
-[yarn](https://yarnpkg.com/en/),
-[EmberJS](https://www.emberjs.com/), [ruby](https://www.ruby-lang.org/en/)
+[yarn](https://yarnpkg.com/en/), [EmberJS](https://www.emberjs.com/),
+[ruby](https://www.ruby-lang.org/en/), [Redis](https://redis.io/)
 and [postgresql](https://www.postgresql.org/) installed before you proceed. E.g.
 we have the following versions:
 
@@ -142,6 +142,8 @@ $ ruby --version
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 $ psql --version
 psql (PostgreSQL) 9.6.5
+$ redis-server -v
+Redis server v=5.0.1
 ```
 
 ### Clone the repository:
@@ -171,18 +173,29 @@ bundle
 
 **(OPTIONAL):** Customize the file `backend/config/database.yml` to match your local database configuration.
 
-Now create the databases and run the migrations:
+Now make sure that postgresql database is running
+```sh
+[linux]$ sudo systemctl start postgresql
+[macos]$ brew services start postgresql
+```
+Create the databases and run the migrations:
 ```sh
 rails db:create db:migrate
 ```
 
 5. If you want, you can create some seed data
+
+You need to have redis running
+```sh
+[linux]$ sudo systemctl start redis
+[macos]$ brew services start redis
+```
+Then you can seed the data
 ```
 cd backend
 rails db:seed
 cd ..
 ```
-
 
 ## Usage
 
