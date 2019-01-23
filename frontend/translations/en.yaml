@@ -1,11 +1,3 @@
-auth0-lock:
-  title: Passwordless Login
-  success:
-    magicLink: We sent you a link to sign in
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Otherwise, enter your email address<br>to sign in or to create an account.
-  lastLoginInstructions: Last time you logged in with
 authentication:
   loading:
     message: Logging in...
@@ -159,6 +151,19 @@ index:
       demography: How does the population pyramid of supporters look like?
       trends: How are broadcasts developing, are there any trends?
       relations: Are there any relations or clusters between broadcasts?
+  community-meetings:
+    header: Join the Open-Source-Community
+    description: >
+      This application is maintained by the open source community, especially
+      by our developers on
+      <a href="https://www.agileventures.org/projects/rundfunk-mitbestimmen">
+      Agile Ventures</a>. If you would like to join our meetings then you can
+      find invite links on
+      <a href="https://www.meetup.com/remote-pair-programming/">meetup.com</a>
+      and on the
+      <a href="https://www.agileventures.org/events">events page</a>.
+      The Agile Ventures <a href="https://www.agileventures.org/users/sign_up">
+      signup page</a> gives you access to our community messenger "Slack".
   summarized-statistics:
     header: Summarized statistics
   media:
@@ -227,11 +232,9 @@ index:
       responsible:
         title: Who are you?
         content: >
-          "Rundfunk Mitbestimmen" is mainly developed by
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, a
-          professional user experience designer from Potsdam and
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, a student
-          at the <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
+          "Rundfunk Mitbestimmen" is mainly developed by volunteers of
+          <a href="https://www.agileventures.org/">Agile Ventures</a>, an online
+          learner community for open-source software developers.
       finances:
         title: Who is financing this?
         content: >
@@ -307,6 +310,9 @@ find-broadcasts:
       next: Next
       back: Back
       distribute: Distribute budget
+show-twitter-feed:
+  tweets-by: Tweets by RundfunkMB
+  message: Show Twitter Feeds
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!
@@ -546,6 +552,14 @@ visualize:
       on: Broadcasts that are similar to my supported broadcasts
       off: Similarities of all broadcasts
 about-us:
+  header: About us
+  sub-header: >
+    This application is 100% developed by volunteers. A complete list of all
+    software programmers can be found online at <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen/graphs/contributors">Github</a>. Most of them have come to know us through
+    <a target="_blank"href="https://www.agileventures.org/">Agile-Ventures</a>,
+    an online learning programming community. The video recordings of our
+    meetings and pairings are available on
+    <a href="https://www.youtube.com/channel/UCyrLYmvmLzWxnPHxt4n5aPw?view_as=subscriber" target="_blank">Youtube</a>.
   team:
     you:
       name: This could be you
@@ -557,13 +571,6 @@ about-us:
         <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Just get in touch :)
         </a>
-    katharina:
-      position: User experience designer
-      description: >
-        Katharina is an user experience designer from Potsdam. She is commited
-        to non-profit software projects to tackle obvious problems using
-        innovative solutions. She makes Rundfunk MITBESTIMMEN as simple and
-        intuitive to use as possible.
     robert:
       position: Software developer
       description: >

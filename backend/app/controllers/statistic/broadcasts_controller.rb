@@ -51,6 +51,7 @@ module Statistic
       }
       direction = order_mapping[statistics_params[:direction]] || 'DESC NULLS LAST'
       order_by_clause = [column, direction].join(' ')
+      order_by_clause = Statistic::Broadcast.send(:sanitize_sql_for_order, order_by_clause)
 
       @statistics = Statistic::Broadcast.order(order_by_clause).order(title: :asc).page(page).per(per_page)
       render json: @statistics, meta: { total_pages: @statistics.total_pages }

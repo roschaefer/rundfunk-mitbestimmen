@@ -1,42 +1,35 @@
 version: '3'
 services:
   frontend:
+    image: rundfunk-mitbestimmen-frontend
     build:
       context: ./frontend
     ports:
-      - '4200:4200'
-      - '49153:49153'
-    volumes:
-      - ./frontend/package.json:/frontend/package.json
-      - ./frontend/app:/frontend/app
-      - ./frontend/config:/frontend/config
-      - ./frontend/public:/frontend/public
-      - ./frontend/tests:/frontend/tests
-      - ./frontend/translations:/frontend/translations
-    command: npm start
+      - 4200:4200 # server
+      - 49153:49153 # live reload
+      - 7357:7357 # test server
+      - 7020:7020
+    environment:
+      - DOCKER=1
+      - API_HOST=http://localhost:3000
+    tty: true
+    stdin_open: true
+    command: ember server
   backend:
+    image: rundfunk-mitbestimmen-backend
     build:
       context: ./backend
     ports:
-      - '3000:3000'
-    volumes:
-      - ./backend/Gemfile:/backend/Gemfile
-      - ./backend/Gemfile.lock:/backend/Gemfile.lock
-      - ./backend/Rakefile:/backend/Rakefile
-      - ./backend/app:/backend/app
-      - ./backend/config:/backend/config
-      - ./backend/config.ru:/backend/config.ru
-      - ./backend/db:/backend/db
-      - ./backend/lib:/backend/lib
-      - ./backend/public:/backend/public
-      - ./backend/spec:/backend/spec
+      - 3000:3000
     environment:
-      - DATABASE_URL=postgresql://db
+      - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
-    links:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
       - db
-    command: bin/rails s -b 0.0.0.0
+      - redis
+    command: "bin/rails server -b 0.0.0.0"
   db:
-    image: postgres:9.2-alpine
-    environment:
-      - POSTGRES_DB=rundfunk-backend-development
+    image: postgres:9.6
+  redis:
+    image: redis:3.2.0

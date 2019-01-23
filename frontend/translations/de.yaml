@@ -1,11 +1,4 @@
-auth0-lock:
-  title: Passwortlose Anmeldung
-  success:
-    magicLink: Wir haben Dir einen Login-Link geschickt
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Oder gib eine E-Mail Adresse ein,<br>um Dich anzumelden oder zu registrieren.
-  lastLoginInstructions: Das letzte Mal warst Du angemeldet als
+login:
 authentication:
   loading:
     message: Anmelden...
@@ -169,10 +162,23 @@ index:
       demography: Wie sieht die Alterspyramide der Unterstützer aus?
       trends: Wie entwickeln sich Sendungen, gibt es Trends?
       relations: Was gibt es für Beziehungen zwischen Sendungen?
+  community-meetings:
+    header: Werde Teil der Open-Source-Community
+    description: >
+      Unsere Anwendung wird von der Open-Source-Community gepflegt und gewartet,
+      insbesondere von unseren fleißigen Entwicklern auf
+      <a href="https://www.agileventures.org/projects/rundfunk-mitbestimmen">
+      Agile Ventures</a>. Wenn Du gerne an unseren Treffen teilnehmen möchtest,
+      dann findest die Teilnahme-Links auf
+      <a href="https://www.meetup.com/remote-pair-programming/">meetup.com</a>
+      und auf der <a href="https://www.agileventures.org/events">Events
+      Seite</a>. Über die <a href="https://www.agileventures.org/users/sign_up">
+      Anmeldungsseite</a> von Agile Ventures erhältst Du Zugang zu unserem
+      Community Messenger "Slack".
   summarized-statistics:
     header: Zusammgefasste Statistiken
   media:
-    header: Medienberichte
+    header: Pressespiegel
   faq:
     questions:
       survey:
@@ -241,11 +247,9 @@ index:
       responsible:
         title: Wer seid ihr?
         content: >
-          "Rundfunk MITBESTIMMEN" wird hauptsächlich entwickelt von
-          <a href="https://github.com/somamo">Katharina Ehrhardt</a>, User
-          Experience Designerin aus Potsdam und
-          <a href="https://github.com/roschaefer">Robert Schäfer</a>, Student
-          am <a href="https://hpi.de/">Hasso-Plattner-Institut</a>.
+          "Rundfunk mitbestimmmen" wird hauptsächlich von Freiwilligen von
+          <a href="https://www.agileventures.org/">Agile Ventures</a> entwickelt, einer
+          Online-Lerngemeinschaft für Open-Source-Softwareentwickler.
       finances:
         title: Wer finanziert das?
         content: >
@@ -324,6 +328,9 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
+show-twitter-feed:
+  tweets-by: Tweets von RundfunkMB
+  message: Twitter-Feeds anzeigen
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >
@@ -578,6 +585,17 @@ visualize:
       off: Ähnlichkeiten aller Sendungen
 
 about-us:
+  header: Über uns
+  sub-header: >
+    Diese Anwendung wird zu 100% von Freiwilligen entwickelt. Eine vollständige
+    Liste aller Programmierer der Software ist online auf
+    <a target="_blank" href="https://github.com/roschaefer/rundfunk-mitbestimmen/graphs/contributors">
+    Github zu finden</a>. Die meisten davon haben uns über
+    <a target="_blank"href="https://www.agileventures.org/">Agile-Ventures</a>
+    kennen gelernt, einer Online-Community zum Programmieren Lernen. Die Video
+    Aufzeichnungen unserer Treffen und Pair-Programmings sind auf
+    <a href="https://www.youtube.com/channel/UCyrLYmvmLzWxnPHxt4n5aPw?view_as=subscriber" target="_blank">
+    Youtube</a> zu finden.
   team:
     you:
       name: Hier könntest Du sein
@@ -589,13 +607,6 @@ about-us:
         <a class="item" href="mailto:feedback@rundfunk-mitbestimmen.de">
         Kontaktiere uns einfach :)
         </a>
-    katharina:
-      position: User Experience Designerin
-      description: >
-        Katharina ist User Experience Designerin aus Potsdam und engagiert sich
-        für gemeinnützige Software Projekte, um offensichtliche Probleme mit
-        innovativen Lösungen anzugehen. Sie macht Rundfunk MITBESTIMMEN so
-        einfach und intuitiv wie möglich.
     robert:
       position: Software-Entwickler
       description: >

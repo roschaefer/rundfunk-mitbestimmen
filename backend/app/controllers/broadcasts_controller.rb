@@ -64,6 +64,7 @@ class BroadcastsController < ApplicationController
 
   def mark_broadcasts_as_seen(broadcasts)
     return unless current_user
+
     new_broadcasts = broadcasts - current_user.broadcasts
     current_user.broadcasts << new_broadcasts
   end

@@ -16,15 +16,17 @@ class Impression < ApplicationRecord
   validate :total_amount_does_not_exceed_budget
   after_commit do
     Scenic.database.refresh_materialized_view(:statistic_broadcasts, concurrently: true, cascade: false)
-    ::ComputeSimilaritiesWorker.perform_in(10.seconds)
+    ::ComputeSimilaritiesWorker.perform_in(5.seconds)
   end
 
   private
 
   def total_amount_does_not_exceed_budget
     return unless amount
+
     current_sum = amount + Impression.where(user: user).where.not(id: id).sum(:amount)
     return if current_sum <= BUDGET
+
     errors.add(:amount, I18n.t('activerecord.errors.models.impression.attributes.amount.total', sum: ActionController::Base.helpers.number_to_currency(current_sum, unit: '€'), budget: ActionController::Base.helpers.number_to_currency(BUDGET, unit: '€')))
   end
 end

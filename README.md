@@ -1,22 +1,29 @@
 # rundfunk-mitbestimmen
 
-[![Join the chat at https://gitter.im/rundfunk-mitbestimmen/Lobby](https://badges.gitter.im/rundfunk-mitbestimmen/Lobby.svg)](https://gitter.im/rundfunk-mitbestimmen/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build
 Status](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen.svg?branch=master)](https://travis-ci.org/roschaefer/rundfunk-mitbestimmen)
 
-Public broadcasting in Germany receives *€8,000,000,000* (eight billion
-euros) annually, yet it is subject to little or no public feedback, ranking, or
-even debate on what constitutes value or quality.
+### Problem
 
-We want to change that: With this app you can make your voice heard and propose
-on which shows your €17.50 per month should be spent.
+**Public broadcasting in Germany receives *€8,000,000,000* (eight billion
+euros) annually, yet it is subject to no public feedback, ranking, or
+even debate on what constitutes value or quality.**
+
+### Solution
+**On [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/) you can
+say how your €17.50 per month should be spent. It is a proof of concept how
+digital democracy can work for publicly funded media and it is a win-win situation
+for both sides: More influence for the audience. More data for broadcasters.**
+
+## Community
+
+Rundfunk mitbestimmen is maintained by the community. We have regular meetings, run online pair-programmings and tutorials in our [online learner community at Agile Ventures](https://www.agileventures.org/projects/rundfunk-mitbestimmen). You can [join our Slack here](https://www.agileventures.org/users/sign_up) and then find us in our channel [#rundfunk-mitbestimmen](https://agileventures.slack.com/app_redirect?channel=rundfunk-mitbestimmen). Here is the Youtube Playlist of our recent meetings or pair-programmings:
 
 
-## Live App
+[![Community pair-programming/meeting](https://img.youtube.com/vi/D_g6UHMC8NU/sddefault.jpg)](https://www.youtube.com/embed/videoseries?list=PL1CiawkXA01MwjAVBzV0fRjpbl454SCbl)
 
-Visit [rundfunk-mitbestimmen.de](http://rundfunk-mitbestimmen.de/)
 
-## Structure
+## Directory Layout
 
 This repository contains three important folders:
 
@@ -55,38 +62,69 @@ requirements as user stories in our Github issues and implement them as cucumber
 features. The cucumber features are a good starting for you to understand the
 current behaviour and the reasoning behind it.
 
+Here is our model how to write tests. The cucumber tests are at the top. As they
+test the entire stack, cucumber tests tend to be rather slow in execution but
+in return they deliver some confidence that the system works.
+![Testing pyramid](/documentation/images/testing-pyramid.png)
 
-## Installation and Usage with Docker (quick but without software tests)
+## Installation and Usage with Docker
+
+Make sure you have `docker` and `docker-compose` installed:
+```sh
+$ docker --version
+Docker version 18.05.0-ce, build f150324782
+$ docker-compose --version
+docker-compose version 1.22.0, build unknown
+```
 
 Clone the repository:
 ```sh
 git clone https://github.com/roschaefer/rundfunk-mitbestimmen.git
 ```
 
-If you have `docker-compose` installed, you can install `frontend`,
-`backend` and `db` with a single command:
+You can setup the development environment with:
 
 ```sh
-dev/reset
+cd rundfunk-mitbestimmen
+docker-compose up
 ```
 
-After the installation, you can start the entire stack with:
+This can take a while...
+As soon as this is finished, create the database and run migrations with:
 ```sh
-dev/start
+docker-compose run --rm backend rails db:create db:migrate
 ```
+
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
-```
-docker-compose run backend bin/rails db:seed
+```sh
+docker-compose run --rm backend rails db:seed
 ```
 
+Run frontend tests:
+```sh
+docker-compose run --rm frontend ember test
+```
 
-## Local Installation (best option for developers)
+Run backend tests:
+```sh
+docker-compose run --rm backend bin/rspec
+```
+
+For fullstack testing, use the provided [docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
+```
+When all containers are up, run the cucumber tests in the `fullstack` service with:
+```sh
+docker-compose run --rm fullstack bundle exec cucumber
+```
+## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),
-[yarn](https://yarnpkg.com/en/),
-[EmberJS](https://www.emberjs.com/), [ruby](https://www.ruby-lang.org/en/)
+[yarn](https://yarnpkg.com/en/), [EmberJS](https://www.emberjs.com/),
+[ruby](https://www.ruby-lang.org/en/), [Redis](https://redis.io/)
 and [postgresql](https://www.postgresql.org/) installed before you proceed. E.g.
 we have the following versions:
 
@@ -104,6 +142,8 @@ $ ruby --version
 ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
 $ psql --version
 psql (PostgreSQL) 9.6.5
+$ redis-server -v
+Redis server v=5.0.1
 ```
 
 ### Clone the repository:
@@ -130,33 +170,38 @@ cd ../backend
 bundle
 ```
 4. Setup the database
-Check under `backend/config` you will get a file called `database.template.yml`,
-rename this file to `database.yml`.
+
+**(OPTIONAL):** Customize the file `backend/config/database.yml` to match your local database configuration.
+
+Now make sure that postgresql database is running
 ```sh
-cp backend/config/database.template.yml backend/config/database.yml
+[linux]$ sudo systemctl start postgresql
+[macos]$ brew services start postgresql
 ```
-This file is on the `.gitignore` file so it will not be checked in
-
-**(OPTIONAL):**  customize the new file to match the local database configuration
-
-Now create the databases and run the migrations:
+Create the databases and run the migrations:
 ```sh
-bin/rails db:create db:migrate
+rails db:create db:migrate
 ```
 
 5. If you want, you can create some seed data
+
+You need to have redis running
+```sh
+[linux]$ sudo systemctl start redis
+[macos]$ brew services start redis
+```
+Then you can seed the data
 ```
 cd backend
-bin/rails db:seed
+rails db:seed
 cd ..
 ```
-
 
 ## Usage
 
 Start the backend and sidekiq:
 ```sh
-cd backend && bin/rails s
+cd backend && rails s
 ```
 ```sh
 cd backend && bundle exec sidekiq
@@ -178,7 +223,7 @@ cd frontend && ember server --environment=fullstack
 
 Open two more terminals and run the backend server and sidekiq:
 ```sh
-cd backend && bin/rails server --environment=fullstack
+cd backend && rails server --environment=fullstack
 ```
 ```sh
 cd backend && bundle exec sidekiq
@@ -218,24 +263,24 @@ cd frontend && ember test --server
 cd backend && bin/rspec
 ```
 
-## Contributing
+## Guidelines
 
-We use this [milestone](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1) as priority queue for issues.
+[See our detailed contribution guidelines :mag:](/CONTRIBUTING.md)
 
-High prioritized issues will go to the top. Issues are tagged with
-`backend` and `frontend` depending on where code needs to be changed.
 
-Because GitHub lacks functionality to display estimation hours, we use [Zenhub's browser plugin](https://www.zenhub.com/).
-Installing this plugin will show you the estimated hours per issue.
+We use this [project board](https://github.com/roschaefer/rundfunk-mitbestimmen/projects/1) as our central issue tracker. Issues are ordered by priority and you can filter for `good first issue` if you are interested in a beginner-friendly task.
+Additionally, issues are tagged with `backend` and `frontend` depending on where code needs to be changed.
 
-Don't be afraid about Auth0. As long as your local installation runs in
-development environment your login will reach the "Testing" database
-of Auth0. This will not pollute the production database of Auth0.
+### Auth0
 
-### Workflow for contributing:
+Don't be afraid of our identity provider [Auth0](https://auth0.com/). In
+development environment your login will reach the "rundfunk-testing" instance
+of Auth0. This will not pollute the Auth0 instance used in production.
+
+### Workflow for Behaviour Driven Development with Cucumber:
 
 1. Fork it :fork_and_knife:
-2. Pick a user story from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/milestone/1)
+2. Pick an issue from the [backlog](https://github.com/roschaefer/rundfunk-mitbestimmen/projects/1)
 3. Create your feature branch: `git checkout -b [issue number]_my_new_feature_branch`
 4. Create`features/[site of change]/your.feature` and copy+paste the feature description from GitHub
 5. Boot both frontend and backend as described in the [section about testing](https://github.com/roschaefer/rundfunk-mitbestimmen#full-stack-testing)
@@ -248,7 +293,6 @@ of Auth0. This will not pollute the production database of Auth0.
 12. Push to the branch: `git push origin -u [issue number]_my_new_feature_branch`
 13. Submit a pull request :heart:
 
-[See our detailed contribution guidelines :mag:](/CONTRIBUTING.md)
 
 ## Deployment
 

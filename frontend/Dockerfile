@@ -1,13 +1,11 @@
-FROM node:6.10-alpine
-
-RUN apk add --no-cache git
-
+FROM danlynn/ember-cli:3.4.3-node_10.11
+EXPOSE 4200 49152 7357
 WORKDIR /frontend
 
 ADD package.json /frontend/package.json
-RUN npm install
+ADD yarn.lock /frontend/yarn.lock
+RUN yarn install
 
 ADD . /frontend
 
-EXPOSE 49152
-EXPOSE 4200
+RUN ember build

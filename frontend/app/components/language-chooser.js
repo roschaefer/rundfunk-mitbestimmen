@@ -10,6 +10,7 @@ export default Component.extend({
     choose(lang){
       let intl = this.get('intl');
       intl.setLocale(lang);
+      this.get('session').set('data.locale', lang)
       if(this.get('session.isAuthenticated')){
         this.get('store').queryRecord('user', {}).then((user) => {
           user.set('locale', lang);

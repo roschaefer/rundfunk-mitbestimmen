@@ -1,11 +1,10 @@
-# coding: utf-8
-feature_directory = Pathname.new(__FILE__).join('../..')
+# frozen_string_literal: true
+
+Pathname.new(__FILE__).join('../..')
 def sanitize_amount(amount)
-  begin
-    Float(amount.gsub('€',''))
-  rescue
-    nil
-  end
+  Float(amount.delete('€'))
+rescue StandardError
+  nil
 end
 
 def login
@@ -28,7 +27,7 @@ Given(/^(?:I|we) have (?:these|this) broadcast(?:s)? in (?:my|our) database:$/) 
     attributes[:image_url] = row['Image url']
     attributes[:broadcast_url] = row['Broadcast url']
     if row['Medium']
-      medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
+      medium = Medium.all.find { |m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
       attributes[:medium] = medium
     end
     if row['Station']
@@ -48,12 +47,12 @@ When(/^I visit the landing page$/) do
 end
 
 Then(/^I can read:$/) do |string|
-  actual = page.text.gsub("\n", ' ')
-  expected = string.gsub("\n", ' ')
+  actual = page.text.tr("\n", ' ')
+  expected = string.tr("\n", ' ')
   expect(actual).to include(expected)
 end
 
-Then("I see a success message:") do |string|
+Then('I see a success message:') do |string|
   expect(page).to have_css('.success.message', text: string)
 end
 
@@ -129,27 +128,26 @@ end
 
 Then(/^also in the database all impressions have the same amount of "([^"]*)"$/) do |amount|
   amounts = Impression.pluck(:amount)
-  expect(amounts.all? {|a| a == amount.to_f}).to be_truthy
+  expect(amounts.all? { |a| a == amount.to_f }).to be_truthy
 end
 
 Given(/^my broadcasts look like this:$/) do |table|
   table.hashes.each do |row|
     title = row['Title']
     amount = sanitize_amount(row['Amount']) if row['Amount']
-    fixed = !! (row['Fixed'] =~ /yes/i)
-    if row['Support']
-      response = (row['Support'] =~ /yes/i) ? :positive : :neutral
-    else
-      response = :positive
-    end
+    fixed = !(row['Fixed'] =~ /yes/i).nil?
+    response = if row['Support']
+                 /yes/i.match?(row['Support']) ? :positive : :neutral
+               else
+                 :positive
+               end
     broadcast = Broadcast.find_by(title: title) || create(:broadcast, title: title)
     create(:impression,
            user: @user,
            broadcast: broadcast,
            response: response,
            amount: amount,
-           fixed: fixed
-          )
+           fixed: fixed)
   end
 end
 
@@ -172,10 +170,9 @@ Then(/^my updated broadcasts look like this:$/) do |table|
 end
 
 Then(/^my response to "([^"]*)" is listed in the database as "([^"]*)"$/) do |title, response|
-  impression = @user.impressions.find {|s| s.broadcast.title == title }
+  impression = @user.impressions.find { |s| s.broadcast.title == title }
   expect(impression.response).to eq response
 end
-
 
 def change_amount(title, amount)
   invoice_table = find('#invoice-table')
@@ -235,7 +232,7 @@ When(/^I click on the lock symbol next to "([^"]*)"$/) do |title|
 end
 
 Given(/^the attribute 'fixed' is "([^"]*)" for my selected broadcast "([^"]*)"$/) do |value, title|
-  impression = @user.impressions.find {|s| s.broadcast.title ==  title }
+  impression = @user.impressions.find { |s| s.broadcast.title == title }
   impression.reload
   if value == 'true'
     expect(impression).to be_fixed
@@ -256,13 +253,9 @@ end
 Given(/^these users want to pay money for these broadcasts:$/) do |table|
   table.hashes.each do |row|
     broadcast = Broadcast.find_by(title: row['Broadcast'])
-    unless broadcast
-      broadcast = create(:broadcast, title: row['Broadcast'])
-    end
+    broadcast ||= create(:broadcast, title: row['Broadcast'])
     user = User.find_by(email: row['Email'])
-    unless user
-      user = create(:user, email: row['Email'])
-    end
+    user ||= create(:user, email: row['Email'])
     create(:impression,
            broadcast: broadcast,
            user: user,
@@ -335,7 +328,8 @@ Given(/^the form to create a new broadcast is there$/) do
 end
 
 When(/^I enter the title "([^"]*)" with the following description:$/) do |title, description|
-  @title, @description = title, description
+  @title = title
+  @description = description
   fill_in 'title', with: title
   fill_in 'description', with: description
 end
@@ -366,10 +360,10 @@ When(/^I search for "([^"]*)"$/) do |query|
 end
 
 Then(/^there is exactly one search result$/) do
-  expect(page).to have_text("1 result")
+  expect(page).to have_text('1 result')
 end
 
-Then("there are exactly {int} search results") do |count|
+Then('there are exactly {int} search results') do |count|
   expect(page).to have_text("#{count} result")
 end
 
@@ -443,13 +437,13 @@ end
 
 When(/^I click on the unimpressed smiley next to "([^"]*)"$/) do |title|
   expect(page).to have_text(title)
-  within('.broadcast', {text: /#{title}/}) do
+  within('.broadcast', text: /#{title}/) do
     find('button.reselect').click
   end
 end
 
 Then(/^the smiley turns happy$/) do
-  within('.broadcast', {text: /#{@broadcast.title}/}) do
+  within('.broadcast', text: /#{@broadcast.title}/) do
     expect(page).to have_css('button.unselect')
   end
 end
@@ -540,17 +534,17 @@ end
 Given(/^the statistics look like this:$/) do |table|
   table.hashes.each do |row|
     n_impressions = row['Reviews'].to_i
-    approval = row['Approval'].to_f/100.0
-    n_positive = approval*n_impressions
-    average_amount = sanitize_amount(row['Total'])/n_positive
-    n_neutral = (1.0 - approval)*n_impressions
+    approval = row['Approval'].to_f / 100.0
+    n_positive = approval * n_impressions
+    average_amount = sanitize_amount(row['Total']) / n_positive
+    n_neutral = (1.0 - approval) * n_impressions
 
     tv = Medium.find_by(id: 0) || create(:medium, id: 0, name: 'TV')
     stations = if row['Station']
-                [Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)]
-              else
-                []
-              end
+                 [Station.find_by(name: row['Station']) || create(:station, name: row['Station'], medium: tv)]
+               else
+                 []
+               end
 
     broadcast = create(:broadcast, title: row['Broadcast'], medium: tv, stations: stations)
     create_list(:impression, n_positive.to_i,
@@ -607,8 +601,7 @@ Given(/^we have these media:$/) do |table|
   table.hashes.each do |row|
     create(:medium,
            name_en: (row['Medium'] || row['Medium_en']),
-           name_de: (row['Medium'] || row['Medium_de']),
-          )
+           name_de: (row['Medium'] || row['Medium_de']))
   end
 end
 
@@ -619,7 +612,7 @@ end
 
 Given(/^we have these stations(?: in our database)?:$/) do |table|
   table.hashes.each do |row|
-    medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
+    medium = Medium.all.find { |m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     create(:station, name: row['Station'], medium: medium)
   end
 end
@@ -630,7 +623,7 @@ When(/^I choose "([^"]*)" from the list of "([^"]*)" stations$/) do |station, me
 end
 
 Given(/^there is a(?:nother)? broadcast called "([^"]*)"/) do |title|
-  broadcast = create(:broadcast, title: title)
+  create(:broadcast, title: title)
 end
 
 Then(/^I see "([^"]*)".* but I don't see "([^"]*)"$/) do |see, dontsee|
@@ -675,7 +668,7 @@ end
 
 Then(/^the stations are ordered like this:$/) do |table|
   within('.filter-stations-field') do
-    items = all('.item:not(.blank)').map{|item| item.text.gsub("\n", ' ')}
+    items = all('.item:not(.blank)').map { |item| item.text.tr("\n", ' ') }
     expect(items).to eq(table.rows.flatten)
   end
 end
@@ -686,7 +679,7 @@ end
 
 Given(/^we have some more stations:$/) do |table|
   table.hashes.each do |row|
-    medium = Medium.all.find{|m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
+    medium = Medium.all.find { |m| m.name == row['Medium'] } || create(:medium, name_de: row['Medium'], name_en: row['Medium'])
     station = create(:station, name: row['Station'], medium: medium)
     create_list(:broadcast, row['#Broadcasts'].to_i, stations: [station], medium: medium)
   end
@@ -746,7 +739,6 @@ When(/^I click the accordion(?: once again)? on "([^"]*)"$/) do |label|
   find('.accordion .title', text: label).click
 end
 
-
 Given(/^I have (\d+) broadcasts in my database:$/) do |number|
   create_list(:broadcast, number.to_i)
 end
@@ -757,8 +749,8 @@ end
 
 When(/^in the database all my responses are 'neutral'$/) do
   wait_for_ajax
-  expect(Impression.count).to be > 0
-  expect(Impression.all.all? {|s| s.neutral? }).to be true
+  expect(Impression.count).to be_positive
+  expect(Impression.all.all?(&:neutral?)).to be true
 end
 
 When(/^support the first broadcast$/) do
@@ -797,7 +789,6 @@ Then(/^then a message pops up, telling me:$/) do |string|
   end
 end
 
-
 When(/^I support (\d+) broadcasts? out of (\d+)$/) do |support_times, out_of|
   expect(page).to have_css('.decision-card', count: out_of.to_i)
   all('.decision-card').to_a.slice(0, support_times.to_i).each do |node|
@@ -816,7 +807,7 @@ Then(/^the button to distribute the budget has turned into a primary button$/) d
   expect(page).to have_css('.find-broadcasts-navigation-distribute-button.primary.button')
 end
 
-Then("the indicator shows {int} recently supported broadcasts") do |count|
+Then('the indicator shows {int} recently supported broadcasts') do |count|
   expect(find('.find-broadcasts-navigation', match: :first)).to have_text(count.to_s)
 end
 
@@ -828,20 +819,20 @@ When(/^I see broadcasts in random order$/) do
   random_order = false
   ordered_by_coincidence = 0
   until random_order
-    page.evaluate_script("window.location.reload()") # refresh page
+    page.evaluate_script('window.location.reload()') # refresh page
     expect(page).to have_css('.decision-card .title')
     titles = all('.decision-card .title').map(&:text)
     random_order = titles != titles.sort_by(&:downcase)
     unless random_order
       ordered_by_coincidence += 1
-      fail 'The broadcasts are not in random order' if ordered_by_coincidence > 5
+      raise 'The broadcasts are not in random order' if ordered_by_coincidence > 5
     end
   end
 end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
   find('.selection', text: 'Filter by station').click
-  labels = all('.dropdown .item:not(.blank)').map{|item| item.text.gsub("\n", ' ')}
+  labels = all('.dropdown .item:not(.blank)').map { |item| item.text.tr("\n", ' ') }
   table.hashes.each_with_index do |row, i|
     expect(labels[i]).to eq row['Label']
   end
@@ -884,7 +875,7 @@ Then(/^I can see (?:even more|these) details:$/) do |table|
 end
 
 Given(/^there are (\d+) other broadcasts, with a title lexicographically before 'Medienmagazin'$/) do |count|
-  count.to_i.times {|i| create(:broadcast, title: "Broadcast ##{i}") }
+  count.to_i.times { |i| create(:broadcast, title: "Broadcast ##{i}") }
 end
 
 Then(/^if I click on the close icon$/) do
@@ -934,38 +925,38 @@ end
 Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|
   broadcast = Broadcast.find_by(title: title)
   station_names = broadcast.stations.map(&:name)
-  expect(station_names).to match_array(table.hashes.map {|h| h['Station']})
+  expect(station_names).to match_array(table.hashes.map { |h| h['Station'] })
 end
 
-Given("I am on the edit page for Broadcast {string}") do |title|
+Given('I am on the edit page for Broadcast {string}') do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}/edit"
 end
 
-Then("on the broadcast page for {string}, I can see it was updated today") do |title|
+Then('on the broadcast page for {string}, I can see it was updated today') do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
-  expected_date_string = "Last updated at: #{Time.now.strftime("%-m/%-d/%Y")}"
+  expected_date_string = "Last updated at: #{Time.now.strftime('%-m/%-d/%Y')}"
   expect(find('.detail.updatedAt')).to have_text(expected_date_string)
 end
 
-When("I am on the broadcast page for {string}") do |title|
+When('I am on the broadcast page for {string}') do |title|
   broadcast = Broadcast.find_by(title: title)
   visit "/broadcast/#{broadcast.id}"
 end
 
-Then("I should have a broadcast link {string}") do |url|
+Then('I should have a broadcast link {string}') do |url|
   expect(page).to have_css("a[href='#{url}']")
 end
 
-Then("I should have an image {string}") do |url|
+Then('I should have an image {string}') do |url|
   expect(page).to have_css("img[src='#{url}']")
 end
 
-When("I visit {string}") do |url|
+When('I visit {string}') do |url|
   visit url
 end
 
-When("do nothing") do
+When('do nothing') do
   # do nothing
 end

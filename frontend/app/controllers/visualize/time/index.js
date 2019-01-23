@@ -11,8 +11,9 @@ export default Controller.extend({
       return record.get('approvalDelta');
     });
   }),
-  maxApprovalDelta: computed.max('approvalDeltas'),
-  minApprovalDelta: computed.min('approvalDeltas'),
+  approvalDeltasLimits: computed('approvalDeltas', function () {
+   return chroma.limits(this.get('approvalDeltas'), 'q', 4);
+  }),
   missingDataLabel: computed('intl.locale', function() {
     return this.get('intl').t('visualize.time.bubble-chart-legend.missing-data');
   }),
@@ -38,8 +39,11 @@ export default Controller.extend({
 
   colorScale: computed('model', function() {
     return chroma
-      .scale(["deeppink", "lightblue", "limegreen"])
-      .domain([this.get('minApprovalDelta'), 0, this.get('maxApprovalDelta')]);
+      .scale(chroma.scale('RdBu')
+        .colors(5)
+        .reverse()
+      )
+      .domain(this.get('approvalDeltasLimits'));
   }),
   nullColor: chroma('tan'),
   chartData: computed('model', 'intl.locale', function() {
@@ -49,10 +53,15 @@ export default Controller.extend({
       }
       return this.get('colorScale')(value);
     };
+    let textColor = (color) => {
+        return chroma(color).get('lab.l') < 40 ? 'white' : 'black';
+    }
     return this.get('model').map((record) => {
+      const color = colorFunction(record.get('approvalDelta'));
       return Object.create({
         id: record.get('id'),
-        color: colorFunction(record.get('approvalDelta')),
+        color,
+        textColor: textColor(color),
         label: record.get('title'),
         tooltip: this.createTooltip(record),
         size: record.get('impressionsDelta'),

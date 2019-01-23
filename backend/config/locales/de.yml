@@ -13,13 +13,12 @@ de:
           attributes:
             description:
               no_urls: am besten ohne Links. Man soll eine Sendung ja bewerten können auch ohne diese Website zu verlassen.
-            image_url:
-              invalid_url: Die hinzugefügte URL ist keine gültige URL!
         impression:
           attributes:
             amount:
               total: Die Summe von %{sum} übersteigt das verfügbare Budget von %{budget}
       messages:
+        invalid_url: Die hinzugefügte URL ist keine gültige URL!
         record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
         restrict_dependent_destroy:
           has_one: Datensatz kann nicht gelöscht werden, da ein abhängiger %{record}-Datensatz

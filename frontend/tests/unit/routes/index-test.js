@@ -6,6 +6,7 @@ describe('Unit | Route | index', function() {
   setupTest('route:index', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });

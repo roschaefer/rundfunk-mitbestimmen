@@ -5,9 +5,10 @@ import { pluralize } from 'ember-inflector';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
+import { isPresent } from '@ember/utils';
+
 
 export default JSONAPIAdapter.extend(DataAdapterMixin, {
-  authorizer: 'authorizer:jwt',
   host: ENV.APP.BACKEND_URL,
   pathForType: function(type) {
     if (type === 'impression'){
@@ -22,5 +23,11 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
     return {
       'locale': this.get('intl').get('locale'),
     };
-  })
+  }),
+  authorize(xhr){
+    const { idToken } = this.get('session.data.authenticated');
+    if (isPresent(idToken)) {
+      xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
+    }
+  }
 });

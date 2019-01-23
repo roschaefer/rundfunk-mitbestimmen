@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1127"
+   height="1127"
+   class="bubble"
+   version="1.1"
+   id="svg394"
+   sodipodi:docname="bubble_chart.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <metadata
+     id="metadata400">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs398" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     id="namedview396"
+     showgrid="false"
+     inkscape:zoom="0.5922882"
+     inkscape:cx="785.97747"
+     inkscape:cy="340.49495"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg394" />
+  <g
+     class="node"
+     transform="translate(523.9666486858385,609.9874850946546)"
+     style="cursor: pointer;"
+     id="g8">
+    <title
+       id="title2">Broadcast title: auslandsjournal extra
+Change of approval: 20.00% =&gt; 19.63%
+New impressions: 215 =&gt; 219
+</title>
+    <circle
+       r="86.42739074377921"
+       style="fill: rgb(5, 48, 97);"
+       id="circle4" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text6">auslandsjournal extra</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(654.978629300741,609.9874850946546)"
+     style="cursor: pointer;"
+     id="g16">
+    <title
+       id="title10">Broadcast title: Vis-a-vis
+Change of approval: 5.61% =&gt; 5.58%
+New impressions: 196 =&gt; 197
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(244, 230, 227);"
+       id="circle12" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text14">Vis-a-vis</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(611.3055782816928,618.956892469943)"
+     style="cursor: pointer;"
+     id="g24">
+    <title
+       id="title18">Broadcast title: Philosophie
+Change of approval: 13.98% =&gt; 13.98%
+New impressions: 186 =&gt; 186
+</title>
+    <circle
+       r="0"
+       style="fill: rgb(229, 131, 104);"
+       id="circle20" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text22" />
+  </g>
+  <g
+     class="node"
+     transform="translate(631.4635484330647,506.93844442905294)"
+     style="cursor: pointer;"
+     id="g32">
+    <title
+       id="title26">Broadcast title: Bericht aus Berlin
+Change of approval: 11.71% =&gt; 12.08%
+New impressions: 205 =&gt; 207
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(180, 80, 76);"
+       id="circle28" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text30">Bericht aus Berlin</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(635.9939488422502,727.9018646452726)"
+     style="cursor: pointer;"
+     id="g40">
+    <title
+       id="title34">Broadcast title: Hart aber fair
+Change of approval: 15.31% =&gt; 16.04%
+New impressions: 209 =&gt; 212
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(133, 32, 49);"
+       id="circle36" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text38">Hart aber fair</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(516.6174902387619,461.25726588051583)"
+     style="cursor: pointer;"
+     id="g48">
+    <title
+       id="title42">Broadcast title: Peter Pan
+Change of approval: 3.66% =&gt; 3.63%
+New impressions: 191 =&gt; 193
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(230, 238, 242);"
+       id="circle44" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text46">Peter Pan</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(490.67846188510015,769.1911706822096)"
+     style="cursor: pointer;"
+     id="g56">
+    <title
+       id="title50">Broadcast title: Der kleine Nick
+Change of approval: 3.19% =&gt; 3.14%
+New impressions: 188 =&gt; 191
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(185, 214, 230);"
+       id="circle52" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text54">Der kleine Nick</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(724.7322119941138,556.6679146439068)"
+     style="cursor: pointer;"
+     id="g64">
+    <title
+       id="title58">Broadcast title: FutureMag
+Change of approval: 14.43% =&gt; 14.36%
+New impressions: 201 =&gt; 202
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(107, 172, 209);"
+       id="circle60" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text62">FutureMag</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(754.2929569344385,658.1480908798952)"
+     style="cursor: pointer;"
+     id="g72">
+    <title
+       id="title66">Broadcast title: Occupy School
+Change of approval: 3.13% =&gt; 3.09%
+New impressions: 192 =&gt; 194
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(246, 243, 243);"
+       id="circle68" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text70">Occupy School</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(406.83434830777503,518.0379747886768)"
+     style="cursor: pointer;"
+     id="g80">
+    <title
+       id="title74">Broadcast title: Robin Hood
+Change of approval: 4.26% =&gt; 4.21%
+New impressions: 188 =&gt; 190
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(205, 224, 236);"
+       id="circle76" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text78">Robin Hood</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(495.7970016908652,693.1440235013972)"
+     style="cursor: pointer;"
+     id="g88">
+    <title
+       id="title82">Broadcast title: Report München
+Change of approval: 10.05% =&gt; 10.05%
+New impressions: 199 =&gt; 199
+</title>
+    <circle
+       r="0"
+       style="fill: rgb(229, 131, 104);"
+       id="circle84" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text86" />
+  </g>
+  <g
+     class="node"
+     transform="translate(360.8536644952525,671.2144445283576)"
+     style="cursor: pointer;"
+     id="g96">
+    <title
+       id="title90">Broadcast title: Heidi
+Change of approval: 8.33% =&gt; 8.17%
+New impressions: 204 =&gt; 208
+</title>
+    <circle
+       r="86.42739074377921"
+       style="fill: rgb(76, 135, 175);"
+       id="circle92" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text94">Heidi</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(285.7122363860914,542.6514093312925)"
+     style="cursor: pointer;"
+     id="g104">
+    <title
+       id="title98">Broadcast title: Checkpoint
+Change of approval: 3.61% =&gt; 3.57%
+New impressions: 194 =&gt; 196
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(234, 240, 243);"
+       id="circle100" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text102">Checkpoint</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(605.7331493635252,404.420102782124)"
+     style="cursor: pointer;"
+     id="g112">
+    <title
+       id="title106">Broadcast title: ARD Brennpunkt
+Change of approval: 24.17% =&gt; 24.53%
+New impressions: 211 =&gt; 212
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(182, 82, 77);"
+       id="circle108" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text110">ARD Brennpunkt</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(588.6218872898548,837.5381122151078)"
+     style="cursor: pointer;"
+     id="g120">
+    <title
+       id="title114">Broadcast title: Weltspiegel
+Change of approval: 32.86% =&gt; 32.70%
+New impressions: 210 =&gt; 211
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(78, 136, 177);"
+       id="circle116" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text118">Weltspiegel</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(690.057332562741,528.6422408715239)"
+     style="cursor: pointer;"
+     id="g128">
+    <title
+       id="title122">Broadcast title: makro
+Change of approval: 10.99% =&gt; 10.99%
+New impressions: 182 =&gt; 182
+</title>
+    <circle
+       r="0"
+       style="fill: rgb(229, 131, 104);"
+       id="circle124" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text126" />
+  </g>
+  <g
+     class="node"
+     transform="translate(751.5346380808377,440.2812790159969)"
+     style="cursor: pointer;"
+     id="g136">
+    <title
+       id="title130">Broadcast title: 4 1/2 Freunde
+Change of approval: 0.00% =&gt; 0.00%
+New impressions: 192 =&gt; 195
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(229, 131, 104);"
+       id="circle132" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text134">4 1/2 Freunde</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(749.9182029191459,763.7555022562749)"
+     style="cursor: pointer;"
+     id="g144">
+    <title
+       id="title138">Broadcast title: Das Haustiercamp
+Change of approval: 1.63% =&gt; 1.62%
+New impressions: 184 =&gt; 185
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(234, 162, 142);"
+       id="circle140" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text142">Das Haustierca</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(412.55238291391174,394.5726305150891)"
+     style="cursor: pointer;"
+     id="g152">
+    <title
+       id="title146">Broadcast title: Die WGs
+Change of approval: 2.75% =&gt; 2.72%
+New impressions: 182 =&gt; 184
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(245, 235, 232);"
+       id="circle148" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text150">Die WGs</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(811.6110468198779,569.3409944168372)"
+     style="cursor: pointer;"
+     id="g160">
+    <title
+       id="title154">Broadcast title: Kennwort Kino
+Change of approval: 8.95% =&gt; 8.90%
+New impressions: 190 =&gt; 191
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(197, 220, 233);"
+       id="circle156" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text158">Kennwort Kino</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(676.081772717355,325.533253418398)"
+     style="cursor: pointer;"
+     id="g168">
+    <title
+       id="title162">Broadcast title: 28 Minuten
+Change of approval: 10.23% =&gt; 10.14%
+New impressions: 215 =&gt; 217
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(99, 162, 200);"
+       id="circle164" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text166">28 Minuten</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(363.1337526418625,820.1086668320108)"
+     style="cursor: pointer;"
+     id="g176">
+    <title
+       id="title170">Broadcast title: Bing
+Change of approval: 0.54% =&gt; 1.08%
+New impressions: 184 =&gt; 186
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(159, 58, 63);"
+       id="circle172" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text174">Bing</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(525.2873548885276,316.143870713664)"
+     style="cursor: pointer;"
+     id="g184">
+    <title
+       id="title178">Broadcast title: Anne Will
+Change of approval: 18.48% =&gt; 18.22%
+New impressions: 211 =&gt; 214
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(42, 93, 137);"
+       id="circle180" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text182">Anne Will</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(676.3767056003092,840.3004943234746)"
+     style="cursor: pointer;"
+     id="g192">
+    <title
+       id="title186">Broadcast title: Kulturzeit
+Change of approval: 18.54% =&gt; 18.44%
+New impressions: 178 =&gt; 179
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(96, 158, 197);"
+       id="circle188" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text190">Kulturzeit</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(895.9123264139122,484.73890664279577)"
+     style="cursor: pointer;"
+     id="g200">
+    <title
+       id="title194">Broadcast title: Alien Surfgirls
+Change of approval: 1.04% =&gt; 1.02%
+New impressions: 193 =&gt; 196
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(238, 186, 172);"
+       id="circle196" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text198">Alien Surfgirls</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(790.3009596772048,876.1541319344769)"
+     style="cursor: pointer;"
+     id="g208">
+    <title
+       id="title202">Broadcast title: Briefe von Felix
+Change of approval: 4.89% =&gt; 4.81%
+New impressions: 184 =&gt; 187
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(105, 169, 206);"
+       id="circle204" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text206">Briefe von Felix</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(507.6459163643214,905.4715792470603)"
+     style="cursor: pointer;"
+     id="g216">
+    <title
+       id="title210">Broadcast title: Ritter Rost
+Change of approval: 3.17% =&gt; 3.14%
+New impressions: 189 =&gt; 191
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(247, 247, 247);"
+       id="circle212" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text214">Ritter Rost</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(851.4869775672507,734.5006252817142)"
+     style="cursor: pointer;"
+     id="g224">
+    <title
+       id="title218">Broadcast title: Das Dschungelbuch
+Change of approval: 7.85% =&gt; 7.77%
+New impressions: 191 =&gt; 193
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(104, 168, 205);"
+       id="circle220" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text222">Das Dschungelbuch</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(903.1356451119824,622.2117019757785)"
+     style="cursor: pointer;"
+     id="g232">
+    <title
+       id="title226">Broadcast title: Mako
+Change of approval: 0.56% =&gt; 0.55%
+New impressions: 180 =&gt; 182
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(232, 152, 130);"
+       id="circle228" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text230">Mako</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(263.6429150977476,395.3841920178731)"
+     style="cursor: pointer;"
+     id="g240">
+    <title
+       id="title234">Broadcast title: Löwenzahn
+Change of approval: 26.90% =&gt; 27.86%
+New impressions: 197 =&gt; 201
+</title>
+    <circle
+       r="86.42739074377921"
+       style="fill: rgb(103, 0, 31);"
+       id="circle236" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text238">Löwenzahn</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(629.4741283554781,935.0222555935591)"
+     style="cursor: pointer;"
+     id="g248">
+    <title
+       id="title242">Broadcast title: Pixelmacher
+Change of approval: 20.32% =&gt; 20.11%
+New impressions: 187 =&gt; 189
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(57, 111, 154);"
+       id="circle244" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text246">Pixelmacher</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(616.062549942188,238.5289046318053)"
+     style="cursor: pointer;"
+     id="g256">
+    <title
+       id="title250">Broadcast title: scobel
+Change of approval: 22.16% =&gt; 22.58%
+New impressions: 185 =&gt; 186
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(174, 74, 72);"
+       id="circle252" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text254">scobel</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(424.05254038551436,806.2094719454279)"
+     style="cursor: pointer;"
+     id="g264">
+    <title
+       id="title258">Broadcast title: Vox Pop - Das europäische Investigationsmagazin
+Change of approval: 7.29% =&gt; 7.29%
+New impressions: 192 =&gt; 192
+</title>
+    <circle
+       r="0"
+       style="fill: rgb(229, 131, 104);"
+       id="circle260" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text262" />
+  </g>
+  <g
+     class="node"
+     transform="translate(389.2400385324879,940.9178096704129)"
+     style="cursor: pointer;"
+     id="g272">
+    <title
+       id="title266">Broadcast title: Kabarett / Comedy
+Change of approval: 15.47% =&gt; 16.39%
+New impressions: 181 =&gt; 183
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(107, 5, 34);"
+       id="circle268" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text270">Kabarett / Comedy</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(214.50989659378126,643.6791974118643)"
+     style="cursor: pointer;"
+     id="g280">
+    <title
+       id="title274">Broadcast title: #Beckmann
+Change of approval: 3.41% =&gt; 3.38%
+New impressions: 205 =&gt; 207
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(247, 246, 246);"
+       id="circle276" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text278">#Beckmann</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(271.65021156569696,767.1669486649572)"
+     style="cursor: pointer;"
+     id="g288">
+    <title
+       id="title282">Broadcast title: Wochenspiegel
+Change of approval: 13.37% =&gt; 13.30%
+New impressions: 187 =&gt; 188
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(108, 173, 209);"
+       id="circle284" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text286">Wochenspiegel</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(543.449465944315,1023.7699012716159)"
+     style="cursor: pointer;"
+     id="g296">
+    <title
+       id="title290">Broadcast title: Märchen
+Change of approval: 6.95% =&gt; 6.88%
+New impressions: 187 =&gt; 189
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(106, 171, 208);"
+       id="circle292" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text294">Märchen</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(921.6989899286025,836.2191608419644)"
+     style="cursor: pointer;"
+     id="g304">
+    <title
+       id="title298">Broadcast title: Der kleine Drache Kokosnuss
+Change of approval: 5.00% =&gt; 4.95%
+New impressions: 180 =&gt; 182
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(167, 204, 225);"
+       id="circle300" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text302">Der kleine Drache Ko</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(395.1742414492326,272.20275123270153)"
+     style="cursor: pointer;"
+     id="g312">
+    <title
+       id="title306">Broadcast title: Slowenien Magazin
+Change of approval: 3.19% =&gt; 3.16%
+New impressions: 188 =&gt; 190
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(246, 246, 247);"
+       id="circle308" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text310">Slowenien Magazin</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(811.3021516445272,301.5396419166038)"
+     style="cursor: pointer;"
+     id="g320">
+    <title
+       id="title314">Broadcast title: H2O
+Change of approval: 2.54% =&gt; 2.50%
+New impressions: 197 =&gt; 200
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(229, 238, 242);"
+       id="circle316" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text318">H2O</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(1039.1983100821953,561.7002201019255)"
+     style="cursor: pointer;"
+     id="g328">
+    <title
+       id="title322">Broadcast title: 1, 2 oder 3
+Change of approval: 11.65% =&gt; 11.90%
+New impressions: 206 =&gt; 210
+</title>
+    <circle
+       r="86.42739074377921"
+       style="fill: rgb(196, 96, 85);"
+       id="circle324" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text326">1, 2 oder 3</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(738.7793272797444,1018.1644095122159)"
+     style="cursor: pointer;"
+     id="g336">
+    <title
+       id="title330">Broadcast title: Monitor
+Change of approval: 37.86% =&gt; 38.28%
+New impressions: 206 =&gt; 209
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(175, 74, 72);"
+       id="circle332" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text334">Monitor</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(186.53967497020983,745.6092249437083)"
+     style="cursor: pointer;"
+     id="g344">
+    <title
+       id="title338">Broadcast title: hitec
+Change of approval: 13.61% =&gt; 13.54%
+New impressions: 191 =&gt; 192
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(109, 173, 210);"
+       id="circle340" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text342">hitec</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(911.6246679340211,366.3440532036634)"
+     style="cursor: pointer;"
+     id="g352">
+    <title
+       id="title346">Broadcast title: Fremde Kinder
+Change of approval: 4.52% =&gt; 4.49%
+New impressions: 177 =&gt; 178
+</title>
+    <circle
+       r="43.21369537188961"
+       style="fill: rgb(243, 220, 213);"
+       id="circle348" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text350">Fremde Kinder</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(274.205227518541,246.8475776977278)"
+     style="cursor: pointer;"
+     id="g360">
+    <title
+       id="title354">Broadcast title: Elton!
+Change of approval: 2.58% =&gt; 2.55%
+New impressions: 194 =&gt; 196
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(243, 223, 217);"
+       id="circle356" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text358">Elton!</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(250.36423730933353,870.6994127053326)"
+     style="cursor: pointer;"
+     id="g368">
+    <title
+       id="title362">Broadcast title: Bibi Blocksberg
+Change of approval: 6.38% =&gt; 6.32%
+New impressions: 188 =&gt; 190
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(123, 180, 213);"
+       id="circle364" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text366">Bibi Blocksberg</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(974.5563714861594,723.0852217941008)"
+     style="cursor: pointer;"
+     id="g376">
+    <title
+       id="title370">Broadcast title: Maischberger
+Change of approval: 11.82% =&gt; 11.71%
+New impressions: 203 =&gt; 205
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(92, 153, 192);"
+       id="circle372" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text374">Maischberger</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(162.61843552401047,531.5022683025462)"
+     style="cursor: pointer;"
+     id="g384">
+    <title
+       id="title378">Broadcast title: Aus anderer Sicht
+Change of approval: 8.90% =&gt; 8.81%
+New impressions: 191 =&gt; 193
+</title>
+    <circle
+       r="61.11339407518574"
+       style="fill: rgb(100, 163, 201);"
+       id="circle380" />
+    <text
+       dy=".3em"
+       style="fill: white; text-anchor: middle;"
+       id="text382">Aus anderer Sicht</text>
+  </g>
+  <g
+     class="node"
+     transform="translate(101.5265108331946,408.50624801051106)"
+     style="cursor: pointer;"
+     id="g392">
+    <title
+       id="title386">Broadcast title: Meine Freundin Conni
+Change of approval: 1.57% =&gt; 1.55%
+New impressions: 191 =&gt; 194
+</title>
+    <circle
+       r="74.84831596691684"
+       style="fill: rgb(242, 216, 208);"
+       id="circle388" />
+    <text
+       dy=".3em"
+       style="fill: black; text-anchor: middle;"
+       id="text390">Meine Freundin Conni</text>
+  </g>
+</svg>

@@ -6,6 +6,7 @@ describe('Unit | Route | find-broadcasts', function() {
   setupTest('route:find-broadcasts', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
       'service:session',
       'service:intl'

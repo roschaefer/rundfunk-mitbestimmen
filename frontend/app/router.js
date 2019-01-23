@@ -1,7 +1,6 @@
 import EmberRouter from '@ember/routing/router';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import { get } from '@ember/object';
 import config from './config/environment';
 
 const Router = EmberRouter.extend({
@@ -19,7 +18,7 @@ const Router = EmberRouter.extend({
       const page = this.get('url');
       const title = this.getWithDefault('currentRouteName', 'unknown');
 
-      get(this, 'metrics').trackPage({ page, title });
+      this.get('metrics').trackPage({ page, title });
     });
   }
 });
@@ -30,7 +29,6 @@ Router.map(function() {
   this.route('statistics');
   this.route('imprint');
   this.route('history');
-  this.route('login');
   this.route('data-privacy');
 
   this.route('authentication', function() {
