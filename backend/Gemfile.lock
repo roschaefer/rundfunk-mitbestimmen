@@ -115,7 +115,7 @@ GEM
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
     hashdiff (0.3.7)
-    highline (2.0.0)
+    highline (2.0.1)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.2)
