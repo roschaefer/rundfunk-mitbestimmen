@@ -1,11 +1,3 @@
-auth0-lock:
-  title: Passwordless Login
-  success:
-    magicLink: We sent you a link to sign in
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Otherwise, enter your email address<br>to sign in or to create an account.
-  lastLoginInstructions: Last time you logged in with
 authentication:
   loading:
     message: Logging in...
@@ -159,6 +151,19 @@ index:
       demography: How does the population pyramid of supporters look like?
       trends: How are broadcasts developing, are there any trends?
       relations: Are there any relations or clusters between broadcasts?
+  community-meetings:
+    header: Join the Open-Source-Community
+    description: >
+      This application is maintained by the open source community, especially
+      by our developers on
+      <a href="https://www.agileventures.org/projects/rundfunk-mitbestimmen">
+      Agile Ventures</a>. If you would like to join our meetings then you can
+      find invite links on
+      <a href="https://www.meetup.com/remote-pair-programming/">meetup.com</a>
+      and on the
+      <a href="https://www.agileventures.org/events">events page</a>.
+      The Agile Ventures <a href="https://www.agileventures.org/users/sign_up">
+      signup page</a> gives you access to our community messenger "Slack".
   summarized-statistics:
     header: Summarized statistics
   media:
@@ -305,6 +310,9 @@ find-broadcasts:
       next: Next
       back: Back
       distribute: Distribute budget
+show-twitter-feed:
+  tweets-by: Tweets by RundfunkMB
+  message: Show Twitter Feeds
 invoice:
   header: How do you want to distribute your money?
   sub-header: You can click on any amount in the right column to change it!

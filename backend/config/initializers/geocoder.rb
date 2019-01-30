@@ -8,10 +8,10 @@ Geocoder.configure(
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
   # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
   google: {
-    api_key: (ENV['GOOGLE_API_KEY'] || 'GOOGLE_API_KEY') # API key for geocoding service
+    api_key: Rails.env.test? ? 'GOOGLE_API_KEY' : ENV['GOOGLE_API_KEY'] # Lat/Long -> region & post code
   },
   ipstack: {
-    api_key: (ENV['IPSTACK_API_KEY'] || 'IPSTACK_API_KEY') # API key for geocoding service
+    api_key: Rails.env.test? ? 'IPSTACK_API_KEY' : ENV['IPSTACK_API_KEY'] # IP -> region & post code
   }
   # cache: nil,                 # cache object (must respond to #[], #[]=, and #del)
   # cache_prefix: 'geocoder:',  # prefix (string) to use for all cache keys

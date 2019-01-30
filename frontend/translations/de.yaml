@@ -1,11 +1,4 @@
-auth0-lock:
-  title: Passwortlose Anmeldung
-  success:
-    magicLink: Wir haben Dir einen Login-Link geschickt
-  socialLoginInstructions: via
-  passwordlessEmailAlternativeInstructions: >
-    Oder gib eine E-Mail Adresse ein,<br>um Dich anzumelden oder zu registrieren.
-  lastLoginInstructions: Das letzte Mal warst Du angemeldet als
+login:
 authentication:
   loading:
     message: Anmelden...
@@ -169,10 +162,23 @@ index:
       demography: Wie sieht die Alterspyramide der Unterstützer aus?
       trends: Wie entwickeln sich Sendungen, gibt es Trends?
       relations: Was gibt es für Beziehungen zwischen Sendungen?
+  community-meetings:
+    header: Werde Teil der Open-Source-Community
+    description: >
+      Unsere Anwendung wird von der Open-Source-Community gepflegt und gewartet,
+      insbesondere von unseren fleißigen Entwicklern auf
+      <a href="https://www.agileventures.org/projects/rundfunk-mitbestimmen">
+      Agile Ventures</a>. Wenn Du gerne an unseren Treffen teilnehmen möchtest,
+      dann findest die Teilnahme-Links auf
+      <a href="https://www.meetup.com/remote-pair-programming/">meetup.com</a>
+      und auf der <a href="https://www.agileventures.org/events">Events
+      Seite</a>. Über die <a href="https://www.agileventures.org/users/sign_up">
+      Anmeldungsseite</a> von Agile Ventures erhältst Du Zugang zu unserem
+      Community Messenger "Slack".
   summarized-statistics:
     header: Zusammgefasste Statistiken
   media:
-    header: Medienberichte
+    header: Pressespiegel
   faq:
     questions:
       survey:
@@ -322,6 +328,9 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
+show-twitter-feed:
+  tweets-by: Tweets von RundfunkMB
+  message: Twitter-Feeds anzeigen
 invoice:
   header: Wie soll Dein Beitrag verteilt werden?
   sub-header: >

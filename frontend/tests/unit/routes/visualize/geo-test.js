@@ -7,6 +7,7 @@ describe('Unit | Route | visualize/geo', function() {
     needs: [
       'service:session',
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik'
     ]
   });

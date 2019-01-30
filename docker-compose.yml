@@ -9,12 +9,11 @@ services:
       - 49153:49153 # live reload
       - 7357:7357 # test server
       - 7020:7020
-    volumes:
-      - ./frontend/:/frontend/
-      - /frontend/node_modules
     environment:
       - DOCKER=1
       - API_HOST=http://localhost:3000
+    tty: true
+    stdin_open: true
     command: ember server
   backend:
     image: rundfunk-mitbestimmen-backend
@@ -22,8 +21,6 @@ services:
       context: ./backend
     ports:
       - 3000:3000
-    volumes:
-      - ./backend:/backend
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_USERNAME=postgres
@@ -32,20 +29,6 @@ services:
       - db
       - redis
     command: "bin/rails server -b 0.0.0.0"
-    tty: true
-    stdin_open: true
-  sidekiq:
-    image: rundfunk-mitbestimmen-sidekiq
-    build:
-      context: ./backend
-    depends_on:
-      - redis
-      - db
-    command: bundle exec sidekiq
-    environment:
-      - POSTGRES_HOST=db
-      - POSTGRES_USERNAME=postgres
-      - REDIS_URL=redis://redis:6379
   db:
     image: postgres:9.6
   redis:

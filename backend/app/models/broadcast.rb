@@ -14,6 +14,8 @@ class Broadcast < ApplicationRecord
 
   has_many :impressions, dependent: :destroy
 
+  before_validation :normalize_url, on: %i[create update]
+
   paginates_per 10
   belongs_to :topic, optional: true
   belongs_to :format, optional: true
@@ -90,21 +92,29 @@ class Broadcast < ApplicationRecord
 
   private
 
+  def normalize_url
+    self.broadcast_url = nil if broadcast_url.blank?
+    self.image_url = nil if image_url.blank?
+  end
+
   def description_should_not_contain_urls
     return unless description
     return unless description.match?(URI.regexp(%w[http https]))
+
     errors.add(:description, :no_urls)
   end
 
   def image_url_should_contain_url
     return unless image_url
     return if image_url.match?(URI.regexp(%w[http https]))
+
     errors.add(:image_url, :invalid_url)
   end
 
   def broadcast_url_should_contain_url
     return unless broadcast_url
     return if broadcast_url.match?(URI.regexp(%w[http https]))
+
     errors.add(:broadcast_url, :invalid_url)
   end
 end

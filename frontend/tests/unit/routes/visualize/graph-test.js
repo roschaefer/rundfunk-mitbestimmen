@@ -9,6 +9,7 @@ describe('Unit | Route | visualize/graph', function() {
       'service:intl',
       'service:session',
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik',
       'config:environment',
       'cldr:en',

@@ -10,7 +10,6 @@ export default Component.extend({
     if (isBlank(this.get('chartData'))) return;
     let chartData = {children: this.get('chartData')};
 
-
     let clickCallback = this.get('onClick');
 
     let element = select('div.chart-area');
@@ -26,8 +25,8 @@ export default Component.extend({
       .attr("class", "bubble");
 
     let root = hierarchy(chartData)
-      .sum(function(d) { return d.size; })
-      .sort(function(a, b) { return b.size- a.size; });
+      .sum(d => d.size)
+      .sort((a, b) => b.size- a.size);
 
     bubble(root);
     let node = svg.selectAll(".node")
@@ -36,24 +35,22 @@ export default Component.extend({
       .append("g")
       .style("cursor", "pointer")
       .attr("class", "node")
-      .on('click', function(d) { clickCallback(d.data.id) })
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+      .on('click', d => clickCallback(d.data.id))
+      .attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 
     node.append("title")
-      .text(function(d) {
-        return d.data.tooltip;
-      });
+      .text(d => d.data.tooltip);
 
-    node.append("circle")
-      .attr("r", function(d) { return d.r; })
-      .style("fill", function(d) {
-        return d.data.color;
-      });
+    node.append("path")
+      .attr("d", "M0 8 l -5-5 c -3-3 1-8 5-5 3-3 8 1 5 5")
+      .attr("transform", d => `scale(${0.17 * d.r})`)
+      .style("fill", d => d.data.color) ;
 
     node.append("text")
       .attr("dy", ".3em")
+      .style("fill", d => d.data.textColor)
       .style("text-anchor", "middle")
-      .text(function(d) { return d.data.label.substring(0, d.r / 3); });
+      .text(d => d.data.label.substring(0, d.r / 3));
 
 
     select(self.frameElement).style("height", diameter + "px");

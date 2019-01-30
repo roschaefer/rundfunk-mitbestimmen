@@ -6,6 +6,7 @@ describe('Unit | Route | data privacy', function() {
   setupTest('route:data-privacy', {
     needs: [
       'service:metrics',
+      'service:fastboot',
       'ember-metrics@metrics-adapter:piwik', // bundled adapter
     ]
   });

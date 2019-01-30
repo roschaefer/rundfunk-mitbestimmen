@@ -6,11 +6,9 @@ require 'selenium/webdriver'
 
 ENV['RAILS_ENV'] ||= 'fullstack'
 puts Dir.pwd
-root = Dir[File.dirname(File.expand_path('../../', __FILE__))].first
-rails_root = File.join(root, "backend")
+root = Dir[File.dirname(File.expand_path('..', __dir__))].first
+rails_root = File.join(root, 'backend')
 require File.expand_path("#{rails_root}/config/environment")
-
-
 
 # Database Cleaner to clear out the test DB between tests
 DatabaseCleaner.strategy = :truncation
@@ -45,9 +43,9 @@ end
 
 After do
   Capybara.reset_sessions!
-  page.execute_script("window.stubbedJwt = undefined")
+  page.execute_script('window.stubbedJwt = undefined')
   visit '/'
-  page.execute_script("localStorage.clear()")
+  page.execute_script('localStorage.clear()')
 
   # clean temporal tables
   Impression::History.delete_all

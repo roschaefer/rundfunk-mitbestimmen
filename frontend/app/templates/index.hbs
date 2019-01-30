@@ -246,6 +246,24 @@
   </div>
 
   <div class="centered row">
+    <div class="ui centered grid">
+      <div class="row">
+        <h3>{{t 'index.community-meetings.header'}} &hearts; </h3>
+      </div>
+      <div class="row">
+        <div class="column video-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PL1CiawkXA01MwjAVBzV0fRjpbl454SCbl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mobile fourteen wide computer ten wide column">
+        <p>{{t 'index.community-meetings.description' htmlSafe=true }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="centered row">
     <div class="ui middle aligned grid">
       <div class="centered row">
         <div class="center aligned column">
@@ -285,15 +303,15 @@
   </div>
 
   <div class="row">
+  {{#show-twitter-feed message=(t 'show-twitter-feed.message')}}
     <div class="ui one column grid">
       <div class="centered row">
         <div class="fourteen wide mobile twelve wide tablet ten wide computer column">
-          {{#twitter-feed}}
-          <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB">Tweets by RundfunkMB</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          {{/twitter-feed}}
+          <a class="twitter-timeline" data-tweet-limit="5" href="https://twitter.com/RundfunkMB?ref_src=twsrc%5Etfw">{{t 'show-twitter-feed.tweets-by'}}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
     </div>
+  {{/show-twitter-feed}}
   </div>
 
   <div class="centered row">
