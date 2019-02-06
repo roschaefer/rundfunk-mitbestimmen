@@ -5,7 +5,6 @@ authentication:
 loading:
   message: Wird geladen...
 broadcast-search:
-  results: Sendungen
   query:
     placeholder: Sendungstitel, Beschreibung oder Sender
   filter:
