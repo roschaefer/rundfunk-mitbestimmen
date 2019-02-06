@@ -321,7 +321,7 @@ GEM
     tzinfo-data (1.2018.5)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.4.1)
-    valid_email2 (2.3.1)
+    valid_email2 (3.0.0)
       activemodel (>= 3.2)
       mail (~> 2.5)
     vcr (4.0.0)
