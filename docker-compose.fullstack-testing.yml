@@ -1,7 +1,7 @@
-version: '3'
+version: '3.4'
 services:
   fullstack:
-    image: rundfunk-mitbestimmen-fullstack
+    image: rundfunkmitbestimmen/fullstack:latest
     build:
       context: ./
     depends_on:

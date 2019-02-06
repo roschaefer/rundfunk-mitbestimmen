@@ -1,16 +1,24 @@
-version: '3'
+version: '3.4'
 services:
   frontend:
+    build:
+      target: build_and_test
+      context: ./frontend
     volumes:
       - ./frontend/:/frontend/
       - node_modules:/frontend/node_modules
     tty: true
     stdin_open: true
+    command: yarn run start
   backend:
+    build:
+      context: ./backend
     volumes:
       - ./backend:/backend
+      - bundle:/backend/vendor/bundle
     tty: true
     stdin_open: true
 
 volumes:
   node_modules:
+  bundle:
