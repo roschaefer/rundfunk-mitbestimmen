@@ -2,7 +2,7 @@
   <div class="ui sixteen wide column">
     <form {{action "search" on="submit"}} class="ui broadcast-search form">
       <div class="two fields">
-        <div class="field">
+        <div class="fourteen wide field">
           <div class="ui action fluid input">
             {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t 'broadcast-search.query.placeholder') }}
             <button type="submit" id='submit-search' class="ui primary icon button {{if loading 'loading'}}">
@@ -10,9 +10,14 @@
             </button>
           </div>
         </div>
-        <div class="field">
-          <div class="ui big fluid label">
-            {{t 'broadcast-search.results' count=totalCount}}
+        <div class="two wide field">
+          <div class="ui mini right floated vertical statistic">
+            <div class="value">
+              {{totalCount}}
+            </div>
+            <div class="label">
+              {{t 'broadcast-search.results'}}
+            </div>
           </div>
         </div>
       </div>

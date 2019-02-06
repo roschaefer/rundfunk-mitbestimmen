@@ -5,7 +5,7 @@ authentication:
 loading:
   message: Wird geladen...
 broadcast-search:
-  results: '{count, plural, =0 {kein Ergebnis} =1 {# Ergebnis} other {# Ergebnisse }}'
+  results: Sendungen
   query:
     placeholder: Sendungstitel, Beschreibung oder Sender
   filter:
