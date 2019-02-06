@@ -13,7 +13,6 @@ broadcast-search:
       placeholder: Filtern nach Medium
     station:
       placeholder: Nach Sendern filtern
-      description: '{count, plural, =1 {# Sendung} other {# Sendungen}}'
 broadcast-form:
   header:
     new: Neue Sendung
