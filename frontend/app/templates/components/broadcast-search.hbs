@@ -2,7 +2,7 @@
   <div class="ui sixteen wide column">
     <form {{action "search" on="submit"}} class="ui broadcast-search form">
       <div class="four fields">
-        <div class="five wide field">
+        <div class="four wide field">
           <div class="ui action fluid input">
             {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t 'broadcast-search.query.placeholder') }}
             <button type="submit" id='submit-search' class="ui primary icon button {{if loading 'loading'}}">
@@ -41,9 +41,10 @@
             {{/ui-dropdown}}
           {{/if}}
         </div>
-
-        {{broadcast-sort sort=filterParams.sort sortAction=(action 'sortAction')}}
+        <div class="four wide field">
+          {{broadcast-sort sort=filterParams.sort sortAction=(action 'sortAction')}}
         </div>
+      </div>
     </form>
   </div>
 </div>

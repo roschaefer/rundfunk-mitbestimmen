@@ -1,14 +1,15 @@
-<div class="three wide field">
-  <div class="ui right floated buttons">
-    <button id="alphabetical_order_ascending" class="ui {{if (eq sort 'asc') 'active'}} icon button" {{action 'submitSort' 'asc'}}>
-      <i class="sort alphabet ascending icon"></i>
-    </button>
-    <button id="random_order" class="ui {{if (eq sort 'random') 'active'}} icon button" {{action 'submitSort' 'random'}}>
-      <i class="random icon"></i>
-    </button>
-    <button id="alphabetical_order_descending" class="ui {{if (eq sort 'desc') 'active'}} icon button" {{action 'submitSort' 'desc'}}>
-      <i class="sort alphabet descending icon"></i>
-    </button>
-  </div>
+<div class="ui right floated basic icon buttons">
+    {{#link-to 'find-broadcasts' (query-params q=null sort=null) tagName="button" id="reset-filter" title=(t 'find-broadcasts.sort-button.reset') class="ui icon button"}}
+      <i class="undo icon"></i>
+    {{/link-to}}
+  <button id="alphabetical_order_ascending" title="{{t 'find-broadcasts.sort-button.ascending'}}" class="ui {{if (eq sort 'asc') 'active'}} icon button" {{action 'submitSort' 'asc'}}>
+    <i class="sort alphabet ascending icon"></i>
+  </button>
+  <button id="random_order" title="{{t 'find-broadcasts.sort-button.random'}}" class="ui {{if (eq sort 'random') 'active'}} icon button" {{action 'submitSort' 'random'}}>
+    <i class="random icon"></i>
+  </button>
+  <button id="alphabetical_order_descending" title="{{t 'find-broadcasts.sort-button.descending'}}" class="ui {{if (eq sort 'desc') 'active'}} icon button" {{action 'submitSort' 'desc'}}>
+    <i class="sort alphabet descending icon"></i>
+  </button>
 </div>
 {{yield}}

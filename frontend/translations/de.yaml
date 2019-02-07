@@ -327,6 +327,11 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
+  sort-button:
+    reset: Suchparameter zurückzusetzen
+    ascending: Sortiere absteigend
+    descending: Sortiere aufsteigend
+    random: Zufälliger Reihenfolge
 show-twitter-feed:
   tweets-by: Tweets von RundfunkMB
   message: Twitter-Feeds anzeigen
