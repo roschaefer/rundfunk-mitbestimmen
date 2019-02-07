@@ -307,7 +307,8 @@ broadcast:
       updatedAt: Zuletzt geändert am
       visit-broadcast: Zur Website der Sendung
 find-broadcasts:
-  header: Sendungen auswählen
+  header: Sendung suche. Jetzt
+  header-end: sendung gefunden.
   help-messages:
     missing-broadcast:
       header: Fehlt eine Sendung?
