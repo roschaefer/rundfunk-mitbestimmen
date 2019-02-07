@@ -14,9 +14,3 @@ services:
       - REDIS_URL=redis://redis:6379
       - IPSTACK_API_KEY=${IPSTACK_API_KEY}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
-  frontend:
-    build:
-      target: production
-      context: ./frontend
-    environment:
-      - PORT=4200

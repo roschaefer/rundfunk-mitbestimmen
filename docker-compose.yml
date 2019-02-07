@@ -1,6 +1,9 @@
 version: '3.4'
 services:
   frontend:
+    build:
+      target: production
+      context: ./frontend
     image: rundfunkmitbestimmen/frontend:latest
     ports:
       - 4200:4200 # server
@@ -11,6 +14,8 @@ services:
       - DOCKER=1
       - API_HOST=http://localhost:3000
   backend:
+    build:
+      context: ./backend
     image: rundfunkmitbestimmen/backend
     ports:
       - 3000:3000

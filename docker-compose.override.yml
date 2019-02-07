@@ -6,13 +6,12 @@ services:
       context: ./frontend
     volumes:
       - ./frontend/:/frontend/
+      - tmp:/frontend/tmp/
       - node_modules:/frontend/node_modules
     tty: true
     stdin_open: true
     command: yarn run start
   backend:
-    build:
-      context: ./backend
     volumes:
       - ./backend:/backend
       - bundle:/backend/vendor/bundle
@@ -20,5 +19,6 @@ services:
     stdin_open: true
 
 volumes:
+  tmp:
   node_modules:
   bundle:

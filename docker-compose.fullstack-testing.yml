@@ -17,6 +17,5 @@ services:
   frontend:
     environment:
       - API_HOST=http://backend:3000
-    command: "ember server --environment=fullstack"
   backend:
     command: "bin/rails server -b 0.0.0.0 --environment=fullstack"

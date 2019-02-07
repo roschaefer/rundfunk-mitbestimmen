@@ -1,4 +1,4 @@
-FROM rundfunk-mitbestimmen-backend
+FROM rundfunkmitbestimmen/backend
 
 WORKDIR /fullstack
 
