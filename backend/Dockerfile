@@ -3,7 +3,7 @@ EXPOSE 3000
 
 ARG RAILS_ROOT=/backend
 ARG BUILD_PACKAGES="build-base curl-dev git"
-ARG DEV_PACKAGES="postgresql-dev yaml-dev zlib-dev"
+ARG DEV_PACKAGES="postgresql postgresql-dev yaml-dev zlib-dev"
 ARG RUBY_PACKAGES="tzdata"
 WORKDIR $RAILS_ROOT
 
