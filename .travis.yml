@@ -71,12 +71,12 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap staging deploy && cd ../frontend && ember deploy staging
+    script: deploy/backend.sh
     on:
-      branch: staging
+      branch: master
   - provider: script
     skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
+    script: deploy/frontend.sh
     on:
       branch: master
 
