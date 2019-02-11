@@ -71,6 +71,11 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
+    script: deploy/dockerhub.sh
+    on:
+      branch: master
+  - provider: script
+    skip_cleanup: true
     script: deploy/backend.sh
     on:
       branch: master
