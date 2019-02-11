@@ -1082,6 +1082,7 @@ ansistyles@~0.1.3:
 any-promise@^1.0.0, any-promise@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
+  integrity sha1-q8av7tzqUugJzcA3au0845Y10X8=
 
 anymatch@^1.3.0:
   version "1.3.2"
@@ -1941,6 +1942,7 @@ base@^0.11.1:
 basic-auth@^2.0.0, basic-auth@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
+  integrity sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
   dependencies:
     safe-buffer "5.1.2"
 
@@ -2040,6 +2042,22 @@ body-parser@1.18.2:
     qs "6.5.1"
     raw-body "2.3.2"
     type-is "~1.6.15"
+
+body-parser@1.18.3:
+  version "1.18.3"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.3.tgz#5b292198ffdd553b3a0f20ded0592b956955c8b4"
+  integrity sha1-WykhmP/dVTs6DyDe0FkrlWlVyLQ=
+  dependencies:
+    bytes "3.0.0"
+    content-type "~1.0.4"
+    debug "2.6.9"
+    depd "~1.1.2"
+    http-errors "~1.6.3"
+    iconv-lite "0.4.23"
+    on-finished "~2.3.0"
+    qs "6.5.2"
+    raw-body "2.3.3"
+    type-is "~1.6.16"
 
 body@^5.1.0:
   version "5.1.0"
@@ -3437,6 +3455,7 @@ compressible@~2.0.14:
 compression@^1.6.2, compression@^1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/compression/-/compression-1.7.3.tgz#27e0e176aaf260f7f2c2813c3e440adb9f1993db"
+  integrity sha512-HSjyBG5N1Nnz7tF2+O7A9XUhyjru71/fwgNb7oIsEVHR0WShfs2tIS/EySLgiTe98aOK18YDlMXpzjCXY/n9mg==
   dependencies:
     accepts "~1.3.5"
     bytes "3.0.0"
@@ -4076,10 +4095,6 @@ date-time@^2.1.0:
 dateformat@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
-
-debounce@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
 
 debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
@@ -5186,7 +5201,6 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
 
 "ember-metrics@git+https://github.com/poteto/ember-metrics.git":
   version "0.13.0"
-  uid "48121240879f9a8d8fd28d9bbf996fc616004185"
   resolved "https://github.com/poteto/ember-metrics.git#48121240879f9a8d8fd28d9bbf996fc616004185"
   dependencies:
     broccoli-funnel "^1.0.1"
@@ -5762,7 +5776,7 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express@^4.10.7, express@^4.13.3, express@^4.16.3:
+express@^4.10.7, express@^4.16.3:
   version "4.16.3"
   resolved "http://registry.npmjs.org/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
   dependencies:
@@ -5789,6 +5803,42 @@ express@^4.10.7, express@^4.13.3, express@^4.16.3:
     qs "6.5.1"
     range-parser "~1.2.0"
     safe-buffer "5.1.1"
+    send "0.16.2"
+    serve-static "1.13.2"
+    setprototypeof "1.1.0"
+    statuses "~1.4.0"
+    type-is "~1.6.16"
+    utils-merge "1.0.1"
+    vary "~1.1.2"
+
+express@^4.13.3:
+  version "4.16.4"
+  resolved "https://registry.yarnpkg.com/express/-/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
+  integrity sha512-j12Uuyb4FMrd/qQAm6uCHAkPtO8FDTRJZBDd5D2KOL2eLaz1yUNdUB/NOIyq0iU4q4cFarsUCrnFDPBcnksuOg==
+  dependencies:
+    accepts "~1.3.5"
+    array-flatten "1.1.1"
+    body-parser "1.18.3"
+    content-disposition "0.5.2"
+    content-type "~1.0.4"
+    cookie "0.3.1"
+    cookie-signature "1.0.6"
+    debug "2.6.9"
+    depd "~1.1.2"
+    encodeurl "~1.0.2"
+    escape-html "~1.0.3"
+    etag "~1.8.1"
+    finalhandler "1.1.1"
+    fresh "0.5.2"
+    merge-descriptors "1.0.1"
+    methods "~1.1.2"
+    on-finished "~2.3.0"
+    parseurl "~1.3.2"
+    path-to-regexp "0.1.7"
+    proxy-addr "~2.0.4"
+    qs "6.5.2"
+    range-parser "~1.2.0"
+    safe-buffer "5.1.2"
     send "0.16.2"
     serve-static "1.13.2"
     setprototypeof "1.1.0"
@@ -5923,6 +5973,7 @@ fast-sourcemap-concat@^1.4.0:
 fastboot-app-server@^1.1.2-beta.1:
   version "1.1.2-beta.1"
   resolved "https://registry.yarnpkg.com/fastboot-app-server/-/fastboot-app-server-1.1.2-beta.1.tgz#39169cdb8e16abdd789519b9b69651767841b90d"
+  integrity sha512-xVhAyJ6UGgWdNQpf1hHwfb5yXHb7G0n0aF7UD+xU/Ds+vEfWAOMJgwMqA7zmmjBMjyIBGpYKQFvZnZ4QdlE/7Q==
   dependencies:
     basic-auth "^2.0.0"
     chalk "^2.0.1"
@@ -5936,16 +5987,11 @@ fastboot-app-server@^1.1.2-beta.1:
 fastboot-express-middleware@^1.1.1, fastboot-express-middleware@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/fastboot-express-middleware/-/fastboot-express-middleware-1.2.0.tgz#3f32fb21d8d01ad7c0c7d876b278601665ea17fa"
+  integrity sha1-PzL7IdjQGtfAx9h2snhgFmXqF/o=
   dependencies:
     chalk "^2.0.1"
     fastboot "^1.2.0"
     request "^2.81.0"
-
-fastboot-fs-notifier@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/fastboot-fs-notifier/-/fastboot-fs-notifier-0.1.1.tgz#ad3336ee04c1275a553fe6fa7cb045952cb4df70"
-  dependencies:
-    debounce "^1.0.0"
 
 fastboot-transform@^0.1.1, fastboot-transform@^0.1.3:
   version "0.1.3"
@@ -6289,6 +6335,7 @@ fs-extra@^1.0.0:
 fs-extra@^2.0.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
+  integrity sha1-BGxwFjzvmq1GsOSn+kZ/si1x3jU=
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
@@ -6334,6 +6381,7 @@ fs-minipass@^1.2.5:
 fs-promise@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/fs-promise/-/fs-promise-2.0.3.tgz#f64e4f854bcf689aa8bddcba268916db3db46854"
+  integrity sha1-9k5PhUvPaJqovdy6JokW2z20aFQ=
   dependencies:
     any-promise "^1.3.0"
     fs-extra "^2.0.0"
@@ -6966,7 +7014,7 @@ http-errors@1.6.2:
     setprototypeof "1.0.3"
     statuses ">= 1.3.1 < 2"
 
-http-errors@~1.6.2:
+http-errors@1.6.3, http-errors@~1.6.2, http-errors@~1.6.3:
   version "1.6.3"
   resolved "http://registry.npmjs.org/http-errors/-/http-errors-1.6.3.tgz#8b55680bb4be283a0b5bf4ea2e38580be1d9320d"
   dependencies:
@@ -7040,6 +7088,13 @@ iconv-lite@0.4, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+
+iconv-lite@0.4.23:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
+  integrity sha512-neyTUVFtahjf0mB3dZT77u+8O0QB89jFdnBkd5P1JgYPbPaia3gXXOVL2fq8VyU2gMMD7SaN7QukTB/pmXYvDA==
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
 
 idtoken-verifier@^1.2.0:
   version "1.2.0"
@@ -9149,6 +9204,7 @@ mute-stream@0.0.7, mute-stream@~0.0.4:
 mz@^2.6.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
+  integrity sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==
   dependencies:
     any-promise "^1.0.0"
     object-assign "^4.0.1"
@@ -10532,7 +10588,7 @@ protoduck@^5.0.0:
   dependencies:
     genfun "^5.0.0"
 
-proxy-addr@~2.0.3:
+proxy-addr@~2.0.3, proxy-addr@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.4.tgz#ecfc733bf22ff8c6f407fa275327b9ab67e48b93"
   dependencies:
@@ -10608,7 +10664,7 @@ qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
-qs@^6.2.0, qs@^6.4.0, qs@^6.5.1, qs@~6.5.2:
+qs@6.5.2, qs@^6.2.0, qs@^6.4.0, qs@^6.5.1, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
@@ -10683,6 +10739,16 @@ raw-body@2.3.2:
     bytes "3.0.0"
     http-errors "1.6.2"
     iconv-lite "0.4.19"
+    unpipe "1.0.0"
+
+raw-body@2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"
+  integrity sha512-9esiElv1BrZoI3rCDuOuKCBRbuApGGaDPQfjSflGxdy4oyzqghxu6klEkkVIvBje+FF0BX9coEv8KqW6X/7njw==
+  dependencies:
+    bytes "3.0.0"
+    http-errors "1.6.3"
+    iconv-lite "0.4.23"
     unpipe "1.0.0"
 
 raw-body@~1.1.0:
@@ -11446,7 +11512,6 @@ semantic-ui-css@^2.2.14:
 
 "semantic-ui-ember@https://github.com/Semantic-Org/Semantic-UI-Ember.git":
   version "3.0.3"
-  uid "155f1fcef8ef057bf795bf831a28baa440bde539"
   resolved "https://github.com/Semantic-Org/Semantic-UI-Ember.git#155f1fcef8ef057bf795bf831a28baa440bde539"
   dependencies:
     ember-cli-babel "^6.11.0"
@@ -12275,12 +12340,14 @@ text-table@^0.2.0, text-table@~0.2.0:
 thenify-all@^1.0.0, thenify-all@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
+  integrity sha1-GhkY1ALY/D+Y+/I02wvMjMEOlyY=
   dependencies:
     thenify ">= 3.1.0 < 4"
 
 "thenify@>= 3.1.0 < 4":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
+  integrity sha1-5p44obq+lpsBCCB5eLn2K4hgSDk=
   dependencies:
     any-promise "^1.0.0"
 
