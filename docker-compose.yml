@@ -11,8 +11,10 @@ services:
       - 7357:7357 # test server
       - 7020:7020
     environment:
-      - DOCKER=1
+      - PORT=4200
+      - FRONTEND_URL=http://localhost:4200
       - BACKEND_URL=http://backend:3000
+      - DOCKER=1
   backend:
     build:
       context: ./backend

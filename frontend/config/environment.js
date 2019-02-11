@@ -1,12 +1,13 @@
 module.exports = function(environment) {
 
-  var FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:4200'
+  var FRONTEND_URL = 'http://localhost:4200'
   if (environment === 'staging') {
     FRONTEND_URL = 'https://rundfunk-mitbestimmen.roschaefer.de'
   }
   if(environment === 'production') {
     FRONTEND_URL = 'https://rundfunk-mitbestimmen.de'
   }
+  FRONTEND_URL = FRONTEND_URL || process.env.FRONTEND_URL //overwrite if given
 
   var ENV = {
     modulePrefix: 'frontend',
