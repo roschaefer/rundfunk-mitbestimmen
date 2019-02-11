@@ -4,7 +4,7 @@ services:
     environment:
       - PIWIK_URL=http://piwik
   sidekiq:
-    image: rundfunkmitbestimmen/sidekiq:latest
+    image: rundfunkmitbestimmen/backend:latest
     build:
       context: ./backend
     depends_on:
