@@ -12,7 +12,7 @@ services:
       - 7020:7020
     environment:
       - DOCKER=1
-      - API_HOST=http://localhost:3000
+      - BACKEND_URL=http://backend:3000
   backend:
     build:
       context: ./backend

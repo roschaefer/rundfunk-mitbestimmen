@@ -1,6 +1,17 @@
 const FastBootAppServer = require('fastboot-app-server');
+const ExpressHTTPServer = require('fastboot-app-server/src/express-http-server');
+const proxy = require('http-proxy-middleware')
+
+const httpServer = new ExpressHTTPServer(/* {options} */);
+const app = httpServer.app;
+app.use('/api', proxy({
+  target: process.env.BACKEND_URL || 'http://localhost:3000',
+  pathRewrite: { '^/api': '' },
+  changeOrigin: true
+}))
 
 let server = new FastBootAppServer({
+  httpServer: httpServer,
   distPath: 'dist',
   gzip: true, // Optional - Enables gzip compression.
   host: '0.0.0.0', // Optional - Sets the host the server listens on.

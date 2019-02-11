@@ -1,4 +1,13 @@
 module.exports = function(environment) {
+
+  var FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:4200'
+  if (environment === 'staging') {
+    FRONTEND_URL = 'https://rundfunk-mitbestimmen.roschaefer.de'
+  }
+  if(environment === 'production') {
+    FRONTEND_URL = 'https://rundfunk-mitbestimmen.de'
+  }
+
   var ENV = {
     modulePrefix: 'frontend',
     environment: environment,
@@ -29,7 +38,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      BACKEND_URL: (process.env.API_HOST || 'http://localhost:3000'),
+      BACKEND_URL: (process.env.EXPOSED_BACKEND_URL || `${FRONTEND_URL}/api`),
       authenticator: 'authenticator:auth0'
     },
     metricsAdapters: [
@@ -49,8 +58,8 @@ module.exports = function(environment) {
       clientId: (process.env.AUTH0_CLIENT_ID || "3NSVbVwiVABkv6uS7vRzH0sY7mqmlzOG"),
       domain: (process.env.AUTH0_DOMAIN || "rundfunk-testing.eu.auth0.com"),
       callbacks: {
-        login: 'http://localhost:4200/authentication/callback',
-        logout: 'http://localhost:4200/'
+        login: `${FRONTEND_URL}/authentication/callback`,
+        logout: `${FRONTEND_URL}/`
       }
     },
     fastboot: {
@@ -89,20 +98,7 @@ module.exports = function(environment) {
     }
   }
 
-  if (environment === 'staging') {
-    ENV.APP.BACKEND_URL = 'https://rundfunk-backend.roschaefer.de/';
-    ENV.auth0.callbacks = {
-      login: 'https://rundfunk-frontend.roschaefer.de/authentication/callback',
-      logout: 'https://rundfunk-frontend.roschaefer.de'
-    }
-  }
-
   if (environment === 'production') {
-    ENV.APP.BACKEND_URL = 'https://api.rundfunk-mitbestimmen.de/';
-    ENV.auth0.callbacks = {
-      login: 'https://rundfunk-mitbestimmen.de/authentication/callback',
-      logout: 'https://rundfunk-mitbestimmen.de'
-    }
     ENV.sentry.development = false;
   }
 
