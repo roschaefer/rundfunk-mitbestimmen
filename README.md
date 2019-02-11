@@ -93,19 +93,14 @@ This can take a while...
 As soon as this is finished, open another terminal and create the database and
 run migrations with:
 ```sh
-docker-compose exec backend rails db:create db:migrate
+docker-compose exec backend rails db:setup
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
 
-If you want, you can create some seed data
-```sh
-docker-compose exec backend rails db:seed
-```
-
 Run frontend tests:
 ```sh
-docker-compose exec frontend ember test
+docker-compose exec frontend yarn run test
 ```
 
 Run backend tests:
