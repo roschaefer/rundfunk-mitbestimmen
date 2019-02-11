@@ -1,9 +1,12 @@
 version: '3.4'
 services:
-  fullstack:
-    image: rundfunkmitbestimmen/fullstack:latest
+  frontend:
     build:
-      context: ./
+      target: build_and_test
+      context: ./frontend
+  features:
+    build:
+      context: .
     depends_on:
       - backend
       - frontend
@@ -12,7 +15,5 @@ services:
       - POSTGRES_USERNAME=postgres
       - REDIS_URL=redis://redis:6379
       - CAPYBARA_APP_HOST=http://frontend:4200
-    volumes:
-      - ./backend:/backend
   backend:
     command: "bin/rails server -b 0.0.0.0 --environment=fullstack"

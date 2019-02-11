@@ -4,9 +4,8 @@ WORKDIR /fullstack
 
 RUN mv /backend ./backend
 
-COPY Gemfile      ./Gemfile
-COPY Gemfile.lock ./Gemfile.lock
-COPY features     ./features
+COPY Gemfile Gemfile.lock ./
+COPY features     .
 
 RUN bundle install
 
