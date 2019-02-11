@@ -44,9 +44,9 @@ module.exports = function(environment) {
     metricsAdapters: [
       {
         name: 'Piwik',
-        environments: ['development', 'production'],
+        environments: ['production'],
         config: {
-          piwikUrl: 'https://piwik.rundfunk-mitbestimmen.de',
+          piwikUrl: process.env.PIWIK_URL || 'https://piwik.rundfunk-mitbestimmen.de',
           siteId: 1
         }
       }
