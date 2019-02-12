@@ -70,7 +70,7 @@
     "ember-truth-helpers": "2.1.0",
     "ember-url": "^0.6.0",
     "ember-welcome-page": "^3.2.0",
-    "eslint-plugin-ember": "^5.4.0",
+    "eslint-plugin-ember": "^6.2.0",
     "highcharts": "6.2.0",
     "leaflet": "^1.4.0",
     "loader.js": "^4.7.0",
