@@ -1,48 +1,55 @@
 <div class="row">
   <div class="ui sixteen wide column">
     <form {{action "search" on="submit"}} class="ui broadcast-search form">
-      <div class="four fields">
-        <div class="four wide field">
+      <div class="three fields">
+        <div class="field">
           <div class="ui action fluid input">
-            {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t 'broadcast-search.query.placeholder') }}
-            <button type="submit" id='submit-search' class="ui primary icon button {{if loading 'loading'}}">
+            {{#link-to 'find-broadcasts'
+            (query-params q=null sort=null)
+            tagName="button"
+            id="reset-search"
+            title=(t 'find-broadcasts.reset-search')
+            class="ui basic small icon button"
+            }}
+            <i class="times icon"></i>
+            {{/link-to}}
+            {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t
+            'broadcast-search.query.placeholder') }}
+            <button type="submit" id='submit-search' class="ui basic primary icon button {{if loading 'loading'}}">
               <i class="search icon"></i>
             </button>
           </div>
         </div>
-        <div class="four wide field filter-media-field">
+        <div class="field filter-media-field">
           {{#ui-dropdown class="fluid selection" selected='' onChange=(action 'filterMedium')}}
-            <div class="default text">{{t 'broadcast-search.filter.medium.placeholder' }}</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <div class="item blank" data-value=""></div>
-              {{#each media as |medium|}}
-                <div class="item" data-value="{{medium.id}}">
-                  {{medium.name}}
-                </div>
-              {{/each}}
+          <div class="default text">{{t 'broadcast-search.filter.medium.placeholder' }}</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item blank" data-value=""></div>
+            {{#each media as |medium|}}
+            <div class="item" data-value="{{medium.id}}">
+              {{medium.name}}
             </div>
+            {{/each}}
+          </div>
           {{/ui-dropdown}}
         </div>
-        <div class="four wide field filter-stations-field">
+        <div class="field filter-stations-field">
           {{#if sortedStations}}
-            {{#ui-dropdown class="fluid selection" selected='' onChange=(action 'filterStation')}}
-              <div class="default text">{{t 'broadcast-search.filter.station.placeholder' }}</div>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item blank" data-value=""></div>
-                {{#each sortedStations as |station|}}
-                  <div class="item" data-value="{{station.id}}">
-                    <span class="text">{{station.name}}</span>
-                    <span class="description">#{{station.broadcasts_count}}</span>
-                  </div>
-                {{/each}}
-              </div>
-            {{/ui-dropdown}}
+          {{#ui-dropdown class="fluid selection" selected='' onChange=(action 'filterStation')}}
+          <div class="default text">{{t 'broadcast-search.filter.station.placeholder' }}</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item blank" data-value=""></div>
+            {{#each sortedStations as |station|}}
+            <div class="item" data-value="{{station.id}}">
+              <span class="text">{{station.name}}</span>
+              <span class="description">#{{station.broadcasts_count}}</span>
+            </div>
+            {{/each}}
+          </div>
+          {{/ui-dropdown}}
           {{/if}}
-        </div>
-        <div class="four wide field">
-          {{broadcast-sort sort=filterParams.sort sortAction=(action 'sortAction')}}
         </div>
       </div>
     </form>

@@ -50,6 +50,9 @@ export default Controller.extend({
     loginAction(){
       this.send('login');
     },
+    sortAction(direction){
+      this.set('sort', direction);
+      this.set('page', 1);
+    }
   }
 });
-

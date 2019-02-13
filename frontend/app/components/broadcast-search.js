@@ -31,11 +31,6 @@ export default Component.extend({
       this.set('filterParams.station', stationId);
       let searchAction = this.get('searchAction');
       searchAction(this.get('filterParams'));
-    },
-    sortAction(direction){
-      this.set('filterParams.sort', direction);
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
     }
   }
 });
