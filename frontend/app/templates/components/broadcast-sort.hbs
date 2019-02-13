@@ -1,7 +1,4 @@
 <div class="ui right floated basic icon buttons">
-    {{#link-to 'find-broadcasts' (query-params q=null sort=null) tagName="button" id="reset-filter" title=(t 'find-broadcasts.sort-button.reset') class="ui icon button"}}
-      <i class="undo icon"></i>
-    {{/link-to}}
   <button id="alphabetical_order_ascending" title="{{t 'find-broadcasts.sort-button.ascending'}}" class="ui {{if (eq sort 'asc') 'active'}} icon button" {{action 'submitSort' 'asc'}}>
     <i class="sort alphabet ascending icon"></i>
   </button>
