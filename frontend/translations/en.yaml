@@ -289,8 +289,13 @@ broadcast:
       updatedAt: Last updated at
       visit-broadcast: Visit broadcast website
 find-broadcasts:
-  header: Browse or filter broadcasts. Currently showing
-  header-end: broadcasts.
+  header: Browse broadcasts
+  subheader: "Currently showing {totalCount, plural, =0 {no broadcasts} =1 {one broadcast} other {# broadcasts}}"
+  reset-search: Reset search
+  sort-button:
+    ascending: Sort Ascending
+    descending: Sort Descending
+    random: Sort Random
   help-messages:
     missing-broadcast:
       header: Something missing?
@@ -309,11 +314,6 @@ find-broadcasts:
       next: Next
       back: Back
       distribute: Distribute budget
-  sort-button:
-    reset: Reset search
-    ascending: Sort Ascending
-    descending: Sort Descending
-    random: Sort Random
 show-twitter-feed:
   tweets-by: Tweets by RundfunkMB
   message: Show Twitter Feeds

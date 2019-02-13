@@ -307,8 +307,13 @@ broadcast:
       updatedAt: Zuletzt geändert am
       visit-broadcast: Zur Website der Sendung
 find-broadcasts:
-  header: Sendung suche. Jetzt
-  header-end: sendung gefunden.
+  header: Sendungen auswählen
+  subheader: "{totalCount, plural, =0 {Keine Sendungen} =1 {Eine Sendung} other {# Sendungen}} gefunden"
+  reset-search: Suchparameter zurückzusetzen
+  sort-button:
+    ascending: Sortiere absteigend
+    descending: Sortiere aufsteigend
+    random: Zufälliger Reihenfolge
   help-messages:
     missing-broadcast:
       header: Fehlt eine Sendung?
@@ -327,11 +332,6 @@ find-broadcasts:
       next: Weiter
       back: Zurück
       distribute: Budget verteilen
-  sort-button:
-    reset: Suchparameter zurückzusetzen
-    ascending: Sortiere absteigend
-    descending: Sortiere aufsteigend
-    random: Zufälliger Reihenfolge
 show-twitter-feed:
   tweets-by: Tweets von RundfunkMB
   message: Twitter-Feeds anzeigen
