@@ -5,7 +5,7 @@
         <div class="field">
           <div class="ui action fluid input">
             {{#link-to 'find-broadcasts'
-            (query-params q=null sort=null)
+            (query-params q=null sort=null medium=null station=null)
             tagName="button"
             id="reset-search"
             title=(t 'find-broadcasts.reset-search')
@@ -13,7 +13,7 @@
             }}
             <i class="times icon"></i>
             {{/link-to}}
-            {{input id="search" value=filterParams.q class="prompt" type="text" placeholder=(t
+            {{input id="search" value=q class="prompt" type="text" placeholder=(t
             'broadcast-search.query.placeholder') }}
             <button type="submit" id='submit-search' class="ui basic primary icon button {{if loading 'loading'}}">
               <i class="search icon"></i>

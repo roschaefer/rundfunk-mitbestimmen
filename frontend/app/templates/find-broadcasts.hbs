@@ -9,7 +9,7 @@
       </h1>
     </div>
     <div class="four wide column">
-      {{broadcast-sort sort=filterParams.sort sortAction=(action 'sortAction')}}
+      {{broadcast-sort sort=sort sortAction=(action 'sortAction')}}
     </div>
   </div>
 </div>
@@ -22,7 +22,9 @@
       broadcasts=model.broadcasts
       media=media
       stations=stations
-      filterParams=filterParams
+      q=q
+      medium=medium
+      station=station
       loading=loading}}
     </div>
   </div>

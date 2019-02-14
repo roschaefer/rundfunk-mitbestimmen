@@ -11,14 +11,6 @@ export default Controller.extend({
   q: null,
   medium: null,
   station: null,
-  filterParams: computed('q', 'medium', 'station', 'sort', function() {
-    return {
-      q: this.get('q'),
-      sort: this.get('sort'),
-      medium: this.get('medium'),
-      station: this.get('station')
-    }
-  }),
 
   page: 1,
   perPage: 6,
@@ -31,11 +23,11 @@ export default Controller.extend({
   broadcasts: computed.alias('model.broadcasts.content'),
 
   actions: {
-    searchAction(filterParams){
-      this.set('sort', filterParams.sort);
-      this.set('q', filterParams.q);
-      this.set('medium', filterParams.medium);
-      this.set('station', filterParams.station);
+    searchAction({ sort, q, medium, station }){
+      this.set('sort', sort);
+      this.set('q', q);
+      this.set('medium', medium);
+      this.set('station', station);
       this.set('page', 1);
     },
     browse(step){

@@ -4,13 +4,14 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   intl: service(),
+  filterParams: {},
   tagName: '',
   totalCount: computed('broadcasts', function() {
     return this.get('broadcasts.meta.total-count');
   }),
-  displayedStations: computed('filterParams', 'stations', function() {
-    return this.get('stations').filter((s) => {
-      return s.get('medium').get('id') === this.get('filterParams').medium;
+  displayedStations: computed('stations', function() {
+    return this.get('stations').filter((station) => {
+      return station.get('medium').get('id') === this.get('medium');
     });
   }),
   sortedStations: computed('displayedStations', function() {
