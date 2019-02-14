@@ -54,7 +54,9 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
     };
     return RSVP.hash({
       impressions: this.get('store').peekAll('impression'),
-      broadcasts: this.findPaged('broadcast', params)
+      broadcasts: this.findPaged('broadcast', params),
+      media: this.store.findAll('medium'),
+      stations:this.store.findAll('station')
     });
   },
   setupController: function(controller, model) {
@@ -64,8 +66,6 @@ export default Route.extend(RouteMixin, ResetScrollPositionMixin, {
     controller.set('newBroadcast', this.store.createRecord('broadcast', {
       title: controller.get('q')
     }));
-    controller.set('media', this.store.findAll('medium'));
-    controller.set('stations', this.store.findAll('station'));
   },
   resetController(controller, isExiting) {
     if (isExiting) {

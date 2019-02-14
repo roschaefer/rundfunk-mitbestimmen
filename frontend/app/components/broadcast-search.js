@@ -4,7 +4,6 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   intl: service(),
-  filterParams: {},
   tagName: '',
   totalCount: computed('broadcasts', function() {
     return this.get('broadcasts.meta.total-count');
@@ -20,18 +19,19 @@ export default Component.extend({
   actions: {
     search(){
       let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      searchAction({
+        medium: this.get('mediumId'),
+        station: this.get('stationId')
+      });
     },
     filterMedium(mediumId){
-      this.set('filterParams.medium', mediumId);
-      this.set('filterParams.station', null); //clear station
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      this.set('mediumId', mediumId);
+      this.set('stationId', null); //clear station
+      this.send('search');
     },
     filterStation(stationId){
-      this.set('filterParams.station', stationId);
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      this.set('stationId', stationId);
+      this.send('search');
     }
   }
 });

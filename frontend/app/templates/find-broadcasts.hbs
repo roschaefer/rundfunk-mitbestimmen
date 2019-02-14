@@ -20,8 +20,8 @@
       {{broadcast-search
       searchAction=(action 'searchAction')
       broadcasts=model.broadcasts
-      media=media
-      stations=stations
+      media=model.media
+      stations=model.stations
       q=q
       medium=medium
       station=station
@@ -76,8 +76,8 @@
       <div class="ten wide column">
         {{broadcast/broadcast-form
         broadcast=newBroadcast
-        media=media
-        stations=stations
+        media=model.media
+        stations=model.stations
         errorMessages=errorMessages
         newBroadcast='newBroadcast'
         loginAction=(action 'loginAction')

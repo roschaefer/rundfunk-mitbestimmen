@@ -8,9 +8,6 @@ export default Controller.extend({
   intl: service(),
   queryParams: ['page', 'perPage', 'sort', 'q', 'medium', 'station'],
   sort: 'random',
-  q: null,
-  medium: null,
-  station: null,
 
   page: 1,
   perPage: 6,
@@ -23,7 +20,18 @@ export default Controller.extend({
   broadcasts: computed.alias('model.broadcasts.content'),
 
   actions: {
-    searchAction({ sort, q, medium, station }){
+    init(){
+      this.set('q', null)
+      this.set('medium', null)
+      this.set('station', null)
+    },
+    searchAction(params){
+      const {
+        sort    = this.get('sort'),
+        q       = this.get('q'),
+        medium  = this.get('medium'),
+        station = this.get('station')
+      } = params
       this.set('sort', sort);
       this.set('q', q);
       this.set('medium', medium);
