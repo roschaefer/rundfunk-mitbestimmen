@@ -13,8 +13,7 @@
             }}
             <i class="times icon"></i>
             {{/link-to}}
-            {{input id="search" value=q class="prompt" type="text" placeholder=(t
-            'broadcast-search.query.placeholder') }}
+            {{input id="search" value=query class="prompt" type="text" enter=(action 'search') placeholder=(t 'broadcast-search.query.placeholder') }}
             <button type="submit" id='submit-search' class="ui basic primary icon button {{if loading 'loading'}}">
               <i class="search icon"></i>
             </button>

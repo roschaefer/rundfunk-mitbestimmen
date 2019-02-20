@@ -20,6 +20,7 @@ export default Component.extend({
     search(){
       let searchAction = this.get('searchAction');
       searchAction({
+        q: this.get('query'),
         medium: this.get('mediumId'),
         station: this.get('stationId')
       });
