@@ -5,11 +5,11 @@ import { computed } from '@ember/object';
 export default Component.extend({
   intl: service(),
   tagName: '',
-  totalCount: computed('broadcasts', function() {
+  totalCount: computed('model.broadcasts', function() {
     return this.get('broadcasts.meta.total-count');
   }),
-  displayedStations: computed('stations', function() {
-    return this.get('stations').filter((station) => {
+  displayedStations: computed('model.stations', function() {
+    return this.get('model.stations').filter((station) => {
       return station.get('medium').get('id') === this.get('medium');
     });
   }),
