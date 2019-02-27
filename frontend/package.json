@@ -74,7 +74,7 @@
     "highcharts": "6.2.0",
     "leaflet": "^1.4.0",
     "loader.js": "^4.7.0",
-    "moment": "^2.23.0",
+    "moment": "^2.24.0",
     "semantic-ui-ember": "https://github.com/Semantic-Org/Semantic-UI-Ember.git"
   },
   "fastbootDependencies": [
