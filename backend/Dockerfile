@@ -1,23 +1,15 @@
-FROM centos:7
-
-RUN yum -y install openssl-devel readline-devel ncurses ncurses-devel
-RUN yum -y groupinstall "Development Tools"
-RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
-RUN yum -y install postgresql96-libs postgresql96-devel
-RUN ln -s /usr/pgsql-9.6/bin/pg_config /usr/local/bin/
-
-RUN mkdir ruby
-RUN curl -L https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz | tar xz --strip=1 -C ruby
-RUN cd ruby && ./configure && make && make install
-RUN rm -R ruby
-
-WORKDIR /backend
-
-RUN gem install bundler
-ADD Gemfile /backend/Gemfile
-ADD Gemfile.lock /backend/Gemfile.lock
-RUN bundle install
-
-ADD . /backend
-
+FROM ruby:2.6-alpine
 EXPOSE 3000
+
+ARG RAILS_ROOT=/backend
+ARG BUILD_PACKAGES="build-base curl-dev git"
+ARG DEV_PACKAGES="postgresql-dev yaml-dev zlib-dev"
+ARG RUBY_PACKAGES="tzdata"
+WORKDIR $RAILS_ROOT
+
+COPY Gemfile* ./
+RUN apk update && apk upgrade && apk add --update --no-cache $BUILD_PACKAGES $DEV_PACKAGES $RUBY_PACKAGES
+RUN bundle config --global frozen 1 && bundle install --path=vendor/bundle
+COPY . .
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
+

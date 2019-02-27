@@ -1,9 +1,10 @@
-version: '3'
+version: '3.4'
 services:
   frontend:
-    image: rundfunk-mitbestimmen-frontend
     build:
+      target: production
       context: ./frontend
+    image: rundfunkmitbestimmen/frontend:latest
     ports:
       - 4200:4200 # server
       - 49153:49153 # live reload
@@ -12,13 +13,10 @@ services:
     environment:
       - DOCKER=1
       - API_HOST=http://localhost:3000
-    tty: true
-    stdin_open: true
-    command: ember server
   backend:
-    image: rundfunk-mitbestimmen-backend
     build:
       context: ./backend
+    image: rundfunkmitbestimmen/backend
     ports:
       - 3000:3000
     environment:
@@ -28,7 +26,6 @@ services:
     depends_on:
       - db
       - redis
-    command: "bin/rails server -b 0.0.0.0"
   db:
     image: postgres:9.6
   redis:

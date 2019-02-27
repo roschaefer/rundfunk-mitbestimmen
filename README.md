@@ -90,36 +90,52 @@ docker-compose up
 ```
 
 This can take a while...
-As soon as this is finished, create the database and run migrations with:
+As soon as this is finished, open another terminal and create the database and
+run migrations with:
 ```sh
-docker-compose run --rm backend rails db:create db:migrate
+docker-compose exec backend rails db:create db:migrate
 ```
 
 App is running on [localhost:4200](http://localhost:4200/)
 
 If you want, you can create some seed data
 ```sh
-docker-compose run --rm backend rails db:seed
+docker-compose exec backend rails db:seed
 ```
 
 Run frontend tests:
 ```sh
-docker-compose run --rm frontend ember test
+docker-compose exec frontend ember test
 ```
 
 Run backend tests:
 ```sh
-docker-compose run --rm backend bin/rspec
+docker-compose exec backend bin/rspec
 ```
 
-For fullstack testing, use the provided [docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
+For fullstack testing, use the provided
+[docker-compose override](https://docs.docker.com/compose/extends/#example-use-case):
 ```sh
 docker-compose -f docker-compose.yml -f docker-compose.fullstack-testing.yml up
 ```
-When all containers are up, run the cucumber tests in the `fullstack` service with:
+When all containers are up, open another terminal and run cucumber tests
+inside `fullstack` service with:
 ```sh
-docker-compose run --rm fullstack bundle exec cucumber
+docker-compose exec fullstack bundle exec cucumber
 ```
+
+#### Clean docker caches
+
+To force a re-build of a docker image you can:
+```sh
+docker-compose up --build
+```
+To stpo all containers and remove all volumes (e.g. `node_modules/` and
+`bundle/` are persisted volumes) just do:
+```sh
+docker-compose down --volumes
+```
+
 ## Local Installation
 
 Make sure that you have a recent version of [node](https://nodejs.org/en/),

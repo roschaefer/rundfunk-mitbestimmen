@@ -1,11 +1,21 @@
-FROM danlynn/ember-cli:3.4.3-node_10.11
+FROM node:10-alpine as base
 EXPOSE 4200 49152 7357
-WORKDIR /frontend
+ARG EMBER_ROOT=/frontend
+WORKDIR $EMBER_ROOT
 
-ADD package.json /frontend/package.json
-ADD yarn.lock /frontend/yarn.lock
-RUN yarn install
+COPY package.json ./package.json
+COPY yarn.lock ./yarn.lock
 
-ADD . /frontend
+FROM base as build_and_test
+RUN apk --no-cache add git
+RUN yarn install --frozen-lockfile --non-interactive
+COPY . .
+RUN yarn run build
 
-RUN ember build
+FROM base as production
+ENV NODE_ENV=production
+RUN yarn install --frozen-lockfile --non-interactive
+COPY --from=build_and_test /frontend/dist ./dist
+COPY --from=build_and_test /frontend/production-server.js ./
+CMD ["node", "production-server.js"]
+

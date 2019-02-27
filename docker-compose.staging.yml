@@ -1,7 +1,7 @@
-version: '3'
+version: '3.4'
 services:
   sidekiq:
-    image: rundfunk-mitbestimmen-sidekiq
+    image: rundfunkmitbestimmen/sidekiq:latest
     build:
       context: ./backend
     depends_on:
@@ -14,7 +14,3 @@ services:
       - REDIS_URL=redis://redis:6379
       - IPSTACK_API_KEY=${IPSTACK_API_KEY}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
-  frontend:
-    environment:
-      - PORT=4200
-    command: node production-server.js
