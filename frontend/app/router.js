@@ -6,19 +6,18 @@ import config from './config/environment';
 const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL,
+
   metrics: service(),
+  router: service(),
 
-  didTransition() {
+  init() {
     this._super(...arguments);
-    this._trackPage();
-  },
 
-  _trackPage() {
-    scheduleOnce('afterRender', this, () => {
-      const page = this.get('url');
-      const title = this.getWithDefault('currentRouteName', 'unknown');
+    this.on('routeDidChange', () => {
+      const page = this.router.currentURL;
+      const title = this.router.currentRouteName || 'unknown';
 
-      this.get('metrics').trackPage({ page, title });
+      this.metrics.trackPage({ page, title });
     });
   }
 });
