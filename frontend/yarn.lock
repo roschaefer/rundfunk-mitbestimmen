@@ -5176,8 +5176,8 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
 
 "ember-metrics@git+https://github.com/poteto/ember-metrics.git":
   version "0.13.0"
-  uid "6b236e581a0bb6d32613064357d46ee6360a72e5"
-  resolved "https://github.com/poteto/ember-metrics.git#6b236e581a0bb6d32613064357d46ee6360a72e5"
+  uid "8d8c8e534a6bf98df0d8a9fff0721b7c5eb3b9a7"
+  resolved "git+https://github.com/poteto/ember-metrics.git#8d8c8e534a6bf98df0d8a9fff0721b7c5eb3b9a7"
   dependencies:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^6.6.0"
