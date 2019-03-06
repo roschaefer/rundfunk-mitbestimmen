@@ -1,4 +1,4 @@
-// components/dynamic-high-charts.js
+/* eslint ember/no-observers: "off" */
 import EmberHighChartsComponent from 'ember-highcharts/components/high-charts';
 import { observer } from '@ember/object';
 

@@ -3,13 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | data privacy', function() {
-  setupTest('route:data-privacy', {
-    needs: [
-      'service:metrics',
-      'service:fastboot',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('route:data-privacy', { integration: true });
 
   it('exists', function() {
     let route = this.subject();

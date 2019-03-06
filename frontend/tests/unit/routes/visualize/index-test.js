@@ -3,14 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | visualize/index', function() {
-  setupTest('route:visualize/index', {
-    needs: [
-      'service:metrics',
-      'service:fastboot',
-      'service:intl',
-      'ember-metrics@metrics-adapter:piwik'
-    ]
-  });
+  setupTest('route:visualize/index', { integration: true });
 
   it('exists', function() {
     let route = this.subject();

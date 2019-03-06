@@ -4,9 +4,7 @@ import { setupModelTest } from 'ember-mocha';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
 describe('Unit | Model | impression', function() {
-  setupModelTest('impression', {
-    needs: ['model:broadcast']
-  });
+  setupModelTest('impression', { integration: true });
   beforeEach(function() {
     manualSetup(this.container);
   });

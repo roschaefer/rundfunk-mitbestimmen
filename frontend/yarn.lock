@@ -5252,7 +5252,6 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
 
 "ember-metrics@git+https://github.com/poteto/ember-metrics.git":
   version "0.13.0"
-  uid "8d8c8e534a6bf98df0d8a9fff0721b7c5eb3b9a7"
   resolved "git+https://github.com/poteto/ember-metrics.git#8d8c8e534a6bf98df0d8a9fff0721b7c5eb3b9a7"
   dependencies:
     broccoli-funnel "^1.0.1"
@@ -5290,7 +5289,11 @@ ember-resolver@^5.0.1:
     ember-cli-version-checker "^2.0.0"
     resolve "^1.3.3"
 
-ember-rfc176-data@^0.3.1, ember-rfc176-data@^0.3.5, ember-rfc176-data@^0.3.6:
+ember-rfc176-data@^0.3.1, ember-rfc176-data@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.5.tgz#f630e550572c81a5e5c7220f864c0f06eee9e977"
+
+ember-rfc176-data@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.6.tgz#7138db8dfccec39c9a832adfbd4c49d670028907"
 
@@ -5594,6 +5597,7 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
 eslint-plugin-ember@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.2.0.tgz#658c24be2435da337b597c924a16aa31d69a1a40"
+  integrity sha512-WKNmTBxvQRr+f1RZ7S+env9BxH18a8uLyqli6Gg6oh5/gl5NChHKe5iGdwv0bC6yUlkocFJkQYheIC25L3npKw==
   dependencies:
     ember-rfc176-data "^0.3.5"
     snake-case "^2.1.0"
@@ -11503,7 +11507,6 @@ semantic-ui-css@^2.2.14:
 
 "semantic-ui-ember@https://github.com/Semantic-Org/Semantic-UI-Ember.git":
   version "3.0.3"
-  uid "155f1fcef8ef057bf795bf831a28baa440bde539"
   resolved "https://github.com/Semantic-Org/Semantic-UI-Ember.git#155f1fcef8ef057bf795bf831a28baa440bde539"
   dependencies:
     ember-cli-babel "^6.11.0"

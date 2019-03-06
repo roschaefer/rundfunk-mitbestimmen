@@ -3,12 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Controller | visualize/geo', function() {
-  setupTest('controller:visualize/geo', {
-    needs: [
-      'service:metrics',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('controller:visualize/geo', { integration: true });
 
   // Replace this with your real tests.
   it('exists', function() {

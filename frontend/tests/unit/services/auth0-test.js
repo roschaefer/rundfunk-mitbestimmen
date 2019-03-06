@@ -3,10 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Service | auth0', function() {
-  setupTest('service:auth0', {
-    // Specify the other units that are required for this test.
-    // needs: ['service:foo']
-  });
+  setupTest('service:auth0', { integration: true });
 
   // Replace this with your real tests.
   it('exists', function() {

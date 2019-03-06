@@ -3,15 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | authentication/callback', function() {
-  setupTest('route:authentication/callback', {
-    needs: [
-      'service:session',
-      'service:intl',
-      'service:metrics',
-      'service:fastboot',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('route:authentication/callback', { integration: true });
 
   it('exists', function() {
     let route = this.subject();
