@@ -66,7 +66,7 @@
     "ember-metrics": "git+https://github.com/poteto/ember-metrics.git",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.8.0",
-    "ember-source": "^3.6.1",
+    "ember-source": "^3.8.0",
     "ember-truth-helpers": "2.1.0",
     "ember-url": "^0.6.0",
     "ember-welcome-page": "^3.2.0",
