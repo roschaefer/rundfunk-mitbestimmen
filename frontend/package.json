@@ -37,7 +37,7 @@
     "ember-cli-deploy-scp": "1.0.12",
     "ember-cli-eslint": "^5.1.0",
     "ember-cli-fastboot": "^2.0.4",
-    "ember-cli-favicon": "1.0.0",
+    "ember-cli-favicon": "2.0.0",
     "ember-cli-google-fonts": "^2.16.2",
     "ember-cli-htmlbars": "^3.0.1",
     "ember-cli-htmlbars-inline-precompile": "^2.1.0",
