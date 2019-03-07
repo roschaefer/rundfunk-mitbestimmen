@@ -3,15 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | visualize/time/progress', function() {
-  setupTest('route:visualize/time/progress', {
-    // Specify the other units that are required for this test.
-    needs: [
-      'service:intl',
-      'service:metrics',
-      'service:fastboot',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('route:visualize/time/progress', { integration: true });
 
   it('exists', function() {
     let route = this.subject();

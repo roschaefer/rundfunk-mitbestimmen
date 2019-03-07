@@ -6,10 +6,7 @@ import { make, manualSetup } from 'ember-data-factory-guy';
 import moment from 'moment';
 
 describe('Unit | Model | user', function() {
-  setupModelTest('user', {
-    // Specify the other units that are required for this test.
-    needs: ['service:demography']
-  });
+  setupModelTest('user', { integration: true });
   beforeEach(function(){
     manualSetup(this.container);
   });

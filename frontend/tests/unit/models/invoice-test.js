@@ -5,10 +5,7 @@ import { setupModelTest } from 'ember-mocha';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
 describe('Unit | Model | invoice', function() {
-  setupModelTest('invoice', {
-    // Specify the other units that are required for this it.
-    needs: ['model:impression']
-  });
+  setupModelTest('invoice', { integration: true });
   beforeEach(function() {
     manualSetup(this.container);
   });

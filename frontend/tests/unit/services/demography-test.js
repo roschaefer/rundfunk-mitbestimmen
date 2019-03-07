@@ -3,10 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Service | demography', function() {
-  setupTest('service:demography', {
-    // Specify the other units that are required for this test.
-    // needs: ['service:foo']
-  });
+  setupTest('service:demography', { integration: true });
 
   // Replace this with your real tests.
   it('exists', function() {

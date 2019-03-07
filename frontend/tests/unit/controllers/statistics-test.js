@@ -3,13 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Controller | statistics', function() {
-  setupTest('controller:statistics', {
-    needs: [
-      'service:session',
-      'service:metrics',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('controller:statistics', { integration: true });
 
   // Replace this with your real tests.
   it('it exists', function() {
