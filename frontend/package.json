@@ -59,7 +59,7 @@
     "ember-highcharts": "1.1.1",
     "ember-inline-edit": "1.1.1",
     "ember-intl": "3.5.0",
-    "ember-leaflet": "^3.0.17",
+    "ember-leaflet": "^3.1.2",
     "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "git+https://github.com/poteto/ember-metrics.git",
