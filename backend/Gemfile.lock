@@ -86,12 +86,12 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
-    chrono_model (0.12.1)
-      activerecord (>= 4.2.0, < 5.2.0)
+    chrono_model (1.2.1)
+      activerecord (>= 5.0.0)
       multi_json
       pg
     coderay (1.1.2)
-    concurrent-ruby (1.1.4)
+    concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -116,7 +116,7 @@ GEM
       globalize (~> 5.0, >= 5.0.0)
     hashdiff (0.3.7)
     highline (2.0.1)
-    i18n (1.5.3)
+    i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jar-dependencies (0.4.0)
     jaro_winkler (1.5.2)
@@ -356,7 +356,7 @@ DEPENDENCIES
   capistrano
   capistrano-db-tasks!
   capistrano-rails
-  chrono_model (<= 0.12.1)
+  chrono_model (<= 1.2.2)
   factory_bot_rails
   geocoder
   globalize!
