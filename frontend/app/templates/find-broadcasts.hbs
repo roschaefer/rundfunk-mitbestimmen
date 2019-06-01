@@ -1,9 +1,15 @@
 <div class="row">
   <div class="column">
-    <h1 class="ui huge header find-broadcasts-page">{{t 'find-broadcasts.header'}} </h1>
+    <h1 class="ui huge header find-broadcasts-page">
+      {{t 'find-broadcasts.header'}}
+      {{totalCount}}
+      {{t 'find-broadcasts.header-end'}}
+    </h1>
   </div>
 </div>
 
+<div class="row">
+  <div class="column">
 {{broadcast-search
 searchAction=(action 'searchAction')
 broadcasts=model.broadcasts
@@ -11,6 +17,8 @@ media=media
 stations=stations
 filterParams=filterParams
 loading=loading}}
+</div>
+</div>
 
 <div class="row">
   <div class="column">
