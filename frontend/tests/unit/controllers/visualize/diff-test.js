@@ -3,13 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Controller | visualize/diff', function() {
-  setupTest('controller:visualize/diff', {
-    needs: [
-      'service:intl',
-      'service:metrics',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('controller:visualize/diff', { integration: true });
 
   // Replace this with your real tests.
   it('exists', function() {

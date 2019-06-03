@@ -3,14 +3,7 @@ import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Route | broadcast/edit', function() {
-  setupTest('route:broadcast/edit', {
-    needs: [
-      'service:metrics',
-      'service:fastboot',
-      'service:session',
-      'ember-metrics@metrics-adapter:piwik', // bundled adapter
-    ]
-  });
+  setupTest('route:broadcast/edit', { integration: true });
 
   it('exists', function() {
     let route = this.subject();

@@ -4,10 +4,7 @@ import { setupModelTest } from 'ember-mocha';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
 describe('Unit | Model | statistic/broadcast history', function() {
-  setupModelTest('statistic/broadcast-history', {
-    // Specify the other units that are required for this test.
-    needs: ['model:statistic/broadcast-history']
-  });
+  setupModelTest('statistic/broadcast-history', { integration: true });
   beforeEach(function() {
     manualSetup(this.container);
   });

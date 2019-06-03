@@ -5,10 +5,7 @@ import { setupModelTest } from 'ember-mocha';
 import { make, manualSetup } from 'ember-data-factory-guy';
 
 describe('Unit | Model | broadcast', function() {
-  setupModelTest('broadcast', {
-    // Specify the other units that are required for this it.
-    needs: ['model:impression', 'model:medium', 'model:station']
-  });
+  setupModelTest('broadcast', { integration: true });
   beforeEach(function() {
     manualSetup(this.container);
   });

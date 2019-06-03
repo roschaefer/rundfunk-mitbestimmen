@@ -3,10 +3,7 @@ import { describe, it } from 'mocha';
 import { setupModelTest } from 'ember-mocha';
 
 describe('Unit | Model | statistic/station', function() {
-  setupModelTest('statistic/station', {
-    // Specify the other units that are required for this test.
-      needs: []
-  });
+  setupModelTest('statistic/station', { integration: true });
 
   // Replace this with your real tests.
   it('exists', function() {
