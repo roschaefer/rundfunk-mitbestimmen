@@ -7,10 +7,23 @@ services:
     tty: true
     stdin_open: true
   backend:
+    environment:
+      - SMTP_HOST=mailhog
     volumes:
       - ./backend:/backend
     tty: true
     stdin_open: true
+  sidekiq:
+    volumes:
+      - ./backend:/backend
+    environment:
+      - SMTP_HOST=mailhog
+    tty: true
+    stdin_open: true
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
 
 volumes:
   node_modules:

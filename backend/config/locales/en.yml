@@ -13,3 +13,6 @@ en:
           attributes:
             amount:
               total: Total amount of %{sum} exceeds the available budget of %{budget}
+  user_mailer:
+    ask_for_spam_check:
+      subject: "[Rundfunk mitbestimmen] Recently added broadcast, please check!"

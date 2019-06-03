@@ -233,4 +233,7 @@ de:
       long: "%A, %d. %B %Y, %H:%M Uhr"
       short: "%d. %B, %H:%M Uhr"
     pm: nachmittags
+  user_mailer:
+    ask_for_spam_check:
+      subject: "[Rundfunk mitbestimmen] Neuer Sendungsbeitrag, bitte überprüfen!"
 

@@ -11,17 +11,5 @@ FactoryBot.define do
       latitude { nil }
       longitude { nil }
     end
-
-    trait :admin do
-      role { :admin }
-    end
-
-    trait :contributor do
-      role { :contributor }
-    end
-
-    trait :guest do
-      role { :guest }
-    end
   end
 end

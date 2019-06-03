@@ -32,7 +32,10 @@ Rails.application.configure do
 
   # mailcatcher settings
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
+  config.action_mailer.smtp_settings = {
+    address: ENV['SMTP_HOST'] || '127.0.0.1',
+    port: 1025
+  }
 
   config.action_mailer.perform_caching = false
 

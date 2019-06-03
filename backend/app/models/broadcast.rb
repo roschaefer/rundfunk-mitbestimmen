@@ -7,12 +7,7 @@ class Broadcast < ApplicationRecord
   pg_search_scope :full_search,
                   against: { title: 'A', description: 'C' },
                   associated_against: { stations: { name: 'B' } },
-                  using: {
-                    tsearch: { any_word: true },
-                    trigram: { threshold: 0.06 }
-                  }
-
-  has_many :impressions, dependent: :destroy
+                  using: { tsearch: { any_word: true }, trigram: { threshold: 0.06 } }
 
   before_validation :normalize_url, on: %i[create update]
 
@@ -22,6 +17,7 @@ class Broadcast < ApplicationRecord
   belongs_to :medium
   has_many :schedules
   has_many :stations, through: :schedules, dependent: :destroy # https://stackoverflow.com/a/30629704/2069431
+  has_many :impressions, dependent: :destroy
   belongs_to :creator, class_name: 'User', optional: true
   has_one :statistic, class_name: 'Statistic::Broadcast', foreign_key: :id
   validates :title, presence: true, uniqueness: { case_sensitive: false }
@@ -34,7 +30,6 @@ class Broadcast < ApplicationRecord
 
   scope :unevaluated, (->(user) { where.not(id: user.broadcasts.pluck(:id)) })
   scope :evaluated, (->(user) { where(id: user.broadcasts.pluck(:id)) })
-  # TODO: Replace with SQL query, user.broadcasts.pluck(:id) might become large
 
   scope :aliased_inner_join, (lambda do |the_alias, joined_model|
     join_table_alias = joined_model.arel_table.alias(the_alias) # specify a predictable join table alias
@@ -88,6 +83,17 @@ class Broadcast < ApplicationRecord
       end
       order('RANDOM()')
     end
+  end
+
+  def sends_email_notification
+    admins_and_moderators = User.admin + User.moderator
+    admins_and_moderators.each do |user|
+      UserMailer.ask_for_spam_check(id, user.id).deliver_later
+    end
+  end
+
+  def turns_creator_to_moderator
+    creator.to_moderator
   end
 
   private

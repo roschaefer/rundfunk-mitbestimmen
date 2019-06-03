@@ -1,6 +1,63 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
+  context 'given a moderator' do
+    let(:moderator) { create(:user, role: :moderator) }
+
+    describe '#ask_for_spam_check' do
+      let(:troll) { create(:user, email: 'troll@example.org') }
+      let(:spam) do
+        PaperTrail.request(whodunnit: troll.id) do
+          create(:broadcast, id: 4711, title: 'This broadcast is just spam')
+        end
+      end
+
+      let(:mail) { UserMailer.ask_for_spam_check(spam.id, moderator.id) }
+
+      it 'sends mail' do
+        expect { mail.deliver }.to(change { ActionMailer::Base.deliveries.count }.by(1))
+      end
+
+      describe 'body' do
+        it 'mentions the broadcast title' do
+          expect(mail.body.encoded).to match('This broadcast is just spam')
+        end
+
+        context 'user prefers English' do
+          before { moderator.update(locale: 'en') }
+
+          it 'translates' do
+            expect(mail.body.encoded).to match('was recently added to the database')
+          end
+        end
+      end
+
+      it 'provides a deep link to check the broadcast' do
+        expect(mail.body.encoded).to match('/broadcast/4711')
+      end
+
+      describe 'subject' do
+        it 'is easy to filter' do
+          expect(mail.subject).to include('[Rundfunk mitbestimmen]')
+        end
+
+        context 'recipient has no preferred language' do
+          it 'translates to German' do
+            expect(mail.subject).to include('Neuer Sendungsbeitrag, bitte überprüfen!')
+          end
+        end
+
+        context 'user prefers English' do
+          before { moderator.update(locale: 'en') }
+
+          it 'translates to English' do
+            expect(mail.subject).to include('Recently added broadcast, please check!')
+          end
+        end
+      end
+    end
+  end
+
   describe 'auth0_migration' do
     let(:user) { create(:user) }
     let(:mail) { UserMailer.auth0_migration(user) }

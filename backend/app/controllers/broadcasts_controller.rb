@@ -30,6 +30,8 @@ class BroadcastsController < ApplicationController
     @broadcast.creator = current_user
 
     if @broadcast.save
+      turns_creator_to_moderator
+      @broadcast.sends_email_notification
       render json: @broadcast, status: :created, location: @broadcast
     else
       render json: @broadcast, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
@@ -39,6 +41,7 @@ class BroadcastsController < ApplicationController
   # PATCH/PUT /broadcasts/1
   def update
     if @broadcast.update(broadcast_params)
+      turns_creator_to_moderator
       render json: @broadcast
     else
       render json: @broadcast, status: :unprocessable_entity, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
@@ -67,5 +70,9 @@ class BroadcastsController < ApplicationController
 
     new_broadcasts = broadcasts - current_user.broadcasts
     current_user.broadcasts << new_broadcasts
+  end
+
+  def turns_creator_to_moderator
+    @broadcast.turns_creator_to_moderator unless @broadcast.creator.nil?
   end
 end
