@@ -3853,9 +3853,10 @@ d3-zoom@1:
     d3-selection "1"
     d3-transition "1"
 
-d3@^5.0.0, d3@^5.8.2:
-  version "5.8.2"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-5.8.2.tgz#a8ccf5c93424022070f85fe9f98f5fef6c574e2c"
+d3@^5.0.0, d3@^5.9.4:
+  version "5.9.4"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-5.9.4.tgz#d85ce1f4c7ddc7825d56c51ace089f78bb877e6c"
+  integrity sha512-iMLfEVd2Cg3YEfOdUvQ9gJtZs4YJG0T5Nvz+A3j4sIyBwscncVheaRtwg/g6g69qwS/gl0gqlIt7CUeO/BVNbQ==
   dependencies:
     d3-array "1"
     d3-axis "1"
