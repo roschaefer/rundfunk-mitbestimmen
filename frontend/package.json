@@ -50,7 +50,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-test-loader": "^2.2.0",
     "ember-cli-uglify": "^2.1.0",
-    "ember-concurrency": "^0.8.26",
+    "ember-concurrency": "^1.1.5",
     "ember-d3": "^0.5.1",
     "ember-data": "^3.8.0",
     "ember-data-factory-guy": "3.4.0",
