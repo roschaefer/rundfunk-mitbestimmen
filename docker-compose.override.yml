@@ -11,6 +11,15 @@ services:
       - ./backend:/backend
     tty: true
     stdin_open: true
+  redis:
+    ports:
+      - 6379:6379
+  db:
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
 
 volumes:
   node_modules:

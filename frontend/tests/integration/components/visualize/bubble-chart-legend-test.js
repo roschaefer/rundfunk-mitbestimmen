@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
-import chroma from 'chroma';
+import chroma from 'chroma-js';
 import hbs from 'htmlbars-inline-precompile';
 
 let intl;

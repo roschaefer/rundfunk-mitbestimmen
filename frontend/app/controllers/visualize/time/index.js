@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import { computed } from '@ember/object';
-import chroma from 'chroma';
+import chroma from 'chroma-js';
 
 export default Controller.extend({
   intl: service(),

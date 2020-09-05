@@ -15,7 +15,7 @@ Feature: Total amount of collected money per broadcast
       | lieschen.mueller@example.org | Heute Show  | €5.00  |
     When I visit the public statistics page
     Then I see this summary:
-      | Broadcast   | Reviews | Approval | Per capita | Total |
-      | Heute Show  | 3       | 100%     | 2.17€      | €6.50 |
-      | extra 3     | 2       | 100%     | 2.25€      | €4.50 |
-      | Die Anstalt | 1       | 100%     | 2.00€      | €2.00 |
+      | Broadcast   | Impressions | Approval | Average | Total |
+      | Heute Show  | 3           | 100%     | €2.17   | €6.50 |
+      | extra 3     | 2           | 100%     | €2.25   | €4.50 |
+      | Die Anstalt | 1           | 100%     | €2.00   | €2.00 |
