@@ -270,7 +270,7 @@ end
 
 Then(/^I see this summary:$/) do |table|
   table.hashes.each do |row|
-    item = find('.statistic-item', text: /#{row['Broadcast']}/)
+    item = find('.statistic-item', text: row['Broadcast'])
     within(item) do
       expect(find('.impressions')).to have_text(row['Impressions'])
       expect(find('.approval')).to have_text(row['Approval'])
@@ -533,7 +533,7 @@ end
 
 Given(/^the statistics look like this:$/) do |table|
   table.hashes.each do |row|
-    n_impressions = row['Reviews'].to_i
+    n_impressions = row['Impressions'].to_i
     approval = row['Approval'].to_f / 100.0
     n_positive = approval * n_impressions
     average_amount = sanitize_amount(row['Total']) / n_positive
@@ -832,9 +832,11 @@ end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
   find('.selection', text: 'Filter by station').click
-  labels = all('.dropdown .item:not(.blank)').map { |item| item.text.tr("\n", ' ') }
   table.hashes.each_with_index do |row, i|
-    expect(labels[i]).to eq row['Label']
+    # + 2 for blank item and selected item
+    element = find(".dropdown .item:nth-child(#{i + 2})")
+    expect(element).to have_css('.text', text: row['Text'])
+    expect(element).to have_css('.description', text: row['Description'])
   end
 end
 
@@ -920,6 +922,7 @@ end
 When(/^I add "([^"]*)" to the list of stations$/) do |station_name|
   find('.multiple.selection.dropdown').click
   find('.item', text: station_name).click
+  expect(page).to have_css('.multiple.selection.dropdown a.ui.label', text: station_name)
 end
 
 Then(/^the list of stations of "([^"]*)" now consists of:$/) do |title, table|

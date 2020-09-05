@@ -14,12 +14,12 @@ namespace :deploy do
 
   desc 'Restart Daemon'
   task :restart_daemon do
-    on roles(:web)  do |host|
-      execute :svc, '-du ~/service/rundfunk-backend'
-      execute :svc, '-du ~/service/rundfunk-sidekiq'
+    on roles(:web) do |host|
+      execute :supervisorctl, 'reread'
+      execute :supervisorctl, 'update'
+      execute :supervisorctl, 'restart rundfunk-backend'
+      execute :supervisorctl, 'restart rundfunk-sidekiq'
       info "Host #{host} restarting svc daemon"
     end
   end
-
-  after :finished, :restart_daemon
 end

@@ -2,8 +2,8 @@ default: &default
   adapter: chronomodel
   encoding: unicode
   pool: 20
-  username: <%= ENV["POSTGRES_USERNAME"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  username: <%= ENV["POSTGRES_USERNAME"] || 'postgres' %>
+  password: <%= ENV["POSTGRES_PASSWORD"] || 'postgres' %>
   host: <%= ENV["POSTGRES_HOST"] || 'localhost' %>
 
 development:

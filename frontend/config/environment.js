@@ -37,7 +37,7 @@ module.exports = function(environment) {
         name: 'Piwik',
         environments: ['development', 'production'],
         config: {
-          piwikUrl: 'https://piwik.rundfunk-mitbestimmen.de',
+          piwikUrl: 'https://apache.rundfunk-mitbestimmen.de/matomo',
           siteId: 1
         }
       }

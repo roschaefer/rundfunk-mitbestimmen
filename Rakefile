@@ -2,6 +2,9 @@ require 'rubygems'
 require 'cucumber'
 require 'cucumber/rake/task'
 require 'rubocop/rake_task'
+require 'webdrivers'
+
+load 'webdrivers/Rakefile'
 
 RuboCop::RakeTask.new(:rubocop) do |task|
   # Make it easier to disable cops.

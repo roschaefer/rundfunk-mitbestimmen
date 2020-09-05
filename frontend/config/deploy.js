@@ -9,18 +9,6 @@ module.exports = function(deployTarget) {
     // configure other plugins for development deploy target here
   }
 
-  if (deployTarget === 'staging') {
-    ENV.build.environment = 'staging';
-    ENV['scp'] = {
-      nodes: [{
-        username: 'rschafer',
-        host: 'roschaefer.de',
-        path: '/home/rschafer/rundfunk-frontend/dist'
-      }]
-    }
-    // configure other plugins for staging deploy target here
-  }
-
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
     ENV['scp'] = {

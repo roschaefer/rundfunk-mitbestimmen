@@ -12,6 +12,6 @@ Feature: Show some stats
     And every user wants to pay 5 broadcasts each with €3.50 each
     When I visit the landing page
     Then I can see these numbers:
-      | Registered users | Reviews | Already assigned |
-      | 12               | 60      | €210             |
+      | Registered users | Impressions | Already assigned |
+      | 12               | 60          | €210             |
     And there is a link that brings me to the statistics page

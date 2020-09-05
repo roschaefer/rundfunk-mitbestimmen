@@ -1,19 +1,12 @@
-dist: trusty
+dist: xenial
 language: ruby
 sudo: required
-rvm:
-  - 2.4.1
 services:
   - redis-server
+  - postgres
 addons:
   ssh_known_hosts: rundfunk-mitbestimmen.de
-  postgresql: "9.6"
   chrome: stable
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
 
 before_install:
   - . $HOME/.nvm/nvm.sh
@@ -34,6 +27,7 @@ install:
   - cd backend && bundle
   - cd ../frontend && yarn install --pure-lockfile
   - cd ..
+  - bundle exec rake webdrivers:chromedriver:update
 
 
 before_script:
@@ -66,17 +60,11 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa
-  - rvm $TRAVIS_RUBY_VERSION do gem install bundler capistrano capistrano-rails capistrano-db-tasks
 
 deploy:
   - provider: script
     skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap staging deploy && cd ../frontend && ember deploy staging
-    on:
-      branch: staging
-  - provider: script
-    skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
+    script: ./deployment/scripts/deploy.sh
     on:
       branch: master
 
