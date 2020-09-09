@@ -832,9 +832,11 @@ end
 
 Then(/^the drop down menu has excactly these items:$/) do |table|
   find('.selection', text: 'Filter by station').click
-  labels = all('.dropdown .item:not(.blank)').map { |item| item.text.tr("\n", ' ') }
   table.hashes.each_with_index do |row, i|
-    expect(labels[i]).to eq row['Label']
+    # + 2 for blank item and selected item
+    element = find(".dropdown .item:nth-child(#{i + 2})")
+    expect(element).to have_css('.text', text: row['Text'])
+    expect(element).to have_css('.description', text: row['Description'])
   end
 end
 
