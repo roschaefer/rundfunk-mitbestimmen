@@ -365,7 +365,7 @@ DEPENDENCIES
   capistrano-rails
   capybara
   childprocess
-  chrono_model (<= 0.12.1)
+  chrono_model
   cucumber
   database_cleaner
   factory_bot_rails
