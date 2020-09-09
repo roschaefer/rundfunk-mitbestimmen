@@ -30,6 +30,6 @@ services:
       - redis
     command: "bin/rails server -b 0.0.0.0"
   db:
-    image: postgres:9.6
+    image: postgres:12
   redis:
-    image: redis:3.2.0
+    image: redis:6
