@@ -62,17 +62,12 @@ before_deploy:
   - ssh-add /tmp/deploy_rsa
   - rvm $TRAVIS_RUBY_VERSION do gem install bundler capistrano capistrano-rails capistrano-db-tasks
 
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap staging deploy && cd ../frontend && ember deploy staging
-    on:
-      branch: staging
-  - provider: script
-    skip_cleanup: true
-    script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
-    on:
-      branch: master
+    # deploy:
+    #   - provider: script
+    #     skip_cleanup: true
+    #     script: cd backend && rvm $TRAVIS_RUBY_VERSION do cap production deploy && cd ../frontend && ember deploy production
+    #     on:
+    #       branch: master
 
 notifications:
   slack:
