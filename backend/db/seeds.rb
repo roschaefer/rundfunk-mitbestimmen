@@ -7,6 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # avoid after_commit error when creating broadcasts
+
+# to make amend_period! available
+require 'chrono_model/utilities'
+ActiveRecord::Base.instance_eval do
+  extend ChronoModel::Utilities
+end
+
 Scenic.database.refresh_materialized_view(:statistic_broadcasts, cascade: false)
 
 tv    = Medium.create!(id: 0, name_de: 'TV', name_en: 'TV')
