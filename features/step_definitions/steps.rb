@@ -128,7 +128,7 @@ end
 
 Then(/^also in the database all impressions have the same amount of "([^"]*)"$/) do |amount|
   amounts = Impression.pluck(:amount)
-  expect(amounts.all? { |a| a == amount.to_f }).to be_truthy
+  expect(amounts.all? { |a| (a - amount.to_f).abs < Float::EPSILON }).to be_truthy
 end
 
 Given(/^my broadcasts look like this:$/) do |table|
@@ -382,7 +382,7 @@ Given(/^(\d+) out of (\d+) users want to pay for a show called "([^"]*)"$/) do |
 end
 
 Given(/^the total amount collected for this show is €(\d+\.\d+)$/) do |amount|
-  average = (amount.to_f / @broadcast.impressions.positive.count.to_f)
+  average = (amount.to_f / @broadcast.impressions.positive.count)
   @broadcast.impressions.positive.each do |s|
     s.amount = average
     s.save
