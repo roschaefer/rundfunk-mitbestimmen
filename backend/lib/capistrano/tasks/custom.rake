@@ -22,4 +22,6 @@ namespace :deploy do
       info "Host #{host} restarting svc daemon"
     end
   end
+
+  after :finished, :restart_daemon
 end
