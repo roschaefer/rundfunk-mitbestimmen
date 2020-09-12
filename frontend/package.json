@@ -71,7 +71,7 @@
     "ember-url": "^0.6.0",
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^6.2.0",
-    "highcharts": "7.0.3",
+    "highcharts": "7.2.2",
     "leaflet": "^1.4.0",
     "loader.js": "^4.7.0",
     "moment": "^2.24.0",
