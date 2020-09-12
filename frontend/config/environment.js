@@ -12,7 +12,7 @@ module.exports = function(environment) {
         'connect-src': "'self' http://localhost:* api.rundfunk-mitbestimmen.de rundfunk-mitbestimmen.eu.auth0.com sentry.io"
     },
     sentry: {
-      dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@sentry.io/244938',
+      dsn: 'https://fa04a98e51af49bb8309bf73fc9096d0@o111205.ingest.sentry.io/244938',
       development: true
     },
     EmberENV: {
