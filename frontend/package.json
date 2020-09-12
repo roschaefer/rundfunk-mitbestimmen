@@ -20,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "auth0-js": "^9.10.0",
+    "auth0-js": "^9.13.2",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-webpack": "^1.0.0",
     "chroma-js": "^2.1.0",
