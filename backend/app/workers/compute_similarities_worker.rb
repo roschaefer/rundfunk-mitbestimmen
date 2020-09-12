@@ -9,7 +9,7 @@ class ComputeSimilaritiesWorker
   def self.minimum_supporters
     return 0 if Broadcast.count.zero?
 
-    average_impressions_per_broadcast = Impression.count.to_f / Broadcast.count.to_f
+    average_impressions_per_broadcast = Impression.count / Broadcast.count.to_f
     (average_impressions_per_broadcast * 0.05).floor
   end
 end

@@ -276,7 +276,7 @@ RSpec.describe Broadcast, type: :model do
     end
 
     describe 'description contains URL' do
-      let(:description) { ('a' * 100) + 'http://alternativlos.org/' }
+      let(:description) { "#{'a' * 100}http://alternativlos.org/" }
       let(:attributes) { { description: description } }
       it { is_expected.not_to be_valid }
 

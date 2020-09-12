@@ -17,7 +17,7 @@ class ChartDataController < ApplicationController
       properties = feature.properties
       users_in_state = users.where(state_code: properties['state_code'])
       properties['user_count_total'] = users_in_state.count
-      properties['user_count_normalized'] = (users_in_state.count.to_f / users.count.to_f)
+      properties['user_count_normalized'] = (users_in_state.count / users.count.to_f)
       RGeo::GeoJSON::Feature.new(feature.geometry, feature.feature_id, properties)
     end
     render json: RGeo::GeoJSON.encode(RGeo::GeoJSON::FeatureCollection.new(feature_array))

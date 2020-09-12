@@ -1,4 +1,5 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - backend/db/schema.rb
     - frontend/node_modules/**/*
@@ -37,7 +38,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 142
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
-Metrics/LineLength:
+Layout/LineLength:
   Max: 339
 
 # Offense count: 6
@@ -53,6 +54,6 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - 'backend/app/models/user.rb'

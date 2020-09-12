@@ -70,11 +70,8 @@ class Broadcast < ApplicationRecord
   end
 
   def self.review_filter(review_status, user)
-    if review_status == 'reviewed'
-      evaluated(user)
-    elsif review_status == 'unreviewed'
-      unevaluated(user)
-    end
+    return evaluated(user) if review_status == 'reviewed'
+    return unevaluated(user) if review_status == 'unreviewed'
   end
 
   def self.results_order(sort, seed: nil)
@@ -99,21 +96,21 @@ class Broadcast < ApplicationRecord
 
   def description_should_not_contain_urls
     return unless description
-    return unless description.match?(URI.regexp(%w[http https]))
+    return unless description.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
 
     errors.add(:description, :no_urls)
   end
 
   def image_url_should_contain_url
     return unless image_url
-    return if image_url.match?(URI.regexp(%w[http https]))
+    return if image_url.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
 
     errors.add(:image_url, :invalid_url)
   end
 
   def broadcast_url_should_contain_url
     return unless broadcast_url
-    return if broadcast_url.match?(URI.regexp(%w[http https]))
+    return if broadcast_url.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
 
     errors.add(:broadcast_url, :invalid_url)
   end
