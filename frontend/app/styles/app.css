@@ -158,6 +158,9 @@ p {
   stroke-width: 0.5px;
 }
 
+.message-margin {
+  margin-top: 30px;
+}
 /* Youtube embed video */
 .video-container {
   position: relative;

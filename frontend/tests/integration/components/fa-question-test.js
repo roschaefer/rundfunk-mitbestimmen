@@ -22,16 +22,5 @@ describe('Integration | Component | fa question', function() {
 
     let text = this.$().text().trim();
     expect(text).to.match(/Who is financing this\?/);
-    expect(text).to.match(/We ourselves/);
-
-    // Template block usage:
-    this.render(hbs`
-    {{#fa-question key='finances'}}
-      template block text
-    {{/fa-question}}
-  `);
-
-    text = this.$().text().trim();
-    expect(text).to.match(/template block text/);
   });
 });

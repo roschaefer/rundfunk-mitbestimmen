@@ -28,6 +28,9 @@ Router.map(function() {
   this.route('imprint');
   this.route('history');
   this.route('data-privacy');
+  this.route('faq', function() {
+    this.route('show', { path: '/:slug' });
+  });
 
   this.route('authentication', function() {
     this.route('callback');

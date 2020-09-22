@@ -1,9 +1,5 @@
 <div class="title">
-  <i class="dropdown icon"></i>
-  <strong>{{t (concat 'index.faq.questions.' key '.title') }}</strong>
-</div>
-<div class="content">
-  {{t (concat 'index.faq.questions.' key '.content') htmlSafe=true }}
-
-  {{yield}}
+  {{#link-to 'faq.show' key }}
+  {{t (concat 'index.faq.questions.' key '.title') }}
+  {{/link-to}}
 </div>

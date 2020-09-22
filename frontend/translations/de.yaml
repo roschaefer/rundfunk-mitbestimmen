@@ -244,7 +244,7 @@ index:
           So würden auch kleine Gruppen gehört. Eine solche Aussage hat z.B.
           <a href="/statistics">die Metrik "Pro Kopf"</a>, nämlich wie wichtig
           eine Sendung auch für kleine Zielgruppen ist.
-      responsible:
+      who-are-you:
         title: Wer seid ihr?
         content: >
           "Rundfunk mitbestimmmen" wird hauptsächlich von Freiwilligen von
@@ -633,7 +633,9 @@ about-us:
         Programmiersprachen <a href="https://elixir-lang.org/">Elixir</a> und
         <a href="http://elm-lang.org/">elm</a> und dem Framework
         <a href="http://phoenixframework.org/">Phoenix</a>.
-
+faq:
+  title: Häufig gestellte Fragen
+  link-to-faq: Zurück
 404:
   header: Ups..
   sub-header: Wir konnten die Seite nicht finden.
