@@ -24,7 +24,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-webpack": "^1.0.0",
     "chroma-js": "^2.1.0",
-    "d3": "^5.8.2",
+    "d3": "^6.6.2",
     "d3-svg-legend": "^2.25.6",
     "ember-ajax": "^5.0.0",
     "ember-auto-import": "^1.6.0",
