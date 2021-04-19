@@ -64,4 +64,15 @@ class User < ActiveRecord::Base
     end
     save
   end
+
+  def reasons_for_notifications
+    # Populate the "reasons" array with symbols depending on which conditions it satisfies
+    reasons = []
+    broadcasts_created_since_last_login = Broadcast.where('created_at >= ?', last_login)
+    reasons << :recently_created_broadcasts if broadcasts_created_since_last_login.count >= 5
+    distributed_sum = impressions.sum(:amount)
+    reasons << :no_given_amount_for_supported_broadcasts if impressions.positive.where(amount: nil).present?
+    reasons << :unbalanced_distribution if impressions.where(amount: Impression::BUDGET)
+    reasons
+  end
 end

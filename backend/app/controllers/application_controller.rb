@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
   before_action :set_paper_trail_whodunnit
   before_action :set_locale
   before_action :set_raven_context
+  before_action :set_last_login
 
   def set_locale
     I18n.locale = user_locale || guest_locale
@@ -23,6 +24,12 @@ class ApplicationController < ActionController::API
 
   def user_locale
     current_user&.locale
+  end
+
+  def set_last_login
+    if current_user
+      current_user.update_columns(last_login: Time.current)
+    end
   end
 
   def set_raven_context

@@ -13,3 +13,22 @@ en:
           attributes:
             amount:
               total: Total amount of %{sum} exceeds the available budget of %{budget}
+  user_mailer:
+    monthly_news:
+      subject: New happenings in Rundfunk Mitbestimmen
+      header:
+        hello: Hello
+        welcome: "Welcome to this month's updates:"
+      body:
+          recently_created_broadcasts: 'Here are the new broadcasts added to Rundfunk Mitbestimmen since you last logged in:'
+          no_given_amount_for_supported_broadcasts: It looks like you have supported broadcasts without actually distributing your funds for your
+            selected broadcasts. Please log in and distribute funds for your favorite programs!
+          unbalanced_distribution: It looks like you have distributed all of your funds to one particular broadcast, are you sure
+            that was your intention? If not, then please log in and explore more broadcasts to distribute your funds.
+            If that was your intention, then please ignore this message!
+      footer:
+        closing: Thank you for being a valued member of Rundfunk Mitbestimmen! We hope you will check back soon to see
+          these new updates!
+        sign_off_html: |
+          Best Regards, <br> 
+          The Rundfunk Mitbestimmen team

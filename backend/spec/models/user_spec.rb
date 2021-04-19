@@ -8,6 +8,44 @@ RSpec.describe User, type: :model do
   let(:liked_broadcast) { create(:impression, response: :positive, user: user).broadcast }
   let(:unsupported_broadcast) { create(:impression, response: :neutral, user: user).broadcast }
 
+  describe '#reasons_for_notifications' do
+    subject { user.reasons_for_notifications }
+
+    context 'by default' do
+      it { is_expected.to be_empty }
+    end
+
+    context 'given a last_login timestamp' do
+      before do
+        user.update_columns(last_login: Time.current)
+      end
+      it { is_expected.to be_empty }
+    end
+
+    context 'many new broadcasts since last login' do
+      before do
+        user.update_columns(last_login: 2.months.ago)
+        create_list(:broadcast, 20)
+      end
+      it { is_expected.to include(:recently_created_broadcasts) }
+    end
+
+    context 'forgot to distribute money for supported broadcasts' do
+      before { create_list(:impression, 3, user: user, response: :positive, amount: nil) }
+      it { is_expected.to include(:no_given_amount_for_supported_broadcasts) }
+    end
+
+    context 'quite an unbalanced distribution, was it on purpose?' do
+      before { create(:impression, user: user, response: :positive, amount: Impression::BUDGET) }
+      it { is_expected.to include(:unbalanced_distribution) }
+    end
+
+    context 'error occurs when user has not logged in before' do
+      before { create(user: user, last_login: nil) }
+      it { is_expected.to raise_error 'NilPointerException' }
+    end
+  end
+
   describe 'update_and_reverse_geocode' do
     subject { user.update_and_reverse_geocode(params) }
     let(:user) { create(:user) }

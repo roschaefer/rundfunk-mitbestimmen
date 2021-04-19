@@ -20,6 +20,7 @@ gem 'sentry-raven'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'valid_email2'
+gem 'whenever'
 
 gem 'rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
