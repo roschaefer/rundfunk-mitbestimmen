@@ -241,7 +241,7 @@ GEM
     regexp_parser (1.7.1)
     request_store (1.4.1)
       rack (>= 1.4)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rgeo (2.0.0)
     rgeo-geojson (2.1.1)
       rgeo (>= 1.0.0)
