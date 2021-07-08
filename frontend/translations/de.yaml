@@ -5,7 +5,6 @@ authentication:
 loading:
   message: Wird geladen...
 broadcast-search:
-  results: '{count, plural, =0 {kein Ergebnis} =1 {# Ergebnis} other {# Ergebnisse }}'
   query:
     placeholder: Sendungstitel, Beschreibung oder Sender
   filter:
@@ -13,7 +12,6 @@ broadcast-search:
       placeholder: Filtern nach Medium
     station:
       placeholder: Nach Sendern filtern
-      description: '{count, plural, =1 {# Sendung} other {# Sendungen}}'
 broadcast-form:
   header:
     new: Neue Sendung
@@ -310,6 +308,12 @@ broadcast:
       visit-broadcast: Zur Website der Sendung
 find-broadcasts:
   header: Sendungen auswählen
+  subheader: "{totalCount, plural, =0 {Keine Sendungen} =1 {Eine Sendung} other {# Sendungen}} gefunden"
+  reset-search: Suchparameter zurückzusetzen
+  sort-button:
+    ascending: Sortiere absteigend
+    descending: Sortiere aufsteigend
+    random: Zufälliger Reihenfolge
   help-messages:
     missing-broadcast:
       header: Fehlt eine Sendung?

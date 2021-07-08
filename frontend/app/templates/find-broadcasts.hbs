@@ -1,86 +1,101 @@
-<div class="row">
-  <div class="column">
-    <h1 class="ui huge header find-broadcasts-page">{{t 'find-broadcasts.header'}} </h1>
-  </div>
-</div>
-
-{{broadcast-search
-searchAction=(action 'searchAction')
-broadcasts=model.broadcasts
-media=media
-stations=stations
-filterParams=filterParams
-loading=loading}}
-
-<div class="row">
-  <div class="column">
-    {{find-broadcasts/navigation
-      step=page
-      totalSteps=totalPages
-      recentPositives=positiveImpressionsWithoutAmount.length
-      browse=(action 'browse')
-    }}
-  </div>
-</div>
-
-<div class="row">
-  <div class="column">
-    <div class="ui centered three stackable cards">
-      {{#each broadcasts as |broadcast|}}
-        {{decision-card broadcast=broadcast respondAction=(action 'respond') loginAction=(action 'loginAction')}}
-      {{/each}}
+<div class="ui middle aligned grid container">
+  <div class="row">
+    <div class="twelve wide column">
+      <h1 class="ui huge header find-broadcasts-page">
+        {{t 'find-broadcasts.header'}}
+        <h2 class="sub header">
+          {{t 'find-broadcasts.subheader' totalCount=totalCount}}
+        </h2>
+      </h1>
+    </div>
+    <div class="four wide column">
+      {{broadcast-sort sort=sort sortAction=(action 'sortAction')}}
     </div>
   </div>
 </div>
 
-{{#unless broadcasts}}
-<div class="ui grid">
-  <div class="ui two column doubling row">
-    <div class="six wide column">
-      <div class="two column doubling row">
-        <div class="eight wide column">
-          <div class="ui basic padded segment">
-            {{help-message id='help-message-new-broadcast' icon='smile' header='find-broadcasts.help-messages.missing-broadcast.header' content='find-broadcasts.help-messages.missing-broadcast.content'}}
-          </div>
-        </div>
-        {{#if (eq model.broadcasts.totalPages 0)}}
-          {{!-- TODO: test --}}
-        <div class="eight wide column">
-          <div class="ui basic padded segment">
-            {{help-message content='find-broadcasts.help-messages.result-set-empty.content' }}
-          </div>
-        </div>
-        {{/if}}
-      </div>
-    </div>
-    <div class="ten wide column">
-      {{broadcast/broadcast-form
-      broadcast=newBroadcast
-      media=media
-      stations=stations
-      errorMessages=errorMessages
-      newBroadcast='newBroadcast'
-      loginAction=(action 'loginAction')
-      clearBroadcast=(action 'clearBroadcast')
-      }}
+<div class="ui middle aligned stackable grid container">
+  <div class="row">
+    <div class="column">
+      {{broadcast-search
+      searchAction=(action 'searchAction')
+      model=model
+      q=q
+      medium=medium
+      station=station
+      loading=loading}}
     </div>
   </div>
-</div>
-{{/unless}}
 
-<div class="row">
-  <div class="column">
-    {{find-broadcasts/navigation
+  <div class="mobile only row">
+    <div class="column">
+      {{find-broadcasts/navigation
       step=page
       mobileOnly=true
       totalSteps=totalPages
       recentPositives=positiveImpressionsWithoutAmount.length
       browse=(action 'browse')
-    }}
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="ui centered three stackable cards">
+        {{#each broadcasts as |broadcast|}}
+        {{decision-card broadcast=broadcast respondAction=(action 'respond') loginAction=(action 'loginAction')}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  {{#unless broadcasts}}
+  <div class="ui grid">
+    <div class="ui two column doubling row">
+      <div class="six wide column">
+        <div class="two column doubling row">
+          <div class="eight wide column">
+            <div class="ui basic padded segment">
+              {{help-message id='help-message-new-broadcast' icon='smile'
+              header='find-broadcasts.help-messages.missing-broadcast.header'
+              content='find-broadcasts.help-messages.missing-broadcast.content'}}
+            </div>
+          </div>
+          {{#if (eq model.broadcasts.totalPages 0)}}
+          {{!-- TODO: test --}}
+          <div class="eight wide column">
+            <div class="ui basic padded segment">
+              {{help-message content='find-broadcasts.help-messages.result-set-empty.content' }}
+            </div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="ten wide column">
+        {{broadcast/broadcast-form
+        broadcast=newBroadcast
+        media=model.media
+        stations=model.stations
+        errorMessages=errorMessages
+        newBroadcast='newBroadcast'
+        loginAction=(action 'loginAction')
+        clearBroadcast=(action 'clearBroadcast')
+        }}
+      </div>
+    </div>
+  </div>
+  {{/unless}}
+
+  <div class="row">
+    <div class="column">
+      {{find-broadcasts/navigation
+      step=page
+      totalSteps=totalPages
+      recentPositives=positiveImpressionsWithoutAmount.length
+      browse=(action 'browse')
+      }}
+    </div>
   </div>
 </div>
 
 {{outlet}}
-
-
-

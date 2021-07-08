@@ -29,9 +29,6 @@ describe('Integration | Component | broadcast search', function() {
     this.render(hbs`{{broadcast-search totalCount=totalCount stations=stations media=media filterParams=filterParams}}`);
     expect(this.$()).to.have.length(1);
 
-    let text = this.$().text();
-    expect(text).to.match(/10\s+results/);
-
     // Template block usage:
     this.render(hbs`
     {{#broadcast-search stations=stations media=media filterParams=filterParams}}
@@ -39,7 +36,6 @@ describe('Integration | Component | broadcast search', function() {
     {{/broadcast-search}}
   `);
 
-    text = this.$().text();
     expect(this.$().text()).to.match(/template block text/);
   });
 });

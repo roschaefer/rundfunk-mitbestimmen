@@ -174,3 +174,11 @@ p {
   width: 100%;
   height: 100%;
 }
+
+.ui .huge .header {
+  margin-bottom: 1.5em;
+}
+
+#reset-search {
+  margin-right: 1em;
+}

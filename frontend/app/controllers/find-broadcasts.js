@@ -8,21 +8,11 @@ export default Controller.extend({
   intl: service(),
   queryParams: ['page', 'perPage', 'sort', 'q', 'medium', 'station'],
   sort: 'random',
-  q: null,
-  medium: null,
-  station: null,
-  filterParams: computed('q', 'medium', 'station', 'sort', function() {
-    return {
-      q: this.get('q'),
-      sort: this.get('sort'),
-      medium: this.get('medium'),
-      station: this.get('station')
-    }
-  }),
 
   page: 1,
   perPage: 6,
   totalPages: alias("model.broadcasts.totalPages"),
+  totalCount: alias("model.broadcasts.meta.total-count"),
 
   positiveImpressionsWithoutAmount: filterBy('model.impressions','needsAmount', true),
 
@@ -30,11 +20,22 @@ export default Controller.extend({
   broadcasts: computed.alias('model.broadcasts.content'),
 
   actions: {
-    searchAction(filterParams){
-      this.set('sort', filterParams.sort);
-      this.set('q', filterParams.q);
-      this.set('medium', filterParams.medium);
-      this.set('station', filterParams.station);
+    init(){
+      this.set('q', null)
+      this.set('medium', null)
+      this.set('station', null)
+    },
+    searchAction(params){
+      const {
+        sort    = this.get('sort'),
+        q       = this.get('q'),
+        medium  = this.get('medium'),
+        station = this.get('station')
+      } = params
+      this.set('sort', sort);
+      this.set('q', q);
+      this.set('medium', medium);
+      this.set('station', station);
       this.set('page', 1);
     },
     browse(step){
@@ -49,6 +50,9 @@ export default Controller.extend({
     loginAction(){
       this.send('login');
     },
+    sortAction(direction){
+      this.set('sort', direction);
+      this.set('page', 1);
+    }
   }
 });
-

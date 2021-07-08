@@ -5,12 +5,12 @@ import { computed } from '@ember/object';
 export default Component.extend({
   intl: service(),
   tagName: '',
-  totalCount: computed('broadcasts', function() {
+  totalCount: computed('model.broadcasts', function() {
     return this.get('broadcasts.meta.total-count');
   }),
-  displayedStations: computed('filterParams', 'stations', function() {
-    return this.get('stations').filter((s) => {
-      return s.get('medium').get('id') === this.get('filterParams').medium;
+  displayedStations: computed('model.stations', function() {
+    return this.get('model.stations').filter((station) => {
+      return station.get('medium').get('id') === this.get('medium');
     });
   }),
   sortedStations: computed('displayedStations', function() {
@@ -19,23 +19,20 @@ export default Component.extend({
   actions: {
     search(){
       let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      searchAction({
+        q: this.get('query'),
+        medium: this.get('mediumId'),
+        station: this.get('stationId')
+      });
     },
     filterMedium(mediumId){
-      this.set('filterParams.medium', mediumId);
-      this.set('filterParams.station', null); //clear station
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      this.set('mediumId', mediumId);
+      this.set('stationId', null); //clear station
+      this.send('search');
     },
     filterStation(stationId){
-      this.set('filterParams.station', stationId);
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
-    },
-    sortAction(direction){
-      this.set('filterParams.sort', direction);
-      let searchAction = this.get('searchAction');
-      searchAction(this.get('filterParams'));
+      this.set('stationId', stationId);
+      this.send('search');
     }
   }
 });

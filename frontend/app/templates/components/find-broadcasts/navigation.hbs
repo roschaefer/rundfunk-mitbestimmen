@@ -1,11 +1,12 @@
-<div class="basic segment ui {{if mobileOnly 'mobile only'}} grid">
+<div class="basic ui grid">
+  {{#if mobileOnly}}
   <div class="mobile only centered row">
     {{find-broadcasts/navigation/distribute-budget recentPositives=recentPositives}}
   </div>
+  {{/if}}
 
-  <div class="middle aligned row">
     <div class="three wide computer four wide tablet eight wide mobile column">
-      <button class="ui left labeled icon {{unless canStepBackward 'disabled'}} button find-broadcasts-navigation-back" {{action 'back'}}>
+      <button class="ui basic left labeled icon {{unless canStepBackward 'disabled'}} button find-broadcasts-navigation-back" {{action 'back'}}>
         <i class="left arrow icon"></i>
         {{t 'find-broadcasts.navigation.buttons.back'}}
       </button>
@@ -18,10 +19,10 @@
     {{yield}}
 
     <div class="three wide computer four wide tablet eight wide mobile right aligned column">
-      <button class="ui right labeled icon {{unless canStepForward 'disabled'}} button find-broadcasts-navigation-next" {{action 'next'}}>
+      <button class="ui basic right labeled icon {{unless canStepForward 'disabled'}} button find-broadcasts-navigation-next" {{action 'next'}}>
         {{t 'find-broadcasts.navigation.buttons.next'}}
         <i class="right arrow icon"></i>
       </button>
     </div>
-  </div>
+
 </div>
